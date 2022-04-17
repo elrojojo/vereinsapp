@@ -40,10 +40,11 @@ class Vereinsapp_Controller extends CI_Controller {
     defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', array( 
       'jquery.js' => array( 'src' => 'https://code.jquery.com/jquery-3.6.0.js', ),
       'jquery.ui.js' => array( 'src' => 'https://code.jquery.com/ui/1.13.0/jquery-ui.js', ),
-      'jquery.ui.touch-punch.min.js' => array( 'src' => base_url('js/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js'), ),
+      'jquery.ui.touch-punch.min.js' => array( 'src' => 'https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js', ),
       'bootstrap.bundle.min.js' => array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns', 'crossorigin' => 'anonymous', ),
-      'dayjs.min.js' => array( 'src' => base_url('js/dayjs/dayjs.min.js'), ), // https://www.jsdelivr.com/package/npm/dayjs
-      'isToday.js' => array( 'src' => base_url('js/dayjs/plugin/isToday.js'), ), // https://www.jsdelivr.com/package/npm/dayjs
+      'dayjs.min.js' => array( 'src' => 'https://cdn.jsdelivr.net/npm/dayjs@1.11.1/dayjs.min.js', ),
+      'isToday.js' => array( 'src' => 'https://cdn.jsdelivr.net/npm/dayjs@1.11.1/plugin/isToday.js', ),
+      'sha256.min.js' => array( 'src' => base_url('js/sha256/sha256.min.js'), ), // https://www.npmjs.com/package/js-sha256
       'vereinsapp.js' => array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), ),
     ) );
 
