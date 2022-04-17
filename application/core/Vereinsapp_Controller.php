@@ -40,15 +40,18 @@ class Vereinsapp_Controller extends CI_Controller {
     defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', array( 
       'jquery.js' => array( 'src' => 'https://code.jquery.com/jquery-3.6.0.js', ),
       'jquery.ui.js' => array( 'src' => 'https://code.jquery.com/ui/1.13.0/jquery-ui.js', ),
-      'jquery.ui.touch-punch.js' => array( 'src' => base_url('js/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js'), ),
+      'jquery.ui.touch-punch.min.js' => array( 'src' => base_url('js/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js'), ),
       'bootstrap.bundle.min.js' => array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns', 'crossorigin' => 'anonymous', ),
-      'cookies.js' => array( 'src' => base_url('js/vereinsapp/cookies.js'), ),
+      'dayjs.min.js' => array( 'src' => base_url('js/dayjs/dayjs.min.js'), ), // https://www.jsdelivr.com/package/npm/dayjs
+      'isToday.js' => array( 'src' => base_url('js/dayjs/plugin/isToday.js'), ), // https://www.jsdelivr.com/package/npm/dayjs
       'vereinsapp.js' => array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), ),
     ) );
 
     defined('LOGIN') OR define( 'LOGIN', site_url().'login' );
     defined('STARTSEITE') OR define( 'STARTSEITE', site_url().'startseite' );
-    defined('COOKIES_RICHTLINIE_DATUM') OR define( 'COOKIES_RICHTLINIE_DATUM', 20210629 );
+    defined('DATENACHUTZ_RICHTLINIE_DATUM') OR define( 'DATENACHUTZ_RICHTLINIE_DATUM', 20210629 );
+
+    defined('AJAX_REFRESH_INTERVALL') OR define( 'AJAX_REFRESH_INTERVALL', 5 );
 
     defined('BASE_URL') OR define( 'BASE_URL', $this->config->item('base_url') );
     defined('CONTROLLER') OR define( 'CONTROLLER', $this->router->fetch_class() );
@@ -74,14 +77,15 @@ class Vereinsapp_Controller extends CI_Controller {
     if( array_key_exists( CONTROLLER, CONTROLLER_INT_EXT ) AND in_array( METHOD, CONTROLLER_INT_EXT[ CONTROLLER ]['absprung'] ) ) $this->session->absprung = uri_string(); defined('ABSPRUNG') OR define( 'ABSPRUNG', $this->session->absprung );
     
     //echo 'TAGEBUCH='; $tagebuch = $this->session->tagebuch; $tagebuch[] = CONTROLLER.'/'.METHOD; $this->session->tagebuch = $tagebuch; print_r( $this->session->tagebuch );
+    defined('ICH_ID') OR define('ICH_ID', $this->session->ich_id );
     if( array_key_exists( CONTROLLER, CONTROLLER_INT ) AND
-        !$this->session->ich_id AND
+        !ICH_ID AND
         !$this->login_model->dauerhaft_angemeldet()
     ) redirect(LOGIN);
 
 
     defined('MITGLIEDER') OR define( 'MITGLIEDER', $this->mitglieder_model->mitglieder( NULL, array(), array( array( 'kategorie' => $this->einstellungen_model->standard_einstellung( 'mitglieder', 'sortieren_nach', $this->session->ich_id ), 'richtung' => SORT_ASC ) ) ) );
-    if( array_key_exists( $this->session->ich_id, MITGLIEDER ) ) defined('ICH') OR define( 'ICH', MITGLIEDER[ intval($this->session->ich_id) ] ); else defined('ICH') OR define( 'ICH', array() );
+    if( array_key_exists( ICH_ID, MITGLIEDER ) ) defined('ICH') OR define( 'ICH', MITGLIEDER[ intval(ICH_ID) ] ); else defined('ICH') OR define( 'ICH', array() );
 
 
     $this->data['status_anzeigen_liste'] = array(); if( is_array( $this->session->status ) AND !empty( $this->session->status ) )

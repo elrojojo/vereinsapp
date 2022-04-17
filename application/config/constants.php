@@ -572,7 +572,7 @@ if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) {
     'standardwert' => 'titel_nr',*/
   );
 
-  defined('NOTENVERZEICHNIS_PDF') OR define( 'NOTENVERZEICHNIS_PDF', 'storage/notenbank/notenverzeichnis.pdf' );
+  defined('NOTENVERZEICHNIS_PDF') OR define( 'NOTENVERZEICHNIS_PDF', null );//'storage/notenbank/notenverzeichnis.pdf' );
 
 }
 

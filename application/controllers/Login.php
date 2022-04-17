@@ -273,5 +273,9 @@ class Login extends Vereinsapp_Controller {
       $this->load->view('templates/status', array( 'farbe' => 'success', 'status' => 'Du hast dich erfolgreich aus der '.VEREINSAPP_NAME.' ausgeloggt. Kehre zum Login zurück Um dich erneut einloggen zu können! <a class="btn btn-outline-success btn-block mt-3" href="'.LOGIN.'">Zurück zum Login</a>' ) );
     } else redirect(LOGIN);
   }
+  
+  public function ajax_datenschutz_richtlinie() {
+    echo $this->load->view('login/datenschutz_richtlinie', $this->data, TRUE );
+  }
 
 }

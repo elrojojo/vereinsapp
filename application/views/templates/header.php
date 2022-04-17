@@ -10,16 +10,18 @@
     <?php foreach( HEAD_STYLESHEET as $stylesheet ): ?><link rel="stylesheet" href="<?php echo $stylesheet['href']; ?>"<?php if( array_key_exists( 'integrity', $stylesheet ) ) echo ' integrity="'.$stylesheet['integrity'].'"'; ?><?php if( array_key_exists( 'crossorigin', $stylesheet ) ) echo ' crossorigin="'.$stylesheet['crossorigin'].'"'; ?>>
     <?php endforeach; ?>
 
-    <?php foreach( HEAD_SCRIPT as $script ): ?><script src="<?php echo $script['src']; ?>"<?php if( array_key_exists( 'integrity', $script ) ) echo ' integrity="'.$script['integrity'].'"'; ?><?php if( array_key_exists( 'crossorigin', $script ) ) echo ' crossorigin="'.$script['crossorigin'].'"'; ?>></script>
-<?php endforeach; ?>
-
     <script type='text/javascript'>
-      const LOGIN_COOKIE_EXPIRE = <?php echo LOGIN_COOKIE_EXPIRE; ?>;
+      const AJAX_REFRESH_INTERVALL = <?php echo AJAX_REFRESH_INTERVALL; ?>;
+      const DATENACHUTZ_RICHTLINIE_DATUM = '<?php echo DATENACHUTZ_RICHTLINIE_DATUM; ?>';
+
       const BASE_URL = '<?php echo BASE_URL; ?>';
       const CONTROLLER = '<?php echo CONTROLLER; ?>';
       const ABSPRUNG = '<?php echo ABSPRUNG; ?>';
-      const COOKIES_RICHTLINIE_DATUM = '<?php echo COOKIES_RICHTLINIE_DATUM; ?>';
+
     </script>
+
+    <?php foreach( HEAD_SCRIPT as $script ): ?><script src="<?php echo $script['src']; ?>"<?php if( array_key_exists( 'integrity', $script ) ) echo ' integrity="'.$script['integrity'].'"'; ?><?php if( array_key_exists( 'crossorigin', $script ) ) echo ' crossorigin="'.$script['crossorigin'].'"'; ?>></script>
+<?php endforeach; ?>
 
   </head>
   <body>

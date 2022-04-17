@@ -1,70 +1,53 @@
-const STATUS_SPINNER_HTML = '<span class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></span>';;
+dayjs.extend(window.dayjs_plugin_isToday);
+
+const STATUS_SPINNER_HTML = '<span class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></span>';
 let STATUS_STANDARD_HTML;
 
 $(document).ready( function() {
 
-    //POPOVER AKTIVIEREN
-    $('[data-toggle="popover"]').popover();
+  //POPOVER AKTIVIEREN
+  $('[data-toggle="popover"]').popover();
 
+  //ALLGEMEINE AJAX-EINSTELLUNGEN
+  STATUS_STANDARD_HTML = $('#status').html();
 
-    // AUTOMATISCHES SCROLLEN
-    const LETZTER_PATHNAME = localStorage.getItem( 'vereinsapp_pathname' );
-    const AKTUELLER_PATHNAME = $(location).attr('pathname');
-    localStorage.setItem( 'vereinsapp_pathname', AKTUELLER_PATHNAME );
+  $(document).ajaxStart( function() {
+    $('#status').html( STATUS_SPINNER_HTML );
+  } );
 
-    if( LETZTER_PATHNAME == AKTUELLER_PATHNAME ) $(window).scrollTop( localStorage.getItem('vereinsapp_scrollpos') ); else localStorage.removeItem( 'vereinsapp_scrollpos' );
-    $(window).scroll( function() {
-	    const SCROLLPOS = $(window).scrollTop();
-        localStorage.setItem( 'vereinsapp_scrollpos', SCROLLPOS );
-    } );
-    
-    
-    //COOKIES "DAUERHAFT ANGEMELDET" AUS LOCALSTORAGE
-    if( ( !cookie( 'vereinsapp_dauerhaft_angemeldet_identifier', false )    && localStorage.getItem( cookie_redundanz_name('vereinsapp_dauerhaft_angemeldet_identifier') ) !== null )
-     || ( !cookie( 'vereinsapp_dauerhaft_angemeldet_securitytoken', false ) && localStorage.getItem( cookie_redundanz_name('vereinsapp_dauerhaft_angemeldet_securitytoken') ) !== null ) ) {
-        if( !cookie( 'vereinsapp_dauerhaft_angemeldet_identifier', false ) ) cookie_redundanz_aktivieren( 'vereinsapp_dauerhaft_angemeldet_identifier' );
-        if( !cookie( 'vereinsapp_dauerhaft_angemeldet_securitytoken', false ) ) cookie_redundanz_aktivieren( 'vereinsapp_dauerhaft_angemeldet_securitytoken' );
-        window.location.replace( ABSPRUNG );
-    } else {
-        if( cookie('vereinsapp_dauerhaft_angemeldet_identifier').length
-        && (
-            localStorage.getItem( cookie_redundanz_name('vereinsapp_dauerhaft_angemeldet_identifier') ) === null 
-        ||  localStorage.getItem( cookie_redundanz_name('vereinsapp_dauerhaft_angemeldet_identifier') ) != cookie('vereinsapp_dauerhaft_angemeldet_identifier')
-        ) ) {
-            let ablaufdatum = new Date(); ablaufdatum.setTime( new Date().getTime() + ( LOGIN_COOKIE_EXPIRE*1000 ) ); ablaufdatum = ablaufdatum.toUTCString();
-            cookie_redundanz_eintragen( 'vereinsapp_dauerhaft_angemeldet_identifier', ablaufdatum );
-        }
-        if( cookie('vereinsapp_dauerhaft_angemeldet_securitytoken').length
-        && (
-            localStorage.getItem( cookie_redundanz_name('vereinsapp_dauerhaft_angemeldet_securitytoken') ) === null 
-        ||  localStorage.getItem( cookie_redundanz_name('vereinsapp_dauerhaft_angemeldet_securitytoken') ) != cookie('vereinsapp_dauerhaft_angemeldet_securitytoken')
-        ) ) {
-            let ablaufdatum = new Date(); ablaufdatum.setTime( new Date().getTime() + ( LOGIN_COOKIE_EXPIRE*1000 ) ); ablaufdatum = ablaufdatum.toUTCString();
-            cookie_redundanz_eintragen( 'vereinsapp_dauerhaft_angemeldet_securitytoken', ablaufdatum );
-        }
-    }
+  $(document).ajaxStop( function() {
+    $('#status').html( STATUS_STANDARD_HTML );
+  } );
 
+  $(document).ajaxSuccess( function() {
+    $('#status').removeClass('text-danger');
+    $('#status').addClass('text-success');
+  } );
 
-    // COOKIES AKZEPTIEREN
-    const COOKIES_AKZEPTIEREN_LAUFZEIT = 60*60*24*30*12*5;
-    if( Number( cookie('vereinsapp_cookies_'+COOKIES_RICHTLINIE_DATUM) )+COOKIES_AKZEPTIEREN_LAUFZEIT < Math.floor(new Date()/1000) ) {
-        $.ajax( {
-            url: BASE_URL+'/ajax/ajax_cookies_richtlinie',
-            method: 'get',
-            dataType: 'html',
-            success: function(cookies_richtlinie) {
-                $('#modals_anzeigen_liste').append( cookies_richtlinie );
-                $('#cookies_richtlinie').modal('show');
-                $('#cookies_richtlinie_akzeptieren').click( function() {
-                    cookie_eintragen( 'vereinsapp_cookies_'+COOKIES_RICHTLINIE_DATUM, Math.floor(new Date()/1000), COOKIES_AKZEPTIEREN_LAUFZEIT ); console.log( 'Cookie-Richtlinie akzeptiert');
-                    $('#cookies_richtlinie').modal('hide');            
-                } );
-            },
-            error: function(xhr){ alert( 'cookies_richtlinie konnte nicht geladen werden: ' + xhr.status + ' ' + xhr.statusText); },
+  $(document).ajaxError( function() {
+    $('#status').removeClass('text-success');
+    $('#status').addClass('text-danger');
+  } );
+
+  // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
+  if( localStorage.getItem( 'vereinsapp_datenschutz_richtlinie_'+DATENACHUTZ_RICHTLINIE_DATUM ) === null ) {
+    $.ajax( {
+      url: BASE_URL+'/login/ajax_datenschutz_richtlinie',
+      method: 'get',
+      dataType: 'html',
+      success: function(datenschutz_richtlinie) {
+        $('#modals_anzeigen_liste').append( datenschutz_richtlinie );
+        $('#datenschutz_richtlinie_modal').modal('show');
+        $('#datenschutz_richtlinie_akzeptieren').click( function() {
+          localStorage.setItem(  'vereinsapp_datenschutz_richtlinie_'+DATENACHUTZ_RICHTLINIE_DATUM, dayjs() ); console.log('Datenschutz-Richtlinie akzeptiert');
+          $('#datenschutz_richtlinie_modal').modal('hide');
         } );
-    }
+      },
+      error: function(xhr) { alert( 'datenschutz_richtlinie konnte nicht geladen werden: ' + xhr.status + ' ' + xhr.statusText); },
+    } );
+  }
+  
 
-    
     // PASSWORT ANZEIGEN
     $('.passwort_anzeigen').click( function(event) {
         event.preventDefault();

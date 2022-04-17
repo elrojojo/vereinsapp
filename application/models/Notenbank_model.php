@@ -6,7 +6,7 @@ class Notenbank_model extends CI_Model {
 
     if( !isset( $this->session->notenverzeichnis_sortieren ) OR empty( $this->session->notenverzeichnis_sortieren ) OR $this->session->notenverzeichnis_sortieren == '' )
     $this->session->notenverzeichnis_sortieren = array_values( array( array( 'kategorie' => $this->einstellungen_model->standard_einstellung( 'notenverzeichnis', 'sortieren_nach', ICH['id'] ), 'richtung' => SORT_ASC ) ) );
-    $pfad = base_url('storage/notenbank');
+    $this->pfad = 'storage/notenbank';
   }
 
   private $pfad;
