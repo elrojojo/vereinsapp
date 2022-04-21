@@ -78,12 +78,12 @@ class Vereinsapp_Controller extends CI_Controller {
     if( array_key_exists( CONTROLLER, CONTROLLER_INT_EXT ) AND in_array( METHOD, CONTROLLER_INT_EXT[ CONTROLLER ]['absprung'] ) ) $this->session->absprung = uri_string(); defined('ABSPRUNG') OR define( 'ABSPRUNG', $this->session->absprung );
     
     //echo 'TAGEBUCH='; $tagebuch = $this->session->tagebuch; $tagebuch[] = CONTROLLER.'/'.METHOD; $this->session->tagebuch = $tagebuch; print_r( $this->session->tagebuch );
-    defined('ICH_ID') OR define('ICH_ID', $this->session->ich_id );
     if( array_key_exists( CONTROLLER, CONTROLLER_INT ) AND
-        !ICH_ID AND
+        !$this->session->ich_id AND
         !$this->login_model->dauerhaft_angemeldet()
     ) redirect(LOGIN);
-
+    
+    defined('ICH_ID') OR define('ICH_ID', $this->session->ich_id );
 
     defined('MITGLIEDER') OR define( 'MITGLIEDER', $this->mitglieder_model->mitglieder( NULL, array(), array( array( 'kategorie' => $this->einstellungen_model->standard_einstellung( 'mitglieder', 'sortieren_nach', $this->session->ich_id ), 'richtung' => SORT_ASC ) ) ) );
     if( array_key_exists( ICH_ID, MITGLIEDER ) ) defined('ICH') OR define( 'ICH', MITGLIEDER[ intval(ICH_ID) ] ); else defined('ICH') OR define( 'ICH', array() );
