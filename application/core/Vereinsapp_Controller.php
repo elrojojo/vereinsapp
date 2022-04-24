@@ -118,14 +118,14 @@ class Vereinsapp_Controller extends CI_Controller {
 
   //------------------------------------------------------------------------------------------------------------------
   public function fv_standard_textzeile($str) {
-      if ( !preg_match('/^[a-zA-Z0-9,.:\- äöüß]*$/', $str) ) { // --
+      if ( !preg_match('/^[a-zA-Z0-9,.:\- ÄäÖöÜüß]*$/', $str) ) { // --
         $this->form_validation->set_message('fv_standard_textzeile', 'Die Eingabe für %s enthält unzulässige Zeichen.');
         return FALSE;
       } else return TRUE;
   }
 
   public function fv_standard_rueckmeldung($str) {
-    if ( !preg_match('/^[a-zA-Z0-9,\- äöüß]*$/', $str) ) { // --
+    if ( !preg_match('/^[a-zA-Z0-9,\- ÄäÖöÜüß]*$/', $str) ) { // --
       $this->form_validation->set_message('fv_standard_rueckmeldung', 'Die Eingabe für %s enthält unzulässige Zeichen.');
       return FALSE;
     } else return TRUE;
