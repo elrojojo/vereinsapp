@@ -24,8 +24,10 @@ class Auth extends ShieldAuth
      * ////////////////////////////////////////////////////////////////////
      */
     public array $views = [
-        'login'                       => '\CodeIgniter\Shield\Views\login',
+        //'login'                       => '\CodeIgniter\Shield\Views\login',
+        'login'                       => 'Login/login',
         'register'                    => '\CodeIgniter\Shield\Views\register',
+        // 'register'                    => 'Login/register',
         'layout'                      => '\CodeIgniter\Shield\Views\layout',
         'action_email_2fa'            => '\CodeIgniter\Shield\Views\email_2fa_show',
         'action_email_2fa_verify'     => '\CodeIgniter\Shield\Views\email_2fa_verify',
@@ -82,10 +84,10 @@ class Auth extends ShieldAuth
      * to apply any logic you may need.
      */
     public array $redirects = [
-        'register'    => '/',
-        'login'       => '/',
-        'logout'      => 'login',
-        'force_reset' => '/',
+        'register' => '',
+        'login'    => '',
+        'logout'   => '',
+        'force_reset' => '',
     ];
 
     /**
@@ -176,7 +178,7 @@ class Auth extends ShieldAuth
      * --------------------------------------------------------------------
      * Determines whether users can register for the site.
      */
-    public bool $allowRegistration = true;
+    public bool $allowRegistration = false;
 
     /**
      * --------------------------------------------------------------------
@@ -229,7 +231,7 @@ class Auth extends ShieldAuth
         'field'              => 'user',
         'allowRemembering'   => true,
         'rememberCookieName' => 'remember',
-        'rememberLength'     => 30 * DAY,
+        'rememberLength'     => 365 * DAY,
     ];
 
     /**
@@ -239,7 +241,7 @@ class Auth extends ShieldAuth
      * The minimum length that a password must be to be accepted.
      * Recommended minimum value by NIST = 8 characters.
      */
-    public int $minimumPasswordLength = 8;
+    public int $minimumPasswordLength = 4;
 
     /**
      * --------------------------------------------------------------------
@@ -253,9 +255,9 @@ class Auth extends ShieldAuth
      * @var class-string<ValidatorInterface>[]
      */
     public array $passwordValidators = [
-        CompositionValidator::class,
-        NothingPersonalValidator::class,
-        DictionaryValidator::class,
+        // CompositionValidator::class,
+        // NothingPersonalValidator::class,
+        // DictionaryValidator::class,
         // PwnedValidator::class,
     ];
 
@@ -387,7 +389,7 @@ class Auth extends ShieldAuth
      *
      * @var class-string<UserModel>
      */
-    public string $userProvider = UserModel::class;
+    public string $userProvider = 'App\Models\Mitglieder\Mitglied_Model';
 
     /**
      * Returns the URL that a user should be redirected
