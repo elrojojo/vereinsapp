@@ -14,7 +14,7 @@ class Termine extends Migration
             'start'         => ['type' => 'datetime', 'null' => false],
             'ort'           => ['type' => 'varchar', 'constraint' => 50, 'null' => false],
             'kategorie'     => ['type' => 'varchar', 'constraint' => 50, 'null' => false, 'default' => 'allgemein'],
-            'beschr_mitglieder' => ['type' => 'varchar', 'constraint' => 9999, 'null' => true],
+            'filter_mitglieder' => ['type' => 'varchar', 'constraint' => 9999, 'null' => true],
             'setlist'       => ['type' => 'varchar', 'constraint' => 1000, 'null' => true],
             'bemerkung'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'    => ['type' => 'datetime', 'null' => true],
@@ -37,7 +37,7 @@ class Termine extends Migration
         $this->forge->addKey('termin_id');
         $this->forge->addForeignKey('termin_id', 'termine', 'id', '', 'CASCADE');
         $this->forge->addKey('mitglied_id');
-        $this->forge->addForeignKey('mitglied_id', 'users', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
         $this->forge->createTable('termine_rueckmeldungen');
         
         $this->forge->addField([
@@ -52,7 +52,7 @@ class Termine extends Migration
         $this->forge->addKey('termin_id');
         $this->forge->addForeignKey('termin_id', 'termine', 'id', '', 'CASCADE');
         $this->forge->addKey('mitglied_id');
-        $this->forge->addForeignKey('mitglied_id', 'users', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
         $this->forge->createTable('termine_anwesenheiten');
     }
 

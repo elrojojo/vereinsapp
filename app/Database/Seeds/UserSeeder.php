@@ -9,7 +9,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         
-        $users = [
+        $mitglieder = [
             [ 'vorname'  => 'John', 'nachname' => 'Doe',
                 'geburt' => '1988-07-15 00:00:00', 'postleitzahl' => 77815, 'wohnort' => 'Bühl',
                 'geschlecht' => 'm', 'register' => 'tuba', 'funktion' => 'ohne', 'vorstandschaft' => 1, 'aktiv' => 1, ],
@@ -23,29 +23,29 @@ class UserSeeder extends Seeder
                 'geburt' => '1950-01-01 00:00:00', 'postleitzahl' => 12345, 'wohnort' => 'Testort',
                 'geschlecht' => 'm', 'register' => 'klarinette', 'funktion' => 'ohne', 'vorstandschaft' => 0, 'aktiv' => 1, ],
         ];
-        $this->db->table('users')->insertBatch($users);
+        $this->db->table('mitglieder')->insertBatch($mitglieder);
         
-        $auth_identities = [
+        $mitglieder_zugaenge = [
             [ 'user_id'  => 1, 'type' => 'email_password', 'secret' => 'christoph.kuepferle@web.de', 'secret2' => '$2y$10$AZB9pt4pC8ZQQIoiF2blVuBJcPAf0M8MfX5gqqurLlWOaKdE3hg4q', ],
             [ 'user_id'  => 2, 'type' => 'email_password', 'secret' => 'be.rt@test.de', 'secret2' => '$2y$10$AZB9pt4pC8ZQQIoiF2blVuBJcPAf0M8MfX5gqqurLlWOaKdE3hg4q', ],
             [ 'user_id'  => 3, 'type' => 'email_password', 'secret' => 'te.st@test.de', 'secret2' => '$2y$10$AZB9pt4pC8ZQQIoiF2blVuBJcPAf0M8MfX5gqqurLlWOaKdE3hg4q', ],
             [ 'user_id'  => 4, 'type' => 'email_password', 'secret' => 'te.st2@test.de', 'secret2' => '$2y$10$AZB9pt4pC8ZQQIoiF2blVuBJcPAf0M8MfX5gqqurLlWOaKdE3hg4q', ],
         ];
-        $this->db->table('auth_identities')->insertBatch($auth_identities);
+        $this->db->table('mitglieder_zugaenge')->insertBatch($mitglieder_zugaenge);
         
-        $auth_groups_users = [
+        $mitglieder_rollen = [
             [ 'user_id' => 1, 'group' => 'mitglied', ],
             [ 'user_id' => 2, 'group' => 'mitglied', ],
             [ 'user_id' => 3, 'group' => 'mitglied', ],
             [ 'user_id' => 4, 'group' => 'mitglied', ],
         ];
-        $this->db->table('auth_groups_users')->insertBatch($auth_groups_users);
+        $this->db->table('mitglieder_rollen')->insertBatch($mitglieder_rollen);
         
-        $auth_permissions_users = [
+        $mitglieder_rechte = [
             [ 'user_id' => 1, 'permission' => 'mitglieder.rechte', ],
             [ 'user_id' => 1, 'permission' => 'global.einstellungen', ],
             [ 'user_id' => 2, 'permission' => 'global.einstellungen', ],
         ];
-        $this->db->table('auth_permissions_users')->insertBatch($auth_permissions_users);
+        $this->db->table('mitglieder_rechte')->insertBatch($mitglieder_rechte);
     }
 }

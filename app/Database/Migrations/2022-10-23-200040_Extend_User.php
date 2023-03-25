@@ -54,7 +54,7 @@ class Extend_User extends Migration
             ],
         ];
 
-        $this->forge->addColumn('users', $fields);
+        $this->forge->addColumn('mitglieder', $fields);
     }
 
     public function down()
@@ -71,6 +71,6 @@ class Extend_User extends Migration
             'vorstandschaft',
             'aktiv',
         ];
-        $this->forge->dropColumn('users', $fields);
+        $this->forge->dropColumn('mitglieder', $fields);
     }
 }

@@ -400,7 +400,7 @@ $eigenschaften['termine']['termine'] = array(
   'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text', 'standard' => '', ),
 
   'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte', 'standard' => 'allgemein', ),
-  // 'beschr_mitglieder' => array( 'beschriftung' => 'Mitglieder-Beschränkung', 'typ' => 'text', 'standard' => '', ),
+  // 'filter_mitglieder' => array( 'beschriftung' => 'Mitglieder-Beschränkung', 'typ' => 'text', 'standard' => '', ),
   // 'setlist' => array( 'beschriftung' => 'Setlist', 'typ' => 'text', 'standard' => '', ),
   'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', 'standard' => '', ),
 
@@ -434,14 +434,14 @@ $filterbare_eigenschaften['termine'] = array(
 
 $vorgegebene_werte['termine'] = array(
   'kategorie' => array (
-    'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '', 'beschr_mitglieder_standard' => array() ),
-    'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930', 'beschr_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
-    'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'beschr_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
-    //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'beschr_mitglieder_standard' => array( 'vorstandschaft' => array( 0, ), ), ),
+    'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '', 'filter_mitglieder_standard' => array() ),
+    'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930', 'filter_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
+    'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'filter_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
+    //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'filter_mitglieder_standard' => array( 'vorstandschaft' => array( 0, ), ), ),
   ),
 );
 
-// defined('TERMINE_EIGENSCHAFTEN_BESCHR_MITGLIEDER') OR define( 'TERMINE_EIGENSCHAFTEN_BESCHR_MITGLIEDER', array( 'register', 'funktion', 'vorstandschaft', 'aktiv', ) );
+// defined('TERMINE_EIGENSCHAFTEN_filter_mitglieder') OR define( 'TERMINE_EIGENSCHAFTEN_FILTER_MITGLIEDER', array( 'register', 'funktion', 'vorstandschaft', 'aktiv', ) );
 
 // defined('TERMINE_RUECKMELDUNG_FRIST') OR define( 'TERMINE_RUECKMELDUNG_FRIST', 0 );
 

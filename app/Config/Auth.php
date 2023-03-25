@@ -60,13 +60,13 @@ class Auth extends ShieldAuth
      * @var array<string, string>
      */
     public array $tables = [
-        'users'             => 'users',
-        'identities'        => 'auth_identities',
-        'logins'            => 'auth_logins',
-        'token_logins'      => 'auth_token_logins',
-        'remember_tokens'   => 'auth_remember_tokens',
-        'groups_users'      => 'auth_groups_users',
-        'permissions_users' => 'auth_permissions_users',
+        'users'             => 'mitglieder',
+        'identities'        => 'mitglieder_zugaenge',
+        'logins'            => 'mitglieder_login_versuche',
+        'token_logins'      => 'mitglieder_login_versuche_token',
+        'remember_tokens'   => 'mitglieder_login_eingeloggt_bleiben',
+        'groups_users'      => 'mitglieder_rollen',
+        'permissions_users' => 'mitglieder_rechte',
     ];
 
     /**

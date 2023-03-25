@@ -18,7 +18,7 @@ class MitgliederAbwesenheiten extends Migration
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addKey('mitglied_id');
-        $this->forge->addForeignKey('mitglied_id', 'users', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
         $this->forge->createTable('mitglieder_abwesenheiten');
     }
 
