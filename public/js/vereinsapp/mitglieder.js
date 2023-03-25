@@ -82,7 +82,7 @@ $(document).ready( function() {
           $.each( LISTEN.mitglieder.tabelle[gegen_element_id].permissions, function( index, permission) {
             if( permission == element_id ) delete LISTEN.mitglieder.tabelle[gegen_element_id].permissions[ index ];
           } );
-          if( !( 'permissions' in LISTEN.mitglieder.tabelle[gegen_element_id] ) || typeof LISTEN.mitglieder.tabelle[gegen_element_id] !== 'Array' ) LISTEN.mitglieder.tabelle[gegen_element_id].permissions = new Array();
+          if( !( 'permissions' in LISTEN.mitglieder.tabelle[gegen_element_id] ) || typeof LISTEN.mitglieder.tabelle[gegen_element_id].permissions !== 'object' ) LISTEN.mitglieder.tabelle[gegen_element_id].permissions = new Array();
           if( AJAX_DATA.checked ) LISTEN.mitglieder.tabelle[gegen_element_id].permissions.push( element_id );
 
           $(document).trigger( 'VAR_upd_LOC', ['mitglieder'] ); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );

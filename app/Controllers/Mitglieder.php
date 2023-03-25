@@ -109,7 +109,8 @@ class Mitglieder extends BaseController {
         }
         
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-            $this->viewdata['check_liste']['rechte'] = array(
+
+            if( auth()->user()->can( 'mitglieder.rechte' ) ) $this->viewdata['check_liste']['rechte'] = array(
                 'check_liste' => 'permissions',
                 'aktion' => 'aendern',
                 'gegen_element' => 'mitglied',
