@@ -1,4 +1,4 @@
-<div class="modal fade formular" id="liste_sortieren_Modal" tabindex="-1" aria-labelledby="liste_sortieren_Modal_Label" aria-hidden="true">
+<div class="modal fade" id="liste_sortieren_Modal" tabindex="-1" aria-labelledby="liste_sortieren_Modal_Label" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">

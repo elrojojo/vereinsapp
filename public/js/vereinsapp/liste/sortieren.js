@@ -23,6 +23,23 @@ $(document).ready( function() {
 
         } );
     } );
+    
+    // FORMULAR (MODAL) ÖFFNEN
+    $('#liste_sortieren_Modal').on('show.bs.modal', function ( event ) { const $formular = $(this); const $btn_oeffnend = $(event.relatedTarget);
+        let liste = $btn_oeffnend.attr('data-liste'); const LISTE = LISTEN[ liste ];
+
+        let titel_beschriftung; if( typeof element !== 'undefined' ) titel_beschriftung = element; else titel_beschriftung = liste;
+        $formular.find('.modal-title').text( bezeichnung_kapitalisieren( unix2umlaute( titel_beschriftung ) )+' '+unix2umlaute( $btn_oeffnend.attr('data-aktion') ) );
+
+        $formular.find('.sortieren, .sortieren_definitionen').attr( 'data-liste', liste );
+        const $filtern_definition = $formular.find('.sortieren_definitionen');
+        $filtern_definition.find('.sortieren_eigenschaft').empty();
+        $.each( SORTIERBARE_EIGENSCHAFTEN[ liste ], function( index, eigenschaft) {
+            $( '<option value="'+eigenschaft+'">'+EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ].beschriftung+'</option>' ).appendTo( $filtern_definition.find('.sortieren_eigenschaft') );
+        } );
+        
+        $(document).trigger( 'VAR_upd_DOM', [ liste ] );
+    } );
 
     // SORTIEREN ERSTELLEN
     $(document).on("click", ".btn_sortieren_erstellen" , function() {

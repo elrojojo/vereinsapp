@@ -96,7 +96,6 @@ abstract class BaseController extends Controller
           array( 'src' => base_url('js/vereinsapp/liste/sortieren.js'), ),
           array( 'src' => base_url('js/vereinsapp/liste/check_liste.js'), ),
           array( 'src' => base_url('js/vereinsapp/liste/auswertungen.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/formular.js'), ),
           array( 'src' => base_url('js/vereinsapp/liste/liste.js'), ),
         );
         if( auth()->loggedIn() ) {
