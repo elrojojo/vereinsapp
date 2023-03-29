@@ -7,6 +7,8 @@ function VAR_upd_LOC( liste ) { const LISTE = LISTEN[ liste ];
         if( 'geburtstag' in element ) delete element['geburtstag'];
         if( 'abwesend' in element ) delete element['abwesend'];
         if( 'ich_rueckmeldung_id' in element ) delete element['ich_rueckmeldung_id'];
+        if( 'ich_eingeladen' in element ) delete element['ich_eingeladen'];
+        if( 'filtern_mitglieder' in element ) element['filtern_mitglieder'] = JSON.stringify( element['filtern_mitglieder'] );
         $.each( element, function( eigenschaft, wert ) {
             if( wert && !Number.isNaN( Number(wert) ) && typeof wert !== 'boolean' ) element[ eigenschaft ] = Number(wert);
             if( typeof EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ] !== 'undefined' && EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ]['typ'] == 'zeitpunkt' ) element[ eigenschaft ] = wert.toFormat( SQL_DATETIME );

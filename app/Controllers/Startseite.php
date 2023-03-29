@@ -34,6 +34,7 @@ class Startseite extends BaseController {
                 'filtern' => array(
                     array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
                     array( 'operator' => '<=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time()+2*WEEK, ).' 00:00:00' ),
+                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
                 ),
             ), ),
             'sortieren' => array(
@@ -65,8 +66,10 @@ class Startseite extends BaseController {
                 'filtern' => array(
                     array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_rueckmeldung_id', 'wert' => null ),
+                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
                 ),
             ), ),
+            'filtern_eigenschaft' => array( 'mitglieder' => 'filtern_mitglieder' ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
             ),

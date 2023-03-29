@@ -24,6 +24,10 @@ function LOC_upd_VAR( liste ) { const LISTE = LISTEN[ liste ];
                 element['ich_rueckmeldung_id'] = null; if( 'rueckmeldungen' in LISTEN ) $.each( LISTEN.rueckmeldungen.tabelle, function() { const rueckmeldung = this; if( 'id' in rueckmeldung ) {
                     if( rueckmeldung['termin_id'] == element['id'] && rueckmeldung['mitglied_id'] == ICH['id'] ) element['ich_rueckmeldung_id'] = rueckmeldung['id'];
                 } } );
+                element['filtern_mitglieder'] = sqlfiltern2filtern( JSON.parse( element['filtern_mitglieder'] ), 'mitglieder' );
+                element['ich_eingeladen'] = false; $.each( tabelle_filtern( element['filtern_mitglieder'], 'mitglieder' ), function() { const mitglied = this;
+                    if( mitglied['id'] == ICH['id'] ) element['ich_eingeladen'] = true;
+                } );
             }
 
             LISTE.tabelle[ element['id'] ] = element;

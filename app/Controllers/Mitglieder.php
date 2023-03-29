@@ -234,8 +234,6 @@ class Mitglieder extends BaseController {
 
     public function ajax_mitglied_permission_aendern() { $ajax_antwort['csrf_hash'] = csrf_hash();
         $validation_rules = array(
-            // 'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            // 'permissions' => [ 'label' => 'Rechte', 'rules' => [ 'if_exist', 'permit_empty' ] ],
             'permission_id' => [ 'label' => 'Recht', 'rules' => [ 'required', 'alpha_numeric_punct' ] ],
             'mitglied_id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],

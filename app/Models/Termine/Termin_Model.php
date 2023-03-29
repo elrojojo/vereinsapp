@@ -14,7 +14,7 @@ class Termin_Model extends Model {
         'start',
         'ort',
         'kategorie',
-        'filter_mitglieder',
+        'filtern_mitglieder',
         'setlist',
         'bemerkung',
     ];

@@ -164,7 +164,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   // 'email' => array( 'bootstrap' => 'envelope' ),
 
   'Anwesenheiten_pruefen' => array( 'bootstrap' => 'person-check' ),
-  'Personenkreis_beschraenken' => array( 'bootstrap' => 'person-lock' ),
+  'personenkreis_beschraenken' => array( 'bootstrap' => 'person-lock' ),
 
   'abwesend' => array( 'html' => '&#9992' ),
   'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
@@ -400,11 +400,12 @@ $eigenschaften['termine']['termine'] = array(
   'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text', 'standard' => '', ),
 
   'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte', 'standard' => 'allgemein', ),
-  // 'filter_mitglieder' => array( 'beschriftung' => 'Mitglieder-Beschränkung', 'typ' => 'text', 'standard' => '', ),
+  'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text', 'standard' => '', ),
   // 'setlist' => array( 'beschriftung' => 'Setlist', 'typ' => 'text', 'standard' => '', ),
   'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', 'standard' => '', ),
 
   'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine Rückmeldung-ID', 'typ' => 'zahl', 'standard' => '', ),  // JAVA
+  'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen.', 'typ' => 'zahl', 'standard' => '', ),  // JAVA
 );
 
 $eigenschaften['termine']['rueckmeldungen'] = array(
@@ -434,21 +435,21 @@ $filterbare_eigenschaften['termine'] = array(
 
 $vorgegebene_werte['termine'] = array(
   'kategorie' => array (
-    'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '', 'filter_mitglieder_standard' => array() ),
-    'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930', 'filter_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
-    'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'filter_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
-    //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'filter_mitglieder_standard' => array( 'vorstandschaft' => array( 0, ), ), ),
+    'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '', 'filtern_mitglieder_standard' => array() ),
+    'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930', 'filtern_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
+    'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'filtern_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
+    //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'filtern_mitglieder_standard' => array( 'vorstandschaft' => array( 0, ), ), ),
   ),
 );
 
-// defined('TERMINE_EIGENSCHAFTEN_filter_mitglieder') OR define( 'TERMINE_EIGENSCHAFTEN_FILTER_MITGLIEDER', array( 'register', 'funktion', 'vorstandschaft', 'aktiv', ) );
-
 // defined('TERMINE_RUECKMELDUNG_FRIST') OR define( 'TERMINE_RUECKMELDUNG_FRIST', 0 );
 
-// defined('TERMINE_ANWESENHEITSKONTROLLE') OR define( 'TERMINE_ANWESENHEITSKONTROLLE', TRUE );
+// LÖSCHEN defined('TERMINE_EIGENSCHAFTEN_filtern_mitglieder') OR define( 'TERMINE_EIGENSCHAFTEN_FILTERN_MITGLIEDER', array( 'register', 'funktion', 'vorstandschaft', 'aktiv', ) );
 
-// defined('TERMINE_RUECKMELDUNG_DETAIL_FREWILLIG') OR define( 'TERMINE_RUECKMELDUNG_DETAIL_FREWILLIG', TRUE ); // Absage und Zusage Freiwillig!
-// defined('TERMINE_RUECKMELDUNG_DETAIL_ABSAGE') OR define( 'TERMINE_RUECKMELDUNG_DETAIL_ABSAGE', FALSE );  // Absage als Zwang!
+// LÖSCHEN defined('TERMINE_ANWESENHEITSKONTROLLE') OR define( 'TERMINE_ANWESENHEITSKONTROLLE', TRUE );
+
+// LÖSCHEN defined('TERMINE_RUECKMELDUNG_DETAIL_FREWILLIG') OR define( 'TERMINE_RUECKMELDUNG_DETAIL_FREWILLIG', TRUE ); // Absage und Zusage Freiwillig!
+// LÖSCHEN defined('TERMINE_RUECKMELDUNG_DETAIL_ABSAGE') OR define( 'TERMINE_RUECKMELDUNG_DETAIL_ABSAGE', FALSE );  // Absage als Zwang!
 
 // defined('TERMINE_SETLISTS') OR define( 'TERMINE_SETLISTS', array( 'auftritt' ) );
 

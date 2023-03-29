@@ -27,7 +27,7 @@ $(document).ready( function() {
                 const cluster_liste = cluster.liste; const CLUSTER_LISTE = LISTEN[ cluster_liste ];
 
                 // CLUSTER_TABELLE FILTERN
-                let cluster_filtern; if( 'filter' in cluster ) cluster_filtern = cluster.filtern; else cluster_filtern = new Array();
+                let cluster_filtern; if( 'filtern' in cluster ) cluster_filtern = sqlfiltern2filtern( JSON.parse( cluster.filtern ), cluster.liste ); else cluster_filtern = new Array();
                 const cluster_tabelle_gefiltert = tabelle_filtern( cluster_filtern, cluster_liste );
 
                 // CLUSTER_TABELLE CLUSTERN

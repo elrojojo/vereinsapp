@@ -37,7 +37,7 @@ $(document).ready( function() {
                 let filtern = $liste.attr('data-filtern'); if( typeof filtern !== 'undefined' ) filtern = phpfiltern2filtern( JSON.parse( filtern ), liste ); else filtern = new Array();
                 if( LISTE.filtern.length >= 1 ) filtern = [ { verknuepfung: '&&', filtern: filtern.concat( LISTE.filtern ) } ];
                 const tabelle_gefiltert = tabelle_filtern( filtern, liste );
-                
+
                 // TABELLE SORTIEREN
                 let sortieren = $liste.attr('data-sortieren'); if( typeof sortieren !== 'undefined' ) sortieren = JSON.parse( sortieren ); else sortieren = new Array();
                 if( LISTE.sortieren.length >= 1 ) sortieren = LISTE.sortieren.concat( sortieren );
@@ -152,7 +152,7 @@ $(document).ready( function() {
         let liste; $.each( LISTEN, function( liste_, LISTE_ ) { if( element == LISTE_.element ) liste = liste_; } );
         const LISTE = LISTEN[ liste ];
     
-        const AJAX_DATA = new Object;
+        const AJAX_DATA = new Object();
         if( typeof element_id !== 'undefined' ) AJAX_DATA.id = element_id;
         const data_werte = $btn.attr('data-werte'); if( typeof data_werte !== 'undefined' ) $.each( JSON.parse( data_werte ), function( eigenschaft, wert ) {
             AJAX_DATA[ eigenschaft ] = wert;

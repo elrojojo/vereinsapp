@@ -29,6 +29,33 @@ $(document).ready( function() {
 
         } );
     } );
+    
+    // FORMULAR (MODAL) ÖFFNEN
+    $('#liste_filtern_Modal').on('show.bs.modal', function ( event ) { const $formular = $(this); const $btn_oeffnend = $(event.relatedTarget);
+        let liste = $btn_oeffnend.attr('data-liste'); const LISTE = LISTEN[ liste ];
+
+        let titel_beschriftung; if( typeof element !== 'undefined' ) titel_beschriftung = element; else titel_beschriftung = liste;
+        $formular.find('.modal-title').text( bezeichnung_kapitalisieren( unix2umlaute( titel_beschriftung ) )+' '+unix2umlaute( $btn_oeffnend.attr('data-aktion') ) );
+
+        $formular.find('.filtern, .filtern_definitionen').attr( 'data-liste', liste );
+        $( '.filtern_definitionen' ).empty();
+        $.each( FILTERBARE_EIGENSCHAFTEN[ liste ], function( index, eigenschaft) { const EIGENSCHAFT = EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ];
+            const typ = EIGENSCHAFT.typ;
+            const beschriftung = EIGENSCHAFT.beschriftung;
+            const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[ typ ].clone().removeClass('blanko invisible').addClass('filtern_definition').attr( 'data-eigenschaft', eigenschaft );
+            $neue_filtern_definition.find('.accordion-button').attr( 'data-bs-target', '#filtern_'+eigenschaft ).text( beschriftung );
+            $neue_filtern_definition.find('.accordion-collapse').attr( 'id', 'filtern_'+eigenschaft );
+            if( typ == 'vorgegebene_werte' ) {
+                $neue_filtern_definition.find('.filtern_wert').empty();
+                $.each( VORGEGEBENE_WERTE[ liste ][ eigenschaft ], function( wert, eigenschaften) {
+                    $( '<option value="'+wert+'">'+eigenschaften.beschriftung+'</option>' ).appendTo( $neue_filtern_definition.find('.filtern_wert') );
+                } );
+            }
+            $neue_filtern_definition.appendTo( $formular.find( '.filtern_definitionen' ) );
+        } );
+
+        $(document).trigger( 'VAR_upd_DOM', [ liste ] );
+    } );
 
     // FILTERN ERSTELLEN
     $(document).on("click", ".btn_filtern_erstellen" , function() {
@@ -58,33 +85,6 @@ $(document).ready( function() {
         }
 
         $(document).trigger( 'VAR_upd_LOC', [ liste ] ); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );        
-    } );
-    
-    // FORMULAR (MODAL) ÖFFNEN
-    $('#liste_filtern_Modal').on('show.bs.modal', function ( event ) { const $formular = $(this); const $btn_oeffnend = $(event.relatedTarget);
-        let liste = $btn_oeffnend.attr('data-liste'); const LISTE = LISTEN[ liste ];
-
-        let titel_beschriftung; if( typeof element !== 'undefined' ) titel_beschriftung = element; else titel_beschriftung = liste;
-        $formular.find('.modal-title').text( bezeichnung_kapitalisieren( unix2umlaute( titel_beschriftung ) )+' '+unix2umlaute( $btn_oeffnend.attr('data-aktion') ) );
-
-        $formular.find('.filtern, .filtern_definitionen').attr( 'data-liste', liste );
-        $( '.filtern_definitionen' ).empty();
-        $.each( FILTERBARE_EIGENSCHAFTEN[ liste ], function( index, eigenschaft) { const EIGENSCHAFT = EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ];
-            const typ = EIGENSCHAFT.typ;
-            const beschriftung = EIGENSCHAFT.beschriftung;
-            const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[ typ ].clone().removeClass('blanko invisible').addClass('filtern_definition').attr( 'data-eigenschaft', eigenschaft );
-            $neue_filtern_definition.find('.accordion-button').attr( 'data-bs-target', '#filtern_'+eigenschaft ).text( beschriftung );
-            $neue_filtern_definition.find('.accordion-collapse').attr( 'id', 'filtern_'+eigenschaft );
-            if( typ == 'vorgegebene_werte' ) {
-                $neue_filtern_definition.find('.filtern_wert').empty();
-                $.each( VORGEGEBENE_WERTE[ liste ][ eigenschaft ], function( wert, eigenschaften) {
-                    $( '<option value="'+wert+'">'+eigenschaften.beschriftung+'</option>' ).appendTo( $neue_filtern_definition.find('.filtern_wert') );
-                } );
-            }
-            $neue_filtern_definition.appendTo( $formular.find( '.filtern_definitionen' ) );
-        } );
-
-        $(document).trigger( 'VAR_upd_DOM', [ liste ] );
     } );
 
     // FILTERN LÖSCHEN
@@ -172,7 +172,21 @@ function phpfiltern2filtern( phpfiltern, liste ) { const LISTE = LISTEN[ liste ]
             filtern.push( { operator: operator, eigenschaft: eigenschaft, wert: wert } );
         }
     } ); return filtern;
-} 
+}
+
+function sqlfiltern2filtern( phpfiltern, liste ) { const LISTE = LISTEN[ liste ]; const filtern = new Array();
+    $.each( phpfiltern, function( index, knoten ) {
+        if( 'verknuepfung' in knoten ) {
+            const verknuepfung = knoten.verknuepfung;
+            filtern.push( { verknuepfung: verknuepfung, filtern: sqlfiltern2filtern( knoten.filtern, liste ) } );
+        }
+        else { const operator = knoten.operator; const eigenschaft = knoten.eigenschaft; let wert = knoten.wert;
+            if( wert && !Number.isNaN( Number(wert) ) && typeof wert !== 'boolean' ) wert = Number(wert);
+            if( typeof EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ] !== 'undefined' && EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ]['typ'] == 'zeitpunkt' ) wert = DateTime.fromISO( wert );
+            filtern.push( { operator: operator, eigenschaft: eigenschaft, wert: wert } );
+        }
+    } ); return filtern;
+}
 
 function tabelle_filtern( filtern, liste ) { const LISTE = LISTEN[ liste ];
     function element_filtern( element, filtern, liste ) { const LISTE = LISTEN[ liste ]; const sammler = new Array();
