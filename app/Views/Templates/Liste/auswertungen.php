@@ -30,10 +30,10 @@ if( array_key_exists( 'cluster', $auswertungen ) ) { ?> data-cluster='<?= json_e
 
         </div><div class="row g-0 collapse">
             <ul id="ergebnis_positiv" class="ergebnis liste col-6 text-center text-success" style="list-style-type: none;" data-ergebnis="positiv" data-liste="mitglieder" >
-                <li class="blanko invisible" data-element="mitglied"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span></li>
+                <li class="blanko invisible" data-element="mitglied"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="zusatzsymbole"><span class="zusatzsymbol" data-zusatzsymbol="kommentar"></span></span></li>
             </ul>
             <ul id="ergebnis_negativ" class="ergebnis liste col-6 text-center text-danger" style="list-style-type: none;" data-ergebnis="negativ" data-liste="mitglieder">
-                <li class="blanko invisible" data-element="mitglied"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span></li>
+                <li class="blanko invisible" data-element="mitglied"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="zusatzsymbole"><span class="zusatzsymbol" data-zusatzsymbol="kommentar"></span></span></li>
             </ul>
             <div id="ergebnis_neutral" class="ergebnis liste col-12 text-center text-secondary small" data-ergebnis="neutral" data-liste="mitglieder">
                 <span class="blanko invisible" data-element="mitglied"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="spacer">, </span></span>

@@ -99,7 +99,6 @@ $(document).ready( function() {
     // const liste = 'termine'; const LISTE = LISTEN[ liste ]; const element = LISTE.element;
     const filtern_liste = 'mitglieder'; const FILTERN_LISTE = LISTEN[ filtern_liste ]; const filtern_element = FILTERN_LISTE.element;
 
-    $formular.find('.modal-title').text('Personenkreis beschränken');
     $formular.find('.personenkreis_beschraenken, .personenkreis_beschraenken_definitionen').attr( 'data-filtern_liste', filtern_liste ).attr( 'data-element_id', element_id );
 
     $( '.personenkreis_beschraenken_definitionen' ).empty();

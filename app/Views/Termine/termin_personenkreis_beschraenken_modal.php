@@ -1,8 +1,8 @@
-<div class="modal fade formular_personenkreis_beschraenken" id="termin_personenkreis_beschraenken_Modal" tabindex="-1" aria-labelledby="termin_personenkreis_beschraenken_Modal_Label" aria-hidden="true">
+<div class="modal fade" id="termin_personenkreis_beschraenken_Modal" tabindex="-1" aria-labelledby="termin_personenkreis_beschraenken_Modal_Label" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title h5" id="termin_personenkreis_beschraenken_Modal_Label"></div>
+        <div class="modal-title h5" id="termin_personenkreis_beschraenken_Modal_Label">Personenkreis beschränken</div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

@@ -39,6 +39,7 @@ $(document).ready( function() {
                 
                 // AUSWERTUNG DURCHFÜHREN
                 const auswertungen = new Object();
+                const auswertung_summe = { positiv_anzahl: 0, neutral_anzahl: 0, negativ_anzahl: 0 };
                 const auswertungen_gefiltert_sortiert = new Array();
                 $.each( cluster_tabelle_gefiltert_geclustert, function( wert, cluster ) { auswertungen[ wert ] = new Object();
 
@@ -64,6 +65,10 @@ $(document).ready( function() {
                         + auswertungen[ wert ].neutral_anzahl
                         + auswertungen[ wert ].negativ_anzahl;
 
+                        auswertung_summe.positiv_anzahl += auswertungen[ wert ].positiv_anzahl;
+                        auswertung_summe.neutral_anzahl += auswertungen[ wert ].neutral_anzahl;
+                        auswertung_summe.negativ_anzahl += auswertungen[ wert ].negativ_anzahl;
+
                     auswertungen[ wert ].wert = wert; auswertungen_gefiltert_sortiert.push( auswertungen[ wert ] );
                 } );
 
@@ -82,7 +87,16 @@ $(document).ready( function() {
                         else $neue_auswertung.insertAfter( $auswertungen.find( '.auswertung[data-auswertung="'+cluster.eigenschaft+'"][data-wert="'+auswertungen_gefiltert_sortiert[ position-1 ].wert+'"]') );
                     }
                 } );
+                if( !$auswertungen.find( '.auswertung_summe[data-auswertung="'+cluster.eigenschaft+'"]' ).exists() ) {
+                    const $neue_auswertung_summe = LISTE.$blanko_auswertung[ $auswertungen.attr('id') ].clone().removeClass('blanko invisible').attr( 'data-auswertung', cluster.eigenschaft ).removeClass('auswertung').addClass('auswertung_summe');
+                    $neue_auswertung_summe.find('[data-bs-toggle="collapse"]').removeAttr('data-bs-toggle role');
+                    $neue_auswertung_summe.find('.collapse').remove();
+                    $neue_auswertung_summe.find('.collapse-toggle').remove();
+                    $neue_auswertung_summe.find('.progress').remove();
+                    $neue_auswertung_summe.find('.beschriftung').text('Summe');
 
+                    $neue_auswertung_summe.insertAfter( $auswertungen.find( '.auswertung[data-auswertung="'+cluster.eigenschaft+'"]').last() );
+                }
                 // DOM SORTIEREN ...
 
                 // AUSWERTUNG AKTUALISIEREN
@@ -107,6 +121,14 @@ $(document).ready( function() {
                         }
                     } );
 
+                } );
+
+                // SUMME AKTUALISIEREN
+                $( '.auswertung_summe[data-auswertung="'+cluster.eigenschaft+'"]' ).each( function() { const $auswertung_summe = $(this);
+                    $auswertung_summe.find('.ergebnis').each( function() { const $ergebnis = $(this);
+                        const ergebnis = $ergebnis.attr('data-ergebnis');
+                        $ergebnis.text( auswertung_summe[ ergebnis ] );
+                    } );
                 } );
 
             } );

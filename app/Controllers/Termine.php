@@ -273,7 +273,7 @@ class Termine extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';   // Muss ausgearbeitet werden!!!
+        // else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';   // Muss ausgearbeitet werden!!!
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array();

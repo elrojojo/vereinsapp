@@ -6,7 +6,7 @@ let STATUS_STANDARD_HTML;
 $(document).ready( function() {
 
     //POPOVER AKTIVIEREN
-    $('[data-toggle="popover"]').popover();
+    // $('[data-toggle="popover"]').popover();
 
     //ALLGEMEINE AJAX-EINSTELLUNGEN
     STATUS_STANDARD_HTML = $('#status').html();
