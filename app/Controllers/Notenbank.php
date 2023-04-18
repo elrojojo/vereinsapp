@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use App\Models\Notenbank\Titel_Model;
 
+
+
 class Notenbank extends BaseController {
 
     public function notenbank() {
@@ -15,11 +17,11 @@ class Notenbank extends BaseController {
                 array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),                
             ),
             'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'h5' => true,
             ),
             // 'sortable' => true,
-            // 'link' => site_url().CONTROLLER, // ODER 'modal' => array( // ODER 
+            'link' => site_url().CONTROLLER, // ODER 'modal' => array( // ODER 
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
             // ),
@@ -28,7 +30,10 @@ class Notenbank extends BaseController {
             //     // 'farbe' => 'danger',
             // ),
             'vorschau' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel_nr"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie">',
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
+                '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
+                '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
+                '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
                 // 'klein' => true,
                 // 'zentriert' => true,
                 'abschneiden' => true,
@@ -78,9 +83,20 @@ class Notenbank extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
+    public function details( $element_id ) {
+        if( empty( model(Titel_Model::class)->find( $element_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    
+        $this->viewdata['element_id'] = $element_id;
+
+        echo view( 'Notenbank/titel_details', $this->viewdata );
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
     public function ajax_notenbank() { $ajax_antwort['csrf_hash'] = csrf_hash();
         $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
         foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
+            $verzeichnis = ''; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ ) if( substr( $verzeichnis_, -1 ) == '/' AND substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) ) $verzeichnis = $verzeichnis_;
+            $titel['verzeichnis'] = directory_map( './storage/notenbank/'.$verzeichnis );
             $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
             foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
         }

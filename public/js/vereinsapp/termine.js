@@ -247,7 +247,7 @@ function filtern_mitglieder2$personenkreis_beschraenken( filtern, liste ) { cons
       $neues_filtern_element.find('.eigenschaft').attr( 'data-eigenschaft', eigenschaft ).text( EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ].beschriftung );
       $neues_filtern_element.find('.operator').attr( 'data-operator', operator ).text( operator );
       let data_wert = wert; if( EIGENSCHAFTEN[ LISTE.controller ][ liste ][ eigenschaft ].typ == 'zeitpunkt' ) data_wert = wert.toFormat( SQL_DATETIME );
-      $neues_filtern_element.find('.wert').attr( 'data-wert', data_wert ).text( wert_formatieren( wert, eigenschaft, liste ) );
+      $neues_filtern_element.find('.wert').attr( 'data-wert', data_wert ).html( wert_formatieren( wert, eigenschaft, liste ) );
       $neues_filtern_element.find('.btn_filtern_loeschen').attr( 'data-liste', liste );
       $filtern.push( $neues_filtern_element );
     }

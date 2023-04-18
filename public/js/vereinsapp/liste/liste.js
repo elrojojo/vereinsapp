@@ -91,7 +91,7 @@ $(document).ready( function() {
                 // EIGENSCHAFTEN AKTUALISIEREN
                 $element.find('.eigenschaft').each( function() { const $eigenschaft = $(this);
                     const eigenschaft = $eigenschaft.attr('data-eigenschaft');
-                    $eigenschaft.text( wert_formatieren( LISTE.tabelle[ element_id ][ eigenschaft ], eigenschaft, liste ) );
+                    $eigenschaft.html( wert_formatieren( LISTE.tabelle[ element_id ][ eigenschaft ], eigenschaft, liste ) );
                 } );
 
                 // ZUSATZSYMBOLE AKTUALISIEREN
@@ -278,5 +278,8 @@ function wert_formatieren( wert, eigenschaft, liste ) {
     if( eigenschaft == 'start' ) wert = WOCHENTAGE[ wert.weekday ].kurz+', '+wert.toFormat('dd.MM.yyyy HH:mm');
     if( eigenschaft == 'ende' ) wert = WOCHENTAGE[ wert.weekday ].kurz+', '+wert.toFormat('dd.MM.yyyy HH:mm');
     if( eigenschaft == 'kategorie' ) wert = VORGEGEBENE_WERTE[ liste ].kategorie[ wert ].beschriftung;
+    if( eigenschaft == 'anzahl_noten' ) wert = wert+'<i class="bi bi-'+SYMBOLE['noten']['bootstrap']+'">';
+    if( eigenschaft == 'anzahl_audio' ) wert = wert+'<i class="bi bi-'+SYMBOLE['audio']['bootstrap']+'">';
+    if( eigenschaft == 'anzahl_verzeichnis' ) wert = wert+'<i class="bi bi-'+SYMBOLE['verzeichnis']['bootstrap']+'">';
     return wert;
 }

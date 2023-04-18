@@ -84,8 +84,8 @@ $routes->group('termine', static function ($routes) {
 $routes->group('notenbank', static function ($routes) {
     $routes->get('',                                        'Notenbank::notenbank');
     $routes->get('notenbank',                               'Notenbank::notenbank');
-    // $routes->get('(:num)',                                  'Notenbank::details/$1');
-    // $routes->get('details/(:num)',                          'Notenbank::details/$1');
+    $routes->get('(:num)',                                  'Notenbank::details/$1');
+    $routes->get('details/(:num)',                          'Notenbank::details/$1');
 
     $routes->post('ajax_notenbank',                         'Notenbank::ajax_notenbank');
     $routes->post('ajax_titel_erstellen',                   'Notenbank::ajax_titel_erstellen');

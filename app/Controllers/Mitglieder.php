@@ -178,8 +178,8 @@ class Mitglieder extends BaseController {
             'vorstandschaft' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['vorstandschaft']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] ) ).']', ] ],
             'aktiv' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['aktiv']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['aktiv'] ) ).']', ] ],
         );
-        if( !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[auth_identities.secret, user_id, '.$this->request->getPost()['id'].']';
-        else $validation_rules['email']['rules'][] = 'is_unique[auth_identities.secret]';
+        if( !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret, user_id, '.$this->request->getPost()['id'].']';
+        else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';

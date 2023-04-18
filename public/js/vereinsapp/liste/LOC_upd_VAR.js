@@ -24,10 +24,29 @@ function LOC_upd_VAR( liste ) { const LISTE = LISTEN[ liste ];
                 element['ich_rueckmeldung_id'] = null; if( 'rueckmeldungen' in LISTEN ) $.each( LISTEN.rueckmeldungen.tabelle, function() { const rueckmeldung = this; if( 'id' in rueckmeldung ) {
                     if( rueckmeldung['termin_id'] == element['id'] && rueckmeldung['mitglied_id'] == ICH['id'] ) element['ich_rueckmeldung_id'] = rueckmeldung['id'];
                 } } );
-                element['filtern_mitglieder'] = sqlfiltern2filtern( JSON.parse( element['filtern_mitglieder'] ), 'mitglieder' );
+                if( typeof element['filtern_mitglieder'] !== 'undefined' ) element['filtern_mitglieder'] = sqlfiltern2filtern( JSON.parse( element['filtern_mitglieder'] ), 'mitglieder' ); else element['filtern_mitglieder'] = new Array(); 
                 element['ich_eingeladen'] = false; $.each( tabelle_filtern( element['filtern_mitglieder'], 'mitglieder' ), function() { const mitglied = this;
                     if( mitglied['id'] == ICH['id'] ) element['ich_eingeladen'] = true;
                 } );
+            }
+            else if( liste == 'notenbank' ) {
+
+                function anzahl_dateien( verzeichnis ) { const anzahl = { noten: 0, audio: 0, verzeichnis: 0 }
+                    $.each( verzeichnis, function( index, datei ) {
+                        if( typeof datei == 'array' || typeof datei == 'object' ) { const unterverzeichnis = datei;
+                            anzahl.verzeichnis++;
+                            const anzahl_unterverzeichnis = anzahl_dateien( unterverzeichnis );
+                            anzahl.noten += anzahl_unterverzeichnis.noten;
+                            anzahl.audio += anzahl_unterverzeichnis.audio;
+                        }
+                        else if( datei.substring(datei.length-4, datei.length) == '.pdf' ) anzahl.noten++;
+                        else if( datei.substring(datei.length-4, datei.length) == '.m4a' ) anzahl.audio++;
+                    } );
+                    return anzahl;
+                }
+                element['anzahl_noten'] = anzahl_dateien( element['verzeichnis'] ).noten;
+                element['anzahl_audio'] = anzahl_dateien( element['verzeichnis'] ).audio;
+                element['anzahl_verzeichnis'] = anzahl_dateien( element['verzeichnis'] ).verzeichnis;
             }
 
             LISTE.tabelle[ element['id'] ] = element;

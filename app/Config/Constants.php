@@ -178,15 +178,15 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
   // 'waehrung' => array( 'bootstrap' => 'currency-euro' ),
 
-  // 'play' => array( 'bootstrap' => 'play-btn' ),
-
   'sichtbar' => array( 'bootstrap' => 'eye' ),
   'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
-  // 'verzeichnis' => array( 'bootstrap' => 'folder' ),
   // 'verzeichnis_oeffnen' => array( 'bootstrap' => 'folder-symlink' ),
-  // 'noten' => array( 'bootstrap' => 'file-earmark-music' ),
-  // 'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
+  'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
+  'noten' => array( 'bootstrap' => 'file-earmark-music' ),
+  'audio' => array( 'bootstrap' => 'play-btn' ),
+  'verzeichnis' => array( 'bootstrap' => 'folder' ),
+
 
   // 'ebene_hoch' => array( 'bootstrap' => 'arrow-90deg-up' ),
   // 'ebene_runter' => array( 'bootstrap' => 'arrow-90deg-down' ),
@@ -482,17 +482,27 @@ $eigenschaften['notenbank']['notenbank'] = array(
   'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl', 'standard' => '', ),
 
   'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte', 'standard' => 'ohne', ),
+  'verzeichnis' => array( 'beschriftung' => 'Verzeichnis', 'typ' => 'text', 'standard' => '', ),
+  'anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten', 'typ' => 'zahl', 'standard' => 0, ), // JAVA
+  'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl', 'standard' => 0, ), // JAVA
+  'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl', 'standard' => 0, ), // JAVA
 );
 
 $sortierbare_eigenschaften['notenbank'] = array(  
   'titel',
   'titel_nr',
   'kategorie',
+  'anzahl_noten',
+  'anzahl_audio',
+  'anzahl_verzeichnis',
 );
 
 $filterbare_eigenschaften['notenbank'] = array(  
   'titel_nr',
   'kategorie',
+  'anzahl_noten',
+  'anzahl_audio',
+  'anzahl_verzeichnis',
 );
 
 defined('TERMINE_CLUSTERBARE_EIGENSCHAFTEN') OR define( 'TERMINE_CLUSTERBARE_EIGENSCHAFTEN', array(
@@ -514,6 +524,8 @@ $vorgegebene_werte['notenbank'] = array(
 );
 
 defined('NOTENVERZEICHNIS_PDF') OR define( 'NOTENVERZEICHNIS_PDF', null );//'storage/notenbank/notenverzeichnis.pdf' );
+defined('NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN', 2 );
+defined('NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN', array( 'pdf' ) );
 
 
 //#############################################################################################################
