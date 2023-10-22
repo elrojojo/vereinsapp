@@ -126,3 +126,5 @@ php_errors.log
 # /results/
 # /phpunit*.xml
 # /.phpunit.*.cache
+
+public/storage/
