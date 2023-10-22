@@ -10,6 +10,8 @@ use CodeIgniter\Shield\Filters\AuthRates;
 use CodeIgniter\Shield\Filters\ChainAuth;
 use CodeIgniter\Shield\Filters\ForcePasswordResetFilter;
 use CodeIgniter\Shield\Filters\GroupFilter;
+use CodeIgniter\Shield\Filters\HmacAuth;
+use CodeIgniter\Shield\Filters\JWTAuth;
 use CodeIgniter\Shield\Filters\PermissionFilter;
 use CodeIgniter\Shield\Filters\SessionAuth;
 use CodeIgniter\Shield\Filters\TokenAuth;
@@ -25,11 +27,13 @@ class Registrar
             'aliases' => [
                 'session'     => SessionAuth::class,
                 'tokens'      => TokenAuth::class,
+                'hmac'        => HmacAuth::class,
                 'chain'       => ChainAuth::class,
                 'auth-rates'  => AuthRates::class,
                 'group'       => GroupFilter::class,
                 'permission'  => PermissionFilter::class,
                 'force-reset' => ForcePasswordResetFilter::class,
+                'jwt'         => JWTAuth::class,
             ],
         ];
     }

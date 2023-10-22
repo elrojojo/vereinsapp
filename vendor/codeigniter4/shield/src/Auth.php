@@ -25,6 +25,11 @@ use CodeIgniter\Shield\Models\UserModel;
  */
 class Auth
 {
+    /**
+     * The current version of CodeIgniter Shield
+     */
+    public const SHIELD_VERSION = '1.0.0-beta.7';
+
     protected Authentication $authenticate;
 
     /**

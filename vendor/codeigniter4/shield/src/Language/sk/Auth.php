@@ -7,8 +7,8 @@ return [
     'unknownAuthenticator'  => '{0} nie je platný autentifikátor.',
     'unknownUserProvider'   => 'Nie je možné určiť poskytovateľa používateľa, ktorý sa má použiť.',
     'invalidUser'           => 'Nie je možné nájsť zadaného používateľa.',
-    'bannedUser'            => '(To be translated) Can not log you in as you are currently banned.',
-    'logOutBannedUser'      => '(To be translated) You have been logged out because you have been banned.',
+    'bannedUser'            => 'Prihlásenie zlyhalo, pretože ste dostali zákaz vstupu (ban).',
+    'logOutBannedUser'      => 'Boli ste odhlásení, pretože ste dostali zákaz vstupu (ban).',
     'badAttempt'            => 'Prihlásenie zlyhalo. Skontrolujte svoje prihlasovacie údaje.',
     'noPassword'            => 'Nie je možné overiť používateľa bez hesla.',
     'invalidPassword'       => 'Prihlásenie zlyhalo. Skontrolujte svoje heslo.',
@@ -20,12 +20,17 @@ return [
     'unableSendEmailToUser' => 'Ľutujeme, pri odosielaní e-mailu sa vyskytol problém. Nepodarilo sa nám odoslať e-mail na adresu „{0}".',
     'throttled'             => 'Z tejto adresy IP bolo odoslaných príliš veľa žiadostí. Môžete to skúsiť znova o {0} sekúnd.',
     'notEnoughPrivilege'    => 'Nemáte potrebné povolenie na vykonanie požadovanej operácie.',
+    // JWT Exceptions
+    'invalidJWT'     => 'Neplatný token.',
+    'expiredJWT'     => 'Platnosť tokenu vypršala.',
+    'beforeValidJWT' => 'Token ešte nie je dostupný.',
 
     'email'           => 'Emailová adresa',
     'username'        => 'Používateľské meno',
     'password'        => 'Heslo',
     'passwordConfirm' => 'Heslo (znova)',
     'haveAccount'     => 'Máte už účet?',
+    'token'           => '(To be translated) Token',
 
     // Buttons
     'confirm' => 'Potvrdiť',
@@ -47,7 +52,9 @@ return [
     'magicLinkExpired'   => 'Ľutujeme, platnosť odkazu vypršala.',
     'checkYourEmail'     => 'Skontrolujte e-mail',
     'magicLinkDetails'   => 'Práve sme vám poslali e-mail s odkazom na prihlásenie. Platí iba {0} minút.',
+    'magicLinkDisabled'  => 'Použitie magického linku momentálne nie je povolené.',
     'successLogout'      => 'Úspešne ste sa odhlásili.',
+    'backToLogin'        => 'Späť na prihlásenie',
 
     // Passwords
     'errorPasswordLength'       => 'Heslá musia mať aspoň {0, number} znakov.',
@@ -61,7 +68,7 @@ return [
     'errorPasswordPwned'        => 'Heslo {0} bolo odhalené z dôvodu porušenia ochrany údajov a bolo videné {1, number}-krát z {2} prelomených hesiel.',
     'suggestPasswordPwned'      => '{0} by sa nikdy nemalo používať ako heslo. Ak ho niekde používate, okamžite ho zmeňte.',
     'errorPasswordEmpty'        => 'Vyžaduje sa heslo.',
-    'errorPasswordTooLongBytes' => '(To be translated) Password cannot exceed {param} bytes in length.',
+    'errorPasswordTooLongBytes' => 'Heslo nemôže presiahnuť dĺžku {param} bajtov',
     'passwordChangeSuccess'     => 'Heslo bolo úspešne zmenené',
     'userDoesNotExist'          => 'Heslo nebolo zmenené. Používateľ neexistuje',
     'resetTokenExpired'         => 'Prepáčte. Platnosť vášho resetovacieho tokenu vypršala.',
@@ -90,7 +97,7 @@ return [
     'emailActivateMailBody' => 'Pomocou nižšie uvedeného kódu aktivujte svoj účet a môžete začať používať stránku.',
     'invalidActivateToken'  => 'Kód bol nesprávny',
     'needActivate'          => 'Registráciu musíte dokončiť potvrdením kódu zaslaného na vašu e-mailovú adresu.',
-    'activationBlocked'     => '(to be translated) You must activate your account before logging in.',
+    'activationBlocked'     => 'Pred prihlásením si musíte aktivovať svoj účet.',
 
     // Groups
     'unknownGroup' => '{0} nie je platná skupina.',

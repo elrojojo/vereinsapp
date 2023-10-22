@@ -20,12 +20,17 @@ return [
     'unableSendEmailToUser' => 'Sorry, there was a problem sending the email. We could not send an email to "{0}".',
     'throttled'             => 'Too many requests made from this IP address. You may try again in {0} seconds.',
     'notEnoughPrivilege'    => 'You do not have the necessary permission to perform the desired operation.',
+    // JWT Exceptions
+    'invalidJWT'     => 'The token is invalid.',
+    'expiredJWT'     => 'The token has expired.',
+    'beforeValidJWT' => 'The token is not yet available.',
 
     'email'           => 'Email Address',
     'username'        => 'Username',
     'password'        => 'Password',
     'passwordConfirm' => 'Password (again)',
     'haveAccount'     => 'Already have an account?',
+    'token'           => 'Token',
 
     // Buttons
     'confirm' => 'Confirm',
@@ -47,7 +52,9 @@ return [
     'magicLinkExpired'   => 'Sorry, link has expired.',
     'checkYourEmail'     => 'Check your email!',
     'magicLinkDetails'   => 'We just sent you an email with a Login link inside. It is only valid for {0} minutes.',
+    'magicLinkDisabled'  => 'Use of MagicLink is currently not allowed.',
     'successLogout'      => 'You have successfully logged out.',
+    'backToLogin'        => 'Back to Login',
 
     // Passwords
     'errorPasswordLength'       => 'Passwords must be at least {0, number} characters long.',

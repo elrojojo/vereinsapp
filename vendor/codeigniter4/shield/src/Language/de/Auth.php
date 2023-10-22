@@ -7,8 +7,8 @@ return [
     'unknownAuthenticator'  => '{0} ist kein gültiger Authentifikator.',
     'unknownUserProvider'   => 'Der zu verwendende User Provider konnte nicht ermittelt werden.',
     'invalidUser'           => 'Der angegebene Benutzer kann nicht gefunden werden.',
-    'bannedUser'            => '(To be translated) Can not log you in as you are currently banned.',
-    'logOutBannedUser'      => '(To be translated) You have been logged out because you have been banned.',
+    'bannedUser'            => 'Anmelden nicht möglich da Ihr Benutzer derzeit gesperrt ist.',
+    'logOutBannedUser'      => 'Ihr Benutzer wurde abgemeldet und gesperrt.',
     'badAttempt'            => 'Sie konnten nicht angemeldet werden. Bitte überprüfen Sie Ihre Anmeldedaten.',
     'noPassword'            => 'Kann einen Benutzer ohne Passwort nicht validieren.',
     'invalidPassword'       => 'Sie können nicht angemeldet werden. Bitte überprüfen Sie Ihr Passwort.',
@@ -20,12 +20,17 @@ return [
     'unableSendEmailToUser' => 'Leider gab es ein Problem beim Senden der E-Mail. Wir konnten keine E-Mail an "{0}" senden.',
     'throttled'             => 'Es wurden zu viele Anfragen von dieser IP-Adresse gestellt. Sie können es in {0} Sekunden erneut versuchen.',
     'notEnoughPrivilege'    => 'Sie haben nicht die erforderliche Berechtigung, um den gewünschten Vorgang auszuführen.',
+    // JWT Exceptions
+    'invalidJWT'     => '(To be translated) The token is invalid.',
+    'expiredJWT'     => '(To be translated) The token has expired.',
+    'beforeValidJWT' => '(To be translated) The token is not yet available.',
 
     'email'           => 'E-Mail-Adresse',
     'username'        => 'Benutzername',
     'password'        => 'Passwort',
     'passwordConfirm' => 'Passwort (erneut)',
     'haveAccount'     => 'Haben Sie bereits ein Konto?',
+    'token'           => '(To be translated) Token',
 
     // Buttons
     'confirm' => 'Bestätigen',
@@ -47,7 +52,9 @@ return [
     'magicLinkExpired'   => 'Sorry, der Link ist abgelaufen.',
     'checkYourEmail'     => 'Prüfen Sie Ihre E-Mail!',
     'magicLinkDetails'   => 'Wir haben Ihnen gerade eine E-Mail mit einem Login-Link geschickt. Er ist nur für {0} Minuten gültig.',
+    'magicLinkDisabled'  => '(To be translated) Use of MagicLink is currently not allowed.',
     'successLogout'      => 'Sie haben sich erfolgreich abgemeldet.',
+    'backToLogin'        => 'Zurück zur Anmeldung',
 
     // Passwords
     'errorPasswordLength'       => 'Passwörter müssen mindestens {0, number} Zeichen lang sein.',
@@ -61,7 +68,7 @@ return [
     'errorPasswordPwned'        => 'Das Passwort {0} wurde aufgrund einer Datenschutzverletzung aufgedeckt und wurde {1, number} Mal in {2} kompromittierten Passwörtern gesehen.',
     'suggestPasswordPwned'      => '{0} sollte niemals als Passwort verwendet werden. Wenn Sie es irgendwo verwenden, ändern Sie es sofort.',
     'errorPasswordEmpty'        => 'Ein Passwort ist erforderlich.',
-    'errorPasswordTooLongBytes' => '(To be translated) Password cannot exceed {param} bytes in length.',
+    'errorPasswordTooLongBytes' => 'Das Passwort darf die Länge von {param} Bytes nicht überschreiten.',
     'passwordChangeSuccess'     => 'Passwort erfolgreich geändert',
     'userDoesNotExist'          => 'Passwort wurde nicht geändert. Der Benutzer existiert nicht',
     'resetTokenExpired'         => 'Tut mir leid. Ihr Reset-Token ist abgelaufen.',

@@ -26,6 +26,9 @@ use RuntimeException;
  * from the environment.
  *
  * These can be set within the .env file.
+ *
+ * @phpstan-consistent-constructor
+ * @see \CodeIgniter\Config\BaseConfigTest
  */
 class BaseConfig
 {
@@ -36,6 +39,11 @@ class BaseConfig
      * @var array
      */
     public static $registrars = [];
+
+    /**
+     * Whether to override properties by Env vars and Registrars.
+     */
+    public static bool $override = true;
 
     /**
      * Has module discovery happened yet?
@@ -51,6 +59,21 @@ class BaseConfig
      */
     protected static $moduleConfig;
 
+    public static function __set_state(array $array)
+    {
+        static::$override = false;
+        $obj              = new static();
+        static::$override = true;
+
+        $properties = array_keys(get_object_vars($obj));
+
+        foreach ($properties as $property) {
+            $obj->{$property} = $array[$property];
+        }
+
+        return $obj;
+    }
+
     /**
      * Will attempt to get environment variables with names
      * that match the properties of the child class.
@@ -59,7 +82,11 @@ class BaseConfig
      */
     public function __construct()
     {
-        static::$moduleConfig = config('Modules');
+        static::$moduleConfig = config(Modules::class);
+
+        if (! static::$override) {
+            return;
+        }
 
         $this->registerProperties();
 
@@ -86,7 +113,7 @@ class BaseConfig
     /**
      * Initialization an environment-specific configuration setting
      *
-     * @param mixed $property
+     * @param array|bool|float|int|string|null $property
      *
      * @return void
      */
@@ -168,6 +195,8 @@ class BaseConfig
     /**
      * Provides external libraries a simple way to register one or more
      * options into a config file.
+     *
+     * @return void
      *
      * @throws ReflectionException
      */
