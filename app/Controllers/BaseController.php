@@ -80,29 +80,31 @@ abstract class BaseController extends Controller
           array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css'),
           array( 'href' => base_url('css/vereinsapp.css'), ),
         ) );
-        $head_script = array( 
-          array( 'src' => 'https://code.jquery.com/jquery-3.6.3.js', 'integrity' => 'sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=', 'crossorigin' => 'anonymous', ),
-          // array( 'src' => 'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js', 'integrity' => 'sha256-1PYCpx/EXA36KN1NKrK7auaTylVyk01D98R7Ccf04Bc=', 'crossorigin' => 'anonymous', ),
-          array( 'src' => 'https://code.jquery.com/ui/1.13.2/jquery-ui.js', 'integrity' => 'sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=', 'crossorigin' => 'anonymous', ),
-          array( 'src' => 'https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js', ),
-          array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4', 'crossorigin' => 'anonymous', ),
-          array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js', ),
-          array( 'src' => base_url('js/sha256.min.js'), ), // https://www.npmjs.com/package/js-sha256
-          array( 'src' => base_url('js/ajaxqueue.js'), ), // https://stackoverflow.com/questions/3034874/sequencing-ajax-requests/3035268
-          array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/SQL_upd_LOC.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/LOC_upd_VAR.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/VAR_upd_LOC.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/filtern.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/sortieren.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/check_liste.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/auswertungen.js'), ),
-          array( 'src' => base_url('js/vereinsapp/liste/liste.js'), ),
-        );
+        $head_script = array();
+        $head_script[] = array( 'src' => 'https://code.jquery.com/jquery-3.6.3.js', 'integrity' => 'sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js', 'integrity' => 'sha256-1PYCpx/EXA36KN1NKrK7auaTylVyk01D98R7Ccf04Bc=', 'crossorigin' => 'anonymous', );
+        $head_script[] = array( 'src' => 'https://code.jquery.com/ui/1.13.2/jquery-ui.js', 'integrity' => 'sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=', 'crossorigin' => 'anonymous', );
+        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js', );
+        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4', 'crossorigin' => 'anonymous', );
+        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js', );
+        $head_script[] = array( 'src' => base_url('js/sha256.min.js'), ); // https://www.npmjs.com/package/js-sha256
+        $head_script[] = array( 'src' => base_url('js/ajaxqueue.js'), ); // https://stackoverflow.com/questions/3034874/sequencing-ajax-requests/3035268
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_upd_LOC.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/LOC_upd_VAR.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/VAR_upd_LOC.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/check_liste.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/liste.js'), );
         if( auth()->loggedIn() ) {
-          $head_script['mitglieder.js'] = array( 'src' => base_url('js/vereinsapp/mitglieder.js'), );
-          if( in_array( 'termine', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/termine.js'), );
-          if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionsAktualisieren.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAktualisieren.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAendern.js'), );
+            if( in_array( 'termine', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/termine.js'), );
+            if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank.js'), );
         }
         defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', $head_script );
 
