@@ -12,7 +12,7 @@ $(document).ready( function() {
 
     LISTEN.mitglieder.$blanko_permission = $('.permissions').find('.blanko').first(); $('.permissions').empty();
 
-    //LISTEN, ELEMENTE PERMISSIONS IM DOM AKTUALISIEREN
+    // PERMISSIONS IM DOM AKTUALISIEREN
     $(document).on( 'VAR_upd_DOM_mitglieder', function() {
 
         // PERMISSIONS AKTUALISIEREN
