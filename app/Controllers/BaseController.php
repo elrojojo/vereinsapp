@@ -103,7 +103,18 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionsAktualisieren.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAktualisieren.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAendern.js'), );
-            if( in_array( 'termine', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/termine.js'), );
+            if( in_array( 'termine', AKTIVE_CONTROLLER ) ) {
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MeineRueckmeldungAktualisieren.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_FormularMeineRueckmeldungEinAusblenden.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_FormularPersonenkreisBeschraenkenOeffnen.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAktualisieren.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenErstellen.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAendern.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenLoeschen.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/$personenkreis_beschraenken2filtern_mitglieder.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/filtern_mitglieder2$personenkreis_beschraenken.js'), );
+            }
             if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
         }
         defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', $head_script );
