@@ -1,4 +1,4 @@
 LISTEN.notenbank = {
-  controller:'notenbank',
-  element:'titel',
+    controller: "notenbank",
+    element: "titel",
 };
