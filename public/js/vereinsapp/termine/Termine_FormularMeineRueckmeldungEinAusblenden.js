@@ -1,9 +1,6 @@
-function Termine_FormularMeineRueckmeldungEinAusblenden(
-    $rueckmeldung,
-    $element,
-    liste
-) {
+function Termine_FormularMeineRueckmeldungEinAusblenden($rueckmeldung, $element, liste) {
     const element_id = Number($element.attr("data-element_id"));
+
     const $rueckmeldung_nicht_eingeladen = $rueckmeldung
         .siblings(".rueckmeldung_nicht_eingeladen")
         .closest();

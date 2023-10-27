@@ -9,9 +9,7 @@ LISTEN.mitglieder = {
 };
 
 $(document).ready(function () {
-    LISTEN.mitglieder.$blanko_permission = $(".permissions")
-        .find(".blanko")
-        .first();
+    LISTEN.mitglieder.$blanko_permission = $(".permissions").find(".blanko").first();
     $(".permissions").empty();
 
     // PERMISSIONS IM DOM AKTUALISIEREN

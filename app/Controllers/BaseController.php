@@ -89,15 +89,51 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js', );
         $head_script[] = array( 'src' => base_url('js/sha256.min.js'), ); // https://www.npmjs.com/package/js-sha256
         $head_script[] = array( 'src' => base_url('js/ajaxqueue.js'), ); // https://stackoverflow.com/questions/3034874/sequencing-ajax-requests/3035268
+
         $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_upd_LOC.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/LOC_upd_VAR.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/VAR_upd_LOC.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/check_liste.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/liste.js'), );
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Init.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Aktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementFormularOeffnen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementErstellen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementLoeschen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementAktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Formular.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_WertFormatieren.js'), );
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/SQL_upd_LOC_event.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/LOC_upd_VAR.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/LOC_upd_VAR_event.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/VAR_upd_LOC.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/VAR_upd_LOC_event.js'), );
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternInit.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularOeffnen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternErstellen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternAendern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternLoeschen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_Filtern2$Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_$Filtern2Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_PhpFiltern2Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_SqlFiltern2Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_TabelleFiltern.js'), );
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenInit.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenFormularOeffnen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenErstellen.js'), );
+        // $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenAendern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenLoeschen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_Sortieren2$Sortieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_$Sortieren2Sortieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_ArraySortieren.js'), );
+
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ChecklisteInit.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ChecklisteAendern.js'), );
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js'), );
+
         if( auth()->loggedIn() ) {
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionsAktualisieren.js'), );
@@ -112,8 +148,8 @@ abstract class BaseController extends Controller
                 $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenErstellen.js'), );
                 $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAendern.js'), );
                 $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenLoeschen.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/$personenkreis_beschraenken2filtern_mitglieder.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/filtern_mitglieder2$personenkreis_beschraenken.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_$PersonenkreisBeschraenken2FilternMitglieder.js'), );
+                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_FilternMitglieder2$PersonenkreisBeschraenken.js'), );
             }
             if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
         }

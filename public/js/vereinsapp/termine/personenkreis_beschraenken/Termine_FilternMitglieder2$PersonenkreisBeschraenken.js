@@ -1,4 +1,4 @@
-function filtern_mitglieder2$personenkreis_beschraenken(filtern, liste) {
+function Termine_FilternMitglieder2$PersonenkreisBeschraenken(filtern, liste) {
     const LISTE = LISTEN[liste];
     const $filtern = new Array();
 
@@ -16,15 +16,10 @@ function filtern_mitglieder2$personenkreis_beschraenken(filtern, liste) {
             if (verknuepfung == "&&") $verknuepfung.text("UND");
             else if (verknuepfung == "||") $verknuepfung.text("ODER");
             $.each(
-                filtern_mitglieder2$personenkreis_beschraenken(
-                    knoten.filtern,
-                    liste
-                ),
+                Termine_FilternMitglieder2$PersonenkreisBeschraenken(knoten.filtern, liste),
                 function (index, $filtern) {
                     $filtern.appendTo(
-                        $neue_filtern_sammlung
-                            .find(".personenkreis_beschraenken_kind")
-                            .first()
+                        $neue_filtern_sammlung.find(".personenkreis_beschraenken_kind").first()
                     );
                 }
             );
@@ -42,28 +37,17 @@ function filtern_mitglieder2$personenkreis_beschraenken(filtern, liste) {
             $neues_filtern_element
                 .find(".eigenschaft")
                 .attr("data-eigenschaft", eigenschaft)
-                .text(
-                    EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft]
-                        .beschriftung
-                );
-            $neues_filtern_element
-                .find(".operator")
-                .attr("data-operator", operator)
-                .text(operator);
+                .text(EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].beschriftung);
+            $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
 
             let data_wert = wert;
-            if (
-                EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].typ ==
-                "zeitpunkt"
-            )
+            if (EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].typ == "zeitpunkt")
                 data_wert = wert.toFormat(SQL_DATETIME);
             $neues_filtern_element
                 .find(".wert")
                 .attr("data-wert", data_wert)
-                .html(wert_formatieren(wert, eigenschaft, liste));
-            $neues_filtern_element
-                .find(".btn_filtern_loeschen")
-                .attr("data-liste", liste);
+                .html(Liste_WertFormatieren(wert, eigenschaft, liste));
+            $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);
 
             $filtern.push($neues_filtern_element);
         }

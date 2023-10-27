@@ -14,9 +14,7 @@ function Mitglieder_PermissionAktualisieren($permission, liste) {
         .prop(
             "checked",
             LISTEN[liste].tabelle[gegen_element_id].permissions.length > 0 &&
-                LISTEN[liste].tabelle[gegen_element_id].permissions.includes(
-                    permission
-                )
+                LISTEN[liste].tabelle[gegen_element_id].permissions.includes(permission)
         );
 
     // DISABLED AKTUALISIEREN
@@ -28,9 +26,7 @@ function Mitglieder_PermissionAktualisieren($permission, liste) {
                 permission == "mitglieder.rechte" ||
                 !(
                     LISTEN[liste].tabelle[ICH.id].permissions.length > 0 &&
-                    LISTEN[liste].tabelle[ICH.id].permissions.includes(
-                        "mitglieder.rechte"
-                    )
+                    LISTEN[liste].tabelle[ICH.id].permissions.includes("mitglieder.rechte")
                 )
         );
 }

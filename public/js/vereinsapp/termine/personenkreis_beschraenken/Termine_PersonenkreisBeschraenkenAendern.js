@@ -1,8 +1,7 @@
 function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
-    const $personenkreis_beschraenken = $btn
-        .parents(".personenkreis_beschraenken")
-        .first();
+    const $personenkreis_beschraenken = $btn.parents(".personenkreis_beschraenken").first();
     const element_id = $personenkreis_beschraenken.attr("data-element_id");
+
     const $verknuepfung = $btn
         .parents(".personenkreis_beschraenken_sammlung")
         .first()
@@ -11,10 +10,9 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
     const verknuepfung = $verknuepfung.attr("data-verknuepfung");
 
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");
-    else if (verknuepfung == "||")
-        $verknuepfung.attr("data-verknuepfung", "&&");
+    else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&");
 
-    const filtern_mitglieder = $personenkreis_beschraenken2filtern_mitglieder(
+    const filtern_mitglieder = Termine_$PersonenkreisBeschraenken2FilternMitglieder(
         $personenkreis_beschraenken,
         "mitglieder"
     );
@@ -30,9 +28,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
         data: AJAX_DATA,
         dataType: "json",
         beforeSend: function () {
-            $btn.addClass("invisible")
-                .prop("disabled", true)
-                .after(STATUS_SPINNER_HTML);
+            $btn.addClass("invisible").prop("disabled", true).after(STATUS_SPINNER_HTML);
         },
         success: function (antwort) {
             $("#csrf_hash").val(antwort.csrf_hash);
@@ -43,20 +39,13 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
                         JSON.stringify(antwort.validation)
                 );
             else {
-                if (typeof antwort.info !== "undefined")
-                    console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
-                LISTEN[liste].tabelle[element_id].filtern_mitglieder =
-                    filtern_mitglieder;
+                if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
+                LISTEN[liste].tabelle[element_id].filtern_mitglieder = filtern_mitglieder;
                 $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
             }
         },
         error: function (xhr) {
-            console.log(
-                "FEHLER personenkreis beschraenken: " +
-                    xhr.status +
-                    " " +
-                    xhr.statusText
-            );
+            console.log("FEHLER personenkreis beschraenken: " + xhr.status + " " + xhr.statusText);
         },
         complete: function () {
             $btn.removeClass("invisible").prop("disabled", false);

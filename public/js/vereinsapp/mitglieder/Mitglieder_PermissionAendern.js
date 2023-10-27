@@ -37,9 +37,7 @@ function Mitglieder_PermissionAendern($check, liste) {
         data: AJAX_DATA,
         dataType: "json",
         beforeSend: function () {
-            $check_beschriftung
-                .html(STATUS_SPINNER_HTML)
-                .addClass("text-primary");
+            $check_beschriftung.html(STATUS_SPINNER_HTML).addClass("text-primary");
         },
         success: function (antwort) {
             $("#csrf_hash").val(antwort.csrf_hash);
@@ -54,8 +52,7 @@ function Mitglieder_PermissionAendern($check, liste) {
                         JSON.stringify(antwort.validation)
                 );
             else {
-                if (typeof antwort.info !== "undefined")
-                    console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
+                if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
 
                 if (CSRF_NAME in AJAX_DATA) delete AJAX_DATA[CSRF_NAME];
 
@@ -63,45 +60,29 @@ function Mitglieder_PermissionAendern($check, liste) {
                     LISTEN[liste].tabelle[gegen_element_id].permissions,
                     function (index, permission) {
                         if (permission == element_id)
-                            delete LISTEN[liste].tabelle[gegen_element_id]
-                                .permissions[index];
+                            delete LISTEN[liste].tabelle[gegen_element_id].permissions[index];
                     }
                 );
 
                 if (
-                    !(
-                        "permissions" in LISTEN[liste].tabelle[gegen_element_id]
-                    ) ||
-                    typeof LISTEN[liste].tabelle[gegen_element_id]
-                        .permissions !== "object"
+                    !("permissions" in LISTEN[liste].tabelle[gegen_element_id]) ||
+                    typeof LISTEN[liste].tabelle[gegen_element_id].permissions !== "object"
                 )
-                    LISTEN[liste].tabelle[gegen_element_id].permissions =
-                        new Array();
+                    LISTEN[liste].tabelle[gegen_element_id].permissions = new Array();
 
                 if (AJAX_DATA.checked)
-                    LISTEN[liste].tabelle[gegen_element_id].permissions.push(
-                        element_id
-                    );
+                    LISTEN[liste].tabelle[gegen_element_id].permissions.push(element_id);
 
                 $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
             }
         },
         error: function (xhr) {
             console.log(
-                "FEHLER " +
-                    element +
-                    " " +
-                    aktion +
-                    ": " +
-                    xhr.status +
-                    " " +
-                    xhr.statusText
+                "FEHLER " + element + " " + aktion + ": " + xhr.status + " " + xhr.statusText
             );
         },
         complete: function () {
-            $check_beschriftung
-                .html(check_beschriftung)
-                .removeClass("text-primary");
+            $check_beschriftung.html(check_beschriftung).removeClass("text-primary");
         },
     });
 }
