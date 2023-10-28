@@ -19,7 +19,7 @@ function Liste_FilternLoeschen($btn_loeschen, liste) {
         sammlung_ebene_hoeher = $knoten_parallel.first().parents(".filtern_sammlung").first();
     }
 
-    LISTEN[liste].filtern = $filtern2filtern($filtern, "filtern", liste);
+    LISTEN[liste].filtern = Liste_Gib$Filtern2Filtern($filtern, "filtern", liste);
 
     $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
 }

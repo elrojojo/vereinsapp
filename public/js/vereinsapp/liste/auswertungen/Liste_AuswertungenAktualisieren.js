@@ -3,7 +3,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
     let filtern = $auswertungen.attr("data-filtern");
     if (typeof filtern !== "undefined") filtern = JSON.parse(filtern);
     else filtern = new Array();
-    const tabelle_gefiltert = Liste_TabelleFiltern(filtern, liste);
+    const tabelle_gefiltert = Liste_GibTabelleGefiltert(filtern, liste);
 
     // CLUSTER_TABELLE DEFINIEREN
     let cluster = $auswertungen.attr("data-cluster");
@@ -14,9 +14,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
 
     // CLUSTER_TABELLE FILTERN
     let cluster_filtern;
-    if ("filtern" in cluster) cluster_filtern = Liste_SqlFiltern2Filtern(JSON.parse(cluster.filtern), cluster.liste);
+    if ("filtern" in cluster) cluster_filtern = Liste_GibSqlFiltern2Filtern(JSON.parse(cluster.filtern), cluster.liste);
     else cluster_filtern = new Array();
-    const cluster_tabelle_gefiltert = Liste_TabelleFiltern(cluster_filtern, cluster_liste);
+    const cluster_tabelle_gefiltert = Liste_GibTabelleGefiltert(cluster_filtern, cluster_liste);
 
     // CLUSTER_TABELLE CLUSTERN
     const cluster_tabelle_gefiltert_geclustert = new Object();

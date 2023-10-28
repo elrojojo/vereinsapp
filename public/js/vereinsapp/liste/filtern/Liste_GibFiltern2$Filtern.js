@@ -40,7 +40,7 @@ function Liste_Filtern2$Filtern(filtern, $blanko_filtern_sammlung, $blanko_filte
 
             let data_wert = wert;
             if (EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft].typ == "zeitpunkt") data_wert = wert.toFormat(SQL_DATETIME);
-            $neues_filtern_element.find(".wert").attr("data-wert", data_wert).html(Liste_WertFormatieren(wert, eigenschaft, liste));
+            $neues_filtern_element.find(".wert").attr("data-wert", data_wert).html(Liste_GibWertFormatiert(wert, eigenschaft, liste));
 
             $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);
 

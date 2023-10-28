@@ -24,7 +24,13 @@ $(document).ready(function () {
             $('.filtern[data-liste="' + liste + '"]').each(function () {
                 const $filtern = $(this);
                 $filtern.html(
-                    Liste_Filtern2$Filtern(LISTEN[liste].filtern, FILTERN.$blanko_filtern_sammlung, FILTERN.$blanko_filtern_element, "filtern", liste)
+                    Liste_GibFiltern2$Filtern(
+                        LISTEN[liste].filtern,
+                        FILTERN.$blanko_filtern_sammlung,
+                        FILTERN.$blanko_filtern_element,
+                        "filtern",
+                        liste
+                    )
                 );
             });
         });
@@ -46,7 +52,7 @@ $(document).ready(function () {
     // ÄNDERN (VERKNÜPFUNG)
     $(document).on("click", ".btn_filtern_aendern", function () {
         const liste = $(this).parents("[data-liste]").first().attr("data-liste");
-        Liste_FilternAendern($(this), liste);
+        Liste_FilternVerknuepfungAendern($(this), liste);
     });
 
     // LÖSCHEN

@@ -8,7 +8,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");
     else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&");
 
-    const filtern_mitglieder = Termine_$filtern2filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
+    const filtern_mitglieder = Liste_Gib$Filtern2Filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
     const AJAX_DATA = {
         id: element_id,
         filtern_mitglieder: JSON.stringify(filtern_mitglieder),

@@ -67,7 +67,7 @@ $(document).ready(function () {
     // CHECKLISTE ÄNDERN
     $(document).on("change", ".check", function () {
         const liste = $(this).parents(".liste").first().attr("data-liste");
-        Liste_ChecklisteAendern($(this), liste);
+        Liste_CheckAendern($(this), liste);
     });
 
     // SORTABLE

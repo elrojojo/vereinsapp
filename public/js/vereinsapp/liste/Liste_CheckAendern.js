@@ -1,4 +1,4 @@
-function Liste_ChecklisteAendern($check, liste) {
+function Liste_CheckAendern($check, liste) {
     const $check_beschriftung = $check.siblings(".beschriftung");
     const check_beschriftung = $check_beschriftung.html();
     const $liste = $check.parents(".liste").first();

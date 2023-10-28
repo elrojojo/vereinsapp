@@ -1,4 +1,4 @@
-function Liste_Sortieren2$Sortieren(sortieren, liste) {
+function Liste_GibSortieren2$Sortieren(sortieren, liste) {
     const LISTE = LISTEN[liste];
     const $sortieren = new Array();
 

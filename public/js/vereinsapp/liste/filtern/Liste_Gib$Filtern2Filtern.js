@@ -1,4 +1,4 @@
-function $filtern2filtern($filtern, klasse, liste) {
+function Liste_Gib$Filtern2Filtern($filtern, klasse, liste) {
     const filtern = new Array();
 
     $filtern.children("." + klasse + "_element, ." + klasse + "_sammlung").each(function () {
@@ -8,7 +8,7 @@ function $filtern2filtern($filtern, klasse, liste) {
             const verknuepfung = $knoten.find(".verknuepfung").attr("data-verknuepfung");
             filtern.push({
                 verknuepfung: verknuepfung,
-                filtern: $filtern2filtern($knoten.find("." + klasse + "_kind").first(), klasse, liste),
+                filtern: Liste_Gib$Filtern2Filtern($knoten.find("." + klasse + "_kind").first(), klasse, liste),
             });
         } else if ($knoten.hasClass("" + klasse + "_element")) {
             const operator = $knoten.find(".operator").attr("data-operator");

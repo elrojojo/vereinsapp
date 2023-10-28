@@ -1,17 +1,17 @@
 function Liste_Aktualisieren($liste, liste) {
     // TABELLE FILTERN
     let filtern = $liste.attr("data-filtern");
-    if (typeof filtern !== "undefined") filtern = Liste_PhpFiltern2Filtern(JSON.parse(filtern), liste);
+    if (typeof filtern !== "undefined") filtern = Liste_GibPhpFiltern2Filtern(JSON.parse(filtern), liste);
     else filtern = new Array();
     if (LISTEN[liste].filtern.length >= 1) filtern = [{ verknuepfung: "&&", filtern: filtern.concat(LISTEN[liste].filtern) }];
-    const tabelle_gefiltert = Liste_TabelleFiltern(filtern, liste);
+    const tabelle_gefiltert = Liste_GibTabelleGefiltert(filtern, liste);
 
     // TABELLE SORTIEREN
     let sortieren = $liste.attr("data-sortieren");
     if (typeof sortieren !== "undefined") sortieren = JSON.parse(sortieren);
     else sortieren = new Array();
     if (LISTEN[liste].sortieren.length >= 1) sortieren = LISTEN[liste].sortieren.concat(sortieren);
-    const tabelle_gefiltert_sortiert = Liste_ArraySortieren(tabelle_gefiltert, sortieren);
+    const tabelle_gefiltert_sortiert = Liste_GibArraySortiert(tabelle_gefiltert, sortieren);
 
     // ELEMENTE IM DOM LÖSCHEN
     $liste.find('.element[data-element="' + LISTEN[liste].element + '"]').each(function () {

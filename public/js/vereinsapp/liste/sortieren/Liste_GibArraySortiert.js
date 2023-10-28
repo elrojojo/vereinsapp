@@ -1,4 +1,4 @@
-function Liste_ArraySortieren(array, sortieren) {
+function Liste_GibArraySortiert(array, sortieren) {
     // https://bithacker.dev/javascript-object-multi-property-sort
     if (array.length == 0 || sortieren.length == 0) return array;
     else

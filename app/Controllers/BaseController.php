@@ -99,9 +99,9 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementLoeschen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Formular.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_WertFormatieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_GibWertFormatiert.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_GibTodo.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ChecklisteAendern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_CheckAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
 
@@ -114,22 +114,22 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularOeffnen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternErstellen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternAendern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternVerknuepfungAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternLoeschen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_Filtern2$Filtern.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_$Filtern2Filtern.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_PhpFiltern2Filtern.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_SqlFiltern2Filtern.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_TabelleFiltern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_GibFiltern2$Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_Gib$Filtern2Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_GibPhpFiltern2Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_GibSqlFiltern2Filtern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_GibTabelleGefiltert.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenFormularOeffnen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenErstellen.js'), );
         // $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenLoeschen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_Sortieren2$Sortieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_$Sortieren2Sortieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_ArraySortieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_GibSortieren2$Sortieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_Gib$Sortieren2Sortieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_GibArraySortiert.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js'), );

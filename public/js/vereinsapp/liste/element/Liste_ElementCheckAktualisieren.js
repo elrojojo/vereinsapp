@@ -10,7 +10,7 @@ function Liste_ElementCheckAktualisieren($check, $element, liste) {
             ],
         },
     ];
-    const gefilterte_tabelle = Liste_TabelleFiltern(filtern, $check.attr("name"));
+    const gefilterte_tabelle = Liste_GibTabelleGefiltert(filtern, $check.attr("name"));
 
     $check.attr("checked", gefilterte_tabelle.length > 0);
 }

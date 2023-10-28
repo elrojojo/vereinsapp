@@ -50,10 +50,10 @@ function LOC_upd_VAR(liste) {
                         }
                     });
                 if (typeof element["filtern_mitglieder"] !== "undefined")
-                    element["filtern_mitglieder"] = Liste_SqlFiltern2Filtern(JSON.parse(element["filtern_mitglieder"]), "mitglieder");
+                    element["filtern_mitglieder"] = Liste_GibSqlFiltern2Filtern(JSON.parse(element["filtern_mitglieder"]), "mitglieder");
                 else element["filtern_mitglieder"] = new Array();
                 element["ich_eingeladen"] = false;
-                $.each(Liste_TabelleFiltern(element["filtern_mitglieder"], "mitglieder"), function () {
+                $.each(Liste_GibTabelleGefiltert(element["filtern_mitglieder"], "mitglieder"), function () {
                     const mitglied = this;
                     if (mitglied["id"] == ICH["id"]) element["ich_eingeladen"] = true;
                 });

@@ -4,7 +4,7 @@ function Liste_SortierenLoeschen($btn_loeschen, liste) {
 
     $element.remove();
 
-    LISTEN[liste].sortieren = Liste_$Sortieren2Sortieren($sortieren, liste);
+    LISTEN[liste].sortieren = Liste_Gib$Sortieren2Sortieren($sortieren, liste);
 
     $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
 }
