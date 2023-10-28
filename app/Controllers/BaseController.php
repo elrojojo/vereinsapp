@@ -100,6 +100,9 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Formular.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_WertFormatieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ChecklisteAendern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/SQL_upd_LOC_event.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/SQL_LOC_VAR/LOC_upd_VAR.js'), );
@@ -126,9 +129,6 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_Sortieren2$Sortieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_$Sortieren2Sortieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_ArraySortieren.js'), );
-
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ChecklisteAendern.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_CheckAktualisieren.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js'), );

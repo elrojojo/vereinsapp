@@ -11,7 +11,7 @@ function Mitglieder_PermissionAendern($check, liste) {
     const element_id = $check.val();
     const checkliste = $liste.attr("data-checkliste");
 
-    //const CHECK_LISTE = LISTEN[ checkliste ];
+    //const CHECKLISTE = LISTEN[ checkliste ];
     const check_element = element;
     const gegen_element = $liste.attr("data-gegen_element");
     const gegen_element_id = $liste.attr("data-gegen_element_id");
