@@ -20,14 +20,7 @@ $(document).ready(function () {
 
     // LISTE UND ELEMENT IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        const todo = new Array();
-        if (prio_liste in LISTEN) {
-            todo.push(prio_liste);
-            $.each(Object.keys(LISTEN), function (index, liste) {
-                if (liste != prio_liste) todo.push(liste);
-            });
-        }
-        $.each(todo, function (prio, liste) {
+        $.each(Liste_GibTodo(prio_liste), function (prio, liste) {
             // LISTE AKTUALISIEREN
             $('.liste[data-liste="' + liste + '"]').each(function () {
                 Liste_Aktualisieren($(this), liste);

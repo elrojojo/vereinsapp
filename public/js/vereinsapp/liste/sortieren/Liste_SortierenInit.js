@@ -8,20 +8,11 @@ $(document).ready(function () {
 
     // SORTIEREN IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        const todo = new Array();
-        if (prio_liste in LISTEN) {
-            todo.push(prio_liste);
-            $.each(Object.keys(LISTEN), function (index, liste) {
-                if (liste != prio_liste) todo.push(liste);
-            });
-        }
-        $.each(todo, function (prio, liste) {
-            const LISTE = LISTEN[liste];
-
+        $.each(Liste_GibTodo(prio_liste), function (prio, liste) {
             // SORTIEREN AKTUALISIEREN
             $('.sortieren[data-liste="' + liste + '"]').each(function () {
                 const $sortieren = $(this);
-                $sortieren.html(Liste_Sortieren2$Sortieren(LISTE.sortieren, liste));
+                $sortieren.html(Liste_Sortieren2$Sortieren(LISTEN[liste].sortieren, liste));
             });
         });
     });

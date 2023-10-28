@@ -19,21 +19,12 @@ $(document).ready(function () {
 
     // FILTERN IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        const todo = new Array();
-        if (prio_liste in LISTEN) {
-            todo.push(prio_liste);
-            $.each(Object.keys(LISTEN), function (index, liste) {
-                if (liste != prio_liste) todo.push(liste);
-            });
-        }
-        $.each(todo, function (prio, liste) {
-            const LISTE = LISTEN[liste];
-
+        $.each(Liste_GibTodo(prio_liste), function (prio, liste) {
             // FILTERN AKTUALISIEREN
             $('.filtern[data-liste="' + liste + '"]').each(function () {
                 const $filtern = $(this);
                 $filtern.html(
-                    Liste_Filtern2$Filtern(LISTE.filtern, FILTERN.$blanko_filtern_sammlung, FILTERN.$blanko_filtern_element, "filtern", liste)
+                    Liste_Filtern2$Filtern(LISTEN[liste].filtern, FILTERN.$blanko_filtern_sammlung, FILTERN.$blanko_filtern_element, "filtern", liste)
                 );
             });
         });

@@ -12,16 +12,7 @@ $(document).ready(function () {
 
     // AUSWERTUNGEN IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        const todo = new Array();
-        if (prio_liste in LISTEN) {
-            todo.push(prio_liste);
-            $.each(Object.keys(LISTEN), function (index, liste) {
-                if (liste != prio_liste) todo.push(liste);
-            });
-        }
-        $.each(todo, function (prio, liste) {
-            const LISTE = LISTEN[liste];
-
+        $.each(Liste_GibTodo(prio_liste), function (prio, liste) {
             // AUSWERTUNGEN AKTUALISIEREN
             $('.auswertungen[data-liste="' + liste + '"]').each(function () {
                 Liste_AuswertungenAktualisieren($(this), liste);
