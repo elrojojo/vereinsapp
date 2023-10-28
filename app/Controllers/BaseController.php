@@ -127,8 +127,6 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_$Sortieren2Sortieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_ArraySortieren.js'), );
 
-
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ChecklisteInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ChecklisteAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_CheckAktualisieren.js'), );
 

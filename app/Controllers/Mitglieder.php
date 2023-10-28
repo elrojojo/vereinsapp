@@ -110,8 +110,8 @@ class Mitglieder extends BaseController {
         
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
-            if( auth()->user()->can( 'mitglieder.rechte' ) ) $this->viewdata['check_liste']['rechte'] = array(
-                'check_liste' => 'permissions',
+            if( auth()->user()->can( 'mitglieder.rechte' ) ) $this->viewdata['checkliste']['rechte'] = array(
+                'checkliste' => 'permissions',
                 'aktion' => 'aendern',
                 'gegen_element' => 'mitglied',
                 'gegen_element_id' => $element_id,
@@ -139,7 +139,7 @@ class Mitglieder extends BaseController {
         }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
-        if( array_key_exists( 'check_liste', $this->viewdata ) ) foreach( $this->viewdata['check_liste'] as $id => $check_liste ) $this->viewdata['check_liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;
         echo view( 'Mitglieder/mitglied_details', $this->viewdata );
     }
     //------------------------------------------------------------------------------------------------------------------

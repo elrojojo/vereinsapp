@@ -17,21 +17,14 @@ PERSONENKREIS_BESCHRAENKEN = new Object();
 
 $(document).ready(function () {
     {
-        PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_sammlung = $(
-            ".personenkreis_beschraenken"
-        )
-            .find(".blanko")
-            .first();
+        PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_sammlung = $(".personenkreis_beschraenken").find(".blanko").first();
         $(".personenkreis_beschraenken").empty();
 
-        PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_element =
-            PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_sammlung
-                .find(".blanko")
-                .first();
+        PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_element = PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_sammlung
+            .find(".blanko")
+            .first();
 
-        PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_sammlung
-            .find(".personenkreis_beschraenken_kind")
-            .empty();
+        PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_sammlung.find(".personenkreis_beschraenken_kind").empty();
 
         PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_definition = new Object();
 
@@ -39,9 +32,7 @@ $(document).ready(function () {
             .find(".blanko")
             .each(function () {
                 const $blanko = $(this);
-                PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_definition[
-                    $blanko.attr("data-typ")
-                ] = $blanko;
+                PERSONENKREIS_BESCHRAENKEN.$blanko_personenkreis_beschraenken_definition[$blanko.attr("data-typ")] = $blanko;
             });
 
         $(".personenkreis_beschraenken_definitionen").empty();
@@ -90,3 +81,8 @@ $(document).ready(function () {
         Termine_PersonenkreisBeschraenkenAendern($(this), "termine");
     });
 });
+
+/* TODO
+Abwesenheit in Rückmeldungen berücksichtigen
+
+*/

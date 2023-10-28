@@ -13,18 +13,20 @@ function Liste_Aktualisieren($liste, liste) {
     if (LISTEN[liste].sortieren.length >= 1) sortieren = LISTEN[liste].sortieren.concat(sortieren);
     const tabelle_gefiltert_sortiert = Liste_ArraySortieren(tabelle_gefiltert, sortieren);
 
-    // DOM LÖSCHEN
+    // ELEMENTE IM DOM LÖSCHEN
     $liste.find('.element[data-element="' + LISTEN[liste].element + '"]').each(function () {
         const $element = $(this);
         if (!tabelle_gefiltert_sortiert.includes(LISTEN[liste].tabelle[Number($element.attr("data-element_id"))])) $element.remove();
     });
 
-    // DOM ERGÄNZEN
+    // ELEMENTE IM DOM ERGÄNZEN
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
         const element_id = element["id"];
         const $element = $liste.find('.element[data-element="' + LISTEN[liste].element + '"][data-element_id="' + element_id + '"]');
 
+        // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
+            // Blanko-Element wird geklont
             const $neues_element = LISTEN[liste].$blanko_element[$liste.attr("id")]
                 .clone()
                 .removeClass("blanko invisible")
@@ -32,7 +34,7 @@ function Liste_Aktualisieren($liste, liste) {
                 .attr("data-element", LISTEN[liste].element)
                 .attr("data-element_id", element_id);
 
-            // Werkzeugkasten
+            // Element hat einen Werkzeugkasten
             $neues_element
                 .find('[data-bs-target="#werkzeugkasten_"]')
                 .attr("data-bs-target", "#werkzeugkasten_" + LISTEN[liste].element + "_" + element_id);
@@ -41,13 +43,14 @@ function Liste_Aktualisieren($liste, liste) {
                 .attr("id", "werkzeugkasten_" + LISTEN[liste].element + "_" + element_id)
                 .attr("data-bs-parent", '.liste[data-liste="' + liste + '"]');
 
-            // link
+            // Element hat einen Link
             $neues_element.find("a.stretched-link").attr("href", $neues_element.find(".stretched-link").attr("href") + "/" + element_id);
 
-            // check
+            // Element ist ein Check
             $neues_element.find("label").attr("for", element_id);
             $neues_element.find(".check").attr("id", element_id).val(element_id);
 
+            // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
             if (position == 0) $neues_element.appendTo($liste);
             else
                 $neues_element.insertAfter(
@@ -62,7 +65,7 @@ function Liste_Aktualisieren($liste, liste) {
         }
     });
 
-    // DOM SORTIEREN
+    // ELEMENTE IM DOM SORTIEREN
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
         const element_id = element["id"];
         const $element = $liste.find('.element[data-element="' + LISTEN[liste].element + '"][data-element_id="' + element_id + '"]');
@@ -78,7 +81,8 @@ function Liste_Aktualisieren($liste, liste) {
 
     // LETZTEN SPACER AUS DER LISTE LÖSCHEN
     const $letztes_element = $liste.children().last();
-    if ($letztes_element.children().last().hasClass("spacer")) $letztes_element.children().last().remove();
+    const $moeglicher_spacer = $letztes_element.children().last();
+    if ($moeglicher_spacer.hasClass("spacer")) $moeglicher_spacer.remove();
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
     if ($liste.children().length == 0) $liste.prev('.ueberschrift[data-liste_id="' + $liste.attr("id") + '"]').addClass("invisible");

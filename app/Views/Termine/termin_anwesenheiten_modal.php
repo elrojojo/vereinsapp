@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
 
-      <?= view( 'Templates/Liste/check_liste', array( 'liste' => $liste, 'check_liste' => $check_liste ) ); ?>
+      <?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste, 'checkliste' => $checkliste ) ); ?>
 
       </div>
       <div class="modal-footer">

@@ -149,8 +149,8 @@ class Termine extends BaseController {
                 // 'sortable' => true,
                 'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             );
-            $this->viewdata['check_liste']['anwesenheiten'] = array(
-                'check_liste' => 'anwesenheiten',
+            $this->viewdata['checkliste']['anwesenheiten'] = array(
+                'checkliste' => 'anwesenheiten',
                 'aktion' => 'aendern',
                 'gegen_element' => 'termin',
                 'gegen_element_id' => $element_id,
@@ -165,7 +165,7 @@ class Termine extends BaseController {
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $id => $auswertungen ) $this->viewdata['auswertungen'][ $id ]['id'] = $id;
-        if( array_key_exists( 'check_liste', $this->viewdata ) ) foreach( $this->viewdata['check_liste'] as $id => $check_liste ) $this->viewdata['check_liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;
         echo view( 'Termine/termin_details', $this->viewdata );
     }
 

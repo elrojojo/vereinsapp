@@ -32,8 +32,8 @@ class Einstellungen extends BaseController {
             ),
         );
         
-        $this->viewdata['check_liste']['meine_rechte'] = array(
-            'check_liste' => 'permissions',
+        $this->viewdata['checkliste']['meine_rechte'] = array(
+            'checkliste' => 'permissions',
             'aktion' => 'aendern',
             'gegen_element' => 'mitglied',
             'gegen_element_id' => ICH['id'],
@@ -52,7 +52,7 @@ class Einstellungen extends BaseController {
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
-        if( array_key_exists( 'check_liste', $this->viewdata ) ) foreach( $this->viewdata['check_liste'] as $id => $check_liste ) $this->viewdata['check_liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;
         echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }
 

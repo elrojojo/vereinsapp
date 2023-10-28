@@ -9,9 +9,9 @@ function Mitglieder_PermissionAendern($check, liste) {
     // const LISTE = LISTEN[ liste ];
     const element = "permission";
     const element_id = $check.val();
-    const check_liste = $liste.attr("data-check_liste");
+    const checkliste = $liste.attr("data-checkliste");
 
-    //const CHECK_LISTE = LISTEN[ check_liste ];
+    //const CHECK_LISTE = LISTEN[ checkliste ];
     const check_element = element;
     const gegen_element = $liste.attr("data-gegen_element");
     const gegen_element_id = $liste.attr("data-gegen_element_id");
@@ -22,17 +22,7 @@ function Mitglieder_PermissionAendern($check, liste) {
 
     // AJAX IN DIE SCHLANGE
     $.ajaxQueue({
-        url:
-            BASE_URL +
-            "/" +
-            liste +
-            "/ajax_" +
-            gegen_element +
-            "_" +
-            check_element +
-            "_" +
-            aktion +
-            "",
+        url: BASE_URL + "/" + liste + "/ajax_" + gegen_element + "_" + check_element + "_" + aktion + "",
         method: "post",
         data: AJAX_DATA,
         dataType: "json",
@@ -43,26 +33,15 @@ function Mitglieder_PermissionAendern($check, liste) {
             $("#csrf_hash").val(antwort.csrf_hash);
 
             if (typeof antwort.validation !== "undefined")
-                console.log(
-                    "FEHLER " +
-                        element +
-                        " " +
-                        aktion +
-                        ": validation -> " +
-                        JSON.stringify(antwort.validation)
-                );
+                console.log("FEHLER " + element + " " + aktion + ": validation -> " + JSON.stringify(antwort.validation));
             else {
                 if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
 
                 if (CSRF_NAME in AJAX_DATA) delete AJAX_DATA[CSRF_NAME];
 
-                $.each(
-                    LISTEN[liste].tabelle[gegen_element_id].permissions,
-                    function (index, permission) {
-                        if (permission == element_id)
-                            delete LISTEN[liste].tabelle[gegen_element_id].permissions[index];
-                    }
-                );
+                $.each(LISTEN[liste].tabelle[gegen_element_id].permissions, function (index, permission) {
+                    if (permission == element_id) delete LISTEN[liste].tabelle[gegen_element_id].permissions[index];
+                });
 
                 if (
                     !("permissions" in LISTEN[liste].tabelle[gegen_element_id]) ||
@@ -70,16 +49,13 @@ function Mitglieder_PermissionAendern($check, liste) {
                 )
                     LISTEN[liste].tabelle[gegen_element_id].permissions = new Array();
 
-                if (AJAX_DATA.checked)
-                    LISTEN[liste].tabelle[gegen_element_id].permissions.push(element_id);
+                if (AJAX_DATA.checked) LISTEN[liste].tabelle[gegen_element_id].permissions.push(element_id);
 
                 $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
             }
         },
         error: function (xhr) {
-            console.log(
-                "FEHLER " + element + " " + aktion + ": " + xhr.status + " " + xhr.statusText
-            );
+            console.log("FEHLER " + element + " " + aktion + ": " + xhr.status + " " + xhr.statusText);
         },
         complete: function () {
             $check_beschriftung.html(check_beschriftung).removeClass("text-primary");

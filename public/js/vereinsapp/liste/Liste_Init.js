@@ -38,6 +38,11 @@ $(document).ready(function () {
                 Liste_ElementAktualisieren($(this), liste);
             });
 
+            // CHECK AKTUALISIEREN
+            $('.check[name="' + liste + '"]').each(function () {
+                Liste_CheckAktualisieren($(this), liste);
+            });
+
             $(document).trigger("VAR_upd_DOM_" + liste);
 
             //console.log( 'ERFOLG VAR_upd_DOM_'+liste );
@@ -69,6 +74,12 @@ $(document).ready(function () {
             if (element == LISTE_.element) liste = liste_;
         });
         Liste_ElementLoeschen($(this), liste);
+    });
+
+    // CHECK_LISTE ÄNDERN
+    $(document).on("change", ".check", function () {
+        const liste = $(this).parents(".liste").first().attr("data-liste");
+        Liste_ChecklisteAendern($(this), liste);
     });
 
     // SORTABLE
