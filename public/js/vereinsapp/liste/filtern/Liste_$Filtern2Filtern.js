@@ -1,16 +1,16 @@
-function $filtern2filtern($filtern, liste) {
+function $filtern2filtern($filtern, klasse, liste) {
     const filtern = new Array();
 
-    $filtern.children(".filtern_element, .filtern_sammlung").each(function () {
+    $filtern.children("." + klasse + "_element, ." + klasse + "_sammlung").each(function () {
         const $knoten = $(this);
 
-        if ($knoten.hasClass("filtern_sammlung")) {
+        if ($knoten.hasClass("" + klasse + "_sammlung")) {
             const verknuepfung = $knoten.find(".verknuepfung").attr("data-verknuepfung");
             filtern.push({
                 verknuepfung: verknuepfung,
-                filtern: $filtern2filtern($knoten.find(".filtern_kind").first(), liste),
+                filtern: $filtern2filtern($knoten.find("." + klasse + "_kind").first(), klasse, liste),
             });
-        } else if ($knoten.hasClass("filtern_element")) {
+        } else if ($knoten.hasClass("" + klasse + "_element")) {
             const operator = $knoten.find(".operator").attr("data-operator");
             const eigenschaft = $knoten.find(".eigenschaft").attr("data-eigenschaft");
 

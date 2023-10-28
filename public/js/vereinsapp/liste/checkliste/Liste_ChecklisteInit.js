@@ -9,26 +9,9 @@ $(document).ready(function () {
             });
         }
         $.each(todo, function (prio, liste) {
-            const LISTE = LISTEN[liste];
-
             // CHECK AKTUALISIEREN
             $('.check[name="' + liste + '"]').each(function () {
-                const $check = $(this);
-                const $liste = $check.parents(".liste").first();
-                const $element = $check.parents(".element").first();
-                let checked = false;
-
-                $.each(LISTE.tabelle, function () {
-                    const element = this;
-                    if ("id" in element) {
-                        if (
-                            element[$liste.attr("data-gegen_element") + "_id"] == Number($liste.attr("data-gegen_element_id")) &&
-                            element[$element.attr("data-element") + "_id"] == Number($check.val())
-                        )
-                            checked = true;
-                    }
-                });
-                $check.attr("checked", checked);
+                Liste_CheckAktualisieren($(this), liste);
             });
         });
     });

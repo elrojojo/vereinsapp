@@ -2,20 +2,13 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
     const $personenkreis_beschraenken = $btn.parents(".personenkreis_beschraenken").first();
     const element_id = $personenkreis_beschraenken.attr("data-element_id");
 
-    const $verknuepfung = $btn
-        .parents(".personenkreis_beschraenken_sammlung")
-        .first()
-        .find(".verknuepfung")
-        .first();
+    const $verknuepfung = $btn.parents(".personenkreis_beschraenken_sammlung").first().find(".verknuepfung").first();
     const verknuepfung = $verknuepfung.attr("data-verknuepfung");
 
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");
     else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&");
 
-    const filtern_mitglieder = Termine_$PersonenkreisBeschraenken2FilternMitglieder(
-        $personenkreis_beschraenken,
-        "mitglieder"
-    );
+    const filtern_mitglieder = Termine_$filtern2filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
     const AJAX_DATA = {
         id: element_id,
         filtern_mitglieder: JSON.stringify(filtern_mitglieder),
@@ -34,10 +27,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
             $("#csrf_hash").val(antwort.csrf_hash);
 
             if (typeof antwort.validation !== "undefined")
-                console.log(
-                    "FEHLER personenkreis beschraenken: validation -> " +
-                        JSON.stringify(antwort.validation)
-                );
+                console.log("FEHLER personenkreis beschraenken: validation -> " + JSON.stringify(antwort.validation));
             else {
                 if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
                 LISTEN[liste].tabelle[element_id].filtern_mitglieder = filtern_mitglieder;

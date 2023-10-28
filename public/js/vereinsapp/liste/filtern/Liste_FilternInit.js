@@ -32,7 +32,9 @@ $(document).ready(function () {
             // FILTERN AKTUALISIEREN
             $('.filtern[data-liste="' + liste + '"]').each(function () {
                 const $filtern = $(this);
-                $filtern.html(Liste_Filtern2$Filtern(LISTE.filtern, liste));
+                $filtern.html(
+                    Liste_Filtern2$Filtern(LISTE.filtern, FILTERN.$blanko_filtern_sammlung, FILTERN.$blanko_filtern_element, "filtern", liste)
+                );
             });
         });
     });

@@ -6,6 +6,6 @@ function Liste_FilternAendern($btn_aendern, liste) {
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");
     else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&");
 
-    LISTEN[liste].filtern = $filtern2filtern($filtern, liste);
+    LISTEN[liste].filtern = $filtern2filtern($filtern, "filtern", liste);
     $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
 }
