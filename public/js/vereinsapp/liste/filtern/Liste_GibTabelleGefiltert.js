@@ -1,4 +1,4 @@
-function Liste_TabelleFiltern(filtern, liste) {
+function Liste_GibTabelleGefiltert(filtern, liste) {
     function element_filtern(element, filtern, liste) {
         const sammler = new Array();
 

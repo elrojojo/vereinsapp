@@ -1,5 +1,6 @@
 const BASE_URL = '<?= base_url(); ?>';
 const CSRF_NAME = '<?= csrf_token() ?>';
+const ERSTER_CSRF_HASH = '<?= csrf_hash() ?>';
 const ICH = <?= json_encode( ICH ); ?>;
 const PERMISSIONS = <?= json_encode( config('AuthGroups')->permissions ); ?>;
 

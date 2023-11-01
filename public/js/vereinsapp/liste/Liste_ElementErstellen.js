@@ -97,4 +97,52 @@ function Liste_ElementErstellen($btn, liste) {
             $btn.html(btn_beschriftung).prop("disabled", false);
         },
     });
+
+    // SCHNITTSTELLE AJAX -> PHP
+    // Schnittstelle_AjaxRaus({
+    //     id: element + " " + aktion,
+    //     $btn: $btn,
+    //     url: LISTEN[liste].controller + "/ajax_" + element + "_" + aktion,
+    //     methode: "post", // mapping dataType json
+    //     data: AJAX_DATA,
+    //     vorher_aktion: function () {
+    //         $btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
+    //     },
+    //     validation_negativ_aktion: function () {
+    //         $formular.find(".eigenschaft").each(function () {
+    //             const $eigenschaft = $(this);
+    //             const eigenschaft = $eigenschaft.attr("data-eigenschaft");
+
+    //             if (typeof antwort.validation[eigenschaft] !== "undefined") {
+    //                 $eigenschaft.addClass("is-invalid").removeClass("is-valid");
+    //                 $eigenschaft.after('<div class="invalid-tooltip">' + antwort.validation[eigenschaft] + "</div>");
+    //             } else {
+    //                 $eigenschaft.addClass("is-valid").removeClass("is-invalid");
+    //             }
+    //         });
+    //     },
+    //     validation_positiv_aktion: function () {
+    //         if (typeof element_id === "undefined") {
+    //             AJAX_DATA["id"] = LISTEN[liste].tabelle.length + 1;
+    //             LISTEN[liste].tabelle[AJAX_DATA["id"]] = new Object();
+    //         }
+
+    //         $.each(AJAX_DATA, function (eigenschaft, wert) {
+    //             if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
+    //             if (
+    //                 typeof EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
+    //                 EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
+    //             )
+    //                 wert = DateTime.fromFormat(wert, SQL_DATETIME);
+    //             LISTEN[liste].tabelle[AJAX_DATA["id"]][eigenschaft] = wert;
+    //         });
+
+    //         $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
+
+    //         $btn.parents(".modal").first().modal("hide");
+    //     },
+    //     nachher_aktion: function () {
+    //         $btn.html(btn_beschriftung).prop("disabled", false);
+    //     },
+    // });
 }

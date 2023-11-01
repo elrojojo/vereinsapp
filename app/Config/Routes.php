@@ -106,7 +106,7 @@ $routes->group('einstellungen', static function ($routes) {
 
 $routes->group('status', static function ($routes) {
     $routes->get('', 'Status::status');
-    $routes->get('ajax_datenschutz_richtlinie', 'Status::ajax_datenschutz_richtlinie');
+    $routes->post('ajax_datenschutz_richtlinie', 'Status::ajax_datenschutz_richtlinie');
 });
 
 // $routes->get('migrate', 'Migrate::migrate');

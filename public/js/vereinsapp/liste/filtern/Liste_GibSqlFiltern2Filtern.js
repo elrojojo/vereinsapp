@@ -1,4 +1,4 @@
-function Liste_SqlFiltern2Filtern(phpfiltern, liste) {
+function Liste_GibSqlFiltern2Filtern(phpfiltern, liste) {
     const filtern = new Array();
 
     $.each(phpfiltern, function (index, knoten) {
@@ -6,7 +6,7 @@ function Liste_SqlFiltern2Filtern(phpfiltern, liste) {
             const verknuepfung = knoten.verknuepfung;
             filtern.push({
                 verknuepfung: verknuepfung,
-                filtern: Liste_SqlFiltern2Filtern(knoten.filtern, liste),
+                filtern: Liste_GibSqlFiltern2Filtern(knoten.filtern, liste),
             });
         } else {
             const operator = knoten.operator;
