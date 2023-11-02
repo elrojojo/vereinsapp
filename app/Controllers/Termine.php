@@ -170,7 +170,7 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_termine() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_termine() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $ajax_antwort['tabelle'] = model(Termin_Model::class)->findAll();
         foreach( $ajax_antwort['tabelle'] as $id => $termin ) {
             $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $termin ), TRUE );
@@ -179,7 +179,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_termin_erstellen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_termin_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
@@ -216,7 +216,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_termin_personenkreis_beschraenken() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_termin_personenkreis_beschraenken() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
@@ -226,7 +226,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_termin_loeschen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_termin_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -236,7 +236,7 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_rueckmeldungen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_rueckmeldungen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $ajax_antwort['tabelle'] = model(Rueckmeldung_Model::class)->findAll();
         foreach( $ajax_antwort['tabelle'] as $id => $rueckmeldung ) {
             $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $rueckmeldung ), TRUE );
@@ -245,7 +245,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_rueckmeldung_erstellen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_rueckmeldung_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'termin_id' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
@@ -266,7 +266,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_rueckmeldung_aendern() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_rueckmeldung_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural' ] ],
@@ -284,7 +284,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    // public function ajax_rueckmeldung_loeschen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    // public function ajax_rueckmeldung_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
     //     $validation_rules = array(
     //         'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
     //     ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -295,7 +295,7 @@ class Termine extends BaseController {
     // }
     
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_anwesenheiten() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_anwesenheiten() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $ajax_antwort['tabelle'] = model(Anwesenheit_Model::class)->findAll();
         foreach( $ajax_antwort['tabelle'] as $id => $anwesenheit ) {
             $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $anwesenheit ), TRUE );
@@ -304,7 +304,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_anwesenheit_aendern() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_anwesenheit_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'termin_id' => [ 'label' => EIGENSCHAFTEN['termine']['anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['termine']['anwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],

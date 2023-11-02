@@ -8,11 +8,8 @@ $(document).on("SQL_upd_LOC", async function (event, schleife, liste) {
             hash: sha256(String(localStorage.getItem("vereinsapp_" + liste + "_tabelle"))),
         },
         dataType: "json",
-        beforeSend: function () {
-            console.log(liste + " wird geladen");
-        },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
             localStorage.setItem("vereinsapp_" + liste + "_tabelle", JSON.stringify(antwort.tabelle));
             if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG SQL_upd_LOC_'+liste );
         },
@@ -20,7 +17,6 @@ $(document).on("SQL_upd_LOC", async function (event, schleife, liste) {
             console.log("FEHLER SQL_upd_LOC_" + liste + ": " + xhr.status + " " + xhr.statusText);
         },
         complete: function () {
-            console.log(liste + " wurde geladen");
             $(document).trigger("LOC_upd_VAR", [liste]); // impliziert auch ein $(document).trigger( 'VAR_upd_DOM', [ liste ] );
             if (schleife)
                 setTimeout(function () {

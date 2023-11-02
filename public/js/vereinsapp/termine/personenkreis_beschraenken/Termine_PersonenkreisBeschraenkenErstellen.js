@@ -7,10 +7,7 @@ function Termine_PersonenkreisBeschraenkenErstellen($btn, liste) {
 
     const eigenschaft = $formular.attr("data-eigenschaft");
 
-    const element_id = $btn
-        .parents(".personenkreis_beschraenken_definitionen")
-        .first()
-        .attr("data-element_id");
+    const element_id = $btn.parents(".personenkreis_beschraenken_definitionen").first().attr("data-element_id");
 
     const filtern_eigenschaft = new Array();
     $formular.find(".personenkreis_beschraenken_wert").each(function () {
@@ -20,15 +17,10 @@ function Termine_PersonenkreisBeschraenkenErstellen($btn, liste) {
             const operator = $personenkreis_beschraenken_wert.attr("data-operator");
             let wert = $personenkreis_beschraenken_wert.val();
 
-            if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean")
-                wert = Number(wert);
+            if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
             if (
-                typeof EIGENSCHAFTEN[LISTEN[filtern_liste].controller][filtern_liste][
-                    eigenschaft
-                ] !== "undefined" &&
-                EIGENSCHAFTEN[LISTEN[filtern_liste].controller][filtern_liste][eigenschaft][
-                    "typ"
-                ] == "zeitpunkt"
+                typeof EIGENSCHAFTEN[LISTEN[filtern_liste].controller][filtern_liste][eigenschaft] !== "undefined" &&
+                EIGENSCHAFTEN[LISTEN[filtern_liste].controller][filtern_liste][eigenschaft]["typ"] == "zeitpunkt"
             )
                 wert = DateTime.fromISO(wert);
             filtern_eigenschaft.push({
@@ -51,8 +43,7 @@ function Termine_PersonenkreisBeschraenkenErstellen($btn, liste) {
 
     if (filtern_mitglieder.length == 0) filtern_mitglieder.push(filtern_eigenschaft_knoten);
     else {
-        if ("verknuepfung" in filtern_mitglieder[0])
-            filtern_mitglieder[0].filtern.push(filtern_eigenschaft_knoten);
+        if ("verknuepfung" in filtern_mitglieder[0]) filtern_mitglieder[0].filtern.push(filtern_eigenschaft_knoten);
         else {
             const einziges_element = filtern_mitglieder[0];
             filtern_mitglieder[0] = {
@@ -79,13 +70,10 @@ function Termine_PersonenkreisBeschraenkenErstellen($btn, liste) {
             $btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
         },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
 
             if (typeof antwort.validation !== "undefined")
-                console.log(
-                    "FEHLER personenkreis beschraenken: validation -> " +
-                        JSON.stringify(antwort.validation)
-                );
+                console.log("FEHLER personenkreis beschraenken: validation -> " + JSON.stringify(antwort.validation));
             else {
                 if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
 

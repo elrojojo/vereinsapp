@@ -92,7 +92,7 @@ class Notenbank extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_notenbank() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_notenbank() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
         foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
             $verzeichnis = ''; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ ) if( substr( $verzeichnis_, -1 ) == '/' AND substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) ) $verzeichnis = $verzeichnis_;
@@ -103,7 +103,7 @@ class Notenbank extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_titel_erstellen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_titel_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
@@ -127,7 +127,7 @@ class Notenbank extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_titel_loeschen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_titel_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();

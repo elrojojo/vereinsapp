@@ -30,14 +30,12 @@ function Mitglieder_PermissionAendern($check, liste) {
             $check_beschriftung.html(STATUS_SPINNER_HTML).addClass("text-primary");
         },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
 
             if (typeof antwort.validation !== "undefined")
                 console.log("FEHLER " + element + " " + aktion + ": validation -> " + JSON.stringify(antwort.validation));
             else {
                 if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
-
-                if (CSRF_NAME in AJAX_DATA) delete AJAX_DATA[CSRF_NAME];
 
                 $.each(LISTEN[liste].tabelle[gegen_element_id].permissions, function (index, permission) {
                     if (permission == element_id) delete LISTEN[liste].tabelle[gegen_element_id].permissions[index];

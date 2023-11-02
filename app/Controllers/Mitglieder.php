@@ -143,7 +143,7 @@ class Mitglieder extends BaseController {
         echo view( 'Mitglieder/mitglied_details', $this->viewdata );
     }
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_mitglieder() { $ajax_antwort = array( 'csrf_hash' => csrf_hash(), 'tabelle' => array() );
+    public function ajax_mitglieder() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
         // if( !$this->validate( [
         //     'hash' => 'required|alpha_numeric',
         // ] ) ) $ajax_antwort['validation'] = $this->validation->listErrors();
@@ -163,7 +163,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_erstellen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_mitglied_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['email']['beschriftung'], 'rules' => [ 'required', 'valid_email' ] ],
@@ -212,7 +212,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_passwort_aendern() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_mitglied_passwort_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'passwort_alt' => [ 'label' => 'Altes Passwort', 'rules' => [ 'required' ] ],
@@ -232,7 +232,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_permission_aendern() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_mitglied_permission_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'permission_id' => [ 'label' => 'Recht', 'rules' => [ 'required', 'alpha_numeric_punct' ] ],
             'mitglied_id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
@@ -247,7 +247,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_loeschen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_mitglied_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -258,7 +258,7 @@ class Mitglieder extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_abwesenheiten() { $ajax_antwort = array( 'csrf_hash' => csrf_hash(), 'tabelle' => array() );
+    public function ajax_abwesenheiten() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
         foreach( model(Abwesenheit_Model::class)->findAll() as $abwesenheit ) {
             $abwesenheit = json_decode( json_encode( $abwesenheit ), TRUE );
             foreach( $abwesenheit as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $abwesenheit[ $eigenschaft ] = (int)$wert;
@@ -267,7 +267,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_abwesenheit_erstellen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_abwesenheit_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             // 'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
@@ -296,7 +296,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_abwesenheit_loeschen() { $ajax_antwort['csrf_hash'] = csrf_hash();
+    public function ajax_abwesenheit_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();

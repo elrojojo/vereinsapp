@@ -52,8 +52,6 @@
 
     <div class="text-secondary mt-5 small"><?= OFFIZIELLER_NAME ?> - Stand vom <?= date('d.m.Y H:i', time()); ?></div>
 
-    <input type="hidden" id="csrf_hash" value="<?= csrf_hash() ?>" />
-
     <div id="status_anzeigen_liste" class="position-fixed" style="padding-right: 5px; padding-left: 5px; right: 0px; top: 70px; z-index: 99;">
       <?php /* muss überarbeitet werden? foreach( $status_anzeigen_liste as $eigenschaften ):
         ?><?= $eigenschaften['view']; ?>
@@ -68,20 +66,20 @@
 
     <?= $this->renderSection('werkzeugkasten') ?>
 
-    <script>
+    <?php /*<script>
 
-    <?php /* muss überarbeitet werden?
+    // muss überarbeitet werden?
     foreach( $status_anzeigen_liste as $status => $eigenschaften ):
       ?>$('#status_<?= $status; ?>').toast('show');
-    <?php endforeach; */ ?>
+    <?php endforeach;
 
-    <?php  /* muss überarbeitet werden?
+    // muss überarbeitet werden?
     $vorheriges_modal = NULL; foreach( $modals_anzeigen_liste as $modal => $eigenschaften ):
       if( array_key_first( $modals_anzeigen_liste ) == $modal ) { ?>$('#<?= $modal; ?>').modal('show');
     <?php } else { ?>$('#<?= $vorheriges_modal; ?>').on( 'hide.bs.modal', function (e) { $('#<?= $modal; ?>').modal('show'); } );
-    <?php } $vorheriges_modal = $modal; endforeach; */ ?>
+    <?php } $vorheriges_modal = $modal; endforeach;
 
-    </script>
+    </script> */ ?>
 
   </body>
 </html>

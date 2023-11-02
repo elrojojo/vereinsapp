@@ -41,8 +41,8 @@
 
         // run the actual query
         function doRequest(next) {
-            if (typeof ajaxOpts.data !== "undefined") ajaxOpts.data[CSRF_NAME] = $("#csrf_hash").val(); // von mir hinzugefügt (27.12.2022)
-            // ajaxOpts.data[CSRF_NAME] = $("#csrf_hash").val(); // von mir hinzugefügt (31.10.2023)
+            // if (typeof ajaxOpts.data !== "undefined") ajaxOpts.data[CSRF_NAME] = $("#csrf_hash").val(); // von mir hinzugefügt (27.12.2022)
+            ajaxOpts.data[CSRF_NAME] = G.CSRF[CSRF_NAME];
             jqXHR = $.ajax(ajaxOpts).done(dfd.resolve).fail(dfd.reject).then(next, next);
         }
 

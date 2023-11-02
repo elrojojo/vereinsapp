@@ -46,7 +46,7 @@ function Liste_ElementErstellen($btn, liste) {
             $btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
         },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
 
             // WENN DIE VALIDATION FEHLSCHLÄGT
             if (typeof antwort.validation !== "undefined") {
@@ -67,8 +67,6 @@ function Liste_ElementErstellen($btn, liste) {
             // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
             else {
                 if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
-
-                if (CSRF_NAME in AJAX_DATA) delete AJAX_DATA[CSRF_NAME];
 
                 if (typeof element_id === "undefined") {
                     AJAX_DATA["id"] = LISTEN[liste].tabelle.length + 1;

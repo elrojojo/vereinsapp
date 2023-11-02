@@ -3,9 +3,13 @@ const STATUS_SPINNER_CLASS = "spinner-border spinner-border-sm";
 const STATUS_SPINNER_HTML = '<span class="' + STATUS_SPINNER_CLASS + '" role="status"><span class="visually-hidden">Loading...</span></span>';
 let STATUS_STANDARD_HTML;
 
-const G = {};
-G.AJAX = {};
-G.CSRF_HASH = ERSTER_CSRF_HASH;
+const G = {
+    AJAX: [],
+
+    CSRF: {
+        [CSRF_NAME]: ERSTER_CSRF_HASH,
+    },
+};
 
 $(document).ready(function () {
     //POPOVER AKTIVIEREN
@@ -34,19 +38,34 @@ $(document).ready(function () {
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (localStorage.getItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === null) {
+        let neue_ajax_id;
+
         // SCHNITTSTELLE AJAX
-        Schnittstelle_AjaxRaus({
+        neue_ajax_id = G.AJAX.length;
+        G.AJAX[neue_ajax_id] = {
             id: "datenschutz_richtlinie",
             url: "status/ajax_datenschutz_richtlinie",
-            validation_positiv_aktion: function () {
-                $("#modals_anzeigen_liste").append(G.AJAX.datenschutz_richtlinie.html);
-                $("#datenschutz_richtlinie_modal").modal("show");
-                $("#datenschutz_richtlinie_akzeptieren").click(function () {
-                    localStorage.setItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    console.log("ERFOLG Datenschutz-Richtlinie akzeptiert");
-                    $("#datenschutz_richtlinie_modal").modal("hide");
-                });
-            },
+            validation_positiv_aktion: datenschutz_richtlinie_anzeigen,
+        };
+        Schnittstelle_AjaxRaus(G.AJAX[neue_ajax_id]);
+
+        neue_ajax_id = G.AJAX.length;
+        G.AJAX[neue_ajax_id] = {
+            id: "datenschutz_richtlinie",
+            url: "status/ajax_datenschutz_richtlinie",
+            validation_positiv_aktion: datenschutz_richtlinie_anzeigen,
+        };
+        Schnittstelle_AjaxRaus(G.AJAX[neue_ajax_id]);
+    }
+
+    function datenschutz_richtlinie_anzeigen(AJAX) {
+        if (typeof AJAX === "undefined") AJAX = { antwort: { html: "" } };
+        $("#modals_anzeigen_liste").append(AJAX.antwort.html);
+        $("#datenschutz_richtlinie_modal").modal("show");
+        $("#datenschutz_richtlinie_akzeptieren").click(function () {
+            localStorage.setItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
+            console.log("ERFOLG Datenschutz-Richtlinie akzeptiert");
+            $("#datenschutz_richtlinie_modal").modal("hide");
         });
     }
 

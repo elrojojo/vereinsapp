@@ -7,13 +7,13 @@ function Liste_ElementLoeschen($btn, liste) {
     $.ajaxQueue({
         url: BASE_URL + "/" + LISTEN[liste].controller + "/ajax_" + element + "_loeschen",
         method: "post",
-        data: { [CSRF_NAME]: $("#csrf_hash").val(), id: element_id },
+        data: { id: element_id },
         dataType: "json",
         beforeSend: function () {
             $btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
         },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
             if (typeof antwort.validation !== "undefined")
                 console.log("FEHLER " + element + " " + aktion + ": validation -> " + JSON.stringify(antwort.validation));
             else {

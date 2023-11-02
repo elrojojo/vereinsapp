@@ -24,7 +24,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
             $btn.addClass("invisible").prop("disabled", true).after(STATUS_SPINNER_HTML);
         },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
 
             if (typeof antwort.validation !== "undefined")
                 console.log("FEHLER personenkreis beschraenken: validation -> " + JSON.stringify(antwort.validation));

@@ -12,31 +12,21 @@ function Termine_PersonenkreisBeschraenkenLoeschen($btn, liste) {
         $knoten = $element;
     } else $knoten = $sammlung;
 
-    let $knoten_parallel = $knoten.siblings(
-        ".personenkreis_beschraenken_element, .personenkreis_beschraenken_sammlung"
-    );
+    let $knoten_parallel = $knoten.siblings(".personenkreis_beschraenken_element, .personenkreis_beschraenken_sammlung");
 
     let $sammlung_ebene_hoeher = $knoten.parents(".personenkreis_beschraenken_sammlung").first();
 
     $knoten.remove();
 
     while ($knoten_parallel.length == 1) {
-        const $knoten_ebene_hoeher = $sammlung_ebene_hoeher.siblings(
-            ".personenkreis_beschraenken_element, .personenkreis_beschraenken_sammlung"
-        );
+        const $knoten_ebene_hoeher = $sammlung_ebene_hoeher.siblings(".personenkreis_beschraenken_element, .personenkreis_beschraenken_sammlung");
         $sammlung_ebene_hoeher.replaceWith($knoten_parallel);
         $knoten_parallel = $knoten_ebene_hoeher;
-        $sammlung_ebene_hoeher = $knoten_parallel
-            .first()
-            .parents(".personenkreis_beschraenken_sammlung")
-            .first();
+        $sammlung_ebene_hoeher = $knoten_parallel.first().parents(".personenkreis_beschraenken_sammlung").first();
         // sammlung_ebene_hoeher = $knoten_parallel.first().parents('.personenkreis_beschraenken_sammlung').first();
     }
 
-    const filtern_mitglieder = $personenkreis_beschraenken2filtern_mitglieder(
-        $personenkreis_beschraenken,
-        "mitglieder"
-    );
+    const filtern_mitglieder = $personenkreis_beschraenken2filtern_mitglieder($personenkreis_beschraenken, "mitglieder");
 
     const AJAX_DATA = {
         id: element_id,
@@ -53,13 +43,10 @@ function Termine_PersonenkreisBeschraenkenLoeschen($btn, liste) {
             $btn.addClass("invisible").prop("disabled", true).after(STATUS_SPINNER_HTML);
         },
         success: function (antwort) {
-            $("#csrf_hash").val(antwort.csrf_hash);
+            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
 
             if (typeof antwort.validation !== "undefined")
-                console.log(
-                    "FEHLER personenkreis beschraenken: validation -> " +
-                        JSON.stringify(antwort.validation)
-                );
+                console.log("FEHLER personenkreis beschraenken: validation -> " + JSON.stringify(antwort.validation));
             else {
                 if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
 

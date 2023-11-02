@@ -66,6 +66,8 @@ abstract class BaseController extends Controller
         $this->validation  = \Config\Services::validation();
         $this->session = \Config\Services::session();
 
+        defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
+
         defined('ICH') OR define( 'ICH', $this->session->user );
     
         defined('CONTROLLER') OR define( 'CONTROLLER', lcfirst(
@@ -106,7 +108,9 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxRaus.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxRein.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxRausVorbereiten.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxReinErfolg.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxReinFehler.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/SQL_upd_LOC_event.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/LOC_upd_VAR.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/LOC_upd_VAR_event.js'), );
