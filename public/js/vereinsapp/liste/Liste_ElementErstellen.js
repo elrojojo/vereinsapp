@@ -97,16 +97,16 @@ function Liste_ElementErstellen($btn, liste) {
     });
 
     // SCHNITTSTELLE AJAX -> PHP
-    // Schnittstelle_AjaxRaus({
+    // Schnittstelle_AjaxInDieSchlange({
     //     id: element + " " + aktion,
     //     $btn: $btn,
     //     url: LISTEN[liste].controller + "/ajax_" + element + "_" + aktion,
     //     methode: "post", // mapping dataType json
     //     data: AJAX_DATA,
-    //     vorher_aktion: function () {
+    //     raus_aktion: function () {
     //         $btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
     //     },
-    //     validation_negativ_aktion: function () {
+    //     rein_validation_neg_aktion: function () {
     //         $formular.find(".eigenschaft").each(function () {
     //             const $eigenschaft = $(this);
     //             const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -119,7 +119,7 @@ function Liste_ElementErstellen($btn, liste) {
     //             }
     //         });
     //     },
-    //     validation_positiv_aktion: function () {
+    //     rein_validation_pos_aktion: function () {
     //         if (typeof element_id === "undefined") {
     //             AJAX_DATA["id"] = LISTEN[liste].tabelle.length + 1;
     //             LISTEN[liste].tabelle[AJAX_DATA["id"]] = new Object();
@@ -139,7 +139,7 @@ function Liste_ElementErstellen($btn, liste) {
 
     //         $btn.parents(".modal").first().modal("hide");
     //     },
-    //     nachher_aktion: function () {
+    //     rein_aktion: function () {
     //         $btn.html(btn_beschriftung).prop("disabled", false);
     //     },
     // });

@@ -38,35 +38,22 @@ $(document).ready(function () {
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (localStorage.getItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === null) {
-        let neue_ajax_id;
-
         // SCHNITTSTELLE AJAX
-        neue_ajax_id = G.AJAX.length;
+        const neue_ajax_id = G.AJAX.length;
         G.AJAX[neue_ajax_id] = {
             id: "datenschutz_richtlinie",
             url: "status/ajax_datenschutz_richtlinie",
-            validation_positiv_aktion: datenschutz_richtlinie_anzeigen,
+            rein_validation_pos_aktion: function (AJAX) {
+                $("#modals_anzeigen_liste").append(AJAX.antwort.html);
+                $("#datenschutz_richtlinie_modal").modal("show");
+                $("#datenschutz_richtlinie_akzeptieren").click(function () {
+                    localStorage.setItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
+                    console.log("ERFOLG Datenschutz-Richtlinie akzeptiert");
+                    $("#datenschutz_richtlinie_modal").modal("hide");
+                });
+            },
         };
-        Schnittstelle_AjaxRaus(G.AJAX[neue_ajax_id]);
-
-        neue_ajax_id = G.AJAX.length;
-        G.AJAX[neue_ajax_id] = {
-            id: "datenschutz_richtlinie",
-            url: "status/ajax_datenschutz_richtlinie",
-            validation_positiv_aktion: datenschutz_richtlinie_anzeigen,
-        };
-        Schnittstelle_AjaxRaus(G.AJAX[neue_ajax_id]);
-    }
-
-    function datenschutz_richtlinie_anzeigen(AJAX) {
-        if (typeof AJAX === "undefined") AJAX = { antwort: { html: "" } };
-        $("#modals_anzeigen_liste").append(AJAX.antwort.html);
-        $("#datenschutz_richtlinie_modal").modal("show");
-        $("#datenschutz_richtlinie_akzeptieren").click(function () {
-            localStorage.setItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-            console.log("ERFOLG Datenschutz-Richtlinie akzeptiert");
-            $("#datenschutz_richtlinie_modal").modal("hide");
-        });
+        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
     }
 
     // PASSWORT ANZEIGEN

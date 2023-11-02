@@ -1,4 +1,4 @@
-function Schnittstelle_AjaxRausVorbereiten(AJAX) {
+function Schnittstelle_AjaxFuerDieSchlangeVorbereiten(AJAX) {
     // Manchmal ist das data-Objekt nicht notwendig, dann wird es als leeres Objekt definiert
     if (typeof AJAX.data === "undefined") AJAX.data = {};
 
@@ -8,7 +8,7 @@ function Schnittstelle_AjaxRausVorbereiten(AJAX) {
         method: "post",
         data: AJAX.data,
         dataType: "json",
-        beforeSend: AJAX.vorher_aktion,
+        beforeSend: Schnittstelle_AjaxRaus(AJAX),
         success: function (antwort) {
             AJAX.antwort = antwort;
             Schnittstelle_AjaxReinErfolg(AJAX);
@@ -17,6 +17,6 @@ function Schnittstelle_AjaxRausVorbereiten(AJAX) {
             AJAX.fehler = xhr;
             Schnittstelle_AjaxReinFehler(AJAX);
         },
-        complete: AJAX.nachher_aktion,
+        complete: Schnittstelle_AjaxRein(AJAX),
     };
 }

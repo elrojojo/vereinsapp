@@ -107,8 +107,10 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
 
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxInDieSchlange.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxFuerDieSchlangeVorbereiten.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxRaus.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxRausVorbereiten.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxRein.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxReinErfolg.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_AjaxReinFehler.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/SQL_upd_LOC_event.js'), );

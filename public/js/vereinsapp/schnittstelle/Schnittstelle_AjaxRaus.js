@@ -1,7 +1,4 @@
 function Schnittstelle_AjaxRaus(AJAX) {
-    // Das AJAX-Objekt wird für $.ajaxQueue vorbereitet
-    Schnittstelle_AjaxRausVorbereiten(AJAX);
-
-    // $.ajaxQueue wird ausgeführt
-    $.ajaxQueue(AJAX.ajaxQueue);
+    // Aktion direkt vor dem Absenden wird durchgeführt
+    if (typeof AJAX.raus_aktion == "function") AJAX.raus_aktion(AJAX);
 }
