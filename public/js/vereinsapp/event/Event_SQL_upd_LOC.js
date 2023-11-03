@@ -1,5 +1,5 @@
 // LOC VOM SERVER AKTUALISIEREN
-$(document).on("Schnittstelle_SQL_upd_LOC_event", async function (event, schleife, liste) {
+$(document).on("Event_SQL_upd_LOC", async function (event, schleife, liste) {
     if (typeof schleife === "undefined") schleife = false;
     const neue_ajax_id = G.AJAX.length;
 
@@ -8,7 +8,7 @@ $(document).on("Schnittstelle_SQL_upd_LOC_event", async function (event, schleif
         url: LISTEN[liste].controller + "/ajax_" + liste,
         // data: { hash: sha256(String(localStorage.getItem("vereinsapp_" + liste + "_tabelle"))), },
         liste: liste,
-        schleife: { schalter: schleife, event: "Schnittstelle_SQL_upd_LOC_event" },
+        schleife: { schalter: schleife, event: "Event_SQL_upd_LOC" },
         rein_validation_pos_aktion: function (AJAX) {
             localStorage.setItem("vereinsapp_" + AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));
         },

@@ -83,7 +83,7 @@ $(document).ready(function () {
     });
 
     $.each(LISTEN, function (liste, LISTE) {
-        $(document).trigger("Schnittstelle_SQL_upd_LOC_event", [true, liste]); // $(document).trigger( 'LOC_upd_VAR' );
+        $(document).trigger("Event_SQL_upd_LOC", [true, liste]); // $(document).trigger( 'LOC_upd_VAR' );
     });
 
     $(document).trigger("VAR_upd_DOM");
