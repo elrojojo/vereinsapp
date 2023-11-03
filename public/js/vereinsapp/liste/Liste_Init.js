@@ -12,8 +12,6 @@ $(document).ready(function () {
                 LISTE.$blanko_element[$blanko_element.parent().attr("id")] = $blanko_element;
             });
         $('.liste[data-liste="' + liste + '"]').empty();
-
-        $(document).trigger("SQL_upd_LOC", [true, liste]); // $(document).trigger( 'LOC_upd_VAR' );
     });
 
     $(document).trigger("VAR_upd_DOM");
@@ -83,4 +81,10 @@ $(document).ready(function () {
             $("#sortable_speichern").attr("disabled", false);
         },
     });
+
+    $.each(LISTEN, function (liste, LISTE) {
+        $(document).trigger("Schnittstelle_SQL_upd_LOC_event", [true, liste]); // $(document).trigger( 'LOC_upd_VAR' );
+    });
+
+    $(document).trigger("VAR_upd_DOM");
 });
