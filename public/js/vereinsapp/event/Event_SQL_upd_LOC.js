@@ -10,7 +10,7 @@ $(document).on("Event_SQL_upd_LOC", async function (event, schleife, liste) {
         liste: liste,
         schleife: { schalter: schleife, event: "Event_SQL_upd_LOC" },
         rein_validation_pos_aktion: function (AJAX) {
-            localStorage.setItem("vereinsapp_" + AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));
+            Schnittstelle_LocalstorageRein(AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));
         },
         rein_aktion: function (AJAX) {
             $(document).trigger("LOC_upd_VAR", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'VAR_upd_DOM', [ liste ] );

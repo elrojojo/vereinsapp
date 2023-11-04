@@ -113,11 +113,14 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRein.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinErfolg.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinFehler.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_GibLocalstorageRaus.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRein.js'), );
+
         $head_script[] = array( 'src' => base_url('js/vereinsapp/event/Event_SQL_upd_LOC.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/LOC_upd_VAR.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/LOC_upd_VAR_event.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/VAR_upd_LOC.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/VAR_upd_LOC_event.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/LOC_upd_VAR.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/LOC_upd_VAR_event.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/VAR_upd_LOC.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/VAR_upd_LOC_event.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularOeffnen.js'), );
