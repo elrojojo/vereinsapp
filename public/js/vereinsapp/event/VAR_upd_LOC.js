@@ -23,9 +23,9 @@ function VAR_upd_LOC(liste) {
             LOC_tabelle.push(element);
         }
     });
-    localStorage.setItem("vereinsapp_" + liste + "_tabelle", JSON.stringify(LOC_tabelle));
+    Schnittstelle_LocalstorageRein(liste + "_tabelle", JSON.stringify(LOC_tabelle));
 
-    localStorage.setItem("vereinsapp_" + liste + "_sortieren", JSON.stringify(LISTE.sortieren));
+    Schnittstelle_LocalstorageRein(liste + "_sortieren", JSON.stringify(LISTE.sortieren));
 
     const LOC_filtern = new Array();
     if (LISTE.filtern.length >= 1) LOC_filtern.push(LISTE.filtern[0]);
@@ -45,5 +45,5 @@ function VAR_upd_LOC(liste) {
         });
     }
     VAR_upd_LOC_filtern(LOC_filtern, liste);
-    localStorage.setItem("vereinsapp_" + liste + "_filtern", JSON.stringify(LOC_filtern));
+    Schnittstelle_LocalstorageRein(liste + "_filtern", JSON.stringify(LOC_filtern));
 }

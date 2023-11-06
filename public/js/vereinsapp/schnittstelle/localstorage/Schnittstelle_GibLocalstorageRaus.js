@@ -1,8 +1,11 @@
 function Schnittstelle_GibLocalstorageRaus(schluessel, json) {
-    const LocalstorageRaus = localStorage.getItem("vereinsapp_" + schluessel);
+    let LocalstorageRaus = localStorage.getItem("vereinsapp_" + schluessel);
+    if (LocalstorageRaus === null || typeof LocalstorageRaus === "undefined") LocalstorageRaus = undefined;
 
-    if (LocalstorageRaus === null || LocalstorageRaus == "undefined") LocalstorageRaus = undefined;
-    else if (json) LocalstorageRaus = JSON.parse(LocalstorageRaus);
+    if (typeof json !== "undefined" && json) {
+        if (typeof LocalstorageRaus === "undefined") LocalstorageRaus = [];
+        else LocalstorageRaus = JSON.parse(LocalstorageRaus);
+    }
 
     return LocalstorageRaus;
 }

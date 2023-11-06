@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (localStorage.getItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === null) {
+    if (typeof Schnittstelle_GibLocalstorageRaus("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
         // SCHNITTSTELLE AJAX
         const neue_ajax_id = G.AJAX.length;
         G.AJAX[neue_ajax_id] = {
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 $("#modals_anzeigen_liste").append(AJAX.antwort.html);
                 $("#datenschutz_richtlinie_modal").modal("show");
                 $("#datenschutz_richtlinie_akzeptieren").click(function () {
-                    localStorage.setItem("vereinsapp_datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
+                    Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
                     console.log("ERFOLG Datenschutz-Richtlinie akzeptiert");
                     $("#datenschutz_richtlinie_modal").modal("hide");
                 });
