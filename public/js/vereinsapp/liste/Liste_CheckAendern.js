@@ -1,63 +1,60 @@
 function Liste_CheckAendern($check, liste) {
-    const $check_beschriftung = $check.siblings(".beschriftung");
-    const check_beschriftung = $check_beschriftung.html();
     const $liste = $check.parents(".liste").first();
+    const checkliste = $liste.attr("data-checkliste");
+    const element = LISTEN[liste].element;
+    const gegen_element = $liste.attr("data-gegen_element");
     const aktion = $liste.attr("data-aktion");
 
-    const element = LISTEN[liste].element;
-    const element_id = $check.val();
-    const checkliste = $liste.attr("data-checkliste");
-    const check_element = LISTEN[checkliste].element;
-    const gegen_element = $liste.attr("data-gegen_element");
-    const gegen_element_id = $liste.attr("data-gegen_element_id");
-
     const AJAX_DATA = { checked: $check.is(":checked") };
-    AJAX_DATA[element + "_id"] = element_id;
-    AJAX_DATA[gegen_element + "_id"] = gegen_element_id;
+    AJAX_DATA[element + "_id"] = $check.val();
+    AJAX_DATA[gegen_element + "_id"] = $liste.attr("data-gegen_element_id");
 
-    // AJAX IN DIE SCHLANGE
-    $.ajaxQueue({
-        url: BASE_URL + "/" + LISTEN[checkliste].controller + "/ajax_" + check_element + "_" + aktion,
-        method: "post",
+    const neue_ajax_id = G.AJAX.length;
+    G.AJAX[neue_ajax_id] = {
+        id: element + "_" + aktion,
+        url: LISTEN[checkliste].controller + "/ajax_" + LISTEN[checkliste].element + "_" + aktion,
         data: AJAX_DATA,
-        dataType: "json",
-        beforeSend: function () {
+        liste: liste,
+        DOM: { $check: $check, check_beschriftung: $check.siblings(".beschriftung").html() },
+        rein_aktion: function (AJAX) {
+            const $check_beschriftung = AJAX.DOM.$check.siblings(".beschriftung");
             $check_beschriftung.html(STATUS_SPINNER_HTML).addClass("text-primary");
         },
-        success: function (antwort) {
-            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
+        rein_validation_pos_aktion: function (AJAX) {
+            const $liste = AJAX.DOM.$check.parents(".liste").first();
+            const checkliste = $liste.attr("data-checkliste");
+            const element = LISTEN[AJAX.liste].element;
+            const element_id = AJAX.data[element + "_id"];
+            const gegen_element = $liste.attr("data-gegen_element");
+            const gegen_element_id = AJAX.data[gegen_element + "_id"];
 
-            if (typeof antwort.validation !== "undefined")
-                console.log("FEHLER " + element + " " + aktion + ": validation -> " + JSON.stringify(antwort.validation));
-            else {
-                if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
-
-                $.each(LISTEN[checkliste].tabelle, function () {
-                    const element = this;
-                    if ("id" in element) {
-                        if (element[LISTEN[liste].element + "_id"] == element_id && element[gegen_element + "_id"] == gegen_element_id)
-                            delete LISTEN[checkliste].tabelle[element["id"]];
-                    }
-                });
-
-                if (AJAX_DATA.checked) {
-                    AJAX_DATA["id"] = LISTEN[checkliste].tabelle.length + 1;
-                    LISTEN[checkliste].tabelle[AJAX_DATA["id"]] = new Object();
-                    delete AJAX_DATA.checked;
-                    $.each(AJAX_DATA, function (eigenschaft, wert) {
-                        if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
-                        LISTEN[checkliste].tabelle[AJAX_DATA["id"]][eigenschaft] = wert;
-                    });
+            // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
+            $.each(LISTEN[checkliste].tabelle, function () {
+                const checkliste_element = this;
+                if ("id" in checkliste_element) {
+                    if (checkliste_element[element + "_id"] == element_id && checkliste_element[gegen_element + "_id"] == gegen_element_id)
+                        delete LISTEN[checkliste].tabelle[Number(checkliste_element["id"])];
                 }
+            });
 
-                $(document).trigger("VAR_upd_LOC", [checkliste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
+            // Falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
+            if (AJAX.data.checked) {
+                AJAX.data.id = LISTEN[checkliste].tabelle.length + 1;
+                LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
+                delete AJAX.data.checked;
+                $.each(AJAX.data, function (eigenschaft, wert) {
+                    if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
+                    LISTEN[checkliste].tabelle[AJAX.data.id][eigenschaft] = wert;
+                });
             }
+
+            $(document).trigger("VAR_upd_LOC", [checkliste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
         },
-        error: function (xhr) {
-            console.log("FEHLER " + element + " " + aktion + ": " + xhr.status + " " + xhr.statusText);
+        rein_aktion: function (AJAX) {
+            const $check_beschriftung = AJAX.DOM.$check.siblings(".beschriftung");
+            $check_beschriftung.html(AJAX.DOM.check_beschriftung).removeClass("text-primary");
         },
-        complete: function () {
-            $check_beschriftung.html(check_beschriftung).removeClass("text-primary");
-        },
-    });
+    };
+
+    Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
 }

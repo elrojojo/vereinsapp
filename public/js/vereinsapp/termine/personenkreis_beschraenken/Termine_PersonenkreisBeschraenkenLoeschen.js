@@ -33,34 +33,27 @@ function Termine_PersonenkreisBeschraenkenLoeschen($btn, liste) {
         filtern_mitglieder: JSON.stringify(filtern_mitglieder),
     };
 
-    // AJAX IN DIE SCHLANGE
-    $.ajaxQueue({
-        url: BASE_URL + "/" + liste + "/ajax_termin_personenkreis_beschraenken",
-        method: "post",
+    const neue_ajax_id = G.AJAX.length;
+    G.AJAX[neue_ajax_id] = {
+        id: "personenkreis beschraenken",
+        url: liste + "/ajax_termin_personenkreis_beschraenken",
         data: AJAX_DATA,
-        dataType: "json",
-        beforeSend: function () {
-            $btn.addClass("invisible").prop("disabled", true).after(STATUS_SPINNER_HTML);
+        liste: liste,
+        DOM: { $btn: $btn, btn_beschriftung: $btn.html() },
+        rein_aktion: function (AJAX) {
+            AJAX.DOM.$btn.addClass("invisible").prop("disabled", true).after(STATUS_SPINNER_HTML);
         },
-        success: function (antwort) {
-            G.CSRF[CSRF_NAME] = antwort[CSRF_NAME];
+        rein_validation_pos_aktion: function (AJAX) {
+            const $personenkreis_beschraenken = AJAX.DOM.$btn.parents(".personenkreis_beschraenken").first();
+            const filtern_mitglieder = Liste_Gib$Filtern2Filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
+            LISTEN[AJAX.liste].tabelle[AJAX.data.id].filtern_mitglieder = filtern_mitglieder;
+            $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
+        },
+        rein_aktion: function (AJAX) {
+            AJAX.DOM.$btn.removeClass("invisible").prop("disabled", false);
+            AJAX.DOM.$btn.siblings("." + STATUS_SPINNER_CLASS).remove();
+        },
+    };
 
-            if (typeof antwort.validation !== "undefined")
-                console.log("FEHLER personenkreis beschraenken: validation -> " + JSON.stringify(antwort.validation));
-            else {
-                if (typeof antwort.info !== "undefined") console.log(JSON.stringify(antwort.info)); //console.log( 'ERFOLG '+element+' '+aktion );
-
-                LISTEN[liste].tabelle[element_id].filtern_mitglieder = filtern_mitglieder;
-
-                $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
-            }
-        },
-        error: function (xhr) {
-            console.log("FEHLER personenkreis beschraenken: " + xhr.status + " " + xhr.statusText);
-        },
-        complete: function () {
-            $btn.removeClass("invisible").prop("disabled", false);
-            $btn.siblings("." + STATUS_SPINNER_CLASS).remove();
-        },
-    });
+    Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
 }
