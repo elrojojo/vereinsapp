@@ -40,7 +40,7 @@ function Termine_PersonenkreisBeschraenkenLoeschen($btn, liste) {
         data: AJAX_DATA,
         liste: liste,
         DOM: { $btn: $btn, btn_beschriftung: $btn.html() },
-        rein_aktion: function (AJAX) {
+        raus_aktion: function (AJAX) {
             AJAX.DOM.$btn.addClass("invisible").prop("disabled", true).after(STATUS_SPINNER_HTML);
         },
         rein_validation_pos_aktion: function (AJAX) {

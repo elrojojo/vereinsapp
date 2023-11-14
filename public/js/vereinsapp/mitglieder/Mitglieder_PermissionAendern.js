@@ -16,7 +16,7 @@ function Mitglieder_PermissionAendern($check, liste) {
         data: AJAX_DATA,
         liste: liste,
         DOM: { $check: $check, check_beschriftung: $check.siblings(".beschriftung").html() },
-        rein_aktion: function (AJAX) {
+        raus_aktion: function (AJAX) {
             const $check_beschriftung = AJAX.DOM.$check.siblings(".beschriftung");
             $check_beschriftung.html(STATUS_SPINNER_HTML).addClass("text-primary");
         },

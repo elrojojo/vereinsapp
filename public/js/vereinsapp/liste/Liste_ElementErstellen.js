@@ -42,7 +42,7 @@ function Liste_ElementErstellen($btn, liste) {
         data: AJAX_DATA,
         liste: liste,
         DOM: { $btn: $btn, btn_beschriftung: $btn.html() },
-        rein_aktion: function (AJAX) {
+        raus_aktion: function (AJAX) {
             AJAX.DOM.$btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
         },
         rein_validation_neg_aktion: function (AJAX) {
