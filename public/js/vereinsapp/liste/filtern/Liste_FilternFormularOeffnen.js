@@ -9,7 +9,7 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend, liste) {
     $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
     $(".filtern_definitionen").empty();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-        const EIGENSCHAFT = EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft];
+        const EIGENSCHAFT = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft];
         const typ = EIGENSCHAFT.typ;
         const beschriftung = EIGENSCHAFT.beschriftung;
 

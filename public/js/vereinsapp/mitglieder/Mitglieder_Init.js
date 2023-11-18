@@ -1,15 +1,15 @@
-LISTEN.abwesenheiten = {
+G.LISTEN.abwesenheiten = {
     controller: "mitglieder",
     element: "abwesenheit",
 };
 
-LISTEN.mitglieder = {
+G.LISTEN.mitglieder = {
     controller: "mitglieder",
     element: "mitglied",
 };
 
 $(document).ready(function () {
-    LISTEN.mitglieder.$blanko_permission = $(".permissions").find(".blanko").first();
+    G.LISTEN.mitglieder.$blanko_permission = $(".permissions").find(".blanko").first();
     $(".permissions").empty();
 
     // PERMISSIONS IM DOM AKTUALISIEREN

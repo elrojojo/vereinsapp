@@ -11,10 +11,10 @@ $(document).ready(function () {
         if (typeof element === "undefined") element = $btn_oeffnend.parents(".element").first().attr("data-element");
         if (typeof element_id === "undefined") element_id = $btn_oeffnend.parents(".element").first().attr("data-element_id");
         if (typeof liste === "undefined")
-            $.each(LISTEN, function (liste_each, LISTE_each) {
+            $.each(G.LISTEN, function (liste_each, LISTE_each) {
                 if (element == LISTE_each.element) liste = liste_each;
             });
-        const LISTE = LISTEN[liste];
+        const LISTE = G.LISTEN[liste];
 
         let titel_beschriftung;
         if (typeof element !== "undefined") titel_beschriftung = element;

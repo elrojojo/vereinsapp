@@ -1,14 +1,14 @@
-LISTEN.rueckmeldungen = {
+G.LISTEN.rueckmeldungen = {
     controller: "termine",
     element: "rueckmeldung",
 };
 
-LISTEN.anwesenheiten = {
+G.LISTEN.anwesenheiten = {
     controller: "termine",
     element: "anwesenheit",
 };
 
-LISTEN.termine = {
+G.LISTEN.termine = {
     controller: "termine",
     element: "termin",
 };
@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     //ELEMENTE UND PERSONENKREIS BESCHRÄNKEN IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM_termine", function () {
-        $('.element[data-element="' + LISTEN.termine.element + '"]').each(function () {
+        $('.element[data-element="' + G.LISTEN.termine.element + '"]').each(function () {
             const $element = $(this);
             const element_id = Number($element.attr("data-element_id"));
 

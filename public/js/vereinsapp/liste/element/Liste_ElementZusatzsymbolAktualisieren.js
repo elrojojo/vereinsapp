@@ -8,16 +8,17 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     // Zusatzsymbol für Geburtstag
     if (
         zusatzsymbol == "geburtstag" &&
-        LISTEN[liste].tabelle[element_id].geburtstag <= DateTime.now() &&
-        DateTime.now() <= LISTEN[liste].tabelle[element_id].geburtstag.plus({ days: 1 })
+        G.LISTEN[liste].tabelle[element_id].geburtstag <= DateTime.now() &&
+        DateTime.now() <= G.LISTEN[liste].tabelle[element_id].geburtstag.plus({ days: 1 })
     )
         $zusatzsymbol.html(SYMBOLE["geburtstag"]["html"]);
 
     // Zusatzsymbol für abwesend
-    if (zusatzsymbol == "abwesend" && LISTEN[liste].tabelle[element_id].abwesend) $zusatzsymbol.html(SYMBOLE["abwesend"]["html"]);
+    if (zusatzsymbol == "abwesend" && G.LISTEN[liste].tabelle[element_id].abwesend) $zusatzsymbol.html(SYMBOLE["abwesend"]["html"]);
 
     // Zusatzsymbol für Kategorie
-    if (zusatzsymbol == "kategorie") $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][LISTEN[liste].tabelle[element_id].kategorie]["symbol"]);
+    if (zusatzsymbol == "kategorie")
+        $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][G.LISTEN[liste].tabelle[element_id].kategorie]["symbol"]);
 
     // Zusatzsymbol für Kommentar bei Rückmeldung
     if (zusatzsymbol == "kommentar") {

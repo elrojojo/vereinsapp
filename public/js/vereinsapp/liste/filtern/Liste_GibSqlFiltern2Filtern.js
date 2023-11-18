@@ -15,8 +15,8 @@ function Liste_GibSqlFiltern2Filtern(phpfiltern, liste) {
             let wert = knoten.wert;
             if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
             if (
-                typeof EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
+                typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
+                EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
             )
                 wert = DateTime.fromISO(wert);
 

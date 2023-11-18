@@ -11,8 +11,8 @@ function Liste_FilternErstellen($btn_erstellen, liste) {
             let wert = $filtern_wert.val();
             if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
             if (
-                typeof EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
+                typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
+                EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
             )
                 wert = DateTime.fromISO(wert);
             filtern.push({
@@ -27,14 +27,14 @@ function Liste_FilternErstellen($btn_erstellen, liste) {
     if (filtern.length == 1) filtern_knoten = filtern[0];
     else filtern_knoten = { verknuepfung: "&&", filtern: filtern };
 
-    if (LISTEN[liste].filtern.length == 0) LISTEN[liste].filtern.push(filtern_knoten);
+    if (G.LISTEN[liste].filtern.length == 0) G.LISTEN[liste].filtern.push(filtern_knoten);
     else {
-        if ("verknuepfung" in LISTEN[liste].filtern[0]) LISTEN[liste].filtern[0].filtern.push(filtern_knoten);
+        if ("verknuepfung" in G.LISTEN[liste].filtern[0]) G.LISTEN[liste].filtern[0].filtern.push(filtern_knoten);
         else {
-            const einziges_element = LISTEN[liste].filtern[0];
-            LISTEN[liste].filtern[0] = { verknuepfung: "&&", filtern: new Array() };
-            LISTEN[liste].filtern[0].filtern.push(einziges_element);
-            LISTEN[liste].filtern[0].filtern.push(filtern_knoten);
+            const einziges_element = G.LISTEN[liste].filtern[0];
+            G.LISTEN[liste].filtern[0] = { verknuepfung: "&&", filtern: new Array() };
+            G.LISTEN[liste].filtern[0].filtern.push(einziges_element);
+            G.LISTEN[liste].filtern[0].filtern.push(filtern_knoten);
         }
     }
 

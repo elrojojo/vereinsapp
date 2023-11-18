@@ -1,5 +1,5 @@
 function VAR_upd_LOC(liste) {
-    const LISTE = LISTEN[liste];
+    const LISTE = G.LISTEN[liste];
 
     const LOC_tabelle = new Array();
     $.each(LISTE.tabelle, function () {
@@ -30,7 +30,7 @@ function VAR_upd_LOC(liste) {
     const LOC_filtern = new Array();
     if (LISTE.filtern.length >= 1) LOC_filtern.push(LISTE.filtern[0]);
     function VAR_upd_LOC_filtern(filtern, liste) {
-        const LISTE = LISTEN[liste];
+        const LISTE = G.LISTEN[liste];
         $.each(filtern, function (index, knoten) {
             if ("verknuepfung" in knoten) VAR_upd_LOC_filtern(knoten.filtern, liste);
             else if ("operator" in knoten) {

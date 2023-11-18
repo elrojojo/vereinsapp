@@ -25,7 +25,7 @@ $(document).ready(function () {
                 const $filtern = $(this);
                 $filtern.html(
                     Liste_GibFiltern2$Filtern(
-                        LISTEN[liste].filtern,
+                        G.LISTEN[liste].filtern,
                         FILTERN.$blanko_filtern_sammlung,
                         FILTERN.$blanko_filtern_element,
                         "filtern",

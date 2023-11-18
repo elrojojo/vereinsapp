@@ -18,7 +18,7 @@ function Liste_GibTabelleGefiltert(filtern, liste) {
     }
 
     const tabelle_gefiltert = new Array();
-    $.each(LISTEN[liste].tabelle, function () {
+    $.each(G.LISTEN[liste].tabelle, function () {
         const element = this;
         if ("id" in element) {
             if (filtern.length == 0 || element_filtern(element, filtern, liste)[0]) tabelle_gefiltert.push(element);

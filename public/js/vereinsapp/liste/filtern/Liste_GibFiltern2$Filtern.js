@@ -35,11 +35,11 @@ function Liste_GibFiltern2$Filtern(filtern, $blanko_filtern_sammlung, $blanko_fi
             $neues_filtern_element
                 .find(".eigenschaft")
                 .attr("data-eigenschaft", eigenschaft)
-                .text(EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft].beschriftung);
+                .text(EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung);
             $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
 
             let data_wert = wert;
-            if (EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft].typ == "zeitpunkt") data_wert = wert.toFormat(SQL_DATETIME);
+            if (EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ == "zeitpunkt") data_wert = wert.toFormat(SQL_DATETIME);
             $neues_filtern_element.find(".wert").attr("data-wert", data_wert).html(Liste_GibWertFormatiert(wert, eigenschaft, liste));
 
             $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);

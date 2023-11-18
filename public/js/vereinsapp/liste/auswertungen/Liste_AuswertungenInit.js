@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $.each(LISTEN, function (liste, LISTE) {
+    $.each(G.LISTEN, function (liste, LISTE) {
         LISTE.$blanko_auswertung = new Object();
         $('.auswertungen[data-liste="' + liste + '"]')
             .find(".blanko")

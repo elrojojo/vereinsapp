@@ -1,9 +1,6 @@
 function Mitglieder_PermissionAktualisieren($permission, liste) {
     const permission = $permission.find(".form-check-input").val();
-    const gegen_element_id = $permission
-        .parents(".permissions")
-        .first()
-        .attr("data-gegen_element_id");
+    const gegen_element_id = $permission.parents(".permissions").first().attr("data-gegen_element_id");
 
     // BESCHRIFTUNG AKTUALISIEREN
     $permission.find(".beschriftung").text(PERMISSIONS[permission]);
@@ -13,8 +10,8 @@ function Mitglieder_PermissionAktualisieren($permission, liste) {
         .find(".form-check-input")
         .prop(
             "checked",
-            LISTEN[liste].tabelle[gegen_element_id].permissions.length > 0 &&
-                LISTEN[liste].tabelle[gegen_element_id].permissions.includes(permission)
+            G.LISTEN[liste].tabelle[gegen_element_id].permissions.length > 0 &&
+                G.LISTEN[liste].tabelle[gegen_element_id].permissions.includes(permission)
         );
 
     // DISABLED AKTUALISIEREN
@@ -24,9 +21,6 @@ function Mitglieder_PermissionAktualisieren($permission, liste) {
             "disabled",
             permission == "global.einstellungen" ||
                 permission == "mitglieder.rechte" ||
-                !(
-                    LISTEN[liste].tabelle[ICH.id].permissions.length > 0 &&
-                    LISTEN[liste].tabelle[ICH.id].permissions.includes("mitglieder.rechte")
-                )
+                !(G.LISTEN[liste].tabelle[ICH.id].permissions.length > 0 && G.LISTEN[liste].tabelle[ICH.id].permissions.includes("mitglieder.rechte"))
         );
 }

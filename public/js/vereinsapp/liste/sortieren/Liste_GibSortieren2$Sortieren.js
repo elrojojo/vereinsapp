@@ -1,5 +1,5 @@
 function Liste_GibSortieren2$Sortieren(sortieren, liste) {
-    const LISTE = LISTEN[liste];
+    const LISTE = G.LISTEN[liste];
     const $sortieren = new Array();
 
     $.each(sortieren, function (index, element) {

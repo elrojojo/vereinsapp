@@ -5,7 +5,7 @@ function Liste_ElementLoeschen($btn, liste) {
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         label: element + "_loeschen",
-        url: LISTEN[liste].controller + "/ajax_" + element + "_loeschen",
+        url: G.LISTEN[liste].controller + "/ajax_" + element + "_loeschen",
         data: { id: $btn.attr("data-element_id") },
         liste: liste,
         $btn: $btn,
@@ -13,7 +13,7 @@ function Liste_ElementLoeschen($btn, liste) {
             Schnittstelle_BtnWartenStart(AJAX.$btn);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            delete LISTEN[AJAX.liste].tabelle[AJAX.data.id];
+            delete G.LISTEN[AJAX.liste].tabelle[AJAX.data.id];
             $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
 
             const $formular = AJAX.$btn.parents(".formular").first();

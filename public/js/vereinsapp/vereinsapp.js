@@ -3,6 +3,8 @@ const DateTime = luxon.DateTime;
 const G = {
     AJAX: [],
 
+    LISTEN: {},
+
     CSRF: {
         [CSRF_NAME]: ERSTER_CSRF_HASH,
     },

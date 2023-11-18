@@ -38,7 +38,7 @@ Events::on('pre_system', static function () {
 
     /*
      * --------------------------------------------------------------------
-     * Debug Toolbar Listeners.
+     * Debug Toolbar G.LISTENers.
      * --------------------------------------------------------------------
      * If you delete, they will no longer be collected.
      */

@@ -1,5 +1,5 @@
 function LOC_upd_VAR(liste) {
-    const LISTE = LISTEN[liste];
+    const LISTE = G.LISTEN[liste];
 
     LISTE.tabelle = new Array();
     $.each(Schnittstelle_GibLocalstorageRaus(liste + "_tabelle", true), function () {
@@ -25,8 +25,8 @@ function LOC_upd_VAR(liste) {
                 element["alter_geburtstag"] = element["geburtstag"].diff(element["geburt"], "years").years;
             }
             element["abwesend"] = false;
-            if ("abwesenheiten" in LISTEN)
-                $.each(LISTEN.abwesenheiten.tabelle, function () {
+            if ("abwesenheiten" in G.LISTEN)
+                $.each(G.LISTEN.abwesenheiten.tabelle, function () {
                     const abwesenheit = this;
                     if ("id" in abwesenheit) {
                         if (
@@ -39,8 +39,8 @@ function LOC_upd_VAR(liste) {
                 });
         } else if (liste == "termine") {
             element["ich_rueckmeldung_id"] = null;
-            if ("rueckmeldungen" in LISTEN)
-                $.each(LISTEN.rueckmeldungen.tabelle, function () {
+            if ("rueckmeldungen" in G.LISTEN)
+                $.each(G.LISTEN.rueckmeldungen.tabelle, function () {
                     const rueckmeldung = this;
                     if ("id" in rueckmeldung) {
                         if (rueckmeldung["termin_id"] == element["id"] && rueckmeldung["mitglied_id"] == ICH["id"])
@@ -82,7 +82,7 @@ function LOC_upd_VAR(liste) {
 
     LISTE.filtern = Schnittstelle_GibLocalstorageRaus(liste + "_filtern", true);
     function LOC_upd_VAR_filtern(filtern, liste) {
-        const LISTE = LISTEN[liste];
+        const LISTE = G.LISTEN[liste];
         $.each(filtern, function (index, knoten) {
             if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
             else if ("operator" in knoten) {

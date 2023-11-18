@@ -12,7 +12,7 @@ $(document).ready(function () {
             // SORTIEREN AKTUALISIEREN
             $('.sortieren[data-liste="' + liste + '"]').each(function () {
                 const $sortieren = $(this);
-                $sortieren.html(Liste_GibSortieren2$Sortieren(LISTEN[liste].sortieren, liste));
+                $sortieren.html(Liste_GibSortieren2$Sortieren(G.LISTEN[liste].sortieren, liste));
             });
         });
     });

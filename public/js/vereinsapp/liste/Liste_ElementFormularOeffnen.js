@@ -5,7 +5,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
     if (typeof element === "undefined") element = $btn_oeffnend.parents(".element").first().attr("data-element");
     if (typeof element_id === "undefined") element_id = $btn_oeffnend.parents(".element").first().attr("data-element_id");
     if (typeof liste === "undefined")
-        $.each(LISTEN, function (liste_each, LISTE_each) {
+        $.each(G.LISTEN, function (liste_each, LISTE_each) {
             if (element == LISTE_each.element) liste = liste_each;
         });
 
@@ -22,8 +22,8 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
             const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
             let val;
-            if (typeof element_id !== "undefined") val = LISTEN[liste].tabelle[element_id][eigenschaft];
-            else val = EIGENSCHAFTEN[LISTEN[liste].controller][liste][eigenschaft].standard;
+            if (typeof element_id !== "undefined") val = G.LISTEN[liste].tabelle[element_id][eigenschaft];
+            else val = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].standard;
 
             if ($eigenschaft.attr("type") == "date") {
                 if (typeof val !== "object") val = DateTime.fromFormat(val, SQL_DATETIME);

@@ -27,7 +27,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
         rein_validation_pos_aktion: function (AJAX) {
             const $personenkreis_beschraenken = AJAX.$btn.parents(".personenkreis_beschraenken").first();
             const filtern_mitglieder = Liste_Gib$Filtern2Filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
-            LISTEN[AJAX.liste].tabelle[AJAX.data.id].filtern_mitglieder = filtern_mitglieder;
+            G.LISTEN[AJAX.liste].tabelle[AJAX.data.id].filtern_mitglieder = filtern_mitglieder;
             $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
         },
         rein_aktion: function (AJAX) {

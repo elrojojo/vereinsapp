@@ -28,18 +28,18 @@ function Mitglieder_PermissionAendern($check, liste) {
             const gegen_element_id = AJAX.data[gegen_element + "_id"];
 
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
-            $.each(LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions, function (index, permission) {
-                if (permission == element_id) delete LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions[index];
+            $.each(G.LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions, function (index, permission) {
+                if (permission == element_id) delete G.LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions[index];
             });
 
             // Falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
             if (
-                !("permissions" in LISTEN[AJAX.liste].tabelle[gegen_element_id]) ||
-                typeof LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions !== "object"
+                !("permissions" in G.LISTEN[AJAX.liste].tabelle[gegen_element_id]) ||
+                typeof G.LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions !== "object"
             )
-                LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions = new Array();
+                G.LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions = new Array();
 
-            if (AJAX.data.checked) LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions.push(element_id);
+            if (AJAX.data.checked) G.LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions.push(element_id);
 
             $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
         },

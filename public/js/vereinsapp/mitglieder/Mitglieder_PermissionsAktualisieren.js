@@ -13,10 +13,7 @@ function Mitglieder_PermissionsAktualisieren($permissions, liste) {
                 .first()
                 .exists()
         ) {
-            const $neue_permission = LISTEN[liste].$blanko_permission
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass("permission");
+            const $neue_permission = G.LISTEN[liste].$blanko_permission.clone().removeClass("blanko invisible").addClass("permission");
 
             $neue_permission.find("label").attr("for", permission);
             $neue_permission.find(".check_permission").attr("id", permission).val(permission);
@@ -26,11 +23,6 @@ function Mitglieder_PermissionsAktualisieren($permissions, liste) {
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
     if ($permissions.children().length == 0)
-        $permissions
-            .prev('.ueberschrift[data-liste_id="' + $permissions.attr("id") + '"]')
-            .addClass("invisible");
-    else
-        $permissions
-            .prev('.ueberschrift[data-liste_id="' + $permissions.attr("id") + '"]')
-            .removeClass("invisible");
+        $permissions.prev('.ueberschrift[data-liste_id="' + $permissions.attr("id") + '"]').addClass("invisible");
+    else $permissions.prev('.ueberschrift[data-liste_id="' + $permissions.attr("id") + '"]').removeClass("invisible");
 }

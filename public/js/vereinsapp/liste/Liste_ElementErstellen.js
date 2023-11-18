@@ -39,7 +39,7 @@ function Liste_ElementErstellen($btn, liste) {
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         label: element + "_" + aktion,
-        url: LISTEN[liste].controller + "/ajax_" + element + "_" + aktion,
+        url: G.LISTEN[liste].controller + "/ajax_" + element + "_" + aktion,
         data: AJAX_DATA,
         liste: liste,
         $btn: $btn,
@@ -62,18 +62,18 @@ function Liste_ElementErstellen($btn, liste) {
         },
         rein_validation_pos_aktion: function (AJAX) {
             if (typeof AJAX.data.id === "undefined") {
-                AJAX.data.id = LISTEN[AJAX.liste].tabelle.length + 1;
-                LISTEN[AJAX.liste].tabelle[AJAX.data.id] = new Object();
+                AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length + 1;
+                G.LISTEN[AJAX.liste].tabelle[AJAX.data.id] = new Object();
             }
 
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
                 if (
-                    typeof EIGENSCHAFTEN[LISTEN[AJAX.liste].controller][AJAX.liste][eigenschaft] !== "undefined" &&
-                    EIGENSCHAFTEN[LISTEN[AJAX.liste].controller][AJAX.liste][eigenschaft]["typ"] == "zeitpunkt"
+                    typeof EIGENSCHAFTEN[G.LISTEN[AJAX.liste].controller][AJAX.liste][eigenschaft] !== "undefined" &&
+                    EIGENSCHAFTEN[G.LISTEN[AJAX.liste].controller][AJAX.liste][eigenschaft]["typ"] == "zeitpunkt"
                 )
                     wert = DateTime.fromFormat(wert, SQL_DATETIME);
-                LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = wert;
+                G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = wert;
             });
 
             $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );

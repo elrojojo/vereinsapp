@@ -1,7 +1,5 @@
-const LISTEN = new Object();
-
 $(document).ready(function () {
-    $.each(LISTEN, function (liste, LISTE) {
+    $.each(G.LISTEN, function (liste, LISTE) {
         LOC_upd_VAR(liste);
 
         LISTE.$blanko_element = new Object();
@@ -25,7 +23,7 @@ $(document).ready(function () {
             });
 
             // ELEMENT AKTUALISIEREN
-            $('.element[data-element="' + LISTEN[liste].element + '"]').each(function () {
+            $('.element[data-element="' + G.LISTEN[liste].element + '"]').each(function () {
                 Liste_ElementAktualisieren($(this), liste);
             });
 
@@ -46,7 +44,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn_element_erstellen", function () {
         const element = $(this).attr("data-element");
         let liste;
-        $.each(LISTEN, function (liste_, LISTE_) {
+        $.each(G.LISTEN, function (liste_, LISTE_) {
             if (element == LISTE_.element) liste = liste_;
         });
         Liste_ElementErstellen($(this), liste);
@@ -56,7 +54,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn_element_loeschen", function () {
         const element = $(this).attr("data-element");
         let liste;
-        $.each(LISTEN, function (liste_, LISTE_) {
+        $.each(G.LISTEN, function (liste_, LISTE_) {
             if (element == LISTE_.element) liste = liste_;
         });
         Liste_ElementLoeschen($(this), liste);
@@ -82,7 +80,7 @@ $(document).ready(function () {
         },
     });
 
-    $.each(LISTEN, function (liste, LISTE) {
+    $.each(G.LISTEN, function (liste, LISTE) {
         $(document).trigger("Event_SQL_upd_LOC", [true, liste]); // $(document).trigger( 'LOC_upd_VAR' );
     });
 
