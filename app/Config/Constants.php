@@ -151,7 +151,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
   'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
   'filtern' => array( 'bootstrap' => 'funnel' ),
-  // 'G.LISTEN' => array( 'bootstrap' => 'list-ul' ),
+  // 'listen' => array( 'bootstrap' => 'list-ul' ),
   // 'liste_speichern' => array( 'bootstrap' => 'list-ol' ),
 
   // 'speichern' => array( 'bootstrap' => 'check-circle' ),
