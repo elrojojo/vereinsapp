@@ -1,3 +1,32 @@
+const STATUS_SPINNER_CLASS = "spinner-border spinner-border-sm";
+const STATUS_SPINNER_HTML = '<span class="' + STATUS_SPINNER_CLASS + '" role="status"><span class="visually-hidden">Loading...</span></span>';
+
+$(document).ready(function () {
+    const STATUS_STANDARD_HTML = $("#status").html();
+
+    $(document).ajaxStart(function () {
+        $("#status").html(STATUS_SPINNER_HTML);
+    });
+
+    $(document).ajaxStop(function () {
+        $("#status").html(STATUS_STANDARD_HTML);
+    });
+
+    $(document).ajaxSuccess(function () {
+        $("#status").removeClass("text-danger");
+        $("#status").addClass("text-success");
+    });
+
+    $(document).ajaxError(function () {
+        $("#status").removeClass("text-success");
+        $("#status").addClass("text-danger");
+    });
+
+    $(window).on("beforeunload", function () {
+        $("#status").html(STATUS_SPINNER_HTML);
+    });
+});
+
 function Schnittstelle_BtnWartenStart($btn) {
     const beschriftung = $btn.html();
     $btn.attr("data-beschriftung", beschriftung);
