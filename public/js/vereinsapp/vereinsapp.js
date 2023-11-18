@@ -41,7 +41,8 @@ $(document).ready(function () {
         // SCHNITTSTELLE AJAX
         const neue_ajax_id = G.AJAX.length;
         G.AJAX[neue_ajax_id] = {
-            id: "datenschutz_richtlinie",
+            ajax_id: neue_ajax_id,
+            label: "datenschutz_richtlinie",
             url: "status/ajax_datenschutz_richtlinie",
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals_anzeigen_liste").append(AJAX.antwort.html);

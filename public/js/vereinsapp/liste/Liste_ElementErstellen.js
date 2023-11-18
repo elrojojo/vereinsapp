@@ -37,16 +37,17 @@ function Liste_ElementErstellen($btn, liste) {
 
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
-        id: element + "_" + aktion,
+        ajax_id: neue_ajax_id,
+        label: element + "_" + aktion,
         url: LISTEN[liste].controller + "/ajax_" + element + "_" + aktion,
         data: AJAX_DATA,
         liste: liste,
-        DOM: { $btn: $btn, btn_beschriftung: $btn.html() },
+        $btn: $btn,
         raus_aktion: function (AJAX) {
-            AJAX.DOM.$btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
+            Schnittstelle_BtnWartenStart(AJAX.$btn);
         },
         rein_validation_neg_aktion: function (AJAX) {
-            const $formular = AJAX.DOM.$btn.parents(".formular").first();
+            const $formular = AJAX.$btn.parents(".formular").first();
             $formular.find(".eigenschaft").each(function () {
                 const $eigenschaft = $(this);
                 const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -77,11 +78,11 @@ function Liste_ElementErstellen($btn, liste) {
 
             $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
 
-            const $formular = AJAX.DOM.$btn.parents(".formular").first();
+            const $formular = AJAX.$btn.parents(".formular").first();
             $formular.modal("hide");
         },
         rein_aktion: function (AJAX) {
-            AJAX.DOM.$btn.html(AJAX.DOM.btn_beschriftung).prop("disabled", false);
+            Schnittstelle_BtnWartenEnde(AJAX.$btn);
         },
     };
 

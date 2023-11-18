@@ -4,7 +4,8 @@ $(document).on("Event_SQL_upd_LOC", async function (event, schleife, liste) {
     const neue_ajax_id = G.AJAX.length;
 
     G.AJAX[neue_ajax_id] = {
-        id: "SQL_upd_LOC_" + liste,
+        ajax_id: neue_ajax_id,
+        label: "SQL_upd_LOC_" + liste,
         url: LISTEN[liste].controller + "/ajax_" + liste,
         // data: { hash: sha256(String(Schnittstelle_GibLocalstorageRaus(liste + "_tabelle"))), },
         liste: liste,

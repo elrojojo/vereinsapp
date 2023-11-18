@@ -93,24 +93,30 @@ class Notenbank extends BaseController {
 
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_notenbank() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
-        foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
-            $verzeichnis = ''; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ ) if( substr( $verzeichnis_, -1 ) == '/' AND substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) ) $verzeichnis = $verzeichnis_;
-            $titel['verzeichnis'] = directory_map( './storage/notenbank/'.$verzeichnis );
-            $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
-            foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else {
+            $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
+            foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
+                $verzeichnis = ''; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ ) if( substr( $verzeichnis_, -1 ) == '/' AND substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) ) $verzeichnis = $verzeichnis_;
+                $titel['verzeichnis'] = directory_map( './storage/notenbank/'.$verzeichnis );
+                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+            }
+            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
     public function ajax_titel_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         );
         if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank']['notenbank'] ) ) $validation_rules['kategorie'] = [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']', ] ];
-
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
@@ -123,16 +129,21 @@ class Notenbank extends BaseController {
 
             if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else $notenbank_Model->save( $titel );
+            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
     public function ajax_titel_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Titel_Model::class)->delete( $this->request->getPost()['id'] );
+        else {
+            model(Titel_Model::class)->delete( $this->request->getPost()['id'] );
+            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        }
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 

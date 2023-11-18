@@ -7,7 +7,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
 
     // WENN DIE VALIDATION FEHLSCHLÄGT
     if (typeof AJAX.antwort.validation !== "undefined") {
-        console.log("FEHLER " + AJAX.id + ": validation -> " + JSON.stringify(AJAX.antwort.validation));
+        console.log("FEHLER " + AJAX.label + ": validation -> " + JSON.stringify(AJAX.antwort.validation));
 
         if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);
     }

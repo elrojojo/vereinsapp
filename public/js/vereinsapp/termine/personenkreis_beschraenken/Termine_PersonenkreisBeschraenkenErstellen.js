@@ -60,22 +60,23 @@ function Termine_PersonenkreisBeschraenkenErstellen($btn, liste) {
 
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
-        id: "personenkreis beschraenken",
+        ajax_id: neue_ajax_id,
+        label: "personenkreis beschraenken",
         url: liste + "/ajax_termin_personenkreis_beschraenken",
         data: AJAX_DATA,
         liste: liste,
-        DOM: { $btn: $btn, btn_beschriftung: $btn.html() },
+        $btn: $btn,
         raus_aktion: function (AJAX) {
-            AJAX.DOM.$btn.html(STATUS_SPINNER_HTML).prop("disabled", true);
+            Schnittstelle_BtnWartenStart(AJAX.$btn);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            const $personenkreis_beschraenken = AJAX.DOM.$btn.parents(".personenkreis_beschraenken").first();
+            const $personenkreis_beschraenken = AJAX.$btn.parents(".personenkreis_beschraenken").first();
             const filtern_mitglieder = Liste_Gib$Filtern2Filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
             LISTEN[AJAX.liste].tabelle[AJAX.data.id].filtern_mitglieder = filtern_mitglieder;
             $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
         },
         rein_aktion: function (AJAX) {
-            AJAX.DOM.$btn.html(AJAX.DOM.btn_beschriftung).prop("disabled", false);
+            Schnittstelle_BtnWartenEnde(AJAX.$btn);
         },
     };
 

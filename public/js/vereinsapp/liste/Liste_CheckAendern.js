@@ -11,17 +11,17 @@ function Liste_CheckAendern($check, liste) {
 
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
-        id: element + "_" + aktion,
+        ajax_id: neue_ajax_id,
+        label: element + "_" + aktion,
         url: LISTEN[checkliste].controller + "/ajax_" + LISTEN[checkliste].element + "_" + aktion,
         data: AJAX_DATA,
         liste: liste,
-        DOM: { $check: $check, check_beschriftung: $check.siblings(".beschriftung").html() },
+        $check: $check,
         raus_aktion: function (AJAX) {
-            const $check_beschriftung = AJAX.DOM.$check.siblings(".beschriftung");
-            $check_beschriftung.html(STATUS_SPINNER_HTML).addClass("text-primary");
+            Schnittstelle_CheckWartenStart(AJAX.$check);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            const $liste = AJAX.DOM.$check.parents(".liste").first();
+            const $liste = AJAX.$check.parents(".liste").first();
             const checkliste = $liste.attr("data-checkliste");
             const element = LISTEN[AJAX.liste].element;
             const element_id = AJAX.data[element + "_id"];
@@ -51,8 +51,7 @@ function Liste_CheckAendern($check, liste) {
             $(document).trigger("VAR_upd_LOC", [checkliste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
         },
         rein_aktion: function (AJAX) {
-            const $check_beschriftung = AJAX.DOM.$check.siblings(".beschriftung");
-            $check_beschriftung.html(AJAX.DOM.check_beschriftung).removeClass("text-primary");
+            Schnittstelle_CheckWartenEnde(AJAX.$check);
         },
     };
 
