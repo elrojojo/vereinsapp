@@ -14,7 +14,6 @@ $(document).ready(function () {
             $.each(G.LISTEN, function (liste_each, LISTE_each) {
                 if (element == LISTE_each.element) liste = liste_each;
             });
-        const LISTE = G.LISTEN[liste];
 
         let titel_beschriftung;
         if (typeof element !== "undefined") titel_beschriftung = element;
@@ -28,8 +27,8 @@ $(document).ready(function () {
                 const $eigenschaft = $(this);
                 const eigenschaft = $eigenschaft.attr("data-eigenschaft");
                 let val;
-                if (typeof element_id !== "undefined") val = LISTE.tabelle[element_id][eigenschaft];
-                else val = EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].standard;
+                if (typeof element_id !== "undefined") val = G.LISTEN[liste].tabelle[element_id][eigenschaft];
+                else val = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].standard;
                 if ($eigenschaft.attr("type") == "date") {
                     if (typeof val !== "object") val = DateTime.fromFormat(val, SQL_DATETIME);
                     val = val.toISODate();
@@ -54,9 +53,9 @@ $(document).ready(function () {
             const $filtern_definition = $formular.find(".sortieren_definitionen");
             $filtern_definition.find(".sortieren_eigenschaft").empty();
             $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-                $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].beschriftung + "</option>").appendTo(
-                    $filtern_definition.find(".sortieren_eigenschaft")
-                );
+                $(
+                    '<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung + "</option>"
+                ).appendTo($filtern_definition.find(".sortieren_eigenschaft"));
             });
 
             $(document).trigger("VAR_upd_DOM", [liste]);
@@ -65,8 +64,8 @@ $(document).ready(function () {
 
             $(".filtern_definitionen").empty();
             $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-                const typ = EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].typ;
-                const beschriftung = EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].beschriftung;
+                const typ = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ;
+                const beschriftung = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung;
                 const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
                     .clone()
                     .removeClass("blanko invisible")

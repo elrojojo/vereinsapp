@@ -1,5 +1,4 @@
 function Liste_GibSortieren2$Sortieren(sortieren, liste) {
-    const LISTE = G.LISTEN[liste];
     const $sortieren = new Array();
 
     $.each(sortieren, function (index, element) {
@@ -10,7 +9,7 @@ function Liste_GibSortieren2$Sortieren(sortieren, liste) {
         $neues_sortieren_element
             .find(".eigenschaft")
             .attr("data-eigenschaft", eigenschaft)
-            .text(EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft].beschriftung);
+            .text(EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung);
 
         $neues_sortieren_element.find(".richtung").attr("data-richtung", richtung);
         if (richtung == SORT_ASC) $neues_sortieren_element.find(".richtung").addClass("bi-" + SYMBOLE.asc.bootstrap);

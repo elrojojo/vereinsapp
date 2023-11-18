@@ -1,15 +1,13 @@
 function LOC_upd_VAR(liste) {
-    const LISTE = G.LISTEN[liste];
-
-    LISTE.tabelle = new Array();
+    G.LISTEN[liste].tabelle = new Array();
     $.each(Schnittstelle_GibLocalstorageRaus(liste + "_tabelle", true), function () {
         const element = this;
 
         $.each(element, function (eigenschaft, wert) {
             if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") element[eigenschaft] = Number(wert);
             if (
-                typeof EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft]["typ"] == "zeitpunkt"
+                typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
+                EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
             )
                 element[eigenschaft] = DateTime.fromFormat(wert, SQL_DATETIME);
         });
@@ -75,14 +73,13 @@ function LOC_upd_VAR(liste) {
             element["anzahl_verzeichnis"] = anzahl_dateien(element["verzeichnis"]).verzeichnis;
         }
 
-        LISTE.tabelle[element["id"]] = element;
+        G.LISTEN[liste].tabelle[element["id"]] = element;
     });
 
-    LISTE.sortieren = Schnittstelle_GibLocalstorageRaus(liste + "_sortieren", true);
+    G.LISTEN[liste].sortieren = Schnittstelle_GibLocalstorageRaus(liste + "_sortieren", true);
 
-    LISTE.filtern = Schnittstelle_GibLocalstorageRaus(liste + "_filtern", true);
+    G.LISTEN[liste].filtern = Schnittstelle_GibLocalstorageRaus(liste + "_filtern", true);
     function LOC_upd_VAR_filtern(filtern, liste) {
-        const LISTE = G.LISTEN[liste];
         $.each(filtern, function (index, knoten) {
             if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
             else if ("operator" in knoten) {
@@ -90,12 +87,12 @@ function LOC_upd_VAR(liste) {
                 let wert = knoten.wert;
                 if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") knoten.wert = Number(wert);
                 if (
-                    typeof EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft] !== "undefined" &&
-                    EIGENSCHAFTEN[LISTE.controller][liste][eigenschaft]["typ"] == "zeitpunkt"
+                    typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
+                    EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
                 )
                     knoten.wert = DateTime.fromFormat(wert, SQL_DATETIME);
             }
         });
     }
-    LOC_upd_VAR_filtern(LISTE.filtern, liste);
+    LOC_upd_VAR_filtern(G.LISTEN[liste].filtern, liste);
 }

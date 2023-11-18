@@ -1,5 +1,4 @@
 function Liste_Gib$Sortieren2Sortieren($sortieren, liste) {
-    const LISTE = G.LISTEN[liste];
     const sortieren = new Array();
 
     $sortieren.children(".sortieren_element").each(function () {

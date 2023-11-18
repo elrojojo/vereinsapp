@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    $.each(G.LISTEN, function (liste, LISTE) {
+    $.each(G.LISTEN, function (liste) {
         LOC_upd_VAR(liste);
 
-        LISTE.$blanko_element = new Object();
+        G.LISTEN[liste].$blanko_element = new Object();
         $('.liste[data-liste="' + liste + '"]')
             .find(".blanko")
             .each(function () {
                 const $blanko_element = $(this);
-                LISTE.$blanko_element[$blanko_element.parent().attr("id")] = $blanko_element;
+                G.LISTEN[liste].$blanko_element[$blanko_element.parent().attr("id")] = $blanko_element;
             });
         $('.liste[data-liste="' + liste + '"]').empty();
     });
@@ -80,7 +80,7 @@ $(document).ready(function () {
         },
     });
 
-    $.each(G.LISTEN, function (liste, LISTE) {
+    $.each(G.LISTEN, function (liste) {
         $(document).trigger("Event_SQL_upd_LOC", [true, liste]); // $(document).trigger( 'LOC_upd_VAR' );
     });
 
