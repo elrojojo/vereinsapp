@@ -9,14 +9,12 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
     let cluster = $auswertungen.attr("data-cluster");
     if (typeof cluster !== "undefined") cluster = JSON.parse(cluster);
     else cluster = new Object();
-    const cluster_liste = cluster.liste;
-    const CLUSTER_LISTE = G.LISTEN[cluster_liste];
 
     // CLUSTER_TABELLE FILTERN
     let cluster_filtern;
     if ("filtern" in cluster) cluster_filtern = Liste_GibSqlFiltern2Filtern(JSON.parse(cluster.filtern), cluster.liste);
     else cluster_filtern = new Array();
-    const cluster_tabelle_gefiltert = Liste_GibTabelleGefiltert(cluster_filtern, cluster_liste);
+    const cluster_tabelle_gefiltert = Liste_GibTabelleGefiltert(cluster_filtern, cluster.liste);
 
     // CLUSTER_TABELLE CLUSTERN
     const cluster_tabelle_gefiltert_geclustert = new Object();
@@ -45,7 +43,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
             const element = this;
             if ("id" in element) {
                 $.each(cluster_tabelle_gefiltert_geclustert[wert], function (position, cluster_element_id) {
-                    if (element[CLUSTER_LISTE.element + "_id"] == cluster_element_id) {
+                    if (element[G.LISTEN[cluster.liste].element + "_id"] == cluster_element_id) {
                         if (element.status == 0) auswertungen[wert].negativ.push(cluster_element_id);
                         else if (element.status >= 1) auswertungen[wert].positiv.push(cluster_element_id);
                         cluster_tabelle_gefiltert_geclustert[wert].splice(position, 1);
