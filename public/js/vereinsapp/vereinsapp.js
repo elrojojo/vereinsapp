@@ -27,7 +27,7 @@ $(document).ready(function () {
                 $("#datenschutz_richtlinie_modal").modal("show");
                 $("#datenschutz_richtlinie_akzeptieren").click(function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    console.log("ERFOLG Datenschutz-Richtlinie akzeptiert");
+                    console.log("ERFOLG", "Datenschutz-Richtlinie akzeptiert");
                     $("#datenschutz_richtlinie_modal").modal("hide");
                 });
             },

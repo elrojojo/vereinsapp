@@ -107,22 +107,6 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
 
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_DomWarten.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxInDieSchlange.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxFuerDieSchlangeVorbereiten.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRaus.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRein.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinErfolg.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinFehler.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_GibLocalstorageRaus.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRein.js'), );
-
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/Event_SQL_upd_LOC.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/LOC_upd_VAR.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/LOC_upd_VAR_event.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/VAR_upd_LOC.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/event/VAR_upd_LOC_event.js'), );
-
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularOeffnen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternErstellen.js'), );
@@ -146,6 +130,21 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js'), );
 
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/Schnittstelle_DomWarten.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxInDieSchlange.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxFuerDieSchlangeVorbereiten.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRaus.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRein.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinErfolg.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinFehler.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_GibLocalstorageRaus.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRein.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Event_SqlUpdLocalstorage.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/LOC_upd_VAR.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/LOC_upd_VAR_event.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/VAR_upd_LOC.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/VAR_upd_LOC_event.js'), );
+
         if( auth()->loggedIn() ) {
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionsAktualisieren.js'), );
@@ -160,8 +159,6 @@ abstract class BaseController extends Controller
                 $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenErstellen.js'), );
                 $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAendern.js'), );
                 $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenLoeschen.js'), );
-                // $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_$PersonenkreisBeschraenken2FilternMitglieder.js'), );
-                // $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_FilternMitglieder2$PersonenkreisBeschraenken.js'), );
             }
             if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
         }
