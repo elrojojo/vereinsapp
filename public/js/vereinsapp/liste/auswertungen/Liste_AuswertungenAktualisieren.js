@@ -33,7 +33,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
     };
 
     const auswertungen_gefiltert_sortiert = new Array();
-    $.each(cluster_tabelle_gefiltert_geclustert, function (wert, cluster) {
+    $.each(cluster_tabelle_gefiltert_geclustert, function (wert) {
         auswertungen[wert] = new Object();
 
         auswertungen[wert].positiv = new Array();

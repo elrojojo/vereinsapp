@@ -1,4 +1,5 @@
-function Event_SqlUpdLocalstorage(liste, schleife) {
+function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife) {
+    // console.log("Schnittstelle_EventSqlUpdLocalstorage", "called", "with", liste);
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
@@ -10,11 +11,11 @@ function Event_SqlUpdLocalstorage(liste, schleife) {
             Schnittstelle_LocalstorageRein(AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));
         },
         rein_aktion: function (AJAX) {
-            $(document).trigger("LOC_upd_VAR", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'VAR_upd_DOM', [ liste ] );
+            Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste); // impliziert auch ein $(document).trigger( 'VAR_upd_DOM', [ liste ] );
         },
     };
 
-    if (schleife) G.AJAX[neue_ajax_id].schleife = Event_SqlUpdLocalstorage;
+    if (schleife) G.AJAX[neue_ajax_id].schleife = Schnittstelle_EventSqlUpdLocalstorage;
 
     Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
 }

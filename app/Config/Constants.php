@@ -228,8 +228,11 @@ defined('CONTROLLERS') OR define('CONTROLLERS', array(
 // defined('UEBERNAECHSTER_MONTAG') OR define( 'UEBERNAECHSTER_MONTAG', NAECHSTER_MONTAG + SEK_PRO_WOCHE );
 
 defined('SQL_TIME') OR define( 'SQL_TIME', 'HH:mm:ss' );
+defined('SQL_TIME_REGEX') OR define( 'SQL_TIME_REGEX', '/^[0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
 defined('SQL_DATE') OR define( 'SQL_DATE', 'yyyy-MM-dd' );
+defined('SQL_DATE_REGEX') OR define( 'SQL_DATE_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}?$/' );
 defined('SQL_DATETIME') OR define( 'SQL_DATETIME', 'yyyy-MM-dd HH:mm:ss' );
+defined('SQL_DATETIME_REGEX') OR define( 'SQL_DATETIME_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
 
 defined('AJAX_REFRESH_INTERVALL') OR define( 'AJAX_REFRESH_INTERVALL', 10 );
 

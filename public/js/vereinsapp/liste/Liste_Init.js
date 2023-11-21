@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.each(G.LISTEN, function (liste) {
-        LOC_upd_VAR(liste);
+        Schnittstelle_EventLocalstorageUpdVariable(liste);
 
         G.LISTEN[liste].$blanko_element = new Object();
         $('.liste[data-liste="' + liste + '"]')
@@ -79,7 +79,7 @@ $(document).ready(function () {
     });
 
     $.each(G.LISTEN, function (liste) {
-        Event_SqlUpdLocalstorage(liste, true); // $(document).trigger( 'LOC_upd_VAR' );
+        Schnittstelle_EventSqlUpdLocalstorage(liste, true); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
     });
 
     $(document).trigger("VAR_upd_DOM");

@@ -21,5 +21,5 @@ function Liste_FilternLoeschen($btn_loeschen, liste) {
 
     G.LISTEN[liste].filtern = Liste_Gib$Filtern2Filtern($filtern, "filtern", liste);
 
-    $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
+    $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
 }

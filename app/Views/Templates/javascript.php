@@ -5,8 +5,11 @@ const ICH = <?= json_encode( ICH ) ?>;
 const PERMISSIONS = <?= json_encode( config('AuthGroups')->permissions ) ?>;
 
 const SQL_TIME = '<?= SQL_TIME ?>';
+const SQL_TIME_REGEX = <?= SQL_TIME_REGEX ?>;
 const SQL_DATE = '<?= SQL_DATE ?>';
+const SQL_DATE_REGEX = <?= SQL_DATE_REGEX ?>;
 const SQL_DATETIME = '<?= SQL_DATETIME ?>';
+const SQL_DATETIME_REGEX = <?= SQL_DATETIME_REGEX ?>;
 
 const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( SORTIERBARE_EIGENSCHAFTEN ) ?>;
