@@ -6,5 +6,5 @@ function Liste_SortierenLoeschen($btn_loeschen, liste) {
 
     G.LISTEN[liste].sortieren = Liste_Gib$Sortieren2Sortieren($sortieren, liste);
 
-    $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+    Schnittstelle_EventVariableUpdLocalstorage(liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
 }

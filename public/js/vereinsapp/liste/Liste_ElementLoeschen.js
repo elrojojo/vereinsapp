@@ -14,7 +14,7 @@ function Liste_ElementLoeschen($btn, liste) {
         },
         rein_validation_pos_aktion: function (AJAX) {
             delete G.LISTEN[AJAX.liste].tabelle[AJAX.data.id];
-            $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
 
             const $formular = AJAX.$btn.parents(".formular").first();
             $formular.modal("hide");

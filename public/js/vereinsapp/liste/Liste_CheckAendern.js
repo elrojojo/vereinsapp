@@ -48,7 +48,7 @@ function Liste_CheckAendern($check, liste) {
                 });
             }
 
-            $(document).trigger("VAR_upd_LOC", [checkliste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
+            Schnittstelle_EventVariableUpdLocalstorage(checkliste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable;
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_CheckWartenEnde(AJAX.$check);

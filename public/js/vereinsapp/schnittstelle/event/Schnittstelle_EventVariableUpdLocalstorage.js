@@ -1,4 +1,4 @@
-function VAR_upd_LOC(liste) {
+function Schnittstelle_EventVariableUpdLocalstorage(liste) {
     const LOC_tabelle = new Array();
     $.each(G.LISTEN[liste].tabelle, function () {
         const element = this;
@@ -43,4 +43,6 @@ function VAR_upd_LOC(liste) {
     }
     VAR_upd_LOC_filtern(LOC_filtern, liste);
     Schnittstelle_LocalstorageRein(liste + "_filtern", JSON.stringify(LOC_filtern));
+
+    Schnittstelle_EventLocalstorageUpdVariable(liste);
 }

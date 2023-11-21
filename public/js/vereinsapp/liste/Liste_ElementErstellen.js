@@ -76,7 +76,7 @@ function Liste_ElementErstellen($btn, liste) {
                 G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = wert;
             });
 
-            $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR );
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable;
 
             const $formular = AJAX.$btn.parents(".formular").first();
             $formular.modal("hide");

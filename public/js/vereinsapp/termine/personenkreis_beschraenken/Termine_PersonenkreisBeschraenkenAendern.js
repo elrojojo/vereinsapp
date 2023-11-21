@@ -28,7 +28,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
             const $personenkreis_beschraenken = AJAX.$btn.parents(".personenkreis_beschraenken").first();
             const filtern_mitglieder = Liste_Gib$Filtern2Filtern($personenkreis_beschraenken, "personenkreis_beschraenken", "mitglieder");
             G.LISTEN[AJAX.liste].tabelle[AJAX.data.id].filtern_mitglieder = filtern_mitglieder;
-            $(document).trigger("VAR_upd_LOC", [AJAX.liste]); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnDanebenWartenEnde(AJAX.$btn);

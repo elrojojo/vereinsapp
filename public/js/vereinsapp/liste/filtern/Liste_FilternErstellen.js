@@ -38,5 +38,5 @@ function Liste_FilternErstellen($btn_erstellen, liste) {
         }
     }
 
-    $(document).trigger("VAR_upd_LOC", [liste]); // impliziert auch ein $(document).trigger( 'LOC_upd_VAR' );
+    Schnittstelle_EventVariableUpdLocalstorage(liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable;
 }
