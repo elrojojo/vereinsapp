@@ -1,4 +1,4 @@
-function Schnittstelle_EventElementErgaenzenNotenbank(element) {
+function Schnittstelle_EventElementErgaenzenNotenbank(titel) {
     function anzahl_dateien(verzeichnis) {
         const anzahl = { noten: 0, audio: 0, verzeichnis: 0 };
         $.each(verzeichnis, function (index, datei) {
@@ -14,7 +14,7 @@ function Schnittstelle_EventElementErgaenzenNotenbank(element) {
         return anzahl;
     }
 
-    element["anzahl_noten"] = anzahl_dateien(element["verzeichnis"]).noten;
-    element["anzahl_audio"] = anzahl_dateien(element["verzeichnis"]).audio;
-    element["anzahl_verzeichnis"] = anzahl_dateien(element["verzeichnis"]).verzeichnis;
+    titel["anzahl_noten"] = anzahl_dateien(titel["verzeichnis"]).noten;
+    titel["anzahl_audio"] = anzahl_dateien(titel["verzeichnis"]).audio;
+    titel["anzahl_verzeichnis"] = anzahl_dateien(titel["verzeichnis"]).verzeichnis;
 }

@@ -1,16 +1,19 @@
 G.LISTEN.rueckmeldungen = {
     controller: "termine",
     element: "rueckmeldung",
+    verlinkte_listen: ["termine", "mitglieder"],
 };
 
 G.LISTEN.anwesenheiten = {
     controller: "termine",
     element: "anwesenheit",
+    verlinkte_listen: ["termine", "mitglieder"],
 };
 
 G.LISTEN.termine = {
     controller: "termine",
     element: "termin",
+    verlinkte_listen: [],
 };
 
 PERSONENKREIS_BESCHRAENKEN = new Object();

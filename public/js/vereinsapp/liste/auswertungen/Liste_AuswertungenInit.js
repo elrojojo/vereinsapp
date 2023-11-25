@@ -11,12 +11,10 @@ $(document).ready(function () {
     });
 
     // AUSWERTUNGEN IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        $.each(Liste_TodoZurueck(prio_liste), function (prio, liste) {
-            // AUSWERTUNGEN AKTUALISIEREN
-            $('.auswertungen[data-liste="' + liste + '"]').each(function () {
-                Liste_AuswertungenAktualisieren($(this), liste);
-            });
+    $(document).on("VAR_upd_DOM", function (event, liste) {
+        // AUSWERTUNGEN AKTUALISIEREN
+        $('.auswertungen[data-liste="' + liste + '"]').each(function () {
+            Liste_AuswertungenAktualisieren($(this), liste);
         });
     });
 });

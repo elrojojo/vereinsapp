@@ -1,11 +1,13 @@
 G.LISTEN.abwesenheiten = {
     controller: "mitglieder",
     element: "abwesenheit",
+    verlinkte_listen: ["mitglieder"],
 };
 
 G.LISTEN.mitglieder = {
     controller: "mitglieder",
     element: "mitglied",
+    verlinkte_listen: [],
 };
 
 $(document).ready(function () {

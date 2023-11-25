@@ -1,7 +1,6 @@
 function Schnittstelle_EventLocalstorageUpdVariable(liste) {
-    // console.log("Schnittstelle_EventLocalstorageUpdVariable", "called", "with", liste);
+    // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
     G.LISTEN[liste].tabelle = new Array();
-
     $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
         const element_id = this["id"];
         G.LISTEN[liste].tabelle[element_id] = this;
@@ -23,8 +22,10 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste) {
         }
     });
 
+    // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
     G.LISTEN[liste].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_sortieren", true);
 
+    // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
     G.LISTEN[liste].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_filtern", true);
     function LOC_upd_VAR_filtern(filtern, liste) {
         $.each(filtern, function (index, knoten) {

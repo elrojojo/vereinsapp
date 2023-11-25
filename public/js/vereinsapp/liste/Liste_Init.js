@@ -15,20 +15,18 @@ $(document).ready(function () {
     $(document).trigger("VAR_upd_DOM");
 
     // LISTE UND ELEMENT IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        $.each(Liste_TodoZurueck(prio_liste), function (prio, liste) {
-            // LISTE AKTUALISIEREN
-            $('.liste[data-liste="' + liste + '"]').each(function () {
-                Liste_Aktualisieren($(this), liste);
-            });
-
-            // ELEMENT AKTUALISIEREN
-            $('.element[data-element="' + G.LISTEN[liste].element + '"]').each(function () {
-                Liste_ElementAktualisieren($(this), liste);
-            });
-
-            $(document).trigger("VAR_upd_DOM_" + liste);
+    $(document).on("VAR_upd_DOM", function (event, liste) {
+        // LISTE AKTUALISIEREN
+        $('.liste[data-liste="' + liste + '"]').each(function () {
+            Liste_Aktualisieren($(this), liste);
         });
+
+        // ELEMENT AKTUALISIEREN
+        $('.element[data-element="' + G.LISTEN[liste].element + '"]').each(function () {
+            Liste_ElementAktualisieren($(this), liste);
+        });
+
+        $(document).trigger("VAR_upd_DOM_" + liste);
     });
 
     // FORMULAR (MODAL) ÖFFNEN

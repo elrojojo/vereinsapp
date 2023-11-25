@@ -1,23 +1,24 @@
-function Schnittstelle_EventElementErgaenzenMitglieder(element) {
-    if ("geburt" in element) {
-        element["alter"] = -1 * element["geburt"].diffNow("years").years;
+function Schnittstelle_EventElementErgaenzenMitglieder(mitglied) {
+    if ("geburt" in mitglied) {
+        mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
 
-        element["geburtstag"] = DateTime.fromFormat(element["geburt"].toFormat("dd.MM.") + DateTime.now().toFormat("yyyy"), "dd.MM.yyyy");
-        if (element["geburtstag"] < DateTime.now().startOf("day"))
-            element["geburtstag"] = element["geburtstag"].plus({
+        mitglied["geburtstag"] = DateTime.fromFormat(mitglied["geburt"].toFormat("dd.MM.") + DateTime.now().toFormat("yyyy"), "dd.MM.yyyy");
+        if (mitglied["geburtstag"] < DateTime.now().startOf("day"))
+            mitglied["geburtstag"] = mitglied["geburtstag"].plus({
                 years: 1,
             });
 
-        element["alter_geburtstag"] = element["geburtstag"].diff(element["geburt"], "years").years;
+        mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
     }
 
+    mitglied["abwesend"] = false;
     if ("abwesenheiten" in G.LISTEN) {
-        element["abwesend"] = false;
+        Schnittstelle_EventLocalstorageUpdVariable("abwesenheiten");
         $.each(G.LISTEN.abwesenheiten.tabelle, function () {
             const abwesenheit = this;
             if ("id" in abwesenheit) {
-                if (abwesenheit["mitglied_id"] == element["id"] && abwesenheit["start"] <= DateTime.now() && DateTime.now() <= abwesenheit["ende"])
-                    element["abwesend"] = true;
+                if (abwesenheit["mitglied_id"] == mitglied["id"] && abwesenheit["start"] <= DateTime.now() && DateTime.now() <= abwesenheit["ende"])
+                    mitglied["abwesend"] = true;
             }
         });
     }

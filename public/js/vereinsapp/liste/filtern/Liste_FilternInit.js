@@ -18,21 +18,19 @@ $(document).ready(function () {
     }
 
     // FILTERN IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        $.each(Liste_TodoZurueck(prio_liste), function (prio, liste) {
-            // FILTERN AKTUALISIEREN
-            $('.filtern[data-liste="' + liste + '"]').each(function () {
-                const $filtern = $(this);
-                $filtern.html(
-                    Liste_Filtern2$FilternZurueck(
-                        G.LISTEN[liste].filtern,
-                        FILTERN.$blanko_filtern_sammlung,
-                        FILTERN.$blanko_filtern_element,
-                        "filtern",
-                        liste
-                    )
-                );
-            });
+    $(document).on("VAR_upd_DOM", function (event, liste) {
+        // FILTERN AKTUALISIEREN
+        $('.filtern[data-liste="' + liste + '"]').each(function () {
+            const $filtern = $(this);
+            $filtern.html(
+                Liste_Filtern2$FilternZurueck(
+                    G.LISTEN[liste].filtern,
+                    FILTERN.$blanko_filtern_sammlung,
+                    FILTERN.$blanko_filtern_element,
+                    "filtern",
+                    liste
+                )
+            );
         });
     });
 

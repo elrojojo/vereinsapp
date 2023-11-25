@@ -102,7 +102,6 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Formular.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_WertFormatiertZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_TodoZurueck.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_CheckAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
