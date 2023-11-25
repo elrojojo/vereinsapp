@@ -8,11 +8,11 @@ $(document).ready(function () {
 
     // SORTIEREN IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        $.each(Liste_GibTodo(prio_liste), function (prio, liste) {
+        $.each(Liste_TodoZurueck(prio_liste), function (prio, liste) {
             // SORTIEREN AKTUALISIEREN
             $('.sortieren[data-liste="' + liste + '"]').each(function () {
                 const $sortieren = $(this);
-                $sortieren.html(Liste_GibSortieren2$Sortieren(G.LISTEN[liste].sortieren, liste));
+                $sortieren.html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].sortieren, liste));
             });
         });
     });

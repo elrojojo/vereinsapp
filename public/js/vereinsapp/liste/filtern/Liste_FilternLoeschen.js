@@ -19,7 +19,7 @@ function Liste_FilternLoeschen($btn_loeschen, liste) {
         sammlung_ebene_hoeher = $knoten_parallel.first().parents(".filtern_sammlung").first();
     }
 
-    G.LISTEN[liste].filtern = Liste_Gib$Filtern2Filtern($filtern, "filtern", liste);
+    G.LISTEN[liste].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
 
     Schnittstelle_EventVariableUpdLocalstorage(liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
 }

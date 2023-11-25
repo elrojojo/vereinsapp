@@ -1,4 +1,4 @@
-function Liste_GibTodo(prio_liste) {
+function Liste_TodoZurueck(prio_liste) {
     const todo = new Array();
 
     if (prio_liste in G.LISTEN) {

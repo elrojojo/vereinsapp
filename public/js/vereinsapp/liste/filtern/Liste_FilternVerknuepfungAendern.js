@@ -6,6 +6,6 @@ function Liste_FilternVerknuepfungAendern($btn_aendern, liste) {
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");
     else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&");
 
-    G.LISTEN[liste].filtern = Liste_Gib$Filtern2Filtern($filtern, "filtern", liste);
+    G.LISTEN[liste].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
     Schnittstelle_EventVariableUpdLocalstorage(liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
 }

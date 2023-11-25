@@ -1,4 +1,4 @@
-function Liste_GibSqlFiltern2Filtern(phpfiltern, liste) {
+function Liste_PhpFiltern2FilternZurueck(phpfiltern, liste) {
     const filtern = new Array();
 
     $.each(phpfiltern, function (index, knoten) {
@@ -6,7 +6,7 @@ function Liste_GibSqlFiltern2Filtern(phpfiltern, liste) {
             const verknuepfung = knoten.verknuepfung;
             filtern.push({
                 verknuepfung: verknuepfung,
-                filtern: Liste_GibSqlFiltern2Filtern(knoten.filtern, liste),
+                filtern: Liste_PhpFiltern2FilternZurueck(knoten.filtern, liste),
             });
         } else {
             const operator = knoten.operator;
@@ -18,7 +18,7 @@ function Liste_GibSqlFiltern2Filtern(phpfiltern, liste) {
                 typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
                 EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
             )
-                wert = DateTime.fromISO(wert);
+                wert = DateTime.fromFormat(wert, SQL_DATETIME);
 
             filtern.push({
                 operator: operator,

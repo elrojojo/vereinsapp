@@ -1,4 +1,4 @@
-function Schnittstelle_GibLocalstorageRaus(schluessel, json) {
+function Schnittstelle_LocalstorageRausZurueck(schluessel, json) {
     let LocalstorageRaus = localStorage.getItem("vereinsapp_" + schluessel);
     if (LocalstorageRaus === null || typeof LocalstorageRaus === "undefined") LocalstorageRaus = undefined;
 

@@ -5,7 +5,7 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife) {
         ajax_id: neue_ajax_id,
         label: "SqlUpdLocalstorage " + liste,
         url: G.LISTEN[liste].controller + "/ajax_" + liste,
-        // data: { hash: sha256(String(Schnittstelle_GibLocalstorageRaus(liste + "_tabelle"))), },
+        // data: { hash: sha256(String(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle"))), },
         liste: liste,
         rein_validation_pos_aktion: function (AJAX) {
             Schnittstelle_LocalstorageRein(AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));

@@ -15,7 +15,7 @@ $(document).ready(function () {
     // $('[data-toggle="popover"]').popover();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (typeof Schnittstelle_GibLocalstorageRaus("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
         // SCHNITTSTELLE AJAX
         const neue_ajax_id = G.AJAX.length;
         G.AJAX[neue_ajax_id] = {

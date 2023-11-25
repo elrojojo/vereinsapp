@@ -4,7 +4,7 @@ function Liste_SortierenLoeschen($btn_loeschen, liste) {
 
     $element.remove();
 
-    G.LISTEN[liste].sortieren = Liste_Gib$Sortieren2Sortieren($sortieren, liste);
+    G.LISTEN[liste].sortieren = Liste_$Sortieren2SortierenZurueck($sortieren, liste);
 
     Schnittstelle_EventVariableUpdLocalstorage(liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
 }

@@ -1,4 +1,4 @@
-function Liste_GibWertFormatiert(wert, eigenschaft, liste) {
+function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
     switch (eigenschaft) {
         case "geburt":
             wert_formatiert = wert.toFormat("dd.MM.yyyy");

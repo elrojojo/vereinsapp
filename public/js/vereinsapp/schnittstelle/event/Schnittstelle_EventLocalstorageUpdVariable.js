@@ -2,7 +2,7 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste) {
     // console.log("Schnittstelle_EventLocalstorageUpdVariable", "called", "with", liste);
     G.LISTEN[liste].tabelle = new Array();
 
-    $.each(Schnittstelle_GibLocalstorageRaus(liste + "_tabelle", true), function () {
+    $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
         const element_id = this["id"];
         G.LISTEN[liste].tabelle[element_id] = this;
 
@@ -23,9 +23,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste) {
         }
     });
 
-    G.LISTEN[liste].sortieren = Schnittstelle_GibLocalstorageRaus(liste + "_sortieren", true);
+    G.LISTEN[liste].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_sortieren", true);
 
-    G.LISTEN[liste].filtern = Schnittstelle_GibLocalstorageRaus(liste + "_filtern", true);
+    G.LISTEN[liste].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_filtern", true);
     function LOC_upd_VAR_filtern(filtern, liste) {
         $.each(filtern, function (index, knoten) {
             if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);

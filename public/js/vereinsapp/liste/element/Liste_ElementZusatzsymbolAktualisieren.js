@@ -37,7 +37,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
                     ],
                 },
             ];
-            const gefilterte_rueckmeldungen = Liste_GibTabelleGefiltert(filtern, "rueckmeldungen");
+            const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(filtern, "rueckmeldungen");
 
             if (gefilterte_rueckmeldungen.length > 0)
                 $zusatzsymbol.html(

@@ -4,7 +4,7 @@ function Liste_ElementAktualisieren($element, liste) {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
         $eigenschaft.html(
-            Liste_GibWertFormatiert(G.LISTEN[liste].tabelle[Number($element.attr("data-element_id"))][eigenschaft], eigenschaft, liste)
+            Liste_WertFormatiertZurueck(G.LISTEN[liste].tabelle[Number($element.attr("data-element_id"))][eigenschaft], eigenschaft, liste)
         );
     });
 

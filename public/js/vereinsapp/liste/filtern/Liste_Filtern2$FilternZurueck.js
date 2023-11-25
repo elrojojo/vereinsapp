@@ -1,4 +1,4 @@
-function Liste_GibFiltern2$Filtern(filtern, $blanko_filtern_sammlung, $blanko_filtern_element, klasse, liste) {
+function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blanko_filtern_element, klasse, liste) {
     const $filtern = new Array();
 
     $.each(filtern, function (index, knoten) {
@@ -16,7 +16,7 @@ function Liste_GibFiltern2$Filtern(filtern, $blanko_filtern_sammlung, $blanko_fi
             else if (verknuepfung == "||") $verknuepfung.text("ODER");
 
             $.each(
-                Liste_GibFiltern2$Filtern(knoten.filtern, $blanko_filtern_sammlung, $blanko_filtern_element, klasse, liste),
+                Liste_Filtern2$FilternZurueck(knoten.filtern, $blanko_filtern_sammlung, $blanko_filtern_element, klasse, liste),
                 function (index, $filtern) {
                     $filtern.appendTo($neue_filtern_sammlung.find("." + klasse + "_kind").first());
                 }
@@ -40,7 +40,7 @@ function Liste_GibFiltern2$Filtern(filtern, $blanko_filtern_sammlung, $blanko_fi
 
             let data_wert = wert;
             if (EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ == "zeitpunkt") data_wert = wert.toFormat(SQL_DATETIME);
-            $neues_filtern_element.find(".wert").attr("data-wert", data_wert).html(Liste_GibWertFormatiert(wert, eigenschaft, liste));
+            $neues_filtern_element.find(".wert").attr("data-wert", data_wert).html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
 
             $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);
 

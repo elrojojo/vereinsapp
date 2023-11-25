@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     // LISTE UND ELEMENT IM DOM AKTUALISIEREN
     $(document).on("VAR_upd_DOM", function (event, prio_liste) {
-        $.each(Liste_GibTodo(prio_liste), function (prio, liste) {
+        $.each(Liste_TodoZurueck(prio_liste), function (prio, liste) {
             // LISTE AKTUALISIEREN
             $('.liste[data-liste="' + liste + '"]').each(function () {
                 Liste_Aktualisieren($(this), liste);
