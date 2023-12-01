@@ -1,4 +1,6 @@
-function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife) {
+function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktionen) {
+    if (!Array.isArray(naechste_aktionen)) naechste_aktionen = new Array();
+
     // AJAX wird vorbereitet
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
@@ -7,9 +9,10 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife) {
         url: G.LISTEN[liste].controller + "/ajax_" + liste,
         // data: { hash: sha256(String(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle"))), },
         liste: liste,
+        naechste_aktionen: naechste_aktionen,
         rein_validation_pos_aktion: function (AJAX) {
             Schnittstelle_LocalstorageRein(AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));
-            Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste); // impliziert auch ein Schnittstelle_EventVariableUpdDom(liste);
+            Schnittstelle_NaechsteAktion(liste, AJAX.naechste_aktionen);
         },
     };
 

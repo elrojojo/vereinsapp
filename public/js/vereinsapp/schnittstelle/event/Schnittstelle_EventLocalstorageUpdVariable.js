@@ -1,10 +1,7 @@
-function Schnittstelle_EventLocalstorageUpdVariable(liste, debug) {
-    G.DEBUG_COUNTER++;
-    console.log(G.DEBUG_COUNTER, liste);
-
+function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
     if ("abhaengig_von" in G.LISTEN[liste])
         $.each(G.LISTEN[liste].abhaengig_von, function (prio, liste) {
-            Schnittstelle_EventLocalstorageUpdVariable(liste);
+            Schnittstelle_EventLocalstorageUpdVariable(liste, []);
         });
 
     // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
@@ -35,5 +32,5 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, debug) {
     }
     LOC_upd_VAR_filtern(G.LISTEN[liste].filtern, liste);
 
-    // Schnittstelle_EventVariableUpdDom(liste, debug);
+    Schnittstelle_NaechsteAktion(liste, naechste_aktionen);
 }

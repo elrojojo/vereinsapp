@@ -28,7 +28,7 @@ function Liste_ElementLoeschen($btn, liste) {
                     });
                 });
 
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 
             const $formular = AJAX.$btn.parents(".formular").first();
             $formular.modal("hide");

@@ -1,4 +1,4 @@
-function Schnittstelle_EventVariableUpdLocalstorage(liste, debug) {
+function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
     // tabelle wird vorbereitet
     const LOC_tabelle = new Array();
     const tabelle = G.LISTEN[liste].tabelle;
@@ -39,6 +39,6 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, debug) {
     // filtern wird im Localstorage gespeichert
     Schnittstelle_LocalstorageRein(liste + "_filtern", JSON.stringify(LOC_filtern));
 
-    // Nachdem alles im Localstorage gespeichert ist, wird die Variable nochmal aktualisiert
-    Schnittstelle_EventLocalstorageUpdVariable(liste, debug);
+    // Nachdem alles im Localstorage gespeichert ist, wird die naechste Aktion ausgeführt
+    Schnittstelle_NaechsteAktion(liste, naechste_aktionen);
 }

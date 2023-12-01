@@ -5,5 +5,5 @@ function Liste_SortierenErstellen($btn, liste) {
 
     G.LISTEN[liste].sortieren.push({ richtung: richtung, eigenschaft: eigenschaft });
 
-    Schnittstelle_EventVariableUpdLocalstorage(liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+    Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 }

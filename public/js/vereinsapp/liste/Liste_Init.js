@@ -17,7 +17,7 @@ function Liste_Init() {
             });
         $('.liste[data-liste="' + liste + '"]').empty();
 
-        // Schnittstelle_EventLocalstorageUpdVariable(liste);
+        // Schnittstelle_EventLocalstorageUpdVariable(liste, [Schnittstelle_EventVariableUpdDom]);
     });
 
     Liste_FormularInit();
@@ -70,6 +70,6 @@ function Liste_Init() {
     });
 
     $.each(G.LISTEN, function (liste) {
-        Schnittstelle_EventSqlUpdLocalstorage(liste, true); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+        Schnittstelle_EventSqlUpdLocalstorage(liste, true, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
     });
 }

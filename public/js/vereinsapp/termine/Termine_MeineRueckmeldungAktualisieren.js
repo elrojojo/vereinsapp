@@ -1,7 +1,6 @@
-function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden, debug) {
+function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
     const $btn_rueckmeldung_detaillieren = $btn_rueckmelden.siblings(".btn_rueckmeldung_detaillieren");
     const element_id = Number($rueckmeldung.parents(".termin").closest().attr("data-element_id"));
-    if (typeof debug == "Object" && debug.element_id == element_id) alert("start");
 
     let ich_rueckmeldung_id = G.LISTEN.termine.tabelle[element_id].ich_rueckmeldung_id;
 
@@ -86,6 +85,4 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden, debug) {
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-danger").addClass("btn-outline-danger");
         }
     }
-
-    if (typeof debug == "Object" && debug.element_id == element_id) alert("ende");
 }

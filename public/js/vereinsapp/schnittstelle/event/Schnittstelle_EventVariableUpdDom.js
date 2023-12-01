@@ -1,9 +1,12 @@
-function Schnittstelle_EventVariableUpdDom(liste, debug) {
+function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
     if (typeof liste === "undefined")
         $.each(G.LISTEN, function (liste) {
             Schnittstelle_EventVariableUpdDom(liste);
         });
     else {
+        G.DEBUG_COUNTER++;
+        console.log(G.DEBUG_COUNTER, "Schnittstelle_EventLocalstorageUpdVariable", liste);
+
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
             Liste_Aktualisieren($(this), liste);
@@ -60,7 +63,9 @@ function Schnittstelle_EventVariableUpdDom(liste, debug) {
 
         // MEINE RÜCKMELDUNG AKTUALISIEREN
         $(".zusagen, .absagen").each(function () {
-            Termine_MeineRueckmeldungAktualisieren($(this), debug);
+            Termine_MeineRueckmeldungAktualisieren($(this));
         });
+
+        Schnittstelle_NaechsteAktion(liste, naechste_aktionen);
     }
 }

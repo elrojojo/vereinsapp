@@ -41,7 +41,7 @@ function Mitglieder_PermissionAendern($check, liste) {
 
             if (AJAX.data.checked) G.LISTEN[AJAX.liste].tabelle[gegen_element_id].permissions.push(element_id);
 
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_CheckWartenEnde(AJAX.$check);
