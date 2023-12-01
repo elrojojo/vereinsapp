@@ -11,9 +11,9 @@ function Schnittstelle_EventElementErgaenzenMitglieder(mitglied) {
         mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
     }
 
-    mitglied["abwesend"] = false;
     if ("abwesenheiten" in G.LISTEN) {
         Schnittstelle_EventLocalstorageUpdVariable("abwesenheiten");
+        mitglied["abwesend"] = false;
         $.each(G.LISTEN.abwesenheiten.tabelle, function () {
             const abwesenheit = this;
             if ("id" in abwesenheit) {

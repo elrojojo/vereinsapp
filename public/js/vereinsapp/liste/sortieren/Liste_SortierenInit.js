@@ -6,15 +6,6 @@ $(document).ready(function () {
         $(".sortieren").empty();
     }
 
-    // SORTIEREN IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM", function (event, liste) {
-        // SORTIEREN AKTUALISIEREN
-        $('.sortieren[data-liste="' + liste + '"]').each(function () {
-            const $sortieren = $(this);
-            $sortieren.html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].sortieren, liste));
-        });
-    });
-
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_sortieren_Modal").on("show.bs.modal", function (event) {
         const $btn_oeffnend = $(event.relatedTarget);

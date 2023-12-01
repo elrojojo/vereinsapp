@@ -4,30 +4,17 @@ function Liste_$Filtern2FilternZurueck($filtern, klasse, liste) {
     $filtern.children("." + klasse + "_element, ." + klasse + "_sammlung").each(function () {
         const $knoten = $(this);
 
-        if ($knoten.hasClass("" + klasse + "_sammlung")) {
-            const verknuepfung = $knoten.find(".verknuepfung").attr("data-verknuepfung");
+        if ($knoten.hasClass("" + klasse + "_sammlung"))
             filtern.push({
-                verknuepfung: verknuepfung,
+                verknuepfung: $knoten.find(".verknuepfung").attr("data-verknuepfung"),
                 filtern: Liste_$Filtern2FilternZurueck($knoten.find("." + klasse + "_kind").first(), klasse, liste),
             });
-        } else if ($knoten.hasClass("" + klasse + "_element")) {
-            const operator = $knoten.find(".operator").attr("data-operator");
-            const eigenschaft = $knoten.find(".eigenschaft").attr("data-eigenschaft");
-
-            let wert = $knoten.find(".wert").attr("data-wert");
-            if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
-            if (
-                typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
-            )
-                wert = DateTime.fromFormat(wert, SQL_DATETIME);
-
+        else if ($knoten.hasClass("" + klasse + "_element"))
             filtern.push({
-                operator: operator,
-                eigenschaft: eigenschaft,
-                wert: wert,
+                operator: $knoten.find(".operator").attr("data-operator"),
+                eigenschaft: $knoten.find(".eigenschaft").attr("data-eigenschaft"),
+                wert: Schnittstelle_VariableWertBereinigtZurueck($knoten.find(".wert").attr("data-wert")),
             });
-        }
     });
 
     return filtern;

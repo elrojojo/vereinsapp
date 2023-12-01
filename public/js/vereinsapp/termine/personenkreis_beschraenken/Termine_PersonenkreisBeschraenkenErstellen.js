@@ -1,32 +1,16 @@
 function Termine_PersonenkreisBeschraenkenErstellen($btn, liste) {
     const $formular = $btn.parents(".personenkreis_beschraenken_definition").first();
-
-    const filtern_liste = $btn.parents("[data-filtern_liste]").first().attr("data-filtern_liste");
-
-    const eigenschaft = $formular.attr("data-eigenschaft");
-
     const element_id = $btn.parents(".personenkreis_beschraenken_definitionen").first().attr("data-element_id");
 
     const filtern_eigenschaft = new Array();
     $formular.find(".personenkreis_beschraenken_wert").each(function () {
         const $personenkreis_beschraenken_wert = $(this);
-
-        if ($personenkreis_beschraenken_wert.val()) {
-            const operator = $personenkreis_beschraenken_wert.attr("data-operator");
-            let wert = $personenkreis_beschraenken_wert.val();
-
-            if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
-            if (
-                typeof EIGENSCHAFTEN[G.LISTEN[filtern_liste].controller][filtern_liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[G.LISTEN[filtern_liste].controller][filtern_liste][eigenschaft]["typ"] == "zeitpunkt"
-            )
-                wert = DateTime.fromISO(wert);
+        if ($personenkreis_beschraenken_wert.val())
             filtern_eigenschaft.push({
-                operator: operator,
-                eigenschaft: eigenschaft,
-                wert: wert,
+                operator: $personenkreis_beschraenken_wert.attr("data-operator"),
+                eigenschaft: $formular.attr("data-eigenschaft"),
+                wert: Schnittstelle_VariableWertBereinigtZurueck($personenkreis_beschraenken_wert.val()),
             });
-        }
     });
 
     let filtern_eigenschaft_knoten;

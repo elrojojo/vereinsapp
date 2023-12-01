@@ -36,5 +36,5 @@ function Termine_FormularPersonenkreisBeschraenkenOeffnen($formular, event, list
         $neue_personenkreis_beschraenken_definition.appendTo($formular.find(".personenkreis_beschraenken_definitionen"));
     });
 
-    $(document).trigger("VAR_upd_DOM", [liste]);
+    Schnittstelle_EventVariableUpdDom();
 }

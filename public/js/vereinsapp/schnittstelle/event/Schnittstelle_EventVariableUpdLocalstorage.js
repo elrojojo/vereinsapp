@@ -12,12 +12,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste) {
             if ("ich_eingeladen" in element) delete element["ich_eingeladen"];
             if ("filtern_mitglieder" in element) element["filtern_mitglieder"] = JSON.stringify(element["filtern_mitglieder"]);
             $.each(element, function (eigenschaft, wert) {
-                if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") element[eigenschaft] = Number(wert);
-                if (
-                    typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                    EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
-                )
-                    element[eigenschaft] = wert.toFormat(SQL_DATETIME);
+                element[eigenschaft] = Schnittstelle_LocalstorageWertBereinigtZurueck(wert);
             });
             LOC_tabelle.push(element);
         }
@@ -36,15 +31,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste) {
     function VAR_upd_LOC_filtern(filtern, liste) {
         $.each(filtern, function (index, knoten) {
             if ("verknuepfung" in knoten) VAR_upd_LOC_filtern(knoten.filtern, liste);
-            else if ("operator" in knoten) {
-                const eigenschaft = knoten.eigenschaft;
-                let wert = knoten.wert;
-                if (
-                    typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                    EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
-                )
-                    knoten.wert = wert.toFormat(SQL_DATETIME);
-            }
+            else if ("operator" in knoten) knoten.wert = Schnittstelle_LocalstorageWertBereinigtZurueck(knoten.wert);
         });
     }
     VAR_upd_LOC_filtern(LOC_filtern, liste);

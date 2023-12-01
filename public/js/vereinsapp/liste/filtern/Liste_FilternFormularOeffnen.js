@@ -38,5 +38,5 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend, liste) {
         $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
     });
 
-    $(document).trigger("VAR_upd_DOM", [liste]);
+    Schnittstelle_EventVariableUpdDom();
 }

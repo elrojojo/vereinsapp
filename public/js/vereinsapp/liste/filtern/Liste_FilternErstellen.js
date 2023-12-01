@@ -1,26 +1,15 @@
 function Liste_FilternErstellen($btn_erstellen, liste) {
     const $formular = $btn_erstellen.parents(".filtern_definition").first();
-    const eigenschaft = $formular.attr("data-eigenschaft");
 
     const filtern = new Array();
     $formular.find(".filtern_wert").each(function () {
         const $filtern_wert = $(this);
-
-        if ($filtern_wert.val()) {
-            const operator = $filtern_wert.attr("data-operator");
-            let wert = $filtern_wert.val();
-            if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
-            if (
-                typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
-            )
-                wert = DateTime.fromISO(wert);
+        if ($filtern_wert.val())
             filtern.push({
-                operator: operator,
-                eigenschaft: eigenschaft,
-                wert: wert,
+                operator: $filtern_wert.attr("data-operator"),
+                eigenschaft: $formular.attr("data-eigenschaft"),
+                wert: Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.val()),
             });
-        }
     });
 
     let filtern_knoten;

@@ -41,29 +41,6 @@ $(document).ready(function () {
         $(".personenkreis_beschraenken_definitionen").empty();
     }
 
-    //ELEMENTE UND PERSONENKREIS BESCHRÄNKEN IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM_termine", function () {
-        $('.element[data-element="' + G.LISTEN.termine.element + '"]').each(function () {
-            const $element = $(this);
-            const element_id = Number($element.attr("data-element_id"));
-
-            // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-            $element.find(".rueckmeldung").each(function () {
-                Termine_FormularMeineRueckmeldungEinAusblenden($(this), $element, "termine");
-            });
-
-            // MEINE RÜCKMELDUNG AKTUALISIEREN
-            $element.find(".zusagen, .absagen").each(function () {
-                Termine_MeineRueckmeldungAktualisieren($(this), element_id, "termine");
-            });
-        });
-
-        // PERSONENKREIS BESCHRÄNKEN AKTUALISIEREN
-        $(".personenkreis_beschraenken").each(function () {
-            Termine_PersonenkreisBeschraenkenAktualisieren($(this), "termine");
-        });
-    });
-
     // FORMULAR (MODAL) ÖFFNEN
     $(".formular_personenkreis_beschraenken").on("show.bs.modal", function (event) {
         Termine_FormularPersonenkreisBeschraenkenOeffnen($(this), event, "termine");

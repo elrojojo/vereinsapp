@@ -15,5 +15,5 @@ function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend, liste) {
         );
     });
 
-    $(document).trigger("VAR_upd_DOM", [liste]);
+    Schnittstelle_EventVariableUpdDom();
 }

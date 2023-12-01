@@ -1,31 +1,17 @@
 function Liste_SqlFiltern2FilternZurueck(phpfiltern, liste) {
     const filtern = new Array();
-
     $.each(phpfiltern, function (index, knoten) {
-        if ("verknuepfung" in knoten) {
-            const verknuepfung = knoten.verknuepfung;
+        if ("verknuepfung" in knoten)
             filtern.push({
-                verknuepfung: verknuepfung,
+                verknuepfung: knoten.verknuepfung,
                 filtern: Liste_SqlFiltern2FilternZurueck(knoten.filtern, liste),
             });
-        } else {
-            const operator = knoten.operator;
-            const eigenschaft = knoten.eigenschaft;
-
-            let wert = knoten.wert;
-            if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
-            if (
-                typeof EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft] !== "undefined" &&
-                EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft]["typ"] == "zeitpunkt"
-            )
-                wert = DateTime.fromISO(wert);
-
+        else
             filtern.push({
-                operator: operator,
-                eigenschaft: eigenschaft,
-                wert: wert,
+                operator: knoten.operator,
+                eigenschaft: knoten.eigenschaft,
+                wert: Schnittstelle_VariableWertBereinigtZurueck(knoten.wert),
             });
-        }
     });
 
     return filtern;

@@ -9,7 +9,7 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife) {
         liste: liste,
         rein_validation_pos_aktion: function (AJAX) {
             Schnittstelle_LocalstorageRein(AJAX.liste + "_tabelle", JSON.stringify(AJAX.antwort.tabelle));
-            Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste); // impliziert auch ein $(document).trigger( 'VAR_upd_DOM', [ liste ] );
+            Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste); // impliziert auch ein Schnittstelle_EventVariableUpdDom(liste);
         },
     };
 

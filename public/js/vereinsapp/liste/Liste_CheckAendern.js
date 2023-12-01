@@ -43,8 +43,7 @@ function Liste_CheckAendern($check, liste) {
                 G.LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
                 delete AJAX.data.checked;
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
-                    G.LISTEN[checkliste].tabelle[AJAX.data.id][eigenschaft] = wert;
+                    G.LISTEN[checkliste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
                 });
             }
 

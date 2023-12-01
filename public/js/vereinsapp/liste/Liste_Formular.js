@@ -58,7 +58,7 @@ $(document).ready(function () {
                 ).appendTo($filtern_definition.find(".sortieren_eigenschaft"));
             });
 
-            $(document).trigger("VAR_upd_DOM", [liste]);
+            Schnittstelle_EventVariableUpdDom();
         } else if (aktion == "filtern") {
             $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
 
@@ -87,7 +87,7 @@ $(document).ready(function () {
                 $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
             });
 
-            $(document).trigger("VAR_upd_DOM", [liste]);
+            Schnittstelle_EventVariableUpdDom();
         }
 
         const $btns = $formular.find('[class^="btn_"]');

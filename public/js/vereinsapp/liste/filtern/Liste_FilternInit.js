@@ -17,23 +17,6 @@ $(document).ready(function () {
         $(".filtern_definitionen").empty();
     }
 
-    // FILTERN IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM", function (event, liste) {
-        // FILTERN AKTUALISIEREN
-        $('.filtern[data-liste="' + liste + '"]').each(function () {
-            const $filtern = $(this);
-            $filtern.html(
-                Liste_Filtern2$FilternZurueck(
-                    G.LISTEN[liste].filtern,
-                    FILTERN.$blanko_filtern_sammlung,
-                    FILTERN.$blanko_filtern_element,
-                    "filtern",
-                    liste
-                )
-            );
-        });
-    });
-
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_filtern_Modal").on("show.bs.modal", function (event) {
         const $btn_oeffnend = $(event.relatedTarget);

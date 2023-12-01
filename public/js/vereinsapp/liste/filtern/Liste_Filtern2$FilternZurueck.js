@@ -37,11 +37,10 @@ function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blank
                 .attr("data-eigenschaft", eigenschaft)
                 .text(EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung);
             $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
-
-            let data_wert = wert;
-            if (EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ == "zeitpunkt") data_wert = wert.toFormat(SQL_DATETIME);
-            $neues_filtern_element.find(".wert").attr("data-wert", data_wert).html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
-
+            $neues_filtern_element
+                .find(".wert")
+                .attr("data-wert", Schnittstelle_DomWertBereinigtZurueck(wert))
+                .html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
             $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);
 
             $filtern.push($neues_filtern_element);

@@ -9,12 +9,4 @@ $(document).ready(function () {
             });
         $('.auswertungen[data-liste="' + liste + '"]').empty();
     });
-
-    // AUSWERTUNGEN IM DOM AKTUALISIEREN
-    $(document).on("VAR_upd_DOM", function (event, liste) {
-        // AUSWERTUNGEN AKTUALISIEREN
-        $('.auswertungen[data-liste="' + liste + '"]').each(function () {
-            Liste_AuswertungenAktualisieren($(this), liste);
-        });
-    });
 });
