@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function Liste_FormularInit() {
     // FORMULAR (MODAL) ÖFFNEN
     $(".formular").on("show.bs.modal", function (event) {
         const $formular = $(this);
@@ -98,4 +98,4 @@ $(document).ready(function () {
         if (typeof element_id !== "undefined" && aktion != "duplizieren") $btns.attr("data-element_id", element_id);
         else $btns.removeAttr("data-element_id");
     });
-});
+}

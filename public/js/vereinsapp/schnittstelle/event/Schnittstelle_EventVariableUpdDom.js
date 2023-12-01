@@ -1,5 +1,8 @@
-function Schnittstelle_EventVariableUpdDom(liste) {
-    if (typeof liste === "undefined") Schnittstelle_EventVariableUpdDom(liste);
+function Schnittstelle_EventVariableUpdDom(liste, debug) {
+    if (typeof liste === "undefined")
+        $.each(G.LISTEN, function (liste) {
+            Schnittstelle_EventVariableUpdDom(liste);
+        });
     else {
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
@@ -50,19 +53,14 @@ function Schnittstelle_EventVariableUpdDom(liste) {
             Termine_PersonenkreisBeschraenkenAktualisieren($(this), "termine");
         });
 
-        if ("termine" in G.LISTEN)
-            $('.element[data-element="' + G.LISTEN.termine.element + '"]').each(function () {
-                const $element = $(this);
+        // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
+        $(".rueckmeldung").each(function () {
+            Termine_FormularMeineRueckmeldungEinAusblenden($(this));
+        });
 
-                // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-                $element.find(".rueckmeldung").each(function () {
-                    Termine_FormularMeineRueckmeldungEinAusblenden($(this), $element);
-                });
-
-                // MEINE RÜCKMELDUNG AKTUALISIEREN
-                $element.find(".zusagen, .absagen").each(function () {
-                    Termine_MeineRueckmeldungAktualisieren($(this), $element);
-                });
-            });
+        // MEINE RÜCKMELDUNG AKTUALISIEREN
+        $(".zusagen, .absagen").each(function () {
+            Termine_MeineRueckmeldungAktualisieren($(this), debug);
+        });
     }
 }

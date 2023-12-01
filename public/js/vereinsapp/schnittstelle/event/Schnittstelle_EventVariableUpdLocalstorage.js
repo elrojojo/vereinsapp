@@ -1,7 +1,8 @@
-function Schnittstelle_EventVariableUpdLocalstorage(liste) {
+function Schnittstelle_EventVariableUpdLocalstorage(liste, debug) {
     // tabelle wird vorbereitet
     const LOC_tabelle = new Array();
-    $.each(G.LISTEN[liste].tabelle, function () {
+    const tabelle = G.LISTEN[liste].tabelle;
+    $.each(tabelle, function () {
         const element = this;
         if ("id" in element) {
             if ("alter" in element) delete element["alter"];
@@ -39,5 +40,5 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste) {
     Schnittstelle_LocalstorageRein(liste + "_filtern", JSON.stringify(LOC_filtern));
 
     // Nachdem alles im Localstorage gespeichert ist, wird die Variable nochmal aktualisiert
-    Schnittstelle_EventLocalstorageUpdVariable(liste);
+    Schnittstelle_EventLocalstorageUpdVariable(liste, debug);
 }

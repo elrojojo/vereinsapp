@@ -8,9 +8,11 @@ G.LISTEN.mitglieder = {
     controller: "mitglieder",
     element: "mitglied",
     verlinkte_listen: [],
+    abhaengig_von: ["abwesenheiten"],
+    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,
 };
 
-$(document).ready(function () {
+function Mitglieder_Init() {
     G.LISTEN.mitglieder.$blanko_permission = $(".permissions").find(".blanko").first();
     $(".permissions").empty();
 
@@ -18,4 +20,4 @@ $(document).ready(function () {
     $(document).on("change", ".check_permission", function () {
         Mitglieder_PermissionAendern($(this), "mitglieder");
     });
-});
+}

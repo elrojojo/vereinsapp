@@ -1,26 +1,26 @@
-function Schnittstelle_EventLocalstorageUpdVariable(liste) {
-    // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
-    G.LISTEN[liste].tabelle = new Array();
-    $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
-        const element_id = this["id"];
-        G.LISTEN[liste].tabelle[element_id] = this;
+function Schnittstelle_EventLocalstorageUpdVariable(liste, debug) {
+    G.DEBUG_COUNTER++;
+    console.log(G.DEBUG_COUNTER, liste);
 
-        $.each(G.LISTEN[liste].tabelle[element_id], function (eigenschaft, wert) {
-            G.LISTEN[liste].tabelle[element_id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+    if ("abhaengig_von" in G.LISTEN[liste])
+        $.each(G.LISTEN[liste].abhaengig_von, function (prio, liste) {
+            Schnittstelle_EventLocalstorageUpdVariable(liste);
         });
 
-        switch (liste) {
-            case "mitglieder":
-                Schnittstelle_EventElementErgaenzenMitglieder(G.LISTEN[liste].tabelle[element_id]);
-                break;
-            case "termine":
-                Schnittstelle_EventElementErgaenzenTermine(G.LISTEN[liste].tabelle[element_id]);
-                break;
-            case "notenbank":
-                Schnittstelle_EventElementErgaenzenNotenbank(G.LISTEN[liste].tabelle[element_id]);
-                break;
-        }
+    // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
+    const tabelle = new Array();
+    $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
+        const element_id = this["id"];
+        tabelle[element_id] = this;
+
+        $.each(tabelle[element_id], function (eigenschaft, wert) {
+            tabelle[element_id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+        });
+
+        if ("element_ergaenzen_aktion" in G.LISTEN[liste] && typeof G.LISTEN[liste].element_ergaenzen_aktion === "function")
+            G.LISTEN[liste].element_ergaenzen_aktion(tabelle[element_id]);
     });
+    G.LISTEN[liste].tabelle = tabelle;
 
     // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
     G.LISTEN[liste].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_sortieren", true);
@@ -35,5 +35,5 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste) {
     }
     LOC_upd_VAR_filtern(G.LISTEN[liste].filtern, liste);
 
-    Schnittstelle_EventVariableUpdDom(liste);
+    // Schnittstelle_EventVariableUpdDom(liste, debug);
 }

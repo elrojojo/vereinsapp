@@ -12,7 +12,6 @@ function Schnittstelle_EventElementErgaenzenMitglieder(mitglied) {
     }
 
     if ("abwesenheiten" in G.LISTEN) {
-        Schnittstelle_EventLocalstorageUpdVariable("abwesenheiten");
         mitglied["abwesend"] = false;
         $.each(G.LISTEN.abwesenheiten.tabelle, function () {
             const abwesenheit = this;

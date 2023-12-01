@@ -74,9 +74,10 @@ function Liste_ElementErstellen($btn, liste) {
                 G.LISTEN[AJAX.liste].tabelle[AJAX.data.id] = new Object();
             }
             $.each(AJAX.data, function (eigenschaft, wert) {
-                G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
+                    G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
             });
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable;
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, { element_id: AJAX.data.id }); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable;
             AJAX.$btn.parents(".formular").first().modal("hide");
         },
         rein_aktion: function (AJAX) {

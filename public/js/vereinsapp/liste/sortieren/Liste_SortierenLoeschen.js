@@ -1,6 +1,6 @@
-function Liste_SortierenLoeschen($btn_loeschen, liste) {
-    const $sortieren = $btn_loeschen.parents(".sortieren").first();
-    const $element = $btn_loeschen.parents(".sortieren_element").first();
+function Liste_SortierenLoeschen($btn, liste) {
+    const $sortieren = $btn.parents(".sortieren").first();
+    const $element = $btn.parents(".sortieren_element").first();
 
     $element.remove();
 

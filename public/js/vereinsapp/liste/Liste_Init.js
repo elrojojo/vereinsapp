@@ -1,4 +1,12 @@
-$(document).ready(function () {
+function Liste_Init() {
+    Liste_SortierenInit();
+
+    Liste_FilternInit();
+
+    Mitglieder_Init();
+
+    Termine_Init();
+
     $.each(G.LISTEN, function (liste) {
         G.LISTEN[liste].$blanko_element = new Object();
         $('.liste[data-liste="' + liste + '"]')
@@ -9,8 +17,10 @@ $(document).ready(function () {
             });
         $('.liste[data-liste="' + liste + '"]').empty();
 
-        Schnittstelle_EventLocalstorageUpdVariable(liste);
+        // Schnittstelle_EventLocalstorageUpdVariable(liste);
     });
+
+    Liste_FormularInit();
 
     // FORMULAR (MODAL) ÖFFNEN
     $(".formular").on("show.bs.modal", function (event) {
@@ -62,4 +72,4 @@ $(document).ready(function () {
     $.each(G.LISTEN, function (liste) {
         Schnittstelle_EventSqlUpdLocalstorage(liste, true); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable
     });
-});
+}

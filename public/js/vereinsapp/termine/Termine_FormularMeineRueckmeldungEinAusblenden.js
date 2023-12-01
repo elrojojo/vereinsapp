@@ -1,8 +1,6 @@
-function Termine_FormularMeineRueckmeldungEinAusblenden($rueckmeldung, $element) {
-    const element_id = Number($element.attr("data-element_id"));
-    console.log(element_id, G.LISTEN.termine.tabelle, G.LISTEN.termine.tabelle[element_id]);
-
+function Termine_FormularMeineRueckmeldungEinAusblenden($rueckmeldung) {
     const $rueckmeldung_nicht_eingeladen = $rueckmeldung.siblings(".rueckmeldung_nicht_eingeladen").closest();
+    const element_id = Number($rueckmeldung.parents(".termin").closest().attr("data-element_id"));
 
     if (G.LISTEN.termine.tabelle[element_id].ich_eingeladen) {
         $rueckmeldung.removeClass("invisible");

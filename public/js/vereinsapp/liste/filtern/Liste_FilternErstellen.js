@@ -1,5 +1,5 @@
-function Liste_FilternErstellen($btn_erstellen, liste) {
-    const $formular = $btn_erstellen.parents(".filtern_definition").first();
+function Liste_FilternErstellen($btn, liste) {
+    const $formular = $btn.parents(".filtern_definition").first();
 
     const filtern = new Array();
     $formular.find(".filtern_wert").each(function () {

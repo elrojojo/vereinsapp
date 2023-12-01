@@ -1,7 +1,7 @@
-function Liste_FilternLoeschen($btn_loeschen, liste) {
-    const $filtern = $btn_loeschen.parents(".filtern").first();
-    const $element = $btn_loeschen.parents(".filtern_element").first();
-    const $sammlung = $btn_loeschen.parents(".filtern_sammlung").first();
+function Liste_FilternLoeschen($btn, liste) {
+    const $filtern = $btn.parents(".filtern").first();
+    const $element = $btn.parents(".filtern_element").first();
+    const $sammlung = $btn.parents(".filtern_sammlung").first();
 
     let $knoten;
     if ($element.exists()) {

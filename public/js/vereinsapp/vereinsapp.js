@@ -8,9 +8,15 @@ const G = {
     CSRF: {
         [CSRF_NAME]: ERSTER_CSRF_HASH,
     },
+
+    DEBUG_COUNTER: 0,
 };
 
 $(document).ready(function () {
+    Schnittstelle_DomWartenInit();
+
+    Liste_Init();
+
     //POPOVER AKTIVIEREN
     // $('[data-toggle="popover"]').popover();
 

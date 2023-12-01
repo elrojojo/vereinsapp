@@ -1,10 +1,8 @@
 const SORTIEREN = new Object();
 
-$(document).ready(function () {
-    {
-        SORTIEREN.$blanko_sortieren_element = $(".sortieren").find(".blanko").first();
-        $(".sortieren").empty();
-    }
+function Liste_SortierenInit() {
+    SORTIEREN.$blanko_sortieren_element = $(".sortieren").find(".blanko").first();
+    $(".sortieren").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_sortieren_Modal").on("show.bs.modal", function (event) {
@@ -27,4 +25,4 @@ $(document).ready(function () {
         const liste = $(this).parents("[data-liste]").first().attr("data-liste");
         Liste_SortierenLoeschen($(this), liste);
     });
-});
+}

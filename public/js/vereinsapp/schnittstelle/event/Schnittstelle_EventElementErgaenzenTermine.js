@@ -1,6 +1,5 @@
 function Schnittstelle_EventElementErgaenzenTermine(termin) {
     if ("rueckmeldungen" in G.LISTEN) {
-        Schnittstelle_EventLocalstorageUpdVariable("rueckmeldungen");
         termin["ich_rueckmeldung_id"] = null;
         $.each(G.LISTEN.rueckmeldungen.tabelle, function () {
             const rueckmeldung = this;

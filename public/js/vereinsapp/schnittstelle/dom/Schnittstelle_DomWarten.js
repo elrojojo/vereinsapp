@@ -1,7 +1,7 @@
 const STATUS_SPINNER_CLASS = "spinner-border spinner-border-sm";
 const STATUS_SPINNER_HTML = '<span class="' + STATUS_SPINNER_CLASS + '" role="status"><span class="visually-hidden">Loading...</span></span>';
 
-$(document).ready(function () {
+function Schnittstelle_DomWartenInit() {
     const STATUS_STANDARD_HTML = $("#status").html();
 
     $(document).ajaxStart(function () {
@@ -25,7 +25,7 @@ $(document).ready(function () {
     $(window).on("beforeunload", function () {
         $("#status").html(STATUS_SPINNER_HTML);
     });
-});
+}
 
 function Schnittstelle_BtnWartenStart($btn) {
     const beschriftung = $btn.html();

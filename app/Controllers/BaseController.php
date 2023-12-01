@@ -100,7 +100,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementErstellen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementLoeschen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementAktualisieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Formular.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_FormularInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_WertFormatiertZurueck.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_CheckAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
@@ -154,17 +154,19 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionsAktualisieren.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAktualisieren.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAendern.js'), );
-            if( in_array( 'termine', AKTIVE_CONTROLLER ) ) {
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MeineRueckmeldungAktualisieren.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_FormularMeineRueckmeldungEinAusblenden.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_FormularPersonenkreisBeschraenkenOeffnen.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAktualisieren.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenErstellen.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAendern.js'), );
-                $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenLoeschen.js'), );
-            }
-            if( in_array( 'notenbank', AKTIVE_CONTROLLER ) ) $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
+
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MeineRueckmeldungAktualisieren.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_FormularMeineRueckmeldungEinAusblenden.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_FormularPersonenkreisBeschraenkenOeffnen.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAktualisieren.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenErstellen.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAendern.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenLoeschen.js'), );
+            
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
+        } else {
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/not_logged_in.js'), );
         }
         defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', $head_script );
 
