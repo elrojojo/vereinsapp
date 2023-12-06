@@ -1,36 +1,44 @@
 function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
-    if ("abhaengig_von" in G.LISTEN[liste])
-        $.each(G.LISTEN[liste].abhaengig_von, function (prio, liste) {
-            Schnittstelle_EventLocalstorageUpdVariable(liste, []);
+    if (typeof liste === "undefined")
+        $.each(G.LISTEN, function (liste) {
+            Schnittstelle_EventLocalstorageUpdVariable(liste);
         });
+    else {
+        if ("abhaengig_von" in G.LISTEN[liste])
+            $.each(G.LISTEN[liste].abhaengig_von, function (prio, liste) {
+                Schnittstelle_EventLocalstorageUpdVariable(liste, []);
+            });
 
-    // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
-    const tabelle = new Array();
-    $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
-        const element_id = this["id"];
-        tabelle[element_id] = this;
+        // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
+        const tabelle = new Array();
+        $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
+            const element_id = this["id"];
+            tabelle[element_id] = this;
 
-        $.each(tabelle[element_id], function (eigenschaft, wert) {
-            tabelle[element_id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+            $.each(tabelle[element_id], function (eigenschaft, wert) {
+                tabelle[element_id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+            });
+
+            if ("element_ergaenzen_aktion" in G.LISTEN[liste] && typeof G.LISTEN[liste].element_ergaenzen_aktion === "function")
+                G.LISTEN[liste].element_ergaenzen_aktion(tabelle[element_id]);
         });
+        G.LISTEN[liste].tabelle = tabelle;
 
-        if ("element_ergaenzen_aktion" in G.LISTEN[liste] && typeof G.LISTEN[liste].element_ergaenzen_aktion === "function")
-            G.LISTEN[liste].element_ergaenzen_aktion(tabelle[element_id]);
-    });
-    G.LISTEN[liste].tabelle = tabelle;
+        // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
+        G.LISTEN[liste].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_sortieren", true);
 
-    // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-    G.LISTEN[liste].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_sortieren", true);
+        // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
+        G.LISTEN[liste].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_filtern", true);
+        function LOC_upd_VAR_filtern(filtern, liste) {
+            $.each(filtern, function (index, knoten) {
+                if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
+                else if ("operator" in knoten) knoten.wert = Schnittstelle_VariableWertBereinigtZurueck(knoten.wert);
+            });
+        }
+        LOC_upd_VAR_filtern(G.LISTEN[liste].filtern, liste);
 
-    // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
-    G.LISTEN[liste].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_filtern", true);
-    function LOC_upd_VAR_filtern(filtern, liste) {
-        $.each(filtern, function (index, knoten) {
-            if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
-            else if ("operator" in knoten) knoten.wert = Schnittstelle_VariableWertBereinigtZurueck(knoten.wert);
-        });
+        // Wenn andere Listen von dieser Liste abhängig sind, dann muss die Variable für diese anderen Listen auch aktualisiert werden
+
+        Schnittstelle_NaechsteAktion(liste, naechste_aktionen);
     }
-    LOC_upd_VAR_filtern(G.LISTEN[liste].filtern, liste);
-
-    Schnittstelle_NaechsteAktion(liste, naechste_aktionen);
 }

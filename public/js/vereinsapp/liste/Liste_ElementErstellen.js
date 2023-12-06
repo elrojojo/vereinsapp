@@ -70,19 +70,21 @@ function Liste_ElementErstellen($btn, liste) {
         },
         rein_validation_pos_aktion: function (AJAX) {
             if (typeof AJAX.data.id === "undefined") {
-                AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length;
+                AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length + 1;
                 G.LISTEN[AJAX.liste].tabelle[AJAX.data.id] = new Object();
             }
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                     G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
-                // if (eigenschaft == "start") {
-                //     eintrag = G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft];
-                //     console.log(wert, typeof eintrag, eintrag);
-                //     alert("stop");
-                // }
             });
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
+            // Schnittstelle_EventVariableUpdLocalstorage(undefined, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste);
+            Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste);
+            $.each(G.LISTEN, function (liste_) {
+                if ("abhaengig_von" in G.LISTEN[liste_] && G.LISTEN[liste_].abhaengig_von.includes(AJAX.liste))
+                    Schnittstelle_EventLocalstorageUpdVariable(liste_);
+            });
+            Schnittstelle_EventVariableUpdDom();
             AJAX.$btn.parents(".formular").first().modal("hide");
         },
         rein_aktion: function (AJAX) {

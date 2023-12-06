@@ -180,8 +180,9 @@ class Termine extends BaseController {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $termin ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
             }
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -218,9 +219,9 @@ class Termine extends BaseController {
 
             if( !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
             else $termine_Model->save( $termin );
-
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -231,10 +232,9 @@ class Termine extends BaseController {
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else {
-            model(Termin_Model::class)->update( $this->request->getpost()['id'], array( 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'] ) );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else model(Termin_Model::class)->update( $this->request->getpost()['id'], array( 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'] ) );
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -248,6 +248,7 @@ class Termine extends BaseController {
             model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
             $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -262,8 +263,9 @@ class Termine extends BaseController {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $rueckmeldung ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
             }
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -285,8 +287,9 @@ class Termine extends BaseController {
             );
             if( !empty( $this->request->getPost()['mitglied_id'] ) ) $rueckmeldung['mitglied_id'] = $this->request->getPost()['mitglied_id']; else $rueckmeldung['mitglied_id'] = $this->session->user['id'];
             $rueckmeldungen_Model->save( $rueckmeldung );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -305,8 +308,9 @@ class Termine extends BaseController {
             if( array_key_exists( 'bemerkung', $this->request->getPost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung'];
             if( array_key_exists( 'status', $this->request->getPost() ) ) $rueckmeldung['status'] = $this->request->getpost()['status'];
             $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -317,10 +321,9 @@ class Termine extends BaseController {
     //     ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
     //     else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
     //     else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';
-    //     else {
-    //          model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'], true );
-    //          $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-    //     }
+    //     else model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'], true );
+    //     
+    //     $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
     //     echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     // }
     
@@ -335,8 +338,9 @@ class Termine extends BaseController {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $anwesenheit ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
             }
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -356,8 +360,9 @@ class Termine extends BaseController {
             );
             $anwesenheiten_Model->where( $anwesenheit )->delete();
             if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) $anwesenheiten_Model->save( $anwesenheit );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 

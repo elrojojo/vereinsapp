@@ -7,7 +7,7 @@ const G = {
 
     CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
 
-    DEBUG: { aktiv: false, zaehler: 0 },
+    DEBUG: { aktiv: false, zaehler: 0, spot_id: 0 },
 };
 
 $(document).ready(function () {

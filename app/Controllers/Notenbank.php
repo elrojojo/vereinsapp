@@ -104,8 +104,9 @@ class Notenbank extends BaseController {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
             }
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -129,8 +130,9 @@ class Notenbank extends BaseController {
 
             if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else $notenbank_Model->save( $titel );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -140,10 +142,9 @@ class Notenbank extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else {
-            model(Titel_Model::class)->delete( $this->request->getPost()['id'] );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else model(Titel_Model::class)->delete( $this->request->getPost()['id'] );
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 

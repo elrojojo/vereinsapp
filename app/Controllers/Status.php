@@ -12,10 +12,9 @@ class Status extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['html'] = view( 'Status/datenschutz_richtlinie', $this->viewdata );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else $ajax_antwort['html'] = view( 'Status/datenschutz_richtlinie', $this->viewdata );
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 

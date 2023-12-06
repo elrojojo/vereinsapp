@@ -148,8 +148,7 @@ class Mitglieder extends BaseController {
             // 'hash' => 'required|alpha_numeric',
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
+        else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
                 $mitglied->permissions = array();
                 if( auth()->user()->can( 'mitglieder.rechte' ) ) $mitglied->permissions = $mitglied->getPermissions();
                 elseif( $mitglied->id == ICH['id'] ) $mitglied->permissions = $mitglied->getPermissions();
@@ -160,8 +159,8 @@ class Mitglieder extends BaseController {
                 $ajax_antwort['tabelle'][] = $mitglied;
             }
             // if( hash( 'sha256', json_encode( $ajax_antwort['tabelle'], JSON_UNESCAPED_UNICODE ) ) == $this->request->getPost()['hash'] ) TRUE; //$ajax_antwort['tabelle'] = array();
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -210,8 +209,9 @@ class Mitglieder extends BaseController {
                 $mitglieder_Model->save( new Mitglied( $mitglied ) );
                 $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $mitglieder_Model->getInsertID() ) );
             }
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -232,8 +232,9 @@ class Mitglieder extends BaseController {
             if( empty( $this->request->getPost()['id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['id']; 
             $mitglied = $mitglieder_Model->findById( $mitglied_id )->fill($mitglied);
             $mitglieder_Model->save( $mitglied );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -249,8 +250,9 @@ class Mitglieder extends BaseController {
             if( empty( $this->request->getPost()['mitglied_id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['mitglied_id'];
             model(Mitglied_Model::class)->findById( $mitglied_id )->removePermission( $this->request->getPost()['permission_id'] );
             if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $mitglied_id )->addPermission( $this->request->getPost()['permission_id'] );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -261,10 +263,9 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['id'] == $this->session->user['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
-        else {
-            model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], true );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], true );
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -273,14 +274,13 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            foreach( model(Abwesenheit_Model::class)->findAll() as $abwesenheit ) {
+        else foreach( model(Abwesenheit_Model::class)->findAll() as $abwesenheit ) {
                 $abwesenheit = json_decode( json_encode( $abwesenheit ), TRUE );
                 foreach( $abwesenheit as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $abwesenheit[ $eigenschaft ] = (int)$wert;
                 $ajax_antwort['tabelle'][] = $abwesenheit;
             }
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -310,8 +310,9 @@ class Mitglieder extends BaseController {
             // if( !empty( $this->request->getPost()['id'] ) ) $abwesenheit_Model->update( $this->request->getpost()['id'], $abwesenheit );
             // else
                 $abwesenheit_Model->save( $abwesenheit );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -321,10 +322,9 @@ class Mitglieder extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( model(Abwesenheit_Model::class)->find( $this->request->getPost()['id'] )['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else {
-            model(Abwesenheit_Model::class)->delete( $this->request->getPost()['id'], true );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else model(Abwesenheit_Model::class)->delete( $this->request->getPost()['id'], true );
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 

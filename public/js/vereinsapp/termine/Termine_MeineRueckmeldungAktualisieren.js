@@ -6,7 +6,7 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
 
     if (typeof ich_rueckmeldung_id === "undefined") ich_rueckmeldung_id = null;
 
-    if (ich_rueckmeldung_id !== null) $btn_rueckmelden.attr("data-termin_id", ich_rueckmeldung_id).attr("data-aktion", "aendern");
+    if (ich_rueckmeldung_id !== null) $btn_rueckmelden.attr("data-element_id", ich_rueckmeldung_id).attr("data-aktion", "aendern");
     else {
         let data_werte = $btn_rueckmelden.attr("data-werte");
 
@@ -31,7 +31,7 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-0")
                 .text("ZUGESAGT");
 
-            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-termin_id", ich_rueckmeldung_id);
+            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", ich_rueckmeldung_id);
 
             const bemerkung = G.LISTEN.rueckmeldungen.tabelle[ich_rueckmeldung_id].bemerkung;
             if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
@@ -64,7 +64,7 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-0")
                 .text("ABGESAGT");
 
-            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-termin_id", ich_rueckmeldung_id);
+            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", ich_rueckmeldung_id);
 
             const bemerkung = G.LISTEN.rueckmeldungen.tabelle[ich_rueckmeldung_id].bemerkung;
             if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
