@@ -19,6 +19,8 @@ const WOCHENTAGE = <?= json_encode( WOCHENTAGE ) ?>;
 const JANEIN = <?= json_encode( JANEIN ) ?>;
 
 const AJAX_REFRESH_INTERVALL = <?= AJAX_REFRESH_INTERVALL ?>;
+const AJAX_ZUSTAND = Object.freeze({<?php foreach (AJAX_ZUSTAND::cases() as $ajax_zustand) { echo $ajax_zustand->name . ': Symbol("'.$ajax_zustand->name.'"), '; } ?>});
+
 const DATENACHUTZ_RICHTLINIE_DATUM = '<?= DATENACHUTZ_RICHTLINIE_DATUM ?>';
 
 const SYMBOLE = <?= json_encode( SYMBOLE) ?>;
