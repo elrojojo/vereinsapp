@@ -39,7 +39,7 @@ function Liste_CheckAendern($check, liste) {
 
             // Falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
             if (AJAX.data.checked) {
-                AJAX.data.id = G.LISTEN[checkliste].tabelle.length + 1;
+                AJAX.data.id = G.LISTEN[checkliste].tabelle.length;
                 G.LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
                 delete AJAX.data.checked;
                 $.each(AJAX.data, function (eigenschaft, wert) {

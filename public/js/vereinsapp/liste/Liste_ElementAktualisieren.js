@@ -3,9 +3,8 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
-        $eigenschaft.html(
-            Liste_WertFormatiertZurueck(G.LISTEN[liste].tabelle[Number($element.attr("data-element_id"))][eigenschaft], eigenschaft, liste)
-        );
+        const wert = G.LISTEN[liste].tabelle[Number($element.attr("data-element_id"))][eigenschaft];
+        $eigenschaft.html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
     });
 
     // CHECK AKTUALISIEREN

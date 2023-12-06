@@ -5,11 +5,9 @@ const G = {
 
     LISTEN: {},
 
-    CSRF: {
-        [CSRF_NAME]: ERSTER_CSRF_HASH,
-    },
+    CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
 
-    DEBUG_COUNTER: 0,
+    DEBUG: { aktiv: false, zaehler: 0 },
 };
 
 $(document).ready(function () {

@@ -4,9 +4,6 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Schnittstelle_EventVariableUpdDom(liste);
         });
     else {
-        G.DEBUG_COUNTER++;
-        console.log(G.DEBUG_COUNTER, "Schnittstelle_EventLocalstorageUpdVariable", liste);
-
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
             Liste_Aktualisieren($(this), liste);
@@ -57,7 +54,7 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         });
 
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-        $(".rueckmeldung").each(function () {
+        $('.formular[data-formular="rueckmeldung"]').each(function () {
             Termine_FormularMeineRueckmeldungEinAusblenden($(this));
         });
 

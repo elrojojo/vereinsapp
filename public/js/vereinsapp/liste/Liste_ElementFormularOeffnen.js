@@ -45,6 +45,46 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
                 .find(".beschriftung")
                 .html()
         ); // Für element_loeschen (modal)
+    } else if (aktion == "sortieren") {
+        $formular.find(".sortieren, .sortieren_definitionen").attr("data-liste", liste);
+        const $filtern_definition = $formular.find(".sortieren_definitionen");
+        $filtern_definition.find(".sortieren_eigenschaft").empty();
+        $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
+            $(
+                '<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung + "</option>"
+            ).appendTo($filtern_definition.find(".sortieren_eigenschaft"));
+        });
+
+        Schnittstelle_EventVariableUpdDom();
+    } else if (aktion == "filtern") {
+        $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
+
+        $(".filtern_definitionen").empty();
+        $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
+            const typ = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ;
+            const beschriftung = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung;
+            const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
+                .clone()
+                .removeClass("blanko invisible")
+                .addClass("filtern_definition")
+                .attr("data-eigenschaft", eigenschaft);
+            $neue_filtern_definition
+                .find(".accordion-button")
+                .attr("data-bs-target", "#filtern_" + eigenschaft)
+                .text(beschriftung);
+            $neue_filtern_definition.find(".accordion-collapse").attr("id", "filtern_" + eigenschaft);
+            if (typ == "vorgegebene_werte") {
+                $neue_filtern_definition.find(".filtern_wert").empty();
+                $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
+                    $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
+                        $neue_filtern_definition.find(".filtern_wert")
+                    );
+                });
+            }
+            $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
+        });
+
+        Schnittstelle_EventVariableUpdDom();
     }
 
     const $btns = $formular.find('[class^="btn_"]');

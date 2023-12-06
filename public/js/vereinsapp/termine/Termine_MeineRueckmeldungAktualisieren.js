@@ -1,19 +1,19 @@
 function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
     const $btn_rueckmeldung_detaillieren = $btn_rueckmelden.siblings(".btn_rueckmeldung_detaillieren");
-    const element_id = Number($rueckmeldung.parents(".termin").closest().attr("data-element_id"));
+    const termin_id = Number($btn_rueckmelden.closest('.element[data-element="termin"]').attr("data-element_id"));
 
-    let ich_rueckmeldung_id = G.LISTEN.termine.tabelle[element_id].ich_rueckmeldung_id;
+    let ich_rueckmeldung_id = G.LISTEN.termine.tabelle[termin_id].ich_rueckmeldung_id;
 
     if (typeof ich_rueckmeldung_id === "undefined") ich_rueckmeldung_id = null;
 
-    if (ich_rueckmeldung_id !== null) $btn_rueckmelden.attr("data-element_id", ich_rueckmeldung_id).attr("data-aktion", "aendern");
+    if (ich_rueckmeldung_id !== null) $btn_rueckmelden.attr("data-termin_id", ich_rueckmeldung_id).attr("data-aktion", "aendern");
     else {
         let data_werte = $btn_rueckmelden.attr("data-werte");
 
         if (typeof data_werte !== "undefined") data_werte = JSON.parse(data_werte);
         else data_werte = new Object();
 
-        data_werte.termin_id = element_id;
+        data_werte.termin_id = termin_id;
 
         $btn_rueckmelden.attr("data-werte", JSON.stringify(data_werte));
     }
@@ -31,7 +31,7 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-0")
                 .text("ZUGESAGT");
 
-            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", ich_rueckmeldung_id);
+            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-termin_id", ich_rueckmeldung_id);
 
             const bemerkung = G.LISTEN.rueckmeldungen.tabelle[ich_rueckmeldung_id].bemerkung;
             if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
@@ -64,7 +64,7 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-0")
                 .text("ABGESAGT");
 
-            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", ich_rueckmeldung_id);
+            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-termin_id", ich_rueckmeldung_id);
 
             const bemerkung = G.LISTEN.rueckmeldungen.tabelle[ich_rueckmeldung_id].bemerkung;
             if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")

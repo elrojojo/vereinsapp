@@ -70,12 +70,17 @@ function Liste_ElementErstellen($btn, liste) {
         },
         rein_validation_pos_aktion: function (AJAX) {
             if (typeof AJAX.data.id === "undefined") {
-                AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length + 1;
+                AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length;
                 G.LISTEN[AJAX.liste].tabelle[AJAX.data.id] = new Object();
             }
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                     G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+                // if (eigenschaft == "start") {
+                //     eintrag = G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft];
+                //     console.log(wert, typeof eintrag, eintrag);
+                //     alert("stop");
+                // }
             });
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
             AJAX.$btn.parents(".formular").first().modal("hide");

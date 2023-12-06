@@ -91,6 +91,8 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js', );
         $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js'), ); // https://www.npmjs.com/package/js-sha256
         $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js'), ); // https://stackoverflow.com/questions/3034874/sequencing-ajax-requests/3035268
+        $head_script[] = array( 'src' => base_url('js/lib/isObject.js'), ); // https://stackoverflow.com/questions/8511281/check-if-a-value-is-an-object-in-javascript
+        $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js'), ); // abhaengig von isObject
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), );
 

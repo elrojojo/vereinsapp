@@ -1,12 +1,18 @@
-function Termine_FormularMeineRueckmeldungEinAusblenden($rueckmeldung) {
-    const $rueckmeldung_nicht_eingeladen = $rueckmeldung.siblings(".rueckmeldung_nicht_eingeladen").closest();
-    const element_id = Number($rueckmeldung.parents(".termin").closest().attr("data-element_id"));
+function Termine_FormularMeineRueckmeldungEinAusblenden($formular_meine_rueckmeldung) {
+    const $termin = $formular_meine_rueckmeldung.closest('.element[data-element="termin"]');
 
-    if (G.LISTEN.termine.tabelle[element_id].ich_eingeladen) {
-        $rueckmeldung.removeClass("invisible");
-        $rueckmeldung_nicht_eingeladen.addClass("invisible");
-    } else {
-        $rueckmeldung.addClass("invisible");
-        $rueckmeldung_nicht_eingeladen.removeClass("invisible");
+    if ($termin.exists()) {
+        const termin = G.LISTEN.termine.tabelle[Number($termin.attr("data-element_id"))];
+        const $formular_meine_rueckmeldung_nicht_eingeladen = $formular_meine_rueckmeldung
+            .siblings(".formular_meine_rueckmeldung_nicht_eingeladen")
+            .next();
+
+        if (termin.ich_eingeladen) {
+            $formular_meine_rueckmeldung.removeClass("invisible");
+            $formular_meine_rueckmeldung_nicht_eingeladen.addClass("invisible");
+        } else {
+            $formular_meine_rueckmeldung.addClass("invisible");
+            $formular_meine_rueckmeldung_nicht_eingeladen.removeClass("invisible");
+        }
     }
 }
