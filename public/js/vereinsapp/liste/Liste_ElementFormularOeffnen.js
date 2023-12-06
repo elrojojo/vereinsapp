@@ -4,7 +4,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
     let element_id = $btn_oeffnend.attr("data-element_id");
     if (typeof element === "undefined") element = $btn_oeffnend.parents(".element").first().attr("data-element");
     if (typeof element_id === "undefined") element_id = $btn_oeffnend.parents(".element").first().attr("data-element_id");
-    if (typeof liste === "undefined")
+    if (!(liste in G.LISTEN))
         $.each(G.LISTEN, function (liste_each, LISTE_each) {
             if (element == LISTE_each.element) liste = liste_each;
         });

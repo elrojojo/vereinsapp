@@ -6,7 +6,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
     $('input[name="' + CSRF_NAME + '"]').val(G.CSRF[CSRF_NAME]);
 
     // WENN DIE VALIDATION FEHLSCHLÄGT
-    if (typeof AJAX.antwort.validation !== "undefined") {
+    if ("validation" in AJAX.antwort) {
         console.log("FEHLER", AJAX.label, "validation", JSON.stringify(AJAX.antwort.validation));
 
         if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);
@@ -14,7 +14,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
 
     // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
     else {
-        if (typeof AJAX.antwort.info !== "undefined") console.log("ERFOLG", AJAX.label, "info", JSON.stringify(AJAX.antwort.info));
+        if ("info" in AJAX.antwort) console.log("ERFOLG", AJAX.label, "info", JSON.stringify(AJAX.antwort.info));
 
         if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
     }

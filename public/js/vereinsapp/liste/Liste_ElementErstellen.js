@@ -60,7 +60,7 @@ function Liste_ElementErstellen($btn, liste) {
                     const $eigenschaft = $(this);
                     const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
-                    if (typeof AJAX.antwort.validation[eigenschaft] !== "undefined") {
+                    if (eigenschaft in AJAX.antwort.validation) {
                         $eigenschaft.addClass("is-invalid").removeClass("is-valid");
                         $eigenschaft.after('<div class="invalid-tooltip">' + AJAX.antwort.validation[eigenschaft] + "</div>");
                     } else {
@@ -77,14 +77,7 @@ function Liste_ElementErstellen($btn, liste) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                     G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
             });
-            // Schnittstelle_EventVariableUpdLocalstorage(undefined, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste);
-            Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste);
-            $.each(G.LISTEN, function (liste_) {
-                if ("abhaengig_von" in G.LISTEN[liste_] && G.LISTEN[liste_].abhaengig_von.includes(AJAX.liste))
-                    Schnittstelle_EventLocalstorageUpdVariable(liste_);
-            });
-            Schnittstelle_EventVariableUpdDom();
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
             AJAX.$btn.parents(".formular").first().modal("hide");
         },
         rein_aktion: function (AJAX) {

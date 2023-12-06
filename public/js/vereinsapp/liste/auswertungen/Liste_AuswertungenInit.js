@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function Liste_AuswertungenInit() {
     $.each(G.LISTEN, function (liste) {
         G.LISTEN[liste].$blanko_auswertung = new Object();
         $('.auswertungen[data-liste="' + liste + '"]')
@@ -9,4 +9,4 @@ $(document).ready(function () {
             });
         $('.auswertungen[data-liste="' + liste + '"]').empty();
     });
-});
+}

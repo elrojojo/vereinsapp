@@ -3,6 +3,8 @@ function Liste_Init() {
 
     Liste_FilternInit();
 
+    Liste_AuswertungenInit();
+
     Mitglieder_Init();
 
     Termine_Init();
@@ -16,8 +18,6 @@ function Liste_Init() {
                 G.LISTEN[liste].$blanko_element[$blanko_element.parent().attr("id")] = $blanko_element;
             });
         $('.liste[data-liste="' + liste + '"]').empty();
-
-        // Schnittstelle_EventLocalstorageUpdVariable(liste, [Schnittstelle_EventVariableUpdDom]);
     });
 
     Liste_FormularInit();
@@ -68,6 +68,9 @@ function Liste_Init() {
             $("#sortable_speichern").attr("disabled", false);
         },
     });
+
+    Schnittstelle_EventLocalstorageUpdVariable();
+    Schnittstelle_EventVariableUpdDom();
 
     $.each(G.LISTEN, function (liste) {
         Schnittstelle_EventSqlUpdLocalstorage(liste, true, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);

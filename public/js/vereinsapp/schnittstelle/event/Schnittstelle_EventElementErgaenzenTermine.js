@@ -11,7 +11,7 @@ function Schnittstelle_EventElementErgaenzenTermine(termin) {
     }
 
     termin["ich_eingeladen"] = false;
-    if (typeof termin["filtern_mitglieder"] !== "undefined")
+    if ("filtern_mitglieder" in termin)
         termin["filtern_mitglieder"] = Liste_SqlFiltern2FilternZurueck(JSON.parse(termin["filtern_mitglieder"]), "mitglieder");
     else termin["filtern_mitglieder"] = new Array();
     $.each(Liste_TabelleGefiltertZurueck(termin["filtern_mitglieder"], "mitglieder"), function () {

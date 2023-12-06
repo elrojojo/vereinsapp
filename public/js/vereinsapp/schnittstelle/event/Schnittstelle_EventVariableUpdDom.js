@@ -1,9 +1,5 @@
 function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
-    if (typeof liste === "undefined")
-        $.each(G.LISTEN, function (liste) {
-            Schnittstelle_EventVariableUpdDom(liste);
-        });
-    else {
+    Schnittstelle_EventDurchfuehren(liste, naechste_aktionen, function (liste) {
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
             Liste_Aktualisieren($(this), liste);
@@ -62,12 +58,5 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         $(".zusagen, .absagen").each(function () {
             Termine_MeineRueckmeldungAktualisieren($(this));
         });
-
-        // Wenn andere Listen von dieser Liste abhängig sind, dann muss der DOM für diese anderen Listen auch aktualisiert werden
-        // $.each(G.LISTEN, function (liste_) {
-        //     if ("abhaengig_von" in G.LISTEN[liste_] && G.LISTEN[liste_].abhaengig_von.includes(liste)) Schnittstelle_EventVariableUpdDom(liste_);
-        // });
-
-        Schnittstelle_NaechsteAktion(liste, naechste_aktionen);
-    }
+    });
 }
