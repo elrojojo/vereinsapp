@@ -3,8 +3,6 @@ function Liste_Init() {
 
     Liste_FilternInit();
 
-    Liste_AuswertungenInit();
-
     Mitglieder_Init();
 
     Termine_Init();
@@ -19,6 +17,8 @@ function Liste_Init() {
             });
         $('.liste[data-liste="' + liste + '"]').empty();
     });
+
+    Liste_AuswertungenInit();
 
     Liste_FormularInit();
 
