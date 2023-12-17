@@ -71,8 +71,9 @@ function Liste_Init() {
 
     Schnittstelle_EventLocalstorageUpdVariable();
     Schnittstelle_EventVariableUpdDom();
-
-    $.each(G.LISTEN, function (liste) {
-        Schnittstelle_EventSqlUpdLocalstorage(liste, true, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-    });
+    if (Object.keys(G.LISTEN).length > 0)
+        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(G.LISTEN), true, [
+            Schnittstelle_EventLocalstorageUpdVariable,
+            Schnittstelle_EventVariableUpdDom,
+        ]);
 }

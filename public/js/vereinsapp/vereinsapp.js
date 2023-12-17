@@ -26,6 +26,7 @@ $(document).ready(function () {
             ajax_id: neue_ajax_id,
             label: "datenschutz_richtlinie",
             url: "status/ajax_datenschutz_richtlinie",
+            warten_auf: neue_ajax_id,
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals_anzeigen_liste").append(AJAX.antwort.html);
                 $("#datenschutz_richtlinie_modal").modal("show");

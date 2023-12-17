@@ -21,6 +21,7 @@ function Termine_PersonenkreisBeschraenkenAendern($btn, liste) {
         data: AJAX_DATA,
         liste: liste,
         $btn: $btn,
+        warten_auf: neue_ajax_id,
         raus_aktion: function (AJAX) {
             Schnittstelle_BtnDanebenWartenStart(AJAX.$btn);
         },

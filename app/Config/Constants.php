@@ -240,8 +240,10 @@ enum AJAX_ZUSTAND
 {
     case VORBEREITET;
     case RAUS;
+    case WARTEND;
     case REIN_FEHLER;
     case REIN_ERFOLG;
+    case FERTIG;
 }
 
 /*
