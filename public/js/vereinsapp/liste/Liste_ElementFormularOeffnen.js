@@ -47,12 +47,12 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
         ); // Für element_loeschen (modal)
     } else if (aktion == "sortieren") {
         $formular.find(".sortieren, .sortieren_definitionen").attr("data-liste", liste);
-        const $filtern_definition = $formular.find(".sortieren_definitionen");
-        $filtern_definition.find(".sortieren_eigenschaft").empty();
+        const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
+        $sortieren_definitionen.find(".sortieren_eigenschaft").empty();
         $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
             $(
                 '<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung + "</option>"
-            ).appendTo($filtern_definition.find(".sortieren_eigenschaft"));
+            ).appendTo($sortieren_definitionen.find(".sortieren_eigenschaft"));
         });
 
         Schnittstelle_EventVariableUpdDom();

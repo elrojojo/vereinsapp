@@ -3,7 +3,16 @@ function Liste_Aktualisieren($liste, liste) {
     let filtern = $liste.attr("data-filtern");
     if (typeof filtern !== "undefined") filtern = Liste_PhpFiltern2FilternZurueck(JSON.parse(filtern), liste);
     else filtern = new Array();
-    if (G.LISTEN[liste].filtern.length >= 1) filtern = [{ verknuepfung: "&&", filtern: filtern.concat(G.LISTEN[liste].filtern) }];
+    const filtern_LocalStorage = G.LISTEN[liste].filtern;
+    if (filtern_LocalStorage.length > 0) {
+        if (liste == "termine" && G.LISTEN.termine.tabelle.length > 1 && "start" in G.LISTEN.termine.tabelle[1]) {
+            const start_position = Liste_FilternEigenschaftPositionZurueck(filtern, "start");
+            if (start_position.length > 1 && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
+                filtern = Liste_FilternPositionGeloeschtZurueck(filtern, start_position);
+        }
+        if (filtern.length == 0) filtern = filtern_LocalStorage;
+        else filtern = [{ verknuepfung: "&&", filtern: filtern.concat(filtern_LocalStorage) }];
+    }
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern, liste);
 
     // TABELLE SORTIEREN
