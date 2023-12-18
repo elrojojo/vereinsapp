@@ -4,13 +4,11 @@ function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
 
     if ("tabelle" in G.LISTEN.termine) {
         let ich_rueckmeldung_id = G.LISTEN.termine.tabelle[termin_id].ich_rueckmeldung_id;
-
         if (typeof ich_rueckmeldung_id === "undefined") ich_rueckmeldung_id = null;
 
         if (ich_rueckmeldung_id !== null) $btn_rueckmelden.attr("data-element_id", ich_rueckmeldung_id).attr("data-aktion", "aendern");
         else {
             let data_werte = $btn_rueckmelden.attr("data-werte");
-
             if (typeof data_werte !== "undefined") data_werte = JSON.parse(data_werte);
             else data_werte = new Object();
 

@@ -418,7 +418,8 @@ $eigenschaften['termine']['termine'] = array(
   'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', 'standard' => '', ),
 
   'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine Rückmeldung-ID', 'typ' => 'zahl', 'standard' => '', ),  // JAVA
-  'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen.', 'typ' => 'zahl', 'standard' => '', ),  // JAVA
+  'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte', 'standard' => '', ),  // JAVA
+  'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen.', 'typ' => 'vorgegebene_werte', 'standard' => '', ),  // JAVA
 );
 
 $eigenschaften['termine']['rueckmeldungen'] = array(
@@ -444,6 +445,7 @@ $sortierbare_eigenschaften['termine'] = array(
 $filterbare_eigenschaften['termine'] = array(  
   'start',
   'kategorie',
+  'ich_rueckgemeldet',
 );
 
 $vorgegebene_werte['termine'] = array(
@@ -453,6 +455,7 @@ $vorgegebene_werte['termine'] = array(
     'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'filtern_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
     //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'filtern_mitglieder_standard' => array( 'vorstandschaft' => array( 0, ), ), ),
   ),
+  'ich_rueckgemeldet' => JANEIN,
 );
 
 // defined('TERMINE_RUECKMELDUNG_FRIST') OR define( 'TERMINE_RUECKMELDUNG_FRIST', 0 );

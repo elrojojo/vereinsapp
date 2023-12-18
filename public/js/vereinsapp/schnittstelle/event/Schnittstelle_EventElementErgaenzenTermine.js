@@ -1,6 +1,7 @@
 function Schnittstelle_EventElementErgaenzenTermine(termin) {
     if ("rueckmeldungen" in G.LISTEN) {
         termin["ich_rueckmeldung_id"] = null;
+        termin["ich_rueckgemeldet"] = false;
         $.each(G.LISTEN.rueckmeldungen.tabelle, function () {
             const rueckmeldung = this;
             if ("id" in rueckmeldung) {
@@ -8,6 +9,7 @@ function Schnittstelle_EventElementErgaenzenTermine(termin) {
                     termin["ich_rueckmeldung_id"] = rueckmeldung["id"];
             }
         });
+        if (termin["ich_rueckmeldung_id"] != null) termin["ich_rueckgemeldet"] = true;
     }
 
     termin["ich_eingeladen"] = false;

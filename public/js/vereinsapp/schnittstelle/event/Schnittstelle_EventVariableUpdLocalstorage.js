@@ -11,6 +11,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
                 if ("geburtstag" in element) delete element["geburtstag"];
                 if ("abwesend" in element) delete element["abwesend"];
                 if ("ich_rueckmeldung_id" in element) delete element["ich_rueckmeldung_id"];
+                if ("ich_rueckgemeldet" in element) delete element["ich_rueckgemeldet"];
                 if ("ich_eingeladen" in element) delete element["ich_eingeladen"];
                 if ("filtern_mitglieder" in element) element["filtern_mitglieder"] = JSON.stringify(element["filtern_mitglieder"]);
                 $.each(element, function (eigenschaft, wert) {

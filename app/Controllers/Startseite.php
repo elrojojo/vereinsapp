@@ -65,7 +65,7 @@ class Startseite extends BaseController {
                 'verknuepfung' => '&&',
                 'filtern' => array(
                     array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
-                    array( 'operator' => '==', 'eigenschaft' => 'ich_rueckmeldung_id', 'wert' => null ),
+                    array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
                 ),
             ), ),
