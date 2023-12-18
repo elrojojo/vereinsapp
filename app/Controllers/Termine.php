@@ -126,12 +126,6 @@ class Termine extends BaseController {
             //     'element_id' => $element_id,
             //     'beschriftung' => 'Termin löschen',
             // );
-            $this->viewdata['werkzeugkasten']['personenkreis_beschraenken'] = array(
-                'modal_id' => '#termin_personenkreis_beschraenken_Modal',
-                // 'element' => 'termin',
-                'element_id' => $element_id,
-                'beschriftung' => 'Personenkreis beschränken',
-            );
         }
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
@@ -220,19 +214,6 @@ class Termine extends BaseController {
             if( !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
             else $termine_Model->save( $termin );
         }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    public function ajax_termin_personenkreis_beschraenken() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Termin_Model::class)->update( $this->request->getpost()['id'], array( 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'] ) );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

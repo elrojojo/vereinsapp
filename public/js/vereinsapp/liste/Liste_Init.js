@@ -5,8 +5,6 @@ function Liste_Init() {
 
     Mitglieder_Init();
 
-    Termine_Init();
-
     $.each(G.LISTEN, function (liste) {
         G.LISTEN[liste].$blanko_element = new Object();
         $('.liste[data-liste="' + liste + '"]')

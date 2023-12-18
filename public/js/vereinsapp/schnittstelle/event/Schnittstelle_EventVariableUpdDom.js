@@ -48,11 +48,6 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Mitglieder_PermissionAktualisieren($(this), "mitglieder");
         });
 
-        // PERSONENKREIS BESCHRÄNKEN AKTUALISIEREN
-        $(".personenkreis_beschraenken").each(function () {
-            Termine_PersonenkreisBeschraenkenAktualisieren($(this), "termine");
-        });
-
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
         $('.formular[data-formular="rueckmeldung"]').each(function () {
             Termine_FormularMeineRueckmeldungEinAusblenden($(this));

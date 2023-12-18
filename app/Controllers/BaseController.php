@@ -165,11 +165,6 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MeineRueckmeldungAktualisieren.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_FormularMeineRueckmeldungEinAusblenden.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_FormularPersonenkreisBeschraenkenOeffnen.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAktualisieren.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenErstellen.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenAendern.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/personenkreis_beschraenken/Termine_PersonenkreisBeschraenkenLoeschen.js'), );
             
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
         } else {

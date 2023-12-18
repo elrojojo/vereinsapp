@@ -74,7 +74,6 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_termin_erstellen',                  'Termine::ajax_termin_erstellen');
     $routes->post('ajax_termin_aendern',                    'Termine::ajax_termin_erstellen');
     $routes->post('ajax_termin_duplizieren',                'Termine::ajax_termin_erstellen');
-    $routes->post('ajax_termin_personenkreis_beschraenken', 'Termine::ajax_termin_personenkreis_beschraenken');
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
 
     $routes->post('ajax_rueckmeldungen',                    'Termine::ajax_rueckmeldungen');

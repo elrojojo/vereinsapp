@@ -164,7 +164,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   // 'email' => array( 'bootstrap' => 'envelope' ),
 
   'Anwesenheiten_pruefen' => array( 'bootstrap' => 'person-check' ),
-  'personenkreis_beschraenken' => array( 'bootstrap' => 'person-lock' ),
+  // 'personenkreis_beschraenken' => array( 'bootstrap' => 'person-lock' ),
 
   'abwesend' => array( 'html' => '&#9992' ),
   'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
