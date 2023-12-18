@@ -41,34 +41,31 @@ class Mitglieder extends BaseController {
         foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_aktiven']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten']['loeschen'] = array(
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'farbe' => 'danger',
             );
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten']['duplizieren'] = array(
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['duplizieren'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
             );
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten']['aendern'] = array(
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
             );
 
-            $this->viewdata['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
-                'element' => 'mitglied',
                 'beschriftung' => 'Mitglied erstellen',
             ); 
         }
 
-        $this->viewdata['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
-            'liste' => 'mitglieder',
-            'beschriftung' => 'Mitglieder sortieren',
+        $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['filtern'] = array(
+            'modal_id' => '#liste_filtern_Modal',
+            'beschriftung' => 'Mitglieder filtern',
         );
 
-        $this->viewdata['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
-            'liste' => 'mitglieder',
-            'beschriftung' => 'Mitglieder filtern',
+        $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['sortieren'] = array(
+            'modal_id' => '#liste_sortieren_Modal',
+            'beschriftung' => 'Mitglieder sortieren',
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

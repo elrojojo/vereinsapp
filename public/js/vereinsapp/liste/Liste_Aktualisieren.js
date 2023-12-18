@@ -45,11 +45,11 @@ function Liste_Aktualisieren($liste, liste) {
 
             // Element hat einen Werkzeugkasten
             $neues_element
-                .find('[data-bs-target="#werkzeugkasten_"]')
-                .attr("data-bs-target", "#werkzeugkasten_" + G.LISTEN[liste].element + "_" + element_id);
+                .find('[data-bs-target="#werkzeugkasten_element_"]')
+                .attr("data-bs-target", "#werkzeugkasten_element_" + G.LISTEN[liste].element + "_" + element_id);
             $neues_element
-                .find("#werkzeugkasten_")
-                .attr("id", "werkzeugkasten_" + G.LISTEN[liste].element + "_" + element_id)
+                .find("#werkzeugkasten_element_")
+                .attr("id", "werkzeugkasten_element_" + G.LISTEN[liste].element + "_" + element_id)
                 .attr("data-bs-parent", '.liste[data-liste="' + liste + '"]');
 
             // Element hat einen Link

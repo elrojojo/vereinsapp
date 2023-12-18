@@ -42,40 +42,31 @@ class Notenbank extends BaseController {
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['loeschen'] = array(
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'farbe' => 'danger',
             );
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['duplizieren'] = array(
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['duplizieren'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
             );
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['aendern'] = array(
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['aendern'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
             );
 
-            $this->viewdata['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
-                'element' => 'titel',
                 'beschriftung' => 'Titel erstellen',
             );
         }
 
-        $this->viewdata['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'liste' => 'notenbank',
             'beschriftung' => 'Notenbank filtern',
         ); 
 
-        $this->viewdata['werkzeugkasten']['sortieren'] = array(
+        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'liste' => 'notenbank',
             'beschriftung' => 'Notenbank sortieren',
-        ); 
-
-        $this->viewdata['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
-            'liste' => 'notenbank',
-            'beschriftung' => 'Notenbank filtern',
         ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

@@ -1,16 +1,22 @@
 G.LISTEN.rueckmeldungen = {
+    $blanko_element: new Object(),
+    instanz: new Object(),
     controller: "termine",
     element: "rueckmeldung",
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
 G.LISTEN.anwesenheiten = {
+    $blanko_element: new Object(),
+    instanz: new Object(),
     controller: "termine",
     element: "anwesenheit",
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
 G.LISTEN.termine = {
+    $blanko_element: new Object(),
+    instanz: new Object(),
     controller: "termine",
     element: "termin",
     verlinkte_listen: [],

@@ -39,15 +39,13 @@ class Einstellungen extends BaseController {
             'gegen_element_id' => ICH['id'],
         );
 
-        $this->viewdata['werkzeugkasten']['sortieren'] = array(
+        $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'liste' => 'abwesenheiten',
             'beschriftung' => 'Meine Abwesenheiten sortieren',
         );
 
-        $this->viewdata['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'liste' => 'abwesenheiten',
             'beschriftung' => 'Meine Abwesenheiten filtern',
         );
 

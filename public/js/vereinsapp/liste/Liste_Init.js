@@ -6,13 +6,11 @@ function Liste_Init() {
     Mitglieder_Init();
 
     $.each(G.LISTEN, function (liste) {
-        G.LISTEN[liste].$blanko_element = new Object();
-        $('.liste[data-liste="' + liste + '"]')
-            .find(".blanko")
-            .each(function () {
-                const $blanko_element = $(this);
-                G.LISTEN[liste].$blanko_element[$blanko_element.parent().attr("id")] = $blanko_element;
-            });
+        $('.liste[data-liste="' + liste + '"]').each(function () {
+            $liste = $(this);
+            G.LISTEN[liste].$blanko_element[$liste.attr("id")] = $liste.find(".blanko").first();
+            G.LISTEN[liste].instanz[$liste.attr("id")] = new Object();
+        });
         $('.liste[data-liste="' + liste + '"]').empty();
     });
 

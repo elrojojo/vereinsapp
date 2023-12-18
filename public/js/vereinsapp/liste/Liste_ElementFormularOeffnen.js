@@ -1,18 +1,17 @@
 function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
     const aktion = $btn_oeffnend.attr("data-aktion");
-    let element = $btn_oeffnend.attr("data-element");
+    const $werkzeugkasten = $btn_oeffnend.closest(".werkzeugkasten");
+    const liste_id = $werkzeugkasten.attr("data-liste_id");
+    const element = G.LISTEN[liste].element;
+    // if (typeof element === "undefined") element = $btn_oeffnend.closest(".element").attr("data-element");
     let element_id = $btn_oeffnend.attr("data-element_id");
-    if (typeof element === "undefined") element = $btn_oeffnend.parents(".element").first().attr("data-element");
-    if (typeof element_id === "undefined") element_id = $btn_oeffnend.parents(".element").first().attr("data-element_id");
-    if (!(liste in G.LISTEN))
-        $.each(G.LISTEN, function (liste_each, LISTE_each) {
-            if (element == LISTE_each.element) liste = liste_each;
-        });
+    if (typeof element_id === "undefined") element_id = $btn_oeffnend.closest(".element").attr("data-element_id");
+    // if (!(liste in G.LISTEN))
+    //     $.each(G.LISTEN, function (liste_each, LISTE_each) {
+    //         if (element == LISTE_each.element) liste = liste_each;
+    //     });
 
-    let titel_beschriftung;
-    if (typeof element !== "undefined") titel_beschriftung = element;
-    else titel_beschriftung = liste;
-    $formular.find(".modal-title").text(bezeichnung_kapitalisieren(unix2umlaute(titel_beschriftung)) + " " + unix2umlaute(aktion));
+    $formular.find(".modal-title").text(bezeichnung_kapitalisieren(unix2umlaute(element)) + " " + unix2umlaute(aktion));
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
 
@@ -44,7 +43,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
             $('.element[data-element="' + element + '"][data-element_id="' + element_id + '"]')
                 .find(".beschriftung")
                 .html()
-        ); // Für element_loeschen (modal)
+        );
     } else if (aktion == "sortieren") {
         $formular.find(".sortieren, .sortieren_definitionen").attr("data-liste", liste);
         const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
