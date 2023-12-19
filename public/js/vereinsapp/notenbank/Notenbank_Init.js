@@ -1,6 +1,4 @@
 G.LISTEN.notenbank = {
-    $blanko_element: new Object(),
-    instanz: new Object(),
     controller: "notenbank",
     element: "titel",
     verlinkte_listen: [],

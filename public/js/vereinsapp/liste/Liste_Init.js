@@ -3,17 +3,17 @@ function Liste_Init() {
 
     Liste_FilternInit();
 
-    Mitglieder_Init();
-
     $.each(G.LISTEN, function (liste) {
+        G.LISTEN[liste].instanz = new Object();
         $('.liste[data-liste="' + liste + '"]').each(function () {
             const $liste = $(this);
             const instanz = $liste.attr("id");
-            G.LISTEN[liste].$blanko_element[instanz] = $liste.find(".blanko").first();
-            G.LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array() };
+            G.LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
         });
         $('.liste[data-liste="' + liste + '"]').empty();
     });
+
+    Mitglieder_Init();
 
     Liste_AuswertungenInit();
 

@@ -40,7 +40,7 @@ function Liste_Aktualisieren($liste) {
         // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
             // Blanko-Element wird geklont
-            const $neues_element = G.LISTEN[liste].$blanko_element[$liste.attr("id")]
+            const $neues_element = G.LISTEN[liste].instanz[instanz].$blanko_element
                 .clone()
                 .removeClass("blanko invisible")
                 .addClass("element")
@@ -106,6 +106,6 @@ function Liste_Aktualisieren($liste) {
     if ($moeglicher_spacer.hasClass("spacer")) $moeglicher_spacer.remove();
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if ($liste.children().length == 0) $liste.prev('.ueberschrift[data-instanz="' + $liste.attr("id") + '"]').addClass("invisible");
-    else $liste.prev('.ueberschrift[data-instanz="' + $liste.attr("id") + '"]').removeClass("invisible");
+    if ($liste.children().length == 0) $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').addClass("invisible");
+    else $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').removeClass("invisible");
 }

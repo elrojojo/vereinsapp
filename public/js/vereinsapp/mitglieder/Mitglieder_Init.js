@@ -1,14 +1,10 @@
 G.LISTEN.abwesenheiten = {
-    $blanko_element: new Object(),
-    instanz: new Object(),
     controller: "mitglieder",
     element: "abwesenheit",
     verlinkte_listen: ["mitglieder"],
 };
 
 G.LISTEN.mitglieder = {
-    $blanko_element: new Object(),
-    instanz: new Object(),
     controller: "mitglieder",
     element: "mitglied",
     verlinkte_listen: [],
@@ -25,3 +21,10 @@ function Mitglieder_Init() {
         Mitglieder_PermissionAendern($(this), "mitglieder");
     });
 }
+
+/* TODO
+Permissions:
+    blanko in instanz eingliedern?
+    als Liste behandeln
+
+*/

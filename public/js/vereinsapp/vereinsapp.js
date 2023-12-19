@@ -125,6 +125,5 @@ warten_auf: neue_ajax_id, automatisch befüllen mit ajax_id wenn typeof warten_a
 Richtung der Sortierung änderbar machen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 AJAX-Fehler beim Reload beheben
-Blanko in Instanzen eingliedern
 
 */

@@ -1,12 +1,11 @@
 function Liste_AuswertungenInit() {
     $.each(G.LISTEN, function (liste) {
-        G.LISTEN[liste].$blanko_auswertung = new Object();
-        $('.auswertungen[data-liste="' + liste + '"]')
-            .find(".blanko")
-            .each(function () {
-                const $blanko_auswertung = $(this);
-                G.LISTEN[liste].$blanko_auswertung[$blanko_auswertung.parent().attr("id")] = $blanko_auswertung;
-            });
+        G.LISTEN[liste].auswertungen = new Object();
+        $('.auswertungen[data-liste="' + liste + '"]').each(function () {
+            const $auswertungen = $(this);
+            const auswertungen_instanz = $auswertungen.attr("id");
+            G.LISTEN[liste].auswertungen[auswertungen_instanz] = { $blanko_auswertung: $auswertungen.find(".blanko").first() };
+        });
         $('.auswertungen[data-liste="' + liste + '"]').empty();
     });
 }

@@ -1,4 +1,6 @@
 function Liste_AuswertungenAktualisieren($auswertungen, liste) {
+    const auswertungen_instanz = $auswertungen.attr("id");
+
     // TABELLE FILTERN
     let filtern = $auswertungen.attr("data-filtern");
     if (typeof filtern !== "undefined") filtern = JSON.parse(filtern);
@@ -77,7 +79,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
         const $auswertung = $auswertungen.find('.auswertung[data-auswertung="' + cluster.eigenschaft + '"][data-wert="' + auswertung.wert + '"]');
 
         if (!$auswertung.exists()) {
-            const $neue_auswertung = G.LISTEN[liste].$blanko_auswertung[$auswertungen.attr("id")]
+            const $neue_auswertung = G.LISTEN[liste].auswertungen[auswertungen_instanz].$blanko_auswertung
                 .clone()
                 .removeClass("blanko invisible")
                 .attr("data-auswertung", cluster.eigenschaft)
@@ -101,7 +103,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
     });
 
     if (!$auswertungen.find('.auswertung_summe[data-auswertung="' + cluster.eigenschaft + '"]').exists()) {
-        const $neue_auswertung_summe = G.LISTEN[liste].$blanko_auswertung[$auswertungen.attr("id")]
+        const $neue_auswertung_summe = G.LISTEN[liste].auswertungen[auswertungen_instanz].$blanko_auswertung
             .clone()
             .removeClass("blanko invisible")
             .attr("data-auswertung", cluster.eigenschaft)
