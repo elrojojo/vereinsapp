@@ -21,21 +21,19 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
         });
         G.LISTEN[liste].tabelle = tabelle;
 
-        // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
-            G.LISTEN[liste].instanz[liste_id].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + liste_id + "_sortieren", true);
-        });
+        $.each(G.LISTEN[liste].instanz, function (instanz) {
+            // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
+            G.LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", true);
 
-        // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
-        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
-            instanz.filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_" + liste_id + "_filtern", true);
+            // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
+            G.LISTEN[liste].instanz[instanz].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern", true);
             function LOC_upd_VAR_filtern(filtern, liste) {
                 $.each(filtern, function (index, knoten) {
                     if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
                     else if ("operator" in knoten) knoten.wert = Schnittstelle_VariableWertBereinigtZurueck(knoten.wert);
                 });
             }
-            LOC_upd_VAR_filtern(G.LISTEN[liste].instanz[liste_id].filtern, liste);
+            LOC_upd_VAR_filtern(G.LISTEN[liste].instanz[instanz].filtern, liste);
         });
     }
 }

@@ -21,7 +21,6 @@ function Mitglieder_PermissionsAktualisieren($permissions, liste) {
     });
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if ($permissions.children().length == 0)
-        $permissions.prev('.ueberschrift[data-liste_id="' + $permissions.attr("id") + '"]').addClass("invisible");
-    else $permissions.prev('.ueberschrift[data-liste_id="' + $permissions.attr("id") + '"]').removeClass("invisible");
+    if ($permissions.children().length == 0) $permissions.prev('.ueberschrift[data-instanz="' + $permissions.attr("id") + '"]').addClass("invisible");
+    else $permissions.prev('.ueberschrift[data-instanz="' + $permissions.attr("id") + '"]').removeClass("invisible");
 }

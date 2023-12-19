@@ -120,12 +120,11 @@ function HTML_datetime_local(zeitstempel) {
 }
 
 /* TODO
-parents('...').first() ersetzen durch closest('...');
 Zusatzsymbole in Mitglieder-Liste durch Bootstrap-Icons ersetzen
 warten_auf: neue_ajax_id, automatisch befüllen mit ajax_id wenn typeof warten_auf === "undefined"
 Richtung der Sortierung änderbar machen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 AJAX-Fehler beim Reload beheben
 Blanko in Instanzen eingliedern
-liste_id durch instanz ersetzen
+
 */

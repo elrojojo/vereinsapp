@@ -1,12 +1,12 @@
 function Liste_Aktualisieren($liste) {
     const liste = $liste.attr("data-liste");
-    const liste_id = $liste.attr("id");
+    const instanz = $liste.attr("id");
 
     // TABELLE FILTERN
     let filtern = $liste.attr("data-filtern");
     if (typeof filtern !== "undefined") filtern = Liste_PhpFiltern2FilternZurueck(JSON.parse(filtern), liste);
     else filtern = new Array();
-    const filtern_LocalStorage = G.LISTEN[liste].instanz[liste_id].filtern;
+    const filtern_LocalStorage = G.LISTEN[liste].instanz[instanz].filtern;
     if (filtern_LocalStorage.length > 0) {
         if (liste == "termine" && G.LISTEN.termine.tabelle.length > 1 && "start" in G.LISTEN.termine.tabelle[1]) {
             const start_position = Liste_FilternEigenschaftPositionZurueck(filtern, "start");
@@ -22,7 +22,7 @@ function Liste_Aktualisieren($liste) {
     let sortieren = $liste.attr("data-sortieren");
     if (typeof sortieren !== "undefined") sortieren = JSON.parse(sortieren);
     else sortieren = new Array();
-    const sortieren_LocalStorage = G.LISTEN[liste].instanz[liste_id].sortieren;
+    const sortieren_LocalStorage = G.LISTEN[liste].instanz[instanz].sortieren;
     if (sortieren_LocalStorage.length > 0) sortieren = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren);
 
@@ -106,6 +106,6 @@ function Liste_Aktualisieren($liste) {
     if ($moeglicher_spacer.hasClass("spacer")) $moeglicher_spacer.remove();
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if ($liste.children().length == 0) $liste.prev('.ueberschrift[data-liste_id="' + $liste.attr("id") + '"]').addClass("invisible");
-    else $liste.prev('.ueberschrift[data-liste_id="' + $liste.attr("id") + '"]').removeClass("invisible");
+    if ($liste.children().length == 0) $liste.prev('.ueberschrift[data-instanz="' + $liste.attr("id") + '"]').addClass("invisible");
+    else $liste.prev('.ueberschrift[data-instanz="' + $liste.attr("id") + '"]').removeClass("invisible");
 }

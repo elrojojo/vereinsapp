@@ -4,7 +4,7 @@
 <?= $this->section( 'containers' ); ?>
 
 <div class="container mb-2">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste_id="meine_abwesenheiten">Meine Abwesenheiten</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="meine_abwesenheiten">Meine Abwesenheiten</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['meine_abwesenheiten'] ) ); ?>
 <?= view( 'Mitglieder/abwesenheit_erstellen', array( 'element_id' => ICH['id'] ) ); ?>
 </div>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="container mb-2">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste_id="meine_rechte">Meine Rechte</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="meine_rechte">Meine Rechte</div>
 <?= view( 'Mitglieder/permissions', array( 'liste' => array( 'id' => 'meine_rechte', 'beschriftung' => array( 'beschriftung' => '', ) ), 'checkliste' => $checkliste['meine_rechte'] ) ); ?>
 </div>
 

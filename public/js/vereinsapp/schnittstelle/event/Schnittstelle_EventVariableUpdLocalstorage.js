@@ -23,17 +23,15 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
         // tabelle wird im Localstorage gespeichert
         Schnittstelle_LocalstorageRein(liste + "_tabelle", JSON.stringify(LOC_tabelle));
 
-        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+        $.each(G.LISTEN[liste].instanz, function (instanz) {
             // sortieren wird vorbereitet
-            const LOC_sortieren = G.LISTEN[liste].instanz[liste_id].sortieren;
+            const LOC_sortieren = G.LISTEN[liste].instanz[instanz].sortieren;
             // sortieren wird im Localstorage gespeichert
-            Schnittstelle_LocalstorageRein(liste + "_" + liste_id + "_sortieren", JSON.stringify(LOC_sortieren));
-        });
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", JSON.stringify(LOC_sortieren));
 
-        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
             // filtern wird vorbereitet
             const LOC_filtern = new Array();
-            if (instanz.filtern.length >= 1) LOC_filtern.push(instanz.filtern[0]);
+            if (G.LISTEN[liste].instanz[instanz].filtern.length >= 1) LOC_filtern.push(G.LISTEN[liste].instanz[instanz].filtern[0]);
             function VAR_upd_LOC_filtern(filtern, liste) {
                 $.each(filtern, function (index, knoten) {
                     if ("verknuepfung" in knoten) VAR_upd_LOC_filtern(knoten.filtern, liste);
@@ -42,7 +40,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
             }
             VAR_upd_LOC_filtern(LOC_filtern, liste);
             // filtern wird im Localstorage gespeichert
-            Schnittstelle_LocalstorageRein(liste + "_" + liste_id + "_filtern", JSON.stringify(LOC_filtern));
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", JSON.stringify(LOC_filtern));
         });
     });
 }

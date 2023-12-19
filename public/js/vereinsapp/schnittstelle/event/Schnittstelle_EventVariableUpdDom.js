@@ -19,30 +19,30 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Liste_ElementAktualisieren($(this), liste);
         });
 
-        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+        $.each(G.LISTEN[liste].instanz, function (instanz) {
             // FILTERN AKTUALISIEREN
-            $('.filtern[data-liste_id="' + liste_id + '"]').html(
+            $('.filtern[data-instanz="' + instanz + '"]').html(
                 Liste_Filtern2$FilternZurueck(
-                    G.LISTEN[liste].instanz[liste_id].filtern,
+                    G.LISTEN[liste].instanz[instanz].filtern,
                     FILTERN.$blanko_filtern_sammlung,
                     FILTERN.$blanko_filtern_element,
                     "filtern",
                     liste
                 )
             );
-            $('.filtern[data-liste_id="' + liste_id + '"]')
+            $('.filtern[data-instanz="' + instanz + '"]')
                 .find(".btn_filtern_aendern, .btn_filtern_loeschen")
                 .attr("data-liste", liste)
-                .attr("data-liste_id", liste_id);
+                .attr("data-instanz", instanz);
 
             // SORTIEREN AKTUALISIEREN
-            $('.sortieren[data-liste_id="' + liste_id + '"]').each(function () {
-                $(this).html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[liste_id].sortieren, liste));
+            $('.sortieren[data-instanz="' + instanz + '"]').each(function () {
+                $(this).html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, liste));
             });
-            $('.sortieren[data-liste_id="' + liste_id + '"]')
+            $('.sortieren[data-instanz="' + instanz + '"]')
                 .find(".btn_sortieren_aendern, .btn_sortieren_loeschen")
                 .attr("data-liste", liste)
-                .attr("data-liste_id", liste_id);
+                .attr("data-instanz", instanz);
         });
 
         // PERMISSIONS AKTUALISIEREN

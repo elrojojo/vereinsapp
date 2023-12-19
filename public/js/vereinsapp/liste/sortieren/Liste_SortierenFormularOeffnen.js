@@ -1,12 +1,12 @@
 function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
     const aktion = $btn_oeffnend.attr("data-aktion");
     const liste = $btn_oeffnend.attr("data-liste");
-    const liste_id = $btn_oeffnend.attr("data-liste_id");
+    const instanz = $btn_oeffnend.attr("data-instanz");
     // const element = G.LISTEN[liste].element;
     // let element_id = $btn_oeffnend.attr("data-element_id");
 
-    $formular.find(".modal-title").text(bezeichnung_kapitalisieren(unix2umlaute(liste_id)) + " " + unix2umlaute(aktion));
-    $formular.find(".sortieren, .sortieren_definitionen").attr("data-liste_id", liste_id);
+    $formular.find(".modal-title").text(bezeichnung_kapitalisieren(unix2umlaute(instanz)) + " " + unix2umlaute(aktion));
+    $formular.find(".sortieren, .sortieren_definitionen").attr("data-instanz", instanz);
     const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
     $sortieren_definitionen.find(".sortieren_eigenschaft").empty();
     $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
@@ -15,7 +15,7 @@ function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
         );
     });
 
-    $sortieren_definitionen.find(".btn_sortieren_erstellen").first().attr("data-liste", liste).attr("data-liste_id", liste_id);
+    $sortieren_definitionen.find(".btn_sortieren_erstellen").first().attr("data-liste", liste).attr("data-instanz", instanz);
 
     Schnittstelle_EventVariableUpdDom();
 }

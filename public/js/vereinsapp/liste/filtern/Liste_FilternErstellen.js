@@ -1,6 +1,6 @@
 function Liste_FilternErstellen($btn) {
     const liste = $btn.attr("data-liste");
-    const liste_id = $btn.attr("data-liste_id");
+    const instanz = $btn.attr("data-instanz");
     const $formular = $btn.closest(".filtern_definition");
 
     const filtern = new Array();
@@ -18,14 +18,14 @@ function Liste_FilternErstellen($btn) {
     if (filtern.length == 1) filtern_knoten = filtern[0];
     else filtern_knoten = { verknuepfung: "&&", filtern: filtern };
 
-    if (G.LISTEN[liste].instanz[liste_id].filtern.length == 0) G.LISTEN[liste].instanz[liste_id].filtern.push(filtern_knoten);
+    if (G.LISTEN[liste].instanz[instanz].filtern.length == 0) G.LISTEN[liste].instanz[instanz].filtern.push(filtern_knoten);
     else {
-        if ("verknuepfung" in G.LISTEN[liste].instanz[liste_id].filtern[0]) G.LISTEN[liste].instanz[liste_id].filtern[0].filtern.push(filtern_knoten);
+        if ("verknuepfung" in G.LISTEN[liste].instanz[instanz].filtern[0]) G.LISTEN[liste].instanz[instanz].filtern[0].filtern.push(filtern_knoten);
         else {
-            const einziges_element = G.LISTEN[liste].instanz[liste_id].filtern[0];
-            G.LISTEN[liste].instanz[liste_id].filtern[0] = { verknuepfung: "&&", filtern: new Array() };
-            G.LISTEN[liste].instanz[liste_id].filtern[0].filtern.push(einziges_element);
-            G.LISTEN[liste].instanz[liste_id].filtern[0].filtern.push(filtern_knoten);
+            const einziges_element = G.LISTEN[liste].instanz[instanz].filtern[0];
+            G.LISTEN[liste].instanz[instanz].filtern[0] = { verknuepfung: "&&", filtern: new Array() };
+            G.LISTEN[liste].instanz[instanz].filtern[0].filtern.push(einziges_element);
+            G.LISTEN[liste].instanz[instanz].filtern[0].filtern.push(filtern_knoten);
         }
     }
 

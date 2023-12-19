@@ -1,7 +1,7 @@
 function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const aktion = $btn_oeffnend.attr("data-aktion");
     const liste = $btn_oeffnend.attr("data-liste");
-    // const liste_id = $btn_oeffnend.attr("data-liste_id");
+    // const instanz = $btn_oeffnend.attr("data-instanz");
     const element = G.LISTEN[liste].element;
     let element_id = $btn_oeffnend.attr("data-element_id");
 
