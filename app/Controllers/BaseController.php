@@ -98,15 +98,14 @@ abstract class BaseController extends Controller
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Init.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Aktualisieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementFormularOeffnen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementErstellen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementLoeschen.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_ElementAktualisieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_FormularInit.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_WertFormatiertZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_CheckAendern.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularOeffnen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementErstellen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementLoeschen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementAktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_WertFormatiertZurueck.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_CheckAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementCheckAktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ElementCheckAktualisieren.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularOeffnen.js'), );

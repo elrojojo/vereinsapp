@@ -118,3 +118,10 @@ function HTML_date(zeitpunkt) {
 function HTML_datetime_local(zeitstempel) {
     return strval(date("Y-m-dTH:i", $zeitstempel));
 }
+
+/* TODO
+parents('...').first() ersetzen durch closest('...');
+Zusatzsymbole in Mitglieder-Liste durch Bootstrap-Icons ersetzen
+warten_auf: neue_ajax_id, automatisch befüllen mit ajax_id wenn typeof warten_auf === "undefined"
+
+*/
