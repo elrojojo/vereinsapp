@@ -9,7 +9,7 @@ function Liste_Init() {
         $('.liste[data-liste="' + liste + '"]').each(function () {
             $liste = $(this);
             G.LISTEN[liste].$blanko_element[$liste.attr("id")] = $liste.find(".blanko").first();
-            G.LISTEN[liste].instanz[$liste.attr("id")] = new Object();
+            G.LISTEN[liste].instanz[$liste.attr("id")] = { filtern: new Array() };
         });
         $('.liste[data-liste="' + liste + '"]').empty();
     });
@@ -20,9 +20,7 @@ function Liste_Init() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $(".formular").on("show.bs.modal", function (event) {
-        const $btn_oeffnend = $(event.relatedTarget);
-        const liste = $btn_oeffnend.attr("data-liste");
-        Liste_ElementFormularOeffnen($(this), $btn_oeffnend, liste);
+        Liste_ElementFormularOeffnen($(this), $(event.relatedTarget));
     });
 
     // ELEMENT ERSTELLEN

@@ -1,4 +1,7 @@
-function Liste_FilternVerknuepfungAendern($btn, liste) {
+function Liste_FilternVerknuepfungAendern($btn) {
+    const liste = $btn.attr("data-liste");
+    const liste_id = $btn.attr("data-liste_id");
+
     const $filtern = $btn.parents(".filtern").first();
     const $verknuepfung = $btn.parents(".filtern_sammlung").first().find(".verknuepfung").first();
     const verknuepfung = $verknuepfung.attr("data-verknuepfung");
@@ -6,6 +9,6 @@ function Liste_FilternVerknuepfungAendern($btn, liste) {
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");
     else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&");
 
-    G.LISTEN[liste].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
+    G.LISTEN[liste].instanz[liste_id].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
     Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 }

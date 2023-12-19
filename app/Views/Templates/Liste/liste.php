@@ -1,7 +1,7 @@
 <?php
-if( array_key_exists( 'werkzeugkasten_liste', $liste ) ) { ?><div class="werkzeugkasten h5 text-secondary text-end mb-1" data-liste_id="<?= $liste['id']; ?>">
+if( array_key_exists( 'werkzeugkasten_liste', $liste ) ) { ?><div class="werkzeugkasten h5 text-secondary text-end mb-1">
     <?php foreach( $liste['werkzeugkasten_liste'] as $aktion => $werkzeug):
-        ?><i class="werkzeug bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> text-secondary ms-2" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" role="button"></i>
+        ?><i class="werkzeug bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> text-secondary ms-2" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-liste_id="<?= $liste['id']; ?>" role="button"></i>
     <?php endforeach; ?>
 </div><?php } ?>
 <ul id="<?= $liste['id']; ?>" class="liste list-group<?php
@@ -42,9 +42,9 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
             <?php if( array_key_exists( 'beschriftung', $liste['vorschau'] ) ) echo $liste['vorschau']['beschriftung']; ?>
         </div><?php } ?>
 
-        <?php if( array_key_exists( 'werkzeugkasten_element', $liste ) ) { ?><div class="collapse <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) { ?>h5 <?php } ?>stretched-link-unwirksam" id="werkzeugkasten_element_"><span data-bs-toggle="collapse" data-bs-target="#werkzeugkasten_">
+        <?php if( array_key_exists( 'werkzeugkasten_element', $liste ) ) { ?><div class="werkzeugkasten_element collapse <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) { ?>h5 <?php } ?>stretched-link-unwirksam"><span data-bs-toggle="collapse" data-bs-target="#werkzeugkasten_">
             <?php foreach( $liste['werkzeugkasten_element'] as $aktion => $werkzeug):
-            ?><i class="bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> text-<?php if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary'; ?> float-end ms-2" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" role="button"></i>
+            ?><i class="werkzeug bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> text-<?php if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary'; ?> float-end ms-2" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" role="button"></i>
             <?php endforeach; ?>
         </span></div><?php } ?>
 

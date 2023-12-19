@@ -1,12 +1,12 @@
-function Liste_FilternFormularOeffnen($formular, $btn_oeffnend, liste) {
-    let titel_beschriftung;
-    if (typeof element !== "undefined") titel_beschriftung = element;
-    else titel_beschriftung = liste;
-    $formular
-        .find(".modal-title")
-        .text(bezeichnung_kapitalisieren(unix2umlaute(titel_beschriftung)) + " " + unix2umlaute($btn_oeffnend.attr("data-aktion")));
+function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
+    const aktion = $btn_oeffnend.attr("data-aktion");
+    const liste = $btn_oeffnend.attr("data-liste");
+    const liste_id = $btn_oeffnend.attr("data-liste_id");
+    // const element = G.LISTEN[liste].element;
+    // let element_id = $btn_oeffnend.attr("data-element_id");
 
-    $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
+    $formular.find(".modal-title").text(bezeichnung_kapitalisieren(unix2umlaute(liste_id)) + " " + unix2umlaute(aktion));
+    $formular.find(".filtern, .filtern_definitionen").attr("data-liste_id", liste_id);
     $(".filtern_definitionen").empty();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
         const EIGENSCHAFT = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft];
@@ -34,6 +34,8 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend, liste) {
                 );
             });
         }
+
+        $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-liste", liste).attr("data-liste_id", liste_id);
 
         $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
     });

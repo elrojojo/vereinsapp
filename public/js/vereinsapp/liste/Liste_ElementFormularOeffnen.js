@@ -1,15 +1,9 @@
-function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
+function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const aktion = $btn_oeffnend.attr("data-aktion");
-    const $werkzeugkasten = $btn_oeffnend.closest(".werkzeugkasten");
-    const liste_id = $werkzeugkasten.attr("data-liste_id");
+    const liste = $btn_oeffnend.attr("data-liste");
+    // const liste_id = $btn_oeffnend.attr("data-liste_id");
     const element = G.LISTEN[liste].element;
-    // if (typeof element === "undefined") element = $btn_oeffnend.closest(".element").attr("data-element");
     let element_id = $btn_oeffnend.attr("data-element_id");
-    if (typeof element_id === "undefined") element_id = $btn_oeffnend.closest(".element").attr("data-element_id");
-    // if (!(liste in G.LISTEN))
-    //     $.each(G.LISTEN, function (liste_each, LISTE_each) {
-    //         if (element == LISTE_each.element) liste = liste_each;
-    //     });
 
     $formular.find(".modal-title").text(bezeichnung_kapitalisieren(unix2umlaute(element)) + " " + unix2umlaute(aktion));
     $formular.find(".is-invalid").removeClass("is-invalid");
@@ -44,47 +38,48 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend, liste) {
                 .find(".beschriftung")
                 .html()
         );
-    } else if (aktion == "sortieren") {
-        $formular.find(".sortieren, .sortieren_definitionen").attr("data-liste", liste);
-        const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
-        $sortieren_definitionen.find(".sortieren_eigenschaft").empty();
-        $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-            $(
-                '<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung + "</option>"
-            ).appendTo($sortieren_definitionen.find(".sortieren_eigenschaft"));
-        });
-
-        Schnittstelle_EventVariableUpdDom();
-    } else if (aktion == "filtern") {
-        $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
-
-        $(".filtern_definitionen").empty();
-        $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-            const typ = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ;
-            const beschriftung = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung;
-            const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass("filtern_definition")
-                .attr("data-eigenschaft", eigenschaft);
-            $neue_filtern_definition
-                .find(".accordion-button")
-                .attr("data-bs-target", "#filtern_" + eigenschaft)
-                .text(beschriftung);
-            $neue_filtern_definition.find(".accordion-collapse").attr("id", "filtern_" + eigenschaft);
-            if (typ == "vorgegebene_werte") {
-                $neue_filtern_definition.find(".filtern_wert").empty();
-                $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
-                    $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                        $neue_filtern_definition.find(".filtern_wert")
-                    );
-                });
-            }
-            $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
-        });
-
-        Schnittstelle_EventVariableUpdDom();
     }
+    // else if (aktion == "sortieren") {
+    //     $formular.find(".sortieren, .sortieren_definitionen").attr("data-liste", liste);
+    //     const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
+    //     $sortieren_definitionen.find(".sortieren_eigenschaft").empty();
+    //     $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
+    //         $(
+    //             '<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung + "</option>"
+    //         ).appendTo($sortieren_definitionen.find(".sortieren_eigenschaft"));
+    //     });
+
+    //     Schnittstelle_EventVariableUpdDom();
+    // } else if (aktion == "filtern") {
+    //     $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
+
+    //     $(".filtern_definitionen").empty();
+    //     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
+    //         const typ = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].typ;
+    //         const beschriftung = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung;
+    //         const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
+    //             .clone()
+    //             .removeClass("blanko invisible")
+    //             .addClass("filtern_definition")
+    //             .attr("data-eigenschaft", eigenschaft);
+    //         $neue_filtern_definition
+    //             .find(".accordion-button")
+    //             .attr("data-bs-target", "#filtern_" + eigenschaft)
+    //             .text(beschriftung);
+    //         $neue_filtern_definition.find(".accordion-collapse").attr("id", "filtern_" + eigenschaft);
+    //         if (typ == "vorgegebene_werte") {
+    //             $neue_filtern_definition.find(".filtern_wert").empty();
+    //             $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
+    //                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
+    //                     $neue_filtern_definition.find(".filtern_wert")
+    //                 );
+    //             });
+    //         }
+    //         $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
+    //     });
+
+    //     Schnittstelle_EventVariableUpdDom();
+    // }
 
     const $btns = $formular.find('[class^="btn_"]');
 

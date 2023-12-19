@@ -1,9 +1,11 @@
 function Liste_Aktualisieren($liste, liste) {
+    const liste_id = $liste.attr("id");
+
     // TABELLE FILTERN
     let filtern = $liste.attr("data-filtern");
     if (typeof filtern !== "undefined") filtern = Liste_PhpFiltern2FilternZurueck(JSON.parse(filtern), liste);
     else filtern = new Array();
-    const filtern_LocalStorage = G.LISTEN[liste].filtern;
+    const filtern_LocalStorage = G.LISTEN[liste].instanz[liste_id].filtern;
     if (filtern_LocalStorage.length > 0) {
         if (liste == "termine" && G.LISTEN.termine.tabelle.length > 1 && "start" in G.LISTEN.termine.tabelle[1]) {
             const start_position = Liste_FilternEigenschaftPositionZurueck(filtern, "start");
@@ -48,9 +50,10 @@ function Liste_Aktualisieren($liste, liste) {
                 .find('[data-bs-target="#werkzeugkasten_element_"]')
                 .attr("data-bs-target", "#werkzeugkasten_element_" + G.LISTEN[liste].element + "_" + element_id);
             $neues_element
-                .find("#werkzeugkasten_element_")
+                .find(".werkzeugkasten_element")
                 .attr("id", "werkzeugkasten_element_" + G.LISTEN[liste].element + "_" + element_id)
                 .attr("data-bs-parent", '.liste[data-liste="' + liste + '"]');
+            $neues_element.find(".werkzeug").attr("data-element_id", element_id);
 
             // Element hat einen Link
             $neues_element.find("a.stretched-link").attr("href", $neues_element.find(".stretched-link").attr("href") + "/" + element_id);

@@ -17,26 +17,21 @@ function Liste_FilternInit() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_filtern_Modal").on("show.bs.modal", function (event) {
-        const $btn_oeffnend = $(event.relatedTarget);
-        const liste = $btn_oeffnend.attr("data-liste");
-        Liste_FilternFormularOeffnen($(this), $btn_oeffnend, liste);
+        Liste_FilternFormularOeffnen($(this), $(event.relatedTarget));
     });
 
     // ERSTELLEN
     $(document).on("click", ".btn_filtern_erstellen", function () {
-        const liste = $(this).parents("[data-liste]").first().attr("data-liste");
-        Liste_FilternErstellen($(this), liste);
+        Liste_FilternErstellen($(this));
     });
 
     // ÄNDERN (VERKNÜPFUNG)
     $(document).on("click", ".btn_filtern_aendern", function () {
-        const liste = $(this).parents("[data-liste]").first().attr("data-liste");
-        Liste_FilternVerknuepfungAendern($(this), liste);
+        Liste_FilternVerknuepfungAendern($(this));
     });
 
     // LÖSCHEN
     $(document).on("click", ".btn_filtern_loeschen", function () {
-        const liste = $(this).parents("[data-liste]").first().attr("data-liste");
-        Liste_FilternLoeschen($(this), liste);
+        Liste_FilternLoeschen($(this));
     });
 }

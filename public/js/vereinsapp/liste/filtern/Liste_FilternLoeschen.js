@@ -1,4 +1,7 @@
-function Liste_FilternLoeschen($btn, liste) {
+function Liste_FilternLoeschen($btn) {
+    const liste = $btn.attr("data-liste");
+    const liste_id = $btn.attr("data-liste_id");
+
     const $filtern = $btn.parents(".filtern").first();
     const $element = $btn.parents(".filtern_element").first();
     const $sammlung = $btn.parents(".filtern_sammlung").first();
@@ -19,7 +22,7 @@ function Liste_FilternLoeschen($btn, liste) {
         sammlung_ebene_hoeher = $knoten_parallel.first().parents(".filtern_sammlung").first();
     }
 
-    G.LISTEN[liste].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
+    G.LISTEN[liste].instanz[liste_id].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
 
     Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 }

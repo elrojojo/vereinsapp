@@ -20,17 +20,20 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         });
 
         // FILTERN AKTUALISIEREN
-        $('.filtern[data-liste="' + liste + '"]').each(function () {
-            const $filtern = $(this);
-            $filtern.html(
+        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+            $('.filtern[data-liste_id="' + liste_id + '"]').html(
                 Liste_Filtern2$FilternZurueck(
-                    G.LISTEN[liste].filtern,
+                    G.LISTEN[liste].instanz[liste_id].filtern,
                     FILTERN.$blanko_filtern_sammlung,
                     FILTERN.$blanko_filtern_element,
                     "filtern",
                     liste
                 )
             );
+            $('.filtern[data-liste_id="' + liste_id + '"]')
+                .find(".btn_filtern_aendern, .btn_filtern_loeschen")
+                .attr("data-liste", liste)
+                .attr("data-liste_id", liste_id);
         });
 
         // SORTIEREN AKTUALISIEREN
