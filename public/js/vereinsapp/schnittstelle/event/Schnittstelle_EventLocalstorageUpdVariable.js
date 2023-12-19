@@ -22,7 +22,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
         G.LISTEN[liste].tabelle = tabelle;
 
         // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-        G.LISTEN[liste].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_sortieren", true);
+        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+            G.LISTEN[liste].instanz[liste_id].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + liste_id + "_sortieren", true);
+        });
 
         // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
         $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {

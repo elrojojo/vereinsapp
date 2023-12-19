@@ -11,7 +11,7 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
 
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            Liste_Aktualisieren($(this), liste);
+            Liste_Aktualisieren($(this));
         });
 
         // ELEMENT AKTUALISIEREN
@@ -19,8 +19,8 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Liste_ElementAktualisieren($(this), liste);
         });
 
-        // FILTERN AKTUALISIEREN
         $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+            // FILTERN AKTUALISIEREN
             $('.filtern[data-liste_id="' + liste_id + '"]').html(
                 Liste_Filtern2$FilternZurueck(
                     G.LISTEN[liste].instanz[liste_id].filtern,
@@ -34,11 +34,15 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
                 .find(".btn_filtern_aendern, .btn_filtern_loeschen")
                 .attr("data-liste", liste)
                 .attr("data-liste_id", liste_id);
-        });
 
-        // SORTIEREN AKTUALISIEREN
-        $('.sortieren[data-liste="' + liste + '"]').each(function () {
-            $(this).html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].sortieren, liste));
+            // SORTIEREN AKTUALISIEREN
+            $('.sortieren[data-liste_id="' + liste_id + '"]').each(function () {
+                $(this).html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[liste_id].sortieren, liste));
+            });
+            $('.sortieren[data-liste_id="' + liste_id + '"]')
+                .find(".btn_sortieren_aendern, .btn_sortieren_loeschen")
+                .attr("data-liste", liste)
+                .attr("data-liste_id", liste_id);
         });
 
         // PERMISSIONS AKTUALISIEREN

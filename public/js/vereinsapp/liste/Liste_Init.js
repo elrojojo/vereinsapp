@@ -7,9 +7,10 @@ function Liste_Init() {
 
     $.each(G.LISTEN, function (liste) {
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            $liste = $(this);
-            G.LISTEN[liste].$blanko_element[$liste.attr("id")] = $liste.find(".blanko").first();
-            G.LISTEN[liste].instanz[$liste.attr("id")] = { filtern: new Array() };
+            const $liste = $(this);
+            const liste_id = $liste.attr("id");
+            G.LISTEN[liste].$blanko_element[liste_id] = $liste.find(".blanko").first();
+            G.LISTEN[liste].instanz[liste_id] = { filtern: new Array(), sortieren: new Array() };
         });
         $('.liste[data-liste="' + liste + '"]').empty();
     });

@@ -1,4 +1,5 @@
-function Liste_Aktualisieren($liste, liste) {
+function Liste_Aktualisieren($liste) {
+    const liste = $liste.attr("data-liste");
     const liste_id = $liste.attr("id");
 
     // TABELLE FILTERN
@@ -21,7 +22,8 @@ function Liste_Aktualisieren($liste, liste) {
     let sortieren = $liste.attr("data-sortieren");
     if (typeof sortieren !== "undefined") sortieren = JSON.parse(sortieren);
     else sortieren = new Array();
-    if (G.LISTEN[liste].sortieren.length >= 1) sortieren = G.LISTEN[liste].sortieren.concat(sortieren);
+    const sortieren_LocalStorage = G.LISTEN[liste].instanz[liste_id].sortieren;
+    if (sortieren_LocalStorage.length > 0) sortieren = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren);
 
     // ELEMENTE IM DOM LÖSCHEN

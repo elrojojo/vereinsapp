@@ -23,13 +23,15 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
         // tabelle wird im Localstorage gespeichert
         Schnittstelle_LocalstorageRein(liste + "_tabelle", JSON.stringify(LOC_tabelle));
 
-        // sortieren wird vorbereitet
-        const LOC_sortieren = G.LISTEN[liste].sortieren;
-        // sortieren wird im Localstorage gespeichert
-        Schnittstelle_LocalstorageRein(liste + "_sortieren", JSON.stringify(LOC_sortieren));
-
-        // filtern wird vorbereitet
         $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+            // sortieren wird vorbereitet
+            const LOC_sortieren = G.LISTEN[liste].instanz[liste_id].sortieren;
+            // sortieren wird im Localstorage gespeichert
+            Schnittstelle_LocalstorageRein(liste + "_" + liste_id + "_sortieren", JSON.stringify(LOC_sortieren));
+        });
+
+        $.each(G.LISTEN[liste].instanz, function (liste_id, instanz) {
+            // filtern wird vorbereitet
             const LOC_filtern = new Array();
             if (instanz.filtern.length >= 1) LOC_filtern.push(instanz.filtern[0]);
             function VAR_upd_LOC_filtern(filtern, liste) {

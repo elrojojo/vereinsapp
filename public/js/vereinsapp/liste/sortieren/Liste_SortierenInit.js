@@ -6,23 +6,19 @@ function Liste_SortierenInit() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_sortieren_Modal").on("show.bs.modal", function (event) {
-        const $btn_oeffnend = $(event.relatedTarget);
-        const liste = $btn_oeffnend.attr("data-liste");
-        Liste_SortierenFormularOeffnen($(this), $btn_oeffnend, liste);
+        Liste_SortierenFormularOeffnen($(this), $(event.relatedTarget));
     });
 
     // ERSTELLEN
     $(document).on("click", ".btn_sortieren_erstellen", function () {
-        const liste = $(this).parents("[data-liste]").first().attr("data-liste");
-        Liste_SortierenErstellen($(this), liste);
+        Liste_SortierenErstellen($(this));
     });
 
-    // ÄNDERN (VERKNÜPFUNG)
-    $(document).on("click", ".btn_sortieren_aendern", function () {});
+    // ÄNDERN (RICHTUNG)
+    // $(document).on("click", ".btn_sortieren_aendern", function () {});
 
     // LÖSCHEN
     $(document).on("click", ".btn_sortieren_loeschen", function () {
-        const liste = $(this).parents("[data-liste]").first().attr("data-liste");
-        Liste_SortierenLoeschen($(this), liste);
+        Liste_SortierenLoeschen($(this));
     });
 }
