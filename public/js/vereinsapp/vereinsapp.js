@@ -122,6 +122,5 @@ function HTML_datetime_local(zeitstempel) {
 Zusatzsymbole in Mitglieder-Liste durch Bootstrap-Icons ersetzen
 Richtung der Sortierung änderbar machen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-AJAX-Fehler beim Reload beheben
 
 */
