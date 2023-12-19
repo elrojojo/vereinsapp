@@ -57,6 +57,9 @@ function Liste_Aktualisieren($liste) {
                 .attr("data-bs-parent", '.liste[data-liste="' + liste + '"]');
             $neues_element.find(".werkzeug").attr("data-element_id", element_id);
 
+            // Element hat Modal
+            $neues_element.find('[data-bs-toggle="modal"]').attr("data-element_id", element_id);
+
             // Element hat einen Link
             $neues_element.find("a.stretched-link").attr("href", $neues_element.find(".stretched-link").attr("href") + "/" + element_id);
 

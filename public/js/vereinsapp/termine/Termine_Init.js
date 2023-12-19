@@ -27,5 +27,6 @@ G.LISTEN.termine = {
 /* TODO
 Abwesenheit in Rückmeldungen berücksichtigen
 Personenkreis beschränken
+Bugfix Anwesenheit kontrollieren
 
 */

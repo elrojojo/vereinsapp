@@ -7,3 +7,8 @@ G.LISTEN.notenbank = {
     abhaengig_von: [],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenNotenbank,
 };
+
+/* TODO
+Titel-Details anzeigen
+
+*/

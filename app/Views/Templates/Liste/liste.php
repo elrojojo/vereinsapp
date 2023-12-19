@@ -26,7 +26,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
             <?php if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-1 stretched-link-unwirksam sortable_handle" role="button"></i><?php } ?>
 
             <?php if( array_key_exists( 'link', $liste ) ) { ?><a href="<?= $liste['link']; ?>" class="stretched-link"><?php }
-            elseif( array_key_exists( 'modal', $liste ) ) { ?><span class="stretched-link" data-bs-toggle="modal"<?php if( array_key_exists( 'target', $liste['modal'] ) ) { ?> data-bs-target="<?= $liste['modal']['target']; ?>"<?php } ?><?php if( array_key_exists( 'aktion', $liste['modal'] ) ) { ?> data-aktion="<?= $liste['modal']['aktion']; ?>"<?php } ?>><?php } ?>
+            elseif( array_key_exists( 'modal', $liste ) ) { ?><span class="stretched-link" data-bs-toggle="modal" data-bs-target="<?= $liste['modal']['target']; ?>" data-aktion="<?= $liste['modal']['aktion']; ?>" data-liste="<?= $liste['liste']; ?>"><?php } ?>
             <?php if( array_key_exists( 'symbol', $liste ) AND array_key_exists( 'symbol', $liste['symbol'] ) ) { ?><i class="bi bi-<?= $liste['symbol']['symbol']; ?> text-<?php if( array_key_exists( 'farbe', $liste['symbol'] ) ) echo $liste['symbol']['farbe']; else echo 'primary' ?> float-end ms-1 symbol"></i><?php } ?>
             <?php if( array_key_exists( 'link', $liste ) ) { ?></a><?php }
             elseif( array_key_exists( 'modal', $liste ) ) { ?></span><?php } ?>

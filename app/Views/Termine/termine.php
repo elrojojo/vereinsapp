@@ -7,11 +7,6 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine'] ) ); ?>
 </div>
 
-<?php $liste['bevorstehende_termine_neu'] = $liste['bevorstehende_termine']; $liste['bevorstehende_termine_neu']['id'] = 'bevorstehende_termine_neu'; ?>
-<div class="container mb-2">
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_neu'] ) ); ?>
-</div>
-
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>

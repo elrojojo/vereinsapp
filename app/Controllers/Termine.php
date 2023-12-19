@@ -100,13 +100,13 @@ class Termine extends BaseController {
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
-                'element' => 'termin',
+                'liste' => 'termine',
                 'element_id' => $element_id,
                 'beschriftung' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
-                'element' => 'termin',
+                'liste' => 'termine',
                 'element_id' => $element_id,
                 'beschriftung' => 'Termin duplizieren',
             );
@@ -123,9 +123,9 @@ class Termine extends BaseController {
             $this->viewdata['liste']['alle_aktiven'] = array(
                 'liste' => 'mitglieder',
                 'sortieren' => array(
-                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                    // array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 ),
                 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
                 'beschriftung' => array(
@@ -142,8 +142,7 @@ class Termine extends BaseController {
             );
             $this->viewdata['werkzeugkasten']['Anwesenheiten_pruefen'] = array(
                 'modal_id' => '#termin_anwesenheiten_Modal',
-                'element' => 'termin',
-                'element_id' => $element_id,
+                'liste' => 'mitglieder',
                 'beschriftung' => 'Anwesenheiten prüfen',
             );
         }

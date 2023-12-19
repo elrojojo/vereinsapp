@@ -116,13 +116,13 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
-                'element' => 'mitglied',
+                'liste' => 'mitglieder',
                 'element_id' => $element_id,
                 'beschriftung' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
-                'element' => 'mitglied',
+                'liste' => 'mitglieder',
                 'element_id' => $element_id,
                 'beschriftung' => 'Mitglied duplizieren',
             );
