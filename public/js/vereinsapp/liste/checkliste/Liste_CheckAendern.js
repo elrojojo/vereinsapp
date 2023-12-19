@@ -1,5 +1,6 @@
-function Liste_CheckAendern($check, liste) {
-    const $liste = $check.parents(".liste").first();
+function Liste_CheckAendern($check) {
+    const $liste = $check.closest(".liste");
+    const liste = $liste.attr("data-liste");
     const checkliste = $liste.attr("data-checkliste");
     const element = G.LISTEN[liste].element;
     const gegen_element = $liste.attr("data-gegen_element");
@@ -22,7 +23,7 @@ function Liste_CheckAendern($check, liste) {
             Schnittstelle_CheckWartenStart(AJAX.$check);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            const $liste = AJAX.$check.parents(".liste").first();
+            const $liste = AJAX.$check.closest(".liste");
             const checkliste = $liste.attr("data-checkliste");
             const element = G.LISTEN[AJAX.liste].element;
             const element_id = AJAX.data[element + "_id"];

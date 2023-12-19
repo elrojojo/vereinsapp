@@ -1,6 +1,6 @@
 function Mitglieder_PermissionAktualisieren($permission, liste) {
     const permission = $permission.find(".form-check-input").val();
-    const gegen_element_id = $permission.parents(".permissions").first().attr("data-gegen_element_id");
+    const gegen_element_id = $permission.closest(".permissions").attr("data-gegen_element_id");
 
     // BESCHRIFTUNG AKTUALISIEREN
     $permission.find(".beschriftung").text(PERMISSIONS[permission]);

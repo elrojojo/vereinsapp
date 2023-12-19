@@ -1,5 +1,5 @@
 function Liste_ElementCheckAktualisieren($check, $element, liste) {
-    const $liste = $check.parents(".liste").first();
+    const $liste = $check.closest(".liste");
 
     const filtern = [
         {

@@ -12,8 +12,7 @@ function Liste_ElementErstellen($btn, liste) {
         });
 
     // WERTE AUS DEM FORMULAR
-    $btn.parents(".formular")
-        .first()
+    $btn.closest(".formular")
         .find(".eigenschaft")
         .each(function () {
             const $eigenschaft = $(this);
@@ -54,8 +53,7 @@ function Liste_ElementErstellen($btn, liste) {
         },
         rein_validation_neg_aktion: function (AJAX) {
             AJAX.$btn
-                .parents(".formular")
-                .first()
+                .closest(".formular")
                 .find(".eigenschaft")
                 .each(function () {
                     const $eigenschaft = $(this);
@@ -79,7 +77,7 @@ function Liste_ElementErstellen($btn, liste) {
                     G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
             });
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-            AJAX.$btn.parents(".formular").first().modal("hide");
+            AJAX.$btn.closest(".formular").modal("hide");
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);

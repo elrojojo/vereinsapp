@@ -9,8 +9,7 @@ function Mitglieder_PermissionsAktualisieren($permissions, liste) {
         if (
             !$permissions
                 .find('[value="' + permission + '"]')
-                .parents(".permission")
-                .first()
+                .closest(".permission")
                 .exists()
         ) {
             const $neue_permission = G.LISTEN[liste].$blanko_permission.clone().removeClass("blanko invisible").addClass("permission");

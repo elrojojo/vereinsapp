@@ -1,5 +1,5 @@
 function Mitglieder_PermissionAendern($check, liste) {
-    const $liste = $check.parents(".permissions").first();
+    const $liste = $check.closest(".permissions");
     // const checkliste = $liste.attr("data-checkliste");
     const element = "permission";
     const gegen_element = $liste.attr("data-gegen_element");
@@ -22,7 +22,7 @@ function Mitglieder_PermissionAendern($check, liste) {
             Schnittstelle_CheckWartenStart(AJAX.$check);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            const $liste = AJAX.$check.parents(".permissions").first();
+            const $liste = AJAX.$check.closest(".permissions");
             const element = "permission";
             const element_id = AJAX.data[element + "_id"];
             const gegen_element = $liste.attr("data-gegen_element");

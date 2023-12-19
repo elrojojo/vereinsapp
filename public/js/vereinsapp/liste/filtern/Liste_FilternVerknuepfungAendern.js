@@ -2,8 +2,8 @@ function Liste_FilternVerknuepfungAendern($btn) {
     const liste = $btn.attr("data-liste");
     const liste_id = $btn.attr("data-liste_id");
 
-    const $filtern = $btn.parents(".filtern").first();
-    const $verknuepfung = $btn.parents(".filtern_sammlung").first().find(".verknuepfung").first();
+    const $filtern = $btn.closest(".filtern");
+    const $verknuepfung = $btn.closest(".filtern_sammlung").find(".verknuepfung").first();
     const verknuepfung = $verknuepfung.attr("data-verknuepfung");
 
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||");

@@ -44,8 +44,7 @@ function Liste_Init() {
 
     // CHECKLISTE ÄNDERN
     $(document).on("change", ".check", function () {
-        const liste = $(this).parents(".liste").first().attr("data-liste");
-        Liste_CheckAendern($(this), liste);
+        Liste_CheckAendern($(this));
     });
 
     // SORTABLE

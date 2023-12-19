@@ -31,7 +31,7 @@ function Liste_ElementLoeschen($btn, liste) {
 
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 
-            const $formular = AJAX.$btn.parents(".formular").first();
+            const $formular = AJAX.$btn.closest(".formular");
             $formular.modal("hide");
         },
         rein_aktion: function (AJAX) {
