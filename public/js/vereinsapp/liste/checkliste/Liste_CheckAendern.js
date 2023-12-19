@@ -18,7 +18,6 @@ function Liste_CheckAendern($check) {
         data: AJAX_DATA,
         liste: liste,
         $check: $check,
-        warten_auf: neue_ajax_id,
         raus_aktion: function (AJAX) {
             Schnittstelle_CheckWartenStart(AJAX.$check);
         },

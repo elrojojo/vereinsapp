@@ -9,7 +9,6 @@ function Liste_ElementLoeschen($btn, liste) {
         data: { id: $btn.attr("data-element_id") },
         liste: liste,
         $btn: $btn,
-        warten_auf: neue_ajax_id,
         raus_aktion: function (AJAX) {
             Schnittstelle_BtnWartenStart(AJAX.$btn);
         },

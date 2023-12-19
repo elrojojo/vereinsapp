@@ -1,6 +1,7 @@
 function Schnittstelle_AjaxFuerDieSchlangeVorbereiten(AJAX) {
     // Manchmal ist das data-Objekt nicht notwendig, dann wird es als leeres Objekt definiert
     if (!isObject(AJAX.data)) AJAX.data = new Object();
+    if (!("warten_auf" in AJAX)) AJAX.warten_auf = AJAX.ajax_id;
 
     // Das Objekt für $.ajaxQueue wird erstellt
     AJAX.ajaxQueue = {
