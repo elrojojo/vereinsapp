@@ -234,8 +234,8 @@ defined('SQL_DATE_REGEX') OR define( 'SQL_DATE_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0
 defined('SQL_DATETIME') OR define( 'SQL_DATETIME', 'yyyy-MM-dd HH:mm:ss' );
 defined('SQL_DATETIME_REGEX') OR define( 'SQL_DATETIME_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
 
-defined('AJAX_REFRESH_INTERVALL') OR define( 'AJAX_REFRESH_INTERVALL', 10 );
-defined('AJAX_REFRESH_INTERVALL') OR define( 'AJAX_REFRESH_INTERVALL', 10 );
+defined('AJAX_REFRESH_INTERVALL') OR define( 'AJAX_REFRESH_INTERVALL', 30 );
+
 enum AJAX_ZUSTAND
 {
     case VORBEREITET;
