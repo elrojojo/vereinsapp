@@ -61,6 +61,8 @@ $routes->group('mitglieder', static function ($routes) {
     // $routes->post('ajax_abwesenheit_aendern',               'Mitglieder::ajax_abwesenheit_aendern');
     // $routes->post('ajax_abwesenheit_duplizieren',           'Mitglieder::ajax_abwesenheit_duplizieren');
     $routes->post('ajax_abwesenheit_loeschen',              'Mitglieder::ajax_abwesenheit_loeschen');
+
+    $routes->post('ajax_permissions',                       'Mitglieder::ajax_permissions');
 });
 
 

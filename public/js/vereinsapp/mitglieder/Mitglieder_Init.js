@@ -1,3 +1,8 @@
+G.LISTEN.permissions = {
+    controller: "mitglieder",
+    element: "permission",
+};
+
 G.LISTEN.abwesenheiten = {
     controller: "mitglieder",
     element: "abwesenheit",

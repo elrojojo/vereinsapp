@@ -2,8 +2,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
     Schnittstelle_EventDurchfuehren(liste, naechste_aktionen, function (liste) {
         // tabelle wird vorbereitet
         const LOC_tabelle = new Array();
-        const tabelle = G.LISTEN[liste].tabelle;
-        $.each(tabelle, function () {
+        $.each(G.LISTEN[liste].tabelle, function () {
             const element = this;
             if ("id" in element) {
                 if ("alter" in element) delete element["alter"];

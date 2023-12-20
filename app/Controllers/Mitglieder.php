@@ -325,4 +325,23 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+    public function ajax_permissions() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
+        $id = 1;
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) {
+                $permission = array(
+                    'id' => $id,
+                    'permission' => json_decode( json_encode( $permission ), TRUE ),
+                    'beschriftung' => json_decode( json_encode( $beschriftung ), TRUE ),
+                );
+                $ajax_antwort['tabelle'][] = $permission;
+                $id++;
+            }
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
 }
