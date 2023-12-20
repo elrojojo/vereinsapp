@@ -10,7 +10,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
     <li class="blanko invisible text-body list-group-item d-grid">
         <div class="form-check form-switch">
             <label class="form-check-label d-block">
-                <input class="form-check-input float-start me-3 check" type="checkbox" role="switch" name="<?= $checkliste['id']; ?>" />
+                <input class="form-check-input float-start me-3 check" type="checkbox" role="switch" name="<?= $checkliste['checkliste']; ?>" />
                 <?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><span class="beschriftung"><?= $liste['beschriftung']['beschriftung']; ?></span><?php } ?>
                 <?php if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-1 stretched-link-unwirksam sortable_handle" role="button"></i><?php } ?>
                 <?php if( array_key_exists( 'zusatzsymbole', $liste ) ) { ?><div class="float-end zusatzsymbole"><?= $liste['zusatzsymbole']; ?></div><?php } ?>

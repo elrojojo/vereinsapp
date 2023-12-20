@@ -45,16 +45,6 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
                 .attr("data-instanz", instanz);
         });
 
-        // PERMISSIONS AKTUALISIEREN
-        $(".permissions").each(function () {
-            Mitglieder_PermissionsAktualisieren($(this), "mitglieder");
-        });
-
-        // PERMISSION AKTUALISIEREN
-        $(".permission").each(function () {
-            Mitglieder_PermissionAktualisieren($(this), "mitglieder");
-        });
-
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
         $('.formular[data-formular="rueckmeldung"]').each(function () {
             Termine_FormularMeineRueckmeldungEinAusblenden($(this));

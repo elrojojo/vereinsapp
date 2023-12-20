@@ -16,7 +16,8 @@
 
 <div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="meine_rechte">Meine Rechte</div>
-<?= view( 'Mitglieder/permissions', array( 'liste' => array( 'id' => 'meine_rechte', 'beschriftung' => array( 'beschriftung' => '', ) ), 'checkliste' => $checkliste['meine_rechte'] ) ); ?>
+    <?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste['verfuegbare_rechte'], 'checkliste' => $checkliste['meine_rechte'] ) ); ?>
+    <?php //= view( 'Templates/Liste/liste', array( 'liste' => $liste['verfuegbare_rechte'] ) ); ?>
 </div>
 
 <?= view( 'Templates/Liste/loeschen_modal' ); ?>

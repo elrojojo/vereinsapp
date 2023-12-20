@@ -156,9 +156,6 @@ abstract class BaseController extends Controller
 
         if( auth()->loggedIn() ) {
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionsAktualisieren.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAktualisieren.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PermissionAendern.js'), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MeineRueckmeldungAktualisieren.js'), );

@@ -31,13 +31,6 @@ class Einstellungen extends BaseController {
                 'abschneiden' => true,
             ),
         );
-        
-        $this->viewdata['checkliste']['meine_rechte'] = array(
-            'checkliste' => 'permissions',
-            'aktion' => 'aendern',
-            'gegen_element' => 'mitglied',
-            'gegen_element_id' => ICH['id'],
-        );
 
         $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
@@ -48,6 +41,21 @@ class Einstellungen extends BaseController {
             'modal_id' => '#liste_filtern_Modal',
             'beschriftung' => 'Meine Abwesenheiten filtern',
         );
+
+        $this->viewdata['liste']['verfuegbare_rechte'] = array(
+            'liste' => 'verfuegbare_rechte',
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
+            ),
+        );
+        
+        $this->viewdata['checkliste']['meine_rechte'] = array(
+            'checkliste' => 'vergebene_rechte',
+            'aktion' => 'aendern',
+            'gegen_element' => 'mitglied',
+            'gegen_element_id' => ICH['id'],
+        );
+
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;

@@ -2,7 +2,7 @@ const BASE_URL = '<?= base_url() ?>';
 const CSRF_NAME = '<?= CSRF_NAME ?>';
 const ERSTER_CSRF_HASH = '<?= csrf_hash() ?>';
 const ICH = <?= json_encode( ICH ) ?>;
-const PERMISSIONS = <?= json_encode( config('AuthGroups')->permissions ) ?>;
+//const PERMISSIONS = <?= json_encode( config('AuthGroups')->permissions ) ?>;
 
 const SQL_TIME = '<?= SQL_TIME ?>';
 const SQL_TIME_REGEX = <?= SQL_TIME_REGEX ?>;

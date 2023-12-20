@@ -1,6 +1,11 @@
-G.LISTEN.permissions = {
+G.LISTEN.verfuegbare_rechte = {
     controller: "mitglieder",
-    element: "permission",
+    element: "verfuegbares_recht",
+};
+
+G.LISTEN.vergebene_rechte = {
+    controller: "mitglieder",
+    element: "vergebenes_recht",
 };
 
 G.LISTEN.abwesenheiten = {
@@ -16,16 +21,6 @@ G.LISTEN.mitglieder = {
     abhaengig_von: ["abwesenheiten"],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,
 };
-
-function Mitglieder_Init() {
-    G.LISTEN.mitglieder.$blanko_permission = $(".permissions").find(".blanko").first();
-    $(".permissions").empty();
-
-    // PERMISSIONS ÄNDERN
-    $(document).on("change", ".check_permission", function () {
-        Mitglieder_PermissionAendern($(this), "mitglieder");
-    });
-}
 
 /* TODO
 Permissions:

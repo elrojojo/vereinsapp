@@ -134,16 +134,16 @@ class Termine extends BaseController {
                 // 'sortable' => true,
                 'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             );
-            $this->viewdata['checkliste']['anwesenheiten'] = array(
+            $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
                 'checkliste' => 'anwesenheiten',
                 'aktion' => 'aendern',
                 'gegen_element' => 'termin',
                 'gegen_element_id' => $element_id,
             );
-            $this->viewdata['werkzeugkasten']['Anwesenheiten_pruefen'] = array(
+            $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
                 'modal_id' => '#termin_anwesenheiten_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Anwesenheiten prüfen',
+                'beschriftung' => 'Anwesenheiten dokumentieren',
             );
         }
 

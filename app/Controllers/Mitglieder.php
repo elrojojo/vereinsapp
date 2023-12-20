@@ -107,12 +107,20 @@ class Mitglieder extends BaseController {
         
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
-            if( auth()->user()->can( 'mitglieder.rechte' ) ) $this->viewdata['checkliste']['rechte'] = array(
-                'checkliste' => 'permissions',
-                'aktion' => 'aendern',
-                'gegen_element' => 'mitglied',
-                'gegen_element_id' => $element_id,
-            );
+            if( auth()->user()->can( 'mitglieder.rechte' ) ) {
+                $this->viewdata['liste']['verfuegbare_rechte'] = array(
+                    'liste' => 'verfuegbare_rechte',
+                    'beschriftung' => array(
+                        'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
+                    ),
+                );
+                $this->viewdata['checkliste']['rechte_des_mitglieds'] = array(
+                    'checkliste' => 'vergebene_rechte',
+                    'aktion' => 'aendern',
+                    'gegen_element' => 'mitglied',
+                    'gegen_element_id' => $element_id,
+                );
+            }
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
@@ -326,21 +334,26 @@ class Mitglieder extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_permissions() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
+    public function ajax_verfuegbare_rechte() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
         $id = 1;
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) {
-                $permission = array(
+                $verfuegbares_recht = array(
                     'id' => $id,
                     'permission' => json_decode( json_encode( $permission ), TRUE ),
                     'beschriftung' => json_decode( json_encode( $beschriftung ), TRUE ),
                 );
-                $ajax_antwort['tabelle'][] = $permission;
+                $ajax_antwort['tabelle'][] = $verfuegbares_recht;
                 $id++;
             }
         
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+    
+    public function ajax_vergebene_rechte() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

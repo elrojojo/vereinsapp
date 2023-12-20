@@ -30,7 +30,7 @@
 
 <?php if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte">Rechte</div>
-<?= view( 'Mitglieder/permissions', array( 'liste' => array( 'id' => 'rechte', 'beschriftung' => array( 'beschriftung' => '', ) ), 'checkliste' => $checkliste['rechte'] ) ); ?>
+<?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste['verfuegbare_rechte'], 'checkliste' => $checkliste['rechte_des_mitglieds'] ) ); ?>
 </div><?php } ?>
 <?php } ?>
 

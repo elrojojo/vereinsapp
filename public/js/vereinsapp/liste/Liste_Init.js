@@ -1,7 +1,7 @@
 function Liste_Init() {
-    Liste_SortierenInit();
+    Liste_SortierenInit(); // TODO: Liste_SortierenInit(); nach $.each(G.LISTEN, function (liste) {});
 
-    Liste_FilternInit();
+    Liste_FilternInit(); // TODO: Liste_FilternInit(); nach $.each(G.LISTEN, function (liste) {});
 
     $.each(G.LISTEN, function (liste) {
         G.LISTEN[liste].instanz = new Object();
@@ -12,8 +12,6 @@ function Liste_Init() {
         });
         $('.liste[data-liste="' + liste + '"]').empty();
     });
-
-    Mitglieder_Init();
 
     Liste_AuswertungenInit();
 

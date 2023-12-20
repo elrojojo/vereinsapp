@@ -163,7 +163,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   // 'link' => array( 'bootstrap' => 'link-45deg' ),
   // 'email' => array( 'bootstrap' => 'envelope' ),
 
-  'Anwesenheiten_pruefen' => array( 'bootstrap' => 'person-check' ),
+  'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
   // 'personenkreis_beschraenken' => array( 'bootstrap' => 'person-lock' ),
 
   'abwesend' => array( 'html' => '&#9992' ),
