@@ -22,5 +22,6 @@ G.LISTEN.termine = {
 Abwesenheit in Rückmeldungen berücksichtigen
 Personenkreis beschränken
 Bugfix Anwesenheit kontrollieren
+Registerführer einführen und für andere Mitglieder Rückmeldung gebbar machen
 
 */

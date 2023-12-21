@@ -6,7 +6,7 @@ function Liste_SortierenInit() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_sortieren_Modal").on("show.bs.modal", function (event) {
-        Liste_SortierenFormularOeffnen($(this), $(event.relatedTarget));
+        Liste_SortierenFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
     // ERSTELLEN

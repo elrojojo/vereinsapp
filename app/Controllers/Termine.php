@@ -123,13 +123,13 @@ class Termine extends BaseController {
             $this->viewdata['liste']['alle_aktiven'] = array(
                 'liste' => 'mitglieder',
                 'sortieren' => array(
-                    // array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                ),
+                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+                    ),
                 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
                 'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="register"></span>: <span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
                 // 'sortable' => true,
                 'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
@@ -145,6 +145,17 @@ class Termine extends BaseController {
                 'liste' => 'mitglieder',
                 'beschriftung' => 'Anwesenheiten dokumentieren',
             );
+            
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['filtern'] = array(
+                'modal_id' => '#liste_filtern_Modal',
+                'beschriftung' => 'Mitglieder filtern',
+            ); 
+
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['sortieren'] = array(
+                'modal_id' => '#liste_sortieren_Modal',
+                'beschriftung' => 'Mitglieder sortieren',
+            ); 
+
         }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

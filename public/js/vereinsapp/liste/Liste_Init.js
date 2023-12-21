@@ -16,8 +16,8 @@ function Liste_Init() {
     Liste_AuswertungenInit();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(".formular").on("show.bs.modal", function (event) {
-        Liste_ElementFormularOeffnen($(this), $(event.relatedTarget));
+    $(".formular").on("show.bs.modal", function () {
+        Liste_ElementFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
     // ELEMENT ERSTELLEN

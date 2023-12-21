@@ -28,6 +28,8 @@
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/liste_filtern_modal' ); ?>
+<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/liste_sortieren_modal' ); ?>
 <?php if( auth()->user()->can('termine.anwesenheiten') ) echo view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => $liste['alle_aktiven'], 'checkliste' => $checkliste['dokumentierte_anwesenheiten'] ) ); ?>
 <?php //if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
 

@@ -1,7 +1,7 @@
 const STATUS_SPINNER_CLASS = "spinner-border spinner-border-sm";
 const STATUS_SPINNER_HTML = '<span class="' + STATUS_SPINNER_CLASS + '" role="status"><span class="visually-hidden">Loading...</span></span>';
 
-function Schnittstelle_DomWartenInit() {
+function Schnittstelle_DomInit() {
     const STATUS_STANDARD_HTML = $("#status").html();
 
     $(document).ajaxStart(function () {
@@ -24,6 +24,23 @@ function Schnittstelle_DomWartenInit() {
 
     $(window).on("beforeunload", function () {
         $("#status").html(STATUS_SPINNER_HTML);
+    });
+
+    // AKTIVE MODALS WERDEN GETRACKED
+    $(".modal").on("show.bs.modal", function (event) {
+        const modal_id = $(this).attr("id");
+        const $btn_oeffnend = $(event.relatedTarget);
+        if (G.MODALS.offen.length == 0 || modal_id != G.MODALS.offen[G.MODALS.offen.length - 1].modal_id) {
+            G.MODALS.offen.push({ modal_id: modal_id, $btn_oeffnend: $btn_oeffnend });
+        }
+    });
+
+    $(".modal").on("hidden.bs.modal", function () {
+        const $modal = $(this);
+        if ($modal.attr("id") == G.MODALS.offen[G.MODALS.offen.length - 1].modal_id) {
+            G.MODALS.offen.pop();
+            if (G.MODALS.offen.length > 0) $("#" + G.MODALS.offen[G.MODALS.offen.length - 1].modal_id).modal("show");
+        }
     });
 }
 

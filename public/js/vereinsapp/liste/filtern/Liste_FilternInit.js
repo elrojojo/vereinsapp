@@ -17,7 +17,7 @@ function Liste_FilternInit() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $("#liste_filtern_Modal").on("show.bs.modal", function (event) {
-        Liste_FilternFormularOeffnen($(this), $(event.relatedTarget));
+        Liste_FilternFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
     // ERSTELLEN

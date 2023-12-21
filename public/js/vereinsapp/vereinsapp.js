@@ -1,9 +1,11 @@
 const DateTime = luxon.DateTime;
 
 const G = {
-    AJAX: [],
+    AJAX: new Array(),
 
-    LISTEN: {},
+    LISTEN: new Object(),
+
+    MODALS: { offen: new Array() },
 
     CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
 
@@ -11,7 +13,7 @@ const G = {
 };
 
 $(document).ready(function () {
-    Schnittstelle_DomWartenInit();
+    Schnittstelle_DomInit();
 
     Liste_Init();
 
@@ -60,14 +62,6 @@ $(document).ready(function () {
     $("input, select").on("focus", function () {
         $(this).next(".invalid-tooltip").remove();
     });
-
-    // EIGENSCHAFT-INPUTS UND -SELECTS MIT STANDARDWERTEN BEFÜLLEN
-    // $('input.eigenschaft select.eigenschaft').each( function() { const $eigenschaft = $(this); const eigenschaft = $eigenschaft.attr('data-eigenschaft');
-    //     if( $eigenschaft.attr('type') == 'date' ) $eigenschaft.val( DateTime.now().toISODate() );
-    //     if( $eigenschaft.attr('type') == 'time' ) $eigenschaft.val( DateTime.now().toISOTime() );
-    //     // ...
-    //     $eigenschaft.change();
-    // } );
 
     //LOCALSTORAGE LEEREN
     $(".navbar-text").click(function () {
@@ -121,9 +115,13 @@ function HTML_datetime_local(zeitstempel) {
 /* TODO
 Zusatzsymbole in Mitglieder-Liste durch Bootstrap-Icons ersetzen
 Richtung der Sortierung änderbar machen
-Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
 Checkliste bei leerem LocalStorage korrekt anzeigen
 View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
+Batch über filtern- und sortieren-Button legen
+Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
+Modal-Titel aus dem öffnenden Button nehmen
+
+Constants in config umwandeln und in env verschieben
 
 */
