@@ -15,7 +15,7 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         });
 
         // ELEMENT AKTUALISIEREN
-        $('.element[data-element="' + G.LISTEN[liste].element + '"]').each(function () {
+        $('.element[data-liste="' + liste + '"]').each(function () {
             Liste_ElementAktualisieren($(this), liste);
         });
 

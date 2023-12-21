@@ -3,7 +3,7 @@
 <?= $this->section( 'werkzeugkasten' ); ?><?= view( 'Templates/werkzeugkasten' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2 element" data-element="mitglied" data-element_id="<?= $element_id; ?>">
+<div class="container mb-2 element" data-liste="mitglieder" data-element_id="<?= $element_id; ?>">
     <div class="h5 text-center">
         <span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>
     </div>
@@ -25,18 +25,20 @@
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) { ?><div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="abwesenheiten_des_mitglieds">Abwesenheiten</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['abwesenheiten_des_mitglieds'] ) ); ?>
-<?= view( 'Mitglieder/abwesenheit_erstellen', array( 'element_id' => $element_id ) ); ?>
+<?= view( 'Mitglieder/abwesenheit_erstellen', array( 'mitglied_id' => $element_id ) ); ?>
 </div>
 
 <?php if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="verfuegbare_rechte">Rechte</div>
 <?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste['verfuegbare_rechte'], 'checkliste' => $checkliste['vergebene_rechte_des_mitglieds'] ) ); ?>
 </div><?php } ?>
-<?php } ?>
 
 <div class="container mb-2">
-<?//= view( 'Mitglieder/rueckmeldung_erstellen' ); ?>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine">Termine</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine'] ) ); ?>
 </div>
+<?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
+<?php } ?>
 
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_erstellen_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>

@@ -34,14 +34,14 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
 
     // Speziell für aktion == "loeschen"
     $formular.find(".beschriftung").html(
-        $('.element[data-element="' + element + '"][data-element_id="' + element_id + '"]')
+        $('.element[data-liste="' + liste + '"][data-element_id="' + element_id + '"]')
             .find(".beschriftung")
             .html()
     );
 
     const $btn_schliessend = $formular.find('[class^="btn_"]');
 
-    $btn_schliessend.attr("data-element", element).attr("data-aktion", aktion);
+    $btn_schliessend.attr("data-liste", liste).attr("data-aktion", aktion);
     if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_schliessend.attr("data-element_id", element_id);
     else $btn_schliessend.removeAttr("data-element_id");
 }

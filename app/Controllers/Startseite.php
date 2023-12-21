@@ -22,8 +22,6 @@ class Startseite extends BaseController {
             'vorschau' => array(
                 'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
                 'klein' => true,
-                // 'zentriert' => true,
-                // 'abschneiden' => true,
             ),
         );
 
@@ -49,12 +47,7 @@ class Startseite extends BaseController {
             ),
             'vorschau' => array(
                 'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
-                // 'beschriftung' => '<div class="row g-0 my-1">
-                //     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                //     </div>'.view( 'Termine/rueckmeldung_erstellen' ),
                 'klein' => true,
-                // 'zentriert' => true,
-                // 'abschneiden' => true,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
         );
@@ -81,13 +74,10 @@ class Startseite extends BaseController {
                 'symbol' => SYMBOLE['info']['bootstrap'],
             ),
             'vorschau' => array(
-                // 'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_erstellen' ),
+                    </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ),
                 'klein' => true,
-                // 'zentriert' => true,
-                // 'abschneiden' => true,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
         );

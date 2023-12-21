@@ -22,22 +22,12 @@ function Liste_Init() {
 
     // ELEMENT ERSTELLEN
     $(document).on("click", ".btn_element_erstellen", function () {
-        const element = $(this).attr("data-element");
-        let liste;
-        $.each(G.LISTEN, function (liste_, LISTE_) {
-            if (element == LISTE_.element) liste = liste_;
-        });
-        Liste_ElementErstellen($(this), liste);
+        Liste_ElementErstellen($(this));
     });
 
     // ELEMENT LÖSCHEN
     $(document).on("click", ".btn_element_loeschen", function () {
-        const element = $(this).attr("data-element");
-        let liste;
-        $.each(G.LISTEN, function (liste_, LISTE_) {
-            if (element == LISTE_.element) liste = liste_;
-        });
-        Liste_ElementLoeschen($(this), liste);
+        Liste_ElementLoeschen($(this));
     });
 
     // CHECKLISTE ÄNDERN

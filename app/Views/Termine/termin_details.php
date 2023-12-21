@@ -3,7 +3,7 @@
 <?= $this->section( 'werkzeugkasten' ); ?><?= view( 'Templates/werkzeugkasten' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2 text-center element" data-element="termin" data-element_id="<?= $element_id; ?>">
+<div class="container mb-2 text-center element" data-liste="termine" data-element_id="<?= $element_id; ?>">
 
     <div class="h5">
         <!-- <span class="float-start vorheriges_element"><i class="bi bi-arrow-left"></i></span> -->
@@ -18,7 +18,7 @@
     <div class="row g-0 my-1">
         <div class="col text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-    <?= view( 'Termine/rueckmeldung_erstellen' ); ?>
+    <?= view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ); ?>
 
 </div>
 

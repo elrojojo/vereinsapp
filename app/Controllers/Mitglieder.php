@@ -79,33 +79,30 @@ class Mitglieder extends BaseController {
         $this->viewdata['element_id'] = $element_id;
         
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-          $this->viewdata['liste']['abwesenheiten_des_mitglieds'] = array(
-              'liste' => 'abwesenheiten',
-              'sortieren' => array(
-                  array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
-                  array( 'eigenschaft' => 'ende', 'richtung' => SORT_ASC, ),                
-              ),
-              'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'mitglied_id', 'wert' => $element_id ), ),
-              'beschriftung' => array(
-                  'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> - <span class="eigenschaft" data-eigenschaft="ende"></span>',
-              ),
-              'modal' => array(
-                  'target' => '#element_loeschen_Modal',
-                  'aktion' => 'loeschen',
-              ),
-              'symbol' => array(
-                  'symbol' => SYMBOLE['loeschen']['bootstrap'],
-                  'farbe' => 'danger',
-              ),
-              'vorschau' => array(
-                  'beschriftung' => '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
-                  'klein' => true,
-                  'abschneiden' => true,
-              ),
-          );
-        }
-        
-        if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+            $this->viewdata['liste']['abwesenheiten_des_mitglieds'] = array(
+                'liste' => 'abwesenheiten',
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'ende', 'richtung' => SORT_ASC, ),                
+                ),
+                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'mitglied_id', 'wert' => $element_id ), ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> - <span class="eigenschaft" data-eigenschaft="ende"></span>',
+                ),
+                'modal' => array(
+                    'target' => '#element_loeschen_Modal',
+                    'aktion' => 'loeschen',
+                ),
+                'symbol' => array(
+                    'symbol' => SYMBOLE['loeschen']['bootstrap'],
+                    'farbe' => 'danger',
+                ),
+                'vorschau' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
+                    'klein' => true,
+                    'abschneiden' => true,
+                ),
+            );
 
             if( auth()->user()->can( 'mitglieder.rechte' ) ) {
                 $this->viewdata['liste']['verfuegbare_rechte'] = array(
@@ -127,6 +124,44 @@ class Mitglieder extends BaseController {
                 );
             }
 
+            $this->viewdata['liste']['bevorstehende_termine'] = array(
+                'liste' => 'termine',
+                'filtern' => array( array(
+                    'verknuepfung' => '&&',
+                    'filtern' => array(
+                        array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
+                    ),
+                ), ),
+                'sortieren' => array(
+                    array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
+                ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                ),
+                'link' => site_url().'termine',
+                'symbol' => array(
+                    'symbol' => SYMBOLE['info']['bootstrap'],
+                ),
+                'vorschau' => array(
+                    'beschriftung' => '<div class="row g-0 my-1">
+                        <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
+                        </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => $element_id ) ),
+                    'klein' => true,
+                ),
+                'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            );
+            if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true );
+    
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
+                'modal_id' => '#liste_filtern_Modal',
+                'beschriftung' => 'Termine filtern',
+            ); 
+    
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
+                'modal_id' => '#liste_sortieren_Modal',
+                'beschriftung' => 'Termine sortieren',
+            ); 
+                
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',

@@ -27,7 +27,7 @@ function Liste_Aktualisieren($liste) {
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren);
 
     // ELEMENTE IM DOM LÖSCHEN
-    $liste.find('.element[data-element="' + G.LISTEN[liste].element + '"]').each(function () {
+    $liste.find(".element").each(function () {
         const $element = $(this);
         if (!tabelle_gefiltert_sortiert.includes(G.LISTEN[liste].tabelle[Number($element.attr("data-element_id"))])) $element.remove();
     });
@@ -35,7 +35,7 @@ function Liste_Aktualisieren($liste) {
     // ELEMENTE IM DOM ERGÄNZEN
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
         const element_id = element["id"];
-        const $element = $liste.find('.element[data-element="' + G.LISTEN[liste].element + '"][data-element_id="' + element_id + '"]');
+        const $element = $liste.find('.element[data-element_id="' + element_id + '"]');
 
         // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
@@ -44,7 +44,7 @@ function Liste_Aktualisieren($liste) {
                 .clone()
                 .removeClass("blanko invisible")
                 .addClass("element")
-                .attr("data-element", G.LISTEN[liste].element)
+                .attr("data-liste", liste)
                 .attr("data-element_id", element_id);
 
             // Element hat einen Werkzeugkasten
@@ -76,35 +76,17 @@ function Liste_Aktualisieren($liste) {
 
             // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
             if (position == 0) $neues_element.appendTo($liste);
-            else
-                $neues_element.insertAfter(
-                    $liste.find(
-                        '.element[data-element="' +
-                            G.LISTEN[liste].element +
-                            '"][data-element_id="' +
-                            tabelle_gefiltert_sortiert[position - 1]["id"] +
-                            '"]'
-                    )
-                );
+            else $neues_element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
         }
     });
 
     // ELEMENTE IM DOM SORTIEREN
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
         const element_id = element["id"];
-        const $element = $liste.find('.element[data-element="' + G.LISTEN[liste].element + '"][data-element_id="' + element_id + '"]');
+        const $element = $liste.find('.element[data-element_id="' + element_id + '"]');
 
         if (position == 0) $element.appendTo($liste);
-        else
-            $element.insertAfter(
-                $liste.find(
-                    '.element[data-element="' +
-                        G.LISTEN[liste].element +
-                        '"][data-element_id="' +
-                        tabelle_gefiltert_sortiert[position - 1]["id"] +
-                        '"]'
-                )
-            );
+        else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
     });
 
     // LETZTEN SPACER AUS DER LISTE LÖSCHEN

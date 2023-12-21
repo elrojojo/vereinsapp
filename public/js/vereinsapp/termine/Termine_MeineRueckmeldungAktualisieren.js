@@ -1,6 +1,6 @@
 function Termine_MeineRueckmeldungAktualisieren($btn_rueckmelden) {
     const $btn_rueckmeldung_detaillieren = $btn_rueckmelden.siblings(".btn_rueckmeldung_detaillieren");
-    const termin_id = Number($btn_rueckmelden.closest('.element[data-element="termin"]').attr("data-element_id"));
+    const termin_id = Number($btn_rueckmelden.closest('.element[data-liste="termine"]').attr("data-element_id"));
 
     if ("tabelle" in G.LISTEN.termine) {
         let ich_rueckmeldung_id = G.LISTEN.termine.tabelle[termin_id].ich_rueckmeldung_id;

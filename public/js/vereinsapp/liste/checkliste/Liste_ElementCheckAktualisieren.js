@@ -6,7 +6,7 @@ function Liste_ElementCheckAktualisieren($check, $element, liste) {
             verknuepfung: "&&",
             filtern: [
                 { operator: "==", eigenschaft: $liste.attr("data-gegen_element") + "_id", wert: Number($liste.attr("data-gegen_element_id")) },
-                { operator: "==", eigenschaft: $element.attr("data-element") + "_id", wert: Number($check.val()) },
+                { operator: "==", eigenschaft: G.LISTEN[$element.attr("data-liste")].element + "_id", wert: Number($check.val()) },
             ],
         },
     ];

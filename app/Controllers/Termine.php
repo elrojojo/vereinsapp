@@ -37,7 +37,7 @@ class Termine extends BaseController {
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
                     <div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_erstellen' ),
+                    </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ),
                 'klein' => true,
                 'zentriert' => true,
                 // 'abschneiden' => true,

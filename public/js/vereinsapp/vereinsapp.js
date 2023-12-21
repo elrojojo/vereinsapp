@@ -119,8 +119,10 @@ sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. b
 Checkliste bei leerem LocalStorage korrekt anzeigen
 View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
 Batch über filtern- und sortieren-Button legen
+Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Modal-Titel aus dem öffnenden Button nehmen
+Liste über Details-Ansicht durchscrollen
 
 Constants in config umwandeln und in env verschieben
 
