@@ -114,11 +114,16 @@ class Mitglieder extends BaseController {
                         'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
                     ),
                 );
+
+                $elemente_disabled = array();
+                if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) $elemente_disabled[] = $verfuegbares_recht['id'];
+                else $elemente_disabled = array( VERFUEGBARE_RECHTE['mitglieder.rechte']['id'], VERFUEGBARE_RECHTE['global.einstellungen']['id'], );        
                 $this->viewdata['checkliste']['vergebene_rechte_des_mitglieds'] = array(
                     'checkliste' => 'vergebene_rechte',
                     'aktion' => 'aendern',
                     'gegen_element' => 'mitglied',
                     'gegen_element_id' => $element_id,
+                    'elemente_disabled' => $elemente_disabled,
                 );
             }
 
@@ -154,9 +159,6 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
-                $mitglied->permissions = array();
-                if( auth()->user()->can( 'mitglieder.rechte' ) ) $mitglied->permissions = $mitglied->getPermissions();
-                elseif( $mitglied->id == ICH['id'] ) $mitglied->permissions = $mitglied->getPermissions();
                 $email = $mitglied->email;
                 $mitglied = json_decode( json_encode( $mitglied ), TRUE );
                 $mitglied['email'] = $email;
@@ -360,7 +362,9 @@ class Mitglieder extends BaseController {
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.rechte' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'mitglieder.rechte' ) OR
+                 in_array( $this->request->getPost()['verfuegbares_recht_id'], array( VERFUEGBARE_RECHTE['mitglieder.rechte']['id'], VERFUEGBARE_RECHTE['global.einstellungen']['id'] ) ) )
+                $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             // if( empty( $this->request->getPost()['mitglied_id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['mitglied_id'];
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];

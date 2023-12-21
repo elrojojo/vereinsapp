@@ -6,6 +6,7 @@ data-checkliste="<?= $checkliste['checkliste']; ?>" data-aktion="<?= $checkliste
 data-gegen_element="<?= $checkliste['gegen_element']; ?>" data-gegen_element_id="<?= $checkliste['gegen_element_id']; ?>"<?php
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+if( array_key_exists( 'elemente_disabled', $checkliste ) ) { ?> data-elemente_disabled='<?= json_encode( $checkliste['elemente_disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
     <li class="blanko invisible text-body list-group-item d-grid">
         <div class="form-check form-switch">

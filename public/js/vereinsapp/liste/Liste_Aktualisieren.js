@@ -67,6 +67,13 @@ function Liste_Aktualisieren($liste) {
             $neues_element.find("label").attr("for", element_id);
             $neues_element.find(".check").attr("id", element_id).val(element_id);
 
+            let elemente_disabled = $liste.attr("data-elemente_disabled");
+            if (typeof elemente_disabled !== "undefined") elemente_disabled = JSON.parse(elemente_disabled);
+            else elemente_disabled = new Array();
+            if (elemente_disabled.length > 0 && elemente_disabled.includes(element_id))
+                $neues_element.find(".check").attr("disabled", true).siblings(".beschriftung").first().addClass("text-secondary");
+            else $neues_element.find(".check").attr("disabled", false).siblings(".beschriftung").first().removeClass("text-secondary");
+
             // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
             if (position == 0) $neues_element.appendTo($liste);
             else

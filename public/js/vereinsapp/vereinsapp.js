@@ -124,5 +124,6 @@ Richtung der Sortierung änderbar machen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
 Checkliste bei leerem LocalStorage korrekt anzeigen
+View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
 
 */

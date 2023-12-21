@@ -49,11 +49,15 @@ class Einstellungen extends BaseController {
             ),
         );
         
+        $elemente_disabled = array();
+        if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) $elemente_disabled[] = $verfuegbares_recht['id'];
+        else $elemente_disabled = array( VERFUEGBARE_RECHTE['mitglieder.rechte']['id'], VERFUEGBARE_RECHTE['global.einstellungen']['id'], );
         $this->viewdata['checkliste']['meine_rechte'] = array(
             'checkliste' => 'vergebene_rechte',
             'aktion' => 'aendern',
             'gegen_element' => 'mitglied',
             'gegen_element_id' => ICH['id'],
+            'elemente_disabled' => $elemente_disabled,
         );
 
 
