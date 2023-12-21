@@ -123,5 +123,6 @@ Zusatzsymbole in Mitglieder-Liste durch Bootstrap-Icons ersetzen
 Richtung der Sortierung änderbar machen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
+Checkliste bei leerem LocalStorage korrekt anzeigen
 
 */

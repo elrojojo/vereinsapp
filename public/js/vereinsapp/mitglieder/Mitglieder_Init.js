@@ -6,6 +6,7 @@ G.LISTEN.verfuegbare_rechte = {
 G.LISTEN.vergebene_rechte = {
     controller: "mitglieder",
     element: "vergebenes_recht",
+    verlinkte_listen: ["mitglieder", "verfuegbare_rechte"],
 };
 
 G.LISTEN.abwesenheiten = {
@@ -21,10 +22,3 @@ G.LISTEN.mitglieder = {
     abhaengig_von: ["abwesenheiten"],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,
 };
-
-/* TODO
-Permissions:
-    blanko in instanz eingliedern?
-    als Liste behandeln
-
-*/

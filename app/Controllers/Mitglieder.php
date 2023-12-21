@@ -335,18 +335,13 @@ class Mitglieder extends BaseController {
 
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_verfuegbare_rechte() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
-        $id = 1;
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) {
-                $verfuegbares_recht = array(
-                    'id' => $id,
-                    'permission' => json_decode( json_encode( $permission ), TRUE ),
-                    'beschriftung' => json_decode( json_encode( $beschriftung ), TRUE ),
-                );
+        else foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) {
+                $verfuegbares_recht = json_decode( json_encode( $verfuegbares_recht ), TRUE );
+                foreach( $verfuegbares_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $verfuegbares_recht[ $eigenschaft ] = (int)$wert;
                 $ajax_antwort['tabelle'][] = $verfuegbares_recht;
-                $id++;
             }
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -354,6 +349,24 @@ class Mitglieder extends BaseController {
     }
     
     public function ajax_vergebene_rechte() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
+        $id = 1;
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
+            if( auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
+                foreach( $mitglied->getPermissions() as $permission ) {
+                    $vergebenes_recht['id'] = $id;
+                    $vergebenes_recht['mitglied_id'] = $mitglied->id;
+                    $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];
+                    $vergebenes_recht = json_decode( json_encode( $vergebenes_recht ), TRUE );
+                    foreach( $vergebenes_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $vergebenes_recht[ $eigenschaft ] = (int)$wert;
+                    $ajax_antwort['tabelle'][] = $vergebenes_recht;
+                    $id++;
+                }
+            }
+            // $ajax_antwort['tabelle'][] = array( 'getPermissions' => model(Mitglied_Model::class)->find( ICH['id'] )->getPermissions(), 'VERFUEGBARE_RECHTE' => VERFUEGBARE_RECHTE );
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

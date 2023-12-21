@@ -66,6 +66,16 @@ abstract class BaseController extends Controller
         $this->validation  = \Config\Services::validation();
         $this->session = \Config\Services::session();
 
+        $verfuegbare_rechte = array(); $id = 1;
+        foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) {
+            $verfuegbares_recht['id'] = $id;
+            $verfuegbares_recht['permission'] = $permission;
+            $verfuegbares_recht['beschriftung'] = $beschriftung;
+            $verfuegbare_rechte[$permission] = $verfuegbares_recht;
+            $id++;
+        }
+        defined('VERFUEGBARE_RECHTE') OR define( 'VERFUEGBARE_RECHTE', $verfuegbare_rechte );
+
         defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
 
         defined('ICH') OR define( 'ICH', $this->session->user );
