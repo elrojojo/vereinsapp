@@ -29,8 +29,8 @@
 </div>
 
 <?php if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte">Rechte</div>
-<?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste['verfuegbare_rechte'], 'checkliste' => $checkliste['rechte_des_mitglieds'] ) ); ?>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="verfuegbare_rechte">Rechte</div>
+<?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste['verfuegbare_rechte'], 'checkliste' => $checkliste['vergebene_rechte_des_mitglieds'] ) ); ?>
 </div><?php } ?>
 <?php } ?>
 

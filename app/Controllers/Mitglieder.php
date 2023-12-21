@@ -114,7 +114,7 @@ class Mitglieder extends BaseController {
                         'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
                     ),
                 );
-                $this->viewdata['checkliste']['rechte_des_mitglieds'] = array(
+                $this->viewdata['checkliste']['vergebene_rechte_des_mitglieds'] = array(
                     'checkliste' => 'vergebene_rechte',
                     'aktion' => 'aendern',
                     'gegen_element' => 'mitglied',
@@ -243,24 +243,6 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_permission_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'permission_id' => [ 'label' => 'Recht', 'rules' => [ 'required', 'alpha_numeric_punct' ] ],
-            'mitglied_id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.rechte' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else {
-            if( empty( $this->request->getPost()['mitglied_id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['mitglied_id'];
-            model(Mitglied_Model::class)->findById( $mitglied_id )->removePermission( $this->request->getPost()['permission_id'] );
-            if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $mitglied_id )->addPermission( $this->request->getPost()['permission_id'] );
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_mitglied_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -370,4 +352,24 @@ class Mitglieder extends BaseController {
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
+
+    public function ajax_vergebenes_recht_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'mitglieder.rechte' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else {
+            // if( empty( $this->request->getPost()['mitglied_id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['mitglied_id'];
+            $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];
+            model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );
+            if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->addPermission( $permission );
+        }
+        
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
 }

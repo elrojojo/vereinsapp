@@ -415,7 +415,7 @@ class Auth extends ShieldAuth
         'token_logins'      => 'mitglieder_login_versuche_token',
         'remember_tokens'   => 'mitglieder_login_eingeloggt_bleiben',
         'groups_users'      => 'mitglieder_rollen',
-        'permissions_users' => 'mitglieder_rechte',
+        'permissions_users' => 'mitglieder_vergebene_rechte',
     ];
 
     /**

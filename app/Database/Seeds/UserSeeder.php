@@ -41,11 +41,11 @@ class UserSeeder extends Seeder
         ];
         $this->db->table('mitglieder_rollen')->insertBatch($mitglieder_rollen);
         
-        $mitglieder_rechte = [
+        $mitglieder_vergebene_rechte = [
             [ 'user_id' => 1, 'permission' => 'mitglieder.rechte', ],
             [ 'user_id' => 1, 'permission' => 'global.einstellungen', ],
             [ 'user_id' => 2, 'permission' => 'global.einstellungen', ],
         ];
-        $this->db->table('mitglieder_rechte')->insertBatch($mitglieder_rechte);
+        $this->db->table('mitglieder_vergebene_rechte')->insertBatch($mitglieder_vergebene_rechte);
     }
 }

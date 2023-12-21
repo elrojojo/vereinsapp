@@ -315,6 +315,12 @@ $eigenschaften['mitglieder']['abwesenheiten'] = array(
   'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', 'standard' => '', ),
 );
 
+$eigenschaften['mitglieder']['vergebene_rechte'] = array(
+    'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl', 'standard' => '', ),
+    'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl', 'standard' => '', ),
+    'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', 'standard' => '', ),
+  );
+
 
 defined('MITGLIEDER_EIGENSCHAFTEN_VORSCHAU') OR define( 'MITGLIEDER_EIGENSCHAFTEN_VORSCHAU', array(
   'register',
