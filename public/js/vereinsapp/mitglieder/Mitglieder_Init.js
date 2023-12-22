@@ -22,10 +22,3 @@ G.LISTEN.mitglieder = {
     abhaengig_von: ["abwesenheiten"],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,
 };
-
-/* TODO
-Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
-Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
-Registerführer einführen
-
-*/

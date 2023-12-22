@@ -17,9 +17,3 @@ G.LISTEN.termine = {
     abhaengig_von: ["rueckmeldungen"],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenTermine,
 };
-
-/* TODO
-Abwesenheit in Rückmeldungen berücksichtigen
-Personenkreis beschränken
-
-*/

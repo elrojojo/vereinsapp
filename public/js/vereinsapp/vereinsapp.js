@@ -125,6 +125,12 @@ Modal-Titel aus dem öffnenden Button nehmen
 Liste über Details-Ansicht durchscrollen
 Uhrzeit updaten
 Hinweis anzeigen, wenn aktuell abweisend
+Abwesenheiten wieder einführen
+Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
+Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
+Registerführer einführen
 
 Constants in config umwandeln und in env verschieben
+Personenkreis beschränken
+Titel-Details anzeigen
 */

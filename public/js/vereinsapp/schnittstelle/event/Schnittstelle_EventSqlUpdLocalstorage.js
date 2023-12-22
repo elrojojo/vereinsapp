@@ -49,7 +49,7 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktione
         };
 
         // Falls die Funktion ein weiteres Mal durchgeführt werden soll ("Schleife"), dann wird die Funktion entsprechend übergeben
-        if (schleife) G.AJAX[neue_ajax_id].schleife = Schnittstelle_EventSqlUpdLocalstorage; // todo ...
+        if (schleife) G.AJAX[neue_ajax_id].schleife = Schnittstelle_EventSqlUpdLocalstorage;
 
         // AJAX wird in die Schlange mitaufgenommen
         Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
