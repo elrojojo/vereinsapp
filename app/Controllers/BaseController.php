@@ -168,12 +168,12 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js'), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MeineRueckmeldungAktualisieren.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungIdZurueck.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_MitgliedEingeladenZurueck.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_FormularMeineRueckmeldungEinAusblenden.js'), );
             
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js'), );
-        } else {
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/not_logged_in.js'), );
         }
         defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', $head_script );
 

@@ -150,18 +150,7 @@ class Mitglieder extends BaseController {
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             );
-            if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true );
-    
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
-                'modal_id' => '#liste_filtern_Modal',
-                'beschriftung' => 'Termine filtern',
-            ); 
-    
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
-                'modal_id' => '#liste_sortieren_Modal',
-                'beschriftung' => 'Termine sortieren',
-            ); 
-                
+            
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
@@ -286,7 +275,7 @@ class Mitglieder extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getPost()['id'] == $this->session->user['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
+        else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
         else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], true );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -317,7 +306,7 @@ class Mitglieder extends BaseController {
             'ende' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getpost()['start'] > $this->request->getpost()['ende'] ) $ajax_antwort['validation'] = array(
             'start' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung'].' liegen.',
             'ende' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung'].' liegen.',
@@ -329,7 +318,7 @@ class Mitglieder extends BaseController {
                 'ende' => $this->request->getpost()['ende'],
                 'bemerkung' => $this->request->getpost()['bemerkung'],
             );
-            if( !empty( $this->request->getPost()['mitglied_id'] ) ) $abwesenheit['mitglied_id'] = $this->request->getPost()['mitglied_id']; else $abwesenheit['mitglied_id'] = $this->session->user['id'];
+            if( !empty( $this->request->getPost()['mitglied_id'] ) ) $abwesenheit['mitglied_id'] = $this->request->getPost()['mitglied_id']; else $abwesenheit['mitglied_id'] = ICH['id'];
 
             // if( !empty( $this->request->getPost()['id'] ) ) $abwesenheit_Model->update( $this->request->getpost()['id'], $abwesenheit );
             // else
@@ -345,7 +334,7 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( model(Abwesenheit_Model::class)->find( $this->request->getPost()['id'] )['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( model(Abwesenheit_Model::class)->find( $this->request->getPost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Abwesenheit_Model::class)->delete( $this->request->getPost()['id'], true );
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

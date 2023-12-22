@@ -1,1 +1,0 @@
-function Mitglieder_Init() {}

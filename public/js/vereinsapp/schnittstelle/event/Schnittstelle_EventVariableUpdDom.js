@@ -50,9 +50,9 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Termine_FormularMeineRueckmeldungEinAusblenden($(this));
         });
 
-        // MEINE RÜCKMELDUNG AKTUALISIEREN
+        // RÜCKMELDUNG AKTUALISIEREN
         $(".zusagen, .absagen").each(function () {
-            Termine_MeineRueckmeldungAktualisieren($(this));
+            Termine_RueckmeldungAktualisieren($(this));
         });
     });
 }

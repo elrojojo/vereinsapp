@@ -251,7 +251,6 @@ enum AJAX_ZUSTAND
 | VEREINSAPP Projekt-spezifische Konstanten
 |--------------------------------------------------------------------------*/
 
-$einstellungen = array();
 $eigenschaften = array();
 $vorgegebene_werte = array();
 
@@ -275,14 +274,6 @@ defined('OFFIZIELLE_WEBSITE') OR define( 'OFFIZIELLE_WEBSITE', 'https://www.eing
 
 defined('MITGLIEDER_ABWESENHEITEN_BEMERKUNG_STANDARD') OR define( 'MITGLIEDER_ABWESENHEITEN_BEMERKUNG_STANDARD', 'Mitglied hat eine Abwesenheit aktiviert!' );
 
-
-// $einstellungen['startseite']['logo_anzeigen'] = array( 'titel' => 'Logo anzeigen',
-//   'werte' => array(
-//     'nein' => 'nein',
-//     'ja' => 'ja',
-//     ),
-//   'standardwert' => 'ja',
-// );
 
 //#############################################################################################################
 $eigenschaften['mitglieder']['mitglieder'] = array(
@@ -413,17 +404,14 @@ $vorgegebene_werte['mitglieder'] = array(
 //#############################################################################################################
 $eigenschaften['termine']['termine'] = array(
   'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text', 'standard' => '', ),
-  // 'organisator' => array( 'beschriftung' => 'Organisator', 'typ' => 'text', 'standard' => '', ),
 
   'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt', 'standard' => date( 'Y-m-d H:i:s', time(), ), ),
   'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text', 'standard' => '', ),
 
   'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte', 'standard' => 'allgemein', ),
   'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text', 'standard' => '', ),
-  // 'setlist' => array( 'beschriftung' => 'Setlist', 'typ' => 'text', 'standard' => '', ),
   'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', 'standard' => '', ),
 
-  'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine Rückmeldung-ID', 'typ' => 'zahl', 'standard' => '', ),  // JAVA
   'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte', 'standard' => '', ),  // JAVA
   'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen.', 'typ' => 'vorgegebene_werte', 'standard' => '', ),  // JAVA
 );
@@ -465,30 +453,6 @@ $vorgegebene_werte['termine'] = array(
 );
 
 // defined('TERMINE_RUECKMELDUNG_FRIST') OR define( 'TERMINE_RUECKMELDUNG_FRIST', 0 );
-
-// LÖSCHEN defined('TERMINE_EIGENSCHAFTEN_filtern_mitglieder') OR define( 'TERMINE_EIGENSCHAFTEN_FILTERN_MITGLIEDER', array( 'register', 'funktion', 'vorstandschaft', 'aktiv', ) );
-
-// LÖSCHEN defined('TERMINE_ANWESENHEITSKONTROLLE') OR define( 'TERMINE_ANWESENHEITSKONTROLLE', TRUE );
-
-// LÖSCHEN defined('TERMINE_RUECKMELDUNG_DETAIL_FREWILLIG') OR define( 'TERMINE_RUECKMELDUNG_DETAIL_FREWILLIG', TRUE ); // Absage und Zusage Freiwillig!
-// LÖSCHEN defined('TERMINE_RUECKMELDUNG_DETAIL_ABSAGE') OR define( 'TERMINE_RUECKMELDUNG_DETAIL_ABSAGE', FALSE );  // Absage als Zwang!
-
-// defined('TERMINE_SETLISTS') OR define( 'TERMINE_SETLISTS', array( 'auftritt' ) );
-
-// $einstellungen['termine']['ich_beschr_anzeigen'] = array( 'titel' => 'Termine ohne Einladung',
-//   'werte' => array(
-//     0 => 'ausblenden',
-//     1 => 'anzeigen',
-//     ),
-//   'standardwert' => 0,
-// );
-// $einstellungen['termine']['vergangen_anzeigen'] = array( 'titel' => 'Vergangene Termine',
-//   'werte' => array(
-//     0 => 'ausblenden',
-//     1 => 'anzeigen',
-//     ),
-//   'standardwert' => 0,
-// );
 
 //#############################################################################################################
 $eigenschaften['strafkatalog']['strafkatalog'] = array(
@@ -551,7 +515,6 @@ defined('NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN') OR define( 'NOTENVER
 
 
 //#############################################################################################################
-// defined('EINSTELLUNGEN') OR define( 'EINSTELLUNGEN', $einstellungen );
 defined('EIGENSCHAFTEN') OR define( 'EIGENSCHAFTEN', $eigenschaften );
 defined('SORTIERBARE_EIGENSCHAFTEN') OR define( 'SORTIERBARE_EIGENSCHAFTEN', $sortierbare_eigenschaften );
 defined('FILTERBARE_EIGENSCHAFTEN') OR define( 'FILTERBARE_EIGENSCHAFTEN', $filterbare_eigenschaften );

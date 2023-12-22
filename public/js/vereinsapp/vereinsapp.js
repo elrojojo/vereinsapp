@@ -123,7 +123,8 @@ Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Modal-Titel aus dem öffnenden Button nehmen
 Liste über Details-Ansicht durchscrollen
+Uhrzeit updaten
+Hinweis anzeigen, wenn aktuell abweisend
 
 Constants in config umwandeln und in env verschieben
-
 */

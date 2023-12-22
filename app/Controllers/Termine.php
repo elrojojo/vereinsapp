@@ -189,8 +189,6 @@ class Termine extends BaseController {
             'start' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
-            // // 'beschr_mitglieder',
-            // // 'setlist',
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine']['termine'] ) ) $validation_rules['organisator'] = [ 'label' => EIGENSCHAFTEN['termine']['termine']['organisator']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ];
@@ -206,8 +204,6 @@ class Termine extends BaseController {
                 'start' => $this->request->getPost()['start'],
                 'ort' => $this->request->getpost()['ort'],
                 'kategorie' => $this->request->getpost()['kategorie'],
-                // 'beschr_mitglieder' => $this->request->getPost()['beschr_mitglieder'],
-                // 'setlist' => $this->request->getpost()['setlist'],
                 'bemerkung' => $this->request->getpost()['bemerkung'],
             );
             if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine']['termine'] ) ) $termin['organisator'] = $this->request->getpost()['organisator'];
@@ -256,18 +252,18 @@ class Termine extends BaseController {
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'termin_id' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';   // Muss ausgearbeitet werden!!!
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array(
                 'termin_id' => $this->request->getpost()['termin_id'],
+                'mitglied_id' => $this->request->getpost()['mitglied_id'],
                 'status' => $this->request->getpost()['status'],
             );
-            if( !empty( $this->request->getPost()['mitglied_id'] ) ) $rueckmeldung['mitglied_id'] = $this->request->getPost()['mitglied_id']; else $rueckmeldung['mitglied_id'] = $this->session->user['id'];
             $rueckmeldungen_Model->save( $rueckmeldung );
         }
 
@@ -282,8 +278,7 @@ class Termine extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        // else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';   // Muss ausgearbeitet werden!!!
+        else if( model(Rueckmeldung_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array();
@@ -295,19 +290,6 @@ class Termine extends BaseController {
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
-
-    // public function ajax_rueckmeldung_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-    //     $validation_rules = array(
-    //         'ajax_id' => 'required|is_natural',
-    //         'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-    //     ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-    //     else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != $this->session->user['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-    //     else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';
-    //     else model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'], true );
-    //     
-    //     $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-    //     echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    // }
     
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_anwesenheiten() { $ajax_antwort[CSRF_NAME] = csrf_hash();
@@ -350,7 +332,7 @@ class Termine extends BaseController {
 
     //------------------------------------------------------------------------------------------------------------------
     private function ist_eingeladen( $termin_id, $mitglied_id ) {
-        if( empty( $mitglied_id ) ) $mitglied_id = $this->session->user['id'];
+        if( empty( $mitglied_id ) ) $mitglied_id = ICH['id'];
         $termin = model(Termin_Model::class)->find( $termin_id );
         if( empty( $termin ) ) return false;
         else {
