@@ -79,6 +79,28 @@ class Notenbank extends BaseController {
     
         $this->viewdata['element_id'] = $element_id;
 
+        if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
+            $this->viewdata['werkzeugkasten']['aendern'] = array(
+                'modal_id' => '#titel_erstellen_Modal',
+                'liste' => 'notenbank',
+                'element_id' => $element_id,
+                'beschriftung' => 'Titel ändern',
+            );
+            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
+                'modal_id' => '#titel_erstellen_Modal',
+                'liste' => 'notenbank',
+                'element_id' => $element_id,
+                'beschriftung' => 'Titel duplizieren',
+            );
+            // $this->viewdata['werkzeugkasten']['loeschen'] = array(
+            //     'modal_id' => '#element_loeschen_Modal',
+            //     'farbe' => 'danger',
+            //     'element' => 'titel',
+            //     'element_id' => $element_id,
+            //     'beschriftung' => 'Titel löschen',
+            // );
+        }
+
         echo view( 'Notenbank/titel_details', $this->viewdata );
     }
 
