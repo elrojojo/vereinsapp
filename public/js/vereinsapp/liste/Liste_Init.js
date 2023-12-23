@@ -1,8 +1,4 @@
 function Liste_Init() {
-    Liste_SortierenInit(); // TODO: Liste_SortierenInit(); nach $.each(G.LISTEN, function (liste) {});
-
-    Liste_FilternInit(); // TODO: Liste_FilternInit(); nach $.each(G.LISTEN, function (liste) {});
-
     $.each(G.LISTEN, function (liste) {
         G.LISTEN[liste].instanz = new Object();
         $('.liste[data-liste="' + liste + '"]').each(function () {
@@ -14,6 +10,10 @@ function Liste_Init() {
     });
 
     Liste_AuswertungenInit();
+
+    Liste_FilternInit();
+
+    Liste_SortierenInit();
 
     // FORMULAR (MODAL) ÖFFNEN
     $(".formular").on("show.bs.modal", function () {
