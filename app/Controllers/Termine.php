@@ -91,7 +91,7 @@ class Termine extends BaseController {
             'cluster' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
-                'filtern' => model(Termin_Model::class)->find( $element_id )['filtern_mitglieder'],
+                // 'filtern' => model(Termin_Model::class)->find( $element_id )['filtern_mitglieder'],
             ),
             // 'sortable' => true,
             'collapse' => true,
@@ -256,7 +256,6 @@ class Termine extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['termine']['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( !$this->ist_eingeladen( $this->request->getpost()['termin_id'], $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Nicht eingeladen!';   // Muss ausgearbeitet werden!!!
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array(
@@ -328,18 +327,6 @@ class Termine extends BaseController {
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    //------------------------------------------------------------------------------------------------------------------
-    private function ist_eingeladen( $termin_id, $mitglied_id ) {
-        if( empty( $mitglied_id ) ) $mitglied_id = ICH['id'];
-        $termin = model(Termin_Model::class)->find( $termin_id );
-        if( empty( $termin ) ) return false;
-        else {
-            $filtern_mitglieder = json_decode( $termin['filtern_mitglieder'] );
-            // Muss ausgearbeitet werden!!!
-            return true;
-        }
     }
 
 }

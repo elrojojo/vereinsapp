@@ -47,6 +47,8 @@
         <label><?= EIGENSCHAFTEN['termine']['termine']['kategorie']['beschriftung']; ?></label>
       </div>
 
+      <button type="button" class="btn btn-outline">Termin beschränken</button>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>

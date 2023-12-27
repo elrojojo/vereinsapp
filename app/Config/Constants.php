@@ -164,7 +164,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   // 'email' => array( 'bootstrap' => 'envelope' ),
 
   'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
-  // 'personenkreis_beschraenken' => array( 'bootstrap' => 'person-lock' ),
+  'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
 
   'abwesend' => array( 'html' => '&#9992' ),
   'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
@@ -444,10 +444,10 @@ $filterbare_eigenschaften['termine'] = array(
 
 $vorgegebene_werte['termine'] = array(
   'kategorie' => array (
-    'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '', 'filtern_mitglieder_standard' => array() ),
-    'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930', 'filtern_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
-    'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'filtern_mitglieder_standard' => array( 'aktiv' => array( 0, ), ), ),
-    //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'filtern_mitglieder_standard' => array( 'vorstandschaft' => array( 0, ), ), ),
+    'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '', 'filtern_mitglieder' => array() ),
+    'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930', 'filtern_mitglieder' => array( 'aktiv' => array( 0, ), ), ),
+    'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218', 'filtern_mitglieder' => array( 'aktiv' => array( 0, ), ), ),
+    //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />', 'filtern_mitglieder' => array( 'vorstandschaft' => array( 0, ), ), ),
   ),
   'ich_rueckgemeldet' => JANEIN,
 );

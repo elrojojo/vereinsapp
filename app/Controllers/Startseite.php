@@ -62,7 +62,6 @@ class Startseite extends BaseController {
                     array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
                 ),
             ), ),
-            'filtern_eigenschaft' => array( 'mitglieder' => 'filtern_mitglieder' ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
             ),
