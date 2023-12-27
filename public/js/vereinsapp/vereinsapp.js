@@ -135,6 +135,5 @@ Verzeichnis filtern und sortieren
 
 Shield für Mailversand konfigurieren
 Constants in config umwandeln und in env verschieben
-Personenkreis beschränken
 
 */

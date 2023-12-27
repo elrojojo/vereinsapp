@@ -8,8 +8,19 @@ function Schnittstelle_EventElementErgaenzenNotenbank(titel) {
                 anzahl.noten += anzahl_unterverzeichnis.noten;
                 anzahl.audio += anzahl_unterverzeichnis.audio;
                 anzahl.verzeichnis += anzahl_unterverzeichnis.verzeichnis;
-            } else if (unterverzeichnis.substring(unterverzeichnis.length - 4, unterverzeichnis.length) == ".pdf") anzahl.noten++;
-            else if (unterverzeichnis.substring(unterverzeichnis.length - 4, unterverzeichnis.length) == ".m4a") anzahl.audio++;
+            } else {
+                const punkt = unterverzeichnis.lastIndexOf(".");
+                const typ = unterverzeichnis.slice(punkt + 1);
+                switch (typ) {
+                    case "pdf":
+                        anzahl.noten++;
+                        break;
+                    case "mp3":
+                    case "m4a":
+                        anzahl.audio++;
+                        break;
+                }
+            }
         });
         return anzahl;
     }

@@ -510,7 +510,7 @@ $vorgegebene_werte['notenbank'] = array(
 );
 
 defined('NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN', 2 );
-defined('NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN', array( 'pdf' ) );
+defined('NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN', array( 'pdf', 'mp3', 'm4a' ) );
 
 
 //#############################################################################################################
