@@ -22,7 +22,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
             val = val.toISODate();
         } else if ($eigenschaft.attr("type") == "time") {
             if (typeof val !== "object") val = DateTime.fromFormat(val, SQL_DATETIME);
-            val = val.toISOTime({
+            val = val.set({ seconds: 0 }).toISOTime({
                 includeOffset: false,
                 suppressSeconds: true,
                 suppressMilliseconds: true,

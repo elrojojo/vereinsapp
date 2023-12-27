@@ -189,6 +189,7 @@ class Termine extends BaseController {
             'start' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
+            'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['termine']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine']['termine'] ) ) $validation_rules['organisator'] = [ 'label' => EIGENSCHAFTEN['termine']['termine']['organisator']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ];
@@ -204,6 +205,7 @@ class Termine extends BaseController {
                 'start' => $this->request->getPost()['start'],
                 'ort' => $this->request->getpost()['ort'],
                 'kategorie' => $this->request->getpost()['kategorie'],
+                'filtern_mitglieder' => json_encode($this->request->getpost()['filtern_mitglieder']),
                 'bemerkung' => $this->request->getpost()['bemerkung'],
             );
             if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine']['termine'] ) ) $termin['organisator'] = $this->request->getpost()['organisator'];

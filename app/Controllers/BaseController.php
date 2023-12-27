@@ -100,8 +100,9 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4', 'crossorigin' => 'anonymous', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js', );
         $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js'), ); // https://www.npmjs.com/package/js-sha256
-        $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js'), ); // https://stackoverflow.com/questions/3034874/sequencing-ajax-requests/3035268
-        $head_script[] = array( 'src' => base_url('js/lib/isObject.js'), ); // https://stackoverflow.com/questions/8511281/check-if-a-value-is-an-object-in-javascript
+        $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js'), );
+        $head_script[] = array( 'src' => base_url('js/lib/isJson.js'), );
+        $head_script[] = array( 'src' => base_url('js/lib/isObject.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js'), ); // abhaengig von isObject
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js'), );
@@ -123,7 +124,6 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternLoeschen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_Filtern2$FilternZurueck.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_$Filtern2FilternZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_PhpFiltern2FilternZurueck.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_SqlFiltern2FilternZurueck.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_TabelleGefiltertZurueck.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternEigenschaftPositionZurueck.js'), );

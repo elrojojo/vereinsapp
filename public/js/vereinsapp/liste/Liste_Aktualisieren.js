@@ -4,7 +4,7 @@ function Liste_Aktualisieren($liste) {
 
     // TABELLE FILTERN
     let filtern = $liste.attr("data-filtern");
-    if (typeof filtern !== "undefined") filtern = Liste_PhpFiltern2FilternZurueck(JSON.parse(filtern), liste);
+    if (typeof filtern !== "undefined") filtern = Liste_SqlFiltern2FilternZurueck(JSON.parse(filtern), liste);
     else filtern = new Array();
     const filtern_LocalStorage = G.LISTEN[liste].instanz[instanz].filtern;
     if (filtern_LocalStorage.length > 0) {

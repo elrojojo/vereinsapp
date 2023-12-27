@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/3034874/sequencing-ajax-requests/3035268
 /*
  * jQuery.ajaxQueue - A queue for ajax requests
  *
