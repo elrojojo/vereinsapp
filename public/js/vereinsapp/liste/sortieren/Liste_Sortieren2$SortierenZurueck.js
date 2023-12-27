@@ -1,10 +1,10 @@
-function Liste_Sortieren2$SortierenZurueck(sortieren, liste) {
+function Liste_Sortieren2$SortierenZurueck(sortieren, $blanko_sortieren_element, liste) {
     const $sortieren = new Array();
 
     $.each(sortieren, function (index, element) {
         const richtung = element.richtung;
         const eigenschaft = element.eigenschaft;
-        const $neues_sortieren_element = SORTIEREN.$blanko_sortieren_element.clone().removeClass("blanko invisible").addClass("sortieren_element");
+        const $neues_sortieren_element = $blanko_sortieren_element.clone().removeClass("blanko invisible").addClass("sortieren_element");
 
         $neues_sortieren_element
             .find(".eigenschaft")

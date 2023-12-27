@@ -1,14 +1,5 @@
 function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
     Schnittstelle_EventDurchfuehren(liste, naechste_aktionen, function (liste) {
-        // AUSWERTUNGEN AKTUALISIEREN
-        $('.auswertungen[data-liste="' + liste + '"]').each(function () {
-            Liste_AuswertungenAktualisieren($(this), liste);
-            let cluster = $(this).attr("data-cluster");
-            if (typeof cluster !== "undefined") cluster = JSON.parse(cluster);
-            else cluster = new Object();
-            Schnittstelle_EventVariableUpdDom(cluster.liste);
-        });
-
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
             Liste_Aktualisieren($(this));
@@ -17,6 +8,21 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         // ELEMENT AKTUALISIEREN
         $('.element[data-liste="' + liste + '"]').each(function () {
             Liste_ElementAktualisieren($(this), liste);
+        });
+
+        // AUSWERTUNGEN AKTUALISIEREN
+        $('.auswertungen[data-liste="' + liste + '"]').each(function () {
+            Liste_AuswertungenAktualisieren($(this), liste);
+            let cluster = $(this).attr("data-cluster");
+            if (typeof cluster !== "undefined") {
+                cluster = JSON.parse(cluster);
+                if ("liste" in cluster) Schnittstelle_EventVariableUpdDom(cluster.liste);
+            }
+        });
+
+        // VERZEICHNIS AKTUALISIEREN
+        $('.verzeichnis[data-liste="' + liste + '"]').each(function () {
+            Liste_VerzeichnisAktualisieren($(this), liste);
         });
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
@@ -37,7 +43,9 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
 
             // SORTIEREN AKTUALISIEREN
             $('.sortieren[data-instanz="' + instanz + '"]').each(function () {
-                $(this).html(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, liste));
+                $(this).html(
+                    Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, SORTIEREN.$blanko_sortieren_element, liste)
+                );
             });
             $('.sortieren[data-instanz="' + instanz + '"]')
                 .find(".btn_sortieren_aendern, .btn_sortieren_loeschen")

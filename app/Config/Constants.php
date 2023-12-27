@@ -181,11 +181,11 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'sichtbar' => array( 'bootstrap' => 'eye' ),
   'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
-  // 'verzeichnis_oeffnen' => array( 'bootstrap' => 'folder-symlink' ),
   'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
   'noten' => array( 'bootstrap' => 'file-earmark-music' ),
   'audio' => array( 'bootstrap' => 'play-btn' ),
   'verzeichnis' => array( 'bootstrap' => 'folder' ),
+  'verzeichnis_basis' => array( 'bootstrap' => 'folder-symlink' ),
 
 
   // 'ebene_hoch' => array( 'bootstrap' => 'arrow-90deg-up' ),
@@ -509,7 +509,6 @@ $vorgegebene_werte['notenbank'] = array(
   ),
 );
 
-defined('NOTENVERZEICHNIS_PDF') OR define( 'NOTENVERZEICHNIS_PDF', null );//'storage/notenbank/notenverzeichnis.pdf' );
 defined('NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN', 2 );
 defined('NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN', array( 'pdf' ) );
 

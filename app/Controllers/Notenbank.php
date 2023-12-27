@@ -79,6 +79,13 @@ class Notenbank extends BaseController {
     
         $this->viewdata['element_id'] = $element_id;
 
+        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array(
+            'liste' => 'notenbank',
+            'link' => TRUE,
+            'symbol' => TRUE,
+            'element_id' => $element_id,
+        );
+
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
@@ -101,6 +108,7 @@ class Notenbank extends BaseController {
             // );
         }
 
+        if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $id => $verzeichnis ) $this->viewdata['verzeichnis'][ $id ]['id'] = $id;
         echo view( 'Notenbank/titel_details', $this->viewdata );
     }
 
@@ -112,8 +120,13 @@ class Notenbank extends BaseController {
         else {
             $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
-                $verzeichnis = ''; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ ) if( substr( $verzeichnis_, -1 ) == '/' AND substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) ) $verzeichnis = $verzeichnis_;
-                $titel['verzeichnis'] = directory_map( './storage/notenbank/'.$verzeichnis );
+                $verzeichnis = null; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ )
+                    if( substr( $verzeichnis_, -1 ) == '/' AND
+                        substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) )
+                        $verzeichnis = $verzeichnis_;
+
+                $titel['verzeichnis_basis'] = $verzeichnis; 
+                $titel['verzeichnis'] = array(); if( $verzeichnis !== null ) $titel['verzeichnis'] = $this->verzeichnis_indizieren( directory_map( './storage/notenbank/'.$verzeichnis ) ); 
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
             }
@@ -161,4 +174,16 @@ class Notenbank extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
+    private function verzeichnis_indizieren( $verzeichnis ) {
+        $verzeichnis_indiziert = array();
+        foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
+            if( is_array($unterverzeichnis) ) $verzeichnis_indiziert[$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
+            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ), NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN ) )
+                // $verzeichnis_indiziert[$beschriftung] = array( 'name' => pathinfo( $unterverzeichnis, PATHINFO_FILENAME), 'kategorie' => pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ) );
+                $verzeichnis_indiziert[$beschriftung] = $unterverzeichnis;
+            else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }
+        }
+        return $verzeichnis_indiziert;
+    }
+    
 }

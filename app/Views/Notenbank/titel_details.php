@@ -10,7 +10,14 @@
         <span class="beschriftung"><span class="eigenschaft" data-eigenschaft="titel"></span></span>
         <!-- <span class="float-end naechstes_element"><i class="bi bi-arrow-right"></i></span> -->
     </div>
+    <div class="row g-0 my-1">
+        <div class="col text-nowrap"><span class="eigenschaft" data-eigenschaft="kategorie"></span></div>
+    </div>
 
+</div>
+
+<div class="container mb-2">
+<?= view( 'Templates/Liste/verzeichnis', array( 'verzeichnis' => $verzeichnis['aktuelles_verzeichnis'] ) ); ?>
 </div>
 
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_erstellen_modal' ); ?>

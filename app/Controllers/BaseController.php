@@ -113,9 +113,8 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementLoeschen.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementAktualisieren.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_WertFormatiertZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_CheckAendern.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js'), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_ElementCheckAktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/checkliste/Liste_CheckAendern.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularOeffnen.js'), );
@@ -141,6 +140,15 @@ abstract class BaseController extends Controller
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js'), );
+
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAktualisieren.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_Verzeichnis2$VerzeichnisZurueck.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisPfad2$VerzeichnisPfadZurueck.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_$VerzeichnisPfad2VerzeichnisPfadZurueck.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisPfad2Verzeichnis.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisOeffnen.js'), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisPfadOeffnen.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxInDieSchlange.js'), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRaus.js'), );

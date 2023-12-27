@@ -1,15 +1,15 @@
 function Schnittstelle_EventElementErgaenzenNotenbank(titel) {
     function anzahl_dateien(verzeichnis) {
         const anzahl = { noten: 0, audio: 0, verzeichnis: 0 };
-        $.each(verzeichnis, function (index, datei) {
-            if (typeof datei == "array" || typeof datei == "object") {
-                const unterverzeichnis = datei;
+        $.each(verzeichnis, function (index, unterverzeichnis) {
+            if (isObject(unterverzeichnis)) {
                 anzahl.verzeichnis++;
                 const anzahl_unterverzeichnis = anzahl_dateien(unterverzeichnis);
                 anzahl.noten += anzahl_unterverzeichnis.noten;
                 anzahl.audio += anzahl_unterverzeichnis.audio;
-            } else if (datei.substring(datei.length - 4, datei.length) == ".pdf") anzahl.noten++;
-            else if (datei.substring(datei.length - 4, datei.length) == ".m4a") anzahl.audio++;
+                anzahl.verzeichnis += anzahl_unterverzeichnis.verzeichnis;
+            } else if (unterverzeichnis.substring(unterverzeichnis.length - 4, unterverzeichnis.length) == ".pdf") anzahl.noten++;
+            else if (unterverzeichnis.substring(unterverzeichnis.length - 4, unterverzeichnis.length) == ".m4a") anzahl.audio++;
         });
         return anzahl;
     }

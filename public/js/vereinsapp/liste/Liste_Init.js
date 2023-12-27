@@ -11,6 +11,8 @@ function Liste_Init() {
 
     Liste_AuswertungenInit();
 
+    Liste_VerzeichnisInit();
+
     Liste_FilternInit();
 
     Liste_SortierenInit();

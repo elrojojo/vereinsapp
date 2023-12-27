@@ -113,7 +113,7 @@ function HTML_datetime_local(zeitstempel) {
 }
 
 /* TODO
-Zusatzsymbole in Mitglieder-Liste durch Bootstrap-Icons ersetzen
+Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Richtung der Sortierung änderbar machen
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
 Checkliste bei leerem LocalStorage korrekt anzeigen
@@ -122,15 +122,18 @@ Batch über filtern- und sortieren-Button legen
 Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Modal-Titel aus dem öffnenden Button nehmen
-Liste über Details-Ansicht durchscrollen
+Liste über Details-Ansicht durchscrollbar machen
 Uhrzeit updaten
-Hinweis anzeigen, wenn aktuell abweisend
 Abwesenheiten wieder einführen
+    Hinweis anzeigen, wenn aktuell abweisend
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
 Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 Registerführer einführen
 Beschriftung sinnvoll einsetzen
+Cluster überarbeiten
+Verzeichnis filtern und sortieren
 
+Shield für Mailversand konfigurieren
 Constants in config umwandeln und in env verschieben
 Personenkreis beschränken
 
