@@ -91,7 +91,7 @@ class Termine extends BaseController {
             'cluster' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
-                // 'filtern' => model(Termin_Model::class)->find( $element_id )['filtern_mitglieder'],
+                'filtern' => model(Termin_Model::class)->find( $element_id )['filtern_mitglieder'],
             ),
             // 'sortable' => true,
             'collapse' => true,

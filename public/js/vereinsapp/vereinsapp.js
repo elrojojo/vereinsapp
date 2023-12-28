@@ -133,6 +133,7 @@ Cluster überarbeiten
 Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
+filtern_mitglieder_[element_id] in filtern_mitglieder optimieren
 
 Shield für Mailversand konfigurieren
 Constants in config umwandeln und in env verschieben

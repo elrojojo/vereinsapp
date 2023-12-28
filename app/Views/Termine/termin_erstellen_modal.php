@@ -47,7 +47,7 @@
             <label><?= EIGENSCHAFTEN['termine']['termine']['kategorie']['beschriftung']; ?></label>
         </div>
 
-        <button type="button" class="form-control btn btn-outline-primary eigenschaft" data-eigenschaft="filtern_mitglieder"
+        <button type="button" class="form-control btn btn-outline-primary werkzeug eigenschaft" data-eigenschaft="filtern_mitglieder"
         data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-aktion="filtern" data-liste="mitglieder" data-instanz="filtern_mitglieder">
             <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung']; ?>
         </button>
