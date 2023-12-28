@@ -44,29 +44,32 @@ class Notenbank extends BaseController {
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
+                'titel' => 'Titel löschen',
                 'farbe' => 'danger',
             );
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['duplizieren'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
+                'titel' => 'Titel duplizieren',
             );
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['aendern'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
+                'titel' => 'Titel ändern',
             );
 
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
-                'beschriftung' => 'Titel erstellen',
+                'titel' => 'Titel erstellen',
             );
         }
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'beschriftung' => 'Notenbank filtern',
+            'titel' => 'Notenbank filtern',
         ); 
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'beschriftung' => 'Notenbank sortieren',
+            'titel' => 'Notenbank sortieren',
         ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

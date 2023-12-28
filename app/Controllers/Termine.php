@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Termine\Termin_Model;
+use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Termine\Termine_Rueckmeldung_Model as Rueckmeldung_Model;
 use App\Models\Termine\Termine_Anwesenheit_Model as Anwesenheit_Model;
 
@@ -50,29 +51,32 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_element']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
+                'titel' => 'Termin löschen',
                 'farbe' => 'danger',
             );
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_element']['duplizieren'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
+                'titel' => 'Termin löschduplizierenen',
             );
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_element']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
+                'titel' => 'Termin ändern',
             );
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
-                'beschriftung' => 'Termin erstellen',
+                'titel' => 'Termin erstellen',
             );
         }
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'beschriftung' => 'Termine filtern',
+            'titel' => 'Termine filtern',
         ); 
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'beschriftung' => 'Termine sortieren',
+            'titel' => 'Termine sortieren',
         ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
@@ -119,45 +123,47 @@ class Termine extends BaseController {
             // );
         }
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
-            $this->viewdata['liste']['alle_aktiven'] = array(
-                'liste' => 'mitglieder',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-                    ),
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+        $this->viewdata['liste']['alle_aktiven_anwesenheiten'] = array(
+            'liste' => 'mitglieder',
+            'sortieren' => array(
+                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
                 ),
-                // 'sortable' => true,
-                'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
-            );
-            $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
-                'checkliste' => 'anwesenheiten',
-                'aktion' => 'aendern',
-                'gegen_element' => 'termin',
-                'gegen_element_id' => $element_id,
-            );
-            $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-                'modal_id' => '#termin_anwesenheiten_Modal',
-                'liste' => 'mitglieder',
-                'beschriftung' => 'Anwesenheiten dokumentieren',
-            );
-            
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['filtern'] = array(
-                'modal_id' => '#liste_filtern_Modal',
-                'beschriftung' => 'Mitglieder filtern',
-            ); 
+            'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+            ),
+            // 'sortable' => true,
+            'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+        );
 
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['sortieren'] = array(
-                'modal_id' => '#liste_sortieren_Modal',
-                'beschriftung' => 'Mitglieder sortieren',
-            ); 
+        $elemente_disabled = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
+        $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
+            'checkliste' => 'anwesenheiten',
+            'aktion' => 'aendern',
+            'gegen_element' => 'termin',
+            'gegen_element_id' => $element_id,
+            'elemente_disabled' => $elemente_disabled,
+        );
 
-        }
+        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
+            'modal_id' => '#termin_anwesenheiten_Modal',
+            'liste' => 'mitglieder',
+            'beschriftung' => 'Anwesenheiten dokumentieren',
+        );
+        
+        $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
+            'modal_id' => '#liste_filtern_Modal',
+            'titel' => 'Mitglieder filtern',
+        );
 
+        $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
+            'modal_id' => '#liste_sortieren_Modal',
+            'titel' => 'Mitglieder sortieren',
+        );
+        
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $id => $auswertungen ) $this->viewdata['auswertungen'][ $id ]['id'] = $id;
         if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;

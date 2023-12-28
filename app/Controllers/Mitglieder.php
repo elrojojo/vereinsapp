@@ -43,29 +43,32 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
+                'titel' => 'Mitglied löschen',
                 'farbe' => 'danger',
             );
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['duplizieren'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
+                'titel' => 'Mitglied duplizieren',
             );
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
+                'titel' => 'Mitglied aendern',
             );
 
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
-                'beschriftung' => 'Mitglied erstellen',
+                'titel' => 'Mitglied erstellen',
             ); 
         }
 
         $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'beschriftung' => 'Mitglieder filtern',
+            'titel' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'beschriftung' => 'Mitglieder sortieren',
+            'titel' => 'Mitglieder sortieren',
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

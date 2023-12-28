@@ -1,6 +1,6 @@
 <?php if( array_key_exists( 'werkzeugkasten_liste', $liste ) ) { ?><div class="werkzeugkasten h5 text-secondary text-end mb-1">
     <?php foreach( $liste['werkzeugkasten_liste'] as $aktion => $werkzeug):
-        ?><i class="werkzeug bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> text-secondary ms-2" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" role="button"></i>
+        ?><i class="werkzeug bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> text-secondary ms-2" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-titel="<?= $werkzeug['titel']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" role="button"></i>
     <?php endforeach; ?>
 </div><?php } ?>
 <ul id="<?= $liste['id']; ?>" class="liste checkliste list-group<?php

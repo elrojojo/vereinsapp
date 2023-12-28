@@ -74,42 +74,24 @@ $.fn.exists = function () {
     return this.length !== 0;
 };
 
-const UMLAUTE_KONVERTIERUNG = new Array(
-    [" ", "_"],
-    [" ", "-"],
-    ["ä", "ae"],
-    ["ö", "oe"],
-    ["ü", "ue"],
-    ["Ä", "Ae"],
-    ["Ö", "Oe"],
-    ["Ü", "Ue"],
-    ["ß", "ss"]
-);
-function unix2umlaute(umlaute) {
-    $.each(UMLAUTE_KONVERTIERUNG, function (index, konvertierung) {
-        umlaute = umlaute.replaceAll(konvertierung[1], konvertierung[0]);
-    });
-    return umlaute;
-}
 function umlaute2unix(unix) {
+    const UMLAUTE_KONVERTIERUNG = new Array(
+        [" ", "_"],
+        [" ", "-"],
+        ["ä", "ae"],
+        ["ö", "oe"],
+        ["ü", "ue"],
+        ["Ä", "Ae"],
+        ["Ö", "Oe"],
+        ["Ü", "Ue"],
+        ["ß", "ss"]
+    );
+
     $.each(UMLAUTE_KONVERTIERUNG, function (index, konvertierung) {
         unix = unix.replaceAll(konvertierung[0], konvertierung[1]);
     });
+
     return unix;
-}
-
-function bezeichnung_kapitalisieren(bezeichnung) {
-    return bezeichnung.substring(0, 1).toUpperCase() + bezeichnung.substring(1);
-}
-
-function HTML_time(zeitstempel) {}
-
-function HTML_date(zeitpunkt) {
-    return new Date(zeitpunkt * 1000).toLocaleDateString("en-CA");
-}
-
-function HTML_datetime_local(zeitstempel) {
-    return strval(date("Y-m-dTH:i", $zeitstempel));
 }
 
 /* TODO
@@ -134,9 +116,9 @@ Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 filtern_mitglieder_[element_id] in filtern_mitglieder optimieren
+Functionen in vereinsapp.js auslagern
 
 Shield für Mailversand konfigurieren
 Constants in config umwandeln und in env verschieben
-Modal-Titel aus dem öffnenden Button nehmen
 
 */

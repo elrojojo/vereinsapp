@@ -34,18 +34,18 @@ class Einstellungen extends BaseController {
 
         $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'beschriftung' => 'Meine Abwesenheiten sortieren',
+            'titel' => 'Meine Abwesenheiten sortieren',
         );
 
         $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'beschriftung' => 'Meine Abwesenheiten filtern',
+            'titel' => 'Meine Abwesenheiten filtern',
         );
 
         $this->viewdata['liste']['verfuegbare_rechte'] = array(
             'liste' => 'verfuegbare_rechte',
             'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung"></span>',
             ),
         );
         

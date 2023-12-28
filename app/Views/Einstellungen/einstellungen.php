@@ -10,7 +10,7 @@
 </div>*/ ?>
 
 <div class="container mb-2">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="meine_rechte">Meine Rechte</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="verfuegbare_rechte">Meine Rechte</div>
     <?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste['verfuegbare_rechte'], 'checkliste' => $checkliste['meine_rechte'] ) ); ?>
 </div>
 
