@@ -121,7 +121,6 @@ View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar
 Batch über filtern- und sortieren-Button legen
 Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Modal-Titel aus dem öffnenden Button nehmen
 Liste über Details-Ansicht durchscrollbar machen
 Uhrzeit updaten
 Abwesenheiten wieder einführen
@@ -137,5 +136,6 @@ Schnittstelle_EventElementReduzieren einführen
 
 Shield für Mailversand konfigurieren
 Constants in config umwandeln und in env verschieben
+Modal-Titel aus dem öffnenden Button nehmen
 
 */

@@ -27,8 +27,15 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
                 suppressSeconds: true,
                 suppressMilliseconds: true,
             });
+        } else {
         }
 
+        if (eigenschaft == "filtern_mitglieder") {
+            $eigenschaft.attr("data-instanz", "filtern_mitglieder_" + element_id);
+            val = JSON.stringify(G.LISTEN.mitglieder.instanz["filtern_mitglieder_" + element_id].filtern);
+        }
+
+        if (isObject(val) || Array.isArray(val)) val = JSON.stringify(val);
         $eigenschaft.val(val).change();
     });
 

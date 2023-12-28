@@ -47,10 +47,11 @@
             <label><?= EIGENSCHAFTEN['termine']['termine']['kategorie']['beschriftung']; ?></label>
         </div>
 
-        <button type="button" class="form-control btn btn-outline-primary eigenschaft" data-eigenschaft="filtern_mitglieder" data-wert='<?= json_encode( array( array( 'operator' => '==', 'eigenschaft' => 'register', 'wert' => 'tuba' ), ), JSON_UNESCAPED_UNICODE ); ?>'>
+        <button type="button" class="form-control btn btn-outline-primary eigenschaft" data-eigenschaft="filtern_mitglieder"
+        data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-aktion="filtern" data-liste="mitglieder" data-instanz="filtern_mitglieder">
             <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung']; ?>
         </button>
-
+        
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>

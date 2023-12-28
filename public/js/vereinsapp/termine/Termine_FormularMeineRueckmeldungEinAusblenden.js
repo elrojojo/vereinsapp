@@ -5,7 +5,7 @@ function Termine_FormularMeineRueckmeldungEinAusblenden($formular_meine_rueckmel
         const termin = G.LISTEN.termine.tabelle[Number($termin.attr("data-element_id"))];
         const $formular_meine_rueckmeldung_nicht_eingeladen = $formular_meine_rueckmeldung
             .siblings(".formular_meine_rueckmeldung_nicht_eingeladen")
-            .next();
+            .first();
 
         if (termin.ich_eingeladen) {
             $formular_meine_rueckmeldung.removeClass("invisible");

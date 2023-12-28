@@ -33,11 +33,9 @@ function Liste_ElementErstellen($btn) {
                         " " +
                         DateTime.fromISO(wert).set({ seconds: 0 }).toFormat(SQL_TIME);
                 else wert = DateTime.fromISO(wert).toFormat(SQL_DATETIME);
-            } else if ($eigenschaft.attr("type") == "button") {
-                wert = $eigenschaft.attr("data-wert");
-                if (isJson(wert)) wert = JSON.parse(wert);
             } else {
             }
+            if (isJson(wert)) wert = JSON.parse(wert);
             AJAX_DATA[eigenschaft] = wert;
 
             $eigenschaft.removeClass("is-valid").removeClass("is-invalid");
