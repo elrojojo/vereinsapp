@@ -8,34 +8,34 @@
         <div class="modal-body">
 
         <div class="form-floating mb-2">
-            <input type="text" class="form-control eigenschaft" data-eigenschaft="titel" placeholder="<?= EIGENSCHAFTEN['termine']['termine']['titel']['beschriftung']; ?>" />
-            <label><?= EIGENSCHAFTEN['termine']['termine']['titel']['beschriftung']; ?></label>
+            <input type="text" class="form-control eigenschaft" data-eigenschaft="titel" placeholder="<?= EIGENSCHAFTEN['termine']['titel']['beschriftung']; ?>" />
+            <label><?= EIGENSCHAFTEN['termine']['titel']['beschriftung']; ?></label>
         </div>
 
-        <?php if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine']['termine'] ) ) { ?><div class="form-floating mb-2">
-            <input type="text" class="form-control eigenschaft" data-eigenschaft="organisator" placeholder="<?= EIGENSCHAFTEN['termine']['termine']['organisator']['beschriftung']; ?>" />
-            <label><?= EIGENSCHAFTEN['termine']['termine']['organisator']['beschriftung']; ?></label>
+        <?php if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) { ?><div class="form-floating mb-2">
+            <input type="text" class="form-control eigenschaft" data-eigenschaft="organisator" placeholder="<?= EIGENSCHAFTEN['termine']['organisator']['beschriftung']; ?>" />
+            <label><?= EIGENSCHAFTEN['termine']['organisator']['beschriftung']; ?></label>
         </div><?php } ?>
 
         <div class="row g-2">
             <div class="col form-floating mb-2">
             <input type="date" class="form-control eigenschaft" data-eigenschaft="start" />
-            <label><?= EIGENSCHAFTEN['termine']['termine']['start']['beschriftung'].' (Datum)'; ?></label>
+            <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung'].' (Datum)'; ?></label>
             </div>
             <div class="col form-floating mb-2">
             <input type="time" class="form-control eigenschaft" data-eigenschaft="start" />
-            <label><?= EIGENSCHAFTEN['termine']['termine']['start']['beschriftung'].' (Zeit)'; ?></label>
+            <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung'].' (Zeit)'; ?></label>
             </div>
         </div>
 
         <div class="form-floating mb-2">
-            <input type="text" class="form-control eigenschaft" data-eigenschaft="ort" placeholder="<?= EIGENSCHAFTEN['termine']['termine']['ort']['beschriftung']; ?>" />
-            <label><?= EIGENSCHAFTEN['termine']['termine']['ort']['beschriftung']; ?></label>
+            <input type="text" class="form-control eigenschaft" data-eigenschaft="ort" placeholder="<?= EIGENSCHAFTEN['termine']['ort']['beschriftung']; ?>" />
+            <label><?= EIGENSCHAFTEN['termine']['ort']['beschriftung']; ?></label>
         </div>
 
         <div class="form-floating mb-2">
-            <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['termine']['termine']['bemerkung']['beschriftung']; ?>" />
-            <label><?= EIGENSCHAFTEN['termine']['termine']['bemerkung']['beschriftung']; ?></label>
+            <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['termine']['bemerkung']['beschriftung']; ?>" />
+            <label><?= EIGENSCHAFTEN['termine']['bemerkung']['beschriftung']; ?></label>
         </div>
 
         <div class="form-floating mb-2">
@@ -44,12 +44,12 @@
             <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>
             <?php endforeach; ?>
             </select>
-            <label><?= EIGENSCHAFTEN['termine']['termine']['kategorie']['beschriftung']; ?></label>
+            <label><?= EIGENSCHAFTEN['termine']['kategorie']['beschriftung']; ?></label>
         </div>
 
         <button type="button" class="form-control btn btn-outline-primary werkzeug eigenschaft" data-eigenschaft="filtern_mitglieder"
         data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-aktion="filtern" data-liste="mitglieder" data-instanz="filtern_mitglieder">
-            <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['termine']['filtern_mitglieder']['beschriftung']; ?>
+            <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>
         </button>
         
         </div>

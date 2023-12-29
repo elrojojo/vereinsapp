@@ -6,10 +6,7 @@ function Liste_Sortieren2$SortierenZurueck(sortieren, $blanko_sortieren_element,
         const eigenschaft = element.eigenschaft;
         const $neues_sortieren_element = $blanko_sortieren_element.clone().removeClass("blanko invisible").addClass("sortieren_element");
 
-        $neues_sortieren_element
-            .find(".eigenschaft")
-            .attr("data-eigenschaft", eigenschaft)
-            .text(EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung);
+        $neues_sortieren_element.find(".eigenschaft").attr("data-eigenschaft", eigenschaft).text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
 
         $neues_sortieren_element.find(".richtung").attr("data-richtung", richtung);
         if (richtung == SORT_ASC) $neues_sortieren_element.find(".richtung").addClass("bi-" + SYMBOLE.asc.bootstrap);

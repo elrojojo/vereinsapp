@@ -9,9 +9,8 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
     $formular.find(".filtern, .filtern_definitionen").attr("data-instanz", instanz);
     $(".filtern_definitionen").empty();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-        const EIGENSCHAFT = EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft];
-        const typ = EIGENSCHAFT.typ;
-        const beschriftung = EIGENSCHAFT.beschriftung;
+        const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
+        const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;
 
         const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
             .clone()

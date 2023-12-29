@@ -10,7 +10,7 @@ function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
     const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
     $sortieren_definitionen.find(".sortieren_eigenschaft").empty();
     $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung + "</option>").appendTo(
+        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo(
             $sortieren_definitionen.find(".sortieren_eigenschaft")
         );
     });

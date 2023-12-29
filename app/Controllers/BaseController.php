@@ -76,6 +76,9 @@ abstract class BaseController extends Controller
         }
         defined('VERFUEGBARE_RECHTE') OR define( 'VERFUEGBARE_RECHTE', $verfuegbare_rechte );
 
+        defined('EIGENSCHAFTEN') OR define( 'EIGENSCHAFTEN', config('Vereinsapp')->eigenschaften );
+        defined('VORGEGEBENE_WERTE') OR define( 'VORGEGEBENE_WERTE', config('Vereinsapp')->vorgegebene_werte );
+
         defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
 
         defined('ICH') OR define( 'ICH', $this->session->user );

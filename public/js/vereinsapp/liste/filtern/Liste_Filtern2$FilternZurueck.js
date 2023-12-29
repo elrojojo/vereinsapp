@@ -32,10 +32,7 @@ function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blank
                 .clone()
                 .removeClass("blanko invisible")
                 .addClass(klasse + "_element");
-            $neues_filtern_element
-                .find(".eigenschaft")
-                .attr("data-eigenschaft", eigenschaft)
-                .text(EIGENSCHAFTEN[G.LISTEN[liste].controller][liste][eigenschaft].beschriftung);
+            $neues_filtern_element.find(".eigenschaft").attr("data-eigenschaft", eigenschaft).text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
             $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
             $neues_filtern_element
                 .find(".wert")

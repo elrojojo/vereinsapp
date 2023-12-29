@@ -125,7 +125,7 @@ class Notenbank extends BaseController {
             foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
                 $verzeichnis = null; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ )
                     if( substr( $verzeichnis_, -1 ) == '/' AND
-                        substr( $verzeichnis_, 0, NOTENVERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) )
+                        substr( $verzeichnis_, 0, config('Vereinsapp')->notenbank_anzahl_ziffern ) == str_pad( $titel['titel_nr'], config('Vereinsapp')->notenbank_anzahl_ziffern ,'0', STR_PAD_LEFT ) )
                         $verzeichnis = $verzeichnis_;
 
                 $titel['verzeichnis_basis'] = $verzeichnis; 
@@ -143,10 +143,10 @@ class Notenbank extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
-            'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
+            'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         );
-        if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank']['notenbank'] ) ) $validation_rules['kategorie'] = [ 'label' => EIGENSCHAFTEN['notenbank']['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']', ] ];
+        if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank'] ) ) $validation_rules['kategorie'] = [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']', ] ];
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
@@ -155,7 +155,7 @@ class Notenbank extends BaseController {
                 'titel' => $this->request->getpost()['titel'],
                 'titel_nr' => $this->request->getPost()['titel_nr'],
             );
-            if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank']['notenbank'] ) ) $titel['kategorie'] = $this->request->getpost()['kategorie'];
+            if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank'] ) ) $titel['kategorie'] = $this->request->getpost()['kategorie'];
 
             if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else $notenbank_Model->save( $titel );
@@ -181,7 +181,12 @@ class Notenbank extends BaseController {
         $verzeichnis_indiziert = array();
         foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
             if( is_array($unterverzeichnis) ) $verzeichnis_indiziert[$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
-            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ), array_merge(NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN, NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO ) ) )
+            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ),
+                                array_merge(
+                                    config('Vereinsapp')->notenbank_erlaubte_dateitypen_noten,
+                                    config('Vereinsapp')->notenbank_erlaubte_dateitypen_audio
+                                )
+                ) )
                 // $verzeichnis_indiziert[$beschriftung] = array( 'name' => pathinfo( $unterverzeichnis, PATHINFO_FILENAME), 'kategorie' => pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ) );
                 $verzeichnis_indiziert[$beschriftung] = $unterverzeichnis;
             else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }

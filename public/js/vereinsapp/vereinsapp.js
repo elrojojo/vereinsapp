@@ -119,6 +119,6 @@ filtern_mitglieder_[element_id] in filtern_mitglieder optimieren
 Functionen in vereinsapp.js auslagern
 
 Shield für Mailversand konfigurieren
-Constants in config umwandeln und in env verschieben
+Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
 
 */

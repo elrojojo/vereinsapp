@@ -38,7 +38,7 @@ class Mitglieder extends BaseController {
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
         );
-        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_aktiven']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
+        foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_aktiven']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['loeschen'] = array(
@@ -202,17 +202,17 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['email']['beschriftung'], 'rules' => [ 'required', 'valid_email' ] ],
-            'vorname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['vorname']['beschriftung'], 'rules' => [ 'required' ] ],
-            'nachname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['nachname']['beschriftung'], 'rules' => [ 'required' ] ],
-            'geburt' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['geburt']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'geschlecht' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['geschlecht']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['geschlecht'] ) ).']', ] ],
-            'postleitzahl' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['postleitzahl']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero', 'greater_than_equal_to[10000]', 'less_than_equal_to[99999]', ] ],
-            'wohnort' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['wohnort']['beschriftung'], 'rules' => [ 'required' ] ],
-            'register' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['register']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['register'] ) ).']', ] ],
-            'funktion' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['funktion']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['funktion'] ) ).']', ] ],
-            'vorstandschaft' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['vorstandschaft']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] ) ).']', ] ],
-            'aktiv' => [ 'label' => EIGENSCHAFTEN['mitglieder']['mitglieder']['aktiv']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['aktiv'] ) ).']', ] ],
+            'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['email']['beschriftung'], 'rules' => [ 'required', 'valid_email' ] ],
+            'vorname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung'], 'rules' => [ 'required' ] ],
+            'nachname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung'], 'rules' => [ 'required' ] ],
+            'geburt' => [ 'label' => EIGENSCHAFTEN['mitglieder']['geburt']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
+            'geschlecht' => [ 'label' => EIGENSCHAFTEN['mitglieder']['geschlecht']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['geschlecht'] ) ).']', ] ],
+            'postleitzahl' => [ 'label' => EIGENSCHAFTEN['mitglieder']['postleitzahl']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero', 'greater_than_equal_to[10000]', 'less_than_equal_to[99999]', ] ],
+            'wohnort' => [ 'label' => EIGENSCHAFTEN['mitglieder']['wohnort']['beschriftung'], 'rules' => [ 'required' ] ],
+            'register' => [ 'label' => EIGENSCHAFTEN['mitglieder']['register']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['register'] ) ).']', ] ],
+            'funktion' => [ 'label' => EIGENSCHAFTEN['mitglieder']['funktion']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['funktion'] ) ).']', ] ],
+            'vorstandschaft' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorstandschaft']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] ) ).']', ] ],
+            'aktiv' => [ 'label' => EIGENSCHAFTEN['mitglieder']['aktiv']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['aktiv'] ) ).']', ] ],
         ); if( !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret, user_id, '.$this->request->getPost()['id'].']';
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
@@ -304,15 +304,15 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             // 'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'start' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'ende' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'start' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
+            'ende' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getpost()['start'] > $this->request->getpost()['ende'] ) $ajax_antwort['validation'] = array(
-            'start' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung'].' liegen.',
-            'ende' => EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung'].' liegen.',
+            'start' => EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung'].' liegen.',
+            'ende' => EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung'].' liegen.',
         );
         else {
             $abwesenheit_Model = model(Abwesenheit_Model::class);
@@ -385,8 +385,8 @@ class Mitglieder extends BaseController {
     public function ajax_vergebenes_recht_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.rechte' ) OR

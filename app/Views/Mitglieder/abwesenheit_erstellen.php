@@ -3,12 +3,12 @@
   <div class="input-group mb-1">
     <span class="input-group-text text-secondary"><i class="bi bi-<?= SYMBOLE['zeitraum']['bootstrap']; ?>"></i></span>
     <div class="form-floating">
-      <input type="date" class="form-control eigenschaft" data-eigenschaft="start" placeholder="<?= EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung']; ?>" value="<?= EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['standard']; ?>" />
-      <label><?= EIGENSCHAFTEN['mitglieder']['abwesenheiten']['start']['beschriftung']; ?></label>
+      <input type="date" class="form-control eigenschaft" data-eigenschaft="start" placeholder="<?= EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung']; ?>" />
+      <label><?= EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung']; ?></label>
     </div>
     <div class="form-floating">
-      <input type="date" class="form-control eigenschaft" data-eigenschaft="ende" placeholder="<?= EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung']; ?>" value="<?= EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['standard']; ?>" />
-      <label><?= EIGENSCHAFTEN['mitglieder']['abwesenheiten']['ende']['beschriftung']; ?></label>
+      <input type="date" class="form-control eigenschaft" data-eigenschaft="ende" placeholder="<?= EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung']; ?>" />
+      <label><?= EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung']; ?></label>
     </div>
   </div>
 
