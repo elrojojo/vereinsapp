@@ -28,10 +28,10 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             wert_formatiert = JANEIN[wert].beschriftung;
             break;
         case "start":
-            wert_formatiert = WOCHENTAGE[wert.weekday].kurz + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
+            wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
             break;
         case "ende":
-            wert_formatiert = WOCHENTAGE[wert.weekday].kurz + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
+            wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
             break;
         case "kategorie":
             wert_formatiert = VORGEGEBENE_WERTE[liste].kategorie[wert].beschriftung;

@@ -26,7 +26,7 @@ class Termine extends BaseController {
                 'h5' => true,
             ),
             // 'sortable' => true,
-            'link' => site_url().CONTROLLER, // ODER 'modal' => array( // ODER 
+            'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
             // ),

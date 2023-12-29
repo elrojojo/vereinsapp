@@ -98,44 +98,29 @@ define('EVENT_PRIORITY_HIGH', 10);
 | VEREINSAPP Projekt-übergreifende Konstanten
 |--------------------------------------------------------------------------*/
 
-defined('DATENACHUTZ_RICHTLINIE_DATUM') OR define( 'DATENACHUTZ_RICHTLINIE_DATUM', 20210629 );
-
-// defined('STATUSMELDUNGEN') OR define( 'STATUSMELDUNGEN', array(
-// 	'email_fehlgeschlagen' => array( 'meldung' => 'Es ist ein Fehler beim Email-Versand aufgetreten. Nimm bitte Kontakt mit den dir bekannten Ansprechpersonen auf!' ),
-// 	'speichern_erfolgreich' => array( 'meldung' => ' erfolgreich gespeichert.' ),
-// 	'speichern_fehlgeschlagen' => array( 'meldung' => 'Es ist ein Fehler aufgetreten. Es wurde nicht gespeichert!' ),
-// 	'loeschen_erfolgreich' => array( 'meldung' => ' wurde gelöscht!' ),
-// ) );
-
 defined('JANEIN') OR define( 'JANEIN', array(
 	0 => array( 'beschriftung' => 'Nein' ),
 	1 => array( 'beschriftung' => 'Ja' ),
 ) );
 
+defined('WOCHENTAGE_KURZ') OR define( 'WOCHENTAGE_KURZ', array(
+	1 => array( 'beschriftung' => 'Mo.' ),
+	2 => array( 'beschriftung' => 'Di.' ),
+	3 => array( 'beschriftung' => 'Mi.' ),
+	4 => array( 'beschriftung' => 'Do.' ),
+	5 => array( 'beschriftung' => 'Fr.' ),
+	6 => array( 'beschriftung' => 'Sa.' ),
+	7 => array( 'beschriftung' => 'So.' ),
+) );
 
-// defined('MONATE') OR define( 'MONATE', array( // mit 1 beignnen
-// 	1 => array( 'Jan.', 'Januar' ),
-// 	2 => array( 'Feb.', 'Februar' ),
-// 	3 => array( 'März', 'März' ),
-// 	4 => array( 'Apr.', 'April' ),
-// 	5 => array( 'Mai', 'Mai' ),
-// 	6 => array( 'Juni', 'Juni' ),
-// 	7 => array( 'Juli', 'Juli' ),
-// 	8 => array( 'Aug.', 'August' ),
-// 	9 => array( 'Sept.', 'September' ),
-//  10 => array( 'Okt.', 'Oktober' ),
-//  11 => array( 'Nov.', 'November' ),
-//  12 => array( 'Dez.', 'Dezember' ),
-// ) );
-
-defined('WOCHENTAGE') OR define( 'WOCHENTAGE', array(
-	1 => array( 'kurz' => 'Mo.', 'lang' => 'Montag' ),
-	2 => array( 'kurz' => 'Di.', 'lang' => 'Dienstag' ),
-	3 => array( 'kurz' => 'Mi.', 'lang' => 'Mittwoch' ),
-	4 => array( 'kurz' => 'Do.', 'lang' => 'Donnnerstag' ),
-	5 => array( 'kurz' => 'Fr.', 'lang' => 'Freitag' ),
-	6 => array( 'kurz' => 'Sa.', 'lang' => 'Samstag' ),
-	7 => array( 'kurz' => 'So.', 'lang' => 'Sonntag' ),
+defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
+	1 => array( 'beschriftung' => 'Montag' ),
+	2 => array( 'beschriftung' => 'Dienstag' ),
+	3 => array( 'beschriftung' => 'Mittwoch' ),
+	4 => array( 'beschriftung' => 'Donnnerstag' ),
+	5 => array( 'beschriftung' => 'Freitag' ),
+	6 => array( 'beschriftung' => 'Samstag' ),
+	7 => array( 'beschriftung' => 'Sonntag' ),
 ) );
 
 defined('SYMBOLE') OR define( 'SYMBOLE', array(
@@ -151,13 +136,9 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
   'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
   'filtern' => array( 'bootstrap' => 'funnel' ),
-  // 'listen' => array( 'bootstrap' => 'list-ul' ),
-  // 'liste_speichern' => array( 'bootstrap' => 'list-ol' ),
 
-  // 'speichern' => array( 'bootstrap' => 'check-circle' ),
 
   'einstellungen' => array( 'bootstrap' => 'gear' ),
-  // 'mitglied' => array( 'bootstrap' => 'person' ),
   'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
   'info' => array( 'bootstrap' => 'info-circle' ),
   // 'link' => array( 'bootstrap' => 'link-45deg' ),
@@ -168,15 +149,11 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
   'abwesend' => array( 'html' => '&#9992' ),
   'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
-  // 'gesperrt' => array( 'bootstrap' => 'x-octagon', 'html' => '&#128683' ),
 
   'datum' => array( 'bootstrap' => 'calendar-event' ),
   'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
-  // 'uhrzeit' => array( 'bootstrap' => 'clock' ),
   'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
   'zahlenraum' => array( 'bootstrap' => '123' ),
-
-  // 'waehrung' => array( 'bootstrap' => 'currency-euro' ),
 
   'sichtbar' => array( 'bootstrap' => 'eye' ),
   'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
@@ -186,46 +163,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'audio' => array( 'bootstrap' => 'play-btn' ),
   'verzeichnis' => array( 'bootstrap' => 'folder' ),
   'verzeichnis_basis' => array( 'bootstrap' => 'folder-symlink' ),
-
-
-  // 'ebene_hoch' => array( 'bootstrap' => 'arrow-90deg-up' ),
-  // 'ebene_runter' => array( 'bootstrap' => 'arrow-90deg-down' ),
-  // 'haken' => array( 'bootstrap' => 'check2-circle' ),
-  // 'kein_haken' => array( 'bootstrap' => 'circle' ),
 ) );
-
-// defined('FARBEN') OR define( 'FARBEN', array(
-//  'blau' => array( 'bootstrap' => 'primary' ),
-//  'grün' => array( 'bootstrap' => 'success' ),
-//  'rot' => array( 'bootstrap' => 'danger' ),
-//  'gelb' => array( 'bootstrap' => 'warning' ),
-//  'grau' => array( 'bootstrap' => 'secondary' ),
-// ) );
-
-defined('CONTROLLERS') OR define('CONTROLLERS', array(
-  'startseite' => array ( 'titel' => 'Willkommen', 'symbol' => '', 'absprung' => array( 'index', ), ),
-  'termine' => array ( 'titel' => 'Termine', 'symbol' => 'calendar-month', 'absprung' => array( 'index', 'details', 'anwesenheiten', ), ),
-  'strafkatalog' => array ( 'titel' => 'Strafkatalog', 'symbol' => 'piggy-bank', 'absprung' => array( 'index', 'kassenbuch' ), ),
-  'notenbank' => array ( 'titel' => 'Notenbank', 'symbol' => 'file-earmark-music', 'absprung' => array( 'index', 'titel', 'bewertung_notenverzeichnis', ), ),
-  'umfragen' => array ( 'titel' => 'Umfragen', 'symbol' => 'signpost-split', 'absprung' => array( 'index', ), ), //stoplights   signpost-split
-  'mitglieder' => array ( 'titel' => 'Mitglieder', 'symbol' => 'people', 'absprung' => array( 'index', 'details' ), ),
-  'einstellungen' => array ( 'titel' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen']['bootstrap'], 'absprung' => array( 'index', ), ),
-
-  'status' => array ( 'titel' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'], 'absprung' => array(), ),
-) );
-
-// defined('AUDIOFORMATE') OR define( 'AUDIOFORMATE', array( 'mp3', 'm4a' ) );
-
-// defined('SEK_PRO_JAHR') OR define( 'SEK_PRO_JAHR', 31556926 );  // 31558152 // 31558149 // 31556926
-
-// defined('SEK_PRO_WOCHE') OR define( 'SEK_PRO_WOCHE', 60*60*24*7 );
-
-// defined('HEUTE') OR define( 'HEUTE', strtotime ( date( 'd.m.Y', time() ).' 00:00:00' ) );
-// defined('MORGEN') OR define( 'MORGEN', HEUTE+60*60*24 );
-// if( date('N', time() ) == 1 ) { defined('LETZTER_MONTAG') OR define( 'LETZTER_MONTAG', HEUTE ); }
-// else { defined('LETZTER_MONTAG') OR define( 'LETZTER_MONTAG', strtotime('last monday') ); }
-// defined('NAECHSTER_MONTAG') OR define( 'NAECHSTER_MONTAG', LETZTER_MONTAG + SEK_PRO_WOCHE );
-// defined('UEBERNAECHSTER_MONTAG') OR define( 'UEBERNAECHSTER_MONTAG', NAECHSTER_MONTAG + SEK_PRO_WOCHE );
 
 defined('SQL_TIME') OR define( 'SQL_TIME', 'HH:mm:ss' );
 defined('SQL_TIME_REGEX') OR define( 'SQL_TIME_REGEX', '/^[0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
@@ -233,8 +171,6 @@ defined('SQL_DATE') OR define( 'SQL_DATE', 'yyyy-MM-dd' );
 defined('SQL_DATE_REGEX') OR define( 'SQL_DATE_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}?$/' );
 defined('SQL_DATETIME') OR define( 'SQL_DATETIME', 'yyyy-MM-dd HH:mm:ss' );
 defined('SQL_DATETIME_REGEX') OR define( 'SQL_DATETIME_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
-
-defined('AJAX_REFRESH_INTERVALL') OR define( 'AJAX_REFRESH_INTERVALL', 30 );
 
 enum AJAX_ZUSTAND
 {

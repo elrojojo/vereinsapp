@@ -14,7 +14,7 @@ function Schnittstelle_AjaxRein(AJAX) {
             });
             liste.push(AJAX.liste);
         } else liste = AJAX.liste;
-        // und der nächste Durchlauf nach AJAX_REFRESH_INTERVALL Sekunden gestartet
-        setTimeout(AJAX.schleife, AJAX_REFRESH_INTERVALL * 1000, liste, true, AJAX.naechste_aktionen);
+        // und der nächste Durchlauf nach AJAX_ZYKLUSZEIT Sekunden gestartet
+        setTimeout(AJAX.schleife, AJAX_ZYKLUSZEIT * 1000, liste, true, AJAX.naechste_aktionen);
     }
 }

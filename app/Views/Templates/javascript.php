@@ -14,13 +14,14 @@ const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( SORTIERBARE_EIGENSCHAFTEN ) ?>;
 const FILTERBARE_EIGENSCHAFTEN = <?= json_encode( FILTERBARE_EIGENSCHAFTEN ) ?>;
 const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
-const WOCHENTAGE = <?= json_encode( WOCHENTAGE ) ?>;
+const WOCHENTAGE_KURZ = <?= json_encode( WOCHENTAGE_KURZ ) ?>;
+const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;
 const JANEIN = <?= json_encode( JANEIN ) ?>;
 
-const AJAX_REFRESH_INTERVALL = <?= AJAX_REFRESH_INTERVALL ?>;
+const AJAX_ZYKLUSZEIT = <?= config('Vereinsapp')->ajax_zykluszeit ?>;
 const AJAX_ZUSTAND = Object.freeze({<?php foreach (AJAX_ZUSTAND::cases() as $ajax_zustand) { echo $ajax_zustand->name . ': Symbol("'.$ajax_zustand->name.'"), '; } ?>});
 
-const DATENACHUTZ_RICHTLINIE_DATUM = '<?= DATENACHUTZ_RICHTLINIE_DATUM ?>';
+const DATENACHUTZ_RICHTLINIE_DATUM = '<?= config('Vereinsapp')->datenschutz_richtlinie_datum; ?>';
 
 const SYMBOLE = <?= json_encode( SYMBOLE) ?>;
 const SORT_ASC = <?= SORT_ASC ?>;

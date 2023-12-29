@@ -80,7 +80,7 @@ abstract class BaseController extends Controller
 
         defined('ICH') OR define( 'ICH', $this->session->user );
     
-        defined('CONTROLLER') OR define( 'CONTROLLER', lcfirst(
+        defined('AKTIVER_CONTROLLER') OR define( 'AKTIVER_CONTROLLER', lcfirst(
           explode( '\\', $this->router->controllerName() )[ array_key_last(
             explode( '\\', $this->router->controllerName() )
             ) ]
