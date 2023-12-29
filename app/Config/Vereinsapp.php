@@ -8,6 +8,21 @@ class Vereinsapp extends BaseConfig
 {
     /**
      * --------------------------------------------------------------------------
+     * Angaben zum Verein, der die Vereinsapp nutzt
+     * --------------------------------------------------------------------------
+     *
+     * Der offizielle Name des Vereins
+     */
+    public $verein_name = 'Eingetragener Verein e.V.';
+
+    /**
+     * Der Name der Vereinsapp innerhalb des Vereins
+     * (sollte grammatikalisch weiblich sein)
+     */
+    public $vereinsapp_name = 'Eingetragener Verein e.V. Vereinsapp';
+
+    /**
+     * --------------------------------------------------------------------------
      * Module (Controller)
      * --------------------------------------------------------------------------
      *
@@ -16,12 +31,23 @@ class Vereinsapp extends BaseConfig
     public $controllers = array(
         'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => '' ),
         'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => 'calendar-month' ),
-        'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => 'piggy-bank' ),
+        // 'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => 'piggy-bank' ),
         'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => 'file-earmark-music' ),
-        'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => 'signpost-split' ),
+        // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => 'signpost-split' ),
         'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => 'people' ),
         'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
+
         'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
+    );
+
+    /**
+     * Einträge im Menü
+     */
+    public $menue = array(
+        'termine',
+        'notenbank',
+        'mitglieder',
+        'einstellungen',
     );
 
     /**

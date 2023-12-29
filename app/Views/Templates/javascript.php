@@ -18,6 +18,9 @@ const WOCHENTAGE_KURZ = <?= json_encode( WOCHENTAGE_KURZ ) ?>;
 const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;
 const JANEIN = <?= json_encode( JANEIN ) ?>;
 
+const NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN = <?= json_encode( NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN ) ?>;
+const NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO = <?= json_encode( NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO ) ?>;
+
 const AJAX_ZYKLUSZEIT = <?= config('Vereinsapp')->ajax_zykluszeit ?>;
 const AJAX_ZUSTAND = Object.freeze({<?php foreach (AJAX_ZUSTAND::cases() as $ajax_zustand) { echo $ajax_zustand->name . ': Symbol("'.$ajax_zustand->name.'"), '; } ?>});
 

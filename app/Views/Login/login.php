@@ -24,7 +24,7 @@
     <div class="alert alert-success" role="alert"><?= session('message') ?></div>
   <?php endif ?>
 
-    <div class="mb-1">Um die <?= VEREINSAPP_NAME; ?> nutzen zu können musst du dich mit deiner Email und einem gültigen Passwort einloggen:</div>
+    <div class="mb-1">Um die <?= config('Vereinsapp')->vereinsapp_name; ?> nutzen zu können musst du dich mit deiner Email und einem gültigen Passwort einloggen:</div>
     <?php helper('form'); ?><?= form_open( 'login' ); ?>
       <div class="form-floating mb-1">
         <input type="email" class="form-control" name="email" inputmode="email" autocomplete="email" value="<?= old('email') ?>" required placeholder="Email" />

@@ -64,10 +64,10 @@ $(document).ready(function () {
     });
 
     //LOCALSTORAGE LEEREN
-    $(".navbar-text").click(function () {
-        localStorage.clear();
-        alert("localStorage geleert.");
-    });
+    // $(".navbar-text").click(function () {
+    //     localStorage.clear();
+    //     alert("localStorage geleert.");
+    // });
 });
 
 $.fn.exists = function () {

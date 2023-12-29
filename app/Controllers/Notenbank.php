@@ -125,7 +125,7 @@ class Notenbank extends BaseController {
             foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
                 $verzeichnis = null; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ )
                     if( substr( $verzeichnis_, -1 ) == '/' AND
-                        substr( $verzeichnis_, 0, NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) )
+                        substr( $verzeichnis_, 0, NOTENVERZEICHNIS_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENVERZEICHNIS_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) )
                         $verzeichnis = $verzeichnis_;
 
                 $titel['verzeichnis_basis'] = $verzeichnis; 
@@ -181,7 +181,7 @@ class Notenbank extends BaseController {
         $verzeichnis_indiziert = array();
         foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
             if( is_array($unterverzeichnis) ) $verzeichnis_indiziert[$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
-            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ), NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN ) )
+            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ), array_merge(NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN, NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO ) ) )
                 // $verzeichnis_indiziert[$beschriftung] = array( 'name' => pathinfo( $unterverzeichnis, PATHINFO_FILENAME), 'kategorie' => pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ) );
                 $verzeichnis_indiziert[$beschriftung] = $unterverzeichnis;
             else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }

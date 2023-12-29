@@ -9,17 +9,9 @@ function Schnittstelle_EventElementErgaenzenNotenbank(titel) {
                 anzahl.audio += anzahl_unterverzeichnis.audio;
                 anzahl.verzeichnis += anzahl_unterverzeichnis.verzeichnis;
             } else {
-                const punkt = unterverzeichnis.lastIndexOf(".");
-                const typ = unterverzeichnis.slice(punkt + 1);
-                switch (typ) {
-                    case "pdf":
-                        anzahl.noten++;
-                        break;
-                    case "mp3":
-                    case "m4a":
-                        anzahl.audio++;
-                        break;
-                }
+                const typ = unterverzeichnis.slice(unterverzeichnis.lastIndexOf(".") + 1);
+                if (NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN.includes(typ)) anzahl.noten++;
+                if (NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO.includes(typ)) anzahl.audio++;
             }
         });
         return anzahl;

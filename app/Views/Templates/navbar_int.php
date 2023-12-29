@@ -9,7 +9,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <?php foreach ( MENUE as $controller ): ?>
+                <?php foreach ( config('Vereinsapp')->menue as $controller ): ?>
                 <li class="nav-item">
                     <a class="nav-link<?php if ( AKTIVER_CONTROLLER == $controller ) echo ' active'; ?>" href="<?= site_url().$controller; ?>">
                         <i class="bi-<?= config('Vereinsapp')->controllers[ $controller ]['symbol']; ?> float-start me-1"></i>

@@ -159,6 +159,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
   'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
+  'mp3' => array( 'bootstrap' => 'file-play' ),
+  'm4a' => array( 'bootstrap' => 'file-play' ),
   'noten' => array( 'bootstrap' => 'file-earmark-music' ),
   'audio' => array( 'bootstrap' => 'play-btn' ),
   'verzeichnis' => array( 'bootstrap' => 'folder' ),
@@ -189,27 +191,6 @@ enum AJAX_ZUSTAND
 
 $eigenschaften = array();
 $vorgegebene_werte = array();
-
-defined('AKTIVE_CONTROLLER') OR define('AKTIVE_CONTROLLER', array(
-  'startseite',
-  'termine',
-  //'strafkatalog',
-  'notenbank',
-  'mitglieder',
-  'einstellungen',
-) );
-
-$menue = AKTIVE_CONTROLLER;
-unset($menue[array_search('startseite', $menue)]); 
-defined('MENUE') OR define('MENUE', $menue );
-
-defined('OFFIZIELLER_NAME') OR define( 'OFFIZIELLER_NAME', 'Eingetragener Verein e.V.' );
-defined('VEREINSAPP_NAME') OR define( 'VEREINSAPP_NAME', 'Eingetragener Verein e.V. Vereinsapp' );  // Sollte generisch feminin sein
-defined('OFFIZIELLE_WEBSITE') OR define( 'OFFIZIELLE_WEBSITE', 'https://www.eingetragener-verein.de' );
-//defined('OFFIZIELLE_MAILADRESSE') OR define( 'OFFIZIELLE_MAILADRESSE', 'vereinsapp@eingetragener-verein.de' );
-
-defined('MITGLIEDER_ABWESENHEITEN_BEMERKUNG_STANDARD') OR define( 'MITGLIEDER_ABWESENHEITEN_BEMERKUNG_STANDARD', 'Mitglied hat eine Abwesenheit aktiviert!' );
-
 
 //#############################################################################################################
 $eigenschaften['mitglieder']['mitglieder'] = array(
@@ -332,10 +313,6 @@ $vorgegebene_werte['mitglieder'] = array(
   'abwesend' => JANEIN,
 );
 
-//defined('MITGLIEDER_GEBURTSTAG_STANDARD_PRE') OR define( 'MITGLIEDER_GEBURTSTAG_STANDARD_PRE', 'Mitglied hat den ' );
-//defined('MITGLIEDER_GEBURTSTAG_STANDARD_POST') OR define( 'MITGLIEDER_GEBURTSTAG_STANDARD_POST', '. Geburtstag!' );
-//defined('MITGLIEDER_GESPERRT_STANDARD') OR define( 'MITGLIEDER_GESPERRT_STANDARD', 'Der Zugang des Mitglieds ist gesperrt!' );
-
 
 //#############################################################################################################
 $eigenschaften['termine']['termine'] = array(
@@ -388,16 +365,6 @@ $vorgegebene_werte['termine'] = array(
   'ich_rueckgemeldet' => JANEIN,
 );
 
-// defined('TERMINE_RUECKMELDUNG_FRIST') OR define( 'TERMINE_RUECKMELDUNG_FRIST', 0 );
-
-//#############################################################################################################
-$eigenschaften['strafkatalog']['strafkatalog'] = array(
-  // 'grund' => array( 'beschriftung' => 'Grund', 'typ' => 'text', ),
-  // 'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text', ),
-  // 'kapitel_id' => array( 'beschriftung' => 'Kapitel', 'typ' => 'id', ),
-  // 'betrag' => array( 'beschriftung' => 'Betrag', 'typ' => 'zahl', ),
-);
-
 //#############################################################################################################
 $eigenschaften['notenbank']['notenbank'] = array(
   'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text', 'standard' => '', ),
@@ -427,14 +394,6 @@ $filterbare_eigenschaften['notenbank'] = array(
   'anzahl_verzeichnis',
 );
 
-defined('TERMINE_CLUSTERBARE_EIGENSCHAFTEN') OR define( 'TERMINE_CLUSTERBARE_EIGENSCHAFTEN', array(
-  // 'titel',
-  // 'organisator',
-  // 'start',
-  // 'ort',
-  // 'typ',
-) );
-
 $vorgegebene_werte['notenbank'] = array(
   'kategorie' => array (
     'ohne' => array( 'beschriftung' => 'Ohne Zuordnung', ),
@@ -445,8 +404,9 @@ $vorgegebene_werte['notenbank'] = array(
   ),
 );
 
-defined('NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ANZAHL_ZIFFERN', 2 );
-defined('NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN') OR define( 'NOTENVERZEICHNIS_VERZEICHNIS_ERLAUBTE_DATEITYPEN', array( 'pdf', 'mp3', 'm4a' ) );
+defined('NOTENVERZEICHNIS_ANZAHL_ZIFFERN') OR define( 'NOTENVERZEICHNIS_ANZAHL_ZIFFERN', 2 );
+defined('NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN') OR define( 'NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN', array( 'pdf') );
+defined('NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO') OR define( 'NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO', array( 'mp3', 'm4a' ) );
 
 
 //#############################################################################################################
