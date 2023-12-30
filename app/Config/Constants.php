@@ -92,3 +92,94 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+/*
+|--------------------------------------------------------------------------
+| VEREINSAPP Projekt-übergreifende Konstanten
+|--------------------------------------------------------------------------*/
+
+defined('JANEIN') OR define( 'JANEIN', array(
+	0 => array( 'beschriftung' => 'Nein' ),
+	1 => array( 'beschriftung' => 'Ja' ),
+) );
+
+defined('WOCHENTAGE_KURZ') OR define( 'WOCHENTAGE_KURZ', array(
+	1 => array( 'beschriftung' => 'Mo.' ),
+	2 => array( 'beschriftung' => 'Di.' ),
+	3 => array( 'beschriftung' => 'Mi.' ),
+	4 => array( 'beschriftung' => 'Do.' ),
+	5 => array( 'beschriftung' => 'Fr.' ),
+	6 => array( 'beschriftung' => 'Sa.' ),
+	7 => array( 'beschriftung' => 'So.' ),
+) );
+
+defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
+	1 => array( 'beschriftung' => 'Montag' ),
+	2 => array( 'beschriftung' => 'Dienstag' ),
+	3 => array( 'beschriftung' => 'Mittwoch' ),
+	4 => array( 'beschriftung' => 'Donnnerstag' ),
+	5 => array( 'beschriftung' => 'Freitag' ),
+	6 => array( 'beschriftung' => 'Samstag' ),
+	7 => array( 'beschriftung' => 'Sonntag' ),
+) );
+
+defined('SYMBOLE') OR define( 'SYMBOLE', array(
+  'werkzeuge' => array( 'bootstrap' => 'tools' ),
+  'aendern' => array( 'bootstrap' => 'pencil' ),
+  'erstellen' => array( 'bootstrap' => 'plus-lg' ),
+  'duplizieren' => array( 'bootstrap' => 'files' ),
+  'loeschen' => array( 'bootstrap' => 'trash' ),
+
+  'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
+  'collapse' => array( 'bootstrap' => 'caret-down' ),
+  'sortieren' => array( 'bootstrap' => 'sort-down' ),
+  'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
+  'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
+  'filtern' => array( 'bootstrap' => 'funnel' ),
+
+
+  'einstellungen' => array( 'bootstrap' => 'gear' ),
+  'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
+  'info' => array( 'bootstrap' => 'info-circle' ),
+  // 'link' => array( 'bootstrap' => 'link-45deg' ),
+  // 'email' => array( 'bootstrap' => 'envelope' ),
+
+  'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+  'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
+
+  'abwesend' => array( 'html' => '&#9992' ),
+  'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
+
+  'datum' => array( 'bootstrap' => 'calendar-event' ),
+  'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
+  'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
+  'zahlenraum' => array( 'bootstrap' => '123' ),
+
+  'sichtbar' => array( 'bootstrap' => 'eye' ),
+  'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
+
+  'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
+  'mp3' => array( 'bootstrap' => 'file-play' ),
+  'm4a' => array( 'bootstrap' => 'file-play' ),
+  'noten' => array( 'bootstrap' => 'file-earmark-music' ),
+  'audio' => array( 'bootstrap' => 'play-btn' ),
+  'verzeichnis' => array( 'bootstrap' => 'folder' ),
+  'verzeichnis_basis' => array( 'bootstrap' => 'folder-symlink' ),
+) );
+
+defined('SQL_TIME') OR define( 'SQL_TIME', 'HH:mm:ss' );
+defined('SQL_TIME_REGEX') OR define( 'SQL_TIME_REGEX', '/^[0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
+defined('SQL_DATE') OR define( 'SQL_DATE', 'yyyy-MM-dd' );
+defined('SQL_DATE_REGEX') OR define( 'SQL_DATE_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}?$/' );
+defined('SQL_DATETIME') OR define( 'SQL_DATETIME', 'yyyy-MM-dd HH:mm:ss' );
+defined('SQL_DATETIME_REGEX') OR define( 'SQL_DATETIME_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
+
+enum AJAX_ZUSTAND
+{
+    case VORBEREITET;
+    case RAUS;
+    case WARTEND;
+    case REIN_FEHLER;
+    case REIN_ERFOLG;
+    case FERTIG;
+}
