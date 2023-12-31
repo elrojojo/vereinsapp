@@ -25,7 +25,7 @@
   <?php endif ?>
 
   <div class="mb-1">Wenn du dein Passwort für die <?= config('Vereinsapp')->vereinsapp_name; ?> vergessen hast, dann kannst du mit deiner Email einen Einmal-Link anfordern:</div>
-    <?php helper('form'); ?><?= form_open( 'login' ); ?>
+    <?php helper('form'); ?><?= form_open( 'login/magic-link' ); ?>
       <div class="form-floating mb-1">
         <input type="email" class="form-control" name="email" inputmode="email" autocomplete="email" value="<?= old('email') ?>" required placeholder="Email" />
         <label for="email">Email</label>
