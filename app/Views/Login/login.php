@@ -44,7 +44,7 @@
       <div class="d-grid mb-1"><button type="submit" class="btn btn-outline-success">Einloggen</button></div>
     <?= form_close(); ?>
     <hr>
-    <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= site_url(); ?>login/magic-link" aria-expanded="false" aria-controls="passwort_vergessen">Passwort vergessen?</a></div>
+    <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('magic-link') ?>" aria-expanded="false" aria-controls="passwort_vergessen">Einmal-Link anfordern</a></div>
 
   </div>
 </div></div>
