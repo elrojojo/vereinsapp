@@ -5,8 +5,7 @@
 <h5 class="card-header text-center text-secondary">Einmal-Link</h5>
   <div class="card-body">
 
-  <div class="mb-1"><?= lang('Auth.checkYourEmail') ?></div>
-  <div class="mb-1"><?= lang('Auth.magicLinkDetails', [setting('Auth.magicLinkLifetime') / 60]) ?></div>
+  <div class="mb-1"> Es wurde eine Email verschickt mit dem angeforderten Einmal-Link. Bitte prüfe dein Email-Postfach!</div>
 
   </div>
 </div></div>

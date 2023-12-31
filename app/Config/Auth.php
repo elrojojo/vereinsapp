@@ -59,7 +59,8 @@ class Auth extends ShieldAuth
         // 'magic-link-login'            => '\CodeIgniter\Shield\Views\magic_link_form',
         'magic-link-message'          => 'Login/einmal_link_verschickt',
         // 'magic-link-message'          => '\CodeIgniter\Shield\Views\magic_link_message',
-        'magic-link-email'            => '\CodeIgniter\Shield\Views\Email\magic_link_email',
+        'magic-link-email'            => 'Login/einmal_link_email',
+        // 'magic-link-email'            => '\CodeIgniter\Shield\Views\Email\magic_link_email',
     ];
 
     /**
