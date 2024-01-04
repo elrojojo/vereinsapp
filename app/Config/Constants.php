@@ -165,6 +165,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'verzeichnis' => array( 'bootstrap' => 'folder' ),
   'verzeichnis_basis' => array( 'bootstrap' => 'folder-symlink' ),
 
+  'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
   'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 ) );
 

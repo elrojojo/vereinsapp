@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     Liste_Init();
 
-    Mitglieder_Init();
+    if (LOGGEDIN) Mitglieder_Init();
 
     //POPOVER AKTIVIEREN
     // $('[data-toggle="popover"]').popover();
@@ -120,8 +120,13 @@ Schnittstelle_EventElementReduzieren einführen
 filtern_mitglieder_[element_id] in filtern_mitglieder optimieren
 Functionen in vereinsapp.js auslagern
 View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
+Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
+ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
 
 Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
+Bemerkung zu Rueckmeldung loeschen, wenn neue Rueckmeldung gegeben wird
+Bootstrap und jquery aktualisieren
 Modal "Passwort festlegen" wenn $mitglied->requiresPasswordReset()
+Ausloggen, bevor Einmal-Link benutzt wird
 
 */

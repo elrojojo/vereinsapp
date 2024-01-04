@@ -24,15 +24,22 @@ G.LISTEN.mitglieder = {
 };
 
 function Mitglieder_Init() {
-    // FORMULAR EINMAL-LINK EMAIL (MODAL) ÖFFNEN
-    $("#mitglied_einmal_link_email_Modal").on("show.bs.modal", function () {
-        const $formular = $(this);
-        const $btn_oeffnend = G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend;
-        const element_id = Number($btn_oeffnend.attr("data-element_id"));
+    // EINMAL-LINK EMAIL ANZEIGEN
+    $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
+        Mitglieder_EinmalLinkAnzeigen($(this));
+    });
 
-        $formular
-            .find(".btn_mitglied_einmal_link_email")
-            .attr("data-email", JSON.stringify({ email: G.LISTEN.mitglieder.tabelle[element_id].email }));
+    // FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN
+    $("#mitglied_einmal_link_anzeigen_Modal").on("show.bs.modal", function () {
+        const $formular = $(this);
+        const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
+        const btn_dismiss_beschriftung = $btn_dismiss.attr("data-beschriftung");
+
+        $formular.find(".einmal_link").val("");
+        $formular.find(".btn_mitglied_einmal_link_anzeigen").removeClass("invisible");
+
+        if (typeof btn_dismiss_beschriftung !== "undefined") $btn_dismiss.text(btn_dismiss_beschriftung);
+        $btn_dismiss.addClass("btn-outline-danger").removeClass("btn-outline-primary");
     });
 
     // EINMAL-LINK EMAIL ZUSCHICKEN

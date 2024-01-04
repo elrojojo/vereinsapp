@@ -56,7 +56,7 @@ class Termine extends BaseController {
             );
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_element']['duplizieren'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
-                'titel' => 'Termin löschduplizierenen',
+                'titel' => 'Termin duplizieren',
             );
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_element']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',

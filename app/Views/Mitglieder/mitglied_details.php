@@ -10,6 +10,7 @@
     <div class="row row-cols-2 g-0">
       <div class="col-4 text-secondary small">Vorname:</div><div class="col-8"><span class="eigenschaft" data-eigenschaft="vorname"></span></div>
       <div class="col-4 text-secondary small">Nachname:</div><div class="col-8"><span class="eigenschaft" data-eigenschaft="nachname"></span></div>
+      <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) { ?><div class="col-4 text-secondary small">Email:</div><div class="col-8"><span class="eigenschaft" data-eigenschaft="email"></span></div><?php } ?>
       <div class="col-4 text-secondary small">Geboren am:</div><div class="col-8"><span class="eigenschaft" data-eigenschaft="geburt"></span></div>
       <div class="col-4 text-secondary small">Alter:</div><div class="col-8"><span class="eigenschaft" data-eigenschaft="alter"></span></div>
       <div class="col-4 text-secondary small">Geschlecht:</div><div class="col-8"><span class="eigenschaft" data-eigenschaft="geschlecht"></span></div>
@@ -41,6 +42,7 @@
 <?php } ?>
 
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_email_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
 

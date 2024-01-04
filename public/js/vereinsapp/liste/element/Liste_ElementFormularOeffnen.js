@@ -3,7 +3,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const titel = $btn_oeffnend.attr("data-titel");
     const liste = $btn_oeffnend.attr("data-liste");
     // const instanz = $btn_oeffnend.attr("data-instanz");
-    const element_id = Number($btn_oeffnend.attr("data-element_id"));
+    const element_id = $btn_oeffnend.attr("data-element_id");
 
     $formular.find(".modal-title").text(titel);
     $formular.find(".is-invalid").removeClass("is-invalid");

@@ -59,6 +59,10 @@ class Mitglieder extends BaseController {
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'titel' => 'Mitglied aendern',
             );
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['einmal_link_anzeigen'] = array(
+                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+                'titel' => 'Einmal-Link erstellen und anzeigen',
+            );
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['einmal_link_email'] = array(
                 'modal_id' => '#mitglied_einmal_link_email_Modal',
                 'titel' => 'Einmal-Link per Email zuschicken',
@@ -183,6 +187,12 @@ class Mitglieder extends BaseController {
             //     'element_id' => $element_id,
             //     'beschriftung' => 'Mitglied löschen',
             // );
+            $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
+                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+                'liste' => 'mitglieder',
+                'element_id' => $element_id,
+                'beschriftung' => 'Einmal-Link erstellen und anzeigen',
+            );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
                 'modal_id' => '#mitglied_einmal_link_email_Modal',
                 'liste' => 'mitglieder',
@@ -202,9 +212,26 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
-                $email = $mitglied->email;
-                $mitglied = json_decode( json_encode( $mitglied ), TRUE );
-                $mitglied['email'] = $email;
+                if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+                    $mitglied = array(
+                        'id' => $mitglied->id,
+                        'vorname' => $mitglied->vorname,
+                        'nachname' => $mitglied->nachname,
+                        'geburt' => $mitglied->geburt,
+                        'geschlecht' => $mitglied->geschlecht,
+                        'postleitzahl' => $mitglied->postleitzahl,
+                        'wohnort' => $mitglied->wohnort,
+                        'register' => $mitglied->register,
+                        'funktion' => $mitglied->funktion,
+                        'vorstandschaft' => $mitglied->vorstandschaft,
+                        'aktiv' => $mitglied->aktiv,
+                    );
+                } else {
+                    $email = $mitglied->email;
+                    $mitglied = json_decode( json_encode( $mitglied ), TRUE );
+                    $mitglied['email'] = $email;
+                }
+
                 foreach( $mitglied as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $mitglied[ $eigenschaft ] = (int)$wert;
                 $ajax_antwort['tabelle'][] = $mitglied;
             }
@@ -288,6 +315,48 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
+    public function ajax_mitglied_einmal_link_anzeigen()
+    {
+        $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
+        // else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
+        else {
+            $mitglieder_Model = model(Mitglied_Model::class);
+            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] );
+            if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
+            else {
+
+                /** @var UserIdentityModel $identityModel */
+                $identityModel = model(UserIdentityModel::class);
+
+                // Delete any previous magic-link identities
+                $identityModel->deleteIdentitiesByType($mitglied, Session::ID_TYPE_MAGIC_LINK);
+
+                // Generate the code and save it as an identity
+                helper('text');
+                $token = random_string('crypto', 20);
+
+                $identityModel->insert([
+                    'user_id' => $mitglied->id,
+                    'type'    => Session::ID_TYPE_MAGIC_LINK,
+                    'secret'  => $token,
+                    'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
+                ]);
+
+                $ajax_antwort['einmal_link'] = url_to('verify-magic-link').'?token='.$token;
+            }
+
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
     public function ajax_mitglied_einmal_link_email()
     {
         $ajax_antwort[CSRF_NAME] = csrf_hash();
@@ -295,12 +364,13 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
+        // else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
         else {
             $mitglieder_Model = model(Mitglied_Model::class);
             $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] );
-            if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+            if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
             else {
 
                 /** @var UserIdentityModel $identityModel */
@@ -332,7 +402,7 @@ class Mitglieder extends BaseController {
                 $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
                 $email->setTo($mitglied->email);
                 $email->setSubject(lang('Auth.magicLinkSubject'));
-                $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
+                $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
 
                 if ($email->send(false) === false) {
                     log_message('error', $email->printDebugger(['headers']));
