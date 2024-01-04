@@ -5,6 +5,11 @@ use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Mitglieder\Mitglieder_Abwesenheit_Model as Abwesenheit_Model;
 use CodeIgniter\Shield\Entities\User as Mitglied;
 
+use CodeIgniter\Shield\Controllers\MagicLinkController;
+use CodeIgniter\Shield\Models\UserIdentityModel;
+use CodeIgniter\Shield\Authentication\Authenticators\Session;
+use CodeIgniter\I18n\Time;
+
 class Mitglieder extends BaseController {
 
     public function mitglieder() {
@@ -54,6 +59,11 @@ class Mitglieder extends BaseController {
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'titel' => 'Mitglied aendern',
             );
+            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['einmal_link_email'] = array(
+                'modal_id' => '#mitglied_einmal_link_email_Modal',
+                'titel' => 'Einmal-Link per Email zuschicken',
+            );
+
 
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
@@ -172,7 +182,13 @@ class Mitglieder extends BaseController {
             //     'element' => 'mitglied',
             //     'element_id' => $element_id,
             //     'beschriftung' => 'Mitglied löschen',
-            // ); 
+            // );
+            $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
+                'modal_id' => '#mitglied_einmal_link_email_Modal',
+                'liste' => 'mitglieder',
+                'element_id' => $element_id,
+                'beschriftung' => 'Einmal-Link per Email zuschicken',
+            );
         }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
@@ -266,6 +282,68 @@ class Mitglieder extends BaseController {
             if( empty( $this->request->getPost()['id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['id']; 
             $mitglied = $mitglieder_Model->findById( $mitglied_id )->fill($mitglied);
             $mitglieder_Model->save( $mitglied );
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    public function ajax_mitglied_einmal_link_email()
+    {
+        $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else {
+            $mitglieder_Model = model(Mitglied_Model::class);
+            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] );
+            if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+            else {
+
+                /** @var UserIdentityModel $identityModel */
+                $identityModel = model(UserIdentityModel::class);
+
+                // Delete any previous magic-link identities
+                $identityModel->deleteIdentitiesByType($mitglied, Session::ID_TYPE_MAGIC_LINK);
+
+                // Generate the code and save it as an identity
+                helper('text');
+                $token = random_string('crypto', 20);
+
+                $identityModel->insert([
+                    'user_id' => $mitglied->id,
+                    'type'    => Session::ID_TYPE_MAGIC_LINK,
+                    'secret'  => $token,
+                    'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
+                ]);
+
+                /** @var IncomingRequest $request */
+                $request = service('request');
+
+                $ipAddress = $request->getIPAddress();
+                $userAgent = (string) $request->getUserAgent();
+                $date      = Time::now()->toDateTimeString();
+
+                // Send the user an email with the code
+                helper('email');
+                $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
+                $email->setTo($mitglied->email);
+                $email->setSubject(lang('Auth.magicLinkSubject'));
+                $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
+
+                if ($email->send(false) === false) {
+                    log_message('error', $email->printDebugger(['headers']));
+
+                    $ajax_antwort['validation'] = 'Email konnte nicht versandt werden!';
+                }
+
+                // Clear the email
+                $email->clear();
+            }
+
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

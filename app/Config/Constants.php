@@ -137,7 +137,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
   'filtern' => array( 'bootstrap' => 'funnel' ),
 
-
   'einstellungen' => array( 'bootstrap' => 'gear' ),
   'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
   'info' => array( 'bootstrap' => 'info-circle' ),
@@ -165,6 +164,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
   'audio' => array( 'bootstrap' => 'play-btn' ),
   'verzeichnis' => array( 'bootstrap' => 'folder' ),
   'verzeichnis_basis' => array( 'bootstrap' => 'folder-symlink' ),
+
+  'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 ) );
 
 defined('SQL_TIME') OR define( 'SQL_TIME', 'HH:mm:ss' );

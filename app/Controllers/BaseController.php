@@ -173,6 +173,7 @@ abstract class BaseController extends Controller
 
         if( auth()->loggedIn() ) {
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js'), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_EinmalLinkEmail.js'), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js'), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungIdZurueck.js'), );

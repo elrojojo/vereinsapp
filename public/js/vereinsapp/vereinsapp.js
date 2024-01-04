@@ -17,6 +17,8 @@ $(document).ready(function () {
 
     Liste_Init();
 
+    Mitglieder_Init();
+
     //POPOVER AKTIVIEREN
     // $('[data-toggle="popover"]').popover();
 
@@ -117,8 +119,9 @@ Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElem
 Schnittstelle_EventElementReduzieren einführen
 filtern_mitglieder_[element_id] in filtern_mitglieder optimieren
 Functionen in vereinsapp.js auslagern
+View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
 
-Shield für Mailversand konfigurieren
 Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
+Modal "Passwort festlegen" wenn $mitglied->requiresPasswordReset()
 
 */

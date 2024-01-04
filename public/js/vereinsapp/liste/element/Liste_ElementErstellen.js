@@ -1,7 +1,7 @@
 function Liste_ElementErstellen($btn) {
     const liste = $btn.attr("data-liste");
     const element = G.LISTEN[liste].element;
-    const element_id = $btn.attr("data-element_id");
+    const element_id = Number($btn.attr("data-element_id"));
     const aktion = $btn.attr("data-aktion");
     const data_werte = $btn.attr("data-werte");
 
