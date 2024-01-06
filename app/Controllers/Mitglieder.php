@@ -315,54 +315,34 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_einmal_link_anzeigen()
-    {
-        $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
-        // else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
-        else {
-            $mitglieder_Model = model(Mitglied_Model::class);
-            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] );
-            if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
-            else {
+    private function einmal_link_token_generieren( $mitglied ) {
+        /** @var UserIdentityModel $identityModel */
+        $identityModel = model(UserIdentityModel::class);
 
-                /** @var UserIdentityModel $identityModel */
-                $identityModel = model(UserIdentityModel::class);
+        // Delete any previous magic-link identities
+        $identityModel->deleteIdentitiesByType($mitglied, Session::ID_TYPE_MAGIC_LINK);
 
-                // Delete any previous magic-link identities
-                $identityModel->deleteIdentitiesByType($mitglied, Session::ID_TYPE_MAGIC_LINK);
+        // Generate the code and save it as an identity
+        helper('text');
+        $token = random_string('crypto', 20);
 
-                // Generate the code and save it as an identity
-                helper('text');
-                $token = random_string('crypto', 20);
+        $identityModel->insert([
+            'user_id' => $mitglied->id,
+            'type'    => Session::ID_TYPE_MAGIC_LINK,
+            'secret'  => $token,
+            'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
+        ]);
 
-                $identityModel->insert([
-                    'user_id' => $mitglied->id,
-                    'type'    => Session::ID_TYPE_MAGIC_LINK,
-                    'secret'  => $token,
-                    'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
-                ]);
-
-                $ajax_antwort['einmal_link'] = url_to('verify-magic-link').'?token='.$token;
-            }
-
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+        return $token;
     }
 
-    public function ajax_mitglied_einmal_link_email()
+    public function ajax_mitglied_einmal_link_erstellen()
     {
         $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'permit_empty', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
@@ -373,45 +353,34 @@ class Mitglieder extends BaseController {
             if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
             else {
 
-                /** @var UserIdentityModel $identityModel */
-                $identityModel = model(UserIdentityModel::class);
+                $token = $this->einmal_link_token_generieren( $mitglied );
 
-                // Delete any previous magic-link identities
-                $identityModel->deleteIdentitiesByType($mitglied, Session::ID_TYPE_MAGIC_LINK);
+                $ajax_antwort['einmal_link'] = url_to('verify-magic-link').'?token='.$token;
 
-                // Generate the code and save it as an identity
-                helper('text');
-                $token = random_string('crypto', 20);
+                if( !empty( $this->request->getPost()['email'] ) && filter_var( $this->request->getpost()['email'], FILTER_VALIDATE_BOOLEAN) ) {
+                    /** @var IncomingRequest $request */
+                    $request = service('request');
 
-                $identityModel->insert([
-                    'user_id' => $mitglied->id,
-                    'type'    => Session::ID_TYPE_MAGIC_LINK,
-                    'secret'  => $token,
-                    'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
-                ]);
+                    $ipAddress = $request->getIPAddress();
+                    $userAgent = (string) $request->getUserAgent();
+                    $date      = Time::now()->toDateTimeString();
 
-                /** @var IncomingRequest $request */
-                $request = service('request');
+                    // Send the user an email with the code
+                    helper('email');
+                    $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
+                    $email->setTo($mitglied->email);
+                    $email->setSubject(lang('Auth.magicLinkSubject'));
+                    $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
 
-                $ipAddress = $request->getIPAddress();
-                $userAgent = (string) $request->getUserAgent();
-                $date      = Time::now()->toDateTimeString();
+                    if ($email->send(false) === false) {
+                        log_message('error', $email->printDebugger(['headers']));
 
-                // Send the user an email with the code
-                helper('email');
-                $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
-                $email->setTo($mitglied->email);
-                $email->setSubject(lang('Auth.magicLinkSubject'));
-                $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
+                        $ajax_antwort['validation'] = 'Email konnte nicht versandt werden!';
+                    }
 
-                if ($email->send(false) === false) {
-                    log_message('error', $email->printDebugger(['headers']));
-
-                    $ajax_antwort['validation'] = 'Email konnte nicht versandt werden!';
+                    // Clear the email
+                    $email->clear();
                 }
-
-                // Clear the email
-                $email->clear();
             }
 
         }

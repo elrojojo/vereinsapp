@@ -122,6 +122,7 @@ Functionen in vereinsapp.js auslagern
 View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
 Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
 ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
+Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 
 Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
 Bemerkung zu Rueckmeldung loeschen, wenn neue Rueckmeldung gegeben wird
