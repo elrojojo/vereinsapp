@@ -5,10 +5,10 @@ use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Mitglieder\Mitglieder_Abwesenheit_Model as Abwesenheit_Model;
 use CodeIgniter\Shield\Entities\User as Mitglied;
 
-use CodeIgniter\Shield\Controllers\MagicLinkController;
-use CodeIgniter\Shield\Models\UserIdentityModel;
-use CodeIgniter\Shield\Authentication\Authenticators\Session;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\Shield\Authentication\Authenticators\Session;
+use CodeIgniter\Shield\Models\UserIdentityModel;
+use CodeIgniter\Shield\Controllers\MagicLinkController;
 
 class Mitglieder extends BaseController {
 
@@ -315,19 +315,54 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    private function einmal_link_token_generieren( $mitglied ) {
+    public function mitglied_einmal_link_email() {
+        $rules = [ 'email' => config('Auth')->emailValidationRules, ];
+
+        $providerClass = setting('Auth.userProvider');
+
+        $provider = new $providerClass();
+
+        if (! setting('Auth.allowMagicLinkLogins')) {
+            return redirect()->route('login')->with('error', lang('Auth.magicLinkDisabled'));
+        }
+
+        // Validate email format
+        // $rules = $MagicLinkController->getValidationRules();
+        if (! $this->validateData($this->request->getPost(), $rules, [], config('Auth')->DBGroup)) {
+            return redirect()->route('magic-link')->with('errors', $this->validator->getErrors());
+        }
+
+        // Check if the user exists
+        $email = $this->request->getPost('email');
+        $user  = $provider->findByCredentials(['email' => $email]);
+
+        if ($user === null) {
+            return redirect()->route('magic-link')->with('error', lang('Auth.invalidEmail'));
+        }
+
+        $mitglied = $user;
+        $token = $this->einmal_link_token_generieren( $mitglied );
+        if( !$this->einmal_link_email_verschicken( $mitglied, $token ) ) {
+            echo 'email nicht versand';
+            return redirect()->route('magic-link')->with('error', lang('Auth.unableSendEmailToUser', [$user->email]));
+        }
+
+        return view(setting('Auth.views')['magic-link-message']);
+    }
+
+    private function einmal_link_token_generieren( $mitglied ) { $user = $mitglied;
         /** @var UserIdentityModel $identityModel */
         $identityModel = model(UserIdentityModel::class);
 
         // Delete any previous magic-link identities
-        $identityModel->deleteIdentitiesByType($mitglied, Session::ID_TYPE_MAGIC_LINK);
+        $identityModel->deleteIdentitiesByType($user, Session::ID_TYPE_MAGIC_LINK);
 
         // Generate the code and save it as an identity
         helper('text');
         $token = random_string('crypto', 20);
 
         $identityModel->insert([
-            'user_id' => $mitglied->id,
+            'user_id' => $user->id,
             'type'    => Session::ID_TYPE_MAGIC_LINK,
             'secret'  => $token,
             'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
@@ -336,9 +371,35 @@ class Mitglieder extends BaseController {
         return $token;
     }
 
-    public function ajax_mitglied_einmal_link_erstellen()
-    {
-        $ajax_antwort[CSRF_NAME] = csrf_hash();
+    private function einmal_link_email_verschicken( $mitglied, $token ) { $user = $mitglied;
+        $send_status = TRUE;
+
+        /** @var IncomingRequest $request */
+        $request = service('request');
+
+        $ipAddress = $request->getIPAddress();
+        $userAgent = (string) $request->getUserAgent();
+        $date      = Time::now()->toDateTimeString();
+
+        // Send the user an email with the code
+        helper('email');
+        $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
+        $email->setTo($user->email);
+        $email->setSubject(lang('Auth.magicLinkSubject'));
+        $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
+
+        if ($email->send(false) === false) {
+            log_message('error', $email->printDebugger(['headers']));
+            $send_status = FALSE;
+        }
+
+        // Clear the email
+        $email->clear();
+
+        return $send_status;
+    }
+
+    public function ajax_mitglied_einmal_link_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
@@ -352,35 +413,10 @@ class Mitglieder extends BaseController {
             $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] );
             if ( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
             else {
-
                 $token = $this->einmal_link_token_generieren( $mitglied );
-
                 $ajax_antwort['einmal_link'] = url_to('verify-magic-link').'?token='.$token;
-
-                if( !empty( $this->request->getPost()['email'] ) && filter_var( $this->request->getpost()['email'], FILTER_VALIDATE_BOOLEAN) ) {
-                    /** @var IncomingRequest $request */
-                    $request = service('request');
-
-                    $ipAddress = $request->getIPAddress();
-                    $userAgent = (string) $request->getUserAgent();
-                    $date      = Time::now()->toDateTimeString();
-
-                    // Send the user an email with the code
-                    helper('email');
-                    $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
-                    $email->setTo($mitglied->email);
-                    $email->setSubject(lang('Auth.magicLinkSubject'));
-                    $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
-
-                    if ($email->send(false) === false) {
-                        log_message('error', $email->printDebugger(['headers']));
-
-                        $ajax_antwort['validation'] = 'Email konnte nicht versandt werden!';
-                    }
-
-                    // Clear the email
-                    $email->clear();
-                }
+                if( !empty( $this->request->getPost()['email'] ) && filter_var( $this->request->getpost()['email'], FILTER_VALIDATE_BOOLEAN) )
+                    if( !$this->einmal_link_email_verschicken( $mitglied, $token ) ) $ajax_antwort['validation'] = 'Email konnte nicht versandt werden!';
             }
 
         }
@@ -388,6 +424,8 @@ class Mitglieder extends BaseController {
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
+
+    
 
     public function ajax_mitglied_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(

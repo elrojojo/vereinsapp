@@ -36,11 +36,6 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Startseite::startseite');
 $routes->get('startseite', 'Startseite::startseite');
-// $routes->get('termine', 'Termine::termine');
-// $routes->get('strafkatalog', 'Strafkatalog::strafkatalog');
-// $routes->get('notenbank', 'Notenbank::notenbank');
-// $routes->get('umfragen', 'Umfragen::umfragen');
-
 
 $routes->group('mitglieder', static function ($routes) {
     $routes->get('',                                        'Mitglieder::mitglieder');
@@ -53,6 +48,7 @@ $routes->group('mitglieder', static function ($routes) {
     $routes->post('ajax_mitglied_aendern',                  'Mitglieder::ajax_mitglied_erstellen');
     $routes->post('ajax_mitglied_duplizieren',              'Mitglieder::ajax_mitglied_erstellen');
     $routes->post('ajax_mitglied_passwort_aendern',         'Mitglieder::ajax_mitglied_passwort_aendern');
+    $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
     $routes->post('ajax_mitglied_einmal_link_erstellen',    'Mitglieder::ajax_mitglied_einmal_link_erstellen');
     $routes->post('ajax_mitglied_loeschen',                 'Mitglieder::ajax_mitglied_loeschen');
 
