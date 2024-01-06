@@ -281,8 +281,7 @@ class Mitglieder extends BaseController {
                 $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
                 $mitglieder_Model->save( $mitglied );
             } else {
-                $mitglied['password'] = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);//'secret plain text password',
-                // $mitglied['password'] = 'test';
+                helper('text'); $mitglied['password'] = random_string('crypto', 20);
                 $mitglieder_Model->save( new Mitglied( $mitglied ) );
                 $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $mitglieder_Model->getInsertID() ) );
             }
@@ -311,6 +310,39 @@ class Mitglieder extends BaseController {
             $mitglieder_Model->save( $mitglied );
         }
 
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    public function ajax_mitglied_passwort_festlegen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'passwort_neu' => [ 'label' => 'Neues Passwort', 'rules' => [ 'required', 'strong_password' ] ],
+            'passwort_neu2' => [ 'label' => 'Neues Passwort (Wiederholung)', 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else {
+            $mitglieder_Model = model(Mitglied_Model::class);
+            $mitglied = array(
+                'password' => $this->request->getpost()['passwort_neu'],
+            );
+            if( empty( $this->request->getPost()['id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['id']; 
+            $mitglied = $mitglieder_Model->findById( $mitglied_id )->fill($mitglied);
+            $mitglieder_Model->save( $mitglied );
+
+            $mitglied->undoForcePasswordReset();
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    public function ajax_mitglied_passwort_festlegen_modal() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else $ajax_antwort['html'] = view( 'Mitglieder/passwort_festlegen_modal', $this->viewdata );
+        
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
@@ -368,6 +400,8 @@ class Mitglieder extends BaseController {
             'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
         ]);
 
+        $user->forcePasswordReset();
+
         return $token;
     }
 
@@ -385,7 +419,7 @@ class Mitglieder extends BaseController {
         helper('email');
         $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
         $email->setTo($user->email);
-        $email->setSubject(lang('Auth.magicLinkSubject'));
+        $email->setSubject(config('vereinsapp')->vereinsapp_name.' - Einmal-Link');
         $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
 
         if ($email->send(false) === false) {

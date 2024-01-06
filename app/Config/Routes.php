@@ -48,6 +48,8 @@ $routes->group('mitglieder', static function ($routes) {
     $routes->post('ajax_mitglied_aendern',                  'Mitglieder::ajax_mitglied_erstellen');
     $routes->post('ajax_mitglied_duplizieren',              'Mitglieder::ajax_mitglied_erstellen');
     $routes->post('ajax_mitglied_passwort_aendern',         'Mitglieder::ajax_mitglied_passwort_aendern');
+    $routes->post('ajax_mitglied_passwort_festlegen',       'Mitglieder::ajax_mitglied_passwort_festlegen');
+    $routes->post('ajax_mitglied_passwort_festlegen_modal', 'Mitglieder::ajax_mitglied_passwort_festlegen_modal');
     $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
     $routes->post('ajax_mitglied_einmal_link_erstellen',    'Mitglieder::ajax_mitglied_einmal_link_erstellen');
     $routes->post('ajax_mitglied_loeschen',                 'Mitglieder::ajax_mitglied_loeschen');

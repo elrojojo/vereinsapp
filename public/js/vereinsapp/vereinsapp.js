@@ -19,9 +19,6 @@ $(document).ready(function () {
 
     if (LOGGEDIN) Mitglieder_Init();
 
-    //POPOVER AKTIVIEREN
-    // $('[data-toggle="popover"]').popover();
-
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
         // SCHNITTSTELLE AJAX
@@ -32,11 +29,10 @@ $(document).ready(function () {
             url: "status/ajax_datenschutz_richtlinie",
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals_anzeigen_liste").append(AJAX.antwort.html);
-                $("#datenschutz_richtlinie_modal").modal("show");
+                $("#datenschutz_richtlinie_Modal").modal("show");
                 $("#datenschutz_richtlinie_akzeptieren").click(function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    console.log("ERFOLG", "Datenschutz-Richtlinie akzeptiert");
-                    $("#datenschutz_richtlinie_modal").modal("hide");
+                    $("#datenschutz_richtlinie_Modal").modal("hide");
                 });
             },
         };
@@ -123,11 +119,10 @@ View Details mit <span class="beschriftung">...</span> erweitern (für Befüllun
 Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
 ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
 Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
+Ausloggen, bevor Einmal-Link benutzt wird
 
 Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
 Bemerkung zu Rueckmeldung loeschen, wenn neue Rueckmeldung gegeben wird
 Bootstrap und jquery aktualisieren
-Modal "Passwort festlegen" wenn $mitglied->requiresPasswordReset()
-Ausloggen, bevor Einmal-Link benutzt wird
 
 */

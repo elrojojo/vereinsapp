@@ -1,4 +1,4 @@
-<div class="modal fade" id="datenschutz_richtlinie_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="datenschutz_richtlinie_label" aria-hidden="true">
+<div class="modal fade" id="datenschutz_richtlinie_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="datenschutz_richtlinie_Modal_Label" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-body">

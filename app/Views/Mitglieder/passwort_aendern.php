@@ -23,6 +23,7 @@
     </div>
     <span class="input-group-text text-primary passwort_anzeigen"><i class="bi bi-<?= SYMBOLE['unsichtbar']['bootstrap']; ?>"></i></span>
   </div>
+  
   <button type="button" class="btn_element_erstellen btn btn-outline-success" data-liste="mitglieder" data-aktion="passwort_aendern" data-element_id="<?= ICH['id']; ?>">Mein Passwort ändern</button>
 
 </div>
