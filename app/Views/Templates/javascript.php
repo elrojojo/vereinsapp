@@ -22,6 +22,8 @@ const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
 const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->sortierbare_eigenschaften ) ?>;
 const FILTERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->filterbare_eigenschaften ) ?>;
 
+const TERMINE_KATEGORIE_FILTERN_MITGLIEDER = <?= json_encode( config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) ?>;
+
 const NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN = <?= json_encode( config('Vereinsapp')->notenbank_erlaubte_dateitypen_noten ) ?>;
 const NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO = <?= json_encode( config('Vereinsapp')->notenbank_erlaubte_dateitypen_audio ) ?>;
 

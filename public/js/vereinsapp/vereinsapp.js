@@ -123,6 +123,4 @@ Ausloggen, bevor Einmal-Link benutzt wird
 Bootstrap und jquery aktualisieren
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 
-Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
-
 */

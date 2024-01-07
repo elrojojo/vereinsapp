@@ -21,7 +21,7 @@ class Mitglieder extends BaseController {
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'h5' => true,
@@ -417,7 +417,7 @@ class Mitglieder extends BaseController {
 
         // Send the user an email with the code
         helper('email');
-        $email = emailer()->setFrom(setting('Email.fromEmail'), setting('Email.fromName') ?? '');
+        $email = emailer()->setFrom(setting('Email.fromEmail'), config('vereinsapp')->verein_name ?? '');
         $email->setTo($user->email);
         $email->setSubject(config('vereinsapp')->vereinsapp_name.' - Einmal-Link');
         $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));

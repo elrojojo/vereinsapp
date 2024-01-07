@@ -89,13 +89,20 @@ class Termine extends BaseController {
 
         $this->viewdata['element_id'] = $element_id;
 
+        $filtern_mitglieder = json_decode( model(Termin_Model::class)->find( $element_id )["filtern_mitglieder"] );
+        $kategorie = model(Termin_Model::class)->find( $element_id )["kategorie"];
+        if ( array_key_exists( $kategorie, config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) &&
+             !empty( config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) 
+            if ( empty( $filtern_mitglieder ) ) $filtern_mitglider_kombiniert = config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ];
+            else $filtern_mitglider_kombiniert = array( array ( 'verknuepfung' => "&&", 'filtern' => array_merge( $termin["filtern_mitglieder"], config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) );
+        else $filtern_mitglider_kombiniert = $termin["filtern_mitglieder"];
         $this->viewdata['auswertungen'][ 'auswertungen_termin_'.$element_id ] = array(
             'liste' => 'rueckmeldungen',
             'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'termin_id', 'wert' => $element_id ), ),
             'cluster' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
-                'filtern' => model(Termin_Model::class)->find( $element_id )['filtern_mitglieder'],
+                'filtern' => json_encode( $filtern_mitglider_kombiniert ),
             ),
             // 'sortable' => true,
             'collapse' => true,
