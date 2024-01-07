@@ -18,7 +18,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     else element_id = Termine_RueckmeldungIdZurueck(termin_id, mitglied_id);
 
     if ($btn_rueckmelden.hasClass("zusagen")) {
-        $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }));
+        $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, bemerkung: "", status: 1 }));
 
         if (element_id !== null && G.LISTEN.rueckmeldungen.tabelle[element_id].status >= 1) {
             $btn_rueckmelden
@@ -54,7 +54,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-success").addClass("btn-outline-success");
         }
     } else if ($btn_rueckmelden.hasClass("absagen")) {
-        $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, status: 0 }));
+        $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, bemerkung: "", status: 0 }));
 
         if (element_id !== null && G.LISTEN.rueckmeldungen.tabelle[element_id].status == 0) {
             $btn_rueckmelden

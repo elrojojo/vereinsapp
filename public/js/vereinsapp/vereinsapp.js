@@ -124,6 +124,5 @@ Bootstrap und jquery aktualisieren
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 
 Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
-Bemerkung zu Rueckmeldung loeschen, wenn neue Rueckmeldung gegeben wird
 
 */
