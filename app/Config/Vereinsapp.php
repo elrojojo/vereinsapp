@@ -22,6 +22,11 @@ class Vereinsapp extends BaseConfig
     public $vereinsapp_name = 'Eingetragener Verein e.V. Vereinsapp';
 
     /**
+     * Das Logo der Vereinsapp 
+     */
+    public $vereinsapp_logo = 'images/title.png';
+
+    /**
      * --------------------------------------------------------------------------
      * Module (Controller)
      * --------------------------------------------------------------------------

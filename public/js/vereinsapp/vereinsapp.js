@@ -120,9 +120,10 @@ Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
 ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
 Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 Ausloggen, bevor Einmal-Link benutzt wird
+Bootstrap und jquery aktualisieren
+Eigene Links im Menü anzeigen lassen (und über .env steuern)
 
 Standard für filtern_mitglieder in vorgegebene_Werte berücksichtigen
 Bemerkung zu Rueckmeldung loeschen, wenn neue Rueckmeldung gegeben wird
-Bootstrap und jquery aktualisieren
 
 */

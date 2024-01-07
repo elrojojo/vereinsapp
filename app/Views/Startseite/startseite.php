@@ -4,7 +4,7 @@
 <?= $this->section('containers') ?>
 
 <div class="container mb-2 text-center">
-  <img src="<?= base_url('images/title.png'); ?>" />
+  <img src="<?= config('vereinsapp')->vereinsapp_logo; ?>" />
 </div>
 
 <div class="container mb-2">

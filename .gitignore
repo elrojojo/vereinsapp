@@ -127,4 +127,10 @@ php_errors.log
 # /phpunit*.xml
 # /.phpunit.*.cache
 
-public/storage/
+# public/favicon.ico
+
+public/storage/notenbank/
+!public/storage/notenbank/index.html
+
+# public/images/
+# !public/images/index.html
