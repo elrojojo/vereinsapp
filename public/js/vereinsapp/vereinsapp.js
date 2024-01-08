@@ -122,5 +122,6 @@ Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wur
 Ausloggen, bevor Einmal-Link benutzt wird
 Bootstrap und jquery aktualisieren
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
+Einzelne Module als Light-Version, einschaltbar über .env oder settings
 
 */

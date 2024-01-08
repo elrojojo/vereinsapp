@@ -25,10 +25,10 @@ class Notenbank extends BaseController {
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
             // ),
-            // 'symbol' => array(
-            //     'symbol' => SYMBOLE['info']['bootstrap'],
-            //     // 'farbe' => 'danger',
-            // ),
+            'symbol' => array(
+                'symbol' => SYMBOLE['info']['bootstrap'],
+                // 'farbe' => 'danger',
+            ),
             'vorschau' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
