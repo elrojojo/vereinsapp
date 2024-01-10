@@ -94,8 +94,8 @@ class Termine extends BaseController {
         if ( array_key_exists( $kategorie, config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) &&
              !empty( config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) 
             if ( empty( $filtern_mitglieder ) ) $filtern_mitglider_kombiniert = config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ];
-            else $filtern_mitglider_kombiniert = array( array ( 'verknuepfung' => "&&", 'filtern' => array_merge( $termin["filtern_mitglieder"], config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) );
-        else $filtern_mitglider_kombiniert = $termin["filtern_mitglieder"];
+            else $filtern_mitglider_kombiniert = array( array ( 'verknuepfung' => "&&", 'filtern' => array_merge( $filtern_mitglieder, config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) );
+        else $filtern_mitglider_kombiniert = $filtern_mitglieder;
         $this->viewdata['auswertungen'][ 'auswertungen_termin_'.$element_id ] = array(
             'liste' => 'rueckmeldungen',
             'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'termin_id', 'wert' => $element_id ), ),
