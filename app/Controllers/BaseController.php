@@ -62,6 +62,8 @@ abstract class BaseController extends Controller
         $this->validation  = \Config\Services::validation();
         $this->session = \Config\Services::session();
 
+        if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+
         $verfuegbare_rechte = array(); $id = 1;
         foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) {
             $verfuegbares_recht['id'] = $id;

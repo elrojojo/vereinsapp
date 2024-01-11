@@ -375,7 +375,6 @@ class Mitglieder extends BaseController {
         $mitglied = $user;
         $token = $this->einmal_link_token_generieren( $mitglied );
         if( !$this->einmal_link_email_verschicken( $mitglied, $token ) ) {
-            echo 'email nicht versand';
             return redirect()->route('magic-link')->with('error', lang('Auth.unableSendEmailToUser', [$user->email]));
         }
 
@@ -458,8 +457,6 @@ class Mitglieder extends BaseController {
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
-
-    
 
     public function ajax_mitglied_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
