@@ -24,7 +24,7 @@ class Vereinsapp extends BaseConfig
     /**
      * Das Logo der Vereinsapp 
      */
-    public $vereinsapp_logo = 'images/title.png';
+    public $vereinsapp_logo = '';
 
     /**
      * --------------------------------------------------------------------------

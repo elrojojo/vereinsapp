@@ -8,7 +8,8 @@ function Liste_Aktualisieren($liste) {
     else filtern = new Array();
     const filtern_LocalStorage = G.LISTEN[liste].instanz[instanz].filtern;
     if (filtern_LocalStorage.length > 0) {
-        if (liste == "termine" && G.LISTEN.termine.tabelle.length > 1 && "start" in G.LISTEN.termine.tabelle[1]) {
+        if (liste == "termine") {
+            // && G.LISTEN.termine.tabelle.length > 1 && "start" in G.LISTEN.termine.tabelle[1]) { erzeugt Fehler, weil ID 1 evtl. nicht belegt ist
             const start_position = Liste_FilternEigenschaftPositionZurueck(filtern, "start");
             if (start_position.length > 1 && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
                 filtern = Liste_FilternPositionGeloeschtZurueck(filtern, start_position);
