@@ -34,12 +34,12 @@ class Vereinsapp extends BaseConfig
      * Aktive Module (Controller) inkl. Beschriftung und Symbol
      */
     public $controllers = array(
-        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => '' ),
-        'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => 'calendar-month' ),
-        // 'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => 'piggy-bank' ),
-        'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => 'file-earmark-music' ),
-        // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => 'signpost-split' ),
-        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => 'people' ),
+        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
+        'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine']['bootstrap'] ),
+        // 'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog']['bootstrap'] ),
+        'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank']['bootstrap'] ),
+        // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => SYMBOLE['umfragen']['bootstrap'] ),
+        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder']['bootstrap'] ),
         'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
 
         'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),

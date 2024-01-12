@@ -19,8 +19,14 @@
 <?= view( 'Mitglieder/passwort_aendern' ); ?>
 </div>
 
-<?= view( 'Templates/Liste/loeschen_modal' ); ?>
+<div class="container mb-2">
+    <div class="text-secondary text-center mb-1">Mein LocalStorage</div>
+<?= view( 'Einstellungen/localstorage_leeren' ); ?>
+</div>
+<?= view( 'Einstellungen/localstorage_leeren_modal' ); ?>
+
+<?php /*<?= view( 'Templates/Liste/loeschen_modal' ); ?>
 <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
-<?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
+<?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>*/ ?>
 <?= $this->endSection() ?>
 

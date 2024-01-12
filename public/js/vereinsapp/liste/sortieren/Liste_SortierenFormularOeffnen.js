@@ -1,11 +1,9 @@
 function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
     // const aktion = $btn_oeffnend.attr("data-aktion");
-    const titel = $btn_oeffnend.attr("data-titel");
     const liste = $btn_oeffnend.attr("data-liste");
     const instanz = $btn_oeffnend.attr("data-instanz");
     // const element_id = Number($btn_oeffnend.attr("data-element_id"));
 
-    $formular.find(".modal-title").text(titel);
     $formular.find(".sortieren, .sortieren_definitionen").attr("data-instanz", instanz);
     const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
     $sortieren_definitionen.find(".sortieren_eigenschaft").empty();

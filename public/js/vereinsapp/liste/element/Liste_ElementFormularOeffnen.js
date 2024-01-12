@@ -1,11 +1,9 @@
 function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const aktion = $btn_oeffnend.attr("data-aktion");
-    const titel = $btn_oeffnend.attr("data-titel");
     const liste = $btn_oeffnend.attr("data-liste");
     // const instanz = $btn_oeffnend.attr("data-instanz");
     const element_id = $btn_oeffnend.attr("data-element_id");
 
-    $formular.find(".modal-title").text(titel);
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
 

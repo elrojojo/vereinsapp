@@ -61,11 +61,12 @@ $(document).ready(function () {
         $(this).next(".invalid-tooltip").remove();
     });
 
-    //LOCALSTORAGE LEEREN
-    // $(".navbar-text").click(function () {
-    //     localStorage.clear();
-    //     alert("localStorage geleert.");
-    // });
+    // LOCALSTORAGE LEEREN
+    $(".btn_localstorage_leeren").click(function () {
+        localStorage.clear();
+        console.log("LocalStorage wurde erfolgreich geleert.");
+        $(this).closest(".modal").modal("hide");
+    });
 });
 
 $.fn.exists = function () {

@@ -28,15 +28,30 @@ function Schnittstelle_DomInit() {
 
     // AKTIVE MODALS WERDEN GETRACKED
     $(".modal").on("show.bs.modal", function (event) {
-        const modal_id = $(this).attr("id");
+        const $modal = $(this);
+        const modal_id = $modal.attr("id");
         const $btn_oeffnend = $(event.relatedTarget);
-        if (G.MODALS.offen.length == 0 || modal_id != G.MODALS.offen[G.MODALS.offen.length - 1].modal_id) {
+
+        const titel = $btn_oeffnend.attr("data-titel");
+        if (typeof titel !== "undefined") {
+            $modal.find(".modal-title").attr("data-titel", $modal.find(".modal-title").text());
+            $modal.find(".modal-title").text(titel);
+        }
+
+        if (G.MODALS.offen.length == 0 || G.MODALS.offen[G.MODALS.offen.length - 1].modal_id != modal_id) {
             G.MODALS.offen.push({ modal_id: modal_id, $btn_oeffnend: $btn_oeffnend });
         }
     });
 
     $(".modal").on("hidden.bs.modal", function () {
         const $modal = $(this);
+
+        const titel = $modal.find(".modal-title").attr("data-titel");
+        if (typeof titel !== "undefined") {
+            $modal.find(".modal-title").removeAttr("data-titel");
+            $modal.find(".modal-title").text(titel);
+        }
+
         if ($modal.attr("id") == G.MODALS.offen[G.MODALS.offen.length - 1].modal_id) {
             G.MODALS.offen.pop();
             if (G.MODALS.offen.length > 0) $("#" + G.MODALS.offen[G.MODALS.offen.length - 1].modal_id).modal("show");
