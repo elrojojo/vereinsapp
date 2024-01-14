@@ -48,7 +48,7 @@
                                               </tbody>
                                             </table>
                                             <div class="">
-                                              f&#252;r deinen Zugang zur <?= config('Vereinsapp')->vereinsapp_name; ?> hast du einen Einmal-Link angefordert.
+                                              f&#252;r deinen Zugang zur <?= config('Vereinsapp')->vereinsapp_name; ?> hast du einen Einmal-Link bekommen.
                                               Du kannst diesen Einmal-Link sofort benutzen um dich in der <?= config('Vereinsapp')->vereinsapp_name; ?> einzuloggen:
                                             </div>
                                             <table class="s-3 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">

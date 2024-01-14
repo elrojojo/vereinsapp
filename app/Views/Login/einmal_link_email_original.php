@@ -21,7 +21,7 @@ DATE <?= esc($date) ?>
         <div class="mb-1">HalloMITGLIED_NAME,</div>
 
         <div class="mb-3">
-            für deinen Zugang zur VEREINSAPP_NAME hast du einen Einmal-Link angefordert.
+            für deinen Zugang zur VEREINSAPP_NAME hast du einen Einmal-Link bekommen.
             Du kannst diesen Einmal-Link sofort benutzen um dich in der VEREINSAPP_NAME einzuloggen:
         </div>
         <a href="VERIFY_MAGIC_LINK?token=TOKEN" class="btn btn-outline-primary mb-3">Einmal-Link verwenden</a>
