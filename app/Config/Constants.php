@@ -154,7 +154,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
 
-    'abwesend' => array( 'html' => '&#9992' ),
+    'abwesend' => array( 'bootstrap' => 'airplane', 'html' => '&#9992' ),
     'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
 
     'datum' => array( 'bootstrap' => 'calendar-event' ),

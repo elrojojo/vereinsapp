@@ -202,8 +202,8 @@ class Vereinsapp extends BaseConfig
             'kategorie' => array (
                 'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '' ),
                 'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930' ),
-                'musikprobe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218' ),
-                //'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '<img class="title" src="images/vorstandschaftssitzung.png" width="30" />' ),
+                'probe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218' ),
+                'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
             ),
 
             'ich_rueckgemeldet' => JANEIN,
@@ -361,8 +361,8 @@ class Vereinsapp extends BaseConfig
      * entsprechend dem Standard-Schema für Filtern
      */
     public $termine_kategorie_filtern_mitglieder = array(
-        'musikprobe' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-        //'vorstandschaftssitzung' => array( array( 'operator' => '==', 'eigenschaft' => 'vorstandschaft', 'wert' => '1' ), ),
+        'probe' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+        'vorstandschaftssitzung' => array( array( 'operator' => '==', 'eigenschaft' => 'vorstandschaft', 'wert' => '1' ), ),
     );
 
     /**
