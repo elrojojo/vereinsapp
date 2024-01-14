@@ -16,6 +16,11 @@ class Vereinsapp extends BaseConfig
     public $verein_name = 'Eingetragener Verein e.V.';
 
     /**
+     * Die Homepage des Vereins
+     */
+    public $verein_domain = 'https://eingetragener-verein.de';
+
+    /**
      * Der Name der Vereinsapp innerhalb des Vereins
      * (sollte grammatikalisch weiblich sein)
      */
@@ -383,7 +388,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * Einträge im Menü
+     * Erlaubte Dateitypen für Audios
      */
     public $notenbank_erlaubte_dateitypen_audio = array(
         'mp3',
@@ -404,8 +409,17 @@ class Vereinsapp extends BaseConfig
      * AJAX-Zykluszeit
      * --------------------------------------------------------------------------
      *
-     * Zeit in Sekunden bis zum nächsten Schleifendurchgang 
+     * Zeit in Sekunden bis zum nächsten Schleifendurchgang
      */
     public $ajax_zykluszeit = 30;
+    
+    /**
+     * --------------------------------------------------------------------------
+     * Kasten "Weiter zur Website von ..."
+     * --------------------------------------------------------------------------
+     *
+     * Kasten "Weiter zur Website von ..." auf der Login-Seite aktivieren
+     */
+    public $kasten_weiter_zur_website_von = FALSE;
 
 }
