@@ -92,4 +92,9 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     } else {
         /* FEHLER */
     }
+
+    if (G.LISTEN.termine.tabelle[termin_id].start < DateTime.now()) {
+        $btn_rueckmelden.prop("disabled", true);
+        $btn_rueckmeldung_detaillieren.prop("disabled", true);
+    }
 }

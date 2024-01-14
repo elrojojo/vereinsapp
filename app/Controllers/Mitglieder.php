@@ -396,7 +396,7 @@ class Mitglieder extends BaseController {
             'user_id' => $user->id,
             'type'    => Session::ID_TYPE_MAGIC_LINK,
             'secret'  => $token,
-            'expires' => Time::now()->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
+            'expires' => JETZT->addSeconds(setting('Auth.magicLinkLifetime'))->format('Y-m-d H:i:s'),
         ]);
 
         $user->forcePasswordReset();
@@ -412,7 +412,7 @@ class Mitglieder extends BaseController {
 
         $ipAddress = $request->getIPAddress();
         $userAgent = (string) $request->getUserAgent();
-        $date      = Time::now()->toDateTimeString();
+        $date      = JETZT->toDateTimeString();
 
         // Send the user an email with the code
         helper('email');

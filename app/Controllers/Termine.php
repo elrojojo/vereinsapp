@@ -6,6 +6,8 @@ use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Termine\Termine_Rueckmeldung_Model as Rueckmeldung_Model;
 use App\Models\Termine\Termine_Anwesenheit_Model as Anwesenheit_Model;
 
+use CodeIgniter\I18n\Time;
+
 class Termine extends BaseController {
 
     public function termine() {
@@ -272,6 +274,10 @@ class Termine extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( Time::parse( model(Termin_Model::class)->find(
+                    $this->request->getPost()['termin_id']
+                 )['start'], 'Europe/Berlin' )->isBefore( JETZT ) )
+                    $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array(
@@ -294,6 +300,12 @@ class Termine extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( model(Rueckmeldung_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( Time::parse( model(Termin_Model::class)->find(
+                    model(Rueckmeldung_Model::class)->find(
+                        $this->request->getPost()['id']
+                    )['termin_id']
+                 )['start'], 'Europe/Berlin' )->isBefore( JETZT ) )
+                    $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array();

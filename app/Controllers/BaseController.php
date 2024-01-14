@@ -9,6 +9,8 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+use CodeIgniter\I18n\Time;
+
 /**
  * Class BaseController
  *
@@ -80,7 +82,9 @@ abstract class BaseController extends Controller
         defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
 
         defined('ICH') OR define( 'ICH', $this->session->user );
-    
+
+        defined('JETZT') OR define( 'JETZT', Time::now('Europe/Berlin') );
+
         defined('AKTIVER_CONTROLLER') OR define( 'AKTIVER_CONTROLLER', lcfirst(
           explode( '\\', $this->router->controllerName() )[ array_key_last(
             explode( '\\', $this->router->controllerName() )
