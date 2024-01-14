@@ -421,5 +421,15 @@ class Vereinsapp extends BaseConfig
      * Kasten "Weiter zur Website von ..." auf der Login-Seite aktivieren
      */
     public $kasten_weiter_zur_website_von = FALSE;
+    
+    /**
+     * --------------------------------------------------------------------------
+     * LocalStorage Reset erzwingen
+     * --------------------------------------------------------------------------
+     *
+     * Wenn der LocalStorage auf allen verwendeten Geräten einmal geleert werden
+     * soll, dann muss der jetzige Zeitpunkt definiert werden
+     */
+    public $force_localstorage_reset_zeitpunkt = '';
 
 }

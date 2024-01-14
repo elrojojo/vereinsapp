@@ -19,6 +19,24 @@ $(document).ready(function () {
 
     if (LOGGEDIN) Mitglieder_Init();
 
+    // LOCALSTORAGE LEEREN
+    $(".btn_localstorage_leeren").click(function () {
+        localStorage.clear();
+        Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
+        console.log("LocalStorage wurde erfolgreich geleert.");
+        $(this).closest(".modal").modal("hide");
+    });
+
+    // LOCALSTORAGE LEEREN ERZWINGEN
+    if (
+        typeof Schnittstelle_LocalstorageRausZurueck("localstorage_reset") === "undefined" ||
+        DateTime.fromISO(Schnittstelle_LocalstorageRausZurueck("localstorage_reset")) < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
+    ) {
+        localStorage.clear();
+        Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
+        console.log("LocalStorage wurde erfolgreich geleert.");
+    }
+
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
         // SCHNITTSTELLE AJAX
@@ -59,13 +77,6 @@ $(document).ready(function () {
     // VALIDATION-TOOLTIPS ENTFERNEN
     $("input, select").on("focus", function () {
         $(this).next(".invalid-tooltip").remove();
-    });
-
-    // LOCALSTORAGE LEEREN
-    $(".btn_localstorage_leeren").click(function () {
-        localStorage.clear();
-        console.log("LocalStorage wurde erfolgreich geleert.");
-        $(this).closest(".modal").modal("hide");
     });
 });
 
