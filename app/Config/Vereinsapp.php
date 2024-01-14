@@ -430,6 +430,6 @@ class Vereinsapp extends BaseConfig
      * Wenn der LocalStorage auf allen verwendeten Geräten einmal geleert werden
      * soll, dann muss der jetzige Zeitpunkt definiert werden
      */
-    public $force_localstorage_reset_zeitpunkt = '';
+    public $force_localstorage_reset_zeitpunkt = '2024-01-01T00:00:00.000+01:00';
 
 }
