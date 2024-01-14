@@ -3,13 +3,15 @@
 namespace App\Controllers;
 use App\Models\MitgliedModel;
 
+use CodeIgniter\I18n\Time;
+
 class Startseite extends BaseController {
 
     public function startseite() {
 
         $this->viewdata['liste']['anstehende_geburtstage'] = array(
             'liste' => 'mitglieder',
-            'filtern' => array( array( 'operator' => '<=', 'eigenschaft' => 'geburtstag', 'wert' => date( 'Y-m-d', time()+2*WEEK, ).' 00:00:00' ), ),
+            'filtern' => array( array( 'operator' => '<=', 'eigenschaft' => 'geburtstag', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, ),
             ),
@@ -30,8 +32,8 @@ class Startseite extends BaseController {
             'filtern' => array( array(
                 'verknuepfung' => '&&',
                 'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
-                    array( 'operator' => '<=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time()+2*WEEK, ).' 00:00:00' ),
+                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+                    array( 'operator' => '<=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
                 ),
             ), ),
@@ -57,7 +59,7 @@ class Startseite extends BaseController {
             'filtern' => array( array( 
                 'verknuepfung' => '&&',
                 'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
+                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => JETZT->toDateTimeString() ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
                 ),

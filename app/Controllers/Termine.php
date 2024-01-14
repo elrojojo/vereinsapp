@@ -17,7 +17,7 @@ class Termine extends BaseController {
             'filtern' => array( array(
                 'verknuepfung' => '&&',
                 'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
+                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
                 ),
             ), ),
             'sortieren' => array(
@@ -209,7 +209,7 @@ class Termine extends BaseController {
         );
         if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) $validation_rules['organisator'] = [ 'label' => EIGENSCHAFTEN['termine']['organisator']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ];
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getpost()['start'] < date('Y-m-d H:i:s') ) $ajax_antwort['validation'] = array(
+        else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( JETZT ) ) $ajax_antwort['validation'] = array(
             'start' => 'Der Termin darf nicht in der Vergangenheit liegen.',
         );
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';

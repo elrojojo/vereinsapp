@@ -146,7 +146,7 @@ class Mitglieder extends BaseController {
                 'filtern' => array( array(
                     'verknuepfung' => '&&',
                     'filtern' => array(
-                        array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => date( 'Y-m-d', time() ).' 00:00:00' ),
+                        array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
                     ),
                 ), ),
                 'sortieren' => array(
