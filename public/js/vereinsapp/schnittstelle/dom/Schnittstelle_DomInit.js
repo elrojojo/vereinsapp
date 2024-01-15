@@ -26,6 +26,10 @@ function Schnittstelle_DomInit() {
         $("#status").html(STATUS_SPINNER_HTML);
     });
 
+    $(".jetzt").each(function () {
+        Schnittstelle_JetztAktualisieren($(this));
+    });
+
     // AKTIVE MODALS WERDEN GETRACKED
     $(".modal").on("show.bs.modal", function (event) {
         const $modal = $(this);
@@ -107,4 +111,11 @@ function Schnittstelle_CheckWartenEnde($check) {
     $check_beschriftung.html(beschriftung);
 
     $check.prop("disabled", false);
+}
+
+function Schnittstelle_JetztAktualisieren($jetzt) {
+    let format = "dd.MM.yyyy HH:mm:ss";
+    const data_format = $jetzt.attr("data-format");
+    if (typeof data_format !== "undefined") format = $jetzt.attr("data-format");
+    $jetzt.text(DateTime.now().toFormat(format));
 }

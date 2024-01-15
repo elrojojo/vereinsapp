@@ -24,7 +24,7 @@
     
     <?= $this->renderSection('containers') ?>
 
-    <div class="text-secondary mt-5 small"><?= config('Vereinsapp')->verein_name; ?> - Stand vom <?= date('d.m.Y H:i', time()); ?></div>
+    <div class="text-secondary mt-5 small"><?= config('Vereinsapp')->verein_name; ?> - <span class="jetzt"></span></div>
 
     <div id="status_anzeigen_liste" class="position-fixed" style="padding-right: 5px; padding-left: 5px; right: 0px; top: 70px; z-index: 99;"></div>
 

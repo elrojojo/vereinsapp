@@ -114,14 +114,11 @@ Batch über filtern- und sortieren-Button legen
 Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Liste über Details-Ansicht durchscrollbar machen
-Uhrzeit updaten
 Abwesenheiten wieder einführen
     Hinweis anzeigen, wenn aktuell abweisend
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
 Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 Registerführer einführen
-Beschriftung sinnvoll einsetzen
-Cluster überarbeiten
 Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
@@ -135,6 +132,14 @@ Ausloggen, bevor Einmal-Link benutzt wird
 Bootstrap und jquery aktualisieren
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-Reihenfolge Vorgegebene Werte Register geändert
+Cluster überarbeiten
+    Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen)
+Werkzeugkasten bei Listen "von unten"
+Aufbereitung der sql-Tabelle im Model, nicht im Controller?
+Formatierung eines Werts flexibel (inkl. möglichem Symbol)
+Termin löschen in der Detail-Ansicht
+Mitglieder Lebenslauf
+Termine mit Ende erweitern
+Terminserie / Regeltermine
 
 */

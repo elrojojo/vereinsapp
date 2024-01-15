@@ -62,5 +62,9 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         $(".zusagen, .absagen").each(function () {
             Termine_RueckmeldungAktualisieren($(this));
         });
+
+        $(".jetzt").each(function () {
+            Schnittstelle_JetztAktualisieren($(this));
+        });
     });
 }
