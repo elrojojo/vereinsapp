@@ -3,17 +3,15 @@
 <?= $this->section( 'werkzeugkasten' ); ?><?= view( 'Templates/werkzeugkasten' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2 text-center element" data-liste="notenbank" data-element_id="<?= $element_id; ?>">
+<div class="container mb-1">
+<?= view( 'Templates/Liste/element_navigation' ); ?>
+</div>
 
-    <div class="h5">
-        <!-- <span class="float-start vorheriges_element"><i class="bi bi-arrow-left"></i></span> -->
-        <span class="beschriftung"><span class="eigenschaft" data-eigenschaft="titel"></span></span>
-        <!-- <span class="float-end naechstes_element"><i class="bi bi-arrow-right"></i></span> -->
-    </div>
+<div class="container mb-2 text-center element" data-liste="notenbank" data-element_id="<?= $element_id; ?>">
+    <div class="h5 beschriftung"><span class="eigenschaft" data-eigenschaft="titel"></span></div>
     <div class="row g-0 my-1">
         <div class="col text-nowrap"><span class="eigenschaft" data-eigenschaft="kategorie"></span></div>
     </div>
-
 </div>
 
 <div class="container mb-2">

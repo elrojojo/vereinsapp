@@ -420,8 +420,13 @@ class Vereinsapp extends BaseConfig
      *
      * Kasten "Weiter zur Website von ..." auf der Login-Seite aktivieren
      */
-    public $kasten_weiter_zur_website_von = FALSE;
+    public $kasten_weiter_zur_website_von_login = FALSE;
     
+    /**
+     * Kasten "Weiter zur Website von ..." auf der Startseite aktivieren
+     */
+    public $kasten_weiter_zur_website_von_startseite = FALSE;
+
     /**
      * --------------------------------------------------------------------------
      * LocalStorage Reset erzwingen
