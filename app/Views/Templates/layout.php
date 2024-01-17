@@ -21,7 +21,9 @@
 
   <body>
     <?= $this->renderSection('navbar') ?>
-    
+
+    <?php if( config('Vereinsapp')->wartungsarbeiten ) echo view( 'Templates/wartungsarbeiten' ); ?>
+
     <?= $this->renderSection('containers') ?>
 
     <div class="text-secondary mt-5 small"><?= config('Vereinsapp')->verein_name; ?> - <span class="jetzt"></span></div>
