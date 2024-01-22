@@ -235,8 +235,7 @@ class Termine extends BaseController {
                 'kategorie' => $this->request->getpost()['kategorie'],
             );
             if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) $termin['organisator'] = $this->request->getpost()['organisator'];
-            if( array_key_exists( 'filtern_mitglieder', $this->request->getpost() ) ) $termin['filtern_mitglieder'] = json_encode($this->request->getpost()['filtern_mitglieder']);
-            else $termin['filtern_mitglieder'] = json_encode( array(), JSON_UNESCAPED_UNICODE );
+            if( !array_key_exists( 'filtern_mitglieder', $this->request->getpost() ) ) $termin['filtern_mitglieder'] = json_encode( array(), JSON_UNESCAPED_UNICODE );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung'];
 
             if( !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );

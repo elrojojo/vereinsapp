@@ -26,8 +26,6 @@ function Liste_ElementErstellen($btn) {
                 if (eigenschaft == "ende") wert = wert.plus({ days: 1 }).minus({ seconds: 1 });
                 wert = wert.toSQL();
             }
-            // Und wenn der Wert im JSON-Format ist
-            if (isJson(wert)) wert = JSON.parse(wert);
 
             AJAX_DATA[eigenschaft] = wert;
 

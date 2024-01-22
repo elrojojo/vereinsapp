@@ -8,7 +8,7 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
 
         // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
         const tabelle = new Array();
-        $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", true), function () {
+        $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle"), function () {
             const element_id = this["id"];
             tabelle[element_id] = this;
 
@@ -24,7 +24,8 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
             // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
-            G.LISTEN[liste].instanz[instanz].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern", true);
+            G.LISTEN[liste].instanz[instanz].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
+            if (typeof G.LISTEN[liste].instanz[instanz].filtern === "undefined") G.LISTEN[liste].instanz[instanz].filtern = new Array();
             function LOC_upd_VAR_filtern(filtern, liste) {
                 $.each(filtern, function (index, knoten) {
                     if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
@@ -34,7 +35,8 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
             LOC_upd_VAR_filtern(G.LISTEN[liste].instanz[instanz].filtern, liste);
 
             // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-            G.LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", true);
+            G.LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
+            if (typeof G.LISTEN[liste].instanz[instanz].sortieren === "undefined") G.LISTEN[liste].instanz[instanz].sortieren = new Array();
         });
     }
 }

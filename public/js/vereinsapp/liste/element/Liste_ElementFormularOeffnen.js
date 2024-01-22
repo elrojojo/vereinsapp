@@ -11,6 +11,9 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
+        // Wenn element_id definiert ist
+        if (typeof element_id !== "undefined") if ($eigenschaft.attr("type") == "button") $eigenschaft.attr("data-element_id", element_id);
+
         let wert = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste);
         // Wenn aber nichts definiert ist, dann nimm den Blanko-Wert (je nach Typ)
         if (typeof wert === "undefined")
@@ -18,7 +21,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
             else if ($eigenschaft.attr("type") == "date") wert = DateTime.now();
             else if ($eigenschaft.attr("type") == "time") wert = DateTime.now();
             else if ($eigenschaft.attr("type") == "datetime-local") wert = DateTime.now();
-            else if (eigenschaft == "filtern_mitglieder") wert = new Array();
+            else if ($eigenschaft.attr("type") == "button") wert = new Array();
             else wert = "";
 
         let wert_formatiert = wert;

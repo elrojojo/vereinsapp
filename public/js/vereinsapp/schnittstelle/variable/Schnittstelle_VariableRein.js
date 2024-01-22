@@ -16,5 +16,8 @@ function Schnittstelle_VariableWertBereinigtZurueck(wert) {
     // Oder wenn aber der Wert ein ISO-Zeitpunkt ist
     else if (DateTime.fromISO(wert).isValid) WertBereinigt = DateTime.fromISO(wert);
 
+    // Und wenn der Wert im JSON-Format ist
+    if (isJson(WertBereinigt)) WertBereinigt = JSON.parse(WertBereinigt);
+
     return WertBereinigt;
 }

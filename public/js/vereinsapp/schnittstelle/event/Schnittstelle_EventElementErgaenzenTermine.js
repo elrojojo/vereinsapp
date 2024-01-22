@@ -6,8 +6,7 @@ function Schnittstelle_EventElementErgaenzenTermine(termin) {
     }
 
     termin["ich_eingeladen"] = false;
-    if ("filtern_mitglieder" in termin)
-        termin["filtern_mitglieder"] = Liste_SqlFiltern2FilternZurueck(JSON.parse(termin["filtern_mitglieder"]), "mitglieder");
+    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Liste_SqlFiltern2FilternZurueck(termin["filtern_mitglieder"], "mitglieder");
     else termin["filtern_mitglieder"] = new Array();
     let termin_kategorie_filtern_mitglieder;
     if (termin["kategorie"] in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
