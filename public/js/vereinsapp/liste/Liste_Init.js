@@ -22,6 +22,11 @@ function Liste_Init() {
         Liste_ElementFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
+    // FORMULAR (MODAL) SCHLIESSEN
+    $(".formular").on("hide.bs.modal", function () {
+        Liste_ElementFormularSchliessen($(this));
+    });
+
     // ELEMENT ERSTELLEN
     $(document).on("click", ".btn_element_erstellen", function () {
         Liste_ElementErstellen($(this));

@@ -20,6 +20,7 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
                 G.LISTEN[liste].element_ergaenzen_aktion(tabelle[element_id]);
         });
         G.LISTEN[liste].tabelle = tabelle;
+        G.LISTEN[liste].tmp = new Array();
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
             // filtern wird aus dem Localstorage geholt und in der Variable gespeichert

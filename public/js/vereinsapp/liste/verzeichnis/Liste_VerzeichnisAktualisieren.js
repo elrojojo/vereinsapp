@@ -16,10 +16,16 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
         )
     );
 
-    const verzeichnis_basis = BASE_URL + "storage/" + liste + "/" + G.LISTEN[liste].tabelle[element_id].verzeichnis_basis + verzeichnis_pfad.join("");
+    const verzeichnis_basis =
+        BASE_URL +
+        "storage/" +
+        liste +
+        "/" +
+        Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste, "tabelle") +
+        verzeichnis_pfad.join("");
     $verzeichnis.html(
         Liste_Verzeichnis2$VerzeichnisZurueck(
-            Liste_VerzeichnisPfad2Verzeichnis(G.LISTEN[liste].tabelle[element_id].verzeichnis, verzeichnis_pfad),
+            Liste_VerzeichnisPfad2Verzeichnis(Schnittstelle_VariableRausZurueck("verzeichnis", element_id, liste, "tabelle"), verzeichnis_pfad),
             verzeichnis_basis,
             G.LISTEN[liste].verzeichnis[verzeichnis_instanz].$blanko_verzeichnis_element,
             liste

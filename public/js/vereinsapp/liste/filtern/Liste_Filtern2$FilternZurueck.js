@@ -36,7 +36,7 @@ function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blank
             $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
             $neues_filtern_element
                 .find(".wert")
-                .attr("data-wert", Schnittstelle_DomWertBereinigtZurueck(wert))
+                .attr("data-wert", Schnittstelle_LocalstorageWertBereinigtZurueck(wert))
                 .html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
             $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);
 

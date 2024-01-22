@@ -25,8 +25,6 @@ function Mitglieder_EinmalLinkErstellen($btn) {
         },
         rein_validation_pos_aktion: function (AJAX) {
             if (AJAX.data.email) {
-                console.log("link zugeschickt.");
-
                 Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,

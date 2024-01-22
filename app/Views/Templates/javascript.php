@@ -6,13 +6,6 @@ LOGGEDIN = <?php if( auth()->loggedIn() ) echo (int) TRUE; else echo (int) FALSE
 FORCE_PASSWORD_RESET = <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo (int) TRUE; else echo (int) FALSE; ?>;
 FORCE_LOCALSTORAGE_RESET_ZEITPUNKT = '<?= config('Vereinsapp')->force_localstorage_reset_zeitpunkt; ?>';
 
-const SQL_TIME = '<?= SQL_TIME ?>';
-const SQL_TIME_REGEX = <?= SQL_TIME_REGEX ?>;
-const SQL_DATE = '<?= SQL_DATE ?>';
-const SQL_DATE_REGEX = <?= SQL_DATE_REGEX ?>;
-const SQL_DATETIME = '<?= SQL_DATETIME ?>';
-const SQL_DATETIME_REGEX = <?= SQL_DATETIME_REGEX ?>;
-
 const JANEIN = <?= json_encode( JANEIN ) ?>;
 const WOCHENTAGE_KURZ = <?= json_encode( WOCHENTAGE_KURZ ) ?>;
 const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;

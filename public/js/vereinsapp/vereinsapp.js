@@ -120,7 +120,6 @@ Registerführer einführen
 Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
-filtern_mitglieder_[element_id] in filtern_mitglieder optimieren
 Functionen in vereinsapp.js auslagern
 View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
 Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
@@ -137,7 +136,9 @@ Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Formatierung eines Werts flexibel (inkl. möglichem Symbol)
 Termin löschen in der Detail-Ansicht
 Mitglieder Lebenslauf
-Termine mit Ende erweitern
+Termin mit Ende erweitern
 Terminserie / Regeltermine
+Termin als ics exportieren
+JSON.stringify() in Schnittstelle_LocalstorageRein schieben
 
 */

@@ -44,7 +44,7 @@ function Liste_CheckAendern($check) {
                 G.LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
                 delete AJAX.data.checked;
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    G.LISTEN[checkliste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+                    Schnittstelle_VariableRein(wert, eigenschaft, Number(AJAX.data.id), checkliste);
                 });
             }
 

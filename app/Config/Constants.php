@@ -177,13 +177,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 ) );
 
-defined('SQL_TIME') OR define( 'SQL_TIME', 'HH:mm:ss' );
-defined('SQL_TIME_REGEX') OR define( 'SQL_TIME_REGEX', '/^[0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
-defined('SQL_DATE') OR define( 'SQL_DATE', 'yyyy-MM-dd' );
-defined('SQL_DATE_REGEX') OR define( 'SQL_DATE_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}?$/' );
-defined('SQL_DATETIME') OR define( 'SQL_DATETIME', 'yyyy-MM-dd HH:mm:ss' );
-defined('SQL_DATETIME_REGEX') OR define( 'SQL_DATETIME_REGEX', '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}\ [0-9]{2}\:[0-9]{2}\:[0-9]{2}?$/' );
-
 enum AJAX_ZUSTAND
 {
     case VORBEREITET;

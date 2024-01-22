@@ -20,25 +20,19 @@ function Liste_ElementErstellen($btn) {
             const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
             let wert = $eigenschaft.val();
-            if ($eigenschaft.attr("type") == "date") {
+            // Wenn aber die Eigenschaft ein Datum, ein Uhrzeit oder ein Datum und eine Uhrzeit ist
+            if (["date", "time", "datetime-local"].includes($eigenschaft.attr("type"))) {
                 wert = DateTime.fromISO(wert);
-                if (eigenschaft == "ende") {
-                    wert = wert.plus({ days: 1 }).minus({ seconds: 1 });
-                }
-                wert = wert.toFormat(SQL_DATETIME);
-            } else if ($eigenschaft.attr("type") == "time") {
-                if (typeof AJAX_DATA[eigenschaft] !== "undefined ")
-                    wert =
-                        DateTime.fromFormat(AJAX_DATA[eigenschaft], SQL_DATETIME).toFormat(SQL_DATE) +
-                        " " +
-                        DateTime.fromISO(wert).set({ seconds: 0 }).toFormat(SQL_TIME);
-                else wert = DateTime.fromISO(wert).toFormat(SQL_DATETIME);
-            } else {
+                if (eigenschaft == "ende") wert = wert.plus({ days: 1 }).minus({ seconds: 1 });
+                wert = wert.toSQL();
             }
+            // Und wenn der Wert im JSON-Format ist
             if (isJson(wert)) wert = JSON.parse(wert);
+
             AJAX_DATA[eigenschaft] = wert;
 
             $eigenschaft.removeClass("is-valid").removeClass("is-invalid");
+            $eigenschaft.find(".valid-tooltip").remove();
             $eigenschaft.find(".invalid-tooltip").remove();
         });
 
@@ -76,7 +70,7 @@ function Liste_ElementErstellen($btn) {
             }
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                    G.LISTEN[AJAX.liste].tabelle[AJAX.data.id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
+                    Schnittstelle_VariableRein(wert, eigenschaft, Number(AJAX.data.id), AJAX.liste);
             });
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
             AJAX.$btn.closest(".formular").modal("hide");

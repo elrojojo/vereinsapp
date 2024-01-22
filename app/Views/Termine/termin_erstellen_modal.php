@@ -17,15 +17,9 @@
             <label><?= EIGENSCHAFTEN['termine']['organisator']['beschriftung']; ?></label>
         </div><?php } ?>
 
-        <div class="row g-2">
-            <div class="col form-floating mb-2">
-            <input type="date" class="form-control eigenschaft" data-eigenschaft="start" />
-            <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung'].' (Datum)'; ?></label>
-            </div>
-            <div class="col form-floating mb-2">
-            <input type="time" class="form-control eigenschaft" data-eigenschaft="start" />
-            <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung'].' (Zeit)'; ?></label>
-            </div>
+        <div class="form-floating mb-2">
+            <input type="datetime-local" class="form-control eigenschaft" data-eigenschaft="start" />
+            <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung']; ?></label>
         </div>
 
         <div class="form-floating mb-2">
@@ -48,7 +42,7 @@
         </div>
 
         <div class="d-grid"><button type="button" class="btn btn-outline-primary werkzeug eigenschaft" data-eigenschaft="filtern_mitglieder"
-        data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-titel="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>" data-aktion="filtern" data-liste="mitglieder" data-instanz="filtern_mitglieder">
+        data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-titel="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>" data-aktion="filtern" data-liste="mitglieder" data-instanz="termin_filtern_mitglieder">
             <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>
         </button></div>
         
