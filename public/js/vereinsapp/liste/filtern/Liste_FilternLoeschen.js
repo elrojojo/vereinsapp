@@ -22,7 +22,7 @@ function Liste_FilternLoeschen($btn) {
         sammlung_ebene_hoeher = $knoten_parallel.first().closest(".filtern_sammlung");
     }
 
-    G.LISTEN[liste].instanz[instanz].filtern = Liste_$Filtern2FilternZurueck($filtern, "filtern", liste);
+    G.LISTEN[liste].instanz[instanz].filtern = Liste_$Filtern2FilternZurueck($filtern, liste);
 
     Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 }

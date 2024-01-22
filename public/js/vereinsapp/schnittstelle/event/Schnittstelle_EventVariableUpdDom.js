@@ -27,30 +27,45 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
             // FILTERN AKTUALISIEREN
-            $('.filtern[data-instanz="' + instanz + '"]').html(
-                Liste_Filtern2$FilternZurueck(
-                    G.LISTEN[liste].instanz[instanz].filtern,
-                    FILTERN.$blanko_filtern_sammlung,
-                    FILTERN.$blanko_filtern_element,
-                    "filtern",
-                    liste
-                )
-            );
             $('.filtern[data-instanz="' + instanz + '"]')
+                .html(
+                    Liste_Filtern2$FilternZurueck(
+                        G.LISTEN[liste].instanz[instanz].filtern,
+                        FILTERN.$blanko_filtern_sammlung,
+                        FILTERN.$blanko_filtern_element,
+                        liste
+                    )
+                )
                 .find(".btn_filtern_aendern, .btn_filtern_loeschen")
                 .attr("data-liste", liste)
                 .attr("data-instanz", instanz);
 
             // SORTIEREN AKTUALISIEREN
-            $('.sortieren[data-instanz="' + instanz + '"]').each(function () {
-                $(this).html(
-                    Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, SORTIEREN.$blanko_sortieren_element, liste)
-                );
-            });
             $('.sortieren[data-instanz="' + instanz + '"]')
+                .each(function () {
+                    $(this).html(
+                        Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, SORTIEREN.$blanko_sortieren_element, liste)
+                    );
+                })
                 .find(".btn_sortieren_aendern, .btn_sortieren_loeschen")
                 .attr("data-liste", liste)
                 .attr("data-instanz", instanz);
+        });
+
+        // FILTERN IN EIGENSCHAFTEN AKTUALISIEREN
+        $('.filtern[data-liste="' + liste + '"][data-eigenschaft^="filtern_"]').each(function () {
+            const $filtern = $(this);
+            const eigenschaft = $filtern.attr("data-eigenschaft");
+            const element_id = $filtern.attr("data-element_id");
+            $filtern.html(
+                Liste_Filtern2$FilternZurueck(
+                    Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste),
+                    FILTERN.$blanko_filtern_sammlung,
+                    FILTERN.$blanko_filtern_element,
+                    liste
+                )
+            );
+            $filtern.find(".btn_filtern_aendern, .btn_filtern_loeschen").attr("data-liste", liste).attr("data-instanz", instanz);
         });
 
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN

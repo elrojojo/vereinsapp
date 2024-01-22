@@ -1,13 +1,10 @@
-function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blanko_filtern_element, klasse, liste) {
+function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blanko_filtern_element, liste) {
     const $filtern = new Array();
 
     $.each(filtern, function (index, knoten) {
         if ("verknuepfung" in knoten) {
             const verknuepfung = knoten.verknuepfung;
-            const $neue_filtern_sammlung = $blanko_filtern_sammlung
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass(klasse + "_sammlung");
+            const $neue_filtern_sammlung = $blanko_filtern_sammlung.clone().removeClass("blanko invisible").addClass("filtern_sammlung");
             const $verknuepfung = $neue_filtern_sammlung.find(".verknuepfung");
 
             $verknuepfung.attr("data-verknuepfung", verknuepfung);
@@ -16,9 +13,9 @@ function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blank
             else if (verknuepfung == "||") $verknuepfung.text("ODER");
 
             $.each(
-                Liste_Filtern2$FilternZurueck(knoten.filtern, $blanko_filtern_sammlung, $blanko_filtern_element, klasse, liste),
+                Liste_Filtern2$FilternZurueck(knoten.filtern, $blanko_filtern_sammlung, $blanko_filtern_element, liste),
                 function (index, $filtern) {
-                    $filtern.appendTo($neue_filtern_sammlung.find("." + klasse + "_kind").first());
+                    $filtern.appendTo($neue_filtern_sammlung.find(".filtern_kind").first());
                 }
             );
 
@@ -28,10 +25,7 @@ function Liste_Filtern2$FilternZurueck(filtern, $blanko_filtern_sammlung, $blank
             const eigenschaft = knoten.eigenschaft;
             const wert = knoten.wert;
 
-            const $neues_filtern_element = $blanko_filtern_element
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass(klasse + "_element");
+            const $neues_filtern_element = $blanko_filtern_element.clone().removeClass("blanko invisible").addClass("filtern_element");
             $neues_filtern_element.find(".eigenschaft").attr("data-eigenschaft", eigenschaft).text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
             $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
             $neues_filtern_element
