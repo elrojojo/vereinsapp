@@ -108,12 +108,10 @@ function umlaute2unix(unix) {
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Richtung der Sortierung änderbar machen
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
-Checkliste bei leerem LocalStorage korrekt anzeigen
 View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
 Batch über filtern- und sortieren-Button legen
 Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Liste über Details-Ansicht durchscrollbar machen
 Abwesenheiten wieder einführen
     Hinweis anzeigen, wenn aktuell abweisend
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat

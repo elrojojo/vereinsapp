@@ -32,4 +32,9 @@ function Liste_ElementAktualisieren($element, liste) {
     // LETZTEN SPACER AUS DER VORSCHAU LÖSCHEN
     const $letztes_vorschau_element = $element.find(".vorschau").children().last();
     if ($letztes_vorschau_element.hasClass("spacer")) $letztes_vorschau_element.remove();
+
+    // NAVIGATION AKTUALISIEREN
+    $element.find(".element_navigation").each(function () {
+        Liste_ElementNavigationAktualisieren($(this), $element, liste);
+    });
 }

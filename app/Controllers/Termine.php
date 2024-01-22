@@ -172,7 +172,20 @@ class Termine extends BaseController {
             'modal_id' => '#liste_sortieren_Modal',
             'titel' => 'Mitglieder sortieren',
         );
-        
+
+        $this->viewdata['element_navigation'] = array(
+            'instanz' => 'bevorstehende_termine',
+            'filtern' => array( array(
+                'verknuepfung' => '&&',
+                'filtern' => array(
+                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+                ),
+            ), ),
+            'sortieren' => array(
+                array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
+            ),
+        );
+
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $id => $auswertungen ) $this->viewdata['auswertungen'][ $id ]['id'] = $id;
         if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;

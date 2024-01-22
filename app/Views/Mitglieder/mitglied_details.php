@@ -3,11 +3,8 @@
 <?= $this->section( 'werkzeugkasten' ); ?><?= view( 'Templates/werkzeugkasten' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-1">
-<?= view( 'Templates/Liste/element_navigation' ); ?>
-</div>
-
 <div class="container mb-2 element" data-liste="mitglieder" data-element_id="<?= $element_id; ?>">
+    <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung text-center">
         <span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>
     </div>

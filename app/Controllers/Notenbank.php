@@ -111,6 +111,21 @@ class Notenbank extends BaseController {
             // );
         }
 
+        $this->viewdata['element_navigation'] = array(
+            'instanz' => 'aktuelles_verzeichnis',
+            // 'filtern' => array( array(
+            //     'verknuepfung' => '&&',
+            //     'filtern' => array(
+            //         array( 'operator' => '>=', 'eigenschaft' => 'titel-nr', 'wert' => 1 ),
+            //     ),
+            // ), ),
+            'sortieren' => array(
+                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),                
+            ),
+        );
+
         if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $id => $verzeichnis ) $this->viewdata['verzeichnis'][ $id ]['id'] = $id;
         echo view( 'Notenbank/titel_details', $this->viewdata );
     }

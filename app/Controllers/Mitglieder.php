@@ -16,12 +16,12 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['liste']['alle_aktiven'] = array(
             'liste' => 'mitglieder',
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'h5' => true,
@@ -200,6 +200,16 @@ class Mitglieder extends BaseController {
                 'beschriftung' => 'Einmal-Link per Email zuschicken',
             );
         }
+
+        $this->viewdata['element_navigation'] = array(
+            'instanz' => 'alle_aktiven',
+            'sortieren' => array(
+                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+            ),
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+        );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;
