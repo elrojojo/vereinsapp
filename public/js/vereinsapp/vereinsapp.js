@@ -8,8 +8,6 @@ const G = {
     MODALS: { offen: new Array() },
 
     CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
-
-    DEBUG: { aktiv: false, zaehler: 0, spot_id: 0 },
 };
 
 $(document).ready(function () {
@@ -19,11 +17,18 @@ $(document).ready(function () {
 
     if (LOGGEDIN) Mitglieder_Init();
 
-    // LOCALSTORAGE LEEREN
-    $(".btn_localstorage_leeren").click(function () {
+    function localstorage_leeren() {
+        const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM);
         localStorage.clear();
         Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
+        if (typeof datenschutz_richtlinie !== "undefined")
+            Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
         console.log("LocalStorage wurde erfolgreich geleert.");
+    }
+
+    // LOCALSTORAGE LEEREN
+    $(".btn_localstorage_leeren").click(function () {
+        localstorage_leeren();
         $(this).closest(".modal").modal("hide");
     });
 
@@ -31,11 +36,8 @@ $(document).ready(function () {
     if (
         typeof Schnittstelle_LocalstorageRausZurueck("localstorage_reset") === "undefined" ||
         DateTime.fromISO(Schnittstelle_LocalstorageRausZurueck("localstorage_reset")) < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
-    ) {
-        localStorage.clear();
-        Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
-        console.log("LocalStorage wurde erfolgreich geleert.");
-    }
+    )
+        localstorage_leeren();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {

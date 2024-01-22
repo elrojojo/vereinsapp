@@ -173,7 +173,7 @@ class Vereinsapp extends BaseConfig
                 'fluegelhorn' => array( 'beschriftung' => 'Flügelhorn', ),
                 'klarinette' => array( 'beschriftung' => 'Klarinette', ),
                 'posaune' => array( 'beschriftung' => 'Posaune', ),
-                'saxofon' => array( 'beschriftung' => 'Saxofon', ),
+                'saxophon' => array( 'beschriftung' => 'Saxophon', ),
                 'schlagzeug' => array( 'beschriftung' => 'Schlagzeug', ),
                 'tenorhorn' => array( 'beschriftung' => 'Tenorhorn', ),
                 'trompete' => array( 'beschriftung' => 'Trompete', ),
@@ -445,6 +445,6 @@ class Vereinsapp extends BaseConfig
      * Wenn der LocalStorage auf allen verwendeten Geräten einmal geleert werden
      * soll, dann muss der jetzige Zeitpunkt definiert werden
      */
-    public $force_localstorage_reset_zeitpunkt = '2024-01-01T00:00:00.000+01:00';
+    public $force_localstorage_reset_zeitpunkt = '2024-01-22T00:00:00.000+01:00';
 
 }
