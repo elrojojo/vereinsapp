@@ -1,9 +1,9 @@
 function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
     const liste = $btn_oeffnend.attr("data-liste");
     const instanz = $btn_oeffnend.attr("data-instanz");
-    // const eigenschaft = $btn_oeffnend.attr("data-eigenschaft");
-    // let sortieren_liste = $btn_oeffnend.attr("data-sortieren_liste");
-    // const element_id = $btn_oeffnend.attr("data-element_id");
+    const eigenschaft = $btn_oeffnend.attr("data-eigenschaft");
+    let sortieren_liste = $btn_oeffnend.attr("data-sortieren_liste");
+    const element_id = $btn_oeffnend.attr("data-element_id");
 
     $formular.find(".sortieren, .sortieren_definitionen").attr("data-instanz", instanz);
     const $sortieren_definitionen = $formular.find(".sortieren_definitionen");

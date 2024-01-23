@@ -2,10 +2,12 @@ function Liste_FilternErstellen($btn) {
     const liste = $btn.attr("data-liste");
     const instanz = $btn.attr("data-instanz");
     const eigenschaft = $btn.attr("data-eigenschaft");
-    // const filtern_liste = $btn.attr("data-filtern_liste");
+    let filtern_liste = $btn.attr("data-filtern_liste");
+    if (typeof filtern_liste === "undefined") filtern_liste = liste;
     const element_id = $btn.attr("data-element_id");
     const $formular = $btn.closest(".modal");
 
+    const $filtern = $formular.find(".filtern");
     const $filtern_definition = $btn.closest(".filtern_definition");
 
     const filtern = new Array();
@@ -19,38 +21,36 @@ function Liste_FilternErstellen($btn) {
             });
     });
 
-    let filtern_knoten;
-    if (filtern.length == 1) filtern_knoten = filtern[0];
-    else filtern_knoten = { verknuepfung: "&&", filtern: filtern };
+    let filtern_knoten = filtern;
+    if (filtern.length > 1) filtern_knoten = [{ verknuepfung: "&&", filtern: filtern }];
+
+    const $filtern_knoten = Liste_Filtern2$FilternZurueck(
+        filtern_knoten,
+        FILTERN.$blanko_filtern_sammlung,
+        FILTERN.$blanko_filtern_element,
+        filtern_liste
+    );
+
+    if ($filtern.find(".filtern_sammlung").length == 0 && $filtern.find(".filtern_element").length == 0) $filtern.append($filtern_knoten);
+    else if ($filtern.find(".filtern_kind").length > 0) $filtern.find(".filtern_kind").first().append($filtern_knoten);
+    else {
+        const $filtern_zwischenspeicher = $filtern.html();
+        const $filtern_sammlung = Liste_Filtern2$FilternZurueck(
+            [{ verknuepfung: "&&", filtern: new Array() }],
+            FILTERN.$blanko_filtern_sammlung,
+            FILTERN.$blanko_filtern_element,
+            filtern_liste
+        );
+        $filtern.html($filtern_sammlung);
+        $filtern.find(".filtern_kind").first().html($filtern_zwischenspeicher).append($filtern_knoten);
+    }
 
     if (typeof instanz !== "undefined") {
-        if (G.LISTEN[liste].instanz[instanz].filtern.length == 0) G.LISTEN[liste].instanz[instanz].filtern.push(filtern_knoten);
-        else {
-            if ("verknuepfung" in G.LISTEN[liste].instanz[instanz].filtern[0])
-                G.LISTEN[liste].instanz[instanz].filtern[0].filtern.push(filtern_knoten);
-            else {
-                const einziges_element = G.LISTEN[liste].instanz[instanz].filtern[0];
-                G.LISTEN[liste].instanz[instanz].filtern[0] = { verknuepfung: "&&", filtern: new Array() };
-                G.LISTEN[liste].instanz[instanz].filtern[0].filtern.push(einziges_element);
-                G.LISTEN[liste].instanz[instanz].filtern[0].filtern.push(filtern_knoten);
-            }
-        }
+        G.LISTEN[liste].instanz[instanz].filtern = Liste_$Filtern2FilternZurueck($filtern, filtern_liste);
         Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
     }
-    if (typeof eigenschaft !== "undefined") {
-        let filtern_eigenschaft = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, "tmp");
-        if (!Array.isArray(filtern_eigenschaft)) filtern_eigenschaft = new Array();
-        if (filtern_eigenschaft.length == 0) filtern_eigenschaft.push(filtern_knoten);
-        else {
-            if ("verknuepfung" in filtern_eigenschaft[0]) filtern_eigenschaft[0].filtern.push(filtern_knoten);
-            else {
-                const einziges_element = filtern_eigenschaft[0];
-                filtern_eigenschaft[0] = { verknuepfung: "&&", filtern: new Array() };
-                filtern_eigenschaft[0].filtern.push(einziges_element);
-                filtern_eigenschaft[0].filtern.push(filtern_knoten);
-            }
-        }
-        Schnittstelle_VariableRein(filtern_eigenschaft, eigenschaft, element_id, liste, "tmp");
-    }
+    if (typeof eigenschaft !== "undefined")
+        Schnittstelle_VariableRein(Liste_$Filtern2FilternZurueck($filtern, filtern_liste), eigenschaft, element_id, liste, "tmp");
+
     Liste_FilternAktualisieren($formular, liste);
 }
