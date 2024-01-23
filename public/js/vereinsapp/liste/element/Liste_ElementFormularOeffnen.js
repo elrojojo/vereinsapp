@@ -12,7 +12,8 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
         // Wenn element_id definiert ist
-        if (typeof element_id !== "undefined") if ($eigenschaft.attr("type") == "button") $eigenschaft.attr("data-element_id", element_id);
+        if (typeof element_id !== "undefined" && $eigenschaft.attr("type") == "button") $eigenschaft.attr("data-element_id", element_id);
+        else $eigenschaft.removeAttr("data-element_id");
 
         let wert = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste);
         // Wenn aber nichts definiert ist, dann nimm den Blanko-Wert (je nach Typ)

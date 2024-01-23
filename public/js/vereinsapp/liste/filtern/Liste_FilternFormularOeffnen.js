@@ -7,10 +7,16 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
 
     $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
     if (typeof instanz !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-instanz", instanz);
+    else $formular.find(".filtern, .filtern_definitionen").removeAttr("data-instanz");
     if (typeof eigenschaft !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-eigenschaft", eigenschaft);
+    else $formular.find(".filtern, .filtern_definitionen").removeAttr("data-eigenschaft");
     if (typeof filtern_liste !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-filtern_liste", filtern_liste);
-    else filtern_liste = liste;
+    else {
+        $formular.find(".filtern, .filtern_definitionen").removeAttr("data-filtern_liste");
+        filtern_liste = liste;
+    }
     if (typeof element_id !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-element_id", element_id);
+    else $formular.find(".filtern, .filtern_definitionen").removeAttr("data-element_id");
 
     $(".filtern_definitionen").empty();
     $.each(FILTERBARE_EIGENSCHAFTEN[filtern_liste], function (index, eigenschaft_) {
@@ -49,5 +55,5 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
         $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
     });
 
-    Schnittstelle_EventVariableUpdDom();
+    Liste_FilternAktualisieren($formular, liste);
 }

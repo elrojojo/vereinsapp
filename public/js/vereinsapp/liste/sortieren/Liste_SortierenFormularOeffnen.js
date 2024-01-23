@@ -2,6 +2,7 @@ function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
     const liste = $btn_oeffnend.attr("data-liste");
     const instanz = $btn_oeffnend.attr("data-instanz");
     // const eigenschaft = $btn_oeffnend.attr("data-eigenschaft");
+    // let sortieren_liste = $btn_oeffnend.attr("data-sortieren_liste");
     // const element_id = $btn_oeffnend.attr("data-element_id");
 
     $formular.find(".sortieren, .sortieren_definitionen").attr("data-instanz", instanz);
@@ -15,5 +16,5 @@ function Liste_SortierenFormularOeffnen($formular, $btn_oeffnend) {
 
     $sortieren_definitionen.find(".btn_sortieren_erstellen").first().attr("data-liste", liste).attr("data-instanz", instanz);
 
-    Schnittstelle_EventVariableUpdDom();
+    Liste_SortierenAktualisieren($formular, liste);
 }

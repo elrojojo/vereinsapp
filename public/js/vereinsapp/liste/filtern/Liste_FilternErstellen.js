@@ -2,16 +2,19 @@ function Liste_FilternErstellen($btn) {
     const liste = $btn.attr("data-liste");
     const instanz = $btn.attr("data-instanz");
     const eigenschaft = $btn.attr("data-eigenschaft");
+    // const filtern_liste = $btn.attr("data-filtern_liste");
     const element_id = $btn.attr("data-element_id");
-    const $formular = $btn.closest(".filtern_definition");
+    const $formular = $btn.closest(".modal");
+
+    const $filtern_definition = $btn.closest(".filtern_definition");
 
     const filtern = new Array();
-    $formular.find(".filtern_wert").each(function () {
+    $filtern_definition.find(".filtern_wert").each(function () {
         const $filtern_wert = $(this);
         if ($filtern_wert.val())
             filtern.push({
                 operator: $filtern_wert.attr("data-operator"),
-                eigenschaft: $formular.attr("data-eigenschaft"),
+                eigenschaft: $filtern_definition.attr("data-eigenschaft"),
                 wert: Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.val()),
             });
     });
@@ -49,6 +52,6 @@ function Liste_FilternErstellen($btn) {
             }
         }
         Schnittstelle_VariableRein(filtern_eigenschaft, eigenschaft, element_id, liste, "tmp");
-        Schnittstelle_EventVariableUpdDom(liste);
     }
+    Liste_FilternAktualisieren($formular, liste);
 }

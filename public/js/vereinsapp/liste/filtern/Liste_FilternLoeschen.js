@@ -4,6 +4,7 @@ function Liste_FilternLoeschen($btn) {
     const eigenschaft = $btn.attr("data-eigenschaft");
     const filtern_liste = $btn.attr("data-filtern_liste");
     const element_id = $btn.attr("data-element_id");
+    const $formular = $btn.closest(".modal");
 
     const $filtern = $btn.closest(".filtern");
     const $element = $btn.closest(".filtern_element");
@@ -29,8 +30,8 @@ function Liste_FilternLoeschen($btn) {
         G.LISTEN[liste].instanz[instanz].filtern = Liste_$Filtern2FilternZurueck($filtern, liste);
         Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
     }
-    if (typeof eigenschaft !== "undefined") {
+    if (typeof eigenschaft !== "undefined")
         Schnittstelle_VariableRein(Liste_$Filtern2FilternZurueck($filtern, filtern_liste), eigenschaft, element_id, liste, "tmp");
-        Schnittstelle_EventVariableUpdDom(liste);
-    }
+
+    Liste_FilternAktualisieren($formular, liste);
 }
