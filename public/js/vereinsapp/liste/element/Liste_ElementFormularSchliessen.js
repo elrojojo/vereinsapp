@@ -1,10 +1,7 @@
 function Liste_ElementFormularSchliessen($formular) {
     const $btn_schliessend = $formular.find('[class^="btn_"]');
     const liste = $btn_schliessend.attr("data-liste");
-
-    let element_id = $btn_schliessend.attr("data-element_id");
-    // Wenn aber nichts definiert ist
-    if (typeof element_id === "undefined") element_id = 0;
+    const element_id = $btn_schliessend.attr("data-element_id");
 
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);

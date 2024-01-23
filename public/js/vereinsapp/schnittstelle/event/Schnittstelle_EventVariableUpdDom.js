@@ -66,7 +66,12 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
                     filtern_liste
                 )
             );
-            $filtern.find(".btn_filtern_aendern, .btn_filtern_loeschen").attr("data-liste", liste);
+            $filtern
+                .find(".btn_filtern_aendern, .btn_filtern_loeschen")
+                .attr("data-liste", liste)
+                .attr("data-eigenschaft", eigenschaft)
+                .attr("data-filtern_liste", filtern_liste);
+            if (typeof element_id !== "undefined") $filtern.find(".btn_filtern_aendern, .btn_filtern_loeschen").attr("data-element_id", element_id);
         });
 
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
