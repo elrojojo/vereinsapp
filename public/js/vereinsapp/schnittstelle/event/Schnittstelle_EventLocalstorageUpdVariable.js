@@ -8,7 +8,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
 
         // tabelle wird aus dem Localstorage geholt und in der Variable gespeichert
         const tabelle = new Array();
-        $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle"), function () {
+        let tabelle_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle");
+        if (typeof tabelle_LocalStorage === "undefined") tabelle_LocalStorage = new Array();
+        $.each(tabelle_LocalStorage, function () {
             const element_id = this["id"];
             tabelle[element_id] = this;
 
@@ -24,8 +26,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
             // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
-            G.LISTEN[liste].instanz[instanz].filtern = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
-            if (typeof G.LISTEN[liste].instanz[instanz].filtern === "undefined") G.LISTEN[liste].instanz[instanz].filtern = new Array();
+            let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
+            if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Array();
+            G.LISTEN[liste].instanz[instanz].filtern = filtern_LocalStorage;
             function LOC_upd_VAR_filtern(filtern, liste) {
                 $.each(filtern, function (index, knoten) {
                     if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
@@ -35,8 +38,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
             LOC_upd_VAR_filtern(G.LISTEN[liste].instanz[instanz].filtern, liste);
 
             // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-            G.LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
-            if (typeof G.LISTEN[liste].instanz[instanz].sortieren === "undefined") G.LISTEN[liste].instanz[instanz].sortieren = new Array();
+            let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
+            if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
+            G.LISTEN[liste].instanz[instanz].sortieren = sortieren_LocalStorage;
         });
     }
 }

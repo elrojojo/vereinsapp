@@ -20,13 +20,13 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
             }
         });
         // tabelle wird im Localstorage gespeichert
-        Schnittstelle_LocalstorageRein(liste + "_tabelle", JSON.stringify(LOC_tabelle));
+        Schnittstelle_LocalstorageRein(liste + "_tabelle", LOC_tabelle);
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
             // sortieren wird vorbereitet
             const LOC_sortieren = G.LISTEN[liste].instanz[instanz].sortieren;
             // sortieren wird im Localstorage gespeichert
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", JSON.stringify(LOC_sortieren));
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
 
             // filtern wird vorbereitet
             const LOC_filtern = new Array();
@@ -39,7 +39,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
             }
             VAR_upd_LOC_filtern(LOC_filtern, liste);
             // filtern wird im Localstorage gespeichert
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", JSON.stringify(LOC_filtern));
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
         });
     });
 }

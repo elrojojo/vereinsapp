@@ -12,7 +12,7 @@ function Schnittstelle_VariableRein(wert, eigenschaft, element_id, liste, ziel) 
 function Schnittstelle_VariableWertBereinigtZurueck(wert) {
     let WertBereinigt = wert;
     // Wenn aber der Wert eine Zahl ist
-    if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") WertBereinigt = Number(wert);
+    if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean" && !Array.isArray(wert) && !isObject(wert)) WertBereinigt = Number(wert);
     // Oder wenn aber der Wert ein SQL-Zeitpunkt ist
     else if (DateTime.fromSQL(wert).isValid) WertBereinigt = DateTime.fromSQL(wert);
     // Oder wenn aber der Wert ein ISO-Zeitpunkt ist

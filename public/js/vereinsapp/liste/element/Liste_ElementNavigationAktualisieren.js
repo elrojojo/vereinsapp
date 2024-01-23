@@ -8,7 +8,8 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     if (typeof filtern !== "undefined") filtern = Liste_SqlFiltern2FilternZurueck(JSON.parse(filtern), liste);
     else filtern = new Array();
     // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
-    const filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern", true);
+    let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
+    if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Array();
     function LOC_upd_VAR_filtern(filtern, liste) {
         $.each(filtern, function (index, knoten) {
             if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
@@ -33,7 +34,8 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     if (typeof sortieren !== "undefined") sortieren = JSON.parse(sortieren);
     else sortieren = new Array();
     // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-    const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", true);
+    let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
+    if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
     if (sortieren_LocalStorage.length > 0) sortieren = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren);
 

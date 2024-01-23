@@ -108,16 +108,11 @@ function umlaute2unix(unix) {
 
 /* TODO
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
-Richtung der Sortierung änderbar machen
-sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
 View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
-Batch über filtern- und sortieren-Button legen
 Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
-Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Abwesenheiten wieder einführen
-    Hinweis anzeigen, wenn aktuell abweisend
+    Hinweis anzeigen, wenn aktuell abwesend
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
-Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 Registerführer einführen
 Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
@@ -126,7 +121,6 @@ Functionen in vereinsapp.js auslagern
 View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
 Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
 ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
-Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 Ausloggen, bevor Einmal-Link benutzt wird
 Bootstrap und jquery aktualisieren
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
@@ -141,6 +135,13 @@ Mitglieder Lebenslauf
 Termin mit Ende erweitern
 Terminserie / Regeltermine
 Termin als ics exportieren
-JSON.stringify() in Schnittstelle_LocalstorageRein schieben
+Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
+
+Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
+Batch über filtern- und sortieren-Button legen
+Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
+Richtung der Sortierung änderbar machen
+Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
+sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
 
 */
