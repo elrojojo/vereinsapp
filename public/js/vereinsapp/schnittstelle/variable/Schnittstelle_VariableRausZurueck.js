@@ -23,7 +23,7 @@ function Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, quell
         eigenschaft in G.LISTEN[liste].tmp[element_id]
     ) {
         VariableRaus = G.LISTEN[liste].tmp[element_id][eigenschaft];
-        // delete G.LISTEN[liste].tmp[element_id][eigenschaft];
+        delete G.LISTEN[liste].tmp[element_id][eigenschaft];
     }
 
     return VariableRaus;

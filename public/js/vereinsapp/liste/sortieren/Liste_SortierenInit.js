@@ -9,6 +9,11 @@ function Liste_SortierenInit() {
         Liste_SortierenFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
+    // FORMULAR (MODAL) SCHLIESSEN
+    $("#liste_sortieren_Modal").on("hide.bs.modal", function (event) {
+        Liste_SortierenFormularSchliessen($(this));
+    });
+
     // ERSTELLEN
     $(document).on("click", ".btn_sortieren_erstellen", function () {
         Liste_SortierenErstellen($(this));

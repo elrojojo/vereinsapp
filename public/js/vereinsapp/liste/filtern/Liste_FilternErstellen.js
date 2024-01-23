@@ -38,9 +38,8 @@ function Liste_FilternErstellen($btn) {
         Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
     }
     if (typeof eigenschaft !== "undefined") {
-        let filtern_eigenschaft = new Array();
-        if (Array.isArray(Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, "tmp")))
-            filtern_eigenschaft = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, "tmp");
+        let filtern_eigenschaft = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, "tmp");
+        if (!Array.isArray(filtern_eigenschaft)) filtern_eigenschaft = new Array();
         if (filtern_eigenschaft.length == 0) filtern_eigenschaft.push(filtern_knoten);
         else {
             if ("verknuepfung" in filtern_eigenschaft[0]) filtern_eigenschaft[0].filtern.push(filtern_knoten);

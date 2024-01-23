@@ -20,6 +20,11 @@ function Liste_FilternInit() {
         Liste_FilternFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
+    // FORMULAR (MODAL) SCHLIESSEN
+    $("#liste_filtern_Modal").on("hide.bs.modal", function (event) {
+        Liste_FilternFormularSchliessen($(this));
+    });
+
     // ERSTELLEN
     $(document).on("click", ".btn_filtern_erstellen", function () {
         Liste_FilternErstellen($(this));

@@ -8,9 +8,13 @@ function Liste_SortierenLoeschen($btn) {
 
     const $sortieren = $btn.closest(".sortieren");
     $btn.closest(".sortieren_element").remove();
-    G.LISTEN[liste].instanz[instanz].sortieren = Liste_$Sortieren2SortierenZurueck($sortieren, liste);
 
-    Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
+    if (typeof instanz !== "undefined") {
+        G.LISTEN[liste].instanz[instanz].sortieren = Liste_$Sortieren2SortierenZurueck($sortieren, liste);
+        Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
+    }
+    if (typeof eigenschaft !== "undefined")
+        Schnittstelle_VariableRein(Liste_$Sortieren2SortierenZurueck($filtern, filtern_liste), eigenschaft, element_id, liste, "tmp");
 
     Liste_FilternAktualisieren($formular, liste);
 }
