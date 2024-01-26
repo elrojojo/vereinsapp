@@ -136,12 +136,20 @@ Termin mit Ende erweitern
 Terminserie / Regeltermine
 Termin als ics exportieren
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
-
-Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Batch über filtern- und sortieren-Button legen
-Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
+Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Richtung der Sortierung änderbar machen
+
+Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
+Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl
+Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?
+Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
+Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
+Doppelte Titel-Nr. verbieten
+Sortierung nach Titel-Nr. funktioniert nicht
+In der Listenansicht soll ein Menü eingeblendet werden, genauso wie in der Detailansicht.
+Element in der Detailansicht löschbar machen
 
 */
