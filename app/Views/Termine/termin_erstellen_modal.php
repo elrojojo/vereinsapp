@@ -12,11 +12,6 @@
             <label><?= EIGENSCHAFTEN['termine']['titel']['beschriftung']; ?></label>
         </div>
 
-        <?php if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) { ?><div class="form-floating mb-2">
-            <input type="text" class="form-control eigenschaft" data-eigenschaft="organisator" placeholder="<?= EIGENSCHAFTEN['termine']['organisator']['beschriftung']; ?>" />
-            <label><?= EIGENSCHAFTEN['termine']['organisator']['beschriftung']; ?></label>
-        </div><?php } ?>
-
         <div class="form-floating mb-2">
             <input type="datetime-local" class="form-control eigenschaft" data-eigenschaft="start" />
             <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung']; ?></label>

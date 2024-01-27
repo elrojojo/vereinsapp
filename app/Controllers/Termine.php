@@ -220,7 +220,6 @@ class Termine extends BaseController {
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
-        if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) $validation_rules['organisator'] = [ 'label' => EIGENSCHAFTEN['termine']['organisator']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ];
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( JETZT ) ) $ajax_antwort['validation'] = array(
             'start' => 'Der Termin darf nicht in der Vergangenheit liegen.',
@@ -235,7 +234,6 @@ class Termine extends BaseController {
                 'kategorie' => $this->request->getpost()['kategorie'],
                 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'],
             );
-            if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) $termin['organisator'] = $this->request->getpost()['organisator'];
             if( !array_key_exists( 'filtern_mitglieder', $this->request->getpost() ) ) $termin['filtern_mitglieder'] = json_encode( array(), JSON_UNESCAPED_UNICODE );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung'];
 

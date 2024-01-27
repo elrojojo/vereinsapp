@@ -119,7 +119,7 @@ Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElem
 Schnittstelle_EventElementReduzieren einführen
 Functionen in vereinsapp.js auslagern
 View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
-Hartes Löschen wieder zurücknehmen (bspw. bei Mitglied)
+Hartes Löschen von Mitgliedern wieder zurücknehmen und weiches Löschen für abhängige Tabellen einführen
 ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
 Ausloggen, bevor Einmal-Link benutzt wird
 Bootstrap und jquery aktualisieren
@@ -139,15 +139,14 @@ Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehen
 Batch über filtern- und sortieren-Button legen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Richtung der Sortierung änderbar machen
+Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 
 Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
-Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl
-Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?
+Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?)
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
-Doppelte Titel-Nr. verbieten
 Sortierung nach Titel-Nr. funktioniert nicht
 In der Listenansicht soll ein Menü eingeblendet werden, genauso wie in der Detailansicht.
 Element in der Detailansicht löschbar machen

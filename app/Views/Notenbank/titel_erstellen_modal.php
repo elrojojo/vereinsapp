@@ -17,14 +17,14 @@
         <label><?= EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung']; ?></label>
       </div>
 
-      <?php if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank'] ) ) { ?><div class="form-floating mb-2">
+      <div class="form-floating mb-2">
         <select class="form-select eigenschaft" data-eigenschaft="kategorie">
         <?php foreach ( VORGEGEBENE_WERTE['notenbank']['kategorie'] as $kategorie => $eigenschaften ): ?>
           <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
         </select>
         <label><?= EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung']; ?></label>
-      </div><?php } ?>
+      </div>
 
       </div>
       <div class="modal-footer">

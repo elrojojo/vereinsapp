@@ -14,8 +14,8 @@
 
   <div class="input-group mb-1">
     <div class="form-floating">
-      <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="Bemerkung" />
-      <label>Bemerkung</label>
+      <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['abwesenheiten']['ende']['bemerkung']; ?>" />
+      <label><?= EIGENSCHAFTEN['abwesenheiten']['ende']['bemerkung']; ?></label>
     </div>
     <button type="button" class="btn_element_erstellen btn btn-outline-success" data-liste="abwesenheiten" data-aktion="erstellen" data-werte='<?= json_encode( array( 'mitglied_id' => $mitglied_id ), JSON_UNESCAPED_UNICODE ); ?>'><i class="bi bi-<?= SYMBOLE['erstellen']['bootstrap']; ?>"></i></button>
   </div>

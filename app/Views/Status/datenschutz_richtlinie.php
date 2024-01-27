@@ -4,7 +4,7 @@
       <div class="modal-body">
         <h5>Willkommen <?php /*if( isset(ICH['vorname']) ) echo ICH['vorname'].', ';*/ ?>bei der <?php echo config('Vereinsapp')->vereinsapp_name; ?>!</h5>
         Um diese Anwendung nutzen zu können, musst du der Verwendung von Cookies etc. zustimmen. Mit einem Klick auf OK akzeptierst du die unten stehende Datenschutz-Richtlinie.
-        Außerdem stimmst du der Verwendung persönlicher Daten wie Vor- und Nachname, Geburtstag sowie Wohnort zu.
+        Außerdem stimmst du der Verwendung persönlicher Daten wie Vor- und Nachname, Geburtstag, Geschlecht sowie Wohnort zu.
         <hr>
         <h4>Cookie-Richtlinie (EU)</h4>
         This Cookie Policy was last updated on 02. Juni 2021 and applies to citizens and legal permanent residents of the European Economic Area.

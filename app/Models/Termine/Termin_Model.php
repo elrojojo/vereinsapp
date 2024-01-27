@@ -10,12 +10,10 @@ class Termin_Model extends Model {
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
         'titel',
-        'organisator',
         'start',
         'ort',
         'kategorie',
         'filtern_mitglieder',
-        'setlist',
         'bemerkung',
     ];
     protected $useTimestamps = true;

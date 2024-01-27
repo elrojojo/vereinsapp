@@ -160,17 +160,22 @@ class Notenbank extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
         );
-        if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank'] ) ) $validation_rules['kategorie'] = [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']', ] ];
+        $validation_titel_nr = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findAll();
+        $validation_titel_nr_id = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findColumn('id');
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( ( empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr ) AND count( $validation_titel_nr ) > 0 )
+             OR ( !empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr_id ) AND !in_array( $this->request->getPost()['id'], $validation_titel_nr_id ) ) )
+                $ajax_antwort['validation']['titel_nr'] = EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'].' wird bereits verwendet.';
         else {
             $notenbank_Model = model(Titel_Model::class);
             $titel = array(
                 'titel' => $this->request->getpost()['titel'],
                 'titel_nr' => $this->request->getPost()['titel_nr'],
+                'kategorie' => $this->request->getPost()['kategorie'],
             );
-            if( array_key_exists( 'kategorie', EIGENSCHAFTEN['notenbank'] ) ) $titel['kategorie'] = $this->request->getpost()['kategorie'];
 
             if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else $notenbank_Model->save( $titel );

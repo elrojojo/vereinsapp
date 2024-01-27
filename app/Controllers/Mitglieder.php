@@ -266,7 +266,7 @@ class Mitglieder extends BaseController {
             'funktion' => [ 'label' => EIGENSCHAFTEN['mitglieder']['funktion']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['funktion'] ) ).']', ] ],
             'vorstandschaft' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorstandschaft']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] ) ).']', ] ],
             'aktiv' => [ 'label' => EIGENSCHAFTEN['mitglieder']['aktiv']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['aktiv'] ) ).']', ] ],
-        ); if( !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret, user_id, '.$this->request->getPost()['id'].']';
+        ); if( !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret,user_id,{id}]';
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
