@@ -3,6 +3,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const liste = $btn_oeffnend.attr("data-liste");
     // const instanz = $btn_oeffnend.attr("data-instanz");
     const element_id = $btn_oeffnend.attr("data-element_id");
+    const weiterleiten = $btn_oeffnend.attr("data-weiterleiten");
 
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
@@ -58,6 +59,8 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const $btn_schliessend = $formular.find('[class^="btn_"]');
 
     $btn_schliessend.attr("data-liste", liste).attr("data-aktion", aktion);
+    if (typeof weiterleiten !== "undefined") $btn_schliessend.attr("data-weiterleiten", weiterleiten);
+    else $btn_schliessend.removeAttr("data-weiterleiten");
     if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_schliessend.attr("data-element_id", element_id);
     else $btn_schliessend.removeAttr("data-element_id");
 }

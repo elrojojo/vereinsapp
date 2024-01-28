@@ -102,23 +102,19 @@ class Notenbank extends BaseController {
                 'element_id' => $element_id,
                 'beschriftung' => 'Titel duplizieren',
             );
-            // $this->viewdata['werkzeugkasten']['loeschen'] = array(
-            //     'modal_id' => '#element_loeschen_Modal',
-            //     'farbe' => 'danger',
-            //     'element' => 'titel',
-            //     'element_id' => $element_id,
-            //     'beschriftung' => 'Titel löschen',
-            // );
+            $this->viewdata['werkzeugkasten']['loeschen'] = array(
+                'modal_id' => '#element_loeschen_Modal',
+                'liste' => 'notenbank',
+                'element_id' => $element_id,
+                'beschriftung' => 'Titel löschen',
+                'farbe' => 'danger',
+                'weiterleiten' => 'notenbank',
+            );
         }
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
-            // 'filtern' => array( array(
-            //     'verknuepfung' => '&&',
-            //     'filtern' => array(
-            //         array( 'operator' => '>=', 'eigenschaft' => 'titel-nr', 'wert' => 1 ),
-            //     ),
-            // ), ),
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'titel_nr', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),                

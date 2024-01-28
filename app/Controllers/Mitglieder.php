@@ -167,7 +167,20 @@ class Mitglieder extends BaseController {
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             );
-            
+
+            $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
+                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+                'liste' => 'mitglieder',
+                'element_id' => $element_id,
+                'beschriftung' => 'Einmal-Link erstellen und anzeigen',
+            );
+            $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
+                'modal_id' => '#mitglied_einmal_link_email_Modal',
+                'liste' => 'mitglieder',
+                'element_id' => $element_id,
+                'beschriftung' => 'Einmal-Link per Email zuschicken',
+            );
+                        
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
@@ -180,24 +193,13 @@ class Mitglieder extends BaseController {
                 'element_id' => $element_id,
                 'beschriftung' => 'Mitglied duplizieren',
             );
-            // $this->viewdata['werkzeugkasten']['loeschen'] = array(
-            //     'modal_id' => '#element_loeschen_Modal',
-            //     'farbe' => 'danger',
-            //     'element' => 'mitglied',
-            //     'element_id' => $element_id,
-            //     'beschriftung' => 'Mitglied löschen',
-            // );
-            $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+            $this->viewdata['werkzeugkasten']['loeschen'] = array(
+                'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'mitglieder',
                 'element_id' => $element_id,
-                'beschriftung' => 'Einmal-Link erstellen und anzeigen',
-            );
-            $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'modal_id' => '#mitglied_einmal_link_email_Modal',
-                'liste' => 'mitglieder',
-                'element_id' => $element_id,
-                'beschriftung' => 'Einmal-Link per Email zuschicken',
+                'beschriftung' => 'Mitglied löschen',
+                'farbe' => 'danger',
+                'weiterleiten' => 'mitglieder',
             );
         }
 

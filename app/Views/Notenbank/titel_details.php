@@ -18,7 +18,7 @@
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_erstellen_modal' ); ?>
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/liste_filtern_modal' ); ?>
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/liste_sortieren_modal' ); ?>
-<?php //if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
+<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
 
 <?= $this->endSection() ?>
 

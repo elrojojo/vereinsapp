@@ -29,10 +29,15 @@ function Liste_ElementLoeschen($btn) {
                     });
                 });
 
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
+            Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste);
 
-            const $formular = AJAX.$btn.closest(".formular");
-            $formular.modal("hide");
+            const weiterleiten = AJAX.$btn.attr("data-weiterleiten");
+            if (typeof weiterleiten !== "undefined") $(location).attr("href", BASE_URL + AJAX.liste);
+            else {
+                Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste, [Schnittstelle_EventVariableUpdDom]);
+                const $formular = AJAX.$btn.closest(".formular");
+                $formular.modal("hide");
+            }
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);

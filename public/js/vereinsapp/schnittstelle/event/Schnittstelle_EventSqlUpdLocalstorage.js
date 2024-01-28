@@ -42,7 +42,6 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktione
             rein_validation_pos_aktion: function (AJAX) {
                 if (isObject(AJAX) && "antwort" in AJAX && isObject(AJAX.antwort) && "tabelle" in AJAX.antwort)
                     Schnittstelle_LocalstorageRein(AJAX.liste + "_tabelle", AJAX.antwort.tabelle);
-                else console.log("FEHLER", AJAX.liste, "EventSqlUpdLocalstorage");
 
                 Schnittstelle_NaechsteAktion(liste, AJAX.naechste_aktionen);
             },

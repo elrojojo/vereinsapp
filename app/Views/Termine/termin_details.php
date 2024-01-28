@@ -26,7 +26,7 @@
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/liste_filtern_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/liste_sortieren_modal' ); ?>
-<?php //if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
+<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
 
 <?= $this->endSection() ?>
 
