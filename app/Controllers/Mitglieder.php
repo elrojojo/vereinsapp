@@ -130,8 +130,9 @@ class Mitglieder extends BaseController {
                 );
 
                 $elemente_disabled = array();
-                if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) $elemente_disabled[] = $verfuegbares_recht['id'];
-                else $elemente_disabled = array( VERFUEGBARE_RECHTE['mitglieder.rechte']['id'], VERFUEGBARE_RECHTE['global.einstellungen']['id'], );        
+                $elemente_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
+                if( !auth()->user()->can( 'global.einstellungen' ) ) $elemente_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
+                if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $elemente_disabled[] = $verfuegbares_recht['id'];
                 $this->viewdata['checkliste']['vergebene_rechte_des_mitglieds'] = array(
                     'checkliste' => 'vergebene_rechte',
                     'aktion' => 'aendern',
@@ -587,9 +588,10 @@ class Mitglieder extends BaseController {
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.rechte' ) OR
-                 in_array( $this->request->getPost()['verfuegbares_recht_id'], array( VERFUEGBARE_RECHTE['mitglieder.rechte']['id'], VERFUEGBARE_RECHTE['global.einstellungen']['id'] ) ) )
-                $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if(
+                !auth()->user()->can( 'mitglieder.rechte' ) AND
+                !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )
+            ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             // if( empty( $this->request->getPost()['mitglied_id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['mitglied_id'];
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];

@@ -50,8 +50,9 @@ class Einstellungen extends BaseController {
         );
         
         $elemente_disabled = array();
-        if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) $elemente_disabled[] = $verfuegbares_recht['id'];
-        else $elemente_disabled = array( VERFUEGBARE_RECHTE['mitglieder.rechte']['id'], VERFUEGBARE_RECHTE['global.einstellungen']['id'], );
+        $elemente_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
+        if( !auth()->user()->can( 'global.einstellungen' ) ) $elemente_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
+        if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $elemente_disabled[] = $verfuegbares_recht['id'];
         $this->viewdata['checkliste']['meine_rechte'] = array(
             'checkliste' => 'vergebene_rechte',
             'aktion' => 'aendern',

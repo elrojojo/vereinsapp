@@ -145,7 +145,6 @@ Richtung der Sortierung änderbar machen
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Shield-Rollen als Mitglieder-Funktion nutzen
 
-Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?)
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
