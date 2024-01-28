@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-bottom" data-bs-scroll="true" tabindex="-1" id="werkzeugkasten" aria-labelledby="werkzeugkasten_Label">
+<div class="offcanvas offcanvas-bottom" data-bs-scroll="true" tabindex="-1" id="werkzeugkasten">
     <div class="row offcanvas-body p-0">
         <div class="col">
             <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $aktion => $werkzeug): ?>
@@ -14,7 +14,7 @@
             <?php endforeach; ?></ul>
         </div>
         <div class="col-auto opacity-50 bg-white me-2">
-            <button class="btn btn-outline-secondary border-top-0 rounded-0 rounded-bottom h5" type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></button>
+            <button class="btn btn-outline-secondary border-top-0 rounded-0 rounded-bottom h5" type="button" data-bs-dismiss="offcanvas"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></button>
         </div>
     </div>
 </div>

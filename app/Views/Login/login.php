@@ -44,7 +44,7 @@
         <div class="d-grid mb-1"><button type="submit" class="btn btn-outline-success">Einloggen</button></div>
         <?= form_close(); ?>
         <hr>
-        <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('magic-link') ?>" aria-expanded="false" aria-controls="passwort_vergessen">Einmal-Link anfordern</a></div>
+        <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('magic-link') ?>">Einmal-Link anfordern</a></div>
 
     </div>
 </div></div>
@@ -53,7 +53,7 @@
 <div class="container mt-5" style="max-width: 36rem;"><div class="card">
     <div class="card-body">
         <div class="mb-3">Du wolltest eigentlich zur öffentlichen Website von <?= config('vereinsapp')->verein_name; ?>?</div>
-        <div class="d-grid"><a class="btn btn-outline-primary" href="<?= config('vereinsapp')->verein_domain; ?>" aria-expanded="false" aria-controls="verein_domain">Weiter zu <?= config('vereinsapp')->verein_domain; ?></a></div>
+        <div class="d-grid"><a class="btn btn-outline-primary" href="<?= config('vereinsapp')->verein_domain; ?>">Weiter zu <?= config('vereinsapp')->verein_domain; ?></a></div>
     </div>
 </div></div>
 <?php endif ?>

@@ -1,9 +1,9 @@
-<div class="modal fade formular" id="mitglied_passwort_festlegen_Modal" tabindex="-1" aria-labelledby="mitglied_passwort_festlegen_Modal_Label" aria-hidden="true">
+<div class="modal fade formular" id="mitglied_passwort_festlegen_Modal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
             <div class="modal-title h5" id="mitglied_passwort_festlegen_Modal_Label">Passwort festlegen</div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
             <div class="mb-3">Du kannst ein neues Passwort festlegen, weil du bspw. gerade einen Einmal-Link verwendet hast.</div>

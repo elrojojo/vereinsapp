@@ -20,9 +20,9 @@ if( array_key_exists( 'cluster', $auswertungen ) ) { ?> data-cluster='<?= json_e
                 <?php if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary ms-1 sortable_handle" role="button"></i><?php } ?>
 
                 <div class="progress">
-                    <div class="ergebnis progress-bar bg-success" data-ergebnis="positiv_anzahl" role="progressbar" aria-label="positiv" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="ergebnis progress-bar bg-transparent" data-ergebnis="neutral_anzahl" role="progressbar" aria-label="neutral" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="ergebnis progress-bar bg-danger" data-ergebnis="negativ_anzahl" role="progressbar" aria-label="negativ" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="ergebnis progress-bar bg-success" data-ergebnis="positiv_anzahl" role="progressbar"></div>
+                    <div class="ergebnis progress-bar bg-transparent" data-ergebnis="neutral_anzahl" role="progressbar"></div>
+                    <div class="ergebnis progress-bar bg-danger" data-ergebnis="negativ_anzahl" role="progressbar"></div>
                 </div>
 
             </div>

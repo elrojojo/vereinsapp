@@ -148,6 +148,5 @@ Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (V
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Sortierung nach Titel-Nr. funktioniert nicht
-aria entfernen
 
 */

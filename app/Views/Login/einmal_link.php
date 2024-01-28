@@ -33,7 +33,7 @@
       <div class="d-grid mb-1"><button type="submit" class="btn btn-outline-success">Einmal-Link anfordern</button></div>
     <?= form_close(); ?>
     <hr>
-    <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('login') ?>" aria-expanded="false" aria-controls="passwort_vergessen">Zurück zum Login</a></div>
+    <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('login') ?>">Zurück zum Login</a></div>
 
   </div>
 </div></div>

@@ -154,9 +154,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
                 $ergebnis.attr("data-filtern", JSON.stringify(filtern));
             } else if (ergebnis == "positiv_anzahl" || ergebnis == "neutral_anzahl" || ergebnis == "negativ_anzahl") {
                 if ($ergebnis.hasClass("progress-bar"))
-                    $ergebnis
-                        .attr("style", "width: " + (auswertungen[wert][ergebnis] / auswertungen[wert].alle_anzahl) * 100 + "%")
-                        .attr("aria-valuenow", (auswertungen[wert][ergebnis] / auswertungen[wert].alle_anzahl) * 100);
+                    $ergebnis.attr("style", "width: " + (auswertungen[wert][ergebnis] / auswertungen[wert].alle_anzahl) * 100 + "%");
                 else $ergebnis.text(auswertungen[wert][ergebnis]);
             }
         });
