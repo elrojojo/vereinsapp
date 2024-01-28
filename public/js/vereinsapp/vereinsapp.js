@@ -130,7 +130,6 @@ Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
 Cluster überarbeiten
     Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen)
-Werkzeugkasten bei Listen "von unten"
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Formatierung eines Werts flexibel (inkl. möglichem Symbol)
 Termin löschen in der Detail-Ansicht
@@ -149,6 +148,6 @@ Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (V
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Sortierung nach Titel-Nr. funktioniert nicht
-In der Listenansicht soll ein Menü eingeblendet werden, genauso wie in der Detailansicht.
+aria entfernen
 
 */

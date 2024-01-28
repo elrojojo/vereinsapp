@@ -33,7 +33,5 @@
 
     <div id="modals_anzeigen_liste"></div>
 
-    <?= $this->renderSection('werkzeugkasten') ?>
-
   </body>
 </html>

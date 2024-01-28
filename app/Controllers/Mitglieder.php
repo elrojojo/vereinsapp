@@ -46,28 +46,33 @@ class Mitglieder extends BaseController {
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_aktiven']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['loeschen'] = array(
+            $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
+                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+                'liste' => 'mitglieder',
+                'beschriftung' => 'Einmal-Link erstellen und anzeigen',
+            );
+            $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
+                'modal_id' => '#mitglied_einmal_link_email_Modal',
+                'liste' => 'mitglieder',
+                'beschriftung' => 'Einmal-Link per Email zuschicken',
+            );
+                        
+            $this->viewdata['werkzeugkasten']['aendern'] = array(
+                'modal_id' => '#mitglied_erstellen_Modal',
+                'liste' => 'mitglieder',
+                'beschriftung' => 'Mitglied ändern',
+            );
+            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
+                'modal_id' => '#mitglied_erstellen_Modal',
+                'liste' => 'mitglieder',
+                'beschriftung' => 'Mitglied duplizieren',
+            );
+            $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
-                'titel' => 'Mitglied löschen',
+                'liste' => 'mitglieder',
+                'beschriftung' => 'Mitglied löschen',
                 'farbe' => 'danger',
             );
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['duplizieren'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
-                'titel' => 'Mitglied duplizieren',
-            );
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['aendern'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
-                'titel' => 'Mitglied aendern',
-            );
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['einmal_link_anzeigen'] = array(
-                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
-                'titel' => 'Einmal-Link erstellen und anzeigen',
-            );
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_element']['einmal_link_email'] = array(
-                'modal_id' => '#mitglied_einmal_link_email_Modal',
-                'titel' => 'Einmal-Link per Email zuschicken',
-            );
-
 
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
@@ -172,32 +177,27 @@ class Mitglieder extends BaseController {
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
                 'liste' => 'mitglieder',
-                'element_id' => $element_id,
                 'beschriftung' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
                 'modal_id' => '#mitglied_einmal_link_email_Modal',
                 'liste' => 'mitglieder',
-                'element_id' => $element_id,
                 'beschriftung' => 'Einmal-Link per Email zuschicken',
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
-                'element_id' => $element_id,
                 'beschriftung' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
-                'element_id' => $element_id,
                 'beschriftung' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'mitglieder',
-                'element_id' => $element_id,
                 'beschriftung' => 'Mitglied löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',

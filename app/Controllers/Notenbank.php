@@ -42,18 +42,21 @@ class Notenbank extends BaseController {
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['loeschen'] = array(
+            $this->viewdata['werkzeugkasten']['aendern'] = array(
+                'modal_id' => '#titel_erstellen_Modal',
+                'liste' => 'notenbank',
+                'beschriftung' => 'Titel ändern',
+            );
+            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
+                'modal_id' => '#titel_erstellen_Modal',
+                'liste' => 'notenbank',
+                'beschriftung' => 'Titel duplizieren',
+            );
+            $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
-                'titel' => 'Titel löschen',
+                'liste' => 'notenbank',
+                'beschriftung' => 'Titel löschen',
                 'farbe' => 'danger',
-            );
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['duplizieren'] = array(
-                'modal_id' => '#titel_erstellen_Modal',
-                'titel' => 'Titel duplizieren',
-            );
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_element']['aendern'] = array(
-                'modal_id' => '#titel_erstellen_Modal',
-                'titel' => 'Titel ändern',
             );
 
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['erstellen'] = array(
@@ -93,19 +96,16 @@ class Notenbank extends BaseController {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
                 'liste' => 'notenbank',
-                'element_id' => $element_id,
                 'beschriftung' => 'Titel ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
                 'liste' => 'notenbank',
-                'element_id' => $element_id,
                 'beschriftung' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'notenbank',
-                'element_id' => $element_id,
                 'beschriftung' => 'Titel löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'notenbank',

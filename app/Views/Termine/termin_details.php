@@ -1,6 +1,5 @@
 <?= $this->extend( 'Templates/layout' ); ?>
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
-<?= $this->section( 'werkzeugkasten' ); ?><?= view( 'Templates/werkzeugkasten' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
 <div class="container mb-2 text-center element" data-liste="termine" data-element_id="<?= $element_id; ?>">
@@ -23,6 +22,8 @@
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => $liste['alle_aktiven_anwesenheiten'], 'checkliste' => $checkliste['dokumentierte_anwesenheiten'] ) ); ?>
+<?= view( 'Templates/werkzeugkasten' ); ?>
+<?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'termine', 'element_id' => $element_id ) ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/liste_filtern_modal' ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Templates/Liste/liste_sortieren_modal' ); ?>

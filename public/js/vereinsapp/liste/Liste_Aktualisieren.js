@@ -49,14 +49,7 @@ function Liste_Aktualisieren($liste) {
                 .attr("data-element_id", element_id);
 
             // Element hat einen Werkzeugkasten
-            $neues_element
-                .find('[data-bs-target="#werkzeugkasten_element_"]')
-                .attr("data-bs-target", "#werkzeugkasten_element_" + G.LISTEN[liste].element + "_" + element_id);
-            $neues_element
-                .find(".werkzeugkasten_element")
-                .attr("id", "werkzeugkasten_element_" + G.LISTEN[liste].element + "_" + element_id)
-                .attr("data-bs-parent", '.liste[data-liste="' + liste + '"]');
-            $neues_element.find(".werkzeug").attr("data-element_id", element_id);
+            $neues_element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
             // Element hat Modal
             $neues_element.find('[data-bs-toggle="modal"]').attr("data-element_id", element_id);

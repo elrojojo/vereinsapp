@@ -3,11 +3,16 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     const liste = $btn_oeffnend.attr("data-liste");
     // const instanz = $btn_oeffnend.attr("data-instanz");
     const element_id = $btn_oeffnend.attr("data-element_id");
+    const gegen_element_id = $btn_oeffnend.attr("data-gegen_element_id");
     const weiterleiten = $btn_oeffnend.attr("data-weiterleiten");
 
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
 
+    if (typeof gegen_element_id !== "undefined") $formular.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
+    else $formular.find(".checkliste").removeAttr("data-gegen_element_id");
+
+    console.log("element_id", element_id, "$btn_oeffnend", $btn_oeffnend);
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -63,4 +68,6 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     else $btn_schliessend.removeAttr("data-weiterleiten");
     if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_schliessend.attr("data-element_id", element_id);
     else $btn_schliessend.removeAttr("data-element_id");
+
+    Schnittstelle_EventVariableUpdDom(liste);
 }

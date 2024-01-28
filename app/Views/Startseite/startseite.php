@@ -1,7 +1,6 @@
 <?= $this->extend( 'Templates/layout' ); ?>
 <?= $this->section( 'navbar' ); ?><?= $this->include( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
-<?= $this->section( 'werkzeugkasten' ); ?><?= $this->include( 'Templates/werkzeugkasten' ); ?><?= $this->endSection(); ?>
-<?= $this->section('containers') ?>
+<?= $this->section( 'containers' ) ?>
 
 <div class="container mb-2 text-center">
 <?php if (config('vereinsapp')->kasten_weiter_zur_website_von_startseite ) : ?>
