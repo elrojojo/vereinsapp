@@ -61,20 +61,23 @@ $(document).ready(function () {
 
     // PASSWORT ANZEIGEN
     $(document).on("click", ".passwort_anzeigen", function (event) {
-        $passwort_anzeigen = $(this);
+        $btn = $(this);
         event.preventDefault();
-        let feld = $passwort_anzeigen.closest(".input-group").find("input.form-control");
+        const feld = $btn.closest(".input-group").find("input.form-control");
 
         if (feld.attr("type") == "text") {
             feld.attr("type", "password");
-            $passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-            $passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+            $btn.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $btn.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
         } else if (feld.attr("type") == "password") {
             feld.attr("type", "text");
-            $passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-            $passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $btn.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+            $btn.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
         }
     });
+
+    // INHALT KOPIEREN
+    new ClipboardJS(".inhalt_kopieren");
 
     // VALIDATION-TOOLTIPS ENTFERNEN
     $("input, select").on("focus", function () {
@@ -142,7 +145,6 @@ Richtung der Sortierung änderbar machen
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Shield-Rollen als Mitglieder-Funktion nutzen
 
-Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
 Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?)
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.

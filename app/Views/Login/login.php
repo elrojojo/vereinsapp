@@ -35,7 +35,7 @@
             <input type="password" class="form-control" name="password" inputmode="text" autocomplete="current-password" required placeholder="Passwort" />
             <label for="passwort">Passwort</label>
             </div>
-            <span class="input-group-text text-primary passwort_anzeigen"><i class="bi bi-<?= SYMBOLE['unsichtbar']['bootstrap']; ?>"></i></span>
+            <span class="input-group-text text-primary passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE['unsichtbar']['bootstrap']; ?>"></i></span>
         </div>
         <div class="form-check form-switch mb-3">
             <input class="form-check-input" type="checkbox" value="angemeldet_bleiben" role="switch" name="remember" id="angemeldet_bleiben" <?php //if (old('remember')): ?> checked<?php //endif ?> />

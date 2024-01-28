@@ -7,9 +7,12 @@
       </div>
       <div class="modal-body">
         <div class="mb-2">Willst du für <span class="beschriftung"></span> wirklich einen Einmal-Link erstellen und anzeigen?</div>
-        <div class="form-floating">
-            <input type="text" class="form-control einmal_link" readonly />
-            <label>Einmal-Link</label>
+        <div class="input-group mb-1">
+            <div class="form-floating">
+                <input type="text" class="form-control einmal_link" readonly />
+                <label>Einmal-Link</label>
+            </div>
+            <span class="input-group-text text-primary inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
         </div>
       </div>
       <div class="modal-footer">
