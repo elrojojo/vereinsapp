@@ -23,11 +23,6 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
         Schnittstelle_LocalstorageRein(liste + "_tabelle", LOC_tabelle);
 
         $.each(G.LISTEN[liste].instanz, function (instanz) {
-            // sortieren wird vorbereitet
-            const LOC_sortieren = G.LISTEN[liste].instanz[instanz].sortieren;
-            // sortieren wird im Localstorage gespeichert
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
-
             // filtern wird vorbereitet
             const LOC_filtern = new Array();
             if (G.LISTEN[liste].instanz[instanz].filtern.length >= 1) LOC_filtern.push(G.LISTEN[liste].instanz[instanz].filtern[0]);
@@ -39,7 +34,14 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
             }
             VAR_upd_LOC_filtern(LOC_filtern, liste);
             // filtern wird im Localstorage gespeichert
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
+            if (LOC_filtern.length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
+            else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_filtern");
+
+            // sortieren wird vorbereitet
+            const LOC_sortieren = G.LISTEN[liste].instanz[instanz].sortieren;
+            // sortieren wird im Localstorage gespeichert
+            if (LOC_sortieren.length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
+            else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");
         });
     });
 }

@@ -34,7 +34,7 @@ function Liste_CheckAendern($check) {
                 const checkliste_element = this;
                 if ("id" in checkliste_element) {
                     if (checkliste_element[element + "_id"] == element_id && checkliste_element[gegen_element + "_id"] == gegen_element_id)
-                        delete G.LISTEN[checkliste].tabelle[Number(checkliste_element["id"])];
+                        Schnittstelle_VariableLoeschen(checkliste_element["id"], checkliste);
                 }
             });
 

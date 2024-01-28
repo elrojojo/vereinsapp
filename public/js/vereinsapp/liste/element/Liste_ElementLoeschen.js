@@ -14,20 +14,7 @@ function Liste_ElementLoeschen($btn) {
             Schnittstelle_BtnWartenStart(AJAX.$btn);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            delete G.LISTEN[AJAX.liste].tabelle[AJAX.data.id];
-
-            if ("verlinkte_listen" in G.LISTEN[AJAX.liste])
-                $.each(G.LISTEN[liste].verlinkte_listen, function (prio, verlinkte_liste) {
-                    $.each(G.LISTEN[verlinkte_liste].tabelle, function () {
-                        const element = this;
-                        if (
-                            "id" in element &&
-                            G.LISTEN[AJAX.liste].element + "_id" in element &&
-                            element[G.LISTEN[AJAX.liste].element + "_id"] == AJAX.data.id
-                        )
-                            delete G.LISTEN[verlinkte_liste].tabelle[element.id];
-                    });
-                });
+            Schnittstelle_VariableLoeschen(AJAX.data.id, AJAX.liste);
 
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste);
 

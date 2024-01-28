@@ -144,7 +144,6 @@ Shield-Rollen als Mitglieder-Funktion nutzen
 
 Einmal-Link automatisch in die Zwischenablage kopieren (nachdem er angezeigt wurde)
 Das Recht zur Vergabe von Rechten aenderbar machen, wenn man das Recht für Globale Einstellungen hat
-sortieren und filtern nicht im Localstorage speichern, wenn es leer ist (bspw. bei Änderung einer Liste)
 Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?)
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
