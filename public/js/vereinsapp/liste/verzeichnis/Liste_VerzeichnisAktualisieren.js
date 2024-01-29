@@ -1,0 +1,34 @@
+function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
+    const verzeichnis_instanz = $verzeichnis.attr("id");
+    const element_id = Number($verzeichnis.attr("data-element_id"));
+    const $verzeichnis_pfad = G.LISTEN[liste].verzeichnis[verzeichnis_instanz].$verzeichnis_pfad;
+
+    let verzeichnis_pfad = $verzeichnis.attr("data-verzeichnis_pfad");
+    if (typeof verzeichnis_pfad !== "undefined") verzeichnis_pfad = JSON.parse(verzeichnis_pfad);
+    else verzeichnis_pfad = new Array();
+    $verzeichnis.attr("data-verzeichnis_pfad", JSON.stringify(verzeichnis_pfad));
+
+    $verzeichnis_pfad.html(
+        Liste_VerzeichnisPfad2$VerzeichnisPfadZurueck(
+            verzeichnis_pfad,
+            G.LISTEN[liste].verzeichnis[verzeichnis_instanz].$blanko_verzeichnis_pfad_element,
+            liste
+        )
+    );
+
+    const verzeichnis_basis =
+        BASE_URL +
+        "storage/" +
+        liste +
+        "/" +
+        Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste, "tabelle") +
+        verzeichnis_pfad.join("");
+    $verzeichnis.html(
+        Liste_Verzeichnis2$VerzeichnisZurueck(
+            Liste_VerzeichnisPfad2Verzeichnis(Schnittstelle_VariableRausZurueck("verzeichnis", element_id, liste, "tabelle"), verzeichnis_pfad),
+            verzeichnis_basis,
+            G.LISTEN[liste].verzeichnis[verzeichnis_instanz].$blanko_verzeichnis_element,
+            liste
+        )
+    );
+}
