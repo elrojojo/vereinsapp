@@ -111,6 +111,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isJson.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isObject.js'), );
+        $head_script[] = array( 'src' => base_url('js/lib/isNumber.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js'), ); // abhaengig von isObject
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js?v='.VERSION), );

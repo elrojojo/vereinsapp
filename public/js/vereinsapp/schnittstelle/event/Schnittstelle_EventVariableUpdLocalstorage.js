@@ -48,7 +48,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
 
 function Schnittstelle_LocalstorageWertBereinigtZurueck(wert) {
     if (isLuxonDateTime(wert)) wert = wert.toSQL();
-    else if (wert && !Number.isNaN(Number(wert)) && typeof wert !== "boolean") wert = Number(wert);
+    else if (isNumber(wert)) wert = Number(wert);
 
     return wert;
 }

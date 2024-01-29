@@ -142,7 +142,6 @@ Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
-Sortierung nach Titel-Nr. funktioniert nicht
 Bootstrap und jquery aktualisieren
 
 */

@@ -12,8 +12,8 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis'] = array(
             'liste' => 'notenbank',
             'sortieren' => array(
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),                
             ),
             'beschriftung' => array(
