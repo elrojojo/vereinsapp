@@ -12,7 +12,6 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     if (typeof gegen_element_id !== "undefined") $formular.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
     else $formular.find(".checkliste").removeAttr("data-gegen_element_id");
 
-    console.log("element_id", element_id, "$btn_oeffnend", $btn_oeffnend);
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");

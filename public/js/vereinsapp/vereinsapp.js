@@ -116,23 +116,19 @@ Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Abwesenheiten wieder einführen
     Hinweis anzeigen, wenn aktuell abwesend
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
-Registerführer einführen
 Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Functionen in vereinsapp.js auslagern
 View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
 Hartes Löschen von Mitgliedern wieder zurücknehmen und weiches Löschen für abhängige Tabellen einführen
-ID auto-Increament in JavaScript umsetzen (nicht erst auf EventSqlUpdateLocalstorage warten)
 Ausloggen, bevor Einmal-Link benutzt wird
-Bootstrap und jquery aktualisieren
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
 Cluster überarbeiten
     Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen)
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Formatierung eines Werts flexibel (inkl. möglichem Symbol)
-Termin löschen in der Detail-Ansicht
 Mitglieder Lebenslauf
 Termin mit Ende erweitern
 Terminserie / Regeltermine
@@ -142,11 +138,11 @@ Batch über filtern- und sortieren-Button legen
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Richtung der Sortierung änderbar machen
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-Shield-Rollen als Mitglieder-Funktion nutzen
+Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 
-Termine-Übersicht und/oder Termin-Details schlägt nach bestimmter Zeit fehl (Vermutlich wenn eine Rückmeldung zum ersten Mal zu einem Termin gegeben wurde?)
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Sortierung nach Titel-Nr. funktioniert nicht
+Bootstrap und jquery aktualisieren
 
 */

@@ -174,7 +174,10 @@ class Notenbank extends BaseController {
             );
 
             if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
-            else $notenbank_Model->save( $titel );
+            else {
+                $notenbank_Model->save( $titel );
+                $ajax_antwort['element_id'] = (int)$notenbank_Model->getInsertID();
+            }
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

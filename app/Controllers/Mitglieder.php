@@ -296,7 +296,8 @@ class Mitglieder extends BaseController {
             } else {
                 helper('text'); $mitglied['password'] = random_string('crypto', 20);
                 $mitglieder_Model->save( new Mitglied( $mitglied ) );
-                $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $mitglieder_Model->getInsertID() ) );
+                $ajax_antwort['element_id'] = (int)$mitglieder_Model->getInsertID();
+                $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $ajax_antwort['element_id'] ) );
             }
         }
 
@@ -523,8 +524,10 @@ class Mitglieder extends BaseController {
             if( !empty( $this->request->getPost()['mitglied_id'] ) ) $abwesenheit['mitglied_id'] = $this->request->getPost()['mitglied_id']; else $abwesenheit['mitglied_id'] = ICH['id'];
 
             // if( !empty( $this->request->getPost()['id'] ) ) $abwesenheit_Model->update( $this->request->getpost()['id'], $abwesenheit );
-            // else
+            // else {
                 $abwesenheit_Model->save( $abwesenheit );
+                $ajax_antwort['element_id'] = (int)$abwesenheit_Model->getInsertID();
+            // }
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

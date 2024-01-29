@@ -1,4 +1,9 @@
 function Liste_ElementErstellen($btn) {
+    // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""
+    $btn.trigger("blur");
+    $(".navbar-brand").trigger("focus");
+    // ENDE
+
     const liste = $btn.attr("data-liste");
     const element = G.LISTEN[liste].element;
     const element_id = $btn.attr("data-element_id");
@@ -63,7 +68,9 @@ function Liste_ElementErstellen($btn) {
         },
         rein_validation_pos_aktion: function (AJAX) {
             if (typeof AJAX.data.id === "undefined") {
-                AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length + 1;
+                if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
+                else AJAX.data.id = G.LISTEN[AJAX.liste].tabelle.length + 1;
+
                 G.LISTEN[AJAX.liste].tabelle[AJAX.data.id] = new Object();
             }
             $.each(AJAX.data, function (eigenschaft, wert) {

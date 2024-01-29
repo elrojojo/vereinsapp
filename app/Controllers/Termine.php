@@ -276,7 +276,10 @@ class Termine extends BaseController {
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung'];
 
             if( !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
-            else $termine_Model->save( $termin );
+            else {
+                $termine_Model->save( $termin );
+                $ajax_antwort['element_id'] = (int)$termine_Model->getInsertID();
+            }
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -335,6 +338,7 @@ class Termine extends BaseController {
                 'status' => $this->request->getpost()['status'],
             );
             $rueckmeldungen_Model->save( $rueckmeldung );
+            if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['element_id'] = (int)$rueckmeldungen_Model->getInsertID();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -399,7 +403,10 @@ class Termine extends BaseController {
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
             );
             $anwesenheiten_Model->where( $anwesenheit )->delete();
-            if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) $anwesenheiten_Model->save( $anwesenheit );
+            if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) {
+                $anwesenheiten_Model->save( $anwesenheit );
+                $ajax_antwort['element_id'] = (int)$anwesenheiten_Model->getInsertID();
+            }
         }
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
