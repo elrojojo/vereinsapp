@@ -113,20 +113,17 @@ function umlaute2unix(unix) {
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
 Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
-Abwesenheiten wieder einführen
-    Hinweis anzeigen, wenn aktuell abwesend
+Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
 Verzeichnis filtern und sortieren
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Functionen in vereinsapp.js auslagern
-View Details mit <span class="beschriftung">...</span> erweitern (für Befüllung von Modals)
-Hartes Löschen von Mitgliedern wieder zurücknehmen und weiches Löschen für abhängige Tabellen einführen
+Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-Cluster überarbeiten
-    Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen)
+Cluster überarbeiten (Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen))
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Formatierung eines Werts flexibel (inkl. möglichem Symbol)
 Mitglieder Lebenslauf
@@ -135,13 +132,14 @@ Terminserie / Regeltermine
 Termin als ics exportieren
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
 Batch über filtern- und sortieren-Button legen
-Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Richtung der Sortierung änderbar machen
-Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Bootstrap und jquery aktualisieren
+Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
+Richtung der Sortierung änderbar machen
+Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
+Mitglieder entsprechend der Rückmeldung farblich markieren bei Anwesenheiten dokumentieren
 
 */

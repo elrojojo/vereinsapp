@@ -38,7 +38,7 @@
             <span class="input-group-text text-primary passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE['unsichtbar']['bootstrap']; ?>"></i></span>
         </div>
         <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" value="angemeldet_bleiben" role="switch" name="remember" id="angemeldet_bleiben" <?php //if (old('remember')): ?> checked<?php //endif ?> />
+            <input class="form-check-input" type="checkbox" value="angemeldet_bleiben" name="remember" id="angemeldet_bleiben" <?php //if (old('remember')): ?> checked<?php //endif ?> role="switch" />
             <label class="form-check-label" for="angemeldet_bleiben">Angemeldet bleiben</label>
         </div>
         <div class="d-grid mb-1"><button type="submit" class="btn btn-outline-success">Einloggen</button></div>

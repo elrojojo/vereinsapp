@@ -49,45 +49,45 @@ class Mitglieder extends BaseController {
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Einmal-Link erstellen und anzeigen',
+                'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
                 'modal_id' => '#mitglied_einmal_link_email_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Einmal-Link per Email zuschicken',
+                'title' => 'Einmal-Link per Email zuschicken',
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Mitglied ändern',
+                'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Mitglied duplizieren',
+                'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Mitglied löschen',
+                'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
             );
 
             $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
-                'titel' => 'Mitglied erstellen',
+                'title' => 'Mitglied erstellen',
             ); 
         }
 
         $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'titel' => 'Mitglieder filtern',
+            'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'titel' => 'Mitglieder sortieren',
+            'title' => 'Mitglieder sortieren',
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
@@ -177,28 +177,28 @@ class Mitglieder extends BaseController {
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Einmal-Link erstellen und anzeigen',
+                'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
                 'modal_id' => '#mitglied_einmal_link_email_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Einmal-Link per Email zuschicken',
+                'title' => 'Einmal-Link per Email zuschicken',
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Mitglied ändern',
+                'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Mitglied duplizieren',
+                'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Mitglied löschen',
+                'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',
             );

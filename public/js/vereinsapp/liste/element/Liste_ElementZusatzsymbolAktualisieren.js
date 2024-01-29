@@ -43,9 +43,9 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
                 $zusatzsymbol.html(
                     '<i class="bi bi-' +
                         SYMBOLE["bemerkung"]["bootstrap"] +
-                        ' text-primary ms-1" role="button" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
+                        ' text-primary ms-1" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
                         gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"] +
-                        '"></i>'
+                        '" role="button"></i>'
                 );
 
             [...$zusatzsymbol.find('[data-bs-toggle="popover"]')].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));

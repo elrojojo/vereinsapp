@@ -74,17 +74,17 @@ class Termine extends BaseController {
             
             $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
                 'modal_id' => '#liste_filtern_Modal',
-                'titel' => 'Mitglieder filtern',
+                'title' => 'Mitglieder filtern',
             );
             $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
                 'modal_id' => '#liste_sortieren_Modal',
-                'titel' => 'Mitglieder sortieren',
+                'title' => 'Mitglieder sortieren',
             );
 
             $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
                 'modal_id' => '#termin_anwesenheiten_Modal',
                 'liste' => 'mitglieder',
-                'beschriftung' => 'Anwesenheiten dokumentieren',
+                'title' => 'Anwesenheiten dokumentieren',
             );
         }
 
@@ -92,34 +92,34 @@ class Termine extends BaseController {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
                 'liste' => 'termine',
-                'beschriftung' => 'Termin ändern',
+                'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
                 'liste' => 'termine',
-                'beschriftung' => 'Termin duplizieren',
+                'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'termine',
-                'beschriftung' => 'Termin löschen',
+                'title' => 'Termin löschen',
                 'farbe' => 'danger',
             );
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
-                'titel' => 'Termin erstellen',
+                'title' => 'Termin erstellen',
             );
         }
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'titel' => 'Termine filtern',
+            'title' => 'Termine filtern',
         ); 
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'titel' => 'Termine sortieren',
+            'title' => 'Termine sortieren',
         ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
@@ -177,35 +177,35 @@ class Termine extends BaseController {
         
         $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
-            'titel' => 'Mitglieder filtern',
+            'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
-            'titel' => 'Mitglieder sortieren',
+            'title' => 'Mitglieder sortieren',
         );
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'modal_id' => '#termin_anwesenheiten_Modal',
             'liste' => 'mitglieder',
-            'beschriftung' => 'Anwesenheiten dokumentieren',
+            'title' => 'Anwesenheiten dokumentieren',
         );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
                 'liste' => 'termine',
-                'beschriftung' => 'Termin ändern',
+                'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
                 'liste' => 'termine',
-                'beschriftung' => 'Termin duplizieren',
+                'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'modal_id' => '#element_loeschen_Modal',
                 'liste' => 'termine',
-                'beschriftung' => 'Termin löschen',
+                'title' => 'Termin löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'termine',
             );

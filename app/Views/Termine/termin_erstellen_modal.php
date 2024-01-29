@@ -37,7 +37,7 @@
         </div>
 
         <div class="d-grid"><button type="button" class="btn btn-outline-primary werkzeug eigenschaft" data-eigenschaft="filtern_mitglieder"
-        data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-titel="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>"
+        data-bs-toggle="modal" data-bs-target="#liste_filtern_Modal" data-title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>"
         data-aktion="filtern" data-liste="termine" data-filtern_liste="mitglieder">
             <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>
         </button></div>

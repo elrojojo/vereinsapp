@@ -5,11 +5,11 @@
                 <li class="werkzeug list-group-item list-group-item-action text-<?php
                     if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary'; ?>"
                     data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>"
-                    data-titel="<?= $werkzeug['beschriftung']; ?>" data-aktion="<?= $aktion; ?>"
+                    data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>"
                     data-liste="<?= $werkzeug['liste']; ?>"<?php if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php } ?>
                     role="button">
                     <i class="bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> float-start me-2"></i>
-                    <?= $werkzeug['beschriftung']; ?>
+                    <?= $werkzeug['title']; ?>
                 </li>
             <?php endforeach; ?></ul>
         </div>

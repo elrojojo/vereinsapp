@@ -54,10 +54,14 @@ function Schnittstelle_DomInit() {
         const modal_id = $modal.attr("id");
         const $btn_oeffnend = $(event.relatedTarget);
 
-        const titel = $btn_oeffnend.attr("data-titel");
-        if (typeof titel !== "undefined") {
-            $modal.find(".modal-title").attr("data-titel", $modal.find(".modal-title").text());
-            $modal.find(".modal-title").text(titel);
+        const title_modal = $modal.find(".modal-title").first().attr("data-title");
+        if (typeof title_modal !== "undefined") $modal.find(".modal-title").html(title_modal);
+        else {
+            const title_btn = $btn_oeffnend.attr("data-title");
+            if (typeof title_btn !== "undefined") {
+                $modal.find(".modal-title").attr("data-title", title_btn);
+                $modal.find(".modal-title").text(title_btn);
+            } else $modal.find(".modal-title").text("ERROR: Hier fehlt ein Titel");
         }
 
         if (G.MODALS.offen.length == 0 || G.MODALS.offen[G.MODALS.offen.length - 1].modal_id != modal_id) {
@@ -68,11 +72,8 @@ function Schnittstelle_DomInit() {
     $(".modal").on("hidden.bs.modal", function () {
         const $modal = $(this);
 
-        const titel = $modal.find(".modal-title").attr("data-titel");
-        if (typeof titel !== "undefined") {
-            $modal.find(".modal-title").removeAttr("data-titel");
-            $modal.find(".modal-title").text(titel);
-        }
+        const title_modal = $modal.find(".modal-title").html();
+        if (typeof title_modal !== "undefined") $modal.find(".modal-title").first().attr("data-title", title_modal);
 
         if ($modal.attr("id") == G.MODALS.offen[G.MODALS.offen.length - 1].modal_id) {
             G.MODALS.offen.pop();

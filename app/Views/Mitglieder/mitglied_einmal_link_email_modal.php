@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title h5" id="mitglied_einmal_link_email_Modal_Label">titel</div>
+        <div class="modal-title h5" id="mitglied_einmal_link_email_Modal_Label"></div>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
