@@ -1,7 +1,7 @@
 function Liste_ElementErstellen($btn) {
     // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""
     $btn.trigger("blur");
-    $(".navbar-brand").trigger("focus");
+    $(".navbar-text").trigger("focus");
     // ENDE
 
     const liste = $btn.attr("data-liste");
@@ -77,6 +77,12 @@ function Liste_ElementErstellen($btn) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                     Schnittstelle_VariableRein(wert, eigenschaft, Number(AJAX.data.id), AJAX.liste);
             });
+
+            // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""
+            $btn.trigger("blur");
+            $(".navbar-text").trigger("focus");
+            // ENDE
+
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
             AJAX.$btn.closest(".formular").modal("hide");
         },

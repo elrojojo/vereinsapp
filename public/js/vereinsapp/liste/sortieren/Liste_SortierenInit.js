@@ -20,7 +20,9 @@ function Liste_SortierenInit() {
     });
 
     // ÄNDERN (RICHTUNG)
-    // $(document).on("click", ".btn_sortieren_aendern", function () {});
+    $(document).on("click", ".btn_sortieren_aendern", function () {
+        Liste_SortierenRichtungAendern($(this));
+    });
 
     // LÖSCHEN
     $(document).on("click", ".btn_sortieren_loeschen", function () {

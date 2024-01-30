@@ -138,7 +138,6 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Bootstrap und jquery aktualisieren
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Richtung der Sortierung änderbar machen
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Mitglieder entsprechend der Rückmeldung farblich markieren bei Anwesenheiten dokumentieren
 
