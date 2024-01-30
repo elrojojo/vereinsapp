@@ -1,7 +1,13 @@
 function Schnittstelle_EventElementErgaenzenTermine(termin) {
     if ("rueckmeldungen" in G.LISTEN) {
-        termin["ich_rueckmeldung_id"] = Termine_RueckmeldungIdZurueck(Number(termin["id"]), Number(ICH["id"]));
-        if (termin["ich_rueckmeldung_id"] === null) termin["ich_rueckgemeldet"] = false;
+        termin["ich_rueckmeldung_id"] = Liste_ElementIdZurueck(
+            [
+                { liste: "termine", element_id: Number(termin["id"]) },
+                { liste: "mitglieder", element_id: Number(ICH["id"]) },
+            ],
+            "rueckmeldungen"
+        );
+        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet"] = false;
         else termin["ich_rueckgemeldet"] = true;
     }
 

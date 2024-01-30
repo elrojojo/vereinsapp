@@ -148,7 +148,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
                     filtern_knoten.filtern.push({
                         operator: "==",
                         eigenschaft: "id",
-                        wert: null,
+                        wert: undefined,
                     });
                 filtern.push(filtern_knoten);
                 $ergebnis.attr("data-filtern", JSON.stringify(filtern));
