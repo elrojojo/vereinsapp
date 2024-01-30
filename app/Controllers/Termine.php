@@ -57,7 +57,7 @@ class Termine extends BaseController {
                     array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                     array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-                    ),
+                ),
                 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
@@ -70,6 +70,13 @@ class Termine extends BaseController {
                 'checkliste' => 'anwesenheiten',
                 'aktion' => 'aendern',
                 'gegen_element' => 'termin',
+                'bedingte_formatierung' => array(
+                    'liste' => 'rueckmeldungen',
+                    'klasse' => array(
+                        'text-success' => array( array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ), ),
+                        'text-danger' => array( array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ), ),
+                    ),
+                ),
             );
             
             $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
