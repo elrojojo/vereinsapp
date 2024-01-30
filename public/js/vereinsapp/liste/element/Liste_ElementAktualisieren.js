@@ -7,15 +7,16 @@ function Liste_ElementAktualisieren($element, liste) {
         $eigenschaft.html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
     });
 
-    // CHECK AKTUALISIEREN
+    // CHECK AKTUALISIEREN verschieben in Liste_Aktualisieren()
     $element.find(".check").each(function () {
         $check = $(this);
         const $liste = $check.closest(".liste");
+        const gegen_element = G.LISTEN[$liste.attr("data-gegen_liste")].element;
         const filtern = [
             {
                 verknuepfung: "&&",
                 filtern: [
-                    { operator: "==", eigenschaft: $liste.attr("data-gegen_element") + "_id", wert: Number($liste.attr("data-gegen_element_id")) },
+                    { operator: "==", eigenschaft: gegen_element + "_id", wert: Number($liste.attr("data-gegen_element_id")) },
                     { operator: "==", eigenschaft: G.LISTEN[$element.attr("data-liste")].element + "_id", wert: Number($check.val()) },
                 ],
             },

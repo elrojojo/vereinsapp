@@ -141,7 +141,7 @@ class Mitglieder extends BaseController {
                 $this->viewdata['checkliste']['vergebene_rechte_des_mitglieds'] = array(
                     'checkliste' => 'vergebene_rechte',
                     'aktion' => 'aendern',
-                    'gegen_element' => 'mitglied',
+                    'gegen_liste' => 'mitglieder',
                     'gegen_element_id' => $element_id,
                     'elemente_disabled' => $elemente_disabled,
                 );

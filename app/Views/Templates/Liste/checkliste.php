@@ -7,7 +7,7 @@
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
 ?> mb-1"<?php
 if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?>
-data-checkliste="<?= $checkliste['checkliste']; ?>" data-aktion="<?= $checkliste['aktion']; ?>" data-gegen_element="<?= $checkliste['gegen_element']; ?>"<?php
+data-checkliste="<?= $checkliste['checkliste']; ?>" data-aktion="<?= $checkliste['aktion']; ?>" data-gegen_liste="<?= $checkliste['gegen_liste']; ?>"<?php
 if( array_key_exists( 'gegen_element_id', $checkliste) ) { ?> data-gegen_element_id="<?= $checkliste['gegen_element_id']; ?>"<?php }
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }

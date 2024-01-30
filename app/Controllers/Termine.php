@@ -69,7 +69,7 @@ class Termine extends BaseController {
             $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
                 'checkliste' => 'anwesenheiten',
                 'aktion' => 'aendern',
-                'gegen_element' => 'termin',
+                'gegen_liste' => 'termine',
                 'bedingte_formatierung' => array(
                     'liste' => 'rueckmeldungen',
                     'klasse' => array(
@@ -178,7 +178,7 @@ class Termine extends BaseController {
         $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
             'checkliste' => 'anwesenheiten',
             'aktion' => 'aendern',
-            'gegen_element' => 'termin',
+            'gegen_liste' => 'termine',
             'elemente_disabled' => $elemente_disabled,
         );
         

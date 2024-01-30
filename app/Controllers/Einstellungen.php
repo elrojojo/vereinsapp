@@ -56,7 +56,7 @@ class Einstellungen extends BaseController {
         $this->viewdata['checkliste']['meine_rechte'] = array(
             'checkliste' => 'vergebene_rechte',
             'aktion' => 'aendern',
-            'gegen_element' => 'mitglied',
+            'gegen_liste' => 'mitglieder',
             'gegen_element_id' => ICH['id'],
             'elemente_disabled' => $elemente_disabled,
         );

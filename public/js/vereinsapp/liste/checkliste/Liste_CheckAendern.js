@@ -3,7 +3,7 @@ function Liste_CheckAendern($check) {
     const liste = $liste.attr("data-liste");
     const checkliste = $liste.attr("data-checkliste");
     const element = G.LISTEN[liste].element;
-    const gegen_element = $liste.attr("data-gegen_element");
+    const gegen_element = G.LISTEN[$liste.attr("data-gegen_liste")].element;
     const aktion = $liste.attr("data-aktion");
 
     const AJAX_DATA = { checked: $check.is(":checked") };
@@ -26,7 +26,7 @@ function Liste_CheckAendern($check) {
             const checkliste = $liste.attr("data-checkliste");
             const element = G.LISTEN[AJAX.liste].element;
             const element_id = AJAX.data[element + "_id"];
-            const gegen_element = $liste.attr("data-gegen_element");
+            const gegen_element = G.LISTEN[$liste.attr("data-gegen_liste")].element;
             const gegen_element_id = AJAX.data[gegen_element + "_id"];
 
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
