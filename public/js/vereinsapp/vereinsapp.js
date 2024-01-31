@@ -139,6 +139,5 @@ Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesen
 Bootstrap und jquery aktualisieren
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-Mitglieder entsprechend der Rückmeldung farblich markieren bei Anwesenheiten dokumentieren
 
 */

@@ -73,8 +73,8 @@ class Termine extends BaseController {
                 'bedingte_formatierung' => array(
                     'liste' => 'rueckmeldungen',
                     'klasse' => array(
-                        'text-success' => array( array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ), ),
-                        'text-danger' => array( array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ), ),
+                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
                     ),
                 ),
             );
@@ -179,7 +179,14 @@ class Termine extends BaseController {
             'checkliste' => 'anwesenheiten',
             'aktion' => 'aendern',
             'gegen_liste' => 'termine',
+            'bedingte_formatierung' => array(
+                'liste' => 'rueckmeldungen',
+                'klasse' => array(
+                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
+                ),
             'elemente_disabled' => $elemente_disabled,
+        ),
         );
         
         $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
