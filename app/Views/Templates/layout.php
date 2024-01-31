@@ -26,6 +26,11 @@
 
     <?= $this->renderSection('containers') ?>
 
+<?php if( isset( $werkzeugkasten ) ) echo view( 'Templates/werkzeugkasten' ); ?>
+<?= view( 'Templates/Liste/loeschen_modal' ); ?>
+<?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
+<?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
+
     <div class="text-secondary mt-5 small text-center"><?= config('Vereinsapp')->vereinsapp_name; ?> <?= VERSION; ?></div>
     <div class="text-secondary small text-center jetzt"></div>
 

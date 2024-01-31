@@ -110,30 +110,35 @@ function umlaute2unix(unix) {
 }
 
 /* TODO
-Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
-View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen)
-Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
+
+FEATURES
+Mitglieder Lebenslauf
+Termin mit Ende erweitern
+Terminserie / Regeltermine
+Termin als ics exportieren
 Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
+Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
 Verzeichnis filtern und sortieren
+Batch über filtern- und sortieren-Button legen
+Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
+Eigene Links im Menü anzeigen lassen (und über .env steuern)
+Cluster überarbeiten (Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen))
+
+SOFTWARE
+Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
+Formatierung eines Werts flexibel (inkl. möglichem Symbol)
+View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen, bzw. miteinander verschmelzen?)
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Functionen in vereinsapp.js auslagern
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
-Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-Cluster überarbeiten (Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen))
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
-Formatierung eines Werts flexibel (inkl. möglichem Symbol)
-Mitglieder Lebenslauf
-Termin mit Ende erweitern
-Terminserie / Regeltermine
-Termin als ics exportieren
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
-Batch über filtern- und sortieren-Button legen
-Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 
+AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Bootstrap und jquery aktualisieren

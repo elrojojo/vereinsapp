@@ -14,12 +14,7 @@
 <?= view( 'Templates/Liste/verzeichnis', array( 'verzeichnis' => $verzeichnis['aktuelles_verzeichnis'] ) ); ?>
 </div>
 
-<?= view( 'Templates/werkzeugkasten' ); ?>
-<?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'notenbank', 'element_id' => $element_id ) ); ?>
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_erstellen_modal' ); ?>
-<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/liste_filtern_modal' ); ?>
-<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/liste_sortieren_modal' ); ?>
-<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/Liste/loeschen_modal' ); ?>
-
+<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'notenbank', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>
 

@@ -29,8 +29,5 @@
 </div>
 <?= view( 'Einstellungen/localstorage_leeren_modal' ); ?>
 
-<?php /*<?= view( 'Templates/Liste/loeschen_modal' ); ?>
-<?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
-<?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>*/ ?>
 <?= $this->endSection() ?>
 
