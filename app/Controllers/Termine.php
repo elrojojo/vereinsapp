@@ -49,52 +49,53 @@ class Termine extends BaseController {
         );
         if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
+        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
+            'liste' => 'mitglieder',
+            'sortieren' => array(
+                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+            ),
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+            ),
+            // 'sortable' => true,
+            'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+        );
 
-            $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
-                'liste' => 'mitglieder',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+        $elemente_disabled = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
+        $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
+            'checkliste' => 'anwesenheiten',
+            'aktion' => 'aendern',
+            'gegen_liste' => 'termine',
+            'bedingte_formatierung' => array(
+                'liste' => 'rueckmeldungen',
+                'klasse' => array(
+                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
                 ),
-                // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                ),
-                // 'sortable' => true,
-                'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
-            );
+            ),
+            'elemente_disabled' => $elemente_disabled,
+        );
 
-            $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
-                'checkliste' => 'anwesenheiten',
-                'aktion' => 'aendern',
-                'gegen_liste' => 'termine',
-                'bedingte_formatierung' => array(
-                    'liste' => 'rueckmeldungen',
-                    'klasse' => array(
-                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
-                    ),
-                ),
-            );
-            
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
-                'modal_id' => '#liste_filtern_Modal',
-                'title' => 'Mitglieder filtern',
-            );
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
-                'modal_id' => '#liste_sortieren_Modal',
-                'title' => 'Mitglieder sortieren',
-            );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
+            'modal_id' => '#liste_filtern_Modal',
+            'title' => 'Mitglieder filtern',
+        );
 
-            $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-                'modal_id' => '#termin_anwesenheiten_Modal',
-                'liste' => 'mitglieder',
-                'title' => 'Anwesenheiten dokumentieren',
-            );
-        }
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
+            'modal_id' => '#liste_sortieren_Modal',
+            'title' => 'Mitglieder sortieren',
+        );
 
+        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
+            'modal_id' => '#termin_anwesenheiten_Modal',
+            'liste' => 'mitglieder',
+            'title' => 'Anwesenheiten dokumentieren',
+        );
+        
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
@@ -118,11 +119,6 @@ class Termine extends BaseController {
                 'title' => 'Termin erstellen',
             );
         }
-
-        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
-            'title' => 'Termine filtern',
-        ); 
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
@@ -185,8 +181,8 @@ class Termine extends BaseController {
                     'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
                 ),
+            ),
             'elemente_disabled' => $elemente_disabled,
-        ),
         );
         
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
