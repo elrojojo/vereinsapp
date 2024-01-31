@@ -3,7 +3,7 @@
 <?= $this->section( 'containers' ); ?>
 
 <div class="container mb-2">
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['alle_aktiven'] ) ); ?>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['alle_mitglieder'] ) ); ?>
 </div>
 
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_erstellen_modal' ); ?>

@@ -51,14 +51,14 @@ class Termine extends BaseController {
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
-            $this->viewdata['liste']['alle_aktiven_anwesenheiten'] = array(
+            $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
                 'liste' => 'mitglieder',
                 'sortieren' => array(
                     array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                     array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
                 ),
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+                // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
@@ -79,11 +79,11 @@ class Termine extends BaseController {
                 ),
             );
             
-            $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
                 'modal_id' => '#liste_filtern_Modal',
                 'title' => 'Mitglieder filtern',
             );
-            $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
                 'modal_id' => '#liste_sortieren_Modal',
                 'title' => 'Mitglieder sortieren',
             );
@@ -158,14 +158,14 @@ class Termine extends BaseController {
             'collapse' => true,
         );
 
-        $this->viewdata['liste']['alle_aktiven_anwesenheiten'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
                 ),
-            'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
@@ -189,12 +189,12 @@ class Termine extends BaseController {
         ),
         );
         
-        $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Mitglieder filtern',
         );
 
-        $this->viewdata['liste']['alle_aktiven_anwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Mitglieder sortieren',
         );

@@ -14,7 +14,7 @@ class Mitglieder extends BaseController {
 
     public function mitglieder() {
 
-        $this->viewdata['liste']['alle_aktiven'] = array(
+        $this->viewdata['liste']['alle_mitglieder'] = array(
             'liste' => 'mitglieder',
             // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
@@ -43,7 +43,7 @@ class Mitglieder extends BaseController {
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
         );
-        foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_aktiven']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
+        foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
@@ -74,18 +74,18 @@ class Mitglieder extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['erstellen'] = array(
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_liste']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'title' => 'Mitglied erstellen',
             ); 
         }
 
-        $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Mitglieder filtern',
         );
 
-        $this->viewdata['liste']['alle_aktiven']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Mitglieder sortieren',
         );
@@ -205,7 +205,7 @@ class Mitglieder extends BaseController {
         }
 
         $this->viewdata['element_navigation'] = array(
-            'instanz' => 'alle_aktiven',
+            'instanz' => 'alle_mitglieder',
             // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
