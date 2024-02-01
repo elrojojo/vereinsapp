@@ -27,6 +27,11 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "aktiv":
             wert_formatiert = JANEIN[wert].beschriftung;
             break;
+        case "erstellung":
+        case "letzte_aktivitaet":
+            if (wert == null) wert_formatiert = "nie";
+            else wert_formatiert = wert.toFormat("dd.MM.yyyy HH:mm");
+            break;
         case "start":
             wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
             break;

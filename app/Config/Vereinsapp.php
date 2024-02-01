@@ -96,6 +96,8 @@ class Vereinsapp extends BaseConfig
             'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'abwesend' => array( 'beschriftung' => 'Abwesend', 'typ' => 'vorgegebene_werte' ),  // JAVA
+            'erstellung' => array( 'beschriftung' => 'Erstellt am', 'typ' => 'zeitpunkt' ),  // JAVA
+            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // JAVA
         ),
 
         'abwesenheiten' => array(

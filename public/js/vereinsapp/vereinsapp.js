@@ -140,9 +140,9 @@ Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Filtern-Fenster öffnet sich nicht aus dem Fenster zur Dokumentation der Anwesenheit heraus.
 Bootstrap und jquery aktualisieren
-Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
+Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
+Notenbank Verzeichnis prüfen
 
 */

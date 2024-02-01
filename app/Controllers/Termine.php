@@ -95,7 +95,7 @@ class Termine extends BaseController {
             'liste' => 'mitglieder',
             'title' => 'Anwesenheiten dokumentieren',
         );
-        
+
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
@@ -120,10 +120,15 @@ class Termine extends BaseController {
             );
         }
 
+        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
+            'modal_id' => '#liste_filtern_Modal',
+            'title' => 'Termine filtern',
+        );
+
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Termine sortieren',
-        ); 
+        );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Termine/termine', $this->viewdata );

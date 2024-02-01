@@ -224,25 +224,27 @@ class Mitglieder extends BaseController {
             // 'hash' => 'required|alpha_numeric',
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
-                if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-                    $mitglied = array(
-                        'id' => $mitglied->id,
-                        'vorname' => $mitglied->vorname,
-                        'nachname' => $mitglied->nachname,
-                        'geburt' => $mitglied->geburt,
-                        'geschlecht' => $mitglied->geschlecht,
-                        'postleitzahl' => $mitglied->postleitzahl,
-                        'wohnort' => $mitglied->wohnort,
-                        'register' => $mitglied->register,
-                        'funktion' => $mitglied->funktion,
-                        'vorstandschaft' => $mitglied->vorstandschaft,
-                        'aktiv' => $mitglied->aktiv,
-                    );
-                } else {
-                    $email = $mitglied->email;
-                    $mitglied = json_decode( json_encode( $mitglied ), TRUE );
-                    $mitglied['email'] = $email;
+        else foreach( model(Mitglied_Model::class)->findAll() as $mitglied_ ) {
+                $mitglied = array(
+                    'id' => $mitglied_->id,
+                    'vorname' => $mitglied_->vorname,
+                    'nachname' => $mitglied_->nachname,
+                    'geburt' => $mitglied_->geburt,
+                    'geschlecht' => $mitglied_->geschlecht,
+                    'postleitzahl' => $mitglied_->postleitzahl,
+                    'wohnort' => $mitglied_->wohnort,
+                    'register' => $mitglied_->register,
+                    'funktion' => $mitglied_->funktion,
+                    'vorstandschaft' => $mitglied_->vorstandschaft,
+                    'aktiv' => $mitglied_->aktiv,
+                );
+                if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+                    // $mitglied = json_decode( json_encode( $mitglied ), TRUE );
+                    $mitglied['email'] = $mitglied_->email;
+                    $mitglied['erstellung'] = $mitglied_->created_at;
+                    if( $mitglied['erstellung'] != NULL ) $mitglied['erstellung'] = $mitglied['erstellung']->setTimezone('Europe/Berlin')->toDateTimeString();
+                    $mitglied['letzte_aktivitaet'] = $mitglied_->last_active;
+                    if( $mitglied['letzte_aktivitaet'] != NULL ) $mitglied['letzte_aktivitaet'] = $mitglied['letzte_aktivitaet']->setTimezone('Europe/Berlin')->toDateTimeString();
                 }
 
                 foreach( $mitglied as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $mitglied[ $eigenschaft ] = (int)$wert;
