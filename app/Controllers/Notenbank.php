@@ -42,6 +42,8 @@ class Notenbank extends BaseController {
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten'] = TRUE;
+
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
                 'liste' => 'notenbank',

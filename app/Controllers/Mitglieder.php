@@ -46,6 +46,8 @@ class Mitglieder extends BaseController {
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten'] = TRUE;
+
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
                 'liste' => 'mitglieder',
@@ -127,23 +129,22 @@ class Mitglieder extends BaseController {
             );
 
             if( auth()->user()->can( 'mitglieder.rechte' ) ) {
-                $this->viewdata['liste']['verfuegbare_rechte'] = array(
-                    'liste' => 'verfuegbare_rechte',
-                    'beschriftung' => array(
-                        'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
-                    ),
-                );
-
                 $elemente_disabled = array();
                 $elemente_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
                 if( !auth()->user()->can( 'global.einstellungen' ) ) $elemente_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
                 if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $elemente_disabled[] = $verfuegbares_recht['id'];
-                $this->viewdata['checkliste']['vergebene_rechte_des_mitglieds'] = array(
-                    'checkliste' => 'vergebene_rechte',
-                    'aktion' => 'aendern',
-                    'gegen_liste' => 'mitglieder',
-                    'gegen_element_id' => $element_id,
-                    'elemente_disabled' => $elemente_disabled,
+                $this->viewdata['liste']['rechte_vergeben'] = array(
+                    'liste' => 'verfuegbare_rechte',
+                    'beschriftung' => array(
+                        'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
+                    ),
+                    'checkliste' => array(
+                        'checkliste' => 'vergebene_rechte',
+                        'aktion' => 'aendern',
+                        'gegen_liste' => 'mitglieder',
+                        'gegen_element_id' => $element_id,
+                        'elemente_disabled' => $elemente_disabled,
+                    ),
                 );
             }
 

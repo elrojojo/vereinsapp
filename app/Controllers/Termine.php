@@ -49,6 +49,8 @@ class Termine extends BaseController {
         );
         if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true );
 
+        $elemente_disabled = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             'sortieren' => array(
@@ -61,23 +63,20 @@ class Termine extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
             // 'sortable' => true,
-            'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
-        );
-
-        $elemente_disabled = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
-        $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
-            'checkliste' => 'anwesenheiten',
-            'aktion' => 'aendern',
-            'gegen_liste' => 'termine',
-            'bedingte_formatierung' => array(
-                'liste' => 'rueckmeldungen',
-                'klasse' => array(
-                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
+            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'checkliste' => array(
+                'checkliste' => 'anwesenheiten',
+                'aktion' => 'aendern',
+                'gegen_liste' => 'termine',
+                'bedingte_formatierung' => array(
+                    'liste' => 'rueckmeldungen',
+                    'klasse' => array(
+                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
+                    ),
                 ),
+                'elemente_disabled' => $elemente_disabled,
             ),
-            'elemente_disabled' => $elemente_disabled,
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
@@ -97,6 +96,8 @@ class Termine extends BaseController {
         );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten'] = TRUE;
+
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
                 'liste' => 'termine',
@@ -159,37 +160,36 @@ class Termine extends BaseController {
             'collapse' => true,
         );
 
+        $elemente_disabled = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-                ),
+            ),
             // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
             // 'sortable' => true,
-            'zusatzsymbole' => '</span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'checkliste' => array(
+                'checkliste' => 'anwesenheiten',
+                'aktion' => 'aendern',
+                'gegen_liste' => 'termine',
+                'bedingte_formatierung' => array(
+                    'liste' => 'rueckmeldungen',
+                    'klasse' => array(
+                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
+                    ),
+                ),
+                'elemente_disabled' => $elemente_disabled,
+            ),
         );
 
-        $elemente_disabled = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
-        $this->viewdata['checkliste']['dokumentierte_anwesenheiten'] = array(
-            'checkliste' => 'anwesenheiten',
-            'aktion' => 'aendern',
-            'gegen_liste' => 'termine',
-            'bedingte_formatierung' => array(
-                'liste' => 'rueckmeldungen',
-                'klasse' => array(
-                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
-                ),
-            ),
-            'elemente_disabled' => $elemente_disabled,
-        );
-        
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Mitglieder filtern',

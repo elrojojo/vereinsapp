@@ -123,7 +123,6 @@ Verzeichnis filtern und sortieren
 Batch über filtern- und sortieren-Button legen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
-Cluster überarbeiten (Reihenfolge Vorgegebene Werte Register ändern (bspw. bei Auswertungen))
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
@@ -143,7 +142,6 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 Bootstrap und jquery aktualisieren
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Werkzeugkasten handle und handle_liste korrigieren
 Notenbank Verzeichnis konzeptionell überarbeiten (es braucht die struktur, ähnlich wie liste, und verzeichnisse/dateien, ähnlich wie elemente)
 
 */

@@ -7,7 +7,7 @@
 </div>
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
-<?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'], 'checkliste' => $checkliste['dokumentierte_anwesenheiten'] ) ); ?>
+<?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => array( 'anwesenheiten_dokumentieren' => $liste['anwesenheiten_dokumentieren'] ) ) ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
 <?= $this->endSection() ?>
 

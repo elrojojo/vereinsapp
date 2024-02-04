@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
 
-      <?= view( 'Templates/Liste/checkliste', array( 'liste' => $liste, 'checkliste' => $checkliste ) ); ?>
+      <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 
       </div>
       <div class="modal-footer">
