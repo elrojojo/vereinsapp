@@ -57,7 +57,7 @@ class AuthGroups extends ShieldAuthGroups
      */
     public array $permissions = [
         'termine.verwaltung' => 'Verwaltung der Termine',
-        'termine.anwesenheiten' => 'Anwesenheitskontrolle zu Terminen',
+        'termine.anwesenheiten' => 'Dokumentation der Anwesenheit',
         'mitglieder.verwaltung' => 'Verwaltung der Mitglieder',
         'notenbank.verwaltung' => 'Verwaltung der Notenbank',
         'mitglieder.rechte' => 'Vergabe von Rechten',

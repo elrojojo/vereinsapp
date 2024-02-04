@@ -53,12 +53,12 @@ class Termine extends BaseController {
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
@@ -164,12 +164,12 @@ class Termine extends BaseController {
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
+            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
@@ -241,7 +241,6 @@ class Termine extends BaseController {
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $id => $auswertungen ) $this->viewdata['auswertungen'][ $id ]['id'] = $id;
-        if( array_key_exists( 'checkliste', $this->viewdata ) ) foreach( $this->viewdata['checkliste'] as $id => $checkliste ) $this->viewdata['checkliste'][ $id ]['id'] = $id;
         echo view( 'Termine/termin_details', $this->viewdata );
     }
 
