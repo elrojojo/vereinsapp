@@ -47,50 +47,6 @@ class Mitglieder extends BaseController {
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
-        $elemente_disabled = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $elemente_disabled[] = (int)$termin['id'];
-        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
-            'liste' => 'termine',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),             
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
-            // 'sortable' => true,
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
-            'checkliste' => array(
-                'checkliste' => 'anwesenheiten',
-                'aktion' => 'aendern',
-                'gegen_liste' => 'mitglieder',
-                'bedingte_formatierung' => array(
-                    'liste' => 'rueckmeldungen',
-                    'klasse' => array(
-                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
-                    ),
-                ),
-                'elemente_disabled' => $elemente_disabled,
-            ),
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
-            'title' => 'Mitglieder sortieren',
-        );
-
-        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'modal_id' => '#termin_anwesenheiten_Modal',
-            'liste' => 'termine',
-            'title' => 'Anwesenheiten dokumentieren',
-        );
-
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten'] = TRUE;
 

@@ -48,7 +48,7 @@ function Liste_CheckAendern($check) {
                 });
             }
 
-            Schnittstelle_EventVariableUpdLocalstorage(checkliste); // impliziert auch ein Schnittstelle_EventLocalstorageUpdVariable;
+            Schnittstelle_EventVariableUpdLocalstorage(checkliste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_CheckWartenEnde(AJAX.$check);

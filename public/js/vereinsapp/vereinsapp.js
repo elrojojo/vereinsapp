@@ -117,7 +117,6 @@ Termin mit Ende erweitern
 Terminserie / Regeltermine
 Termin als ics exportieren
 Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
-Anzahl Liste-Einträge und Anzahl ausgewählter Checkliste-Einträge anzeigen
 Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
 Verzeichnis filtern und sortieren
 Batch über filtern- und sortieren-Button legen

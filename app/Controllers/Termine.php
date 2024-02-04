@@ -49,52 +49,6 @@ class Termine extends BaseController {
         );
         if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true );
 
-        $elemente_disabled = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
-        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
-            'liste' => 'mitglieder',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            ),
-            // 'sortable' => true,
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
-            'checkliste' => array(
-                'checkliste' => 'anwesenheiten',
-                'aktion' => 'aendern',
-                'gegen_liste' => 'termine',
-                'bedingte_formatierung' => array(
-                    'liste' => 'rueckmeldungen',
-                    'klasse' => array(
-                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
-                    ),
-                ),
-                'elemente_disabled' => $elemente_disabled,
-            ),
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
-            'title' => 'Mitglieder sortieren',
-        );
-
-        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'modal_id' => '#termin_anwesenheiten_Modal',
-            'liste' => 'mitglieder',
-            'title' => 'Anwesenheiten dokumentieren',
-        );
-
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten'] = TRUE;
 
@@ -141,30 +95,22 @@ class Termine extends BaseController {
 
         $this->viewdata['element_id'] = $element_id;
 
-        $filtern_mitglieder = json_decode( model(Termin_Model::class)->find( $element_id )["filtern_mitglieder"] );
-        $kategorie = model(Termin_Model::class)->find( $element_id )["kategorie"];
-        if ( array_key_exists( $kategorie, config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) &&
-             !empty( config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) 
-            if ( empty( $filtern_mitglieder ) ) $filtern_mitglider_kombiniert = config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ];
-            else $filtern_mitglider_kombiniert = array( array ( 'verknuepfung' => "&&", 'filtern' => array_merge( $filtern_mitglieder, config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) ) );
-        else $filtern_mitglider_kombiniert = $filtern_mitglieder;
         $this->viewdata['auswertungen'][ 'auswertungen_termin_'.$element_id ] = array(
-            'liste' => 'rueckmeldungen',
+            'auswertungen' => 'rueckmeldungen',
             'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'termin_id', 'wert' => $element_id ), ),
             'cluster' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
-                'filtern' => json_encode( $filtern_mitglider_kombiniert ),
+                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
             ),
             // 'sortable' => true,
-            'collapse' => true,
         );
 
         $elemente_disabled = array();
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+            'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
@@ -425,6 +371,18 @@ class Termine extends BaseController {
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    protected function termin_filtern_mitglieder_kombiniert( $element_id ) {
+        $termin = model(Termin_Model::class)->find( $element_id );
+        $filtern_mitglieder = json_decode( $termin["filtern_mitglieder"] );
+        $kategorie = $termin["kategorie"];
+        if ( array_key_exists( $kategorie, config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) && !empty( config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) )
+            $filtern_mitglieder_kategorie = config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ];
+        else $filtern_mitglieder_kategorie = array();
+        if( empty( $filtern_mitglieder ) ) return $filtern_mitglieder_kategorie;
+        elseif( empty( $filtern_mitglieder_kategorie ) ) return $filtern_mitglieder;
+        else return array( array ( 'verknuepfung' => "&&", 'filtern' => array_merge( $filtern_mitglieder, $filtern_mitglieder_kategorie ) ) );
     }
 
 }

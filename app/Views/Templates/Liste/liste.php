@@ -1,8 +1,11 @@
-<?php if( array_key_exists( 'werkzeugkasten_liste', $liste ) ) { ?><div class="werkzeugkasten h5 text-secondary text-end mb-1">
+<?php if( array_key_exists( 'werkzeugkasten_liste', $liste ) ) { ?><div class="werkzeugkasten h5 text-end">
     <?php foreach( $liste['werkzeugkasten_liste'] as $aktion => $werkzeug):
         ?><button class="btn werkzeug text-primary" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>"><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i></button>
     <?php endforeach; ?>
 </div><?php } ?>
+<div class="text-secondary text-end small mb-1">
+    <span class="listenstatistik" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="gefunden"></span> Element(e) gefunden<?php if( array_key_exists( 'checkliste', $liste ) ) { ?> / <span class="listenstatistik" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="markiert"></span> Element(e) markiert<?php }?>
+</div>
 <ul id="<?= $liste['id']; ?>" class="liste list-group<?php
 if( array_key_exists( 'checkliste', $liste ) ) echo ' checkliste';
 if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-flush';

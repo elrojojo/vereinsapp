@@ -22,8 +22,8 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
 
     // Zusatzsymbol für Kommentar bei Rückmeldung
     if (zusatzsymbol == "kommentar") {
-        if ($element.parents('.auswertungen[data-liste="rueckmeldungen"]').exists()) {
-            const termin_id = Number(JSON.parse($element.parents('.auswertungen[data-liste="rueckmeldungen"]').attr("data-filtern"))[0].wert);
+        if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {
+            const termin_id = Number(JSON.parse($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-filtern"))[0].wert);
 
             const filtern = [
                 {
