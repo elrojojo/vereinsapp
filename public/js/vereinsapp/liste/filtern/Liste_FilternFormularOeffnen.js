@@ -29,12 +29,7 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
             .addClass("filtern_definition")
             .attr("data-eigenschaft", eigenschaft_);
 
-        $neue_filtern_definition
-            .find(".accordion-button")
-            .attr("data-bs-target", "#filtern_" + eigenschaft_)
-            .text(beschriftung);
-
-        $neue_filtern_definition.find(".accordion-collapse").attr("id", "filtern_" + eigenschaft_);
+        $neue_filtern_definition.find(".beschriftung").text(beschriftung);
 
         if (typ == "vorgegebene_werte") {
             $neue_filtern_definition.find(".filtern_wert").empty();

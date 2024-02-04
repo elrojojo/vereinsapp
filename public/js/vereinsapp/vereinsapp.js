@@ -143,6 +143,7 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 Bootstrap und jquery aktualisieren
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Notenbank Verzeichnis prüfen
+Werkzeugkasten handle und handle_liste korrigieren
+Notenbank Verzeichnis konzeptionell überarbeiten (es braucht die struktur, ähnlich wie liste, und verzeichnisse/dateien, ähnlich wie elemente)
 
 */
