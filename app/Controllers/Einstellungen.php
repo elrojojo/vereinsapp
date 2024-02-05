@@ -27,17 +27,18 @@ class Einstellungen extends BaseController {
             ),
             'vorschau' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
-                'klein' => true,
-                'abschneiden' => true,
+                'klein' => TRUE,
+                'abschneiden' => TRUE,
             ),
+            'listenstatistik' => TRUE,
         );
 
-        $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Meine Abwesenheiten sortieren',
         );
 
-        $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Meine Abwesenheiten filtern',
         );

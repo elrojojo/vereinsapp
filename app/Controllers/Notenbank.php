@@ -18,9 +18,9 @@ class Notenbank extends BaseController {
             ),
             'beschriftung' => array(
                 'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
-                'h5' => true,
+                'h5' => TRUE,
             ),
-            // 'sortable' => true,
+            // 'sortable' => TRUE,
             'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
@@ -34,15 +34,16 @@ class Notenbank extends BaseController {
                 '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
-                // 'klein' => true,
-                // 'zentriert' => true,
-                'abschneiden' => true,
+                // 'klein' => TRUE,
+                // 'zentriert' => TRUE,
+                'abschneiden' => TRUE,
             ),
             // 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'listenstatistik' => TRUE,
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten'] = TRUE;
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
@@ -61,18 +62,18 @@ class Notenbank extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['erstellen'] = array(
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['erstellen'] = array(
                 'modal_id' => '#titel_erstellen_Modal',
                 'title' => 'Titel erstellen',
             );
         }
 
-        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Notenbank filtern',
         ); 
 
-        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Notenbank sortieren',
         ); 

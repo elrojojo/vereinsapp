@@ -14,7 +14,7 @@ class Mitglieder_Abwesenheit_Model extends Model {
         'ende',
         'bemerkung',
     ];
-    protected $useTimestamps = true;
+    protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     

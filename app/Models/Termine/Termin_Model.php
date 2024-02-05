@@ -16,10 +16,10 @@ class Termin_Model extends Model {
         'filtern_mitglieder',
         'bemerkung',
     ];
-    protected $useTimestamps = true;
+    protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = TRUE;
 }

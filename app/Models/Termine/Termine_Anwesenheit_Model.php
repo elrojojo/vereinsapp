@@ -13,7 +13,7 @@ class Termine_Anwesenheit_Model extends Model {
         'mitglied_id',
         'bemerkung',
     ];
-    protected $useTimestamps = true;
+    protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 

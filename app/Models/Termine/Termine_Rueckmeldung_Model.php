@@ -14,7 +14,7 @@ class Termine_Rueckmeldung_Model extends Model {
         'status',
         'bemerkung',
     ];
-    protected $useTimestamps = true;
+    protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 

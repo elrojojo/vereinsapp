@@ -23,7 +23,7 @@ class Startseite extends BaseController {
             ),
             'vorschau' => array(
                 'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
-                'klein' => true,
+                'klein' => TRUE,
             ),
         );
 
@@ -34,7 +34,7 @@ class Startseite extends BaseController {
                 'filtern' => array(
                     array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
                     array( 'operator' => '<=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ),
-                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
+                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
                 ),
             ), ),
             'sortieren' => array(
@@ -49,7 +49,7 @@ class Startseite extends BaseController {
             ),
             'vorschau' => array(
                 'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
-                'klein' => true,
+                'klein' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
         );
@@ -61,7 +61,7 @@ class Startseite extends BaseController {
                 'filtern' => array(
                     array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => JETZT->toDateTimeString() ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
-                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true ),
+                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
                 ),
             ), ),
             'sortieren' => array(
@@ -78,7 +78,7 @@ class Startseite extends BaseController {
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
                     </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ),
-                'klein' => true,
+                'klein' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
         );

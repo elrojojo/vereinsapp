@@ -25,9 +25,9 @@ class Termine extends BaseController {
             ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                'h5' => true,
+                'h5' => TRUE,
             ),
-            // 'sortable' => true,
+            // 'sortable' => TRUE,
             'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
@@ -41,16 +41,17 @@ class Termine extends BaseController {
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
                     <div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
                     </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ),
-                'klein' => true,
-                'zentriert' => true,
-                // 'abschneiden' => true,
+                'klein' => TRUE,
+                'zentriert' => TRUE,
+                // 'abschneiden' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'listenstatistik' => TRUE,
         );
-        if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => true );
+        if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten'] = TRUE;
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
@@ -69,18 +70,18 @@ class Termine extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['erstellen'] = array(
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
                 'modal_id' => '#termin_erstellen_Modal',
                 'title' => 'Termin erstellen',
             );
         }
 
-        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Termine filtern',
         );
 
-        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Termine sortieren',
         );
@@ -103,7 +104,7 @@ class Termine extends BaseController {
                 'eigenschaft' => 'register',
                 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
             ),
-            // 'sortable' => true,
+            // 'sortable' => TRUE,
         );
 
         $elemente_disabled = array();
@@ -119,7 +120,7 @@ class Termine extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
-            // 'sortable' => true,
+            // 'sortable' => TRUE,
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
@@ -134,14 +135,15 @@ class Termine extends BaseController {
                 ),
                 'elemente_disabled' => $elemente_disabled,
             ),
+            'listenstatistik' => TRUE,
         );
 
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Mitglieder filtern',
         );
 
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Mitglieder sortieren',
         );
@@ -353,7 +355,7 @@ class Termine extends BaseController {
             'ajax_id' => 'required|is_natural',
             'termin_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
+            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ TRUE, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.anwesenheiten' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {

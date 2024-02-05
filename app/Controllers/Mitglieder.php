@@ -26,9 +26,9 @@ class Mitglieder extends BaseController {
             ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                'h5' => true,
+                'h5' => TRUE,
             ),
-            // 'sortable' => true,
+            // 'sortable' => TRUE,
             'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
@@ -39,16 +39,17 @@ class Mitglieder extends BaseController {
             ),
             'vorschau' => array(
                 'beschriftung' => '',
-                // 'klein' => true,
-                // 'zentriert' => true,
-                'abschneiden' => true,
+                // 'klein' => TRUE,
+                // 'zentriert' => TRUE,
+                'abschneiden' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'listenstatistik' => TRUE,
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten'] = TRUE;
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
@@ -78,18 +79,18 @@ class Mitglieder extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_liste']['erstellen'] = array(
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['erstellen'] = array(
                 'modal_id' => '#mitglied_erstellen_Modal',
                 'title' => 'Mitglied erstellen',
             ); 
         }
 
-        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Mitglieder filtern',
         );
 
-        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Mitglieder sortieren',
         );
@@ -115,7 +116,7 @@ class Mitglieder extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
-            // 'sortable' => true,
+            // 'sortable' => TRUE,
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
@@ -130,14 +131,15 @@ class Mitglieder extends BaseController {
                 ),
                 'elemente_disabled' => $elemente_disabled,
             ),
+            'listenstatistik' => TRUE,
         );
 
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['filtern'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
             'modal_id' => '#liste_filtern_Modal',
             'title' => 'Mitglieder filtern',
         );
 
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten_liste']['sortieren'] = array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
             'modal_id' => '#liste_sortieren_Modal',
             'title' => 'Mitglieder sortieren',
         );
@@ -169,8 +171,8 @@ class Mitglieder extends BaseController {
                 ),
                 'vorschau' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
-                    'klein' => true,
-                    'abschneiden' => true,
+                    'klein' => TRUE,
+                    'abschneiden' => TRUE,
                 ),
             );
 
@@ -216,7 +218,7 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<div class="row g-0 my-1">
                         <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
                         </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => $element_id ) ),
-                    'klein' => true,
+                    'klein' => TRUE,
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             );
@@ -498,7 +500,7 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'permit_empty', 'in_list[ true, false ]' ] ],
+            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'permit_empty', 'in_list[ TRUE, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
@@ -527,7 +529,7 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
-        else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], true );
+        else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], TRUE );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -588,7 +590,7 @@ class Mitglieder extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( model(Abwesenheit_Model::class)->find( $this->request->getPost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Abwesenheit_Model::class)->delete( $this->request->getPost()['id'], true );
+        else model(Abwesenheit_Model::class)->delete( $this->request->getPost()['id'], TRUE );
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -637,7 +639,7 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
+            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ TRUE, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if(
                 !auth()->user()->can( 'mitglieder.rechte' ) AND
