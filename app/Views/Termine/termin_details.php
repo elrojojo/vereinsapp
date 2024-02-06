@@ -17,7 +17,7 @@
 </div>
 
 <div class="container mb-2">
-<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen[ 'auswertungen_termin_'.$element_id ] ) ); ?>
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'] ) ); ?>
 </div>
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>

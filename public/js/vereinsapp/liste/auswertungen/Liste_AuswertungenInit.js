@@ -4,7 +4,10 @@ function Liste_AuswertungenInit() {
         $('.auswertungen[data-auswertungen="' + liste + '"]').each(function () {
             const $auswertungen = $(this);
             const auswertungen_instanz = $auswertungen.attr("id");
-            G.LISTEN[liste].auswertungen[auswertungen_instanz] = { $blanko_auswertung: $auswertungen.find(".blanko").first() };
+            G.LISTEN[liste].auswertungen[auswertungen_instanz] = {
+                eigenschaft: undefined,
+                $blanko_auswertung: $auswertungen.find(".blanko").first(),
+            };
         });
         $('.auswertungen[data-auswertungen="' + liste + '"]').empty();
     });

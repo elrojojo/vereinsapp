@@ -96,13 +96,17 @@ class Termine extends BaseController {
 
         $this->viewdata['element_id'] = $element_id;
 
-        $this->viewdata['auswertungen'][ 'auswertungen_termin_'.$element_id ] = array(
+        $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
-            'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'termin_id', 'wert' => $element_id ), ),
-            'cluster' => array(
+            'status_auswahl' => array( 0 => "ZUSAGEN", 1 => "ABSAGEN" ),
+            'liste' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
                 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
+            ),
+            'gegen_liste' => array(
+                'liste' => 'termine',
+                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $element_id ), ),
             ),
             // 'sortable' => TRUE,
         );

@@ -1,113 +1,152 @@
-function Liste_AuswertungenAktualisieren($auswertungen, liste) {
+function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = $auswertungen.attr("id");
 
-    // TABELLE FILTERN
-    // filtern aus data
-    let filtern_data = $auswertungen.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Liste_SqlFiltern2FilternZurueck(JSON.parse(filtern_data), liste);
-    else filtern_data = new Array();
-    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_data, liste);
+    // STATUS_AUSWAHL DEFINIEREN
+    let status_auswahl = $auswertungen.attr("data-status_auswahl");
+    if (typeof status_auswahl !== "undefined") status_auswahl = JSON.parse(status_auswahl);
+    else status_auswahl = new Object();
 
-    // CLUSTER_TABELLE DEFINIEREN
-    let cluster = $auswertungen.attr("data-cluster");
-    if (typeof cluster !== "undefined") cluster = JSON.parse(cluster);
-    else cluster = new Object();
+    // LISTE DEFINIEREN
+    // liste aus data
+    let liste_data = $auswertungen.attr("data-liste");
+    if (typeof liste_data !== "undefined") liste_data = JSON.parse(liste_data);
+    else liste_data = new Object();
+    // liste aus liste_data
+    let liste = undefined;
+    if ("liste" in liste_data) liste = liste_data.liste;
+    // eigenschaft aus liste_data
+    let eigenschaft_data = undefined;
+    if ("eigenschaft" in liste_data) eigenschaft_data = liste_data.eigenschaft;
+    // eigenschaft aus LocalStorage
+    const eigenschaft_LocalStorage = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].eigenschaft;
+    // eigenschaft_data und eigenschaft_LocalStorage kombinieren
+    let eigenschaft;
+    if (typeof eigenschaft_LocalStorage === "undefined") eigenschaft = eigenschaft_data;
+    else eigenschaft = eigenschaft_LocalStorage;
+    // filtern aus liste_data
+    let liste_filtern = new Array();
+    if ("filtern" in liste_data) liste_filtern = Liste_SqlFiltern2FilternZurueck(liste_data.filtern, liste);
+    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
-    // CLUSTER_TABELLE FILTERN
-    let cluster_filtern;
-    if ("filtern" in cluster) cluster_filtern = Liste_SqlFiltern2FilternZurueck(cluster.filtern, cluster.liste);
-    else cluster_filtern = new Array();
-    const cluster_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(cluster_filtern, cluster.liste);
+    // GEGEN_LISTE DEFINIEREN
+    // gegen_liste_data aus data
+    let gegen_liste_data = $auswertungen.attr("data-gegen_liste");
+    if (typeof gegen_liste_data !== "undefined") gegen_liste_data = JSON.parse(gegen_liste_data);
+    else gegen_liste_data = new Object();
+    // gegen_liste aus gegen_liste_data
+    let gegen_liste = undefined;
+    if ("liste" in gegen_liste_data) gegen_liste = gegen_liste_data.liste;
+    // gegen_liste_filtern aus gegen_liste_data
+    let gegen_liste_filtern = new Array();
+    if ("filtern" in gegen_liste_data) gegen_liste_filtern = Liste_SqlFiltern2FilternZurueck(gegen_liste_data.filtern, gegen_liste);
+    const gegen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(gegen_liste_filtern, gegen_liste);
 
-    // CLUSTER_TABELLE CLUSTERN
-    const cluster_tabelle_gefiltert_geclustert = new Object();
-    $.each(cluster_tabelle_gefiltert, function (position, cluster_element) {
-        const wert = cluster_element[cluster.eigenschaft];
-        if (!Array.isArray(cluster_tabelle_gefiltert_geclustert[wert])) cluster_tabelle_gefiltert_geclustert[wert] = new Array();
-        cluster_tabelle_gefiltert_geclustert[wert].push(cluster_element.id);
+    // AUSWERTUNGEN FILTERN
+    // filtern für liste definieren
+    const auswertungen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
+    const eigenschaft_werte = new Array();
+    $.each(tabelle_gefiltert, function () {
+        const element = this;
+        auswertungen_liste_filtern.filtern.push({ operator: "==", eigenschaft: G.LISTEN[liste].element + "_id", wert: element.id });
+        // werte zur eigenschaft sammeln
+        if (!eigenschaft_werte.includes(element[eigenschaft])) eigenschaft_werte.push(element[eigenschaft]);
+    });
+    // filtern für gegen_liste definieren
+    const auswertungen_gegen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
+    $.each(gegen_tabelle_gefiltert, function () {
+        const element = this;
+        auswertungen_gegen_liste_filtern.filtern.push({ operator: "==", eigenschaft: G.LISTEN[gegen_liste].element + "_id", wert: element.id });
+    });
+    // filtern für liste und filtern für gegen_liste kombinieren
+    const auswertungen_filtern = [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern, auswertungen_gegen_liste_filtern] }];
+    // auswertungen filtern
+    const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(auswertungen_filtern, auswertungen);
+
+    // WERTE ZUR EIGENSCHAFT SORTIEREN
+    eigenschaft_werte.sort();
+
+    // META_IDS VORBEREITEN
+    const meta_ids = new Object();
+    // ergebnis_neutral vorbereiten
+    meta_ids.ergebnis_neutral = new Object();
+    $.each(eigenschaft_werte, function (position, wert) {
+        meta_ids.ergebnis_neutral[wert] = new Array();
+    });
+    // ergebnis vorbereiten
+    meta_ids.ergebnis = new Object();
+    $.each(eigenschaft_werte, function (position, wert) {
+        meta_ids.ergebnis[wert] = new Object();
+        $.each(status_auswahl, function (status) {
+            meta_ids.ergebnis[wert][status] = new Array();
+        });
+    });
+    // ergebnis_wert vorbereiten
+    meta_ids.ergebnis_wert = new Object();
+    $.each(eigenschaft_werte, function (position, wert) {
+        meta_ids.ergebnis_wert[wert] = new Array();
+    });
+    // ergebnis_status vorbereiten
+    meta_ids.ergebnis_status = new Object();
+    $.each(status_auswahl, function (status) {
+        meta_ids.ergebnis_status[status] = new Array();
     });
 
-    // AUSWERTUNG DURCHFÜHREN
-    const auswertungen = new Object();
-    const auswertung_summe = {
-        positiv_anzahl: 0,
-        neutral_anzahl: 0,
-        negativ_anzahl: 0,
-    };
-
-    const auswertungen_gefiltert_sortiert = new Array();
-    $.each(cluster_tabelle_gefiltert_geclustert, function (wert) {
-        auswertungen[wert] = new Object();
-
-        auswertungen[wert].positiv = new Array();
-        auswertungen[wert].neutral = new Array();
-        auswertungen[wert].negativ = new Array();
-        $.each(tabelle_gefiltert, function () {
-            const element = this;
-            if ("id" in element) {
-                $.each(cluster_tabelle_gefiltert_geclustert[wert], function (position, cluster_element_id) {
-                    if (element[G.LISTEN[cluster.liste].element + "_id"] == cluster_element_id) {
-                        if (element.status == 0) auswertungen[wert].negativ.push(cluster_element_id);
-                        else if (element.status >= 1) auswertungen[wert].positiv.push(cluster_element_id);
-                        cluster_tabelle_gefiltert_geclustert[wert].splice(position, 1);
-                    }
-                });
-            }
-        });
-        auswertungen[wert].neutral = cluster_tabelle_gefiltert_geclustert[wert];
-
-        auswertungen[wert].positiv_anzahl = auswertungen[wert].positiv.length;
-        auswertungen[wert].neutral_anzahl = auswertungen[wert].neutral.length;
-        auswertungen[wert].negativ_anzahl = auswertungen[wert].negativ.length;
-        auswertungen[wert].alle_anzahl = auswertungen[wert].positiv_anzahl + auswertungen[wert].neutral_anzahl + auswertungen[wert].negativ_anzahl;
-
-        auswertung_summe.positiv_anzahl += auswertungen[wert].positiv_anzahl;
-        auswertung_summe.neutral_anzahl += auswertungen[wert].neutral_anzahl;
-        auswertung_summe.negativ_anzahl += auswertungen[wert].negativ_anzahl;
-
-        auswertungen[wert].wert = wert;
-        auswertungen_gefiltert_sortiert.push(auswertungen[wert]);
+    // META_IDS CLUSTERN
+    // ergebnis, ergebnis_wert und ergebnis_status clustern
+    $.each(auswertungen_tabelle_gefiltert, function () {
+        const auswertung = this;
+        const status = auswertung.status;
+        const element_id = auswertung[G.LISTEN[liste].element + "_id"];
+        const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
+        meta_ids.ergebnis[wert][status].push(element_id);
+        meta_ids.ergebnis_status[status].push(element_id);
+        meta_ids.ergebnis_wert[wert].push(element_id);
+    });
+    // ergebnis_neutral clustern und ergebnis_neutral in ergebnis_wert integrieren
+    $.each(tabelle_gefiltert, function (position, element) {
+        const element_id = element.id;
+        const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
+        if (!meta_ids.ergebnis_wert[wert].includes(element_id)) {
+            meta_ids.ergebnis_wert[wert].push(element_id);
+            meta_ids.ergebnis_neutral[wert].push(element_id);
+        }
     });
 
     // DOM LÖSCHEN
-    $auswertungen.find('.auswertung[data-auswertung="' + cluster.eigenschaft + '"]').each(function () {
+    $auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"]').each(function () {
         const $auswertung = $(this);
-        if (!auswertungen_gefiltert_sortiert.includes(auswertungen[$auswertung.attr("data-wert")])) $auswertung.remove();
+        if (typeof $auswertung.attr("data-wert") === "undefined" || !eigenschaft_werte.includes($auswertung.attr("data-wert"))) $auswertung.remove();
     });
 
     // DOM ERGÄNZEN
-    $.each(auswertungen_gefiltert_sortiert, function (position, auswertung) {
-        const $auswertung = $auswertungen.find('.auswertung[data-auswertung="' + cluster.eigenschaft + '"][data-wert="' + auswertung.wert + '"]');
-
+    $.each(eigenschaft_werte, function (position, wert) {
+        const $auswertung = $auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"][data-wert="' + wert + '"]');
         if (!$auswertung.exists()) {
-            const $neue_auswertung = G.LISTEN[liste].auswertungen[auswertungen_instanz].$blanko_auswertung
+            const $neue_auswertung = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
                 .clone()
                 .removeClass("blanko invisible")
-                .attr("data-auswertung", cluster.eigenschaft)
-                .attr("data-wert", auswertung.wert);
+                .attr("data-auswertung", eigenschaft)
+                .attr("data-wert", wert);
 
-            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#auswertung_" + cluster.eigenschaft + "_" + auswertung.wert);
-            $neue_auswertung.find(".collapse").attr("id", "auswertung_" + cluster.eigenschaft + "_" + auswertung.wert);
+            $neue_auswertung
+                .find('[data-bs-toggle="collapse"]')
+                .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_" + wert);
+
+            $neue_auswertung.find(".collapse").attr("id", "auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_" + wert);
 
             if (position == 0) $neue_auswertung.appendTo($auswertungen);
             else
                 $neue_auswertung.insertAfter(
-                    $auswertungen.find(
-                        '.auswertung[data-auswertung="' +
-                            cluster.eigenschaft +
-                            '"][data-wert="' +
-                            auswertungen_gefiltert_sortiert[position - 1].wert +
-                            '"]'
-                    )
+                    $auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"][data-wert="' + eigenschaft_werte[position - 1] + '"]')
                 );
         }
     });
 
-    if (!$auswertungen.find('.auswertung_summe[data-auswertung="' + cluster.eigenschaft + '"]').exists()) {
-        const $neue_auswertung_summe = G.LISTEN[liste].auswertungen[auswertungen_instanz].$blanko_auswertung
+    if (!$auswertungen.find('.auswertung_summe[data-auswertung="' + eigenschaft + '"]').exists()) {
+        const $neue_auswertung_summe = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
             .clone()
             .removeClass("blanko invisible")
-            .attr("data-auswertung", cluster.eigenschaft)
+            .attr("data-auswertung", eigenschaft)
             .removeClass("auswertung")
             .addClass("auswertung_summe");
         $neue_auswertung_summe.find('[data-bs-toggle="collapse"]').removeAttr("data-bs-toggle role");
@@ -116,58 +155,68 @@ function Liste_AuswertungenAktualisieren($auswertungen, liste) {
         $neue_auswertung_summe.find(".progress").remove();
         $neue_auswertung_summe.find(".beschriftung").text("Summe");
 
-        $neue_auswertung_summe.insertAfter($auswertungen.find('.auswertung[data-auswertung="' + cluster.eigenschaft + '"]').last());
+        $neue_auswertung_summe.insertAfter($auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"]').last());
     }
-    // DOM SORTIEREN ...
 
     // AUSWERTUNG AKTUALISIEREN
-    $('.auswertung[data-auswertung="' + cluster.eigenschaft + '"]').each(function () {
+    $('.auswertung[data-auswertung="' + eigenschaft + '"]').each(function () {
         const $auswertung = $(this);
         const wert = $auswertung.attr("data-wert");
 
         // BESCHRIFTUNG AKTUALISIEREN
-        $auswertung.find(".beschriftung").text(VORGEGEBENE_WERTE[cluster.liste][cluster.eigenschaft][wert].beschriftung);
+        $auswertung.find(".beschriftung").text(VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung);
+
+        // ERGEBNIS_ANZAHL AKTUALISIEREN
+        $auswertung.find(".ergebnis_anzahl").each(function () {
+            const $ergebnis = $(this);
+            const status = $ergebnis.attr("data-status");
+            if ($ergebnis.hasClass("progress-bar"))
+                $ergebnis.attr("style", "width: " + (meta_ids.ergebnis[wert][status].length / meta_ids.ergebnis_wert[wert].length) * 100 + "%");
+            else $ergebnis.text(meta_ids.ergebnis[wert][status].length);
+        });
+        // ERGEBNIS_ANZAHL_NEUTRAL AKTUALISIEREN
+        $auswertung.find(".ergebnis_neutral_anzahl").each(function () {
+            const $ergebnis = $(this);
+            if ($ergebnis.hasClass("progress-bar"))
+                $ergebnis.attr("style", "width: " + (meta_ids.ergebnis_neutral[wert].length / meta_ids.ergebnis_wert[wert].length) * 100 + "%");
+            else $ergebnis.text(meta_ids.ergebnis_neutral[wert].length);
+        });
 
         // ERGEBNIS AKTUALISIEREN
         $auswertung.find(".ergebnis").each(function () {
             const $ergebnis = $(this);
-            const ergebnis = $ergebnis.attr("data-ergebnis");
+            const status = $ergebnis.attr("data-status");
+            filtern = "";
+            $.each(meta_ids.ergebnis[wert][status], function (position, id) {
+                filtern += '{"operator":"==","eigenschaft":"id","wert":' + id + "}";
+                if (position < meta_ids.ergebnis[wert][status].length - 1) filtern += ",";
+            });
+            filtern = '[{"verknuepfung":"||","filtern":[' + filtern + "]}]";
+            $ergebnis.attr("data-filtern", filtern);
+        });
 
-            if (ergebnis == "positiv" || ergebnis == "neutral" || ergebnis == "negativ") {
-                const filtern = new Array();
-                const filtern_knoten = { verknuepfung: "||", filtern: new Array() };
-
-                if (auswertungen[wert][ergebnis].length > 0)
-                    $.each(auswertungen[wert][ergebnis], function (position, id) {
-                        filtern_knoten.filtern.push({
-                            operator: "==",
-                            eigenschaft: "id",
-                            wert: id,
-                        });
-                    });
-                else
-                    filtern_knoten.filtern.push({
-                        operator: "==",
-                        eigenschaft: "id",
-                        wert: undefined,
-                    });
-                filtern.push(filtern_knoten);
-                $ergebnis.attr("data-filtern", JSON.stringify(filtern));
-            } else if (ergebnis == "positiv_anzahl" || ergebnis == "neutral_anzahl" || ergebnis == "negativ_anzahl") {
-                if ($ergebnis.hasClass("progress-bar"))
-                    $ergebnis.attr("style", "width: " + (auswertungen[wert][ergebnis] / auswertungen[wert].alle_anzahl) * 100 + "%");
-                else $ergebnis.text(auswertungen[wert][ergebnis]);
-            }
+        // ERGEBNIS_NEUTRAL AKTUALISIEREN
+        $auswertung.find(".ergebnis_neutral").each(function () {
+            const $ergebnis = $(this);
+            filtern = "";
+            $.each(meta_ids.ergebnis_neutral[wert], function (position, id) {
+                filtern += '{"operator":"==","eigenschaft":"id","wert":' + id + "}";
+                if (position < meta_ids.ergebnis_neutral[wert].length - 1) filtern += ",";
+            });
+            filtern = '[{"verknuepfung":"||","filtern":[' + filtern + "]}]";
+            $ergebnis.attr("data-filtern", filtern);
         });
     });
 
     // SUMME AKTUALISIEREN
-    $('.auswertung_summe[data-auswertung="' + cluster.eigenschaft + '"]').each(function () {
-        const $auswertung_summe = $(this);
-        $auswertung_summe.find(".ergebnis").each(function () {
+    $('.auswertung_summe[data-auswertung="' + eigenschaft + '"]').each(function () {
+        const $auswertung = $(this);
+        $auswertung.find(".ergebnis_anzahl").each(function () {
             const $ergebnis = $(this);
-            const ergebnis = $ergebnis.attr("data-ergebnis");
-            $ergebnis.text(auswertung_summe[ergebnis]);
+            const status = $ergebnis.attr("data-status");
+            if ($ergebnis.hasClass("progress-bar"))
+                $ergebnis.attr("style", "width: " + (meta_ids.ergebnis_status[status][status].length / tabelle_gefiltert.length) * 100 + "%");
+            else $ergebnis.text(meta_ids.ergebnis_status[status].length);
         });
     });
 }
