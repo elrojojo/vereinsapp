@@ -27,14 +27,9 @@ class Termine extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'h5' => TRUE,
             ),
-            // 'sortable' => TRUE,
-            'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
-            //     'target' => '#element_loeschen_Modal',
-            //     'aktion' => 'loeschen',
-            // ),
+            'link' => TRUE,
             'symbol' => array(
                 'symbol' => SYMBOLE['info']['bootstrap'],
-                // 'farbe' => 'danger',
             ),
             'vorschau' => array(
                 'beschriftung' => '<div class="row g-0 my-1">
@@ -43,7 +38,6 @@ class Termine extends BaseController {
                     </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ),
                 'klein' => TRUE,
                 'zentriert' => TRUE,
-                // 'abschneiden' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'listenstatistik' => TRUE,
@@ -108,7 +102,6 @@ class Termine extends BaseController {
                 'liste' => 'termine',
                 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $element_id ), ),
             ),
-            // 'sortable' => TRUE,
         );
 
         $elemente_disabled = array();
@@ -124,7 +117,6 @@ class Termine extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
-            // 'sortable' => TRUE,
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',

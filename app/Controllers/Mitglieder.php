@@ -29,7 +29,7 @@ class Mitglieder extends BaseController {
                 'h5' => TRUE,
             ),
             // 'sortable' => TRUE,
-            'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
+            'link' => TRUE, // ODER 'modal' => array( 
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
             // ),
@@ -109,14 +109,12 @@ class Mitglieder extends BaseController {
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $elemente_disabled[] = (int)$termin['id'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'termine',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),             
             ),
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
-            // 'sortable' => TRUE,
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
@@ -210,7 +208,7 @@ class Mitglieder extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
-                'link' => site_url().'termine',
+                'link' => TRUE,
                 'symbol' => array(
                     'symbol' => SYMBOLE['info']['bootstrap'],
                 ),
@@ -255,7 +253,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'alle_mitglieder',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                

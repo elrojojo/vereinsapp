@@ -10,14 +10,14 @@ if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= jso
 ?> data-element_id="<?= $verzeichnis['element_id']; ?>">
 
     <li class="blanko invisible text-body list-group-item<?php
-    if( array_key_exists( 'link', $verzeichnis ) ) { ?> list-group-item-action<?php } ?>"<?php
-    if( array_key_exists( 'link', $verzeichnis ) ) { ?> role="button"<?php } ?>>
+    if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> list-group-item-action<?php } ?>"<?php
+    if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> role="button"<?php } ?>>
             
         <span class="beschriftung"></span>
 
-        <?php if( array_key_exists( 'link', $verzeichnis ) ) { ?><a href="" class="btn_verzeichnis_oeffnen stretched-link"><?php } ?>
+        <?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?><a class="btn_verzeichnis_oeffnen stretched-link"><?php } ?>
         <?php if( array_key_exists( 'symbol', $verzeichnis ) ) { ?><i class="bi text-primary float-start me-1 symbol"></i><?php } ?>
-        <?php if( array_key_exists( 'link', $verzeichnis ) ) { ?></a><?php } ?>
+        <?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?></a><?php } ?>
 
         <?php if( array_key_exists( 'zusatzsymbole', $verzeichnis ) ) { ?><div class="float-end zusatzsymbole"><?= $verzeichnis['zusatzsymbole']; ?></div><?php } ?>
 

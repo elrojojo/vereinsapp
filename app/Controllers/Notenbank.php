@@ -20,25 +20,17 @@ class Notenbank extends BaseController {
                 'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'h5' => TRUE,
             ),
-            // 'sortable' => TRUE,
-            'link' => site_url().AKTIVER_CONTROLLER, // ODER 'modal' => array( // ODER 
-            //     'target' => '#element_loeschen_Modal',
-            //     'aktion' => 'loeschen',
-            // ),
+            'link' => TRUE,
             'symbol' => array(
                 'symbol' => SYMBOLE['info']['bootstrap'],
-                // 'farbe' => 'danger',
             ),
             'vorschau' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
-                // 'klein' => TRUE,
-                // 'zentriert' => TRUE,
                 'abschneiden' => TRUE,
             ),
-            // 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'listenstatistik' => TRUE,
         );
 
@@ -117,7 +109,6 @@ class Notenbank extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'titel_nr', 'wert' => '1' ), ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),                

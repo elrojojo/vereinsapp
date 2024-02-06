@@ -142,8 +142,6 @@ Bootstrap und jquery aktualisieren
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 Notenbank Verzeichnis konzeptionell überarbeiten (es braucht die struktur, ähnlich wie liste, und verzeichnisse/dateien, ähnlich wie elemente)
-Auftritt nur aktive
-link am element funktioniert nicht
 meta_ids in G.LISTEN[liste].auswertungen[auswertungen]
 
 */

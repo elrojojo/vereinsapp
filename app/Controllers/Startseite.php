@@ -43,7 +43,7 @@ class Startseite extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
-            'link' => site_url().'termine',
+            'link' => TRUE,
             'symbol' => array(
                 'symbol' => SYMBOLE['info']['bootstrap'],
             ),
@@ -70,7 +70,7 @@ class Startseite extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
-            'link' => site_url().'termine',
+            'link' => TRUE,
             'symbol' => array(
                 'symbol' => SYMBOLE['info']['bootstrap'],
             ),
