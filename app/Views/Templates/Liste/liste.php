@@ -1,5 +1,5 @@
 <?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="werkzeugkasten h5 text-end">
-    <?php if( array_key_exists( 'checkliste', $liste ) ) foreach( $liste['checkliste']['werkzeugkasten'] as $aktion => $werkzeug):
+    <?php if( array_key_exists( 'checkliste', $liste ) AND array_key_exists( 'werkzeugkasten', $liste['checkliste'] ) ) foreach( $liste['checkliste']['werkzeugkasten'] as $aktion => $werkzeug):
         ?><button class="btn btn_<?= $aktion; ?> werkzeug text-primary" data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>"><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i></button>
     <?php endforeach; ?>
     <?php foreach( $liste['werkzeugkasten'] as $aktion => $werkzeug):
