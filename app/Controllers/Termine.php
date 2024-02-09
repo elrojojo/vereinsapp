@@ -131,11 +131,11 @@ class Termine extends BaseController {
             'listenstatistik' => TRUE,
         );
 
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
+        if( auth()->user()->can( 'termine.anwesenheiten' ) ) $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
             'title' => 'Alle abwählen',
         );
 
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
+        if( auth()->user()->can( 'termine.anwesenheiten' ) ) $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
             'title' => 'Alle anwählen',
         );
 
