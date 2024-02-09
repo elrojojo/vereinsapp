@@ -3,7 +3,7 @@ if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] 
 ?> mb-1" data-auswertungen="<?= $auswertungen['auswertungen']; ?>" data-status_auswahl='<?= json_encode( $auswertungen['status_auswahl'], JSON_UNESCAPED_UNICODE ); ?>'<?php
 if( array_key_exists( 'liste', $auswertungen ) ) { ?> data-liste='<?= json_encode( $auswertungen['liste'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste='<?= json_encode( $auswertungen['gegen_liste'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-?> style="list-style-type: none; padding:0px;">
+?> style="list-style-type: none;">
 
     <li class="auswertung blanko invisible">
         <div class="row g-0" data-bs-toggle="collapse" role="button">
@@ -14,7 +14,7 @@ if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste='<?
                 <?php if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary ms-1 sortable_handle" role="button"></i><?php } ?>
                 <div class="progress">
                     <div class="ergebnis_anzahl progress-bar bg-success" data-status=1 role="progressbar"></div>
-                    <div class="ergebnis_anzahl progress-bar bg-transparent" data-status=1 role="progressbar"></div>
+                    <div class="ergebnis_anzahl progress-bar bg-transparent" data-status=0 role="progressbar"></div>
                     <div class="ergebnis_anzahl progress-bar bg-danger" data-status=2 role="progressbar"></div>
                 </div>
             </div>
