@@ -44,9 +44,6 @@ class Startseite extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
             'link' => TRUE,
-            'symbol' => array(
-                'symbol' => SYMBOLE['info']['bootstrap'],
-            ),
             'vorschau' => array(
                 'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
                 'klein' => TRUE,
@@ -71,9 +68,6 @@ class Startseite extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
             'link' => TRUE,
-            'symbol' => array(
-                'symbol' => SYMBOLE['info']['bootstrap'],
-            ),
             'vorschau' => array(
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>

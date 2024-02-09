@@ -33,10 +33,10 @@ class Mitglieder extends BaseController {
             //     'target' => '#element_loeschen_Modal',
             //     'aktion' => 'loeschen',
             // ),
-            'symbol' => array(
-                'symbol' => SYMBOLE['info']['bootstrap'],
-                // 'farbe' => 'danger',
-            ),
+            // 'symbol' => array(
+            //     'symbol' => SYMBOLE['info']['bootstrap'],
+            //     'farbe' => 'danger',
+            // ),
             'vorschau' => array(
                 'beschriftung' => '',
                 // 'klein' => TRUE,
@@ -209,9 +209,6 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
                 'link' => TRUE,
-                'symbol' => array(
-                    'symbol' => SYMBOLE['info']['bootstrap'],
-                ),
                 'vorschau' => array(
                     'beschriftung' => '<div class="row g-0 my-1">
                         <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>

@@ -21,9 +21,6 @@ class Notenbank extends BaseController {
                 'h5' => TRUE,
             ),
             'link' => TRUE,
-            'symbol' => array(
-                'symbol' => SYMBOLE['info']['bootstrap'],
-            ),
             'vorschau' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.

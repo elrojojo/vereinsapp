@@ -147,9 +147,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'mitglied' => array ( 'bootstrap' => 'person' ),
     'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
-    'info' => array( 'bootstrap' => 'info-circle' ),
-    // 'link' => array( 'bootstrap' => 'link-45deg' ),
-    // 'email' => array( 'bootstrap' => 'envelope' ),
+    // 'info' => array( 'bootstrap' => 'info-circle' ),
 
     'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),

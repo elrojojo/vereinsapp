@@ -122,11 +122,11 @@ Verzeichnis filtern und sortieren
 Batch über filtern- und sortieren-Button legen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
+Link zu Github neben die Version
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Formatierung eines Werts flexibel (inkl. möglichem Symbol)
-View für checkliste mit liste vergleichbar machen (bspw. auch als h5 verfügbar machen, bzw. miteinander verschmelzen?)
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Functionen in vereinsapp.js auslagern

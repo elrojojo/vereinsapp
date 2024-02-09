@@ -28,9 +28,6 @@ class Termine extends BaseController {
                 'h5' => TRUE,
             ),
             'link' => TRUE,
-            'symbol' => array(
-                'symbol' => SYMBOLE['info']['bootstrap'],
-            ),
             'vorschau' => array(
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
