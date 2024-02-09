@@ -14,20 +14,20 @@ if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste='<?
                 <?php if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary ms-1 sortable_handle" role="button"></i><?php } ?>
                 <div class="progress">
                     <div class="ergebnis_anzahl progress-bar bg-success" data-status=1 role="progressbar"></div>
-                    <div class="ergebnis_neutral_anzahl progress-bar bg-transparent" role="progressbar"></div>
-                    <div class="ergebnis_anzahl progress-bar bg-danger" data-status=0 role="progressbar"></div>
+                    <div class="ergebnis_anzahl progress-bar bg-transparent" data-status=1 role="progressbar"></div>
+                    <div class="ergebnis_anzahl progress-bar bg-danger" data-status=2 role="progressbar"></div>
                 </div>
             </div>
-            <div class="ergebnis_anzahl col-1 h5 float-end text-end" data-status=0></div>
+            <div class="ergebnis_anzahl col-1 h5 float-end text-end" data-status=2></div>
         </div>
-        <div class="row g-0 collapse">
-            <ul id="ergebnis_1" class="ergebnis liste col-6 text-center text-success" data-liste="mitglieder" style="list-style-type: none;" data-status=1>
+        <div id="ergebnis" class="row g-0 collapse">
+            <ul class="ergebnis liste col-6 text-center text-success" data-liste="mitglieder" style="list-style-type: none;" data-status=1>
                 <li class="blanko invisible"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="zusatzsymbole"><span class="zusatzsymbol" data-zusatzsymbol="kommentar"></span></span></li>
             </ul>
-            <ul id="ergebnis_0" class="ergebnis liste col-6 text-center text-danger" data-liste="mitglieder" style="list-style-type: none;" data-status=0>
+            <ul class="ergebnis liste col-6 text-center text-danger" data-liste="mitglieder" style="list-style-type: none;" data-status=2>
                 <li class="blanko invisible"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="zusatzsymbole"><span class="zusatzsymbol" data-zusatzsymbol="kommentar"></span></span></li>
             </ul>
-            <div id="ergebnis_neutral" class="ergebnis_neutral liste col-12 text-center text-secondary small" data-liste="mitglieder">
+            <div class="ergebnis liste col-12 text-center text-secondary small" data-liste="mitglieder" data-status=0>
                 <span class="blanko invisible"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="spacer">, </span></span>
             </div>
         </div>

@@ -124,7 +124,7 @@ class Mitglieder extends BaseController {
                     'liste' => 'rueckmeldungen',
                     'klasse' => array(
                         'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
+                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                     ),
                 ),
                 'elemente_disabled' => $elemente_disabled,

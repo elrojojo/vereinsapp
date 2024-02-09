@@ -5,6 +5,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     let status_auswahl = $auswertungen.attr("data-status_auswahl");
     if (typeof status_auswahl !== "undefined") status_auswahl = JSON.parse(status_auswahl);
     else status_auswahl = new Object();
+    status_auswahl[0] = undefined;
 
     // LISTE DEFINIEREN
     // liste aus data
@@ -67,11 +68,6 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
     // META_IDS VORBEREITEN
     const meta_ids = new Object();
-    // ergebnis_neutral vorbereiten
-    meta_ids.ergebnis_neutral = new Object();
-    $.each(eigenschaft_werte, function (position, wert) {
-        meta_ids.ergebnis_neutral[wert] = new Array();
-    });
     // ergebnis vorbereiten
     meta_ids.ergebnis = new Object();
     $.each(eigenschaft_werte, function (position, wert) {
@@ -102,13 +98,13 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         meta_ids.ergebnis_status[status].push(element_id);
         meta_ids.ergebnis_wert[wert].push(element_id);
     });
-    // ergebnis_neutral clustern und ergebnis_neutral in ergebnis_wert integrieren
+    // ergebnis[wert][0] clustern und in ergebnis_wert integrieren
     $.each(tabelle_gefiltert, function (position, element) {
         const element_id = element.id;
         const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
         if (!meta_ids.ergebnis_wert[wert].includes(element_id)) {
             meta_ids.ergebnis_wert[wert].push(element_id);
-            meta_ids.ergebnis_neutral[wert].push(element_id);
+            meta_ids.ergebnis[wert][0].push(element_id);
         }
     });
 
@@ -174,13 +170,6 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 $ergebnis.attr("style", "width: " + (meta_ids.ergebnis[wert][status].length / meta_ids.ergebnis_wert[wert].length) * 100 + "%");
             else $ergebnis.text(meta_ids.ergebnis[wert][status].length);
         });
-        // ERGEBNIS_ANZAHL_NEUTRAL AKTUALISIEREN
-        $auswertung.find(".ergebnis_neutral_anzahl").each(function () {
-            const $ergebnis = $(this);
-            if ($ergebnis.hasClass("progress-bar"))
-                $ergebnis.attr("style", "width: " + (meta_ids.ergebnis_neutral[wert].length / meta_ids.ergebnis_wert[wert].length) * 100 + "%");
-            else $ergebnis.text(meta_ids.ergebnis_neutral[wert].length);
-        });
 
         // ERGEBNIS AKTUALISIEREN
         $auswertung.find(".ergebnis").each(function () {
@@ -190,18 +179,6 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             $.each(meta_ids.ergebnis[wert][status], function (position, id) {
                 filtern += '{"operator":"==","eigenschaft":"id","wert":' + id + "}";
                 if (position < meta_ids.ergebnis[wert][status].length - 1) filtern += ",";
-            });
-            filtern = '[{"verknuepfung":"||","filtern":[' + filtern + "]}]";
-            $ergebnis.attr("data-filtern", filtern);
-        });
-
-        // ERGEBNIS_NEUTRAL AKTUALISIEREN
-        $auswertung.find(".ergebnis_neutral").each(function () {
-            const $ergebnis = $(this);
-            filtern = "";
-            $.each(meta_ids.ergebnis_neutral[wert], function (position, id) {
-                filtern += '{"operator":"==","eigenschaft":"id","wert":' + id + "}";
-                if (position < meta_ids.ergebnis_neutral[wert].length - 1) filtern += ",";
             });
             filtern = '[{"verknuepfung":"||","filtern":[' + filtern + "]}]";
             $ergebnis.attr("data-filtern", filtern);

@@ -89,7 +89,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
-            'status_auswahl' => array( 0 => "ZUSAGEN", 1 => "ABSAGEN" ),
+            'status_auswahl' => array( 1 => "ZUSAGEN", 2 => "ABSAGEN" ),
             'liste' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
@@ -123,7 +123,7 @@ class Termine extends BaseController {
                     'liste' => 'rueckmeldungen',
                     'klasse' => array(
                         'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '0' ),
+                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                     ),
                 ),
                 'elemente_disabled' => $elemente_disabled,
@@ -286,7 +286,7 @@ class Termine extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'termin_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
@@ -312,7 +312,7 @@ class Termine extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( model(Rueckmeldung_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
