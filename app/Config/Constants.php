@@ -140,10 +140,12 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse' => array( 'bootstrap' => 'caret-down' ),
+    'filtern' => array( 'bootstrap' => 'funnel' ),
     'sortieren' => array( 'bootstrap' => 'sort-down' ),
     'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
     'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
-    'filtern' => array( 'bootstrap' => 'funnel' ),
+    'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),
+    'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
 
     'mitglied' => array ( 'bootstrap' => 'person' ),
     'bemerkung' => array( 'bootstrap' => 'chat-dots' ),

@@ -18,7 +18,7 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
                 $(this).text($('.liste[id="' + instanz + '"]').children().length);
             }
         });
-        $('.listenstatistik[data-listenstatistik="markiert"]').each(function () {
+        $('.listenstatistik[data-listenstatistik="angewaehlt"]').each(function () {
             const $listenstatistik = $(this);
             const instanz = $listenstatistik.attr("data-instanz");
             if (typeof instanz !== "undefined") {
