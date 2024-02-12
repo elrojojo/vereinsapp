@@ -502,7 +502,7 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'permit_empty', 'in_list[ TRUE, false ]' ] ],
+            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'permit_empty', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
@@ -641,7 +641,7 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ TRUE, false ]' ] ],
+            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if(
                 !auth()->user()->can( 'mitglieder.rechte' ) AND
