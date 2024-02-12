@@ -66,62 +66,63 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // WERTE ZUR EIGENSCHAFT SORTIEREN
     eigenschaft_werte.sort();
 
-    // META_IDS VORBEREITEN
-    const meta_ids = new Object();
+    // CLUSTERN
     // ergebnis vorbereiten
-    meta_ids.ergebnis = new Object();
+    G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis = new Object();
     $.each(eigenschaft_werte, function (position, wert) {
-        meta_ids.ergebnis[wert] = new Object();
+        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert] = new Object();
         $.each(status_auswahl, function (status) {
-            meta_ids.ergebnis[wert][status] = new Array();
+            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status] = new Array();
         });
     });
     // ergebnis_wert vorbereiten
-    meta_ids.ergebnis_wert = new Object();
+    G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert = new Object();
     $.each(eigenschaft_werte, function (position, wert) {
-        meta_ids.ergebnis_wert[wert] = new Array();
+        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert] = new Array();
     });
     // ergebnis_status vorbereiten
-    meta_ids.ergebnis_status = new Object();
+    G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status = new Object();
     $.each(status_auswahl, function (status) {
-        meta_ids.ergebnis_status[status] = new Array();
+        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status] = new Array();
     });
 
-    // META_IDS CLUSTERN
     // ergebnis, ergebnis_wert und ergebnis_status clustern
     $.each(auswertungen_tabelle_gefiltert, function () {
         const auswertung = this;
         const status = auswertung.status;
         const element_id = auswertung[G.LISTEN[liste].element + "_id"];
         const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
-        meta_ids.ergebnis[wert][status].push(element_id);
-        meta_ids.ergebnis_status[status].push(element_id);
-        meta_ids.ergebnis_wert[wert].push(element_id);
+        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].push(element_id);
+        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].push(element_id);
+        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
     });
     // ergebnis[wert][0] clustern und in ergebnis_wert integrieren
     $.each(tabelle_gefiltert, function (position, element) {
         const element_id = element.id;
         const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
-        if (!meta_ids.ergebnis_wert[wert].includes(element_id)) {
-            meta_ids.ergebnis_wert[wert].push(element_id);
-            meta_ids.ergebnis[wert][0].push(element_id);
+        if (!G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].includes(element_id)) {
+            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
+            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[0].push(element_id);
+            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][0].push(element_id);
         }
     });
 
     // DOM LÖSCHEN
-    $auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"]').each(function () {
+    $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"]').each(function () {
         const $auswertung = $(this);
         if (typeof $auswertung.attr("data-wert") === "undefined" || !eigenschaft_werte.includes($auswertung.attr("data-wert"))) $auswertung.remove();
     });
 
     // DOM ERGÄNZEN
     $.each(eigenschaft_werte, function (position, wert) {
-        const $auswertung = $auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"][data-wert="' + wert + '"]');
+        const $auswertung = $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"][data-wert="' + wert + '"]');
         if (!$auswertung.exists()) {
             const $neue_auswertung = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
                 .clone()
                 .removeClass("blanko invisible")
-                .attr("data-auswertung", eigenschaft)
+                .attr("data-auswertungen", auswertungen)
+                .attr("data-instanz", auswertungen_instanz)
+                .attr("data-eigenschaft", eigenschaft)
                 .attr("data-wert", wert);
 
             $neue_auswertung
@@ -133,67 +134,18 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             if (position == 0) $neue_auswertung.appendTo($auswertungen);
             else
                 $neue_auswertung.insertAfter(
-                    $auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"][data-wert="' + eigenschaft_werte[position - 1] + '"]')
+                    $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"][data-wert="' + eigenschaft_werte[position - 1] + '"]')
                 );
         }
     });
 
-    if (!$auswertungen.find('.auswertung_summe[data-auswertung="' + eigenschaft + '"]').exists()) {
-        const $neue_auswertung_summe = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
-            .clone()
-            .removeClass("blanko invisible")
-            .attr("data-auswertung", eigenschaft)
-            .removeClass("auswertung")
-            .addClass("auswertung_summe");
-        $neue_auswertung_summe.find('[data-bs-toggle="collapse"]').removeAttr("data-bs-toggle role");
-        $neue_auswertung_summe.find(".collapse").remove();
-        $neue_auswertung_summe.find(".collapse-toggle").remove();
-        $neue_auswertung_summe.find(".progress").remove();
-        $neue_auswertung_summe.find(".beschriftung").text("Summe");
-
-        $neue_auswertung_summe.insertAfter($auswertungen.find('.auswertung[data-auswertung="' + eigenschaft + '"]').last());
-    }
-
-    // AUSWERTUNG AKTUALISIEREN
-    $('.auswertung[data-auswertung="' + eigenschaft + '"]').each(function () {
+    // ZUSAMMENFASSUNG
+    $('.auswertung.zusammenfassung[data-instanz="' + auswertungen_instanz + '"]').each(function () {
         const $auswertung = $(this);
-        const wert = $auswertung.attr("data-wert");
-
-        // BESCHRIFTUNG AKTUALISIEREN
-        $auswertung.find(".beschriftung").text(VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung);
-
-        // ERGEBNIS_ANZAHL AKTUALISIEREN
-        $auswertung.find(".ergebnis_anzahl").each(function () {
-            const $ergebnis = $(this);
-            const status = $ergebnis.attr("data-status");
-            if ($ergebnis.hasClass("progress-bar"))
-                $ergebnis.attr("style", "width: " + (meta_ids.ergebnis[wert][status].length / meta_ids.ergebnis_wert[wert].length) * 100 + "%");
-            else $ergebnis.text(meta_ids.ergebnis[wert][status].length);
-        });
-
-        // ERGEBNIS AKTUALISIEREN
-        $auswertung.find(".ergebnis").each(function () {
-            const $ergebnis = $(this);
-            const status = $ergebnis.attr("data-status");
-            filtern = "";
-            $.each(meta_ids.ergebnis[wert][status], function (position, id) {
-                filtern += '{"operator":"==","eigenschaft":"id","wert":' + id + "}";
-                if (position < meta_ids.ergebnis[wert][status].length - 1) filtern += ",";
-            });
-            filtern = '[{"verknuepfung":"||","filtern":[' + filtern + "]}]";
-            $ergebnis.attr("data-filtern", filtern);
-        });
-    });
-
-    // SUMME AKTUALISIEREN
-    $('.auswertung_summe[data-auswertung="' + eigenschaft + '"]').each(function () {
-        const $auswertung = $(this);
-        $auswertung.find(".ergebnis_anzahl").each(function () {
-            const $ergebnis = $(this);
-            const status = $ergebnis.attr("data-status");
-            if ($ergebnis.hasClass("progress-bar"))
-                $ergebnis.attr("style", "width: " + (meta_ids.ergebnis_status[status][status].length / tabelle_gefiltert.length) * 100 + "%");
-            else $ergebnis.text(meta_ids.ergebnis_status[status].length);
-        });
+        $auswertung.attr("data-auswertungen", auswertungen);
+        $auswertung
+            .find('[data-bs-toggle="collapse"]')
+            .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_zusammenfassung");
+        $auswertung.find(".collapse").attr("id", "auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_zusammenfassung");
     });
 }

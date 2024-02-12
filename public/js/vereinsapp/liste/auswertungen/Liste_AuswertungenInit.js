@@ -6,6 +6,7 @@ function Liste_AuswertungenInit() {
             const auswertungen_instanz = $auswertungen.attr("id");
             G.LISTEN[liste].auswertungen[auswertungen_instanz] = {
                 eigenschaft: undefined,
+                cluster: new Object(),
                 $blanko_auswertung: $auswertungen.find(".blanko").first(),
             };
         });

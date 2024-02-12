@@ -29,10 +29,11 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         // AUSWERTUNGEN AKTUALISIEREN
         $('.auswertungen[data-auswertungen="' + liste + '"]').each(function () {
             Liste_AuswertungenAktualisieren($(this), liste);
-            let liste_data = $(this).attr("data-liste");
-            if (typeof liste_data !== "undefined") liste_data = JSON.parse(liste_data);
-            else liste_data = new Object();
-            if ("liste" in liste_data) Schnittstelle_EventVariableUpdDom(liste_data.liste);
+        });
+
+        // AUSWERTUNG AKTUALISIEREN
+        $('.auswertung[data-auswertungen="' + liste + '"]').each(function () {
+            Liste_AuswertungAktualisieren($(this), liste);
         });
 
         // VERZEICHNIS AKTUALISIEREN
