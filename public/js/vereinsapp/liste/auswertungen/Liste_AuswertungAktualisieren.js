@@ -12,10 +12,6 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     // liste aus liste_data
     let liste = undefined;
     if ("liste" in liste_data) liste = liste_data.liste;
-    // filtern aus liste_data
-    let liste_filtern = new Array();
-    if ("filtern" in liste_data) liste_filtern = Liste_SqlFiltern2FilternZurueck(liste_data.filtern, liste);
-    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
     // ZUSAMMENFASSUNG ERKENNEN
     let zusammenfassung = false;
@@ -32,7 +28,9 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         let ergebnis_anzahl, ergebnis_referenz_anzahl;
         if (zusammenfassung) {
             ergebnis_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].length;
-            ergebnis_referenz_anzahl = tabelle_gefiltert.length;
+            let liste_filtern = new Array();
+            if ("filtern" in liste_data) liste_filtern = Liste_SqlFiltern2FilternZurueck(liste_data.filtern, liste);
+            ergebnis_referenz_anzahl = Liste_TabelleGefiltertZurueck(liste_filtern, liste).length;
         } else {
             ergebnis_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].length;
             ergebnis_referenz_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
@@ -62,5 +60,12 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     });
 
     // BEINHALTETE LISTE AKTUALISIEREN
-    if ("liste" in liste_data) Schnittstelle_EventVariableUpdDom(liste_data.liste);
+    if ("liste" in liste_data) {
+        $auswertung.find('.liste[data-liste="' + liste_data.liste + '"]').each(function () {
+            Liste_Aktualisieren($(this));
+        });
+        $auswertung.find('.element[data-liste="' + liste_data.liste + '"]').each(function () {
+            Liste_ElementAktualisieren($(this), liste_data.liste);
+        });
+    }
 }
