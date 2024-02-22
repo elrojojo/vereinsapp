@@ -80,6 +80,31 @@ function Schnittstelle_DomInit() {
             if (G.MODALS.offen.length > 0) $("#" + G.MODALS.offen[G.MODALS.offen.length - 1].modal_id).modal("show");
         }
     });
+
+    // PASSWORT ANZEIGEN
+    $(document).on("click", ".passwort_anzeigen", function (event) {
+        $btn = $(this);
+        event.preventDefault();
+        const feld = $btn.closest(".input-group").find("input.form-control");
+
+        if (feld.attr("type") == "text") {
+            feld.attr("type", "password");
+            $btn.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $btn.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+        } else if (feld.attr("type") == "password") {
+            feld.attr("type", "text");
+            $btn.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+            $btn.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+        }
+    });
+
+    // INHALT KOPIEREN
+    new ClipboardJS(".inhalt_kopieren");
+
+    // VALIDATION-TOOLTIPS ENTFERNEN
+    $("input, select").on("focus", function () {
+        $(this).next(".invalid-tooltip").remove();
+    });
 }
 
 function Schnittstelle_BtnWartenStart($btn) {

@@ -14,8 +14,8 @@ function Liste_ArraySortiertZurueck(array, sortieren) {
                 b_formatiert = b[sortieren[i].eigenschaft];
                 // Wenn aber a und b vom Typ String sind
                 if (typeof a_formatiert === "string" && typeof b_formatiert === "string") {
-                    a_formatiert = umlaute2unix(a_formatiert.toString());
-                    b_formatiert = umlaute2unix(b_formatiert.toString());
+                    a_formatiert = umlaute2unixZurueck(a_formatiert.toString());
+                    b_formatiert = umlaute2unixZurueck(b_formatiert.toString());
                 }
 
                 result = richtung * (a_formatiert < b_formatiert ? -1 : a_formatiert > b_formatiert ? 1 : 0);

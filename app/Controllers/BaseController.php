@@ -114,8 +114,10 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/lib/isNumber.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js'), ); // abhaengig von isObject
         $head_script[] = array( 'src' => base_url('js/lib/zufaelligeZeichenketteZurueck.js'), );
+        $head_script[] = array( 'src' => base_url('js/lib/umlaute2unixZurueck.js'), );
+        $head_script[] = array( 'src' => base_url('js/lib/exists.js'), );
 
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/Vereinsapp_Init.js?v='.VERSION), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Init.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Aktualisieren.js?v='.VERSION), );
@@ -173,6 +175,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinErfolg.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxReinFehler.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxStatusSetzen.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageInit.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRein.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRausZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageLoeschen.js?v='.VERSION), );

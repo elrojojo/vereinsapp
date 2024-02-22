@@ -13,31 +13,11 @@ const G = {
 $(document).ready(function () {
     Schnittstelle_DomInit();
 
+    Schnittstelle_LocalstorageInit();
+
     Liste_Init();
 
     if (LOGGEDIN) Mitglieder_Init();
-
-    function localstorage_leeren() {
-        const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM);
-        localStorage.clear();
-        Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
-        if (typeof datenschutz_richtlinie !== "undefined")
-            Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
-        console.log("LocalStorage wurde erfolgreich geleert.");
-    }
-
-    // LOCALSTORAGE LEEREN
-    $(".btn_localstorage_leeren").click(function () {
-        localstorage_leeren();
-        $(this).closest(".modal").modal("hide");
-    });
-
-    // LOCALSTORAGE LEEREN ERZWINGEN
-    if (
-        typeof Schnittstelle_LocalstorageRausZurueck("localstorage_reset") === "undefined" ||
-        DateTime.fromISO(Schnittstelle_LocalstorageRausZurueck("localstorage_reset")) < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
-    )
-        localstorage_leeren();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
@@ -58,56 +38,7 @@ $(document).ready(function () {
         };
         Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
     }
-
-    // PASSWORT ANZEIGEN
-    $(document).on("click", ".passwort_anzeigen", function (event) {
-        $btn = $(this);
-        event.preventDefault();
-        const feld = $btn.closest(".input-group").find("input.form-control");
-
-        if (feld.attr("type") == "text") {
-            feld.attr("type", "password");
-            $btn.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-            $btn.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-        } else if (feld.attr("type") == "password") {
-            feld.attr("type", "text");
-            $btn.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-            $btn.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-        }
-    });
-
-    // INHALT KOPIEREN
-    new ClipboardJS(".inhalt_kopieren");
-
-    // VALIDATION-TOOLTIPS ENTFERNEN
-    $("input, select").on("focus", function () {
-        $(this).next(".invalid-tooltip").remove();
-    });
 });
-
-$.fn.exists = function () {
-    return this.length !== 0;
-};
-
-function umlaute2unix(unix) {
-    const UMLAUTE_KONVERTIERUNG = new Array(
-        [" ", "_"],
-        [" ", "-"],
-        ["ä", "ae"],
-        ["ö", "oe"],
-        ["ü", "ue"],
-        ["Ä", "Ae"],
-        ["Ö", "Oe"],
-        ["Ü", "Ue"],
-        ["ß", "ss"]
-    );
-
-    $.each(UMLAUTE_KONVERTIERUNG, function (index, konvertierung) {
-        unix = unix.replaceAll(konvertierung[0], konvertierung[1]);
-    });
-
-    return unix;
-}
 
 /* TODO
 
@@ -124,13 +55,14 @@ Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Link zu Github neben die Version
 Meta-Infos für Unterverzeichnisse und Dateien anzeigen
+Bemerkung zum Termin in der Listenansicht als Pop-up anzeigen
+Proberaum-Belegungsplan
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Formatierung eines Werts flexibel (inkl. möglichem Symbol)
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
-Functionen in vereinsapp.js auslagern
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
