@@ -123,6 +123,7 @@ Batch über filtern- und sortieren-Button legen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Link zu Github neben die Version
+Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
@@ -135,12 +136,13 @@ Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
+Keine doppelten Rückmeldungen erlauben
+IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bootstrap und jquery aktualisieren
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
-Notenbank Verzeichnis konzeptionell überarbeiten (es braucht die struktur, ähnlich wie liste, und verzeichnisse/dateien, ähnlich wie elemente)
 
 */

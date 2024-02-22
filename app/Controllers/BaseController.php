@@ -113,6 +113,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/lib/isObject.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isNumber.js'), );
         $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js'), ); // abhaengig von isObject
+        $head_script[] = array( 'src' => base_url('js/lib/zufaelligeZeichenketteZurueck.js'), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/vereinsapp.js?v='.VERSION), );
 
@@ -163,12 +164,8 @@ abstract class BaseController extends Controller
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAktualisieren.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_Verzeichnis2$VerzeichnisZurueck.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisPfad2$VerzeichnisPfadZurueck.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_$VerzeichnisPfad2VerzeichnisPfadZurueck.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisPfad2Verzeichnis.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisOeffnen.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisPfadOeffnen.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_DateiAktualisieren.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAnzahlZurueck.js?v='.VERSION), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxInDieSchlange.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxRaus.js?v='.VERSION), );

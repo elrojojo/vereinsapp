@@ -20,6 +20,19 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     if (zusatzsymbol == "kategorie")
         $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][G.LISTEN[liste].tabelle[element_id].kategorie]["symbol"]);
 
+    // Zusatzsymbol für Datei
+    if (zusatzsymbol == "datei") {
+        const datei = $element.attr("data-datei");
+        const punkt = datei.lastIndexOf(".");
+        const typ = datei.slice(punkt + 1);
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary me-1"></i>');
+    }
+
+    // Zusatzsymbol für Verzeichnis
+    if (zusatzsymbol == "verzeichnis") {
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + ' text-primary me-1"></i>');
+    }
+
     // Zusatzsymbol für Kommentar bei Rückmeldung
     if (zusatzsymbol == "kommentar") {
         if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {

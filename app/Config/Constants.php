@@ -165,6 +165,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
+    'verzeichnis' => array( 'bootstrap' => 'folder' ),
     'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
     'mp3' => array( 'bootstrap' => 'file-play' ),
     'm4a' => array( 'bootstrap' => 'file-play' ),

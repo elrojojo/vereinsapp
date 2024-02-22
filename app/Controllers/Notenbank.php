@@ -80,7 +80,6 @@ class Notenbank extends BaseController {
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array(
             'liste' => 'notenbank',
             'link' => TRUE,
-            'symbol' => TRUE,
             'element_id' => $element_id,
         );
 
@@ -188,17 +187,19 @@ class Notenbank extends BaseController {
     }
 
     private function verzeichnis_indizieren( $verzeichnis ) {
-        $verzeichnis_indiziert = array();
+        $verzeichnis_indiziert = array(
+            'unterverzeichnisse' => array(),
+            'dateien' => array(),
+        );
         foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
-            if( is_array($unterverzeichnis) ) $verzeichnis_indiziert[$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
+            if( is_array($unterverzeichnis) ) $verzeichnis_indiziert['unterverzeichnisse'][$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
             else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ),
                                 array_merge(
                                     config('Vereinsapp')->notenbank_erlaubte_dateitypen_noten,
                                     config('Vereinsapp')->notenbank_erlaubte_dateitypen_audio
                                 )
                 ) )
-                // $verzeichnis_indiziert[$beschriftung] = array( 'name' => pathinfo( $unterverzeichnis, PATHINFO_FILENAME), 'kategorie' => pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ) );
-                $verzeichnis_indiziert[$beschriftung] = $unterverzeichnis;
+                $verzeichnis_indiziert['dateien'][] = $unterverzeichnis;
             else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }
         }
         return $verzeichnis_indiziert;

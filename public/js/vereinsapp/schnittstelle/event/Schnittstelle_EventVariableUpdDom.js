@@ -41,6 +41,11 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Liste_VerzeichnisAktualisieren($(this), liste);
         });
 
+        // DATEI AKTUALISIEREN
+        $('.datei[data-liste="' + liste + '"]').each(function () {
+            Liste_DateiAktualisieren($(this), liste);
+        });
+
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
         $('.formular[data-formular="rueckmeldung"]').each(function () {
             Termine_FormularMeineRueckmeldungEinAusblenden($(this));
