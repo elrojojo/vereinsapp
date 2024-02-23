@@ -31,7 +31,7 @@ function Schnittstelle_DomInit() {
     });
 
     // WERKZEUGKASTEN (OFFCANVAS) ÖFFNEN
-    $("#werkzeugkasten").on("show.bs.offcanvas", function (event) {
+    $(document).on("show.bs.offcanvas", "#werkzeugkasten", function (event) {
         const $werkzeugkasten = $(this).find(".werkzeugkasten");
         const $btn_oeffnend = $(event.relatedTarget);
         const liste = $btn_oeffnend.attr("data-liste");
@@ -49,7 +49,7 @@ function Schnittstelle_DomInit() {
     });
 
     // AKTIVE MODALS WERDEN GETRACKED
-    $(".modal").on("show.bs.modal", function (event) {
+    $(document).on("show.bs.modal", ".modal", function (event) {
         const $modal = $(this);
         const modal_id = $modal.attr("id");
         const $btn_oeffnend = $(event.relatedTarget);
@@ -69,7 +69,7 @@ function Schnittstelle_DomInit() {
         }
     });
 
-    $(".modal").on("hidden.bs.modal", function () {
+    $(document).on("hidden.bs.modal", ".modal", function () {
         const $modal = $(this);
 
         const title_modal = $modal.find(".modal-title").html();
@@ -102,8 +102,28 @@ function Schnittstelle_DomInit() {
     new ClipboardJS(".inhalt_kopieren");
 
     // VALIDATION-TOOLTIPS ENTFERNEN
-    $("input, select").on("focus", function () {
+    $(document).on("focus", "input, select", function () {
         $(this).next(".invalid-tooltip").remove();
+    });
+
+    // COLLAPSE ÖFFNEN
+    $(document).on("show.bs.collapse", ".collapse", function (event) {
+        $collapse = $(this);
+        if ($collapse.is(event.target)) {
+            $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
+                Schnittstelle_ToggleSymbol($(this));
+            });
+        }
+    });
+
+    // COLLAPSE SCHLIESSEN
+    $(document).on("hide.bs.collapse", ".collapse", function (event) {
+        $collapse = $(this);
+        if ($collapse.is(event.target)) {
+            $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
+                Schnittstelle_ToggleSymbol($(this));
+            });
+        }
     });
 }
 
@@ -162,4 +182,22 @@ function Schnittstelle_JetztAktualisieren($jetzt) {
     const data_format = $jetzt.attr("data-format");
     if (typeof data_format !== "undefined") format = $jetzt.attr("data-format");
     $jetzt.text(DateTime.now().toFormat(format));
+}
+
+function Schnittstelle_ToggleSymbol($symbol) {
+    const toggle_symbol_neu = $symbol.attr("data-toggle_symbol");
+
+    let toggle_symbol_alt = undefined;
+    $.each($symbol.attr("class").split(/\s+/), function (position, klasse) {
+        if (klasse.slice(0, 3) == "bi-") {
+            toggle_symbol_alt = klasse.slice(3, klasse.length);
+            return false;
+        }
+    });
+
+    if (typeof toggle_symbol_alt !== "undefined" && typeof toggle_symbol_neu !== "undefined")
+        $symbol
+            .removeClass("bi-" + toggle_symbol_alt)
+            .addClass("bi-" + toggle_symbol_neu)
+            .attr("data-toggle_symbol", toggle_symbol_alt);
 }

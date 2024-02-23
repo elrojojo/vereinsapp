@@ -7,7 +7,7 @@ style="list-style: none;">
         <div class="ergebnis_anzahl col-1 h5 float-start text-start" data-status=1></div>
         <div class="col-10 text-center">
             <span class="beschriftung"><?php if( isset( $zusammenfassung ) AND array_key_exists( 'beschriftung', $zusammenfassung ) ) echo $zusammenfassung['beschriftung']; ?></span>
-        <?php if( !isset( $zusammenfassung ) ) { ?><i class="bi bi-<?= SYMBOLE['collapse']['bootstrap']; ?> text-primary ms-1 collapse-toggle"></i><?php }
+        <?php if( !isset( $zusammenfassung ) ) { ?><i class="bi bi-<?= SYMBOLE['collapse_oeffnen']['bootstrap']; ?> toggle_symbol text-primary ms-1" data-toggle_symbol="<?= SYMBOLE['collapse_schliessen']['bootstrap']; ?>"></i><?php }
             if( !isset( $zusammenfassung ) OR array_key_exists( 'progress', $zusammenfassung ) ) { ?><div class="progress">
                 <div class="ergebnis_anzahl progress-bar bg-success" data-status=1 role="progressbar"></div>
                 <div class="ergebnis_anzahl progress-bar bg-transparent" data-status=0 role="progressbar"></div>

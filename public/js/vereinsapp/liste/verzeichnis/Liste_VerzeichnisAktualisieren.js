@@ -54,7 +54,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                 .find('[data-bs-toggle="collapse"]')
                 .first()
                 .attr("data-bs-target", "#unterverzeichnis_" + neue_id);
-
+            $neues_unterverzeichnis.find(".toggle_symbol").attr("data-bs-target", "#unterverzeichnis_" + neue_id);
             $neues_unterverzeichnis
                 .find(".collapse")
                 .first()

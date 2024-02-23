@@ -125,11 +125,10 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .attr("data-eigenschaft", eigenschaft)
                 .attr("data-wert", wert);
 
-            $neue_auswertung
-                .find('[data-bs-toggle="collapse"]')
-                .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_" + wert);
-
-            $neue_auswertung.find(".collapse").attr("id", "auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_" + wert);
+            const neue_id = zufaelligeZeichenketteZurueck(8);
+            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#auswertung_" + neue_id);
+            $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#auswertung_" + neue_id);
+            $neue_auswertung.find(".collapse").attr("id", "auswertung_" + neue_id);
 
             if (position == 0) $neue_auswertung.appendTo($auswertungen);
             else

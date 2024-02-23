@@ -20,12 +20,12 @@ function Liste_Init() {
     Liste_SortierenInit();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(".formular").on("show.bs.modal", function () {
+    $(document).on("show.bs.modal", ".formular", function () {
         Liste_ElementFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
     // FORMULAR (MODAL) SCHLIESSEN
-    $(".formular").on("hide.bs.modal", function () {
+    $(document).on("hide.bs.modal", ".formular", function () {
         Liste_ElementFormularSchliessen($(this));
     });
 

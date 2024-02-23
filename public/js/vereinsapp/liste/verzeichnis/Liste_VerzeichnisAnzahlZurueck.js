@@ -1,4 +1,5 @@
 function Liste_VerzeichnisAnzahlZurueck(verzeichnis, typ) {
+    if (typeof verzeichnis === "undefined") return 0;
     if (typeof typ === "undefined") typ = "verzeichnis";
     let anzahl = 0;
 

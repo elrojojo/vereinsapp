@@ -7,7 +7,7 @@ if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= jso
     <li class="blanko invisible text-body list-group-item p-0">
 
         <div class="card border-0">
-            <div class="card-header border-0 bg-transparent" data-bs-toggle="collapse" role="button"><i class="bi bi-<?= SYMBOLE["verzeichnis"]["bootstrap"]; ?> text-primary me-1"></i></span><span class="beschriftung"></span></div>
+            <div class="card-header border-0 bg-transparent" data-bs-toggle="collapse" role="button"><i class="bi bi-<?= SYMBOLE["verzeichnis"]["bootstrap"]; ?> toggle_symbol text-primary me-1" data-toggle_symbol="<?= SYMBOLE['verzeichnis_geoeffnet']['bootstrap']; ?>"></i></span><span class="beschriftung"></span></div>
             <ul class="list-group verzeichnis p-1 pt-0 collapse">
 
                 <li class="blanko invisible text-body list-group-item<?php

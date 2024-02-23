@@ -41,7 +41,7 @@ function Mitglieder_Init() {
     }
 
     // FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN
-    $("#mitglied_einmal_link_anzeigen_Modal").on("show.bs.modal", function () {
+    $(document).on("show.bs.modal", "#mitglied_einmal_link_anzeigen_Modal", function () {
         const $formular = $(this);
         const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
         const btn_dismiss_beschriftung = $btn_dismiss.attr("data-beschriftung");

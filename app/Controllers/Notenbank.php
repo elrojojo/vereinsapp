@@ -12,9 +12,9 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis'] = array(
             'liste' => 'notenbank',
             'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             ),
             'beschriftung' => array(
                 'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
@@ -106,9 +106,9 @@ class Notenbank extends BaseController {
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
             'sortieren' => array(
+                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),                
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             ),
         );
 

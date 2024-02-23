@@ -139,6 +139,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'loeschen' => array( 'bootstrap' => 'trash' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
+    'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
+    'collapse_schliessen' => array( 'bootstrap' => 'caret-down' ),
     'collapse' => array( 'bootstrap' => 'caret-down' ),
     'filtern' => array( 'bootstrap' => 'funnel' ),
     'sortieren' => array( 'bootstrap' => 'sort-down' ),
@@ -166,13 +168,12 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
     'verzeichnis' => array( 'bootstrap' => 'folder' ),
+    'verzeichnis_geoeffnet' => array( 'bootstrap' => 'folder2-open' ),
     'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
     'mp3' => array( 'bootstrap' => 'file-play' ),
     'm4a' => array( 'bootstrap' => 'file-play' ),
     'noten' => array( 'bootstrap' => 'file-earmark-music' ),
     'audio' => array( 'bootstrap' => 'play-btn' ),
-    'verzeichnis' => array( 'bootstrap' => 'folder' ),
-    'verzeichnis_basis' => array( 'bootstrap' => 'folder-symlink' ),
 
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
