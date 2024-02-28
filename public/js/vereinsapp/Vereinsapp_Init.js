@@ -73,7 +73,6 @@ IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, A
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Bootstrap und jquery aktualisieren
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
 

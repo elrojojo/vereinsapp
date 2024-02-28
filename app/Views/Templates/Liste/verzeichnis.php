@@ -14,7 +14,7 @@ if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= jso
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> list-group-item-action<?php } ?>"<?php
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> role="button"<?php } ?>>
                             
-                    <span class="zusatzsymbol" data-zusatzsymbol="datei"></span><span class="beschriftung"></span>
+                    <span class="zusatzsymbol" data-zusatzsymbol="datei"></span><span class="beschriftung"></span><span class="audio"></span>
                     
                     <?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?><a class="btn_verzeichnis_oeffnen stretched-link" target="_blank"></a><?php } ?>
 

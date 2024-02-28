@@ -36,7 +36,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
             ergebnis_referenz_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
         }
 
-        if ($ergebnis_anzahl.hasClass("progress-bar"))
+        if ($ergebnis_anzahl.hasClass("progress"))
             $ergebnis_anzahl.attr("style", "width: " + (ergebnis_anzahl / ergebnis_referenz_anzahl) * 100 + "%");
         else $ergebnis_anzahl.text(ergebnis_anzahl);
     });
