@@ -1,8 +1,13 @@
 const STATUS_SPINNER_CLASS = "spinner-border spinner-border-sm";
 const STATUS_SPINNER_HTML = '<span class="' + STATUS_SPINNER_CLASS + '" role="status"><span class="visually-hidden">Loading...</span></span>';
 
+const TOASTS = new Object();
+
 function Schnittstelle_DomInit() {
     const STATUS_STANDARD_HTML = $("#status").html();
+
+    TOASTS.$blanko_toast = $("#toasts").find(".blanko").first();
+    $("#toasts").empty();
 
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);

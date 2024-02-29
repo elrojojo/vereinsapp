@@ -34,9 +34,11 @@
     <div class="text-secondary mt-5 small text-center"><?= config('Vereinsapp')->vereinsapp_name; ?> <?= VERSION; ?></div>
     <div class="text-secondary small text-center jetzt"></div>
 
-    <div id="status_anzeigen_liste" class="position-fixed" style="padding-right: 5px; padding-left: 5px; right: 0px; top: 70px; z-index: 99;"></div>
+    <div id="toasts" class="toast-container position-absolute end-0 pe-3">
+        <?= view( 'Templates/toast' ); ?>
+    </div>
 
-    <div id="modals_anzeigen_liste"></div>
+    <div id="modals"></div>
 
   </body>
 </html>

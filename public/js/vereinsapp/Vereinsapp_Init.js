@@ -28,7 +28,7 @@ $(document).ready(function () {
             label: "datenschutz_richtlinie",
             url: "status/ajax_datenschutz_richtlinie",
             rein_validation_pos_aktion: function (AJAX) {
-                $("#modals_anzeigen_liste").append(AJAX.antwort.html);
+                $("#modals").append(AJAX.antwort.html);
                 $("#datenschutz_richtlinie_Modal").modal("show");
                 $("#datenschutz_richtlinie_akzeptieren").click(function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
@@ -74,6 +74,6 @@ IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, A
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-Rückmeldung feuern bei Erfolg/Misserfolg einer Aktion
+Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 
 */

@@ -85,6 +85,7 @@ function Liste_ElementErstellen($btn) {
 
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
             AJAX.$btn.closest(".formular").modal("hide");
+            Schnittstelle_DomToastFeuern(G.LISTEN[AJAX.liste].element + " wurde erfolgreich erstellt.");
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);

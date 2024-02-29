@@ -19,17 +19,16 @@ body {
 .btn-sm {
     min-width: 30px;
 }
-.btn-lg {
+/* .btn-lg {
     max-width: 50px;
 }
-/* .btn-autosize { min-width: 0px; } */
+.btn-autosize {
+    min-width: 0px;
+}*/
 
 .list-group-liste_h5 {
     padding: 15px;
 }
-
-/* .form-check-input-lg { transform: scale(1.5); -webkit-transform: scale(1.5); margin-right:10px; margin-left:3px; }
-.form-check-input-lg-ml { transform: scale(1.5); -webkit-transform: scale(1.5); margin-right:5px; margin-left:-16px; } */
 
 .progress,
 .progress-bar,
@@ -37,6 +36,6 @@ body {
     height: 10px;
 }
 
-/* .second-sticky{ top: 70px; z-index: 95; }
-.filler-sticky { top: 0px; height: 70px; z-index: 90; } */
-/* .filler { top: 57px; height: 13px; z-index: 90; } */
+.toast-container {
+    top: 70px;
+}
