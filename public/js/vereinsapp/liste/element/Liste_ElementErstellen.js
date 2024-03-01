@@ -88,7 +88,7 @@ function Liste_ElementErstellen($btn) {
             AJAX.$btn.closest(".formular").modal("hide");
 
             // Irgendwie muss man Senden eines Toasts für bestimmte Listen auch ausschalten können
-            Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) + " wurde erfolgreich gespeichert.");
+            Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) + " erfolgreich gespeichert.");
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);

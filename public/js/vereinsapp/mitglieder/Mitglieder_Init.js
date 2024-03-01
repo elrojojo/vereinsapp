@@ -19,7 +19,7 @@ G.LISTEN.abwesenheiten = {
 G.LISTEN.mitglieder = {
     controller: "mitglieder",
     element: "mitglied",
-    beschriftung: [{ eigenschaft: "vorname" }, { eigenschaft: "vorname", prefix: " " }],
+    beschriftung: [{ eigenschaft: "vorname" }, { eigenschaft: "nachname", prefix: " " }],
     verlinkte_listen: [],
     abhaengig_von: ["abwesenheiten"],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,

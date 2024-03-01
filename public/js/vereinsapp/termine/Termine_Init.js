@@ -13,7 +13,7 @@ G.LISTEN.anwesenheiten = {
 G.LISTEN.termine = {
     controller: "termine",
     element: "termin",
-    beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "titel", prefix: " (", suffix: ")" }],
+    beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "start", prefix: " (", suffix: ")" }],
     verlinkte_listen: [],
     abhaengig_von: ["rueckmeldungen"],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenTermine,
