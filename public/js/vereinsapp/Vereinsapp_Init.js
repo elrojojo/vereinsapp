@@ -70,10 +70,14 @@ Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
 Keine doppelten Rückmeldungen erlauben
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
+Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
+"erstellen" umbenennen zu "speichern"
+#toasts als fixed immer oben behalten
+In der .env auch die Arrays von Vereinsapp überschreibar machen
 
 */

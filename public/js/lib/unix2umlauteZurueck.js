@@ -1,5 +1,5 @@
-function umlaute2unixZurueck(umlaute) {
-    let unix = umlaute;
+function unix2umlauteZurueck(unix) {
+    let umlaute = unix;
     $.each(
         [
             [" ", "_"],
@@ -13,9 +13,8 @@ function umlaute2unixZurueck(umlaute) {
             ["ß", "ss"],
         ],
         function (index, konvertierung) {
-            unix = unix.replaceAll(konvertierung[0], konvertierung[1]);
+            umlaute = umlaute.replaceAll(konvertierung[1], konvertierung[0]);
         }
     );
-
-    return unix;
+    return umlaute;
 }
