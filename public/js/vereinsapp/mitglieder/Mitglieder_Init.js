@@ -36,14 +36,14 @@ function Mitglieder_Init() {
             url: "mitglieder/ajax_mitglied_passwort_festlegen_modal",
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals").append(AJAX.antwort.html);
-                $("#mitglied_passwort_festlegen_Modal").modal("show");
+                $("#mitglied_passwort_festlegen_modal").modal("show");
             },
         };
         Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
     }
 
     // FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#mitglied_einmal_link_anzeigen_Modal", function () {
+    $(document).on("show.bs.modal", "#mitglied_einmal_link_anzeigen_modal", function () {
         const $formular = $(this);
         const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
         const btn_dismiss_beschriftung = $btn_dismiss.attr("data-beschriftung");

@@ -18,7 +18,7 @@ class Einstellungen extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> - <span class="eigenschaft" data-eigenschaft="ende"></span>',
             ),
             'modal' => array(
-                'target' => '#element_loeschen_Modal',
+                'target' => '#element_loeschen_modal',
                 'aktion' => 'loeschen',
             ),
             'symbol' => array(
@@ -34,12 +34,12 @@ class Einstellungen extends BaseController {
         );
 
         $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
+            'modal_id' => '#liste_sortieren_modal',
             'title' => 'Meine Abwesenheiten sortieren',
         );
 
         $this->viewdata['liste']['meine_abwesenheiten']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
+            'modal_id' => '#liste_filtern_modal',
             'title' => 'Meine Abwesenheiten filtern',
         );
 

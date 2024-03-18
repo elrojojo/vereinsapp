@@ -30,7 +30,7 @@ class Mitglieder extends BaseController {
             ),
             // 'sortable' => TRUE,
             'link' => TRUE, // ODER 'modal' => array( 
-            //     'target' => '#element_loeschen_Modal',
+            //     'target' => '#element_loeschen_modal',
             //     'aktion' => 'loeschen',
             // ),
             // 'symbol' => array(
@@ -52,12 +52,12 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+                'modal_id' => '#mitglied_einmal_link_anzeigen_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'modal_id' => '#mitglied_einmal_link_email_Modal',
+                'modal_id' => '#mitglied_einmal_link_email_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link per Email zuschicken',
             );
@@ -73,7 +73,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => '#element_loeschen_Modal',
+                'modal_id' => '#element_loeschen_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
@@ -86,12 +86,12 @@ class Mitglieder extends BaseController {
         }
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
+            'modal_id' => '#liste_filtern_modal',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
+            'modal_id' => '#liste_sortieren_modal',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -141,17 +141,17 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
+            'modal_id' => '#liste_filtern_modal',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
+            'modal_id' => '#liste_sortieren_modal',
             'title' => 'Mitglieder sortieren',
         );
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'modal_id' => '#termin_anwesenheiten_Modal',
+            'modal_id' => '#termin_anwesenheiten_modal',
             'liste' => 'termine',
             'title' => 'Anwesenheiten dokumentieren',
         );
@@ -168,7 +168,7 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> - <span class="eigenschaft" data-eigenschaft="ende"></span>',
                 ),
                 'modal' => array(
-                    'target' => '#element_loeschen_Modal',
+                    'target' => '#element_loeschen_modal',
                     'aktion' => 'loeschen',
                 ),
                 'symbol' => array(
@@ -227,12 +227,12 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'modal_id' => '#mitglied_einmal_link_anzeigen_Modal',
+                'modal_id' => '#mitglied_einmal_link_anzeigen_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'modal_id' => '#mitglied_einmal_link_email_Modal',
+                'modal_id' => '#mitglied_einmal_link_email_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link per Email zuschicken',
             );
@@ -248,7 +248,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => '#element_loeschen_Modal',
+                'modal_id' => '#element_loeschen_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',

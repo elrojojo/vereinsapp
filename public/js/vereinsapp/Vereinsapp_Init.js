@@ -29,10 +29,10 @@ $(document).ready(function () {
             url: "status/ajax_datenschutz_richtlinie",
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals").append(AJAX.antwort.html);
-                $("#datenschutz_richtlinie_Modal").modal("show");
+                $("#datenschutz_richtlinie_modal").modal("show");
                 $("#datenschutz_richtlinie_akzeptieren").click(function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    $("#datenschutz_richtlinie_Modal").modal("hide");
+                    $("#datenschutz_richtlinie_modal").modal("hide");
                 });
             },
         };
@@ -81,7 +81,5 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 #toasts als fixed immer oben behalten
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
-_Modal ändern in _modal
-_Label ändern in _label
 
 */

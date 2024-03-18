@@ -57,7 +57,7 @@ class Termine extends BaseController {
                 'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => '#element_loeschen_Modal',
+                'modal_id' => '#element_loeschen_modal',
                 'liste' => 'termine',
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
@@ -70,12 +70,12 @@ class Termine extends BaseController {
         }
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
+            'modal_id' => '#liste_filtern_modal',
             'title' => 'Termine filtern',
         );
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
+            'modal_id' => '#liste_sortieren_modal',
             'title' => 'Termine sortieren',
         );
 
@@ -142,17 +142,17 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
+            'modal_id' => '#liste_filtern_modal',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
+            'modal_id' => '#liste_sortieren_modal',
             'title' => 'Mitglieder sortieren',
         );
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'modal_id' => '#termin_anwesenheiten_Modal',
+            'modal_id' => '#termin_anwesenheiten_modal',
             'liste' => 'mitglieder',
             'title' => 'Anwesenheiten dokumentieren',
         );
@@ -169,7 +169,7 @@ class Termine extends BaseController {
                 'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => '#element_loeschen_Modal',
+                'modal_id' => '#element_loeschen_modal',
                 'liste' => 'termine',
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',

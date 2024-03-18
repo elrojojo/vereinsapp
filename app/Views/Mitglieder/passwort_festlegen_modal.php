@@ -1,8 +1,8 @@
-<div class="modal fade formular" id="mitglied_passwort_festlegen_Modal" tabindex="-1">
+<div class="modal fade formular" id="mitglied_passwort_festlegen_modal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title h5" id="mitglied_passwort_festlegen_Modal_Label">Mein Passwort festlegen</div>
+            <div class="modal-title h5">Mein Passwort festlegen</div>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">

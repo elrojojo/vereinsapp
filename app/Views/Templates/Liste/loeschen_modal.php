@@ -1,8 +1,8 @@
-<div class="modal fade formular" id="element_loeschen_Modal" tabindex="-1">
+<div class="modal fade formular" id="element_loeschen_modal" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title h5" id="element_loeschen_Modal_Label"></div>
+        <div class="modal-title h5"></div>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">

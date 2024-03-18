@@ -16,12 +16,12 @@ function Liste_FilternInit() {
     $(".filtern_definitionen").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#liste_filtern_Modal", function () {
+    $(document).on("show.bs.modal", "#liste_filtern_modal", function () {
         Liste_FilternFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
     // FORMULAR (MODAL) SCHLIESSEN
-    $(document).on("hide.bs.modal", "#liste_filtern_Modal", function () {
+    $(document).on("hide.bs.modal", "#liste_filtern_modal", function () {
         Liste_FilternFormularSchliessen($(this));
     });
 

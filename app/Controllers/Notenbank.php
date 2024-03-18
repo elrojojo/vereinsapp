@@ -45,7 +45,7 @@ class Notenbank extends BaseController {
                 'title' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => '#element_loeschen_Modal',
+                'modal_id' => '#element_loeschen_modal',
                 'liste' => 'notenbank',
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',
@@ -58,12 +58,12 @@ class Notenbank extends BaseController {
         }
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => '#liste_filtern_Modal',
+            'modal_id' => '#liste_filtern_modal',
             'title' => 'Notenbank filtern',
         ); 
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => '#liste_sortieren_Modal',
+            'modal_id' => '#liste_sortieren_modal',
             'title' => 'Notenbank sortieren',
         ); 
 
@@ -95,7 +95,7 @@ class Notenbank extends BaseController {
                 'title' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => '#element_loeschen_Modal',
+                'modal_id' => '#element_loeschen_modal',
                 'liste' => 'notenbank',
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',

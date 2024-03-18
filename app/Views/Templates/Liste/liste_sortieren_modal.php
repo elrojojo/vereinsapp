@@ -1,8 +1,8 @@
-<div class="modal fade" id="liste_sortieren_Modal" tabindex="-1">
+<div class="modal fade" id="liste_sortieren_modal" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title h5" id="liste_sortieren_Modal_Label"></div>
+                <div class="modal-title h5"></div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">

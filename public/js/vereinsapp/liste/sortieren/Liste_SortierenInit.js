@@ -5,12 +5,12 @@ function Liste_SortierenInit() {
     $(".sortieren").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#liste_sortieren_Modal", function () {
+    $(document).on("show.bs.modal", "#liste_sortieren_modal", function () {
         Liste_SortierenFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
     });
 
     // FORMULAR (MODAL) SCHLIESSEN
-    $(document).on("hide.bs.modal", "#liste_sortieren_Modal", function () {
+    $(document).on("hide.bs.modal", "#liste_sortieren_modal", function () {
         Liste_SortierenFormularSchliessen($(this));
     });
 
