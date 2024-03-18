@@ -30,7 +30,7 @@ function Liste_Init() {
     });
 
     // ELEMENT ERSTELLEN
-    $(document).on("click", ".btn_element_erstellen", function () {
+    $(document).on("click", ".btn_erfolgreich_abschliessen", function () {
         Liste_ElementErstellen($(this));
     });
 

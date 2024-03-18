@@ -28,7 +28,7 @@
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) { ?><?php /*<div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="abwesenheiten_des_mitglieds">Abwesenheiten</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['abwesenheiten_des_mitglieds'] ) ); ?>
-<?= view( 'Mitglieder/abwesenheit_erstellen', array( 'mitglied_id' => $element_id ) ); ?>
+<?= view( 'Mitglieder/abwesenheit_basiseigenschaften', array( 'mitglied_id' => $element_id ) ); ?>
 </div> */ ?>
 
 <?php if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
@@ -44,7 +44,7 @@
 <?php } ?>
 
 <?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => array( 'anwesenheiten_dokumentieren' => $liste['anwesenheiten_dokumentieren'] ) ) ); ?>
-<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_email_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>

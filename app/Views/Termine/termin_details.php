@@ -13,7 +13,7 @@
     <div class="row g-0 my-1">
         <div class="col text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-    <?= view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ); ?>
+    <?= view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
 </div>
 
 <div class="container mb-2">
@@ -22,7 +22,7 @@
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => array( 'anwesenheiten_dokumentieren' => $liste['anwesenheiten_dokumentieren'] ) ) ); ?>
-<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_basiseigenschaften_modal' ); ?>
 <?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'termine', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>
 

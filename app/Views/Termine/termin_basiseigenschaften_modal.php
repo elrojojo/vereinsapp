@@ -1,8 +1,8 @@
-<div class="modal fade formular" id="termin_erstellen_Modal" tabindex="-1">
+<div class="modal fade formular" id="termin_basiseigenschaften_modal" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title h5" id="termin_erstellen_Modal_Label"></div>
+            <div class="modal-title h5" id="termin_basiseigenschaften_modal_Label"></div>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -45,7 +45,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn_element_erstellen btn btn-outline-success">Speichern</button>
+            <button type="button" class="btn btn_erfolgreich_abschliessen btn-outline-success">Speichern</button>
         </div>
         </div>
     </div>

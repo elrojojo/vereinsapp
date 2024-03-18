@@ -32,7 +32,7 @@ class Termine extends BaseController {
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
                     <div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) )
+                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) )
                     //.view('Templates/Liste/auswertung', array( 'zusammenfassung' => array( 'instanz' => 'rueckmeldungen_termin', 'progress' => TRUE, ), ) )
                     ,
                 'klein' => TRUE,
@@ -47,12 +47,12 @@ class Termine extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => '#termin_erstellen_Modal',
+                'modal_id' => '#termin_basiseigenschaften_modal',
                 'liste' => 'termine',
                 'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => '#termin_erstellen_Modal',
+                'modal_id' => '#termin_basiseigenschaften_modal',
                 'liste' => 'termine',
                 'title' => 'Termin duplizieren',
             );
@@ -64,7 +64,7 @@ class Termine extends BaseController {
             );
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
-                'modal_id' => '#termin_erstellen_Modal',
+                'modal_id' => '#termin_basiseigenschaften_modal',
                 'title' => 'Termin erstellen',
             );
         }
@@ -159,12 +159,12 @@ class Termine extends BaseController {
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => '#termin_erstellen_Modal',
+                'modal_id' => '#termin_basiseigenschaften_modal',
                 'liste' => 'termine',
                 'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => '#termin_erstellen_Modal',
+                'modal_id' => '#termin_basiseigenschaften_modal',
                 'liste' => 'termine',
                 'title' => 'Termin duplizieren',
             );

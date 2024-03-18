@@ -63,12 +63,12 @@ class Mitglieder extends BaseController {
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
+                'modal_id' => '#mitglied_basiseigenschaften_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
+                'modal_id' => '#mitglied_basiseigenschaften_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied duplizieren',
             );
@@ -80,7 +80,7 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['erstellen'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
+                'modal_id' => '#mitglied_basiseigenschaften_modal',
                 'title' => 'Mitglied erstellen',
             ); 
         }
@@ -220,7 +220,7 @@ class Mitglieder extends BaseController {
                 'vorschau' => array(
                     'beschriftung' => '<div class="row g-0 my-1">
                         <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                        </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => $element_id ) ),
+                        </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $element_id ) ),
                     'klein' => TRUE,
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
@@ -238,12 +238,12 @@ class Mitglieder extends BaseController {
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
+                'modal_id' => '#mitglied_basiseigenschaften_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => '#mitglied_erstellen_Modal',
+                'modal_id' => '#mitglied_basiseigenschaften_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied duplizieren',
             );

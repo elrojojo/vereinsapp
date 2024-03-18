@@ -14,7 +14,7 @@
 <?= view( 'Templates/Liste/verzeichnis', array( 'verzeichnis' => $verzeichnis['aktuelles_verzeichnis'] ) ); ?>
 </div>
 
-<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_basiseigenschaften_modal' ); ?>
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'notenbank', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>
 

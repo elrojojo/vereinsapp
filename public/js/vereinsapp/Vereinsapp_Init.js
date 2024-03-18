@@ -81,5 +81,7 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 #toasts als fixed immer oben behalten
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
+_Modal ändern in _modal
+_Label ändern in _label
 
 */

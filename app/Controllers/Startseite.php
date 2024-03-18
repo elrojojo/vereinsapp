@@ -71,7 +71,7 @@ class Startseite extends BaseController {
             'vorschau' => array(
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_erstellen', array( 'mitglied_id' => ICH['id'] ) ),
+                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
                 'klein' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',

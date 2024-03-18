@@ -60,13 +60,14 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
             .html()
     );
 
-    const $btn_schliessend = $formular.find('[class^="btn_"]');
+    const $btn_erfolgreich_abschliessen = $formular.find(".btn_erfolgreich_abschliessen");
 
-    $btn_schliessend.attr("data-liste", liste).attr("data-aktion", aktion);
-    if (typeof weiterleiten !== "undefined") $btn_schliessend.attr("data-weiterleiten", weiterleiten);
-    else $btn_schliessend.removeAttr("data-weiterleiten");
-    if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_schliessend.attr("data-element_id", element_id);
-    else $btn_schliessend.removeAttr("data-element_id");
+    $btn_erfolgreich_abschliessen
+        .attr("data-liste", liste)
+        .attr("data-aktion", aktion)
+        .addClass(G.LISTEN[liste].element + "_" + aktion);
+    if (typeof weiterleiten !== "undefined") $btn_erfolgreich_abschliessen.attr("data-weiterleiten", weiterleiten); // verschieben in die jeweilige Funktion
+    if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_erfolgreich_abschliessen.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
 
     Schnittstelle_EventVariableUpdDom(liste);
 }

@@ -6,6 +6,6 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aktuelles_verzeichnis'] ) ); ?>
 </div>
 
-<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_basiseigenschaften_modal' ); ?>
 <?= $this->endSection() ?>
 

@@ -7,6 +7,6 @@
 </div>
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
-<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_erstellen_modal' ); ?>
+<?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_basiseigenschaften_modal' ); ?>
 <?= $this->endSection() ?>
 
