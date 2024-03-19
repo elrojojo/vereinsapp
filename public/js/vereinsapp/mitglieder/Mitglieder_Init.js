@@ -46,6 +46,16 @@ function Mitglieder_Init() {
         Liste_ElementLoeschen($(this));
     });
 
+    // PASSWORT ÄNDERN
+    $(document).on("click", ".btn_mitglied_passwort_aendern", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // PASSWORT FESTLEGEN
+    $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
+        Liste_ElementErstellen($(this));
+    });
+
     // ABWESENHEIT ERSTELLEN
     $(document).on("click", ".btn_abwesenheit_erstellen", function () {
         Liste_ElementErstellen($(this));

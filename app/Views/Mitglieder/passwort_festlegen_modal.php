@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title h5">Mein Passwort festlegen</div>
+            <div class="modal-title h5" data-title="Mein Passwort festlegen"></div>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn_passwort_festlegen btn btn-outline-success" data-liste="mitglieder" data-aktion="passwort_festlegen" data-element_id="<?= ICH['id']; ?>">Mein Passwort festlegen</button>
+            <button type="button" class="btn btn_erfolgreich_abschliessen btn_mitglied_passwort_festlegen btn-outline-success" data-liste="mitglieder" data-aktion="passwort_festlegen" data-element_id="<?= ICH['id']; ?>">Mein Passwort festlegen</button>
         </div>
         </div>
     </div>

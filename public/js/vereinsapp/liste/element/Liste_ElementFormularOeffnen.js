@@ -62,10 +62,10 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
 
     const $btn_erfolgreich_abschliessen = $formular.find(".btn_erfolgreich_abschliessen");
 
-    $btn_erfolgreich_abschliessen
-        .attr("data-liste", liste)
-        .attr("data-aktion", aktion)
-        .addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
+    if (typeof liste !== "undefined") $btn_erfolgreich_abschliessen.attr("data-liste", liste);
+    if (typeof aktion !== "undefined") $btn_erfolgreich_abschliessen.attr("data-aktion", aktion);
+    if (typeof liste !== "undefined" && typeof aktion !== "undefined")
+        $btn_erfolgreich_abschliessen.addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
     if (typeof weiterleiten !== "undefined") $btn_erfolgreich_abschliessen.attr("data-weiterleiten", weiterleiten); // verschieben in die jeweilige Funktion
     if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_erfolgreich_abschliessen.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
 

@@ -85,7 +85,5 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 btn_erfolgreich_abschliessen umbennen
-modal schließen ohne btn_erfolgreich_abschliessen funktioniert nicht mehr (bspw. Anwesenheiten dokumentieren)
-passwort_festlegen_modal öffnet nicht
 
 */
