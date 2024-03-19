@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn_element_loeschen btn btn-outline-danger">Löschen</button>
+        <button type="button" class="btn btn_erfolgreich_abschliessen btn-outline-danger">Löschen</button>
       </div>
     </div>
   </div>

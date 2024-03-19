@@ -36,9 +36,9 @@ function Termine_Init() {
     });
 
     // TERMIN LÖSCHEN
-    // $(document).on("click", ".btn_termin_loeschen", function () {
-    //     Liste_ElementErstellen($(this));
-    // });
+    $(document).on("click", ".btn_termin_loeschen", function () {
+        Liste_ElementLoeschen($(this));
+    });
 
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
@@ -57,26 +57,6 @@ function Termine_Init() {
 
     // RÜCKMELDUNG LÖSCHEN
     // $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
-    //     Liste_ElementErstellen($(this));
-    // });
-
-    // ANWESENHEIT ERSTELLEN
-    $(document).on("click", ".btn_anwesenheit_erstellen", function () {
-        Liste_ElementErstellen($(this));
-    });
-
-    // ANWESENHEIT ÄNDERN
-    $(document).on("click", ".btn_anwesenheit_aendern", function () {
-        Liste_ElementErstellen($(this));
-    });
-
-    // ANWESENHEIT DUPLIZIEREN
-    $(document).on("click", ".btn_anwesenheit_duplizieren", function () {
-        Liste_ElementErstellen($(this));
-    });
-
-    // ANWESENHEIT LÖSCHEN
-    // $(document).on("click", ".btn_anwesenheit_loeschen", function () {
     //     Liste_ElementErstellen($(this));
     // });
 }

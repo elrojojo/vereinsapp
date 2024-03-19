@@ -29,34 +29,6 @@ function Liste_Init() {
         Liste_ElementFormularSchliessen($(this));
     });
 
-    // ELEMENT LÖSCHEN
-    $(document).on("click", ".btn_element_loeschen", function () {
-        Liste_ElementLoeschen($(this));
-    });
-
-    // CHECKLISTE ÄNDERN
-    $(document).on("change", ".check", function () {
-        Liste_CheckAendern($(this));
-    });
-
-    // ALLE CHECKS ANWÄHLEN
-    $(document).on("click", ".btn_alle_checks_anwaehlen", function () {
-        const $btn = $(this);
-        const instanz = $btn.attr("data-instanz");
-        $(".checkliste[id='" + instanz + "']")
-            .find(".check:not(:checked)")
-            .trigger("click");
-    });
-
-    // ALLE CHECKS ABWÄHLEN
-    $(document).on("click", ".btn_alle_checks_abwaehlen", function () {
-        const $btn = $(this);
-        const instanz = $btn.attr("data-instanz");
-        $('.checkliste[id="' + instanz + '"]')
-            .find(".check:checked")
-            .trigger("click");
-    });
-
     // SORTABLE
     $(".sortable").sortable({
         handle: ".sortable_handle",

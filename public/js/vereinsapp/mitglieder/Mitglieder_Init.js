@@ -42,9 +42,9 @@ function Mitglieder_Init() {
     });
 
     // MITGLIED LÖSCHEN
-    // $(document).on("click", ".btn_mitglied_loeschen", function () {
-    //     Liste_ElementErstellen($(this));
-    // });
+    $(document).on("click", ".btn_mitglied_loeschen", function () {
+        Liste_ElementLoeschen($(this));
+    });
 
     // ABWESENHEIT ERSTELLEN
     $(document).on("click", ".btn_abwesenheit_erstellen", function () {
@@ -57,14 +57,14 @@ function Mitglieder_Init() {
     });
 
     // ABWESENHEIT DUPLIZIEREN
-    $(document).on("click", ".btn_abwesenheit_duplizieren", function () {
-        Liste_ElementErstellen($(this));
-    });
-
-    // ABWESENHEIT LÖSCHEN
-    // $(document).on("click", ".btn_abwesenheit_loeschen", function () {
+    // $(document).on("click", ".btn_abwesenheit_duplizieren", function () {
     //     Liste_ElementErstellen($(this));
     // });
+
+    // ABWESENHEIT LÖSCHEN
+    $(document).on("click", ".btn_abwesenheit_loeschen", function () {
+        Liste_ElementLoeschen($(this));
+    });
 
     // PASSWORT FESTLEGEN MODAL
     if (FORCE_PASSWORD_RESET) {

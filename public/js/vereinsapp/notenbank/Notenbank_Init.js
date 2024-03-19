@@ -27,7 +27,7 @@ function Notenbank_Init() {
     });
 
     // TITEL LÖSCHEN
-    // $(document).on("click", ".btn_titel_loeschen", function () {
-    //     Liste_ElementErstellen($(this));
-    // });
+    $(document).on("click", ".btn_titel_loeschen", function () {
+        Liste_ElementLoeschen($(this));
+    });
 }
