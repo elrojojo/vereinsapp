@@ -17,7 +17,7 @@
       <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['abwesenheiten']['ende']['bemerkung']; ?>" />
       <label><?= EIGENSCHAFTEN['abwesenheiten']['ende']['bemerkung']; ?></label>
     </div>
-    <button type="button" class="btn_erfolgreich_abschliessen btn btn-outline-success" data-liste="abwesenheiten" data-aktion="erstellen" data-werte='<?= json_encode( array( 'mitglied_id' => $mitglied_id ), JSON_UNESCAPED_UNICODE ); ?>'><i class="bi bi-<?= SYMBOLE['erstellen']['bootstrap']; ?>"></i></button>
+    <button type="button" class="btn_abwesenheit_erstellen btn btn-outline-success" data-liste="abwesenheiten" data-aktion="erstellen" data-werte='<?= json_encode( array( 'mitglied_id' => $mitglied_id ), JSON_UNESCAPED_UNICODE ); ?>'><i class="bi bi-<?= SYMBOLE['erstellen']['bootstrap']; ?>"></i></button>
   </div>
 
   <?php // <span class="text-secondary small">Abwesenheiten gelten bis 00:00 des Folgetages.</span> ?>

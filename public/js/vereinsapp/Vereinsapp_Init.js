@@ -18,6 +18,8 @@ $(document).ready(function () {
     Liste_Init();
 
     if (LOGGEDIN) Mitglieder_Init();
+    if (LOGGEDIN) Termine_Init();
+    if (LOGGEDIN) Notenbank_Init();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
@@ -81,5 +83,10 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 #toasts als fixed immer oben behalten
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
+Nicht existenter Verzeichnis-Ordner führt zu Fehler
+btn_erfolgreich_abschliessen umbennen
+element_loeschen funktioniert nicht mehr
+modal schließen ohne btn_erfolgreich_abschliessen funktioniert nicht mehr (bspw. Anwesenheiten dokumentieren)
+passwort_festlegen_modal öffnet nicht
 
 */

@@ -24,9 +24,9 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
         // Wenn aber nichts definiert ist, dann nimm den Blanko-Wert (je nach Typ)
         if (typeof wert === "undefined")
             if ($eigenschaft.prop("tagName") == "SELECT") wert = $eigenschaft.find("option:first").val();
-            else if ($eigenschaft.attr("type") == "date") wert = DateTime.now();
-            else if ($eigenschaft.attr("type") == "time") wert = DateTime.now();
-            else if ($eigenschaft.attr("type") == "datetime-local") wert = DateTime.now();
+            else if ($eigenschaft.attr("type") == "date") wert = DateTime.now().plus({ days: 1 });
+            else if ($eigenschaft.attr("type") == "time") wert = DateTime.now().plus({ minutes: 1 });
+            else if ($eigenschaft.attr("type") == "datetime-local") wert = DateTime.now().plus({ minutes: 1 });
             else if ($eigenschaft.attr("type") == "button") wert = new Array();
             else wert = "";
 
@@ -35,14 +35,14 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
         if ($eigenschaft.attr("type") == "date") wert_formatiert = wert.toISODate();
         // Oder wenn aber die Eigenschaft eine Uhrzeit ist
         else if ($eigenschaft.attr("type") == "time")
-            wert_formatiert = wert.set({ seconds: 0 }).toISOTime({
+            wert_formatiert = wert.set({ seconds: 0, milliseconds: 0 }).toISOTime({
                 includeOffset: false,
                 suppressSeconds: true,
                 suppressMilliseconds: true,
             });
         // Oder wenn aber die Eigenschaft ein Datum und eine Uhrzeit ist
         else if ($eigenschaft.attr("type") == "datetime-local")
-            wert_formatiert = wert.set({ seconds: 0 }).toISO({
+            wert_formatiert = wert.set({ seconds: 0, milliseconds: 0 }).toISO({
                 includeOffset: false,
                 suppressSeconds: true,
                 suppressMilliseconds: true,
@@ -65,7 +65,7 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     $btn_erfolgreich_abschliessen
         .attr("data-liste", liste)
         .attr("data-aktion", aktion)
-        .addClass(G.LISTEN[liste].element + "_" + aktion);
+        .addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
     if (typeof weiterleiten !== "undefined") $btn_erfolgreich_abschliessen.attr("data-weiterleiten", weiterleiten); // verschieben in die jeweilige Funktion
     if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_erfolgreich_abschliessen.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
 

@@ -17,7 +17,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn_mitglied_einmal_link_erstellen btn btn-outline-success">Einmal-Link anzeigen</button>
+        <button type="button" class="btn btn_erfolgreich_abschliessen btn-outline-success">Einmal-Link anzeigen</button>
       </div>
     </div>
   </div>

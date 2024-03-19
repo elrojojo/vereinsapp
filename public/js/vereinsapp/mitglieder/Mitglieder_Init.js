@@ -26,6 +26,46 @@ G.LISTEN.mitglieder = {
 };
 
 function Mitglieder_Init() {
+    // MITGLIED ERSTELLEN
+    $(document).on("click", ".btn_mitglied_erstellen", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // MITGLIED ÄNDERN
+    $(document).on("click", ".btn_mitglied_aendern", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // MITGLIED DUPLIZIEREN
+    $(document).on("click", ".btn_mitglied_duplizieren", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // MITGLIED LÖSCHEN
+    // $(document).on("click", ".btn_mitglied_loeschen", function () {
+    //     Liste_ElementErstellen($(this));
+    // });
+
+    // ABWESENHEIT ERSTELLEN
+    $(document).on("click", ".btn_abwesenheit_erstellen", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // ABWESENHEIT ÄNDERN
+    $(document).on("click", ".btn_abwesenheit_aendern", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // ABWESENHEIT DUPLIZIEREN
+    $(document).on("click", ".btn_abwesenheit_duplizieren", function () {
+        Liste_ElementErstellen($(this));
+    });
+
+    // ABWESENHEIT LÖSCHEN
+    // $(document).on("click", ".btn_abwesenheit_loeschen", function () {
+    //     Liste_ElementErstellen($(this));
+    // });
+
     // PASSWORT FESTLEGEN MODAL
     if (FORCE_PASSWORD_RESET) {
         // SCHNITTSTELLE AJAX
@@ -55,8 +95,13 @@ function Mitglieder_Init() {
         $btn_dismiss.addClass("btn-outline-danger").removeClass("btn-outline-primary");
     });
 
-    // EINMAL-LINK ERSTELLEN
-    $(document).on("click", ".btn_mitglied_einmal_link_erstellen", function () {
+    // EINMAL-LINK ANZEIGEN
+    $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
+        Mitglieder_EinmalLinkErstellen($(this));
+    });
+
+    // EINMAL-LINK PER EMAIL VERSCHICKEN
+    $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
         Mitglieder_EinmalLinkErstellen($(this));
     });
 }

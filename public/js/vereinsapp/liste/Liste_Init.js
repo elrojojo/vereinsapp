@@ -29,11 +29,6 @@ function Liste_Init() {
         Liste_ElementFormularSchliessen($(this));
     });
 
-    // ELEMENT ERSTELLEN
-    $(document).on("click", ".btn_erfolgreich_abschliessen", function () {
-        Liste_ElementErstellen($(this));
-    });
-
     // ELEMENT LÖSCHEN
     $(document).on("click", ".btn_element_loeschen", function () {
         Liste_ElementLoeschen($(this));

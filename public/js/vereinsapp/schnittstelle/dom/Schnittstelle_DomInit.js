@@ -60,14 +60,12 @@ function Schnittstelle_DomInit() {
         const $btn_oeffnend = $(event.relatedTarget);
 
         const title_modal = $modal.find(".modal-title").first().attr("data-title");
-        if (typeof title_modal !== "undefined") $modal.find(".modal-title").html(title_modal);
-        else {
-            const title_btn = $btn_oeffnend.attr("data-title");
-            if (typeof title_btn !== "undefined") {
-                $modal.find(".modal-title").attr("data-title", title_btn);
-                $modal.find(".modal-title").text(title_btn);
-            } else $modal.find(".modal-title").text("ERROR: Hier fehlt ein Titel");
-        }
+        const title_btn = $btn_oeffnend.attr("data-title");
+        if (typeof title_btn !== "undefined") {
+            $modal.find(".modal-title").attr("data-title", title_btn);
+            $modal.find(".modal-title").text(title_btn);
+        } else if (typeof title_modal !== "undefined") $modal.find(".modal-title").html(title_modal);
+        else $modal.find(".modal-title").text("ERROR: Hier fehlt ein Titel");
 
         if (G.MODALS.offen.length == 0 || G.MODALS.offen[G.MODALS.offen.length - 1].modal_id != modal_id) {
             G.MODALS.offen.push({ modal_id: modal_id, $btn_oeffnend: $btn_oeffnend });

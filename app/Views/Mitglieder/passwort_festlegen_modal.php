@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn_erfolgreich_abschliessen btn btn-outline-success" data-liste="mitglieder" data-aktion="passwort_festlegen" data-element_id="<?= ICH['id']; ?>">Mein Passwort festlegen</button>
+            <button type="button" class="btn_passwort_festlegen btn btn-outline-success" data-liste="mitglieder" data-aktion="passwort_festlegen" data-element_id="<?= ICH['id']; ?>">Mein Passwort festlegen</button>
         </div>
         </div>
     </div>
