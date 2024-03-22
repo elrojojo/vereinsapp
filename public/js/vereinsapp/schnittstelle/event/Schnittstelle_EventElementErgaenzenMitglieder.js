@@ -10,15 +10,4 @@ function Schnittstelle_EventElementErgaenzenMitglieder(mitglied) {
 
         mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
     }
-
-    if ("abwesenheiten" in G.LISTEN) {
-        mitglied["abwesend"] = false;
-        $.each(G.LISTEN.abwesenheiten.tabelle, function () {
-            const abwesenheit = this;
-            if ("id" in abwesenheit) {
-                if (abwesenheit["mitglied_id"] == mitglied["id"] && abwesenheit["start"] <= DateTime.now() && DateTime.now() <= abwesenheit["ende"])
-                    mitglied["abwesend"] = true;
-            }
-        });
-    }
 }

@@ -77,7 +77,7 @@ Feuern eines Toasts für bestimmte Listen unterdrückbar machen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Migrations um Abwesenheiten, Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
+Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 "erstellen" umbenennen zu "speichern"
 #toasts als fixed immer oben behalten

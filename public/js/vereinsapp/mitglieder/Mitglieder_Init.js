@@ -9,19 +9,12 @@ G.LISTEN.vergebene_rechte = {
     verlinkte_listen: ["mitglieder", "verfuegbare_rechte"],
 };
 
-G.LISTEN.abwesenheiten = {
-    controller: "mitglieder",
-    element: "abwesenheit",
-    beschriftung: [{ eigenschaft: "start" }, { eigenschaft: "ende", prefix: " - " }],
-    verlinkte_listen: ["mitglieder"],
-};
-
 G.LISTEN.mitglieder = {
     controller: "mitglieder",
     element: "mitglied",
     beschriftung: [{ eigenschaft: "vorname" }, { eigenschaft: "nachname", prefix: " " }],
     verlinkte_listen: [],
-    abhaengig_von: ["abwesenheiten"],
+    abhaengig_von: [],
     element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,
 };
 
@@ -54,16 +47,6 @@ function Mitglieder_Init() {
     // PASSWORT FESTLEGEN
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
         Liste_ElementErstellen($(this));
-    });
-
-    // ABWESENHEIT ERSTELLEN
-    $(document).on("click", ".btn_abwesenheit_erstellen", function () {
-        Liste_ElementErstellen($(this));
-    });
-
-    // ABWESENHEIT LÖSCHEN
-    $(document).on("click", ".btn_abwesenheit_loeschen", function () {
-        Liste_ElementLoeschen($(this));
     });
 
     // PASSWORT FESTLEGEN MODAL

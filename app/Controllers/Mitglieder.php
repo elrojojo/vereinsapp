@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 use App\Models\Mitglieder\Mitglied_Model;
-use App\Models\Mitglieder\Mitglieder_Abwesenheit_Model as Abwesenheit_Model;
 use CodeIgniter\Shield\Entities\User as Mitglied;
 
 use App\Models\Termine\Termin_Model;
@@ -157,31 +156,6 @@ class Mitglieder extends BaseController {
         );
         
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-            $this->viewdata['liste']['abwesenheiten_des_mitglieds'] = array(
-                'liste' => 'abwesenheiten',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'ende', 'richtung' => SORT_ASC, ),                
-                ),
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'mitglied_id', 'wert' => $element_id ), ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> - <span class="eigenschaft" data-eigenschaft="ende"></span>',
-                ),
-                'modal' => array(
-                    'target' => '#element_loeschen_modal',
-                    'aktion' => 'loeschen',
-                ),
-                'symbol' => array(
-                    'symbol' => SYMBOLE['loeschen']['bootstrap'],
-                    'farbe' => 'danger',
-                ),
-                'vorschau' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
-                    'klein' => TRUE,
-                    'abschneiden' => TRUE,
-                ),
-            );
-
             if( auth()->user()->can( 'mitglieder.rechte' ) ) {
                 $elemente_disabled = array();
                 $elemente_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
@@ -533,67 +507,6 @@ class Mitglieder extends BaseController {
         else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
         else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], TRUE );
 
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    //------------------------------------------------------------------------------------------------------------------
-    public function ajax_abwesenheiten() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else foreach( model(Abwesenheit_Model::class)->findAll() as $abwesenheit ) {
-                $abwesenheit = json_decode( json_encode( $abwesenheit ), TRUE );
-                foreach( $abwesenheit as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $abwesenheit[ $eigenschaft ] = (int)$wert;
-                $ajax_antwort['tabelle'][] = $abwesenheit;
-            }
-        
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    public function ajax_abwesenheit_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            // 'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'start' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'ende' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['abwesenheiten']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !empty( $this->request->getPost()['mitglied_id'] ) AND $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getpost()['start'] > $this->request->getpost()['ende'] ) $ajax_antwort['validation'] = array(
-            'start' => EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung'].' liegen.',
-            'ende' => EIGENSCHAFTEN['abwesenheiten']['ende']['beschriftung'].' muss zeitlich vor '.EIGENSCHAFTEN['abwesenheiten']['start']['beschriftung'].' liegen.',
-        );
-        else {
-            $abwesenheit_Model = model(Abwesenheit_Model::class);
-            $abwesenheit = array(
-                'start' => $this->request->getpost()['start'],
-                'ende' => $this->request->getpost()['ende'],
-                'bemerkung' => $this->request->getpost()['bemerkung'],
-            );
-            if( !empty( $this->request->getPost()['mitglied_id'] ) ) $abwesenheit['mitglied_id'] = $this->request->getPost()['mitglied_id']; else $abwesenheit['mitglied_id'] = ICH['id'];
-
-            // if( !empty( $this->request->getPost()['id'] ) ) $abwesenheit_Model->update( $this->request->getpost()['id'], $abwesenheit );
-            // else {
-                $abwesenheit_Model->save( $abwesenheit );
-                $ajax_antwort['element_id'] = (int)$abwesenheit_Model->getInsertID();
-            // }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    public function ajax_abwesenheit_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( model(Abwesenheit_Model::class)->find( $this->request->getPost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Abwesenheit_Model::class)->delete( $this->request->getPost()['id'], TRUE );
-        
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

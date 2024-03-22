@@ -100,13 +100,6 @@ class Vereinsapp extends BaseConfig
             'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // JAVA
         ),
 
-        'abwesenheiten' => array(
-            'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt' ),
-            'ende' => array( 'beschriftung' => 'Ende', 'typ' => 'zeitpunkt' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
-            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-        ),
-
         'vergebene_rechte' => array(
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl' ),
@@ -203,9 +196,6 @@ class Vereinsapp extends BaseConfig
 
         ),
 
-        'abwesenheiten' => array(
-        ),
-
         'vergebene_rechte' => array(
         ),
 
@@ -262,11 +252,6 @@ class Vereinsapp extends BaseConfig
             'abwesend',
         ),
 
-        'abwesenheiten' => array(
-            'start',
-            'ende',
-        ),
-
         'vergebene_rechte' => array(
         ),
 
@@ -314,11 +299,6 @@ class Vereinsapp extends BaseConfig
             'vorstandschaft',
             'aktiv',
             'abwesend',
-        ),
-
-        'abwesenheiten' => array(
-            'start',
-            'ende',
         ),
 
         'vergebene_rechte' => array(

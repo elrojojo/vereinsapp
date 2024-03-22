@@ -7,12 +7,6 @@
 <?= view( 'Einstellungen/verknuepfung' ); ?>
 </div>
 
-<?php /*<div class="container mb-2">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="meine_abwesenheiten">Meine Abwesenheiten</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['meine_abwesenheiten'] ) ); ?>
-<?= view( 'Mitglieder/abwesenheit_basiseigenschaften', array( 'element_id' => ICH['id'] ) ); ?>
-</div>*/ ?>
-
 <div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte_vergeben">Meine Rechte</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>

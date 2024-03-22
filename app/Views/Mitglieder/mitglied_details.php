@@ -25,13 +25,8 @@
     </div>
 </div>
 
-<?php if( auth()->user()->can('mitglieder.verwaltung') ) { ?><?php /*<div class="container mb-2">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="abwesenheiten_des_mitglieds">Abwesenheiten</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['abwesenheiten_des_mitglieds'] ) ); ?>
-<?= view( 'Mitglieder/abwesenheit_basiseigenschaften', array( 'mitglied_id' => $element_id ) ); ?>
-</div> */ ?>
-
-<?php if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
+<?php if( auth()->user()->can('mitglieder.verwaltung') ) {
+    if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte_vergeben">Rechte</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 </div><?php } ?>

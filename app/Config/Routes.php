@@ -54,12 +54,6 @@ $routes->group('mitglieder', static function ($routes) {
     $routes->post('ajax_mitglied_einmal_link_erstellen',    'Mitglieder::ajax_mitglied_einmal_link_erstellen');
     $routes->post('ajax_mitglied_loeschen',                 'Mitglieder::ajax_mitglied_loeschen');
 
-    $routes->post('ajax_abwesenheiten',                     'Mitglieder::ajax_abwesenheiten');
-    $routes->post('ajax_abwesenheit_erstellen',             'Mitglieder::ajax_abwesenheit_erstellen');
-    // $routes->post('ajax_abwesenheit_aendern',               'Mitglieder::ajax_abwesenheit_aendern');
-    // $routes->post('ajax_abwesenheit_duplizieren',           'Mitglieder::ajax_abwesenheit_duplizieren');
-    $routes->post('ajax_abwesenheit_loeschen',              'Mitglieder::ajax_abwesenheit_loeschen');
-
     $routes->post('ajax_verfuegbare_rechte',                'Mitglieder::ajax_verfuegbare_rechte');
     $routes->post('ajax_vergebene_rechte',                  'Mitglieder::ajax_vergebene_rechte');
     $routes->post('ajax_vergebenes_recht_aendern',          'Mitglieder::ajax_vergebenes_recht_aendern');
