@@ -4,7 +4,7 @@
             <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $aktion => $werkzeug): ?>
                 <li class="werkzeug list-group-item list-group-item-action text-<?php
                     if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary'; ?>"
-                    data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>"
+                    data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>"
                     data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>"
                     data-liste="<?= $werkzeug['liste']; ?>"<?php if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php } ?>
                     role="button">

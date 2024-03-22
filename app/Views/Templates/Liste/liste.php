@@ -3,7 +3,7 @@
         ?><button class="btn btn_<?= $aktion; ?> werkzeug text-primary" data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>"><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i></button>
     <?php endforeach; ?>
     <?php foreach( $liste['werkzeugkasten'] as $aktion => $werkzeug):
-        ?><button class="btn werkzeug text-primary" data-bs-toggle="modal" data-bs-target="<?= $werkzeug['modal_id']; ?>" data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>"><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i></button>
+        ?><button class="btn werkzeug text-primary" data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>" data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>"><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i></button>
     <?php endforeach; ?>
 </div><?php } ?>
 <?php if( array_key_exists( 'listenstatistik', $liste ) AND $liste['listenstatistik'] ) { ?><div class="text-secondary text-end small mb-1">
