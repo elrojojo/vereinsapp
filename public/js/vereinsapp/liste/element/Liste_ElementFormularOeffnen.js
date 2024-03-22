@@ -1,10 +1,19 @@
 function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
-    const aktion = $btn_oeffnend.attr("data-aktion");
-    const liste = $btn_oeffnend.attr("data-liste");
-    // const instanz = $btn_oeffnend.attr("data-instanz");
-    const element_id = $btn_oeffnend.attr("data-element_id");
-    const gegen_element_id = $btn_oeffnend.attr("data-gegen_element_id");
-    const weiterleiten = $btn_oeffnend.attr("data-weiterleiten");
+    let aktion, liste, element_id, gegen_element_id, weiterleiten;
+
+    if ($btn_oeffnend.exists()) {
+        aktion = $btn_oeffnend.attr("data-aktion");
+        liste = $btn_oeffnend.attr("data-liste");
+        element_id = $btn_oeffnend.attr("data-element_id");
+        gegen_element_id = $btn_oeffnend.attr("data-gegen_element_id");
+        weiterleiten = $btn_oeffnend.attr("data-weiterleiten");
+    } else {
+        aktion = $formular.attr("data-aktion");
+        liste = $formular.attr("data-liste");
+    }
+
+    if (typeof liste !== "undefined") $formular.attr("data-liste", liste);
+    if (typeof aktion !== "undefined") $formular.attr("data-aktion", aktion);
 
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
@@ -60,14 +69,13 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
             .html()
     );
 
-    const $btn_erfolgreich_abschliessen = $formular.find(".btn_erfolgreich_abschliessen");
+    $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
 
-    if (typeof liste !== "undefined") $btn_erfolgreich_abschliessen.attr("data-liste", liste);
-    if (typeof aktion !== "undefined") $btn_erfolgreich_abschliessen.attr("data-aktion", aktion);
-    if (typeof liste !== "undefined" && typeof aktion !== "undefined")
-        $btn_erfolgreich_abschliessen.addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
-    if (typeof weiterleiten !== "undefined") $btn_erfolgreich_abschliessen.attr("data-weiterleiten", weiterleiten); // verschieben in die jeweilige Funktion
-    if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_erfolgreich_abschliessen.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
+    const $btn_element_aktion = $formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion);
+    if (typeof liste !== "undefined") $btn_element_aktion.attr("data-liste", liste);
+    if (typeof aktion !== "undefined") $btn_element_aktion.attr("data-aktion", aktion);
+    if (typeof weiterleiten !== "undefined") $btn_element_aktion.attr("data-weiterleiten", weiterleiten); // verschieben in die jeweilige Funktion
+    if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_element_aktion.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
 
     Schnittstelle_EventVariableUpdDom(liste);
 }

@@ -54,9 +54,4 @@ function Termine_Init() {
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
         Liste_ElementErstellen($(this));
     });
-
-    // RÜCKMELDUNG LÖSCHEN
-    // $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
-    //     Liste_ElementErstellen($(this));
-    // });
 }

@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn btn_erfolgreich_abschliessen btn-outline-success" data-werte='<?= json_encode( array( 'email' => TRUE ), JSON_UNESCAPED_UNICODE ); ?>'>Einmal-Link zuschicken</button>
+        <button type="button" class="btn btn_mitglied_einmal_link_email btn-outline-success" data-werte='<?= json_encode( array( 'email' => TRUE ), JSON_UNESCAPED_UNICODE ); ?>'>Einmal-Link zuschicken</button>
       </div>
     </div>
   </div>

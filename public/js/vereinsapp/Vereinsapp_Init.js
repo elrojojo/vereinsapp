@@ -84,6 +84,6 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
-btn_erfolgreich_abschliessen umbennen
+mitglied_passwort_festlegen_modal aus dem DOM löschen statt nur zu verstecken
 
 */

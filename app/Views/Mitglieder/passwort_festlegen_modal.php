@@ -1,4 +1,4 @@
-<div class="modal fade formular" id="mitglied_passwort_festlegen_modal" tabindex="-1">
+<div class="modal fade formular" id="mitglied_passwort_festlegen_modal" data-liste="mitglieder" data-aktion="passwort_festlegen" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-            <button type="button" class="btn btn_erfolgreich_abschliessen btn_mitglied_passwort_festlegen btn-outline-success" data-liste="mitglieder" data-aktion="passwort_festlegen" data-element_id="<?= ICH['id']; ?>">Mein Passwort festlegen</button>
+            <button type="button" class="btn btn_mitglied_passwort_festlegen btn-outline-success" data-element_id="<?= ICH['id']; ?>">Mein Passwort festlegen</button>
         </div>
         </div>
     </div>

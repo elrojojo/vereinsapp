@@ -61,16 +61,6 @@ function Mitglieder_Init() {
         Liste_ElementErstellen($(this));
     });
 
-    // ABWESENHEIT ÄNDERN
-    $(document).on("click", ".btn_abwesenheit_aendern", function () {
-        Liste_ElementErstellen($(this));
-    });
-
-    // ABWESENHEIT DUPLIZIEREN
-    // $(document).on("click", ".btn_abwesenheit_duplizieren", function () {
-    //     Liste_ElementErstellen($(this));
-    // });
-
     // ABWESENHEIT LÖSCHEN
     $(document).on("click", ".btn_abwesenheit_loeschen", function () {
         Liste_ElementLoeschen($(this));

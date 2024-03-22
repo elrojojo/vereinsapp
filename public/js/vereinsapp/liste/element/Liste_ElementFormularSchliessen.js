@@ -1,16 +1,14 @@
 function Liste_ElementFormularSchliessen($formular) {
-    const $btn_erfolgreich_abschliessen = $formular.find(".btn_erfolgreich_abschliessen");
-    const liste = $btn_erfolgreich_abschliessen.attr("data-liste");
-    const aktion = $btn_erfolgreich_abschliessen.attr("data-aktion");
-    const element_id = $btn_erfolgreich_abschliessen.attr("data-element_id");
+    const liste = $formular.attr("data-liste");
+    const aktion = $formular.attr("data-aktion");
+    const $btn_element_aktion = $formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion);
+    const element_id = $btn_element_aktion.attr("data-element_id");
 
-    $btn_erfolgreich_abschliessen
-        .removeAttr("data-liste")
-        .removeAttr("data-aktion", aktion)
-        .removeClass(G.LISTEN[liste].element + "_" + aktion);
-    $btn_erfolgreich_abschliessen.removeAttr("data-weiterleiten");
-    $btn_erfolgreich_abschliessen.removeAttr("data-element_id");
-    
+    $formular.removeAttr("data-liste").removeAttr("data-aktion");
+    $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").removeClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
+
+    $btn_element_aktion.removeAttr("data-weiterleiten").removeAttr("data-element_id");
+
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");

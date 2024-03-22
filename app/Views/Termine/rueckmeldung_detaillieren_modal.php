@@ -15,7 +15,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn btn_erfolgreich_abschliessen btn-outline-success" data-liste="termine">Speichern</button>
+        <button type="button" class="btn btn_rueckmeldung_aendern btn-outline-success" data-liste="termine">Speichern</button>
       </div>
     </div>
   </div>
