@@ -47,8 +47,8 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         });
 
         // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-        $('.formular[data-formular="rueckmeldung"]').each(function () {
-            Termine_FormularMeineRueckmeldungEinAusblenden($(this));
+        $(".rueckmeldung_eingeladen").each(function () {
+            Termine_RueckmeldungEinAusblenden($(this));
         });
 
         // RÜCKMELDUNG AKTUALISIEREN

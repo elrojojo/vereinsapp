@@ -29,6 +29,22 @@ function Liste_Init() {
         Liste_ElementFormularSchliessen($(this));
     });
 
+    // ELEMENT LÖSCHEN BESTÄTIGUNG (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_element_loeschen_modal", function () {
+        const $btn = $(this);
+        const data = { liste: $btn.attr("data-liste"), element_id: $btn.attr("data-element_id") };
+        const weiterleiten = $btn.attr("data-weiterleiten");
+        if (typeof weiterleiten !== "undefined") data.weiterleiten = weiterleiten;
+
+        Schnittstelle_DomBestaetigungEinfordern(
+            "Willst du " + Liste_ElementBeschriftungZurueck(data.element_id, data.liste) + " wirklich löschen?",
+            $btn.attr("data-title"),
+            "btn_" + G.LISTEN[data.liste].element + "_loeschen",
+            data,
+            $btn.attr("data-farbe")
+        );
+    });
+
     // SORTABLE
     $(".sortable").sortable({
         handle: ".sortable_handle",

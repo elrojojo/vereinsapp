@@ -7,12 +7,12 @@ function Liste_ElementFormularSchliessen($formular) {
     $formular.removeAttr("data-liste").removeAttr("data-aktion");
     $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").removeClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
 
-    $btn_element_aktion.removeAttr("data-weiterleiten").removeAttr("data-element_id");
-
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
         const wert = $eigenschaft.val();
         Schnittstelle_VariableRein(wert, eigenschaft, element_id, liste, "tmp");
     });
+
+    $btn_element_aktion.removeAttr("data-element_id");
 }

@@ -56,7 +56,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'modal_id' => 'mitglied_einmal_link_email_modal',
+                'klasse_id' => 'btn_mitglied_einmal_link_email_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link per Email zuschicken',
             );
@@ -72,7 +72,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => 'element_loeschen_modal',
+                'klasse_id' => 'btn_element_loeschen_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
@@ -206,7 +206,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'modal_id' => 'mitglied_einmal_link_email_modal',
+                'klasse_id' => 'btn_mitglied_einmal_link_email_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link per Email zuschicken',
             );
@@ -222,7 +222,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'modal_id' => 'element_loeschen_modal',
+                'klasse_id' => 'btn_element_loeschen_modal',
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',

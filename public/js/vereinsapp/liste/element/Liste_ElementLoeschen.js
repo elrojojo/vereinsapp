@@ -1,12 +1,11 @@
 function Liste_ElementLoeschen($btn) {
     const liste = $btn.attr("data-liste");
-    const element = G.LISTEN[liste].element;
 
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
-        label: element + "_loeschen",
-        url: G.LISTEN[liste].controller + "/ajax_" + element + "_loeschen",
+        label: G.LISTEN[liste].element + "_loeschen",
+        url: G.LISTEN[liste].controller + "/ajax_" + G.LISTEN[liste].element + "_loeschen",
         data: { id: Number($btn.attr("data-element_id")) },
         liste: liste,
         $btn: $btn,
@@ -19,11 +18,10 @@ function Liste_ElementLoeschen($btn) {
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste);
 
             const weiterleiten = AJAX.$btn.attr("data-weiterleiten");
-            if (typeof weiterleiten !== "undefined") $(location).attr("href", BASE_URL + AJAX.liste);
+            if (typeof weiterleiten !== "undefined") $(location).attr("href", BASE_URL + weiterleiten);
             else {
                 Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste, [Schnittstelle_EventVariableUpdDom]);
-                const $formular = AJAX.$btn.closest(".formular");
-                $formular.modal("hide");
+                AJAX.$btn.closest(".bestaetigung").modal("hide");
             }
         },
         rein_aktion: function (AJAX) {

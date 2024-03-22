@@ -3,11 +3,13 @@
         <div class="col">
             <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $aktion => $werkzeug): ?>
                 <li class="werkzeug list-group-item list-group-item-action text-<?php
-                    if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary'; ?>"
-                    data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>"
-                    data-title="<?= $werkzeug['title']; ?>" data-aktion="<?= $aktion; ?>"
-                    data-liste="<?= $werkzeug['liste']; ?>"<?php if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php } ?>
-                    role="button">
+                    if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
+                    if( array_key_exists( 'klasse_id', $werkzeug ) ) echo ' '.$werkzeug['klasse_id'];
+                    ?>" data-liste="<?= $werkzeug['liste']; ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>"<?php
+                    if( array_key_exists( 'modal_id', $werkzeug ) ) { ?> data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>"<?php }
+                    if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
+                    if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
+                    ?> role="button">
                     <i class="bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> float-start me-2"></i>
                     <?= $werkzeug['title']; ?>
                 </li>

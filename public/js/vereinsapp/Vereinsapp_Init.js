@@ -85,5 +85,6 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 mitglied_passwort_festlegen_modal aus dem DOM löschen statt nur zu verstecken
+title ändern in beschriftung?
 
 */

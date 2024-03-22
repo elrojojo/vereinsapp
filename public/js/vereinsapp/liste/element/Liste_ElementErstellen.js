@@ -85,7 +85,7 @@ function Liste_ElementErstellen($btn) {
 
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 
-            AJAX.$btn.closest(".formular").modal("hide");
+            AJAX.$btn.closest(".formular,.bestaetigung").modal("hide");
 
             // Irgendwie muss man Senden eines Toasts für bestimmte Listen auch ausschalten können
             Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) + " erfolgreich gespeichert.");

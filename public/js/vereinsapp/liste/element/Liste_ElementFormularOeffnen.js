@@ -1,12 +1,11 @@
 function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
-    let aktion, liste, element_id, gegen_element_id, weiterleiten;
+    let aktion, liste, element_id, gegen_element_id;
 
     if ($btn_oeffnend.exists()) {
         aktion = $btn_oeffnend.attr("data-aktion");
         liste = $btn_oeffnend.attr("data-liste");
         element_id = $btn_oeffnend.attr("data-element_id");
         gegen_element_id = $btn_oeffnend.attr("data-gegen_element_id");
-        weiterleiten = $btn_oeffnend.attr("data-weiterleiten");
     } else {
         aktion = $formular.attr("data-aktion");
         liste = $formular.attr("data-liste");
@@ -62,19 +61,11 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
         $eigenschaft.val(wert_formatiert).change();
     });
 
-    // Wenn ein bestehendes Element gelöscht werden soll
-    $formular.find(".beschriftung").html(
-        $('.element[data-liste="' + liste + '"][data-element_id="' + element_id + '"]')
-            .find(".beschriftung")
-            .html()
-    );
-
     $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
 
     const $btn_element_aktion = $formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion);
     if (typeof liste !== "undefined") $btn_element_aktion.attr("data-liste", liste);
     if (typeof aktion !== "undefined") $btn_element_aktion.attr("data-aktion", aktion);
-    if (typeof weiterleiten !== "undefined") $btn_element_aktion.attr("data-weiterleiten", weiterleiten); // verschieben in die jeweilige Funktion
     if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_element_aktion.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
 
     Schnittstelle_EventVariableUpdDom(liste);

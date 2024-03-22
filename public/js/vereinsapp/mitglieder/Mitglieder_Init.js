@@ -83,6 +83,19 @@ function Mitglieder_Init() {
         Mitglieder_EinmalLinkErstellen($(this));
     });
 
+    // EINMAL-LINK PER EMAIL VERSCHICKEN BESTÄTIGUNG (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_mitglied_einmal_link_email_modal", function () {
+        const $btn = $(this);
+        const data = { liste: $btn.attr("data-liste"), element_id: $btn.attr("data-element_id"), werte: JSON.stringify({ email: true }) };
+
+        Schnittstelle_DomBestaetigungEinfordern(
+            "Willst du " + Liste_ElementBeschriftungZurueck(data.element_id, data.liste) + " wirklich einen Einmal-Link per Email zuschicken?",
+            $btn.attr("data-title"),
+            "btn_mitglied_einmal_link_email",
+            data
+        );
+    });
+
     // EINMAL-LINK PER EMAIL VERSCHICKEN
     $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
         Mitglieder_EinmalLinkErstellen($(this));
