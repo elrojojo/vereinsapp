@@ -30,6 +30,9 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
         if (typeof element_id !== "undefined" && G.LISTEN.rueckmeldungen.tabelle[element_id].status == 1) {
             $btn_rueckmelden
                 .prop("disabled", true)
+                .removeClass("btn_rueckmeldung_aendern")
+                .removeClass("btn_rueckmeldung_erstellen")
+                .removeAttr("data-aktion")
                 .removeClass("w-100")
                 .addClass("w-75")
                 .removeClass("btn-outline-success")
@@ -50,6 +53,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .prop("disabled", false)
                 .removeClass("btn_rueckmeldung_aendern")
                 .addClass("btn_rueckmeldung_erstellen")
+                .attr("data-aktion", "erstellen")
                 .removeClass("w-75")
                 .addClass("w-100")
                 .removeClass("btn-success")
@@ -73,6 +77,9 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
         if (typeof element_id !== "undefined" && G.LISTEN.rueckmeldungen.tabelle[element_id].status == 2) {
             $btn_rueckmelden
                 .prop("disabled", true)
+                .removeClass("btn_rueckmeldung_aendern")
+                .removeClass("btn_rueckmeldung_erstellen")
+                .removeAttr("data-aktion")
                 .removeClass("w-100")
                 .addClass("w-75")
                 .removeClass("btn-outline-danger")
@@ -93,6 +100,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .prop("disabled", false)
                 .removeClass("btn_rueckmeldung_aendern")
                 .addClass("btn_rueckmeldung_erstellen")
+                .attr("data-aktion", "erstellen")
                 .removeClass("w-75")
                 .addClass("w-100")
                 .removeClass("btn-danger")
