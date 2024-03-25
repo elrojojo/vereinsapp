@@ -34,7 +34,7 @@ $(document).ready(function () {
                 $("#datenschutz_richtlinie_modal").modal("show");
                 $("#datenschutz_richtlinie_akzeptieren").click(function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    $("#datenschutz_richtlinie_modal").modal("hide");
+                    $("#datenschutz_richtlinie_modal").modal("hide").remove();
                 });
             },
         };
@@ -84,7 +84,7 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
-mitglied_passwort_festlegen_modal aus dem DOM löschen statt nur zu verstecken
+mitglied_passwort_festlegen_modal aus dem DOM löschen statt nur zu verstecken (hide+remove)
 title ändern in beschriftung?
 
 */

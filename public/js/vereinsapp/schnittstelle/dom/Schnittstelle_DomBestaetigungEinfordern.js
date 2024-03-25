@@ -10,10 +10,9 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, klasse_id, da
     $.each(data, function (eigenschaft, wert) {
         $btn_bestaetigen.attr("data-" + eigenschaft, wert);
     });
-    $btn_bestaetigen.removeClass("btn_bestaetigen").addClass(klasse_id).text(title);
+    $btn_bestaetigen.addClass(klasse_id).text(title);
 
     $neue_bestaetigung.appendTo($bestaetigungen);
 
-    const neue_bestaetigung = bootstrap.Modal.getOrCreateInstance($neue_bestaetigung);
-    neue_bestaetigung.show();
+    bootstrap.Modal.getOrCreateInstance($neue_bestaetigung).show();
 }

@@ -57,7 +57,7 @@ class Termine extends BaseController {
                 'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => 'btn_element_loeschen_modal',
+                'klasse_id' => 'btn_termin_loeschen',
                 'liste' => 'termine',
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
@@ -169,7 +169,7 @@ class Termine extends BaseController {
                 'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => 'btn_element_loeschen_modal',
+                'klasse_id' => 'btn_termin_loeschen',
                 'liste' => 'termine',
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
