@@ -1,8 +1,19 @@
 function Schnittstelle_LocalstorageInit() {
     // LOCALSTORAGE LEEREN
-    $(".btn_localstorage_leeren").click(function () {
-        localstorage_leeren();
-        $(this).closest(".modal").modal("hide");
+    $(document).on("click", ".btn_localstorage_leeren", function () {
+        const $btn = $(this);
+        if (!$btn.hasClass("btn_bestaetigen")) {
+            Schnittstelle_DomBestaetigungEinfordern(
+                "Willst du wirklich deinen LocalStorage leeren?",
+                $btn.attr("data-title"),
+                "btn_localstorage_leeren",
+                {},
+                "danger"
+            );
+        } else {
+            localstorage_leeren();
+            $btn.closest(".modal").modal("hide").remove();
+        }
     });
 
     // LOCALSTORAGE LEEREN ERZWINGEN

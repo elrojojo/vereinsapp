@@ -32,7 +32,7 @@ $(document).ready(function () {
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals").append(AJAX.antwort.html);
                 $("#datenschutz_richtlinie_modal").modal("show");
-                $("#datenschutz_richtlinie_akzeptieren").click(function () {
+                $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
                     $("#datenschutz_richtlinie_modal").modal("hide").remove();
                 });
