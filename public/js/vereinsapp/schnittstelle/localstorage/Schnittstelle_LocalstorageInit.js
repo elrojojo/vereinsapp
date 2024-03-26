@@ -13,6 +13,7 @@ function Schnittstelle_LocalstorageInit() {
         } else {
             localstorage_leeren();
             $btn.closest(".modal").modal("hide").remove();
+            Schnittstelle_DomToastFeuern("Dein LocalStorage wurde erfolgreich geleert.");
         }
     });
 

@@ -21,7 +21,6 @@
     <div class="text-secondary text-center mb-1">Mein LocalStorage</div>
 <?= view( 'Einstellungen/localstorage_leeren' ); ?>
 </div>
-<?= view( 'Einstellungen/localstorage_leeren_modal' ); ?>
 
 <?= $this->endSection() ?>
 

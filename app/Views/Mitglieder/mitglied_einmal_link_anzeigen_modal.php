@@ -12,7 +12,7 @@
                 <input type="text" class="form-control einmal_link" readonly />
                 <label>Einmal-Link</label>
             </div>
-            <span class="input-group-text text-primary inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
+            <span class="input-group-text text-primary btn_inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
         </div>
       </div>
       <div class="modal-footer">

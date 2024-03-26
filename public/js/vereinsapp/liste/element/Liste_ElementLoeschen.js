@@ -27,6 +27,8 @@ function Liste_ElementLoeschen($btn) {
                 Schnittstelle_BtnWartenStart(AJAX.$btn);
             },
             rein_validation_pos_aktion: function (AJAX) {
+                const beschriftung = Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste);
+
                 Schnittstelle_VariableLoeschen(AJAX.data.id, AJAX.liste);
 
                 Schnittstelle_EventVariableUpdLocalstorage(AJAX.liste);
@@ -36,7 +38,11 @@ function Liste_ElementLoeschen($btn) {
                 else {
                     Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste, [Schnittstelle_EventVariableUpdDom]);
                     AJAX.$btn.closest(".bestaetigung").modal("hide").remove();
+                    Schnittstelle_DomToastFeuern(beschriftung + " wurde erfolgreich gelöscht.");
                 }
+            },
+            rein_validation_neg_aktion: function (AJAX) {
+                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) + " konnte nicht gelöscht werden.", "danger");
             },
             rein_aktion: function (AJAX) {
                 Schnittstelle_BtnWartenEnde(AJAX.$btn);

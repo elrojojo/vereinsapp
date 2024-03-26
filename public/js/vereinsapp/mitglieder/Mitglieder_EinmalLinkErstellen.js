@@ -1,10 +1,10 @@
 function Mitglieder_EinmalLinkErstellen($btn) {
     const liste = $btn.attr("data-liste");
-    const element_id = $btn.attr("data-element_id");
+    const element_id = Number($btn.attr("data-element_id"));
     const data_werte = $btn.attr("data-werte");
 
     if (!$btn.hasClass("btn_bestaetigen") && $btn.hasClass("btn_mitglied_einmal_link_email")) {
-        const data = { liste: $btn.attr("data-liste"), element_id: $btn.attr("data-element_id"), werte: JSON.stringify({ email: true }) };
+        const data = { liste: liste, element_id: element_id, werte: JSON.stringify({ email: true }) };
         if (typeof data_werte !== "undefined")
             $.each(JSON.parse(data_werte), function (eigenschaft, wert) {
                 data[eigenschaft] = wert;
@@ -18,7 +18,7 @@ function Mitglieder_EinmalLinkErstellen($btn) {
         );
     } else {
         const AJAX_DATA = new Object();
-        if (typeof element_id !== "undefined") AJAX_DATA.id = Number(element_id);
+        AJAX_DATA.id = element_id;
         if (typeof data_werte !== "undefined")
             $.each(JSON.parse(data_werte), function (eigenschaft, wert) {
                 AJAX_DATA[eigenschaft] = wert;
@@ -43,13 +43,16 @@ function Mitglieder_EinmalLinkErstellen($btn) {
                     ]);
 
                     AJAX.$btn.closest(".bestaetigung").modal("hide").remove();
+                    Schnittstelle_DomToastFeuern(
+                        "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) + " wurde erfolgreich per Email zugeschickt."
+                    );
                 } else {
                     const $formular = AJAX.$btn.closest(".formular");
                     const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
                     const btn_dismiss_beschriftung = $btn_dismiss.text();
 
                     $formular.find(".einmal_link").val(AJAX.antwort.einmal_link);
-                    $formular.find(".btn_mitglied_einmal_link_anzeigen").addClass("invisible");
+                    // $formular.find(".btn_mitglied_einmal_link_anzeigen").addClass("invisible");
                     $btn_dismiss.attr("data-beschriftung", btn_dismiss_beschriftung);
                     $btn_dismiss.removeClass("btn-outline-danger").addClass("btn-outline-primary").text("Schließen");
 
@@ -58,6 +61,20 @@ function Mitglieder_EinmalLinkErstellen($btn) {
                         Schnittstelle_EventVariableUpdDom,
                     ]);
                 }
+            },
+            rein_validation_neg_aktion: function (AJAX) {
+                if (AJAX.data.email)
+                    Schnittstelle_DomToastFeuern(
+                        "Einmal-Link für " +
+                            Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) +
+                            " konnte nicht per Email zugeschickt werden.",
+                        "danger"
+                    );
+                else
+                    Schnittstelle_DomToastFeuern(
+                        "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.liste) + " konnte nicht erstellt werden.",
+                        "danger"
+                    );
             },
             rein_aktion: function (AJAX) {
                 Schnittstelle_BtnWartenEnde(AJAX.$btn);

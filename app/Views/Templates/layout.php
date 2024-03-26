@@ -31,7 +31,7 @@
     <div class="text-secondary mt-5 small text-center"><?= config('Vereinsapp')->vereinsapp_name; ?> <?= VERSION; ?></div>
     <div class="text-secondary small text-center jetzt"></div>
 
-    <div id="toasts" class="toast-container position-absolute end-0 pe-3">
+    <div id="toasts" class="toast-container position-fixed end-0 pe-3">
         <?= view( 'Templates/toast' ); ?>
     </div>
 

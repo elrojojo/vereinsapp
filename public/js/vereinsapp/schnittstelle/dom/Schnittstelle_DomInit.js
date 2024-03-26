@@ -106,7 +106,15 @@ function Schnittstelle_DomInit() {
     });
 
     // INHALT KOPIEREN
-    new ClipboardJS(".inhalt_kopieren");
+    const CLIPBOARD = new ClipboardJS(".btn_inhalt_kopieren");
+
+    CLIPBOARD.on("success", function (event) {
+        Schnittstelle_DomToastFeuern("Erfolgreich in die Zwischenablage kopiert.");
+    });
+
+    CLIPBOARD.on("error", function (event) {
+        Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage fehlgeschlagen.", "danger");
+    });
 
     // VALIDATION-TOOLTIPS ENTFERNEN
     $(document).on("focus", "input, select", function () {
