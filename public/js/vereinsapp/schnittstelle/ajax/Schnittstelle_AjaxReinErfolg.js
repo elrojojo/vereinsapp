@@ -24,7 +24,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
 
         // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
         else {
-            if ("info" in AJAX.antwort) console.log("INFO", AJAX.label, JSON.stringify(AJAX.antwort.info));
+            if ("info" in AJAX.antwort) console.log("INFO", JSON.stringify(AJAX.antwort.info));
 
             if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
         }

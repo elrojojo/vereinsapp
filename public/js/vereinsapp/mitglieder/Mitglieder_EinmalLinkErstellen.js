@@ -27,7 +27,6 @@ function Mitglieder_EinmalLinkErstellen($btn) {
         const neue_ajax_id = G.AJAX.length;
         G.AJAX[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
-            label: "mitglied_einmal_link_erstellen",
             url: G.LISTEN[liste].controller + "/ajax_mitglied_einmal_link_erstellen",
             data: AJAX_DATA,
             liste: liste,

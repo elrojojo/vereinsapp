@@ -13,7 +13,6 @@ function Liste_CheckAendern($check) {
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
-        label: element + "_" + aktion,
         url: G.LISTEN[checkliste].controller + "/ajax_" + G.LISTEN[checkliste].element + "_" + aktion,
         data: AJAX_DATA,
         liste: liste,

@@ -5,7 +5,6 @@ function Termine_TerminErstellen($btn) {
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
-        label: "termin_erstellen",
         url: "termine/ajax_termin_speichern",
         data: AJAX_DATA,
         liste: "termine",

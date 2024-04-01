@@ -5,7 +5,6 @@ function Notenbank_TitelErstellen($btn) {
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
-        label: "titel_erstellen",
         url: "notenbank/ajax_titel_speichern",
         data: AJAX_DATA,
         liste: "notenbank",

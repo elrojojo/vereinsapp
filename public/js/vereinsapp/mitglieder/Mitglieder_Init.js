@@ -55,7 +55,6 @@ function Mitglieder_Init() {
         const neue_ajax_id = G.AJAX.length;
         G.AJAX[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
-            label: "mitglied_passwort_festlegen",
             url: "mitglieder/ajax_mitglied_passwort_festlegen_modal",
             rein_validation_pos_aktion: function (AJAX) {
                 $("#modals").append(AJAX.antwort.html);
