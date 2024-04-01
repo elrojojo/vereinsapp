@@ -17,9 +17,6 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
 
-    if (typeof gegen_element_id !== "undefined") $formular.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
-    else $formular.find(".checkliste").removeAttr("data-gegen_element_id");
-
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -62,11 +59,10 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
     });
 
     $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
+    if (typeof element_id !== "undefined" && aktion != "duplizieren")
+        $formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion).attr("data-element_id", element_id);
 
-    const $btn_element_aktion = $formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion);
-    if (typeof liste !== "undefined") $btn_element_aktion.attr("data-liste", liste);
-    if (typeof aktion !== "undefined") $btn_element_aktion.attr("data-aktion", aktion);
-    if (typeof element_id !== "undefined" && aktion != "duplizieren") $btn_element_aktion.attr("data-element_id", element_id); // verschieben in die jeweilige Funktion
-
+    if (typeof gegen_element_id !== "undefined") $formular.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
+    else $formular.find(".checkliste").removeAttr("data-gegen_element_id");
     Schnittstelle_EventVariableUpdDom(liste);
 }

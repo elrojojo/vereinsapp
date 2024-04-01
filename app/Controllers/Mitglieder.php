@@ -280,7 +280,7 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_mitglied_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
@@ -345,8 +345,7 @@ class Mitglieder extends BaseController {
             $mitglied = array(
                 'password' => $this->request->getpost()['passwort_neu'],
             );
-            if( empty( $this->request->getPost()['id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['id']; 
-            $mitglied = $mitglieder_Model->findById( $mitglied_id )->fill($mitglied);
+            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
             $mitglieder_Model->save( $mitglied );
         }
 
@@ -366,8 +365,7 @@ class Mitglieder extends BaseController {
             $mitglied = array(
                 'password' => $this->request->getpost()['passwort_neu'],
             );
-            if( empty( $this->request->getPost()['id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['id']; 
-            $mitglied = $mitglieder_Model->findById( $mitglied_id )->fill($mitglied);
+            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
             $mitglieder_Model->save( $mitglied );
 
             $mitglied->undoForcePasswordReset();
@@ -381,6 +379,7 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if (!model(Mitglied_Model::class)->findById( ICH['id'] )->requiresPasswordReset()) $ajax_antwort['info'] = "Mitglied muss kein neues Passwort vergeben.";
         else $ajax_antwort['html'] = view( 'Mitglieder/passwort_festlegen_modal', $this->viewdata );
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -504,7 +503,7 @@ class Mitglieder extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
+        else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['info'] = 'Du kannst dich nicht selbst löschen!';
         else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], TRUE );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -543,7 +542,6 @@ class Mitglieder extends BaseController {
                     $id++;
                 }
             }
-            // $ajax_antwort['tabelle'][] = array( 'getPermissions' => model(Mitglied_Model::class)->find( ICH['id'] )->getPermissions(), 'VERFUEGBARE_RECHTE' => VERFUEGBARE_RECHTE );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -561,7 +559,6 @@ class Mitglieder extends BaseController {
                 !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )
             ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            // if( empty( $this->request->getPost()['mitglied_id'] ) ) $mitglied_id = ICH['id']; else $mitglied_id = $this->request->getPost()['mitglied_id'];
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];
             model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );
             if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->addPermission( $permission );

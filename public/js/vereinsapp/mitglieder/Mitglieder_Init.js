@@ -21,7 +21,7 @@ G.LISTEN.mitglieder = {
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN
     $(document).on("click", ".btn_mitglied_erstellen", function () {
-        Liste_ElementErstellen($(this));
+        Mitglieder_MitgliedErstellen($(this));
     });
 
     // MITGLIED ÄNDERN

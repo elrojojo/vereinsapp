@@ -44,9 +44,7 @@ $routes->group('mitglieder', static function ($routes) {
     $routes->get('details/(:num)',                          'Mitglieder::details/$1');
 
     $routes->post('ajax_mitglieder',                        'Mitglieder::ajax_mitglieder');
-    $routes->post('ajax_mitglied_erstellen',                'Mitglieder::ajax_mitglied_erstellen');
-    $routes->post('ajax_mitglied_aendern',                  'Mitglieder::ajax_mitglied_erstellen');
-    $routes->post('ajax_mitglied_duplizieren',              'Mitglieder::ajax_mitglied_erstellen');
+    $routes->post('ajax_mitglied_speichern',                'Mitglieder::ajax_mitglied_speichern');
     $routes->post('ajax_mitglied_passwort_aendern',         'Mitglieder::ajax_mitglied_passwort_aendern');
     $routes->post('ajax_mitglied_passwort_festlegen',       'Mitglieder::ajax_mitglied_passwort_festlegen');
     $routes->post('ajax_mitglied_passwort_festlegen_modal', 'Mitglieder::ajax_mitglied_passwort_festlegen_modal');
@@ -67,14 +65,11 @@ $routes->group('termine', static function ($routes) {
     $routes->get('details/(:num)',                          'Termine::details/$1');
 
     $routes->post('ajax_termine',                           'Termine::ajax_termine');
-    $routes->post('ajax_termin_erstellen',                  'Termine::ajax_termin_erstellen');
-    $routes->post('ajax_termin_aendern',                    'Termine::ajax_termin_erstellen');
-    $routes->post('ajax_termin_duplizieren',                'Termine::ajax_termin_erstellen');
+    $routes->post('ajax_termin_speichern',                  'Termine::ajax_termin_speichern');
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
 
     $routes->post('ajax_rueckmeldungen',                    'Termine::ajax_rueckmeldungen');
-    $routes->post('ajax_rueckmeldung_erstellen',            'Termine::ajax_rueckmeldung_erstellen');
-    $routes->post('ajax_rueckmeldung_aendern',              'Termine::ajax_rueckmeldung_aendern');
+    $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
     // $routes->post('ajax_rueckmeldung_loeschen',             'Termine::ajax_rueckmeldung_loeschen');
 
     $routes->post('ajax_anwesenheiten',                    'Termine::ajax_anwesenheiten');
@@ -88,9 +83,7 @@ $routes->group('notenbank', static function ($routes) {
     $routes->get('details/(:num)',                          'Notenbank::details/$1');
 
     $routes->post('ajax_notenbank',                         'Notenbank::ajax_notenbank');
-    $routes->post('ajax_titel_erstellen',                   'Notenbank::ajax_titel_erstellen');
-    $routes->post('ajax_titel_aendern',                     'Notenbank::ajax_titel_erstellen');
-    $routes->post('ajax_titel_duplizieren',                 'Notenbank::ajax_titel_erstellen');
+    $routes->post('ajax_titel_speichern',                   'Notenbank::ajax_titel_speichern');
     $routes->post('ajax_titel_loeschen',                    'Notenbank::ajax_titel_loeschen');
 });
 

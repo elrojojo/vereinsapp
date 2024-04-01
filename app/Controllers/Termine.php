@@ -212,7 +212,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_termin_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_termin_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
@@ -282,7 +282,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_rueckmeldung_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],

@@ -74,6 +74,7 @@ Keine doppelten Rückmeldungen erlauben
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht
 Data-Attribute als Object in einem Attribut zusammenfassen
+mitglied_passwort_festlegen_modal nur erhalten, wenn die mitgeschickte ID die eigene ist
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.

@@ -22,7 +22,7 @@ G.LISTEN.termine = {
 function Termine_Init() {
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {
-        Liste_ElementErstellen($(this));
+        Termine_TerminErstellen($(this));
     });
 
     // TERMIN ÄNDERN

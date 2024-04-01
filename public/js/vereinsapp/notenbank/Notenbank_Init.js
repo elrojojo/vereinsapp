@@ -13,7 +13,7 @@ G.LISTEN.notenbank = {
 function Notenbank_Init() {
     // TITEL ERSTELLEN
     $(document).on("click", ".btn_titel_erstellen", function () {
-        Liste_ElementErstellen($(this));
+        Notenbank_TitelErstellen($(this));
     });
 
     // TITEL ÄNDERN

@@ -124,7 +124,8 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Aktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularOeffnen.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularSchliessen.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularEigenschaftenWerteInAjaxData.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularValidationAktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementAktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_WertFormatiertZurueck.js?v='.VERSION), );
@@ -199,13 +200,16 @@ abstract class BaseController extends Controller
 
         if( auth()->loggedIn() ) {
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_MitgliedErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_EinmalLinkErstellen.js?v='.VERSION), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungEinAusblenden.js?v='.VERSION), );
             
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_TitelErstellen.js?v='.VERSION), );
         }
         defined('HEAD_SCRIPT') OR define( 'HEAD_SCRIPT', $head_script );
 
