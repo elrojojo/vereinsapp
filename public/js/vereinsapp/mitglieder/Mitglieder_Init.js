@@ -26,12 +26,12 @@ function Mitglieder_Init() {
 
     // MITGLIED ÄNDERN
     $(document).on("click", ".btn_mitglied_aendern", function () {
-        Liste_ElementErstellen($(this));
+        Mitglieder_MitgliedAendern($(this));
     });
 
     // MITGLIED DUPLIZIEREN
     $(document).on("click", ".btn_mitglied_duplizieren", function () {
-        Liste_ElementErstellen($(this));
+        Mitglieder_MitgliedErstellen($(this));
     });
 
     // MITGLIED LÖSCHEN

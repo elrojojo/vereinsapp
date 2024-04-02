@@ -27,12 +27,12 @@ function Termine_Init() {
 
     // TERMIN ÄNDERN
     $(document).on("click", ".btn_termin_aendern", function () {
-        Liste_ElementErstellen($(this));
+        Termine_TerminAendern($(this));
     });
 
     // TERMIN DUPLIZIEREN
     $(document).on("click", ".btn_termin_duplizieren", function () {
-        Liste_ElementErstellen($(this));
+        Termine_TerminErstellen($(this));
     });
 
     // TERMIN LÖSCHEN

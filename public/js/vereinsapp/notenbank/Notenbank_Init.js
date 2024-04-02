@@ -18,12 +18,12 @@ function Notenbank_Init() {
 
     // TITEL ÄNDERN
     $(document).on("click", ".btn_titel_aendern", function () {
-        Liste_ElementErstellen($(this));
+        Notenbank_TitelAendern($(this));
     });
 
     // TITEL DUPLIZIEREN
     $(document).on("click", ".btn_titel_duplizieren", function () {
-        Liste_ElementErstellen($(this));
+        Notenbank_TitelErstellen($(this));
     });
 
     // TITEL LÖSCHEN
