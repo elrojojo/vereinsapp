@@ -42,16 +42,16 @@ function Termine_Init() {
 
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
-        Liste_ElementErstellen($(this));
+        Termine_RueckmeldungErstellen($(this));
     });
 
     // RÜCKMELDUNG ÄNDERN
     $(document).on("click", ".btn_rueckmeldung_aendern", function () {
-        Liste_ElementErstellen($(this));
+        Termine_RueckmeldungAendern($(this));
     });
 
     // RÜCKMELDUNG DETAILLIEREN
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
-        Liste_ElementErstellen($(this));
+        Termine_RueckmeldungAendern($(this));
     });
 }

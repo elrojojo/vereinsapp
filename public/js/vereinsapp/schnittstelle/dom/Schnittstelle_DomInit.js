@@ -109,11 +109,11 @@ function Schnittstelle_DomInit() {
     const CLIPBOARD = new ClipboardJS(".btn_inhalt_kopieren");
 
     CLIPBOARD.on("success", function (event) {
-        Schnittstelle_DomToastFeuern("Erfolgreich in die Zwischenablage kopiert.");
+        Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage war erfolgreich.");
     });
 
     CLIPBOARD.on("error", function (event) {
-        Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage fehlgeschlagen.", "danger");
+        Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage ist fehlgeschlagen.", "danger");
     });
 
     // VALIDATION-TOOLTIPS ENTFERNEN

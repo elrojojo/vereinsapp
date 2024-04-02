@@ -32,7 +32,6 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .prop("disabled", true)
                 .removeClass("btn_rueckmeldung_aendern")
                 .removeClass("btn_rueckmeldung_erstellen")
-                .removeAttr("data-aktion")
                 .removeClass("w-100")
                 .addClass("w-75")
                 .removeClass("btn-outline-success")
@@ -53,7 +52,6 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .prop("disabled", false)
                 .removeClass("btn_rueckmeldung_aendern")
                 .addClass("btn_rueckmeldung_erstellen")
-                .attr("data-aktion", "erstellen")
                 .removeClass("w-75")
                 .addClass("w-100")
                 .removeClass("btn-success")
@@ -63,11 +61,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-pill")
                 .text("ZUSAGEN");
             if (typeof element_id !== "undefined")
-                $btn_rueckmelden
-                    .removeClass("btn_rueckmeldung_erstellen")
-                    .addClass("btn_rueckmeldung_aendern")
-                    .attr("data-element_id", element_id)
-                    .attr("data-aktion", "aendern");
+                $btn_rueckmelden.removeClass("btn_rueckmeldung_erstellen").addClass("btn_rueckmeldung_aendern").attr("data-element_id", element_id);
 
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-success").addClass("btn-outline-success");
         }
@@ -79,7 +73,6 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .prop("disabled", true)
                 .removeClass("btn_rueckmeldung_aendern")
                 .removeClass("btn_rueckmeldung_erstellen")
-                .removeAttr("data-aktion")
                 .removeClass("w-100")
                 .addClass("w-75")
                 .removeClass("btn-outline-danger")
@@ -100,7 +93,6 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .prop("disabled", false)
                 .removeClass("btn_rueckmeldung_aendern")
                 .addClass("btn_rueckmeldung_erstellen")
-                .attr("data-aktion", "erstellen")
                 .removeClass("w-75")
                 .addClass("w-100")
                 .removeClass("btn-danger")
@@ -110,11 +102,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-pill")
                 .text("ABSAGEN");
             if (typeof element_id !== "undefined")
-                $btn_rueckmelden
-                    .removeClass("btn_rueckmeldung_erstellen")
-                    .addClass("btn_rueckmeldung_aendern")
-                    .attr("data-element_id", element_id)
-                    .attr("data-aktion", "aendern");
+                $btn_rueckmelden.removeClass("btn_rueckmeldung_erstellen").addClass("btn_rueckmeldung_aendern").attr("data-element_id", element_id);
 
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-danger").addClass("btn-outline-danger");
         }

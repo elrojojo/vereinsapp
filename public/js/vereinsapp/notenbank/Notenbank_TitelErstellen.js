@@ -24,12 +24,10 @@ function Notenbank_TitelErstellen($btn) {
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "notenbank");
             });
-
             Schnittstelle_EventVariableUpdLocalstorage("notenbank", [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 
             AJAX.$btn.closest(".formular").modal("hide");
-
-            Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "notenbank") + " erfolgreich gespeichert.");
+            Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "notenbank") + " wurde erfolgreich erstellt.");
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);

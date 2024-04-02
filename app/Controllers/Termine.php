@@ -285,7 +285,6 @@ class Termine extends BaseController {
     public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'termin_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
@@ -303,7 +302,7 @@ class Termine extends BaseController {
                 'status' => $this->request->getpost()['status'],
             );
             $rueckmeldungen_Model->save( $rueckmeldung );
-            if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['element_id'] = (int)$rueckmeldungen_Model->getInsertID();
+            $ajax_antwort['element_id'] = (int)$rueckmeldungen_Model->getInsertID();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

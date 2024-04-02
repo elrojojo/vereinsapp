@@ -1,9 +1,7 @@
 function Notenbank_TitelAendern($btn) {
-    const element_id = $btn.attr("data-element_id");
-
     const AJAX_DATA = new Object();
     Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
-    AJAX_DATA.id = Number(element_id);
+    AJAX_DATA.id = Number($btn.attr("data-element_id"));
 
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {
@@ -19,18 +17,13 @@ function Notenbank_TitelAendern($btn) {
             Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            const element_id = AJAX.data.id;
-
-            G.LISTEN["notenbank"].tabelle[element_id] = new Object();
             $.each(AJAX.data, function (eigenschaft, wert) {
-                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "notenbank");
+                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, "notenbank");
             });
-
             Schnittstelle_EventVariableUpdLocalstorage("notenbank", [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
 
             AJAX.$btn.closest(".formular").modal("hide");
-
-            Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "notenbank") + " erfolgreich gespeichert.");
+            Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "notenbank") + " wurde erfolgreich geändert.");
         },
         rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);

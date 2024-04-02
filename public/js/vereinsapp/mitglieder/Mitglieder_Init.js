@@ -41,12 +41,12 @@ function Mitglieder_Init() {
 
     // PASSWORT ÄNDERN
     $(document).on("click", ".btn_mitglied_passwort_aendern", function () {
-        Liste_ElementErstellen($(this));
+        Mitglieder_PasswortAendern($(this));
     });
 
     // PASSWORT FESTLEGEN
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
-        Liste_ElementErstellen($(this));
+        Mitglieder_PasswortFestlegen($(this));
     });
 
     // PASSWORT FESTLEGEN MODAL
