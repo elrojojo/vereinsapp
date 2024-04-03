@@ -44,12 +44,7 @@ function Mitglieder_Init() {
         Mitglieder_PasswortAendern($(this));
     });
 
-    // PASSWORT FESTLEGEN
-    $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
-        Mitglieder_PasswortFestlegen($(this));
-    });
-
-    // PASSWORT FESTLEGEN MODAL
+    // PASSWORT FESTLEGEN (MODAL) ÖFFNEN
     if (FORCE_PASSWORD_RESET) {
         // SCHNITTSTELLE AJAX
         const neue_ajax_id = G.AJAX.length;
@@ -63,6 +58,11 @@ function Mitglieder_Init() {
         };
         Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
     }
+
+    // PASSWORT FESTLEGEN
+    $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
+        Mitglieder_PasswortFestlegen($(this));
+    });
 
     // FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN
     $(document).on("show.bs.modal", "#mitglied_einmal_link_anzeigen_modal", function () {

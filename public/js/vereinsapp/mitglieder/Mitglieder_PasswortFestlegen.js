@@ -17,7 +17,7 @@ function Mitglieder_PasswortFestlegen($btn) {
             Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
         },
         rein_validation_pos_aktion: function (AJAX) {
-            AJAX.$btn.closest(".formular").modal("hide");
+            $("#mitglied_passwort_festlegen_modal").modal("hide").remove();
             Schnittstelle_DomToastFeuern("Du hast erfolgreich ein neues Password festgelegt.");
         },
         rein_aktion: function (AJAX) {

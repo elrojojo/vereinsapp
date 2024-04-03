@@ -83,7 +83,8 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
-mitglied_passwort_festlegen_modal aus dem DOM löschen statt nur zu verstecken (hide+remove)
 title ändern in beschriftung?
+Passwort_anzeigen Modal öffnen in Passwort_anzeigen integrieren (analog zu bestaetigung)
+Passwort_anzeigen funktioniert nicht (data-element_id fehlt)
 
 */
