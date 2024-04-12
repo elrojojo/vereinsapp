@@ -79,11 +79,11 @@ function Mitglieder_Init() {
 
     // EINMAL-LINK ANZEIGEN
     $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
-        Mitglieder_EinmalLinkErstellen($(this));
+        Mitglieder_EinmalLinkAnzeigen($(this));
     });
 
     // EINMAL-LINK PER EMAIL VERSCHICKEN
     $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
-        Mitglieder_EinmalLinkErstellen($(this));
+        Mitglieder_EinmalLinkEmail($(this));
     });
 }

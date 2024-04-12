@@ -60,7 +60,10 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
 
     if (typeof liste !== "undefined" && typeof aktion !== "undefined")
         $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
-    if (typeof element_id !== "undefined") $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").attr("data-element_id", element_id);
+    if (typeof element_id !== "undefined")
+        $formular
+            .find(".btn_" + G.LISTEN[liste].element + "_aktion, .btn_" + G.LISTEN[liste].element + "_" + aktion)
+            .attr("data-element_id", element_id);
 
     if (typeof gegen_element_id !== "undefined") $formular.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
     else $formular.find(".checkliste").removeAttr("data-gegen_element_id");

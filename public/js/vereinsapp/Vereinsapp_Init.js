@@ -69,7 +69,6 @@ Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
-Keine doppelten Rückmeldungen erlauben
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht
 Data-Attribute als Object in einem Attribut zusammenfassen
@@ -79,12 +78,12 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
-"erstellen" umbenennen zu "speichern"
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 title ändern in beschriftung?
 Passwort_anzeigen Modal öffnen in Passwort_anzeigen integrieren (analog zu bestaetigung)
-Passwort_anzeigen funktioniert nicht (data-element_id fehlt)
+Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
+"erstellen" umbenennen zu "speichern"
 
 */
