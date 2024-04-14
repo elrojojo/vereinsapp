@@ -1,5 +1,3 @@
-<div class="formular mt-1 d-grid">
-
 <div class="input-group mb-1">
     <div class="form-floating">
       <input type="password" class="form-control eigenschaft" data-eigenschaft="passwort_alt" placeholder="Altes Passwort" />
@@ -24,7 +22,4 @@
     <span class="input-group-text text-primary passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE['unsichtbar']['bootstrap']; ?>"></i></span>
   </div>
   
-  <button type="button" class="btn btn_mitglied_passwort_aendern btn-outline-success" data-element_id="<?= ICH['id']; ?>"><i class="bi bi-<?= SYMBOLE['mitglied']['bootstrap']; ?>"></i> Mein Passwort ändern</button>
-
-</div>
-
+  <div class="d-grid"><button type="button" class="btn btn_mitglied_passwort_aendern btn-outline-success" data-element_id="<?= ICH['id']; ?>"><i class="bi bi-<?= SYMBOLE['mitglied']['bootstrap']; ?>"></i> Mein Passwort ändern</button></div>

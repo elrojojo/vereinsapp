@@ -38,7 +38,7 @@
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?php } ?>
 
-<?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => array( 'anwesenheiten_dokumentieren' => $liste['anwesenheiten_dokumentieren'] ) ) ); ?>
+<?= view( 'Templates/Liste/checkliste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>

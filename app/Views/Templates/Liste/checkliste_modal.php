@@ -1,4 +1,4 @@
-<div class="modal fade formular" id="termin_anwesenheiten_modal" tabindex="-1">
+<div class="modal fade formular" id="<?= $liste['id']; ?>_modal" tabindex="-1">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
 
-      <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
+      <?= view( 'Templates/Liste/liste', array( 'liste' => $liste ) ); ?>
 
       </div>
       <div class="modal-footer">

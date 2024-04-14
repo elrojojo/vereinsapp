@@ -21,7 +21,7 @@
 </div>
 
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
-<?= view( 'Termine/termin_anwesenheiten_modal', array( 'liste' => array( 'anwesenheiten_dokumentieren' => $liste['anwesenheiten_dokumentieren'] ) ) ); ?>
+<?= view( 'Templates/Liste/checkliste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_basiseigenschaften_modal' ); ?>
 <?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'termine', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>

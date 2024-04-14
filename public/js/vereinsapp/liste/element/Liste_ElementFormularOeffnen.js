@@ -65,7 +65,4 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
             .find(".btn_" + G.LISTEN[liste].element + "_aktion, .btn_" + G.LISTEN[liste].element + "_" + aktion)
             .attr("data-element_id", element_id);
 
-    if (typeof gegen_element_id !== "undefined") $formular.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
-    else $formular.find(".checkliste").removeAttr("data-gegen_element_id");
-    Schnittstelle_EventVariableUpdDom(liste);
 }

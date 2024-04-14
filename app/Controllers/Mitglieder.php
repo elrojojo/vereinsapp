@@ -150,7 +150,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'modal_id' => 'termin_anwesenheiten_modal',
+            'klasse_id' => 'btn_anwesenheiten_dokumentieren',
             'liste' => 'termine',
             'title' => 'Anwesenheiten dokumentieren',
         );

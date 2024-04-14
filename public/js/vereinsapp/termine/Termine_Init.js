@@ -54,4 +54,16 @@ function Termine_Init() {
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
         Termine_RueckmeldungAendern($(this));
     });
+
+    // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_anwesenheiten_dokumentieren", function () {
+        const liste = $(this).attr("data-liste");
+        const title = $(this).attr("data-title");
+        const gegen_element_id = $(this).attr("data-gegen_element_id");
+
+        if (typeof title !== "undefined") $("#anwesenheiten_dokumentieren_modal").find(".modal-title").text(title);
+        $("#anwesenheiten_dokumentieren_modal").find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
+        bootstrap.Modal.getOrCreateInstance($("#anwesenheiten_dokumentieren_modal")).show();
+        Schnittstelle_EventVariableUpdDom(liste);
+    });
 }
