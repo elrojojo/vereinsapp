@@ -4,7 +4,10 @@
             <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $aktion => $werkzeug): ?>
                 <li class="werkzeug list-group-item list-group-item-action text-<?php
                     if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
-                    if( array_key_exists( 'klasse_id', $werkzeug ) ) echo ' '.$werkzeug['klasse_id'];
+                    if( array_key_exists( 'klasse_id', $werkzeug ) ) {
+                        if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
+                        else echo ' '.$werkzeug['klasse_id'];
+                    }
                     ?>" data-liste="<?= $werkzeug['liste']; ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>"<?php
                     if( array_key_exists( 'modal_id', $werkzeug ) ) { ?> data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>"<?php }
                     if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }

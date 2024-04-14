@@ -45,7 +45,7 @@ class Notenbank extends BaseController {
                 'title' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => 'btn_titel_loeschen',
+                'klasse_id' => array('btn_titel_loeschen', 'bestaetigung_einfordern'),
                 'liste' => 'notenbank',
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',
@@ -95,7 +95,7 @@ class Notenbank extends BaseController {
                 'title' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => 'btn_titel_loeschen',
+                'klasse_id' => array('btn_titel_loeschen', 'bestaetigung_einfordern'),
                 'liste' => 'notenbank',
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',

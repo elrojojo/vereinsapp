@@ -5,7 +5,10 @@
     <?php foreach( $liste['werkzeugkasten'] as $aktion => $werkzeug):
         ?><button class="btn werkzeug text-<?php
             if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
-            if( array_key_exists( 'klasse_id', $werkzeug ) ) echo ' '.$werkzeug['klasse_id'];
+            if( array_key_exists( 'klasse_id', $werkzeug ) ) {
+                if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
+                else echo ' '.$werkzeug['klasse_id'];
+            }
             ?>" data-liste="<?= $liste['liste']; ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
             if( array_key_exists( 'modal_id', $werkzeug ) ) { ?> data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>"<?php }
             if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }

@@ -1,15 +1,14 @@
 function Mitglieder_EinmalLinkEmail($btn) {
     const element_id = Number($btn.attr("data-element_id"));
 
-    if (!$btn.hasClass("btn_bestaetigen")) {
-        const data = { liste: "mitglieder", element_id: element_id, werte: JSON.stringify({ email: true }) };
+    if ($btn.hasClass("bestaetigung_einfordern"))
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du " + Liste_ElementBeschriftungZurueck(data.element_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
+            "Willst du " + Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
             $btn.attr("data-title"),
-            "btn_mitglied_einmal_link_email",
-            data
+            "mitglied_einmal_link_email",
+            { liste: "mitglieder", element_id: element_id, werte: JSON.stringify({ email: true }) }
         );
-    } else {
+    else {
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
         AJAX_DATA.email = true;
@@ -29,7 +28,7 @@ function Mitglieder_EinmalLinkEmail($btn) {
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
                 ]);
-                AJAX.$btn.closest(".bestaetigung").modal("hide").remove();
+                $("#mitglied_einmal_link_email_bestaetigung").modal("hide").remove();
                 Schnittstelle_DomToastFeuern(
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " wurde erfolgreich per Email zugeschickt."
                 );

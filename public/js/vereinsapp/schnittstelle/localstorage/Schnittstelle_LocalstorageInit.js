@@ -2,17 +2,17 @@ function Schnittstelle_LocalstorageInit() {
     // LOCALSTORAGE LEEREN
     $(document).on("click", ".btn_localstorage_leeren", function () {
         const $btn = $(this);
-        if (!$btn.hasClass("btn_bestaetigen")) {
+        if ($btn.hasClass("bestaetigung_einfordern"))
             Schnittstelle_DomBestaetigungEinfordern(
                 "Willst du wirklich deinen LocalStorage leeren?",
                 $btn.attr("data-title"),
-                "btn_localstorage_leeren",
+                "localstorage_leeren",
                 {},
                 "danger"
             );
-        } else {
+        else {
             localstorage_leeren();
-            $btn.closest(".modal").modal("hide").remove();
+            $("#localstorage_leeren_bestaetigung").modal("hide").remove();
             Schnittstelle_DomToastFeuern("Dein LocalStorage wurde erfolgreich geleert.");
         }
     });
@@ -21,8 +21,10 @@ function Schnittstelle_LocalstorageInit() {
     if (
         typeof Schnittstelle_LocalstorageRausZurueck("localstorage_reset") === "undefined" ||
         DateTime.fromISO(Schnittstelle_LocalstorageRausZurueck("localstorage_reset")) < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
-    )
+    ) {
         localstorage_leeren();
+        console.log("LocalStorage wurde erzwungenermaßen geleert.");
+    }
 }
 
 function localstorage_leeren() {
@@ -31,5 +33,4 @@ function localstorage_leeren() {
     Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
     if (typeof datenschutz_richtlinie !== "undefined")
         Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
-    console.log("LocalStorage wurde erfolgreich geleert.");
 }

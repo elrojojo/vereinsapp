@@ -82,8 +82,9 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 title ändern in beschriftung?
-Passwort_anzeigen Modal öffnen in Passwort_anzeigen integrieren (analog zu bestaetigung)
+FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN in Mitglieder_EinmalLinkAnzeigen integrieren (analog zu bestaetigung)
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
-"erstellen" umbenennen zu "speichern"
+show.bs.modal und hide.bs.modal nicht mehr automatisch ausführen
+mitglied_einmal_link_email aus Routes löschen?
 
 */
