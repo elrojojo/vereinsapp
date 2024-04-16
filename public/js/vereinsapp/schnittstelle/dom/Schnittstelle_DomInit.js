@@ -61,19 +61,11 @@ function Schnittstelle_DomInit() {
     $(document).on("show.bs.modal", ".modal", function (event) {
         const $modal = $(this);
         const modal_id = $modal.attr("id");
-        const $btn_oeffnend = $(event.relatedTarget);
 
         const title_modal = $modal.find(".modal-title").first().attr("data-title");
-        const title_btn = $btn_oeffnend.attr("data-title");
-        if (typeof title_btn !== "undefined") {
-            $modal.find(".modal-title").attr("data-title", title_btn);
-            $modal.find(".modal-title").text(title_btn);
-        } else if (typeof title_modal !== "undefined") $modal.find(".modal-title").html(title_modal);
-        else $modal.find(".modal-title").text("ERROR: Hier fehlt ein Titel");
+        if (typeof title_modal !== "undefined") $modal.find(".modal-title").html(title_modal);
 
-        if (G.MODALS.offen.length == 0 || G.MODALS.offen[G.MODALS.offen.length - 1].modal_id != modal_id) {
-            G.MODALS.offen.push({ modal_id: modal_id, $btn_oeffnend: $btn_oeffnend });
-        }
+        if (G.MODALS.offen.length == 0 || G.MODALS.offen[G.MODALS.offen.length - 1] != modal_id) G.MODALS.offen.push(modal_id);
     });
 
     $(document).on("hidden.bs.modal", ".modal", function () {
@@ -82,9 +74,9 @@ function Schnittstelle_DomInit() {
         const title_modal = $modal.find(".modal-title").html();
         if (typeof title_modal !== "undefined") $modal.find(".modal-title").first().attr("data-title", title_modal);
 
-        if ($modal.attr("id") == G.MODALS.offen[G.MODALS.offen.length - 1].modal_id) {
+        if ($modal.attr("id") == G.MODALS.offen[G.MODALS.offen.length - 1]) {
             G.MODALS.offen.pop();
-            if (G.MODALS.offen.length > 0) $("#" + G.MODALS.offen[G.MODALS.offen.length - 1].modal_id).modal("show");
+            if (G.MODALS.offen.length > 0) $("#" + G.MODALS.offen[G.MODALS.offen.length - 1]).modal("show");
         }
     });
 

@@ -73,6 +73,7 @@ IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, A
 Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht
 Data-Attribute als Object in einem Attribut zusammenfassen
 mitglied_passwort_festlegen_modal nur erhalten, wenn die mitgeschickte ID die eigene ist
+title ändern in beschriftung?
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -81,10 +82,10 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
-title ändern in beschriftung?
-FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN in Mitglieder_EinmalLinkAnzeigen integrieren (analog zu bestaetigung)
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
 show.bs.modal und hide.bs.modal nicht mehr automatisch ausführen
 mitglied_einmal_link_email aus Routes löschen?
+mitglieder_filtern-Button funktioniert nicht mehr
+erstellen->aendern->erstellen erzeugt element_id am btn_
 
 */

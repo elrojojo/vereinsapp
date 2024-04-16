@@ -52,7 +52,7 @@ function Termine_Init() {
 
     // RÜCKMELDUNG DETAILLIEREN
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
-        Termine_RueckmeldungAendern($(this));
+        Termine_RueckmeldungDetaillieren($(this));
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN

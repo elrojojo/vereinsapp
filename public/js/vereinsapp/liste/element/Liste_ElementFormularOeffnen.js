@@ -1,18 +1,8 @@
-function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
-    let aktion, liste, element_id, gegen_element_id;
+function Liste_ElementFormularOeffnen($formular, liste, aktion, data) {
+    if (typeof data === "undefined") data = new Object();
 
-    if ($btn_oeffnend.exists()) {
-        aktion = $btn_oeffnend.attr("data-aktion");
-        liste = $btn_oeffnend.attr("data-liste");
-        element_id = $btn_oeffnend.attr("data-element_id");
-        gegen_element_id = $btn_oeffnend.attr("data-gegen_element_id");
-    } else {
-        aktion = $formular.attr("data-aktion");
-        liste = $formular.attr("data-liste");
-    }
-
-    if (typeof liste !== "undefined") $formular.attr("data-liste", liste);
-    if (typeof aktion !== "undefined") $formular.attr("data-aktion", aktion);
+    if (!("element_id" in data)) data.element_id = undefined;
+    const element_id = data.element_id;
 
     $formular.find(".is-invalid").removeClass("is-invalid");
     $formular.find(".is-valid").removeClass("is-valid");
@@ -58,11 +48,15 @@ function Liste_ElementFormularOeffnen($formular, $btn_oeffnend) {
         $eigenschaft.val(wert_formatiert).change();
     });
 
-    if (typeof liste !== "undefined" && typeof aktion !== "undefined")
-        $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
+    if ("title" in data && typeof data.title !== "undefined") $formular.find(".modal-title").text(data.title);
+
+    if (typeof element_id !== "undefined") $formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
+
+    $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
     if (typeof element_id !== "undefined")
         $formular
             .find(".btn_" + G.LISTEN[liste].element + "_aktion, .btn_" + G.LISTEN[liste].element + "_" + aktion)
             .attr("data-element_id", element_id);
 
+    bootstrap.Modal.getOrCreateInstance($formular).show();
 }

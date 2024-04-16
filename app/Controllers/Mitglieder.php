@@ -51,7 +51,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'modal_id' => 'mitglied_einmal_link_anzeigen_modal',
+                'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
@@ -62,12 +62,12 @@ class Mitglieder extends BaseController {
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => 'mitglied_basiseigenschaften_modal',
+                'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => 'mitglied_basiseigenschaften_modal',
+                'klasse_id' => array('btn_mitglied_duplizieren', 'formular_oeffnen'),
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied duplizieren',
             );
@@ -79,7 +79,7 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['erstellen'] = array(
-                'modal_id' => 'mitglied_basiseigenschaften_modal',
+                'klasse_id' => array('btn_mitglied_erstellen', 'formular_oeffnen'),
                 'title' => 'Mitglied erstellen',
             ); 
         }
@@ -201,7 +201,7 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'modal_id' => 'mitglied_einmal_link_anzeigen_modal',
+                'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
                 'liste' => 'mitglieder',
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
@@ -212,12 +212,12 @@ class Mitglieder extends BaseController {
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => 'mitglied_basiseigenschaften_modal',
+                'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => 'mitglied_basiseigenschaften_modal',
+                'klasse_id' => array('btn_mitglied_duplizieren', 'formular_oeffnen'),
                 'liste' => 'mitglieder',
                 'title' => 'Mitglied duplizieren',
             );

@@ -16,8 +16,8 @@ function Liste_FilternInit() {
     $(".filtern_definitionen").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#liste_filtern_modal", function () {
-        Liste_FilternFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
+    $(document).on("show.bs.modal", "#liste_filtern_modal", function (event) {
+        Liste_FilternFormularOeffnen($(this), $(event.relatedTarget));
     });
 
     // FORMULAR (MODAL) SCHLIESSEN

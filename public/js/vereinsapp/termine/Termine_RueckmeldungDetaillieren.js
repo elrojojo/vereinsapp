@@ -1,6 +1,6 @@
-function Termine_RueckmeldungAendern($btn) {
+function Termine_RueckmeldungDetaillieren($btn) {
     if ($btn.hasClass("formular_oeffnen"))
-        Liste_ElementFormularOeffnen($("#rueckmeldung_detaillieren_modal"), "rueckmeldungen", "aendern", {
+        Liste_ElementFormularOeffnen($("#rueckmeldung_detaillieren_modal"), "rueckmeldungen", "detaillieren", {
             title: $btn.attr("data-title"),
             element_id: $btn.attr("data-element_id"),
         });

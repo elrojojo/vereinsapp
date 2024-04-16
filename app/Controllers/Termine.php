@@ -47,12 +47,12 @@ class Termine extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => 'termin_basiseigenschaften_modal',
+                'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
                 'liste' => 'termine',
                 'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => 'termin_basiseigenschaften_modal',
+                'klasse_id' => array('btn_termin_duplizieren', 'formular_oeffnen'),
                 'liste' => 'termine',
                 'title' => 'Termin duplizieren',
             );
@@ -64,7 +64,7 @@ class Termine extends BaseController {
             );
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
-                'modal_id' => 'termin_basiseigenschaften_modal',
+                'klasse_id' => array('btn_termin_erstellen', 'formular_oeffnen'),
                 'title' => 'Termin erstellen',
             );
         }
@@ -159,12 +159,12 @@ class Termine extends BaseController {
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => 'termin_basiseigenschaften_modal',
+                'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
                 'liste' => 'termine',
                 'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => 'termin_basiseigenschaften_modal',
+                'klasse_id' => array('btn_termin_duplizieren', 'formular_oeffnen'),
                 'liste' => 'termine',
                 'title' => 'Termin duplizieren',
             );

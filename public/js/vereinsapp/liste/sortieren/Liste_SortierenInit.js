@@ -5,8 +5,8 @@ function Liste_SortierenInit() {
     $(".sortieren").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#liste_sortieren_modal", function () {
-        Liste_SortierenFormularOeffnen($(this), G.MODALS.offen[G.MODALS.offen.length - 1].$btn_oeffnend);
+    $(document).on("show.bs.modal", "#liste_sortieren_modal", function (event) {
+        Liste_SortierenFormularOeffnen($(this), $(event.relatedTarget));
     });
 
     // FORMULAR (MODAL) SCHLIESSEN

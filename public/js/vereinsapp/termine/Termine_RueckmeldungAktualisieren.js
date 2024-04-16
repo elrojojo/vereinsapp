@@ -1,5 +1,5 @@
 function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
-    const $btn_rueckmeldung_detaillieren = $btn_rueckmelden.siblings(".btn_rueckmeldung_detaillieren_modal");
+    const $btn_rueckmeldung_detaillieren = $btn_rueckmelden.siblings(".btn_rueckmeldung_detaillieren");
 
     let data_werte = $btn_rueckmelden.attr("data-werte");
     if (typeof data_werte !== "undefined") data_werte = JSON.parse(data_werte);

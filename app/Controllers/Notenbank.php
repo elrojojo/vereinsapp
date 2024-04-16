@@ -35,12 +35,12 @@ class Notenbank extends BaseController {
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => 'titel_basiseigenschaften_modal',
+                'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
                 'liste' => 'notenbank',
                 'title' => 'Titel ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => 'titel_basiseigenschaften_modal',
+                'klasse_id' => array('btn_titel_duplizieren', 'formular_oeffnen'),
                 'liste' => 'notenbank',
                 'title' => 'Titel duplizieren',
             );
@@ -52,7 +52,7 @@ class Notenbank extends BaseController {
             );
 
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['erstellen'] = array(
-                'modal_id' => 'titel_basiseigenschaften_modal',
+                'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
                 'title' => 'Titel erstellen',
             );
         }
@@ -85,12 +85,12 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'modal_id' => 'titel_basiseigenschaften_modal',
+                'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
                 'liste' => 'notenbank',
                 'title' => 'Titel ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'modal_id' => 'titel_basiseigenschaften_modal',
+                'klasse_id' => array('btn_titel_duplizieren', 'formular_oeffnen'),
                 'liste' => 'notenbank',
                 'title' => 'Titel duplizieren',
             );
