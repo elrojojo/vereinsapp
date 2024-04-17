@@ -1,6 +1,4 @@
-function Liste_ElementFormularSchliessen($formular) {
-    const liste = $formular.attr("data-liste");
-    const aktion = $formular.attr("data-aktion");
+function Liste_ElementFormularSchliessen($formular, liste, aktion) {
     const $btn_element_aktion = $formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion);
     const element_id = $btn_element_aktion.attr("data-element_id");
 
@@ -15,4 +13,6 @@ function Liste_ElementFormularSchliessen($formular) {
     });
 
     $btn_element_aktion.removeAttr("data-element_id");
+
+    $formular.modal("hide");
 }

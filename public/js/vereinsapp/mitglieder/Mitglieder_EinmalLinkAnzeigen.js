@@ -1,12 +1,22 @@
 function Mitglieder_EinmalLinkAnzeigen($btn) {
     const element_id = Number($btn.attr("data-element_id"));
 
-    if ($btn.hasClass("formular_oeffnen"))
+    if ($btn.hasClass("formular_oeffnen")) {
         Liste_ElementFormularOeffnen($("#mitglied_einmal_link_anzeigen_modal"), "mitglieder", "einmal_link_anzeigen", {
             element_id: element_id,
             title: $btn.attr("data-title"),
         });
-    else {
+
+        const $formular = $("#mitglied_einmal_link_anzeigen_modal");
+        const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
+        const btn_dismiss_beschriftung = $btn_dismiss.attr("data-beschriftung");
+
+        $formular.find(".einmal_link").val("");
+        $formular.find(".btn_mitglied_einmal_link_erstellen").removeClass("invisible");
+
+        if (typeof btn_dismiss_beschriftung !== "undefined") $btn_dismiss.text(btn_dismiss_beschriftung);
+        $btn_dismiss.addClass("btn-outline-danger").removeClass("btn-outline-primary");
+    } else {
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
 

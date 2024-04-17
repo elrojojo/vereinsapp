@@ -35,7 +35,7 @@ function Notenbank_TitelErstellen($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                AJAX.$btn.closest(".formular").modal("hide");
+                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "notenbank", "erstellen");
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "notenbank") + " wurde erfolgreich erstellt.");
             },
             rein_aktion: function (AJAX) {

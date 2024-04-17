@@ -12,9 +12,6 @@ function Liste_ElementAktualisieren($element, liste) {
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
-    // MODAL-TOGGLE AKTUALISIEREN
-    $element.find('[data-bs-toggle="modal"]').attr("data-element_id", element_id);
-
     // LINK AKTUALISIEREN
     $element.find("a.stretched-link").attr("href", BASE_URL + G.LISTEN[liste].controller + "/" + element_id);
 

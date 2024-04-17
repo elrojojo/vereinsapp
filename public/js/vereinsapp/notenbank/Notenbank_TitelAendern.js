@@ -32,7 +32,7 @@ function Notenbank_TitelAendern($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                AJAX.$btn.closest(".formular").modal("hide");
+                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "notenbank", "aendern");
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "notenbank") + " wurde erfolgreich geändert.");
             },
             rein_aktion: function (AJAX) {

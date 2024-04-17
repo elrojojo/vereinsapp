@@ -44,36 +44,10 @@ function Mitglieder_Init() {
         Mitglieder_PasswortAendern($(this));
     });
 
-    // PASSWORT FESTLEGEN (MODAL) ÖFFNEN
-    if (FORCE_PASSWORD_RESET) {
-        const neue_ajax_id = G.AJAX.length;
-        G.AJAX[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "mitglieder/ajax_mitglied_passwort_festlegen_modal",
-            rein_validation_pos_aktion: function (AJAX) {
-                $("#modals").append(AJAX.antwort.html);
-                Liste_ElementFormularOeffnen($("#mitglied_passwort_festlegen_modal"), "mitglieder", "passwort_festlegen");
-            },
-        };
-        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
-    }
-
     // PASSWORT FESTLEGEN
+    if (FORCE_PASSWORD_RESET) Mitglieder_PasswortFestlegen();
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
         Mitglieder_PasswortFestlegen($(this));
-    });
-
-    // FORMULAR EINMAL-LINK ANZEIGEN (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#mitglied_einmal_link_anzeigen_modal", function () {
-        const $formular = $(this);
-        const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
-        const btn_dismiss_beschriftung = $btn_dismiss.attr("data-beschriftung");
-
-        $formular.find(".einmal_link").val("");
-        $formular.find(".btn_mitglied_einmal_link_erstellen").removeClass("invisible");
-
-        if (typeof btn_dismiss_beschriftung !== "undefined") $btn_dismiss.text(btn_dismiss_beschriftung);
-        $btn_dismiss.addClass("btn-outline-danger").removeClass("btn-outline-primary");
     });
 
     // EINMAL-LINK ANZEIGEN

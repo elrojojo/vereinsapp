@@ -58,5 +58,5 @@ function Liste_ElementFormularOeffnen($formular, liste, aktion, data) {
             .find(".btn_" + G.LISTEN[liste].element + "_aktion, .btn_" + G.LISTEN[liste].element + "_" + aktion)
             .attr("data-element_id", element_id);
 
-    bootstrap.Modal.getOrCreateInstance($formular).show();
+    Schnittstelle_DomModalOeffnen($formular);
 }

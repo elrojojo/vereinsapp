@@ -35,7 +35,7 @@ function Mitglieder_MitgliedErstellen($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                AJAX.$btn.closest(".formular").modal("hide");
+                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "mitglieder", "erstellen");
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wurde erfolgreich erstellt.");
             },
             rein_aktion: function (AJAX) {

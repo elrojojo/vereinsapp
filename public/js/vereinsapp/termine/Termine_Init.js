@@ -60,10 +60,11 @@ function Termine_Init() {
         const liste = $(this).attr("data-liste");
         const title = $(this).attr("data-title");
         const gegen_element_id = $(this).attr("data-gegen_element_id");
+        const $anwesenheiten_dokumentieren_modal = $("#anwesenheiten_dokumentieren_modal");
 
-        if (typeof title !== "undefined") $("#anwesenheiten_dokumentieren_modal").find(".modal-title").text(title);
-        $("#anwesenheiten_dokumentieren_modal").find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
-        bootstrap.Modal.getOrCreateInstance($("#anwesenheiten_dokumentieren_modal")).show();
+        if (typeof title !== "undefined") $anwesenheiten_dokumentieren_modal.find(".modal-title").text(title);
+        $anwesenheiten_dokumentieren_modal.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
+        Schnittstelle_DomModalOeffnen($anwesenheiten_dokumentieren_modal);
         Schnittstelle_EventVariableUpdDom(liste);
     });
 }

@@ -29,11 +29,10 @@ $(document).ready(function () {
             ajax_id: neue_ajax_id,
             url: "status/ajax_datenschutz_richtlinie",
             rein_validation_pos_aktion: function (AJAX) {
-                $("#modals").append(AJAX.antwort.html);
-                $("#datenschutz_richtlinie_modal").modal("show");
+                Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
                 $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
                     Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    $("#datenschutz_richtlinie_modal").modal("hide").remove();
+                    Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
                 });
             },
         };
@@ -74,6 +73,7 @@ Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in an
 Data-Attribute als Object in einem Attribut zusammenfassen
 mitglied_passwort_festlegen_modal nur erhalten, wenn die mitgeschickte ID die eigene ist
 title ändern in beschriftung?
+anwesenheiten_dokumentieren_modal für checkliste verallgemeinern
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.

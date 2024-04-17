@@ -32,7 +32,7 @@ function Mitglieder_MitgliedAendern($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                AJAX.$btn.closest(".formular").modal("hide");
+                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "mitglieder", "aendern");
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " wurde erfolgreich geändert.");
             },
             rein_aktion: function (AJAX) {

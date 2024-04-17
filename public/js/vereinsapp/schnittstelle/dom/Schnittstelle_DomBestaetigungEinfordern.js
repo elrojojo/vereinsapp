@@ -1,6 +1,4 @@
 function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, klasse_id, data, farbe) {
-    const $bestaetigungen = $("#bestaetigungen");
-
     const $neue_bestaetigung = BESTAETIGUNGEN.$blanko_bestaetigung.clone().removeClass("blanko invisible").addClass("bestaetigung");
     $neue_bestaetigung.attr("id", klasse_id + "_bestaetigung");
     $neue_bestaetigung.find(".modal-title").first().attr("data-title", title);
@@ -13,7 +11,5 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, klasse_id, da
     });
     $btn_bestaetigen.addClass("btn_" + klasse_id).text(title);
 
-    $neue_bestaetigung.appendTo($bestaetigungen);
-
-    bootstrap.Modal.getOrCreateInstance($neue_bestaetigung).show();
+    Schnittstelle_DomModalOeffnen($neue_bestaetigung, $("#bestaetigungen"));
 }

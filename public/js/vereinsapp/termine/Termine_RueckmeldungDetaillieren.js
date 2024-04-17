@@ -38,7 +38,7 @@ function Termine_RueckmeldungDetaillieren($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                AJAX.$btn.closest(".formular").modal("hide");
+                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "rueckmeldungen", "detaillieren");
             },
             rein_aktion: function (AJAX) {
                 Schnittstelle_BtnWartenEnde(AJAX.$btn);

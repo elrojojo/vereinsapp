@@ -28,7 +28,7 @@ function Mitglieder_EinmalLinkEmail($btn) {
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
                 ]);
-                $("#mitglied_einmal_link_email_bestaetigung").modal("hide").remove();
+                Schnittstelle_DomModalSchliessen($("#mitglied_einmal_link_email_bestaetigung"));
                 Schnittstelle_DomToastFeuern(
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " wurde erfolgreich per Email zugeschickt."
                 );
