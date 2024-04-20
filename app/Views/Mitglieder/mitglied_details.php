@@ -38,10 +38,15 @@
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?php } ?>
 
+<div class="blanko_modals" data-liste="termine">
 <?= view( 'Templates/Liste/checkliste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
+</div>
+
+<div class="blanko_modals" data-liste="mitglieder">
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
-<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>
+</div>
+
 <?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>
 

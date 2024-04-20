@@ -6,6 +6,8 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aktuelles_verzeichnis'] ) ); ?>
 </div>
 
+<div class="blanko_modals" data-liste="notenbank">
 <?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Notenbank/titel_basiseigenschaften_modal' ); ?>
+</div>
 <?= $this->endSection() ?>
 

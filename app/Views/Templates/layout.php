@@ -35,14 +35,13 @@
         <?= view( 'Templates/toast' ); ?>
     </div>
 
-    <div id="bestaetigungen">
+    <div id="bestaetigung_blanko">
         <?= view( 'Templates/bestaetigung_modal' ); ?>
     </div>
 
-    <div id="modals">
-        <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
-        <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
-    </div>
+    <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
+    <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
+    <div id="modals"></div>
 
   </body>
 </html>

@@ -1,9 +1,11 @@
 function Termine_TerminErstellen($btn) {
     if ($btn.hasClass("formular_oeffnen"))
-        Liste_ElementFormularOeffnen($("#termin_basiseigenschaften_modal"), "termine", "erstellen", {
-            title: $btn.attr("data-title"),
-            element_id: $btn.attr("data-element_id"),
-        });
+        Schnittstelle_DomModalOeffnen(
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "termine", "erstellen", {
+                title: $btn.attr("data-title"),
+                element_id: $btn.attr("data-element_id"),
+            })
+        );
     else {
         const AJAX_DATA = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
@@ -35,7 +37,7 @@ function Termine_TerminErstellen($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "termine", "erstellen");
+                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".formular"));
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "termine") + " wurde erfolgreich erstellt.");
             },
             rein_aktion: function (AJAX) {

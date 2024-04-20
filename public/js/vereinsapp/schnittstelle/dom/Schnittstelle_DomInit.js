@@ -10,8 +10,8 @@ function Schnittstelle_DomInit() {
     TOASTS.$blanko_toast = $("#toasts").find(".blanko").first();
     $("#toasts").empty();
 
-    BESTAETIGUNGEN.$blanko_bestaetigung = $("#bestaetigungen").find(".blanko").first();
-    $("#bestaetigungen").empty();
+    BESTAETIGUNGEN.$blanko_bestaetigung = $("#bestaetigung_blanko").find(".blanko").first();
+    $("#bestaetigung_blanko").remove();
 
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);
@@ -57,27 +57,21 @@ function Schnittstelle_DomInit() {
             });
     });
 
-    // AKTIVE MODALS WERDEN GETRACKED
-    $(document).on("show.bs.modal", ".modal", function (event) {
-        const $modal = $(this);
-        const modal_id = $modal.attr("id");
-
-        const title_modal = $modal.find(".modal-title").first().attr("data-title");
-        if (typeof title_modal !== "undefined") $modal.find(".modal-title").html(title_modal);
-
-        if (G.MODALS.offen.length == 0 || G.MODALS.offen[G.MODALS.offen.length - 1] != modal_id) G.MODALS.offen.push(modal_id);
-    });
-
     $(document).on("hidden.bs.modal", ".modal", function () {
         const $modal = $(this);
+        const $umgebung = $modal.parent();
+        const $letztes_wartendes_modal = $umgebung.find(".modal.warten:last");
 
-        const title_modal = $modal.find(".modal-title").html();
-        if (typeof title_modal !== "undefined") $modal.find(".modal-title").first().attr("data-title", title_modal);
+        if (!$modal.hasClass("warten")) $modal.remove();
 
-        if ($modal.attr("id") == G.MODALS.offen[G.MODALS.offen.length - 1]) {
-            G.MODALS.offen.pop();
-            if (G.MODALS.offen.length > 0) $("#" + G.MODALS.offen[G.MODALS.offen.length - 1]).modal("show");
+        if (!$umgebung.find(".modal.show").exists() && $letztes_wartendes_modal.exists()) {
+            $letztes_wartendes_modal.removeClass("warten");
+            Schnittstelle_DomModalOeffnen($letztes_wartendes_modal);
         }
+    });
+
+    $(document).on("hidden.bs.toast", ".toast", function () {
+        $(this).remove();
     });
 
     // PASSWORT ANZEIGEN

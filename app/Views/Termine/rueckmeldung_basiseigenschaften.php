@@ -10,3 +10,7 @@
 </div>
 <div class="rueckmeldung_nicht_eingeladen invisible text-secondary small">Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.</div>
 
+<div class="blanko_modals" data-liste="rueckmeldungen">
+<?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
+</div>
+

@@ -1,9 +1,11 @@
 function Mitglieder_MitgliedErstellen($btn) {
     if ($btn.hasClass("formular_oeffnen"))
-        Liste_ElementFormularOeffnen($("#mitglied_basiseigenschaften_modal"), "mitglieder", "erstellen", {
-            title: $btn.attr("data-title"),
-            element_id: $btn.attr("data-element_id"),
-        });
+        Schnittstelle_DomModalOeffnen(
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", "erstellen", {
+                title: $btn.attr("data-title"),
+                element_id: $btn.attr("data-element_id"),
+            })
+        );
     else {
         const AJAX_DATA = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
@@ -35,7 +37,7 @@ function Mitglieder_MitgliedErstellen($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "mitglieder", "erstellen");
+                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".formular"));
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wurde erfolgreich erstellt.");
             },
             rein_aktion: function (AJAX) {

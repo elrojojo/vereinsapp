@@ -1,19 +1,22 @@
-function Liste_ElementFormularOeffnen($formular, liste, aktion, data) {
+function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, data) {
     if (typeof data === "undefined") data = new Object();
 
     if (!("element_id" in data)) data.element_id = undefined;
     const element_id = data.element_id;
 
-    $formular.find(".is-invalid").removeClass("is-invalid");
-    $formular.find(".is-valid").removeClass("is-valid");
+    if (!("title" in data)) data.title = undefined;
+    const title = data.title;
+
+    // Formular als Modal generieren
+    const $formular = G.LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");
 
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
-        // Wenn element_id definiert ist
+        // Wenn element_id definiert ist und es gerade um einen Button geht
         if (typeof element_id !== "undefined" && $eigenschaft.attr("type") == "button") $eigenschaft.attr("data-element_id", element_id);
-        else $eigenschaft.removeAttr("data-element_id");
+        // else $eigenschaft.removeAttr("data-element_id");
 
         let wert = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste);
         // Wenn aber nichts definiert ist, dann nimm den Blanko-Wert (je nach Typ)
@@ -48,7 +51,7 @@ function Liste_ElementFormularOeffnen($formular, liste, aktion, data) {
         $eigenschaft.val(wert_formatiert).change();
     });
 
-    if ("title" in data && typeof data.title !== "undefined") $formular.find(".modal-title").text(data.title);
+    if (typeof title !== "undefined") $formular.find(".modal-title").text(title);
 
     if (typeof element_id !== "undefined") $formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
@@ -58,5 +61,5 @@ function Liste_ElementFormularOeffnen($formular, liste, aktion, data) {
             .find(".btn_" + G.LISTEN[liste].element + "_aktion, .btn_" + G.LISTEN[liste].element + "_" + aktion)
             .attr("data-element_id", element_id);
 
-    Schnittstelle_DomModalOeffnen($formular);
+    return $formular;
 }

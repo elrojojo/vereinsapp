@@ -6,7 +6,8 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine'] ) ); ?>
 </div>
 
-<?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
+<div class="blanko_modals" data-liste="termine">
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_basiseigenschaften_modal' ); ?>
+</div>
 <?= $this->endSection() ?>
 

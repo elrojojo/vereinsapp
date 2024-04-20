@@ -122,8 +122,7 @@ abstract class BaseController extends Controller
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Init.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Aktualisieren.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularOeffnen.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularSchliessen.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularInitialisiertZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularEigenschaftenWerteInAjaxData.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularValidationAktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION), );

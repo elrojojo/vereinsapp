@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <div class="modal-title h5" data-title="Mein Passwort festlegen"></div>
+            <div class="modal-title h5">Mein Passwort festlegen</div>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">

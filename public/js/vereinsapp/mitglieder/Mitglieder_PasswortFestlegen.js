@@ -5,8 +5,15 @@ function Mitglieder_PasswortFestlegen($btn) {
             ajax_id: neue_ajax_id,
             url: "mitglieder/ajax_mitglied_passwort_festlegen_modal",
             rein_validation_pos_aktion: function (AJAX) {
-                $("#modals").append(AJAX.antwort.html);
-                Liste_ElementFormularOeffnen($("#mitglied_passwort_festlegen_modal"), "mitglieder", "passwort_festlegen");
+                const $umgebung = $("#modals");
+                const temp_id = zufaelligeZeichenketteZurueck(8);
+                $umgebung.after('<div id="modal_' + temp_id + '"></div>');
+                const $umgebung_temp = $umgebung.siblings("#modal_" + temp_id).first();
+                $umgebung_temp.append(AJAX.antwort.html);
+                $modal = $umgebung_temp.find(".modal").first();
+                $umgebung_temp.remove();
+                G.LISTEN["mitglieder"].modals["passwort_festlegen"] = $modal;
+                Schnittstelle_DomModalOeffnen(Liste_ElementFormularInitialisiertZurueck("passwort_festlegen", "mitglieder", "passwort_festlegen"));
             },
         };
         Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);

@@ -1,9 +1,11 @@
 function Mitglieder_MitgliedAendern($btn) {
     if ($btn.hasClass("formular_oeffnen"))
-        Liste_ElementFormularOeffnen($("#mitglied_basiseigenschaften_modal"), "mitglieder", "aendern", {
-            title: $btn.attr("data-title"),
-            element_id: $btn.attr("data-element_id"),
-        });
+        Schnittstelle_DomModalOeffnen(
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", "aendern", {
+                title: $btn.attr("data-title"),
+                element_id: $btn.attr("data-element_id"),
+            })
+        );
     else {
         const AJAX_DATA = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
@@ -23,17 +25,17 @@ function Mitglieder_MitgliedAendern($btn) {
                 Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
             },
             rein_validation_pos_aktion: function (AJAX) {
+                const element_id = AJAX.data.id;
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, "mitglieder");
+                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "mitglieder");
                 });
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder", [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                Liste_ElementFormularSchliessen(AJAX.$btn.closest(".formular"), "mitglieder", "aendern");
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " wurde erfolgreich geändert.");
+                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".formular"));
+                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wurde erfolgreich geändert.");
             },
             rein_aktion: function (AJAX) {
                 Schnittstelle_BtnWartenEnde(AJAX.$btn);

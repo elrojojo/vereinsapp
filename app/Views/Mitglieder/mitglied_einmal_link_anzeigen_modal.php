@@ -1,4 +1,4 @@
-<div class="modal fade formular" id="mitglied_einmal_link_anzeigen_modal" tabindex="-1">
+<div class="blanko invisible fade" id="einmal_link_anzeigen" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">

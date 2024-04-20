@@ -5,8 +5,6 @@ const G = {
 
     LISTEN: new Object(),
 
-    MODALS: { offen: new Array() },
-
     CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
 };
 
@@ -73,7 +71,7 @@ Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in an
 Data-Attribute als Object in einem Attribut zusammenfassen
 mitglied_passwort_festlegen_modal nur erhalten, wenn die mitgeschickte ID die eigene ist
 title ändern in beschriftung?
-anwesenheiten_dokumentieren_modal für checkliste verallgemeinern
+anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -83,9 +81,11 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
-show.bs.modal und hide.bs.modal nicht mehr automatisch ausführen
 mitglied_einmal_link_email aus Routes löschen?
 mitglieder_filtern-Button funktioniert nicht mehr
-erstellen->aendern->erstellen erzeugt element_id am btn_
+temp in Schnittstelle_VariableRausZurueck und Schnittstelle_VariableRein löschen
+btn_termin_aktion löschen nachdem modal geöffnet wurde
+mein_passwort_aendern setzt force_password_reset auf FALSE
+.bestaetigung_blanko in #modals verschieben (wenn filtern_modal und sortieren_modal umgebaut sind)
 
 */

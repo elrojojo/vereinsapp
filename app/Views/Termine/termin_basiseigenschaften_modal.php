@@ -1,4 +1,4 @@
-<div class="modal fade formular" id="termin_basiseigenschaften_modal" tabindex="-1">
+<div class="blanko invisible fade" id="basiseigenschaften" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
         <div class="modal-header">

@@ -20,9 +20,14 @@
 <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'] ) ); ?>
 </div>
 
-<?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
-<?= view( 'Templates/Liste/checkliste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
+<div class="blanko_modals" data-liste="termine">
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_basiseigenschaften_modal' ); ?>
+</div>
+
+<div class="blanko_modals" data-liste="mitglieder">
+<?= view( 'Templates/Liste/checkliste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
+</div>
+
 <?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'termine', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>
 

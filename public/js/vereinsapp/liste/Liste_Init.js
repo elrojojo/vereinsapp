@@ -5,8 +5,20 @@ function Liste_Init() {
             const $liste = $(this);
             const instanz = $liste.attr("id");
             G.LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
+            $liste.empty();
         });
-        $('.liste[data-liste="' + liste + '"]').empty();
+
+        G.LISTEN[liste].modals = new Object();
+        $('.blanko_modals[data-liste="' + liste + '"]').each(function () {
+            const $blanko_modals = $(this);
+            $blanko_modals.find(".blanko").each(function () {
+                const $blanko_modal = $(this);
+                const blanko_modal_id = $blanko_modal.attr("id");
+                $blanko_modal.removeAttr("id");
+                G.LISTEN[liste].modals[blanko_modal_id] = $blanko_modal;
+            });
+            $blanko_modals.remove();
+        });
     });
 
     Liste_ChecklisteInit();
