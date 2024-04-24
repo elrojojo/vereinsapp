@@ -5,7 +5,13 @@ function Termine_RueckmeldungErstellen($btn) {
     // ENDE
 
     const AJAX_DATA = new Object();
-    Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
+    AJAX_DATA.bemerkung = "";
+    const data_werte = $btn.attr("data-werte");
+    if (typeof data_werte !== "undefined") {
+        AJAX_DATA.termin_id = JSON.parse(data_werte).termin_id;
+        AJAX_DATA.mitglied_id = JSON.parse(data_werte).mitglied_id;
+        AJAX_DATA.status = JSON.parse(data_werte).status;
+    }
 
     const neue_ajax_id = G.AJAX.length;
     G.AJAX[neue_ajax_id] = {

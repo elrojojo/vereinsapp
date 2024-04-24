@@ -48,13 +48,14 @@ $routes->group('mitglieder', static function ($routes) {
     $routes->post('ajax_mitglied_passwort_aendern',         'Mitglieder::ajax_mitglied_passwort_aendern');
     $routes->post('ajax_mitglied_passwort_festlegen',       'Mitglieder::ajax_mitglied_passwort_festlegen');
     $routes->post('ajax_mitglied_passwort_festlegen_modal', 'Mitglieder::ajax_mitglied_passwort_festlegen_modal');
-    $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
     $routes->post('ajax_mitglied_einmal_link_erstellen',    'Mitglieder::ajax_mitglied_einmal_link_erstellen');
     $routes->post('ajax_mitglied_loeschen',                 'Mitglieder::ajax_mitglied_loeschen');
 
     $routes->post('ajax_verfuegbare_rechte',                'Mitglieder::ajax_verfuegbare_rechte');
     $routes->post('ajax_vergebene_rechte',                  'Mitglieder::ajax_vergebene_rechte');
     $routes->post('ajax_vergebenes_recht_aendern',          'Mitglieder::ajax_vergebenes_recht_aendern');
+
+    $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
 });
 
 
@@ -71,7 +72,6 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_rueckmeldungen',                    'Termine::ajax_rueckmeldungen');
     $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
     $routes->post('ajax_rueckmeldung_aendern',              'Termine::ajax_rueckmeldung_aendern');
-    // $routes->post('ajax_rueckmeldung_loeschen',             'Termine::ajax_rueckmeldung_loeschen');
 
     $routes->post('ajax_anwesenheiten',                    'Termine::ajax_anwesenheiten');
     $routes->post('ajax_anwesenheit_aendern',              'Termine::ajax_anwesenheit_aendern');

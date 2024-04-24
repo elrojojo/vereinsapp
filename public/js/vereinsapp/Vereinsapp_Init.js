@@ -81,8 +81,6 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
-mitglied_einmal_link_email aus Routes löschen?
-mitglieder_filtern-Button funktioniert nicht mehr
-temp in Schnittstelle_VariableRausZurueck und Schnittstelle_VariableRein löschen
+Filtern-Modals und Sortiereb-Modals überarbeiten (mitglieder_filtern-Button funktioniert nicht mehr; tmp entfernen)
 
 */
