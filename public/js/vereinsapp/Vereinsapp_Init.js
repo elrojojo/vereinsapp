@@ -84,8 +84,5 @@ Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_ru
 mitglied_einmal_link_email aus Routes löschen?
 mitglieder_filtern-Button funktioniert nicht mehr
 temp in Schnittstelle_VariableRausZurueck und Schnittstelle_VariableRein löschen
-btn_termin_aktion löschen nachdem modal geöffnet wurde
-mein_passwort_aendern setzt force_password_reset auf FALSE
-.bestaetigung_blanko in #modals verschieben (wenn filtern_modal und sortieren_modal umgebaut sind)
 
 */

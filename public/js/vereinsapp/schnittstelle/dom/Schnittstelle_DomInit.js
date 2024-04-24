@@ -10,8 +10,8 @@ function Schnittstelle_DomInit() {
     TOASTS.$blanko_toast = $("#toasts").find(".blanko").first();
     $("#toasts").empty();
 
-    BESTAETIGUNGEN.$blanko_bestaetigung = $("#bestaetigung_blanko").find(".blanko").first();
-    $("#bestaetigung_blanko").remove();
+    BESTAETIGUNGEN.$blanko_bestaetigung = $("#modals").find(".modal.bestaetigung").first();
+    $("#modals").find(".modal.bestaetigung").remove();
 
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);

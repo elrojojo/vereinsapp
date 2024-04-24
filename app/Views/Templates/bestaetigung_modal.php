@@ -1,4 +1,4 @@
-<div class="modal fade blanko" tabindex="-1">
+<div class="modal bestaetigung invisible fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">

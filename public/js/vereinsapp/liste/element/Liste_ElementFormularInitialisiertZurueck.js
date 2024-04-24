@@ -55,10 +55,10 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, d
 
     if (typeof element_id !== "undefined") $formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
-    $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion);
+    $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion).removeClass(".btn_" + G.LISTEN[liste].element + "_aktion");
     if (typeof element_id !== "undefined")
         $formular
-            .find(".btn_" + G.LISTEN[liste].element + "_aktion, .btn_" + G.LISTEN[liste].element + "_" + aktion)
+            .find(".btn_" + G.LISTEN[liste].element + "_" + aktion)
             .attr("data-element_id", element_id);
 
     return $formular;

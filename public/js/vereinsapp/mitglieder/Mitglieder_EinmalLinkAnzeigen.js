@@ -1,20 +1,14 @@
 function Mitglieder_EinmalLinkAnzeigen($btn) {
     const element_id = Number($btn.attr("data-element_id"));
 
-    if ($btn.hasClass("formular_oeffnen")) {
-        const $formular = Liste_ElementFormularInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", "einmal_link_anzeigen", {
-            element_id: element_id,
-            title: $btn.attr("data-title"),
-        });
-        const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
-        const btn_dismiss_beschriftung = $btn_dismiss.attr("data-beschriftung");
-        $btn_dismiss.addClass("btn-outline-danger").removeClass("btn-outline-primary");
-        if (typeof btn_dismiss_beschriftung !== "undefined") $btn_dismiss.text(btn_dismiss_beschriftung);
-        $formular.find(".einmal_link").val("");
-        $formular.find(".btn_mitglied_einmal_link_erstellen").removeClass("invisible");
-
-        Schnittstelle_DomModalOeffnen($formular);
-    } else {
+    if ($btn.hasClass("formular_oeffnen"))
+        Schnittstelle_DomModalOeffnen(
+            Liste_ElementFormularInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", "einmal_link_anzeigen", {
+                element_id: element_id,
+                title: $btn.attr("data-title"),
+            })
+        );
+    else {
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
 

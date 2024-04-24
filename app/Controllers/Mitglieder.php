@@ -347,6 +347,8 @@ class Mitglieder extends BaseController {
             );
             $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
             $mitglieder_Model->save( $mitglied );
+            
+            $mitglied->undoForcePasswordReset();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
