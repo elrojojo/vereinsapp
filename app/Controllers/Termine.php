@@ -75,7 +75,7 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => 'liste_sortieren_modal',
+            'klasse_id' => 'btn_sortieren_formular_oeffnen',
             'title' => 'Termine sortieren',
         );
 
@@ -147,7 +147,7 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => 'liste_sortieren_modal',
+            'klasse_id' => 'btn_sortieren_formular_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 

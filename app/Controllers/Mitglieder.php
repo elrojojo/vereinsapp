@@ -90,7 +90,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => 'liste_sortieren_modal',
+            'klasse_id' => 'btn_sortieren_formular_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -145,7 +145,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => 'liste_sortieren_modal',
+            'klasse_id' => 'btn_sortieren_formular_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 

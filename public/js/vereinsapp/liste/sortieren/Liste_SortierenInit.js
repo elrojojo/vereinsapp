@@ -1,17 +1,16 @@
 const SORTIEREN = new Object();
 
 function Liste_SortierenInit() {
-    SORTIEREN.$blanko_sortieren_element = $(".sortieren").find(".blanko").first();
-    $(".sortieren").empty();
+    SORTIEREN.$blanko_sortieren_modal = $("#modals").find(".modal.sortieren").first();
+    $("#modals").find(".modal.sortieren").remove();
+    SORTIEREN.$blanko_sortieren_element = SORTIEREN.$blanko_sortieren_modal.find(".sortieren").find(".blanko").first();
+    SORTIEREN.$blanko_sortieren_modal.find(".sortieren").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("show.bs.modal", "#liste_sortieren_modal", function (event) {
-        Liste_SortierenFormularOeffnen($(this), $(event.relatedTarget));
-    });
-
-    // FORMULAR (MODAL) SCHLIESSEN
-    $(document).on("hide.bs.modal", "#liste_sortieren_modal", function () {
-        Liste_SortierenFormularSchliessen($(this));
+    $(document).on("click", ".btn_sortieren_formular_oeffnen", function () {
+        Liste_SortierenFormularOeffnen($(this).attr("data-instanz"), $(this).attr("data-liste"), {
+            title: $(this).attr("data-title"),
+        });
     });
 
     // ERSTELLEN

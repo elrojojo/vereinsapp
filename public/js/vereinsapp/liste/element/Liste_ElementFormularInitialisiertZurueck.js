@@ -8,9 +8,9 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, d
     const title = data.title;
 
     // Formular als Modal generieren
-    const $formular = G.LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");
+    const $neues_formular = G.LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");
 
-    $formular.find(".eigenschaft").each(function () {
+    $neues_formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
@@ -51,15 +51,15 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, d
         $eigenschaft.val(wert_formatiert).change();
     });
 
-    if (typeof title !== "undefined") $formular.find(".modal-title").text(title);
+    if (typeof title !== "undefined") $neues_formular.find(".modal-title").text(title);
 
-    if (typeof element_id !== "undefined") $formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
+    if (typeof element_id !== "undefined") $neues_formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
-    $formular.find(".btn_" + G.LISTEN[liste].element + "_aktion").addClass("btn_" + G.LISTEN[liste].element + "_" + aktion).removeClass(".btn_" + G.LISTEN[liste].element + "_aktion");
-    if (typeof element_id !== "undefined")
-        $formular
-            .find(".btn_" + G.LISTEN[liste].element + "_" + aktion)
-            .attr("data-element_id", element_id);
+    $neues_formular
+        .find(".btn_" + G.LISTEN[liste].element + "_aktion")
+        .addClass("btn_" + G.LISTEN[liste].element + "_" + aktion)
+        .removeClass(".btn_" + G.LISTEN[liste].element + "_aktion");
+    if (typeof element_id !== "undefined") $neues_formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion).attr("data-element_id", element_id);
 
-    return $formular;
+    return $neues_formular;
 }

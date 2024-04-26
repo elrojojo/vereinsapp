@@ -63,7 +63,7 @@ class Notenbank extends BaseController {
         ); 
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['sortieren'] = array(
-            'modal_id' => 'liste_sortieren_modal',
+            'klasse_id' => 'btn_sortieren_formular_oeffnen',
             'title' => 'Notenbank sortieren',
         ); 
 
