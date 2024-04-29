@@ -1,4 +1,4 @@
-function Liste_$Sortieren2SortierenZurueck($sortieren, liste) {
+function Liste_$Sortieren2SortierenZurueck($sortieren) {
     const sortieren = new Array();
 
     $sortieren.children(".sortieren_element").each(function () {

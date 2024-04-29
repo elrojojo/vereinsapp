@@ -1,27 +1,32 @@
-function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
-    const liste = $btn_oeffnend.attr("data-liste");
-    const instanz = $btn_oeffnend.attr("data-instanz");
-    const eigenschaft = $btn_oeffnend.attr("data-eigenschaft");
-    let filtern_liste = $btn_oeffnend.attr("data-filtern_liste");
-    const element_id = $btn_oeffnend.attr("data-element_id");
+function Liste_FilternFormularOeffnen(instanz, liste, data) {
+    if (typeof data === "undefined") data = new Object();
 
-    $formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
-    if (typeof instanz !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-instanz", instanz);
-    else $formular.find(".filtern, .filtern_definitionen").removeAttr("data-instanz");
-    if (typeof eigenschaft !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-eigenschaft", eigenschaft);
-    else $formular.find(".filtern, .filtern_definitionen").removeAttr("data-eigenschaft");
-    if (typeof filtern_liste !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-filtern_liste", filtern_liste);
-    else {
-        $formular.find(".filtern, .filtern_definitionen").removeAttr("data-filtern_liste");
-        filtern_liste = liste;
-    }
-    if (typeof element_id !== "undefined") $formular.find(".filtern, .filtern_definitionen").attr("data-element_id", element_id);
-    else $formular.find(".filtern, .filtern_definitionen").removeAttr("data-element_id");
+    // if (!("eigenschaft" in data)) data.eigenschaft = undefined;
+    // const eigenschaft = data.eigenschaft;
 
-    $(".filtern_definitionen").empty();
-    $.each(FILTERBARE_EIGENSCHAFTEN[filtern_liste], function (index, eigenschaft_) {
-        const typ = EIGENSCHAFTEN[filtern_liste][eigenschaft_].typ;
-        const beschriftung = EIGENSCHAFTEN[filtern_liste][eigenschaft_].beschriftung;
+    // if (!("element_id" in data)) data.element_id = undefined;
+    // const element_id = data.element_id;
+
+    if (!("title" in data)) data.title = undefined;
+    const title = data.title;
+
+    const $neues_filtern_formular = FILTERN.$blanko_filtern_modal.clone().removeClass("invisible");
+
+    $neues_filtern_formular.find(".filtern, .filtern_definitionen").attr("data-liste", liste);
+    // if (typeof instanz !== "undefined")
+    $neues_filtern_formular.find(".filtern, .filtern_definitionen").attr("data-instanz", instanz);
+    // else $neues_filtern_formular.find(".filtern, .filtern_definitionen").removeAttr("data-instanz");
+    // if (typeof eigenschaft !== "undefined") $neues_filtern_formular.find(".filtern, .filtern_definitionen").attr("data-eigenschaft", eigenschaft);
+    // else $neues_filtern_formular.find(".filtern, .filtern_definitionen").removeAttr("data-eigenschaft");
+    // if (typeof element_id !== "undefined") $neues_filtern_formular.find(".filtern, .filtern_definitionen").attr("data-element_id", element_id);
+    // else $neues_filtern_formular.find(".filtern, .filtern_definitionen").removeAttr("data-element_id");
+
+    const $filtern_definitionen = $neues_filtern_formular.find(".filtern_definitionen");
+
+    $filtern_definitionen.empty();
+    $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft_) {
+        const typ = EIGENSCHAFTEN[liste][eigenschaft_].typ;
+        const beschriftung = EIGENSCHAFTEN[liste][eigenschaft_].beschriftung;
 
         const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
             .clone()
@@ -33,7 +38,7 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
 
         if (typ == "vorgegebene_werte") {
             $neue_filtern_definition.find(".filtern_wert").empty();
-            $.each(VORGEGEBENE_WERTE[filtern_liste][eigenschaft_], function (wert, eigenschaften) {
+            $.each(VORGEGEBENE_WERTE[liste][eigenschaft_], function (wert, eigenschaften) {
                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
                     $neue_filtern_definition.find(".filtern_wert")
                 );
@@ -42,13 +47,15 @@ function Liste_FilternFormularOeffnen($formular, $btn_oeffnend) {
 
         $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-liste", liste);
         if (typeof instanz !== "undefined") $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-instanz", instanz);
-        if (typeof eigenschaft !== "undefined") $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-eigenschaft", eigenschaft);
-        if (typeof filtern_liste !== "undefined")
-            $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-filtern_liste", filtern_liste);
-        if (typeof element_id !== "undefined") $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-element_id", element_id);
+        // if (typeof eigenschaft !== "undefined") $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-eigenschaft", eigenschaft);
+        // if (typeof element_id !== "undefined") $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-element_id", element_id);
 
-        $neue_filtern_definition.appendTo($formular.find(".filtern_definitionen"));
+        $neue_filtern_definition.appendTo($filtern_definitionen);
     });
 
-    Liste_FilternAktualisieren($formular, liste);
+    Liste_FilternAktualisieren($neues_filtern_formular, liste);
+
+    if (typeof title !== "undefined") $neues_filtern_formular.find(".modal-title").text(title);
+
+    Schnittstelle_DomModalOeffnen($neues_filtern_formular);
 }

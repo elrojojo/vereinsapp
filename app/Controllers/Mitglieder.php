@@ -85,7 +85,7 @@ class Mitglieder extends BaseController {
         }
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => 'liste_filtern_modal',
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
@@ -140,7 +140,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => 'liste_filtern_modal',
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 

@@ -35,9 +35,9 @@
         <?= view( 'Templates/toast' ); ?>
     </div>
 
-    <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
     <div id="modals">
     <?= view( 'Templates/bestaetigung_modal' ); ?>
+    <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
     <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
     </div>
 

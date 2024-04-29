@@ -70,7 +70,7 @@ class Termine extends BaseController {
         }
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => 'liste_filtern_modal',
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
             'title' => 'Termine filtern',
         );
 
@@ -142,7 +142,7 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => 'liste_filtern_modal',
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 

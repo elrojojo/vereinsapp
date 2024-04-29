@@ -1,4 +1,4 @@
-<div class="modal fade" id="liste_filtern_modal" tabindex="-1">
+<div class="modal filtern invisible fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">

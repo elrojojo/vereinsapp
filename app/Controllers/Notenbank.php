@@ -58,7 +58,7 @@ class Notenbank extends BaseController {
         }
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['filtern'] = array(
-            'modal_id' => 'liste_filtern_modal',
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
             'title' => 'Notenbank filtern',
         ); 
 

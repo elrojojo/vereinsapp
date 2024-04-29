@@ -9,7 +9,6 @@
                         else echo ' '.$werkzeug['klasse_id'];
                     }
                     ?>" data-liste="<?= $werkzeug['liste']; ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>"<?php
-                    if( array_key_exists( 'modal_id', $werkzeug ) ) { ?> data-bs-toggle="modal" data-bs-target="#<?= $werkzeug['modal_id']; ?>"<?php }
                     if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
                     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
                     ?> role="button">
