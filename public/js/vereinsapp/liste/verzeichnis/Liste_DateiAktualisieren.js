@@ -10,7 +10,7 @@ function Liste_DateiAktualisieren($datei, liste) {
     if (typeof basis !== "undefined") basis = JSON.parse(basis);
     else basis = new Array();
 
-    link = BASE_URL + "storage/" + liste + "/" + Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste, "tabelle");
+    link = BASE_URL + "storage/" + liste + "/" + Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste);
     $.each(basis, function (position, unterverzeichnis) {
         link += unterverzeichnis;
     });

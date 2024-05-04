@@ -58,7 +58,6 @@ Proberaum-Belegungsplan
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
-Formatierung eines Werts flexibel (inkl. möglichem Symbol)
 Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
@@ -67,11 +66,11 @@ Einzelne Module als Light-Version, einschaltbar über .env oder settings
 Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
-Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht
+Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht + Formatierung eines Werts flexibel (inkl. möglichem Symbol)
 Data-Attribute als Object in einem Attribut zusammenfassen
-mitglied_passwort_festlegen_modal nur erhalten, wenn die mitgeschickte ID die eigene ist
 title ändern in beschriftung?
 anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
+Von $btn als Argument wegkommen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -83,7 +82,8 @@ Nicht existenter Verzeichnis-Ordner führt zu Fehler
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
 Kommentare bei Sortieren entfernen
 ajax_mitglied_passwort_festlegen_modal von Beginn an einmal laden, danach standardmäßig löschen
-Wird Liste_SqlFiltern2FilternZurueck noch benötigt?
-Von $btn als Argument wegkommen
+Liste_SqlFiltern2FilternZurueck umbauen zu Liste_FilternString2FilternZurueck -> alle Vorkommen von filtern, Schnittstelle_VariableWertBereinigtZurueck und JSON. prüfen
+Liste_Filtern2FilternStringZurueck erstellen (oder einfach JSON.stringify verwenden?)
+Schnittstelle_VariableWertBereinigtZurueck als eigene Einheit umbauen
 
 */

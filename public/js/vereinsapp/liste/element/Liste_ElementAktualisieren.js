@@ -5,7 +5,7 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
-        const wert = Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste, "tabelle");
+        const wert = Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste);
         $eigenschaft.html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
     });
 
