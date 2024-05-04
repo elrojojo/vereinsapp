@@ -4,8 +4,8 @@ function Mitglieder_EinmalLinkAnzeigen($btn) {
     if ($btn.hasClass("formular_oeffnen"))
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", "einmal_link_anzeigen", {
-                element_id: element_id,
                 title: $btn.attr("data-title"),
+                element_id: element_id,
             })
         );
     else {

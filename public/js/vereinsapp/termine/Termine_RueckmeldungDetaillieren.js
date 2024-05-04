@@ -4,8 +4,8 @@ function Termine_RueckmeldungDetaillieren($btn) {
     if ($btn.hasClass("formular_oeffnen"))
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("bemerkung", "rueckmeldungen", "detaillieren", {
-                element_id: element_id,
                 title: $btn.attr("data-title"),
+                element_id: element_id,
             })
         );
     else {

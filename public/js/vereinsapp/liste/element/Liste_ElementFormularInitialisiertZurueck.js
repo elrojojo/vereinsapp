@@ -1,11 +1,11 @@
 function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, data) {
     if (typeof data === "undefined") data = new Object();
 
-    if (!("element_id" in data)) data.element_id = undefined;
-    const element_id = data.element_id;
-
     if (!("title" in data)) data.title = undefined;
     const title = data.title;
+
+    if (!("element_id" in data)) data.element_id = undefined;
+    const element_id = data.element_id;
 
     // Formular als Modal generieren
     const $neues_formular = G.LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");

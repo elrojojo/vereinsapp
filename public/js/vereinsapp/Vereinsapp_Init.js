@@ -81,7 +81,9 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
-Filtern-Modal in Basiseigenschaften-Modal öffnen schlägt fehl
-Kommentare bei Filtern und Sortieren entfernen
+Kommentare bei Sortieren entfernen
+ajax_mitglied_passwort_festlegen_modal von Beginn an einmal laden, danach standardmäßig löschen
+Wird Liste_SqlFiltern2FilternZurueck noch benötigt?
+Von $btn als Argument wegkommen
 
 */

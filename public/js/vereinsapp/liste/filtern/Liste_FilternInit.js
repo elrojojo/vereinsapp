@@ -20,16 +20,7 @@ function Liste_FilternInit() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $(document).on("click", ".btn_filtern_formular_oeffnen", function () {
-        Liste_FilternFormularOeffnen($(this).attr("data-instanz"), $(this).attr("data-liste"), {
-            // eigenschaft: $(this).attr("data-eigenschaft"),
-            // element_id: $(this).attr("data-element_id"),
-            title: $(this).attr("data-title"),
-        });
-    });
-
-    // FORMULAR (MODAL) SCHLIESSEN
-    $(document).on("hide.bs.modal", "#liste_filtern_modal", function () {
-        Liste_FilternFormularSchliessen($(this));
+        Liste_FilternFormularOeffnen({ instanz: $(this).attr("data-instanz"), title: $(this).attr("data-title") }, $(this).attr("data-liste"));
     });
 
     // ERSTELLEN
@@ -45,5 +36,10 @@ function Liste_FilternInit() {
     // LÖSCHEN
     $(document).on("click", ".btn_filtern_loeschen", function () {
         Liste_FilternLoeschen($(this));
+    });
+
+    // SPEICHERN
+    $(document).on("click", ".btn_filtern_speichern", function () {
+        Liste_FilternSpeichern($(this));
     });
 }

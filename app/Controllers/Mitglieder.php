@@ -28,10 +28,7 @@ class Mitglieder extends BaseController {
                 'h5' => TRUE,
             ),
             // 'sortable' => TRUE,
-            'link' => TRUE, // ODER 'modal' => array( 
-            //     'target' => '#element_loeschen_modal',
-            //     'aktion' => 'loeschen',
-            // ),
+            'link' => TRUE,
             // 'symbol' => array(
             //     'symbol' => SYMBOLE['info']['bootstrap'],
             //     'farbe' => 'danger',

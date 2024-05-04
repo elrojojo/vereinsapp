@@ -1,6 +1,6 @@
-function Liste_SqlFiltern2FilternZurueck(phpfiltern, liste) {
+function Liste_SqlFiltern2FilternZurueck(sqlfiltern, liste) {
     const filtern = new Array();
-    $.each(phpfiltern, function (index, knoten) {
+    $.each(sqlfiltern, function (index, knoten) {
         if ("verknuepfung" in knoten)
             filtern.push({
                 verknuepfung: knoten.verknuepfung,

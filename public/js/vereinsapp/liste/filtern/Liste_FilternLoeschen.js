@@ -1,9 +1,4 @@
 function Liste_FilternLoeschen($btn) {
-    const liste = $btn.attr("data-liste");
-    const instanz = $btn.attr("data-instanz");
-    const $formular = $btn.closest(".modal");
-
-    const $filtern = $formular.find(".filtern");
     const $element = $btn.closest(".filtern_element");
     const $sammlung = $btn.closest(".filtern_sammlung");
 
@@ -20,13 +15,6 @@ function Liste_FilternLoeschen($btn) {
         const $knoten_ebene_hoeher = $sammlung_ebene_hoeher.siblings(".filtern_element, .filtern_sammlung");
         $sammlung_ebene_hoeher.replaceWith($knoten_parallel);
         $knoten_parallel = $knoten_ebene_hoeher;
-        sammlung_ebene_hoeher = $knoten_parallel.first().closest(".filtern_sammlung");
+        $sammlung_ebene_hoeher = $knoten_parallel.first().closest(".filtern_sammlung");
     }
-
-    // if (typeof instanz !== "undefined") {
-    G.LISTEN[liste].instanz[instanz].filtern = Liste_$Filtern2FilternZurueck($filtern, liste);
-    Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-    // }
-
-    Liste_FilternAktualisieren($formular, liste);
 }

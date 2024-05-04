@@ -1,6 +1,5 @@
 function Liste_FilternErstellen($btn) {
     const liste = $btn.attr("data-liste");
-    const instanz = $btn.attr("data-instanz");
     const $formular = $btn.closest(".modal.filtern");
 
     const $filtern = $formular.find(".filtern");
@@ -30,11 +29,4 @@ function Liste_FilternErstellen($btn) {
         $filtern.html($filtern_sammlung);
         $filtern.find(".filtern_kind").first().html($filtern_zwischenspeicher).append($filtern_knoten);
     }
-
-    // if (typeof instanz !== "undefined") {
-    G.LISTEN[liste].instanz[instanz].filtern = Liste_$Filtern2FilternZurueck($filtern, liste);
-    Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-    // }
-
-    Liste_FilternAktualisieren($formular, liste);
 }
