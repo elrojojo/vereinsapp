@@ -4,7 +4,6 @@ const CSRF_NAME = '<?= CSRF_NAME ?>';
 const ERSTER_CSRF_HASH = '<?= csrf_hash() ?>';
 const ICH = <?= json_encode( ICH ) ?>;
 LOGGEDIN = <?php if( auth()->loggedIn() ) echo (int) TRUE; else echo (int) FALSE; ?>;
-FORCE_PASSWORD_RESET = <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo (int) TRUE; else echo (int) FALSE; ?>;
 FORCE_LOCALSTORAGE_RESET_ZEITPUNKT = '<?= config('Vereinsapp')->force_localstorage_reset_zeitpunkt; ?>';
 
 const JANEIN = <?= json_encode( JANEIN ) ?>;

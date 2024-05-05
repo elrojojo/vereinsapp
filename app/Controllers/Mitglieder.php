@@ -374,17 +374,6 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_mitglied_passwort_festlegen_modal() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if (!model(Mitglied_Model::class)->findById( ICH['id'] )->requiresPasswordReset()) $ajax_antwort['info'] = "Mitglied muss kein neues Passwort vergeben.";
-        else $ajax_antwort['html'] = view( 'Mitglieder/passwort_festlegen_modal', $this->viewdata );
-        
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function mitglied_einmal_link_email() {
         $rules = [ 'email' => config('Auth')->emailValidationRules, ];
 

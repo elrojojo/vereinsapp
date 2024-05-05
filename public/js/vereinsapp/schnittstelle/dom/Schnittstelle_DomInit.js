@@ -13,6 +13,12 @@ function Schnittstelle_DomInit() {
     BESTAETIGUNGEN.$blanko_bestaetigung = $("#modals").find(".modal.bestaetigung").first();
     $("#modals").find(".modal.bestaetigung").remove();
 
+    $("#modals")
+        .find(".modal.autoload")
+        .each(function () {
+            Schnittstelle_DomModalOeffnen($(this));
+        });
+
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);
     });

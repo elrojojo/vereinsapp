@@ -1,4 +1,4 @@
-<div class="modal fade formular" id="mitglied_passwort_festlegen_modal" tabindex="-1">
+<div class="modal autoload fade formular" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">

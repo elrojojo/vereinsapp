@@ -45,7 +45,6 @@ function Mitglieder_Init() {
     });
 
     // PASSWORT FESTLEGEN
-    if (FORCE_PASSWORD_RESET) Mitglieder_PasswortFestlegen();
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
         Mitglieder_PasswortFestlegen($(this));
     });

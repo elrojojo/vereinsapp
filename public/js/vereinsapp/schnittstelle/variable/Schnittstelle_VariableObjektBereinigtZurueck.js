@@ -1,5 +1,5 @@
 function Schnittstelle_VariableObjektBereinigtZurueck(objekt) {
-    let objekt_bereinigt = new Object();
+    const objekt_bereinigt = new Object();
 
     $.each(objekt, function (eigenschaft, wert) {
         if (isObject(wert)) objekt_bereinigt[eigenschaft] = Schnittstelle_VariableObjektBereinigtZurueck(wert);
@@ -7,6 +7,5 @@ function Schnittstelle_VariableObjektBereinigtZurueck(objekt) {
         else objekt_bereinigt[eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
     });
 
-    console.log("Objekt:", objekt, objekt_bereinigt);
     return objekt_bereinigt;
 }

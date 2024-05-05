@@ -14,7 +14,7 @@
 
 <div class="container mb-2">
     <div class="text-secondary text-center mb-1">Mein Passwort ändern</div>
-<?= view( 'Mitglieder/passwort_aendern' ); ?>
+<?= view( 'Mitglieder/mitglied_passwort_aendern' ); ?>
 </div>
 
 <div class="container mb-2">
