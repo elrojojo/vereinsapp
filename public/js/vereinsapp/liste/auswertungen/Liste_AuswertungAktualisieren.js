@@ -29,7 +29,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         if (zusammenfassung) {
             ergebnis_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].length;
             let liste_filtern = new Array();
-            if ("filtern" in liste_data) liste_filtern = Liste_SqlFiltern2FilternZurueck(liste_data.filtern, liste);
+            if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
             ergebnis_referenz_anzahl = Liste_TabelleGefiltertZurueck(liste_filtern, liste).length;
         } else {
             ergebnis_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].length;

@@ -5,7 +5,7 @@ function Liste_Aktualisieren($liste) {
     // TABELLE FILTERN
     // filtern aus data
     let filtern_data = $liste.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Liste_SqlFiltern2FilternZurueck(JSON.parse(filtern_data), liste);
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_data));
     else filtern_data = new Array();
     // filtern aus LocalStorage
     const filtern_LocalStorage = G.LISTEN[liste].instanz[instanz].filtern;

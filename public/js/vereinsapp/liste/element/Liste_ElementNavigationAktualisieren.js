@@ -5,7 +5,7 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
 
     // TABELLE FILTERN
     let filtern = $element_navigation.attr("data-filtern");
-    if (typeof filtern !== "undefined") filtern = Liste_SqlFiltern2FilternZurueck(JSON.parse(filtern), liste);
+    if (typeof filtern !== "undefined") filtern = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern));
     else filtern = new Array();
     // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
     let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");

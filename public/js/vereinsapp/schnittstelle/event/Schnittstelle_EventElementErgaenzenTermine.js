@@ -12,14 +12,11 @@ function Schnittstelle_EventElementErgaenzenTermine(termin) {
     }
 
     termin["ich_eingeladen"] = false;
-    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Liste_SqlFiltern2FilternZurueck(termin["filtern_mitglieder"], "mitglieder");
+    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableArrayBereinigtZurueck(termin["filtern_mitglieder"]);
     else termin["filtern_mitglieder"] = new Array();
     let termin_kategorie_filtern_mitglieder;
     if (termin["kategorie"] in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
-        termin_kategorie_filtern_mitglieder = Liste_SqlFiltern2FilternZurueck(
-            TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]],
-            "mitglieder"
-        );
+        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableArrayBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
     else termin_kategorie_filtern_mitglieder = new Array();
     let filtern_mitglieder_kombiniert;
     if (termin_kategorie_filtern_mitglieder.length > 0)

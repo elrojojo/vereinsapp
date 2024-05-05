@@ -26,7 +26,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     else eigenschaft = eigenschaft_LocalStorage;
     // filtern aus liste_data
     let liste_filtern = new Array();
-    if ("filtern" in liste_data) liste_filtern = Liste_SqlFiltern2FilternZurueck(liste_data.filtern, liste);
+    if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
     // GEGEN_LISTE DEFINIEREN
@@ -39,7 +39,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     if ("liste" in gegen_liste_data) gegen_liste = gegen_liste_data.liste;
     // gegen_liste_filtern aus gegen_liste_data
     let gegen_liste_filtern = new Array();
-    if ("filtern" in gegen_liste_data) gegen_liste_filtern = Liste_SqlFiltern2FilternZurueck(gegen_liste_data.filtern, gegen_liste);
+    if ("filtern" in gegen_liste_data) gegen_liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(gegen_liste_data.filtern);
     const gegen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(gegen_liste_filtern, gegen_liste);
 
     // AUSWERTUNGEN FILTERN

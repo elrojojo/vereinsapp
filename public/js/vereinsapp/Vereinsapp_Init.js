@@ -63,7 +63,6 @@ Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-Aufbereitung der sql-Tabelle im Model, nicht im Controller?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht + Formatierung eines Werts flexibel (inkl. möglichem Symbol)
@@ -79,11 +78,9 @@ Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
+Von $btn als Argument wegkommen
 Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
 Kommentare bei Sortieren entfernen
 ajax_mitglied_passwort_festlegen_modal von Beginn an einmal laden, danach standardmäßig löschen
-Liste_SqlFiltern2FilternZurueck umbauen zu Liste_FilternString2FilternZurueck -> alle Vorkommen von filtern, Schnittstelle_VariableWertBereinigtZurueck und JSON. prüfen
-Liste_Filtern2FilternStringZurueck erstellen (oder einfach JSON.stringify verwenden?)
-Schnittstelle_VariableWertBereinigtZurueck als eigene Einheit umbauen
 
 */
