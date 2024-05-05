@@ -29,7 +29,6 @@ function Liste_Filtern2$FilternZurueck(filtern, liste) {
                 .find(".wert")
                 .attr("data-wert", Schnittstelle_LocalstorageWertBereinigtZurueck(wert))
                 .html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
-            $neues_filtern_element.find(".btn_filtern_loeschen").attr("data-liste", liste);
 
             $filtern.push($neues_filtern_element);
         }

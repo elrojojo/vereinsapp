@@ -39,13 +39,16 @@ function Liste_FilternFormularOeffnen(data, liste) {
     });
 
     $neues_filtern_formular.find(".btn_filtern_speichern").attr("data-liste", liste);
-    const value = Schnittstelle_DomLetztesModalZurueck()
+    const filtern_value = Schnittstelle_DomLetztesModalZurueck()
         .find(".btn_filtern_formular_oeffnen[data-liste='" + liste + "']")
         .val();
     if (typeof instanz !== "undefined") {
         $neues_filtern_formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(G.LISTEN[liste].instanz[instanz].filtern, liste));
         $neues_filtern_formular.find(".btn_filtern_speichern").attr("data-instanz", instanz);
-    } else if (isJson(value)) $neues_filtern_formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(JSON.parse(value), liste));
+    } else if (isJson(filtern_value))
+        $neues_filtern_formular
+            .find(".filtern")
+            .append(Liste_Filtern2$FilternZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_value)), liste));
 
     Schnittstelle_DomModalOeffnen($neues_filtern_formular);
 }

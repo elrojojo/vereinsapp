@@ -8,9 +8,7 @@ function Liste_SortierenInit() {
 
     // FORMULAR (MODAL) ÖFFNEN
     $(document).on("click", ".btn_sortieren_formular_oeffnen", function () {
-        Liste_SortierenFormularOeffnen($(this).attr("data-instanz"), $(this).attr("data-liste"), {
-            title: $(this).attr("data-title"),
-        });
+        Liste_SortierenFormularOeffnen({ instanz: $(this).attr("data-instanz"), title: $(this).attr("data-title") }, $(this).attr("data-liste"));
     });
 
     // ERSTELLEN
@@ -26,5 +24,10 @@ function Liste_SortierenInit() {
     // LÖSCHEN
     $(document).on("click", ".btn_sortieren_loeschen", function () {
         Liste_SortierenLoeschen($(this));
+    });
+
+    // SPEICHERN
+    $(document).on("click", ".btn_sortieren_speichern", function () {
+        Liste_SortierenSpeichern($(this));
     });
 }
