@@ -8,7 +8,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
     if (AJAX.warten_auf == AJAX.ajax_id) ReinErfolg(AJAX);
     else if (Array.isArray(AJAX.warten_auf)) {
         $.each(AJAX.warten_auf, function (prio, ajax_id) {
-            const AJAX = G.AJAX[Number(ajax_id)];
+            const AJAX = AJAXSCHLANGE[Number(ajax_id)];
             ReinErfolg(AJAX);
         });
         ReinErfolg(AJAX);

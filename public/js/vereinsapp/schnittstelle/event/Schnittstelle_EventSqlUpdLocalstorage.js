@@ -6,7 +6,7 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktione
         if (!(liste in G.LISTEN)) listen = Object.keys(G.LISTEN);
         else if (Array.isArray(liste)) listen = liste;
 
-        let neue_ajax_id = G.AJAX.length;
+        let neue_ajax_id = AJAXSCHLANGE.length;
         const wartende_ajax_ids = new Array();
         $.each(listen, function (prio, liste) {
             wartende_ajax_ids.push(neue_ajax_id);
@@ -25,13 +25,13 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktione
             }
             SqlUpdLocalstorage(liste, schleife, naechste_aktionen, neue_ajax_id, warten_auf);
         });
-    } else SqlUpdLocalstorage(liste, schleife, naechste_aktionen, G.AJAX.length);
+    } else SqlUpdLocalstorage(liste, schleife, naechste_aktionen, AJAXSCHLANGE.length);
 
     function SqlUpdLocalstorage(liste, schleife, naechste_aktionen, neue_ajax_id, warten_auf) {
         if (typeof warten_auf === "undefined") warten_auf = neue_ajax_id;
 
         // AJAX wird vorbereitet
-        G.AJAX[neue_ajax_id] = {
+        AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: G.LISTEN[liste].controller + "/ajax_" + liste,
             // data: { hash: sha256(String(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle"))), },
@@ -47,9 +47,9 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktione
         };
 
         // Falls die Funktion ein weiteres Mal durchgeführt werden soll ("Schleife"), dann wird die Funktion entsprechend übergeben
-        if (schleife) G.AJAX[neue_ajax_id].schleife = Schnittstelle_EventSqlUpdLocalstorage;
+        if (schleife) AJAXSCHLANGE[neue_ajax_id].schleife = Schnittstelle_EventSqlUpdLocalstorage;
 
         // AJAX wird in die Schlange mitaufgenommen
-        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
     }
 }

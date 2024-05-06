@@ -12,8 +12,8 @@ function Mitglieder_EinmalLinkAnzeigen($btn) {
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
 
-        const neue_ajax_id = G.AJAX.length;
-        G.AJAX[neue_ajax_id] = {
+        const neue_ajax_id = AJAXSCHLANGE.length;
+        AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: "mitglieder/ajax_mitglied_einmal_link_erstellen",
             data: AJAX_DATA,
@@ -46,6 +46,6 @@ function Mitglieder_EinmalLinkAnzeigen($btn) {
             },
         };
 
-        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
     }
 }

@@ -13,8 +13,8 @@ function Termine_RueckmeldungErstellen($btn) {
         AJAX_DATA.status = JSON.parse(data_werte).status;
     }
 
-    const neue_ajax_id = G.AJAX.length;
-    G.AJAX[neue_ajax_id] = {
+    const neue_ajax_id = AJAXSCHLANGE.length;
+    AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         url: "termine/ajax_rueckmeldung_speichern",
         data: AJAX_DATA,
@@ -53,5 +53,5 @@ function Termine_RueckmeldungErstellen($btn) {
         },
     };
 
-    Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+    Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
 }

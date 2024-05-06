@@ -1,16 +1,14 @@
 const DateTime = luxon.DateTime;
 
 const G = {
-    AJAX: new Array(),
-
     LISTEN: new Object(),
 
     CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
 };
 
 $(document).ready(function () {
+    Schnittstelle_AjaxInit();
     Schnittstelle_DomInit();
-
     Schnittstelle_LocalstorageInit();
 
     Liste_Init();
@@ -22,8 +20,8 @@ $(document).ready(function () {
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
         // SCHNITTSTELLE AJAX
-        const neue_ajax_id = G.AJAX.length;
-        G.AJAX[neue_ajax_id] = {
+        const neue_ajax_id = AJAXSCHLANGE.length;
+        AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: "status/ajax_datenschutz_richtlinie",
             rein_validation_pos_aktion: function (AJAX) {
@@ -34,7 +32,7 @@ $(document).ready(function () {
                 });
             },
         };
-        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
     }
 });
 
@@ -75,7 +73,6 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
 Von $btn als Argument wegkommen
 
 */

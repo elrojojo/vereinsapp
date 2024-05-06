@@ -10,8 +10,8 @@ function Notenbank_TitelErstellen($btn) {
         const AJAX_DATA = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
 
-        const neue_ajax_id = G.AJAX.length;
-        G.AJAX[neue_ajax_id] = {
+        const neue_ajax_id = AJAXSCHLANGE.length;
+        AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: "notenbank/ajax_titel_speichern",
             data: AJAX_DATA,
@@ -45,6 +45,6 @@ function Notenbank_TitelErstellen($btn) {
             },
         };
 
-        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
     }
 }

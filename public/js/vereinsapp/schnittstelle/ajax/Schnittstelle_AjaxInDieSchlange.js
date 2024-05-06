@@ -12,27 +12,27 @@ function Schnittstelle_AjaxInDieSchlange(AJAX) {
         dataType: "json",
         beforeSend: function (ajax, ajaxQueue) {
             if (isObject(ajaxQueue) && "ajax_id" in ajaxQueue) {
-                const AJAX = G.AJAX[Number(ajaxQueue.ajax_id)];
+                const AJAX = AJAXSCHLANGE[Number(ajaxQueue.ajax_id)];
                 Schnittstelle_AjaxRaus(AJAX);
             }
         },
         success: function (antwort) {
             if (isObject(antwort) && "ajax_id" in antwort) {
-                const AJAX = G.AJAX[Number(antwort.ajax_id)];
+                const AJAX = AJAXSCHLANGE[Number(antwort.ajax_id)];
                 AJAX.antwort = antwort;
                 Schnittstelle_AjaxReinErfolg(AJAX);
             }
         },
         error: function (xhr) {
             if (isObject(xhr) && "ajax_id" in xhr) {
-                const AJAX = G.AJAX[Number(xhr.ajax_id)];
+                const AJAX = AJAXSCHLANGE[Number(xhr.ajax_id)];
                 AJAX.fehler = xhr;
                 Schnittstelle_AjaxReinFehler(AJAX);
             }
         },
         complete: function (ajax) {
             if (isObject(ajax) && "responseJSON" in ajax && isObject(ajax.responseJSON) && "ajax_id" in ajax.responseJSON) {
-                const AJAX = G.AJAX[Number(ajax.responseJSON.ajax_id)];
+                const AJAX = AJAXSCHLANGE[Number(ajax.responseJSON.ajax_id)];
                 Schnittstelle_AjaxRein(AJAX);
             }
         },

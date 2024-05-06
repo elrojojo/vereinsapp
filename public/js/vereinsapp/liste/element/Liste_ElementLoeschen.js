@@ -18,8 +18,8 @@ function Liste_ElementLoeschen($btn) {
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
 
-        const neue_ajax_id = G.AJAX.length;
-        G.AJAX[neue_ajax_id] = {
+        const neue_ajax_id = AJAXSCHLANGE.length;
+        AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: G.LISTEN[liste].controller + "/ajax_" + G.LISTEN[liste].element + "_loeschen",
             data: AJAX_DATA,
@@ -52,6 +52,6 @@ function Liste_ElementLoeschen($btn) {
             },
         };
 
-        Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
     }
 }

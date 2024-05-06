@@ -9,7 +9,7 @@ function Schnittstelle_AjaxRein(AJAX) {
         if (Array.isArray(AJAX.warten_auf)) {
             liste = new Array();
             $.each(AJAX.warten_auf, function (prio, ajax_id) {
-                AJAX = G.AJAX[Number(ajax_id)];
+                AJAX = AJAXSCHLANGE[Number(ajax_id)];
                 liste.push(AJAX.liste);
             });
             liste.push(AJAX.liste);

@@ -10,8 +10,8 @@ function Liste_CheckAendern($check) {
     AJAX_DATA[element + "_id"] = $check.val();
     AJAX_DATA[gegen_element + "_id"] = $liste.attr("data-gegen_element_id");
 
-    const neue_ajax_id = G.AJAX.length;
-    G.AJAX[neue_ajax_id] = {
+    const neue_ajax_id = AJAXSCHLANGE.length;
+    AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         url: G.LISTEN[checkliste].controller + "/ajax_" + G.LISTEN[checkliste].element + "_" + aktion,
         data: AJAX_DATA,
@@ -54,5 +54,5 @@ function Liste_CheckAendern($check) {
         },
     };
 
-    Schnittstelle_AjaxInDieSchlange(G.AJAX[neue_ajax_id]);
+    Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
 }
