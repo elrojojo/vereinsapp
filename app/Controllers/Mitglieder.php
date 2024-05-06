@@ -37,7 +37,6 @@ class Mitglieder extends BaseController {
                 'beschriftung' => '',
                 // 'klein' => TRUE,
                 // 'zentriert' => TRUE,
-                'abschneiden' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'listenstatistik' => TRUE,

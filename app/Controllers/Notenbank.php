@@ -26,7 +26,6 @@ class Notenbank extends BaseController {
                 '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
-                'abschneiden' => TRUE,
             ),
             'listenstatistik' => TRUE,
         );

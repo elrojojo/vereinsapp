@@ -37,7 +37,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
     if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?> list-group-item-action<?php } ?>"<?php
     if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?> role="button"<?php } ?>>
 
-        <div <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo 'class="h5"'; ?>>
+        <div class="text-truncate <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' h5'; ?>">
             
         <?php if( array_key_exists( 'checkliste', $liste ) ) { ?><div class="form-check form-switch">
             <label class="form-check-label d-block">
@@ -60,9 +60,8 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         <?php } ?>
         </div>
 
-        <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="text-secondary vorschau<?php
+        <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="vorschau text-truncate text-secondary<?php
         if( array_key_exists( 'klein', $liste['vorschau'] ) AND $liste['vorschau']['klein'] ) echo ' small';
-        if( array_key_exists( 'abschneiden', $liste['vorschau'] ) AND $liste['vorschau']['abschneiden'] ) echo ' text-truncate';
         if( array_key_exists( 'zentriert', $liste['vorschau'] ) AND $liste['vorschau']['zentriert'] ) echo ' text-center'; ?>">
             <?php if( array_key_exists( 'beschriftung', $liste['vorschau'] ) ) echo $liste['vorschau']['beschriftung']; ?>
         </div><?php } ?>
