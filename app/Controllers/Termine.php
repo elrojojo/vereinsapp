@@ -301,6 +301,7 @@ class Termine extends BaseController {
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
                 'status' => $this->request->getpost()['status'],
             );
+            $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'] ) )->delete();
             $rueckmeldungen_Model->save( $rueckmeldung );
             $ajax_antwort['element_id'] = (int)$rueckmeldungen_Model->getInsertID();
         }
@@ -329,6 +330,10 @@ class Termine extends BaseController {
             if( array_key_exists( 'bemerkung', $this->request->getPost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung'];
             if( array_key_exists( 'status', $this->request->getPost() ) ) $rueckmeldung['status'] = $this->request->getpost()['status'];
             $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
+
+            $termin_id = $rueckmeldungen_Model->find( $this->request->getpost()['id'] )['termin_id'];
+            $mitglied_id = $rueckmeldungen_Model->find( $this->request->getpost()['id'] )['mitglied_id'];
+            $rueckmeldungen_Model->where( array( 'termin_id' => $termin_id, 'mitglied_id' => $mitglied_id, 'id !=' => $this->request->getpost()['id'] ) )->delete();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

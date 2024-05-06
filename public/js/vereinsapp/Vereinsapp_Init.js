@@ -79,6 +79,5 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 h5-Beschriftung mit truncate ergänzen
 Nicht existenter Verzeichnis-Ordner führt zu Fehler
 Von $btn als Argument wegkommen
-Keine doppelten Rückmeldungen erlauben (ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern umbauen)
 
 */
