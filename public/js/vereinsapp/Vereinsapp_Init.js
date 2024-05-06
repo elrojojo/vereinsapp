@@ -1,9 +1,5 @@
 const DateTime = luxon.DateTime;
 
-const G = {
-    CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
-};
-
 $(document).ready(function () {
     Schnittstelle_AjaxInit();
     Schnittstelle_DomInit();

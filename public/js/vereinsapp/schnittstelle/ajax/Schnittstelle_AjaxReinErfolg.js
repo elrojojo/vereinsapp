@@ -1,9 +1,9 @@
 function Schnittstelle_AjaxReinErfolg(AJAX) {
     // CSRF-hash wird gespeichert
-    G.CSRF[CSRF_NAME] = AJAX.antwort[CSRF_NAME];
+    CSRF[CSRF_NAME] = AJAX.antwort[CSRF_NAME];
 
     // Spezialfall login-view
-    $('input[name="' + CSRF_NAME + '"]').val(G.CSRF[CSRF_NAME]);
+    $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
 
     if (AJAX.warten_auf == AJAX.ajax_id) ReinErfolg(AJAX);
     else if (Array.isArray(AJAX.warten_auf)) {
