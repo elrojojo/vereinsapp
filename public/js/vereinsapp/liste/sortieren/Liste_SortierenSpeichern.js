@@ -4,7 +4,7 @@ function Liste_SortierenSpeichern($formular, instanz, liste) {
     );
 
     if (typeof instanz !== "undefined") {
-        G.LISTEN[liste].instanz[instanz].sortieren = Liste_$Sortieren2SortierenZurueck($formular.find(".sortieren"), liste);
+        LISTEN[liste].instanz[instanz].sortieren = Liste_$Sortieren2SortierenZurueck($formular.find(".sortieren"), liste);
         Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
     } else if ($btn_sortieren_formular_oeffnen.exists())
         $btn_sortieren_formular_oeffnen.val(JSON.stringify(Liste_$Sortieren2SortierenZurueck($formular.find(".sortieren"), liste)));

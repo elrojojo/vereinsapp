@@ -1,8 +1,8 @@
 function Liste_ElementBeschriftungZurueck(element_id, liste) {
     let beschriftung = "";
 
-    if ("beschriftung" in G.LISTEN[liste]) {
-        $.each(G.LISTEN[liste].beschriftung, function () {
+    if ("beschriftung" in LISTEN[liste]) {
+        $.each(LISTEN[liste].beschriftung, function () {
             if ("prefix" in this) beschriftung += this.prefix;
             beschriftung += Liste_WertFormatiertZurueck(
                 Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste),
@@ -13,7 +13,7 @@ function Liste_ElementBeschriftungZurueck(element_id, liste) {
             if ("suffix" in this) beschriftung += this.suffix;
         });
     } else {
-        beschriftung = G.LISTEN[liste].element;
+        beschriftung = LISTEN[liste].element;
         beschriftung = beschriftung.charAt(0).toUpperCase() + beschriftung.slice(1);
         beschriftung = unix2umlauteZurueck(beschriftung);
     }

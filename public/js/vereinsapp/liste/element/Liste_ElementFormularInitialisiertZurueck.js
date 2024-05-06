@@ -8,7 +8,7 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, d
     const element_id = data.element_id;
 
     // Formular als Modal generieren
-    const $neues_formular = G.LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");
+    const $neues_formular = LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");
 
     $neues_formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
@@ -56,10 +56,10 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, d
     if (typeof element_id !== "undefined") $neues_formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
     $neues_formular
-        .find(".btn_" + G.LISTEN[liste].element + "_aktion")
-        .addClass("btn_" + G.LISTEN[liste].element + "_" + aktion)
-        .removeClass(".btn_" + G.LISTEN[liste].element + "_aktion");
-    if (typeof element_id !== "undefined") $neues_formular.find(".btn_" + G.LISTEN[liste].element + "_" + aktion).attr("data-element_id", element_id);
+        .find(".btn_" + LISTEN[liste].element + "_aktion")
+        .addClass("btn_" + LISTEN[liste].element + "_" + aktion)
+        .removeClass(".btn_" + LISTEN[liste].element + "_aktion");
+    if (typeof element_id !== "undefined") $neues_formular.find(".btn_" + LISTEN[liste].element + "_" + aktion).attr("data-element_id", element_id);
 
     return $neues_formular;
 }

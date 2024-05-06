@@ -27,7 +27,7 @@ function Liste_SortierenFormularOeffnen(data, liste) {
     if (typeof instanz !== "undefined") {
         $neues_sortieren_formular
             .find(".sortieren")
-            .append(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, instanz, liste));
+            .append(Liste_Sortieren2$SortierenZurueck(LISTEN[liste].instanz[instanz].sortieren, instanz, liste));
         $neues_sortieren_formular.find(".btn_sortieren_speichern").attr("data-instanz", instanz);
     } else if (isJson(sortieren_value))
         $neues_sortieren_formular

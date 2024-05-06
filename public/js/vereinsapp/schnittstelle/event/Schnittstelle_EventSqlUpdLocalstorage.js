@@ -1,9 +1,9 @@
 function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktionen) {
     if (!Array.isArray(naechste_aktionen)) naechste_aktionen = new Array();
 
-    if (!(liste in G.LISTEN) || Array.isArray(liste)) {
+    if (!(liste in LISTEN) || Array.isArray(liste)) {
         let listen;
-        if (!(liste in G.LISTEN)) listen = Object.keys(G.LISTEN);
+        if (!(liste in LISTEN)) listen = Object.keys(LISTEN);
         else if (Array.isArray(liste)) listen = liste;
 
         let neue_ajax_id = AJAXSCHLANGE.length;
@@ -33,7 +33,7 @@ function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktione
         // AJAX wird vorbereitet
         AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
-            url: G.LISTEN[liste].controller + "/ajax_" + liste,
+            url: LISTEN[liste].controller + "/ajax_" + liste,
             // data: { hash: sha256(String(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle"))), },
             liste: liste,
             naechste_aktionen: naechste_aktionen,

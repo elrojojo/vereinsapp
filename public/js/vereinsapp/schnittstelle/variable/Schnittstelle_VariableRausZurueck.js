@@ -6,12 +6,12 @@ function Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste) {
     let VariableRaus = undefined;
     // Wenn aber ein Element mit der Eigenschaft in der Tabelle existiert
     if (
-        "tabelle" in G.LISTEN[liste] &&
-        typeof G.LISTEN[liste].tabelle[Number(element_id)] !== "undefined" &&
-        // "id" in G.LISTEN[liste].tabelle[Number(element_id)] &&
-        eigenschaft in G.LISTEN[liste].tabelle[Number(element_id)]
+        "tabelle" in LISTEN[liste] &&
+        typeof LISTEN[liste].tabelle[Number(element_id)] !== "undefined" &&
+        // "id" in LISTEN[liste].tabelle[Number(element_id)] &&
+        eigenschaft in LISTEN[liste].tabelle[Number(element_id)]
     )
-        VariableRaus = G.LISTEN[liste].tabelle[Number(element_id)][eigenschaft];
+        VariableRaus = LISTEN[liste].tabelle[Number(element_id)][eigenschaft];
 
     return VariableRaus;
 }

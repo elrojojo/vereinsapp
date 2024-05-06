@@ -1,4 +1,4 @@
-G.LISTEN.notenbank = {
+LISTEN.notenbank = {
     controller: "notenbank",
     element: "titel",
     beschriftung: [

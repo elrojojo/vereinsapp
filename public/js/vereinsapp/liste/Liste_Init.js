@@ -1,21 +1,23 @@
+const LISTEN = new Object();
+
 function Liste_Init() {
-    $.each(G.LISTEN, function (liste) {
-        G.LISTEN[liste].instanz = new Object();
+    $.each(LISTEN, function (liste) {
+        LISTEN[liste].instanz = new Object();
         $('.liste[data-liste="' + liste + '"]').each(function () {
             const $liste = $(this);
             const instanz = $liste.attr("id");
-            G.LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
+            LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
             $liste.empty();
         });
 
-        G.LISTEN[liste].modals = new Object();
+        LISTEN[liste].modals = new Object();
         $('.blanko_modals[data-liste="' + liste + '"]').each(function () {
             const $blanko_modals = $(this);
             $blanko_modals.find(".blanko").each(function () {
                 const $blanko_modal = $(this);
                 const blanko_modal_id = $blanko_modal.attr("id");
                 $blanko_modal.removeAttr("id");
-                G.LISTEN[liste].modals[blanko_modal_id] = $blanko_modal;
+                LISTEN[liste].modals[blanko_modal_id] = $blanko_modal;
             });
             $blanko_modals.remove();
         });
@@ -47,8 +49,8 @@ function Liste_Init() {
 
     Schnittstelle_EventLocalstorageUpdVariable();
     Schnittstelle_EventVariableUpdDom();
-    if (Object.keys(G.LISTEN).length > 0)
-        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(G.LISTEN), true, [
+    if (Object.keys(LISTEN).length > 0)
+        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
             Schnittstelle_EventLocalstorageUpdVariable,
             Schnittstelle_EventVariableUpdDom,
         ]);

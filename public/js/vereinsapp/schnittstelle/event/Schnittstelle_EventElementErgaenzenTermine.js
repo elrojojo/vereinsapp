@@ -1,5 +1,5 @@
 function Schnittstelle_EventElementErgaenzenTermine(termin) {
-    if ("rueckmeldungen" in G.LISTEN) {
+    if ("rueckmeldungen" in LISTEN) {
         termin["ich_rueckmeldung_id"] = Liste_ElementIdZurueck(
             [
                 { liste: "termine", element_id: Number(termin["id"]) },

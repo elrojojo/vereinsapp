@@ -8,7 +8,7 @@ function Liste_Aktualisieren($liste) {
     if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_data));
     else filtern_data = new Array();
     // filtern aus LocalStorage
-    const filtern_LocalStorage = G.LISTEN[liste].instanz[instanz].filtern;
+    const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     // data und LocalStorage kombinieren
     let filtern_kombiniert;
     if (filtern_LocalStorage.length == 0) filtern_kombiniert = filtern_data;
@@ -28,7 +28,7 @@ function Liste_Aktualisieren($liste) {
     if (typeof sortieren_data !== "undefined") sortieren_data = JSON.parse(sortieren_data);
     else sortieren_data = new Array();
     // sortieren aus LocalStorage
-    const sortieren_LocalStorage = G.LISTEN[liste].instanz[instanz].sortieren;
+    const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
     // data und LocalStorage kombinieren
     let sortieren_kombiniert;
     if (sortieren_LocalStorage.length == 0) sortieren_kombiniert = sortieren_data;
@@ -39,7 +39,7 @@ function Liste_Aktualisieren($liste) {
     $liste.find(".element").each(function () {
         const $element = $(this);
         const element_id = Number($element.attr("data-element_id"));
-        const element = G.LISTEN[liste].tabelle[element_id];
+        const element = LISTEN[liste].tabelle[element_id];
         if (!tabelle_gefiltert_sortiert.includes(element)) $element.remove();
     });
 
@@ -51,7 +51,7 @@ function Liste_Aktualisieren($liste) {
         // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
             // Blanko-Element wird geklont
-            const $neues_element = G.LISTEN[liste].instanz[instanz].$blanko_element
+            const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element
                 .clone()
                 .removeClass("blanko invisible")
                 .addClass("element")

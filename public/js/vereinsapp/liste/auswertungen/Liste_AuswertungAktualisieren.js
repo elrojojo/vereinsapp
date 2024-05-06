@@ -27,13 +27,13 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
 
         let ergebnis_anzahl, ergebnis_referenz_anzahl;
         if (zusammenfassung) {
-            ergebnis_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].length;
+            ergebnis_anzahl = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].length;
             let liste_filtern = new Array();
             if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
             ergebnis_referenz_anzahl = Liste_TabelleGefiltertZurueck(liste_filtern, liste).length;
         } else {
-            ergebnis_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].length;
-            ergebnis_referenz_anzahl = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
+            ergebnis_anzahl = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].length;
+            ergebnis_referenz_anzahl = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
         }
 
         if ($ergebnis_anzahl.hasClass("progress"))
@@ -47,8 +47,8 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         const status = $ergebnis.attr("data-status");
 
         let ergebnis;
-        if (zusammenfassung) ergebnis = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status];
-        else ergebnis = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status];
+        if (zusammenfassung) ergebnis = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status];
+        else ergebnis = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status];
 
         filtern = "";
         $.each(ergebnis, function (position, id) {

@@ -2,7 +2,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
     Schnittstelle_EventDurchfuehren(liste, naechste_aktionen, function (liste) {
         // tabelle wird vorbereitet
         const LOC_tabelle = new Array();
-        $.each(G.LISTEN[liste].tabelle, function () {
+        $.each(LISTEN[liste].tabelle, function () {
             const element = this;
             if ("id" in element) {
                 if ("alter" in element) delete element["alter"];
@@ -22,10 +22,10 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
         // tabelle wird im Localstorage gespeichert
         Schnittstelle_LocalstorageRein(liste + "_tabelle", LOC_tabelle);
 
-        $.each(G.LISTEN[liste].instanz, function (instanz) {
+        $.each(LISTEN[liste].instanz, function (instanz) {
             // filtern wird vorbereitet
             const LOC_filtern = new Array();
-            if (G.LISTEN[liste].instanz[instanz].filtern.length >= 1) LOC_filtern.push(G.LISTEN[liste].instanz[instanz].filtern[0]);
+            if (LISTEN[liste].instanz[instanz].filtern.length >= 1) LOC_filtern.push(LISTEN[liste].instanz[instanz].filtern[0]);
             function VAR_upd_LOC_filtern(filtern, liste) {
                 $.each(filtern, function (index, knoten) {
                     if ("verknuepfung" in knoten) VAR_upd_LOC_filtern(knoten.filtern, liste);
@@ -38,7 +38,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
             else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_filtern");
 
             // sortieren wird vorbereitet
-            const LOC_sortieren = G.LISTEN[liste].instanz[instanz].sortieren;
+            const LOC_sortieren = LISTEN[liste].instanz[instanz].sortieren;
             // sortieren wird im Localstorage gespeichert
             if (LOC_sortieren.length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
             else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");

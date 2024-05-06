@@ -25,10 +25,10 @@ function Termine_TerminErstellen($btn) {
             },
             rein_validation_pos_aktion: function (AJAX) {
                 if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
-                else AJAX.data.id = Number(G.LISTEN["termine"].tabelle.length + 1);
+                else AJAX.data.id = Number(LISTEN["termine"].tabelle.length + 1);
                 const element_id = AJAX.data.id;
 
-                G.LISTEN["termine"].tabelle[element_id] = new Object();
+                LISTEN["termine"].tabelle[element_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "termine");
                 });

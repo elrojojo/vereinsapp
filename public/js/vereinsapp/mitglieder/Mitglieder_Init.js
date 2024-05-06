@@ -1,15 +1,15 @@
-G.LISTEN.verfuegbare_rechte = {
+LISTEN.verfuegbare_rechte = {
     controller: "mitglieder",
     element: "verfuegbares_recht",
 };
 
-G.LISTEN.vergebene_rechte = {
+LISTEN.vergebene_rechte = {
     controller: "mitglieder",
     element: "vergebenes_recht",
     verlinkte_listen: ["mitglieder", "verfuegbare_rechte"],
 };
 
-G.LISTEN.mitglieder = {
+LISTEN.mitglieder = {
     controller: "mitglieder",
     element: "mitglied",
     beschriftung: [{ eigenschaft: "vorname" }, { eigenschaft: "nachname", prefix: " " }],

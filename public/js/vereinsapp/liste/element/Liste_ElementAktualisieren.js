@@ -13,7 +13,7 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
     // LINK AKTUALISIEREN
-    $element.find("a.stretched-link").attr("href", BASE_URL + G.LISTEN[liste].controller + "/" + element_id);
+    $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
 
     // CHECK AKTUALISIEREN
     $element.find("label").attr("for", element_id);

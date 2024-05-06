@@ -5,9 +5,9 @@ function Liste_CheckAktualisieren($check, element_id, liste) {
 
     if ($checkliste.exists()) {
         const checkliste = $check.attr("name");
-        const element = G.LISTEN[liste].element;
+        const element = LISTEN[liste].element;
         const gegen_liste = $checkliste.attr("data-gegen_liste");
-        const gegen_element = G.LISTEN[gegen_liste].element;
+        const gegen_element = LISTEN[gegen_liste].element;
         const gegen_element_id = Number($checkliste.attr("data-gegen_element_id"));
 
         const check_element_array = Liste_TabelleGefiltertZurueck(

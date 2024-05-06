@@ -1,8 +1,6 @@
 const DateTime = luxon.DateTime;
 
 const G = {
-    LISTEN: new Object(),
-
     CSRF: { [CSRF_NAME]: ERSTER_CSRF_HASH },
 };
 

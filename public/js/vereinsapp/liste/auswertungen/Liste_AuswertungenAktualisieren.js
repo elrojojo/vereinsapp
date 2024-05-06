@@ -19,7 +19,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     let eigenschaft_data = undefined;
     if ("eigenschaft" in liste_data) eigenschaft_data = liste_data.eigenschaft;
     // eigenschaft aus LocalStorage
-    const eigenschaft_LocalStorage = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].eigenschaft;
+    const eigenschaft_LocalStorage = LISTEN[auswertungen].auswertungen[auswertungen_instanz].eigenschaft;
     // eigenschaft_data und eigenschaft_LocalStorage kombinieren
     let eigenschaft;
     if (typeof eigenschaft_LocalStorage === "undefined") eigenschaft = eigenschaft_data;
@@ -48,7 +48,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const eigenschaft_werte = new Array();
     $.each(tabelle_gefiltert, function () {
         const element = this;
-        auswertungen_liste_filtern.filtern.push({ operator: "==", eigenschaft: G.LISTEN[liste].element + "_id", wert: element.id });
+        auswertungen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element.id });
         // werte zur eigenschaft sammeln
         if (!eigenschaft_werte.includes(element[eigenschaft])) eigenschaft_werte.push(element[eigenschaft]);
     });
@@ -56,7 +56,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_gegen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
     $.each(gegen_tabelle_gefiltert, function () {
         const element = this;
-        auswertungen_gegen_liste_filtern.filtern.push({ operator: "==", eigenschaft: G.LISTEN[gegen_liste].element + "_id", wert: element.id });
+        auswertungen_gegen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: element.id });
     });
     // filtern für liste und filtern für gegen_liste kombinieren
     const auswertungen_filtern = [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern, auswertungen_gegen_liste_filtern] }];
@@ -68,42 +68,42 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
     // CLUSTERN
     // ergebnis vorbereiten
-    G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis = new Object();
+    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis = new Object();
     $.each(eigenschaft_werte, function (position, wert) {
-        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert] = new Object();
+        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert] = new Object();
         $.each(status_auswahl, function (status) {
-            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status] = new Array();
+            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status] = new Array();
         });
     });
     // ergebnis_wert vorbereiten
-    G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert = new Object();
+    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert = new Object();
     $.each(eigenschaft_werte, function (position, wert) {
-        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert] = new Array();
+        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert] = new Array();
     });
     // ergebnis_status vorbereiten
-    G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status = new Object();
+    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status = new Object();
     $.each(status_auswahl, function (status) {
-        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status] = new Array();
+        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status] = new Array();
     });
 
     // ergebnis, ergebnis_wert und ergebnis_status clustern
     $.each(auswertungen_tabelle_gefiltert, function () {
         const auswertung = this;
         const status = auswertung.status;
-        const element_id = auswertung[G.LISTEN[liste].element + "_id"];
-        const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
-        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].push(element_id);
-        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].push(element_id);
-        G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
+        const element_id = auswertung[LISTEN[liste].element + "_id"];
+        const wert = LISTEN[liste].tabelle[element_id][eigenschaft];
+        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].push(element_id);
+        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].push(element_id);
+        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
     });
     // ergebnis[wert][0] clustern und in ergebnis_wert integrieren
     $.each(tabelle_gefiltert, function (position, element) {
         const element_id = element.id;
-        const wert = G.LISTEN[liste].tabelle[element_id][eigenschaft];
-        if (!G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].includes(element_id)) {
-            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
-            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[0].push(element_id);
-            G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][0].push(element_id);
+        const wert = LISTEN[liste].tabelle[element_id][eigenschaft];
+        if (!LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].includes(element_id)) {
+            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
+            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[0].push(element_id);
+            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][0].push(element_id);
         }
     });
 
@@ -117,7 +117,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     $.each(eigenschaft_werte, function (position, wert) {
         const $auswertung = $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"][data-wert="' + wert + '"]');
         if (!$auswertung.exists()) {
-            const $neue_auswertung = G.LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
+            const $neue_auswertung = LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
                 .clone()
                 .removeClass("blanko invisible")
                 .attr("data-auswertungen", auswertungen)

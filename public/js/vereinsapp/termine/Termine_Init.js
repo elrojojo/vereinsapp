@@ -1,24 +1,24 @@
-G.LISTEN.rueckmeldungen = {
+LISTEN.rueckmeldungen = {
     controller: "termine",
     element: "rueckmeldung",
     beschriftung: [{ eigenschaft: "id", prefix: "die Rückmeldung " }],
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
-G.LISTEN.temp_check_doppelte_rueckmeldungen = {
+LISTEN.temp_check_doppelte_rueckmeldungen = {
     controller: "termine",
     element: "doppelte_rueckmeldung",
     beschriftung: [{ eigenschaft: "id", prefix: "die doppelte Rückmeldung " }],
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
-G.LISTEN.anwesenheiten = {
+LISTEN.anwesenheiten = {
     controller: "termine",
     element: "anwesenheit",
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
-G.LISTEN.termine = {
+LISTEN.termine = {
     controller: "termine",
     element: "termin",
     beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "start", prefix: " (", suffix: ")" }],
@@ -74,7 +74,7 @@ function Termine_Init() {
         const liste = $(this).attr("data-liste");
         const title = $(this).attr("data-title");
         const gegen_element_id = $(this).attr("data-gegen_element_id");
-        const $modal = G.LISTEN[liste].modals[checkliste_id + "_modal"].clone().removeClass("blanko invisible").addClass("modal");
+        const $modal = LISTEN[liste].modals[checkliste_id + "_modal"].clone().removeClass("blanko invisible").addClass("modal");
 
         if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
         $modal.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);

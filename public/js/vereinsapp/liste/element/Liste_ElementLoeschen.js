@@ -10,7 +10,7 @@ function Liste_ElementLoeschen($btn) {
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du " + Liste_ElementBeschriftungZurueck(element_id, liste) + " wirklich löschen?",
             $btn.attr("data-title"),
-            G.LISTEN[liste].element + "_loeschen",
+            LISTEN[liste].element + "_loeschen",
             data,
             $btn.attr("data-farbe")
         );
@@ -21,7 +21,7 @@ function Liste_ElementLoeschen($btn) {
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
-            url: G.LISTEN[liste].controller + "/ajax_" + G.LISTEN[liste].element + "_loeschen",
+            url: LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
             data: AJAX_DATA,
             liste: liste,
             $btn: $btn,
@@ -40,7 +40,7 @@ function Liste_ElementLoeschen($btn) {
                 if (typeof weiterleiten !== "undefined") $(location).attr("href", BASE_URL + weiterleiten);
                 else {
                     Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste, [Schnittstelle_EventVariableUpdDom]);
-                    Schnittstelle_DomModalSchliessen($("#" + G.LISTEN[AJAX.liste].element + "_loeschen_bestaetigung"));
+                    Schnittstelle_DomModalSchliessen($("#" + LISTEN[AJAX.liste].element + "_loeschen_bestaetigung"));
                     Schnittstelle_DomToastFeuern(beschriftung + " wurde erfolgreich gelöscht.");
                 }
             },

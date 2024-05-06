@@ -2,8 +2,8 @@ function Liste_CheckAendern($check) {
     const $liste = $check.closest(".liste");
     const liste = $liste.attr("data-liste");
     const checkliste = $liste.attr("data-checkliste");
-    const element = G.LISTEN[liste].element;
-    const gegen_element = G.LISTEN[$liste.attr("data-gegen_liste")].element;
+    const element = LISTEN[liste].element;
+    const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
     const aktion = $liste.attr("data-aktion");
 
     const AJAX_DATA = { checked: $check.is(":checked") };
@@ -13,7 +13,7 @@ function Liste_CheckAendern($check) {
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
-        url: G.LISTEN[checkliste].controller + "/ajax_" + G.LISTEN[checkliste].element + "_" + aktion,
+        url: LISTEN[checkliste].controller + "/ajax_" + LISTEN[checkliste].element + "_" + aktion,
         data: AJAX_DATA,
         liste: liste,
         $check: $check,
@@ -23,13 +23,13 @@ function Liste_CheckAendern($check) {
         rein_validation_pos_aktion: function (AJAX) {
             const $liste = AJAX.$check.closest(".liste");
             const checkliste = $liste.attr("data-checkliste");
-            const element = G.LISTEN[AJAX.liste].element;
+            const element = LISTEN[AJAX.liste].element;
             const element_id = AJAX.data[element + "_id"];
-            const gegen_element = G.LISTEN[$liste.attr("data-gegen_liste")].element;
+            const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
             const gegen_element_id = AJAX.data[gegen_element + "_id"];
 
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
-            $.each(G.LISTEN[checkliste].tabelle, function () {
+            $.each(LISTEN[checkliste].tabelle, function () {
                 const checkliste_element = this;
                 if ("id" in checkliste_element) {
                     if (checkliste_element[element + "_id"] == element_id && checkliste_element[gegen_element + "_id"] == gegen_element_id)
@@ -39,8 +39,8 @@ function Liste_CheckAendern($check) {
 
             // Falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
             if (AJAX.data.checked) {
-                AJAX.data.id = G.LISTEN[checkliste].tabelle.length;
-                G.LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
+                AJAX.data.id = LISTEN[checkliste].tabelle.length;
+                LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
                 delete AJAX.data.checked;
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     Schnittstelle_VariableRein(wert, eigenschaft, Number(AJAX.data.id), checkliste);

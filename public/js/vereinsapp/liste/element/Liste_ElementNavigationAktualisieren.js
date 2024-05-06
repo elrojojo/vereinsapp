@@ -19,7 +19,7 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     LOC_upd_VAR_filtern(filtern_LocalStorage, liste);
     if (filtern_LocalStorage.length > 0) {
         if (liste == "termine") {
-            // && G.LISTEN.termine.tabelle.length > 1 && "start" in G.LISTEN.termine.tabelle[1]) { erzeugt Fehler, weil ID 1 evtl. nicht belegt ist
+            // && LISTEN.termine.tabelle.length > 1 && "start" in LISTEN.termine.tabelle[1]) { erzeugt Fehler, weil ID 1 evtl. nicht belegt ist
             const start_position = Liste_FilternEigenschaftPositionZurueck(filtern, "start");
             if (start_position.length > 1 && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
                 filtern = Liste_FilternPositionGeloeschtZurueck(filtern, start_position);
