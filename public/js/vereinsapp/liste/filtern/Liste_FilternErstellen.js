@@ -1,5 +1,6 @@
 function Liste_FilternErstellen($btn) {
     const liste = $btn.attr("data-liste");
+    const instanz = $btn.attr("data-instanz");
     const $formular = $btn.closest(".modal.filtern");
 
     const $filtern = $formular.find(".filtern");
@@ -19,14 +20,15 @@ function Liste_FilternErstellen($btn) {
     let filtern_knoten = filtern;
     if (filtern.length > 1) filtern_knoten = [{ verknuepfung: "&&", filtern: filtern }];
 
-    const $filtern_knoten = Liste_Filtern2$FilternZurueck(filtern_knoten, liste);
+    const $filtern_knoten = Liste_Filtern2$FilternZurueck(filtern_knoten, instanz, liste);
 
     if ($filtern.find(".filtern_sammlung").length == 0 && $filtern.find(".filtern_element").length == 0) $filtern.append($filtern_knoten);
     else if ($filtern.find(".filtern_kind").length > 0) $filtern.find(".filtern_kind").first().append($filtern_knoten);
     else {
-        const $filtern_zwischenspeicher = $filtern.html();
-        const $filtern_sammlung = Liste_Filtern2$FilternZurueck([{ verknuepfung: "&&", filtern: new Array() }], liste);
-        $filtern.html($filtern_sammlung);
-        $filtern.find(".filtern_kind").first().html($filtern_zwischenspeicher).append($filtern_knoten);
+        const $filtern_zwischenspeicher = $filtern.children().clone();
+        $filtern.empty().append(Liste_Filtern2$FilternZurueck([{ verknuepfung: "&&", filtern: new Array() }], instanz, liste));
+        $filtern.find(".filtern_kind").first().append($filtern_zwischenspeicher).append($filtern_knoten);
     }
+
+    Liste_FilternSpeichern($formular, instanz, liste);
 }

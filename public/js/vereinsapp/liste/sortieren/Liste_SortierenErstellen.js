@@ -1,5 +1,6 @@
 function Liste_SortierenErstellen($btn) {
     const liste = $btn.attr("data-liste");
+    const instanz = $btn.attr("data-instanz");
     const $formular = $btn.closest(".modal.sortieren");
 
     const $sortieren = $formular.find(".sortieren");
@@ -11,5 +12,7 @@ function Liste_SortierenErstellen($btn) {
             eigenschaft: $sortieren_definitionen.find(".sortieren_eigenschaft").val(),
         },
     ];
-    $sortieren.append(Liste_Sortieren2$SortierenZurueck(sortieren, liste));
+    $sortieren.append(Liste_Sortieren2$SortierenZurueck(sortieren, instanz, liste));
+
+    Liste_SortierenSpeichern($formular, instanz, liste);
 }

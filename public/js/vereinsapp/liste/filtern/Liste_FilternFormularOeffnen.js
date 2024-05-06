@@ -33,7 +33,7 @@ function Liste_FilternFormularOeffnen(data, liste) {
             });
         }
 
-        $neue_filtern_definition.find(".btn_filtern_erstellen").first().attr("data-liste", liste);
+        $neue_filtern_definition.find(".btn_filtern_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
 
         $neue_filtern_definition.appendTo($filtern_definitionen);
     });
@@ -43,12 +43,12 @@ function Liste_FilternFormularOeffnen(data, liste) {
         .find(".btn_filtern_formular_oeffnen[data-liste='" + liste + "']")
         .val();
     if (typeof instanz !== "undefined") {
-        $neues_filtern_formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(G.LISTEN[liste].instanz[instanz].filtern, liste));
+        $neues_filtern_formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(G.LISTEN[liste].instanz[instanz].filtern, instanz, liste));
         $neues_filtern_formular.find(".btn_filtern_speichern").attr("data-instanz", instanz);
     } else if (isJson(filtern_value))
         $neues_filtern_formular
             .find(".filtern")
-            .append(Liste_Filtern2$FilternZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_value)), liste));
+            .append(Liste_Filtern2$FilternZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_value)), undefined, liste));
 
     Schnittstelle_DomModalOeffnen($neues_filtern_formular);
 }

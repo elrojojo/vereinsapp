@@ -1,5 +1,5 @@
-function Liste_Filtern2$FilternZurueck(filtern, liste) {
-    const $filtern = new Array();
+function Liste_Filtern2$FilternZurueck(filtern, instanz, liste) {
+    let $filtern = $();
 
     $.each(filtern, function (index, knoten) {
         if ("verknuepfung" in knoten) {
@@ -12,11 +12,9 @@ function Liste_Filtern2$FilternZurueck(filtern, liste) {
             if (verknuepfung == "&&") $verknuepfung.text("UND");
             else if (verknuepfung == "||") $verknuepfung.text("ODER");
 
-            $.each(Liste_Filtern2$FilternZurueck(knoten.filtern, liste), function (index, $filtern) {
-                $filtern.appendTo($neue_filtern_sammlung.find(".filtern_kind").first());
-            });
+            $neue_filtern_sammlung.find(".filtern_kind").append(Liste_Filtern2$FilternZurueck(knoten.filtern, instanz, liste));
 
-            $filtern.push($neue_filtern_sammlung);
+            $filtern = $filtern.add($neue_filtern_sammlung);
         } else {
             const operator = knoten.operator;
             const eigenschaft = knoten.eigenschaft;
@@ -30,9 +28,11 @@ function Liste_Filtern2$FilternZurueck(filtern, liste) {
                 .attr("data-wert", Schnittstelle_LocalstorageWertBereinigtZurueck(wert))
                 .html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
 
-            $filtern.push($neues_filtern_element);
+            $filtern = $filtern.add($neues_filtern_element);
         }
     });
+
+    $filtern.find(".btn_filtern_loeschen, .btn_filtern_aendern").attr("data-liste", liste).attr("data-instanz", instanz);
 
     return $filtern;
 }

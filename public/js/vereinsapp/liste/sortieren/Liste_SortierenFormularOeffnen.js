@@ -18,19 +18,21 @@ function Liste_SortierenFormularOeffnen(data, liste) {
         );
     });
 
-    $sortieren_definitionen.find(".btn_sortieren_erstellen").first().attr("data-liste", liste).attr("data-instanz", instanz);
+    $sortieren_definitionen.find(".btn_sortieren_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
 
     $neues_sortieren_formular.find(".btn_sortieren_speichern").attr("data-liste", liste);
     const sortieren_value = Schnittstelle_DomLetztesModalZurueck()
         .find(".btn_sortieren_formular_oeffnen[data-liste='" + liste + "']")
         .val();
     if (typeof instanz !== "undefined") {
-        $neues_sortieren_formular.find(".sortieren").append(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, liste));
+        $neues_sortieren_formular
+            .find(".sortieren")
+            .append(Liste_Sortieren2$SortierenZurueck(G.LISTEN[liste].instanz[instanz].sortieren, instanz, liste));
         $neues_sortieren_formular.find(".btn_sortieren_speichern").attr("data-instanz", instanz);
     } else if (isJson(sortieren_value))
         $neues_sortieren_formular
             .find(".sortieren")
-            .append(Liste_Sortieren2$SortierenZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(sortieren_value)), liste));
+            .append(Liste_Sortieren2$SortierenZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(sortieren_value)), undefined, liste));
 
     Schnittstelle_DomModalOeffnen($neues_sortieren_formular);
 }

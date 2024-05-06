@@ -1,4 +1,8 @@
 function Liste_FilternLoeschen($btn) {
+    const liste = $btn.attr("data-liste");
+    const instanz = $btn.attr("data-instanz");
+    const $formular = $btn.closest(".modal.filtern");
+
     const $element = $btn.closest(".filtern_element");
     const $sammlung = $btn.closest(".filtern_sammlung");
 
@@ -17,4 +21,6 @@ function Liste_FilternLoeschen($btn) {
         $knoten_parallel = $knoten_ebene_hoeher;
         $sammlung_ebene_hoeher = $knoten_parallel.first().closest(".filtern_sammlung");
     }
+
+    Liste_FilternSpeichern($formular, instanz, liste);
 }

@@ -25,9 +25,4 @@ function Liste_SortierenInit() {
     $(document).on("click", ".btn_sortieren_loeschen", function () {
         Liste_SortierenLoeschen($(this));
     });
-
-    // SPEICHERN
-    $(document).on("click", ".btn_sortieren_speichern", function () {
-        Liste_SortierenSpeichern($(this));
-    });
 }

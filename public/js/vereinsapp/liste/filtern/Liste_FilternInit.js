@@ -37,9 +37,4 @@ function Liste_FilternInit() {
     $(document).on("click", ".btn_filtern_loeschen", function () {
         Liste_FilternLoeschen($(this));
     });
-
-    // SPEICHERN
-    $(document).on("click", ".btn_filtern_speichern", function () {
-        Liste_FilternSpeichern($(this));
-    });
 }
