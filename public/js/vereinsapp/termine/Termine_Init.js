@@ -1,6 +1,14 @@
 G.LISTEN.rueckmeldungen = {
     controller: "termine",
     element: "rueckmeldung",
+    beschriftung: [{ eigenschaft: "id", prefix: "die Rückmeldung " }],
+    verlinkte_listen: ["termine", "mitglieder"],
+};
+
+G.LISTEN.temp_check_doppelte_rueckmeldungen = {
+    controller: "termine",
+    element: "doppelte_rueckmeldung",
+    beschriftung: [{ eigenschaft: "id", prefix: "die doppelte Rückmeldung " }],
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
@@ -55,6 +63,11 @@ function Termine_Init() {
         Termine_RueckmeldungDetaillieren($(this));
     });
 
+    // RÜCKMELDUNG LÖSCHEN
+    $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
+        Liste_ElementLoeschen($(this));
+    });
+
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_anwesenheiten_dokumentieren", function () {
         const checkliste_id = "anwesenheiten_dokumentieren";
@@ -67,5 +80,15 @@ function Termine_Init() {
         $modal.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
         Schnittstelle_DomModalOeffnen($modal);
         Schnittstelle_EventVariableUpdDom(liste);
+    });
+
+    // temp_check_doppelte_rueckmeldungen
+    $(document).on("click", ".btn_temp_check_doppelte_rueckmeldungen_anzeigen", function () {
+        Schnittstelle_DomModalOeffnen(
+            Liste_ElementFormularInitialisiertZurueck("temp_check_doppelte_rueckmeldungen", $(this).attr("data-liste"), $(this).attr("data-aktion"), {
+                title: $(this).attr("data-title"),
+            })
+        );
+        Schnittstelle_EventVariableUpdDom($(this).attr("data-liste"));
     });
 }

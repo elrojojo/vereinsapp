@@ -29,6 +29,8 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             break;
         case "erstellung":
         case "letzte_aktivitaet":
+        case "created_at":
+        case "updated_at":
             if (wert == null) wert_formatiert = "nie";
             else wert_formatiert = wert.toFormat("dd.MM.yyyy HH:mm");
             break;
