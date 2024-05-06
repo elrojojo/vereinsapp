@@ -129,7 +129,8 @@ class Notenbank extends BaseController {
                         $verzeichnis = $verzeichnis_;
 
                 $titel['verzeichnis_basis'] = $verzeichnis; 
-                $titel['verzeichnis'] = array(); if( $verzeichnis !== null ) $titel['verzeichnis'] = $this->verzeichnis_indizieren( directory_map( './storage/notenbank/'.$verzeichnis ) ); 
+                if( $verzeichnis !== null ) $titel['verzeichnis'] = $this->verzeichnis_indizieren( directory_map( './storage/notenbank/'.$verzeichnis ) ); 
+                else $titel['verzeichnis'] = $this->verzeichnis_indizieren( array() );
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
             }

@@ -69,14 +69,13 @@ Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in an
 Data-Attribute als Object in einem Attribut zusammenfassen
 title ändern in beschriftung?
 anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
-Von $btn als Argument wegkommen
+In der .env auch die Arrays von Vereinsapp überschreibar machen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
+Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Elemente aus G. als eigenständige Variablen umbauen (G. wird dann leer sein)
-In der .env auch die Arrays von Vereinsapp überschreibar machen
-Nicht existenter Verzeichnis-Ordner führt zu Fehler
 Von $btn als Argument wegkommen
 
 */
