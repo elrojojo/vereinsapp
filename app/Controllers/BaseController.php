@@ -107,16 +107,16 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js', );
-        $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js'), ); // https://www.npmjs.com/package/js-sha256
-        $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/isJson.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/isObject.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/isNumber.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js'), ); // abhaengig von isObject
-        $head_script[] = array( 'src' => base_url('js/lib/zufaelligeZeichenketteZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/umlaute2unixZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/unix2umlauteZurueck.js'), );
-        $head_script[] = array( 'src' => base_url('js/lib/exists.js'), );
+        $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js?v='.VERSION), ); // https://www.npmjs.com/package/js-sha256
+        $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isJson.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isObject.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isNumber.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js?v='.VERSION), ); // abhaengig von isObject
+        $head_script[] = array( 'src' => base_url('js/lib/zufaelligeZeichenketteZurueck.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/umlaute2unixZurueck.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/unix2umlauteZurueck.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/exists.js?v='.VERSION), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/Vereinsapp_Init.js?v='.VERSION), );
 
