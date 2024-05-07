@@ -25,16 +25,20 @@ function Liste_FilternInit() {
 
     // ERSTELLEN
     $(document).on("click", ".btn_filtern_erstellen", function () {
-        Liste_FilternErstellen($(this));
+        Liste_FilternErstellen($(this).closest(".filtern_definition"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });
 
     // ÄNDERN (VERKNÜPFUNG)
     $(document).on("click", ".btn_filtern_aendern", function () {
-        Liste_FilternVerknuepfungAendern($(this));
+        Liste_FilternVerknuepfungAendern(
+            $(this).closest(".filtern_sammlung").find(".verknuepfung").first(),
+            $(this).attr("data-instanz"),
+            $(this).attr("data-liste")
+        );
     });
 
     // LÖSCHEN
     $(document).on("click", ".btn_filtern_loeschen", function () {
-        Liste_FilternLoeschen($(this));
+        Liste_FilternLoeschen($(this).closest(".filtern_element, .filtern_sammlung"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });
 }

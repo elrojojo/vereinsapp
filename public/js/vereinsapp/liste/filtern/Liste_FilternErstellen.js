@@ -1,10 +1,5 @@
-function Liste_FilternErstellen($btn) {
-    const liste = $btn.attr("data-liste");
-    const instanz = $btn.attr("data-instanz");
-    const $formular = $btn.closest(".modal.filtern");
-
-    const $filtern = $formular.find(".filtern");
-    const $filtern_definition = $btn.closest(".filtern_definition");
+function Liste_FilternErstellen($filtern_definition, instanz, liste) {
+    const $filtern = $filtern_definition.closest(".modal.filtern").find(".filtern");
 
     const filtern = new Array();
     $filtern_definition.find(".filtern_wert").each(function () {
@@ -30,5 +25,5 @@ function Liste_FilternErstellen($btn) {
         $filtern.find(".filtern_kind").first().append($filtern_zwischenspeicher).append($filtern_knoten);
     }
 
-    Liste_FilternSpeichern($formular, instanz, liste);
+    Liste_FilternSpeichern($filtern, instanz, liste);
 }
