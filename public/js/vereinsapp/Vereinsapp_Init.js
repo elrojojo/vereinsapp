@@ -67,5 +67,7 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
+Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
+AJAX_DATA klein schreiben
 
 */

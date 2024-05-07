@@ -28,6 +28,16 @@ function Notenbank_Init() {
 
     // TITEL LÖSCHEN
     $(document).on("click", ".btn_titel_loeschen", function () {
-        Liste_ElementLoeschen($(this));
+        Liste_ElementLoeschen(
+            {
+                bestaetigung_einfordern: $(this).hasClass("bestaetigung_einfordern"),
+                weiterleiten: $(this).attr("data-weiterleiten"),
+                title: $(this).attr("data-title"),
+                $btn_ausloesend: $(this),
+                $modal_ausloesend: $(this).closest(".modal.bestaetigung"),
+            },
+            Number($(this).attr("data-element_id")),
+            "notenbank"
+        );
     });
 }

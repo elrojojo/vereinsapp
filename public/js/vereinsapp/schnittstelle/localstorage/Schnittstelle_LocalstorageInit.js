@@ -6,7 +6,7 @@ function Schnittstelle_LocalstorageInit() {
             Schnittstelle_DomBestaetigungEinfordern(
                 "Willst du wirklich deinen LocalStorage leeren?",
                 $btn_localstorage_leeren.attr("data-title"),
-                "localstorage_leeren",
+                "btn_localstorage_leeren",
                 {},
                 "danger"
             );

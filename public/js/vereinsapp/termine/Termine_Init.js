@@ -45,7 +45,17 @@ function Termine_Init() {
 
     // TERMIN LÖSCHEN
     $(document).on("click", ".btn_termin_loeschen", function () {
-        Liste_ElementLoeschen($(this));
+        Liste_ElementLoeschen(
+            {
+                bestaetigung_einfordern: $(this).hasClass("bestaetigung_einfordern"),
+                weiterleiten: $(this).attr("data-weiterleiten"),
+                title: $(this).attr("data-title"),
+                $btn_ausloesend: $(this),
+                $modal_ausloesend: $(this).closest(".modal.bestaetigung"),
+            },
+            Number($(this).attr("data-element_id")),
+            "termine"
+        );
     });
 
     // RÜCKMELDUNG ERSTELLEN
@@ -65,7 +75,17 @@ function Termine_Init() {
 
     // RÜCKMELDUNG LÖSCHEN
     $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
-        Liste_ElementLoeschen($(this));
+        Liste_ElementLoeschen(
+            {
+                bestaetigung_einfordern: $(this).hasClass("bestaetigung_einfordern"),
+                weiterleiten: $(this).attr("data-weiterleiten"),
+                title: $(this).attr("data-title"),
+                $btn_ausloesend: $(this),
+                $modal_ausloesend: $(this).closest(".modal.bestaetigung"),
+            },
+            Number($(this).attr("data-element_id")),
+            "rueckmeldungen"
+        );
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN

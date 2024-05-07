@@ -5,7 +5,7 @@ function Mitglieder_EinmalLinkEmail($btn) {
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du " + Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
             $btn.attr("data-title"),
-            "mitglied_einmal_link_email",
+            "btn_mitglied_einmal_link_email",
             { liste: "mitglieder", element_id: element_id, werte: JSON.stringify({ email: true }) }
         );
     else {
