@@ -1,4 +1,6 @@
 function Termine_RueckmeldungAendern($btn) {
+    Schnittstelle_BtnWartenStart($btn);
+
     const AJAX_DATA = new Object();
     AJAX_DATA.id = Number($btn.attr("data-element_id"));
     AJAX_DATA.bemerkung = "";
@@ -12,12 +14,6 @@ function Termine_RueckmeldungAendern($btn) {
         data: AJAX_DATA,
         liste: "rueckmeldungen",
         $btn: $btn,
-        raus_aktion: function (AJAX) {
-            Schnittstelle_BtnWartenStart(AJAX.$btn);
-        },
-        rein_validation_neg_aktion: function (AJAX) {
-            Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
-        },
         rein_validation_pos_aktion: function (AJAX) {
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
@@ -28,9 +24,10 @@ function Termine_RueckmeldungAendern($btn) {
                 Schnittstelle_EventLocalstorageUpdVariable,
                 Schnittstelle_EventVariableUpdDom,
             ]);
-        },
-        rein_aktion: function (AJAX) {
             Schnittstelle_BtnWartenEnde(AJAX.$btn);
+        },
+        rein_validation_neg_aktion: function (AJAX) {
+            Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
         },
     };
 

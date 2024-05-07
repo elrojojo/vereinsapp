@@ -1,7 +1,4 @@
 function Schnittstelle_AjaxRein(AJAX) {
-    // Aktion direkt nach dem Empfangen wird durchgeführt
-    if (typeof AJAX.rein_aktion === "function") AJAX.rein_aktion(AJAX);
-
     // Falls der Ajax fertig ist und Schleife aktiv ist,
     if (AJAX.zustand == AJAX_ZUSTAND.FERTIG && typeof AJAX.schleife === "function") {
         // dann wird die liste rekonstruiert

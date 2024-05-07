@@ -1,4 +1,6 @@
 function Liste_CheckAendern($check) {
+    Schnittstelle_CheckWartenStart($check);
+
     const $liste = $check.closest(".liste");
     const liste = $liste.attr("data-liste");
     const checkliste = $liste.attr("data-checkliste");
@@ -17,9 +19,6 @@ function Liste_CheckAendern($check) {
         data: AJAX_DATA,
         liste: liste,
         $check: $check,
-        raus_aktion: function (AJAX) {
-            Schnittstelle_CheckWartenStart(AJAX.$check);
-        },
         rein_validation_pos_aktion: function (AJAX) {
             const $liste = AJAX.$check.closest(".liste");
             const checkliste = $liste.attr("data-checkliste");
@@ -48,9 +47,10 @@ function Liste_CheckAendern($check) {
             }
 
             Schnittstelle_EventVariableUpdLocalstorage(checkliste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-        },
-        rein_aktion: function (AJAX) {
             Schnittstelle_CheckWartenEnde(AJAX.$check);
+        },
+        rein_validation_neg_aktion: function (AJAX) {
+            Schnittstelle_DomToastFeuern("Beim Speichern ist ein Fehler aufgetreten!", "danger");
         },
     };
 

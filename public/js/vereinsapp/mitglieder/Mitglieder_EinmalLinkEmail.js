@@ -9,6 +9,8 @@ function Mitglieder_EinmalLinkEmail($btn) {
             { liste: "mitglieder", element_id: element_id, werte: JSON.stringify({ email: true }) }
         );
     else {
+        Schnittstelle_BtnWartenStart($btn);
+
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
         AJAX_DATA.email = true;
@@ -20,15 +22,13 @@ function Mitglieder_EinmalLinkEmail($btn) {
             data: AJAX_DATA,
             liste: "mitglieder",
             $btn: $btn,
-            raus_aktion: function (AJAX) {
-                Schnittstelle_BtnWartenStart(AJAX.$btn);
-            },
             rein_validation_pos_aktion: function (AJAX) {
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder", [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
                 ]);
-                Schnittstelle_DomModalSchliessen($("#mitglied_einmal_link_email_bestaetigung"));
+                Schnittstelle_BtnWartenEnde(AJAX.$btn);
+                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".modal.bestaetigung"));
                 Schnittstelle_DomToastFeuern(
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " wurde erfolgreich per Email zugeschickt."
                 );
@@ -38,9 +38,6 @@ function Mitglieder_EinmalLinkEmail($btn) {
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " konnte nicht per Email zugeschickt werden.",
                     "danger"
                 );
-            },
-            rein_aktion: function (AJAX) {
-                Schnittstelle_BtnWartenEnde(AJAX.$btn);
             },
         };
 

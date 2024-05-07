@@ -9,6 +9,8 @@ function Mitglieder_EinmalLinkAnzeigen($btn) {
             })
         );
     else {
+        Schnittstelle_BtnWartenStart($btn);
+
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
 
@@ -19,9 +21,6 @@ function Mitglieder_EinmalLinkAnzeigen($btn) {
             data: AJAX_DATA,
             liste: "mitglieder",
             $btn: $btn,
-            raus_aktion: function (AJAX) {
-                Schnittstelle_BtnWartenStart(AJAX.$btn);
-            },
             rein_validation_pos_aktion: function (AJAX) {
                 const $formular = AJAX.$btn.closest(".formular");
                 const $btn_dismiss = $formular.find(".btn[data-bs-dismiss]");
@@ -34,15 +33,13 @@ function Mitglieder_EinmalLinkAnzeigen($btn) {
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
                 ]);
+                Schnittstelle_BtnWartenEnde(AJAX.$btn);
             },
             rein_validation_neg_aktion: function (AJAX) {
                 Schnittstelle_DomToastFeuern(
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " konnte nicht erstellt werden.",
                     "danger"
                 );
-            },
-            rein_aktion: function (AJAX) {
-                Schnittstelle_BtnWartenEnde(AJAX.$btn);
             },
         };
 

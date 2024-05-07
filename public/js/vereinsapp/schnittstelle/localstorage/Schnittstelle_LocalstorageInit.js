@@ -12,7 +12,7 @@ function Schnittstelle_LocalstorageInit() {
             );
         else {
             localstorage_leeren();
-            Schnittstelle_DomModalSchliessen($("#localstorage_leeren_bestaetigung"));
+            Schnittstelle_DomModalSchliessen($btn_localstorage_leeren.closest(".modal.bestaetigung"));
             Schnittstelle_DomToastFeuern("Dein LocalStorage wurde erfolgreich geleert.");
         }
     });

@@ -7,6 +7,8 @@ function Termine_TerminAendern($btn) {
             })
         );
     else {
+        Schnittstelle_BtnWartenStart($btn);
+
         const AJAX_DATA = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($btn.closest(".formular"), AJAX_DATA);
         AJAX_DATA.id = Number($btn.attr("data-element_id"));
@@ -18,12 +20,6 @@ function Termine_TerminAendern($btn) {
             data: AJAX_DATA,
             liste: "termine",
             $btn: $btn,
-            raus_aktion: function (AJAX) {
-                Schnittstelle_BtnWartenStart(AJAX.$btn);
-            },
-            rein_validation_neg_aktion: function (AJAX) {
-                Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
-            },
             rein_validation_pos_aktion: function (AJAX) {
                 const element_id = AJAX.data.id;
                 $.each(AJAX.data, function (eigenschaft, wert) {
@@ -34,11 +30,12 @@ function Termine_TerminAendern($btn) {
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".formular"));
+                Schnittstelle_BtnWartenEnde(AJAX.$btn);
+                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".modal.formular"));
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "termine") + " wurde erfolgreich geändert.");
             },
-            rein_aktion: function (AJAX) {
-                Schnittstelle_BtnWartenEnde(AJAX.$btn);
+            rein_validation_neg_aktion: function (AJAX) {
+                Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
             },
         };
 
