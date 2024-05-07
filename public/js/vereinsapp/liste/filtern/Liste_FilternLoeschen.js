@@ -1,4 +1,5 @@
 function Liste_FilternLoeschen($knoten, instanz, liste) {
+    const $filtern = $knoten.closest(".modal.filtern").find(".filtern");
     let $knoten_parallel = $knoten.siblings(".filtern_element, .filtern_sammlung");
     let $sammlung_ebene_hoeher = $knoten.parents(".filtern_sammlung").first();
 
@@ -10,5 +11,5 @@ function Liste_FilternLoeschen($knoten, instanz, liste) {
         $sammlung_ebene_hoeher = $knoten_parallel.first().parents(".filtern_sammlung").first();
     }
 
-    Liste_FilternSpeichern($knoten.closest(".modal.filtern").find(".filtern"), instanz, liste);
+    Liste_FilternSpeichern($filtern, instanz, liste);
 }
