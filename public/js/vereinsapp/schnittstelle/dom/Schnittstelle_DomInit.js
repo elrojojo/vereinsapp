@@ -81,19 +81,19 @@ function Schnittstelle_DomInit() {
     });
 
     // PASSWORT ANZEIGEN
-    $(document).on("click", ".passwort_anzeigen", function (event) {
-        $btn = $(this);
+    $(document).on("click", ".btn_passwort_anzeigen", function (event) {
+        const $btn_passwort_anzeigen = $(this);
         event.preventDefault();
-        const feld = $btn.closest(".input-group").find("input.form-control");
+        const feld = $btn_passwort_anzeigen.closest(".input-group").find("input.form-control");
 
         if (feld.attr("type") == "text") {
             feld.attr("type", "password");
-            $btn.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-            $btn.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
         } else if (feld.attr("type") == "password") {
             feld.attr("type", "text");
-            $btn.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-            $btn.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
         }
     });
 

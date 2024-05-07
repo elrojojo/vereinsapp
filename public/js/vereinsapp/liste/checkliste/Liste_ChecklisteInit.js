@@ -6,8 +6,7 @@ function Liste_ChecklisteInit() {
 
     // ALLE CHECKS ANWÄHLEN
     $(document).on("click", ".btn_alle_checks_anwaehlen", function () {
-        const $btn = $(this);
-        const instanz = $btn.attr("data-instanz");
+        const instanz = $(this).attr("data-instanz");
         $(".checkliste[id='" + instanz + "']")
             .find(".check:not(:checked)")
             .trigger("click");
@@ -15,8 +14,7 @@ function Liste_ChecklisteInit() {
 
     // ALLE CHECKS ABWÄHLEN
     $(document).on("click", ".btn_alle_checks_abwaehlen", function () {
-        const $btn = $(this);
-        const instanz = $btn.attr("data-instanz");
+        const instanz = $(this).attr("data-instanz");
         $('.checkliste[id="' + instanz + '"]')
             .find(".check:checked")
             .trigger("click");

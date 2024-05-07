@@ -1,11 +1,11 @@
 function Schnittstelle_LocalstorageInit() {
     // LOCALSTORAGE LEEREN
     $(document).on("click", ".btn_localstorage_leeren", function () {
-        const $btn = $(this);
-        if ($btn.hasClass("bestaetigung_einfordern"))
+        const $btn_localstorage_leeren = $(this);
+        if ($btn_localstorage_leeren.hasClass("bestaetigung_einfordern"))
             Schnittstelle_DomBestaetigungEinfordern(
                 "Willst du wirklich deinen LocalStorage leeren?",
-                $btn.attr("data-title"),
+                $btn_localstorage_leeren.attr("data-title"),
                 "localstorage_leeren",
                 {},
                 "danger"
