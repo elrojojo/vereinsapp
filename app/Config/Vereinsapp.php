@@ -136,6 +136,7 @@ class Vereinsapp extends BaseConfig
         'anwesenheiten' => array(
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 

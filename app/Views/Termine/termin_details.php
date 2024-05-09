@@ -16,8 +16,12 @@
     <?= view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
 </div>
 
-<div class="container mb-2">
-<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'] ) ); ?>
+<div id="rueckmeldungen_container" class="container mb-2">
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'], 'view' => 'Termine/auswertung_rueckmeldungen' ) ); ?>
+</div>
+
+<div id="rueckmeldungen_container" class="container mb-2">
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_termin'], 'view' => 'Termine/auswertung_anwesenheiten' ) ); ?>
 </div>
 
 <div class="blanko_modals" data-liste="termine">

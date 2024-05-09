@@ -5,9 +5,9 @@ if( array_key_exists( 'liste', $auswertungen ) ) { ?> data-liste='<?= json_encod
 if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste='<?= json_encode( $auswertungen['gegen_liste'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
 
-<?= view('Templates/Liste/auswertung'); ?>
+<?= view( $view ); ?>
 
 </ul>
 
-<?= view('Templates/Liste/auswertung', array( 'zusammenfassung' => array( 'instanz' => $auswertungen['id'], 'beschriftung' => "Summe", ), ) ); ?>
+<?= view( $view.'_zusammenfassung', array( 'zusammenfassung' => array( 'instanz' => $auswertungen['id'], 'beschriftung' => "Summe", ), ) ); ?>
 

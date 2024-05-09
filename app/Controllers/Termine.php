@@ -32,9 +32,7 @@ class Termine extends BaseController {
                 'beschriftung' => '<div class="row g-0 my-1">
                     <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
                     <div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) )
-                    //.view('Templates/Liste/auswertung', array( 'zusammenfassung' => array( 'instanz' => 'rueckmeldungen_termin', 'progress' => TRUE, ), ) )
-                    ,
+                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
                 'klein' => TRUE,
                 'zentriert' => TRUE,
             ),
@@ -92,6 +90,20 @@ class Termine extends BaseController {
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
             'status_auswahl' => array( 1 => "ZUSAGEN", 2 => "ABSAGEN" ),
+            'liste' => array(
+                'liste' => 'mitglieder',
+                'eigenschaft' => 'register',
+                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
+            ),
+            'gegen_liste' => array(
+                'liste' => 'termine',
+                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $element_id ), ),
+            ),
+        );
+
+        $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
+            'auswertungen' => 'anwesenheiten',
+            'status_auswahl' => array( 1 => "ANWESEND" ),
             'liste' => array(
                 'liste' => 'mitglieder',
                 'eigenschaft' => 'register',
