@@ -46,13 +46,11 @@ function Termine_Init() {
     // TERMIN LÖSCHEN
     $(document).on("click", ".btn_termin_loeschen", function () {
         Liste_ElementLoeschen(
-            {
-                bestaetigung_einfordern: $(this).hasClass("bestaetigung_einfordern"),
-                weiterleiten: $(this).attr("data-weiterleiten"),
-                title: $(this).attr("data-title"),
-                $btn_ausloesend: $(this),
-                $modal_ausloesend: $(this).closest(".modal.bestaetigung"),
-            },
+            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).attr("data-weiterleiten"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.bestaetigung"),
             Number($(this).attr("data-element_id")),
             "termine"
         );
@@ -76,13 +74,11 @@ function Termine_Init() {
     // RÜCKMELDUNG LÖSCHEN
     $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
         Liste_ElementLoeschen(
-            {
-                bestaetigung_einfordern: $(this).hasClass("bestaetigung_einfordern"),
-                weiterleiten: $(this).attr("data-weiterleiten"),
-                title: $(this).attr("data-title"),
-                $btn_ausloesend: $(this),
-                $modal_ausloesend: $(this).closest(".modal.bestaetigung"),
-            },
+            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).attr("data-weiterleiten"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.bestaetigung"),
             Number($(this).attr("data-element_id")),
             "rueckmeldungen"
         );

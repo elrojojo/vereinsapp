@@ -1,19 +1,21 @@
-function Mitglieder_EinmalLinkEmail($btn) {
-    const element_id = Number($btn.attr("data-element_id"));
-
-    if ($btn.hasClass("bestaetigung_einfordern"))
+function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloesend, $bestaetigung, element_id) {
+    if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du " + Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
-            $btn.attr("data-title"),
+            title,
             "btn_mitglied_einmal_link_email",
             { liste: "mitglieder", element_id: element_id, werte: JSON.stringify({ email: true }) }
         );
     else {
-        Schnittstelle_BtnWartenStart($btn);
+        Schnittstelle_BtnWartenStart($btn_ausloesend);
 
         const AJAX_DATA = new Object();
         AJAX_DATA.id = element_id;
         AJAX_DATA.email = true;
+
+        const ajax_dom = new Object();
+        ajax_dom.$btn_ausloesend = $btn_ausloesend;
+        ajax_dom.$bestaetigung = $bestaetigung;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {
@@ -21,19 +23,23 @@ function Mitglieder_EinmalLinkEmail($btn) {
             url: "mitglieder/ajax_mitglied_einmal_link_erstellen",
             data: AJAX_DATA,
             liste: "mitglieder",
-            $btn: $btn,
+            dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder", [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
                 ]);
-                Schnittstelle_BtnWartenEnde(AJAX.$btn);
-                Schnittstelle_DomModalSchliessen(AJAX.$btn.closest(".modal.bestaetigung"));
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
+                if ("dom" in AJAX && "$bestaetigung" in AJAX.dom && AJAX.dom.$bestaetigung.exists())
+                    Schnittstelle_DomModalSchliessen(AJAX.dom.$bestaetigung);
                 Schnittstelle_DomToastFeuern(
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " wurde erfolgreich per Email zugeschickt."
                 );
             },
             rein_validation_neg_aktion: function (AJAX) {
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 Schnittstelle_DomToastFeuern(
                     "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " konnte nicht per Email zugeschickt werden.",
                     "danger"

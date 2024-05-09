@@ -21,29 +21,45 @@ LISTEN.mitglieder = {
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN
     $(document).on("click", ".btn_mitglied_erstellen", function () {
-        Mitglieder_MitgliedErstellen($(this));
+        Mitglieder_MitgliedErstellen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            undefined
+        );
     });
 
     // MITGLIED ÄNDERN
     $(document).on("click", ".btn_mitglied_aendern", function () {
-        Mitglieder_MitgliedAendern($(this));
+        Mitglieder_MitgliedAendern(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // MITGLIED DUPLIZIEREN
     $(document).on("click", ".btn_mitglied_duplizieren", function () {
-        Mitglieder_MitgliedErstellen($(this));
+        Mitglieder_MitgliedErstellen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // MITGLIED LÖSCHEN
     $(document).on("click", ".btn_mitglied_loeschen", function () {
         Liste_ElementLoeschen(
-            {
-                bestaetigung_einfordern: $(this).hasClass("bestaetigung_einfordern"),
-                weiterleiten: $(this).attr("data-weiterleiten"),
-                title: $(this).attr("data-title"),
-                $btn_ausloesend: $(this),
-                $modal_ausloesend: $(this).closest(".modal.bestaetigung"),
-            },
+            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).attr("data-weiterleiten"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.bestaetigung"),
             Number($(this).attr("data-element_id")),
             "mitglieder"
         );
@@ -51,21 +67,33 @@ function Mitglieder_Init() {
 
     // PASSWORT ÄNDERN
     $(document).on("click", ".btn_mitglied_passwort_aendern", function () {
-        Mitglieder_PasswortAendern($(this));
+        Mitglieder_PasswortAendern($(this), $(this).closest(".formular"), Number($(this).attr("data-element_id")));
     });
 
     // PASSWORT FESTLEGEN
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
-        Mitglieder_PasswortFestlegen($(this));
+        Mitglieder_PasswortFestlegen($(this), $(this).closest(".modal.formular"), Number($(this).attr("data-element_id")));
     });
 
     // EINMAL-LINK ANZEIGEN
     $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
-        Mitglieder_EinmalLinkAnzeigen($(this));
+        Mitglieder_EinmalLinkAnzeigen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // EINMAL-LINK PER EMAIL VERSCHICKEN
     $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
-        Mitglieder_EinmalLinkEmail($(this));
+        Mitglieder_EinmalLinkEmail(
+            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.bestaetigung"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 }

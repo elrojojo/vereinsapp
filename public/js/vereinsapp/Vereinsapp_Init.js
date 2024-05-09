@@ -69,5 +69,7 @@ Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
 AJAX_DATA klein schreiben
+Sortierung nicht mehr case sensitive machen
+Argumente sinnvoll ordnen ($ eher nach hinten?)
 
 */
