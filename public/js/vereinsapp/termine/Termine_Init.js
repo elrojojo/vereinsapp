@@ -30,17 +30,35 @@ LISTEN.termine = {
 function Termine_Init() {
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {
-        Termine_TerminErstellen($(this));
+        Termine_TerminErstellen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            undefined
+        );
     });
 
     // TERMIN ÄNDERN
     $(document).on("click", ".btn_termin_aendern", function () {
-        Termine_TerminAendern($(this));
+        Termine_TerminAendern(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // TERMIN DUPLIZIEREN
     $(document).on("click", ".btn_termin_duplizieren", function () {
-        Termine_TerminErstellen($(this));
+        Termine_TerminErstellen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // TERMIN LÖSCHEN
@@ -58,17 +76,28 @@ function Termine_Init() {
 
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
-        Termine_RueckmeldungErstellen($(this));
+        Termine_RueckmeldungErstellen(
+            $(this),
+            JSON.parse($(this).attr("data-werte")).termin_id,
+            JSON.parse($(this).attr("data-werte")).mitglied_id,
+            JSON.parse($(this).attr("data-werte")).status
+        );
     });
 
     // RÜCKMELDUNG ÄNDERN
     $(document).on("click", ".btn_rueckmeldung_aendern", function () {
-        Termine_RueckmeldungAendern($(this));
+        Termine_RueckmeldungAendern($(this), JSON.parse($(this).attr("data-werte")).status, Number($(this).attr("data-element_id")));
     });
 
     // RÜCKMELDUNG DETAILLIEREN
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
-        Termine_RueckmeldungDetaillieren($(this));
+        Termine_RueckmeldungDetaillieren(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // RÜCKMELDUNG LÖSCHEN

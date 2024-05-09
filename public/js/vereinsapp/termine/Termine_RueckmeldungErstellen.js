@@ -1,19 +1,19 @@
-function Termine_RueckmeldungErstellen($btn) {
-    Schnittstelle_BtnWartenStart($btn);
+function Termine_RueckmeldungErstellen($btn_ausloesend, termin_id, mitglied_id, status) {
+    Schnittstelle_BtnWartenStart($btn_ausloesend);
 
     // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""
-    $btn.trigger("blur");
+    $btn_ausloesend.trigger("blur");
     $(".navbar-text").trigger("focus");
     // ENDE
 
     const AJAX_DATA = new Object();
+    AJAX_DATA.termin_id = termin_id;
+    AJAX_DATA.mitglied_id = mitglied_id;
+    AJAX_DATA.status = status;
     AJAX_DATA.bemerkung = "";
-    const data_werte = $btn.attr("data-werte");
-    if (typeof data_werte !== "undefined") {
-        AJAX_DATA.termin_id = JSON.parse(data_werte).termin_id;
-        AJAX_DATA.mitglied_id = JSON.parse(data_werte).mitglied_id;
-        AJAX_DATA.status = JSON.parse(data_werte).status;
-    }
+
+    const ajax_dom = new Object();
+    ajax_dom.$btn_ausloesend = $btn_ausloesend;
 
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
@@ -21,7 +21,7 @@ function Termine_RueckmeldungErstellen($btn) {
         url: "termine/ajax_rueckmeldung_speichern",
         data: AJAX_DATA,
         liste: "rueckmeldungen",
-        $btn: $btn,
+        dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
             if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
             else AJAX.data.id = Number(LISTEN["rueckmeldungen"].tabelle.length + 1);
@@ -33,20 +33,23 @@ function Termine_RueckmeldungErstellen($btn) {
             });
 
             // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""
-            $btn.trigger("blur");
+            AJAX.dom.$btn_ausloesend.trigger("blur");
             $(".navbar-text").trigger("focus");
             // ENDE
-
-            // Termine_RueckmeldungAktualisieren($btn);
 
             Schnittstelle_EventVariableUpdLocalstorage("rueckmeldungen", [
                 Schnittstelle_EventLocalstorageUpdVariable,
                 Schnittstelle_EventVariableUpdDom,
             ]);
-            Schnittstelle_BtnWartenEnde(AJAX.$btn);
+            if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
         },
         rein_validation_neg_aktion: function (AJAX) {
-            Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
+            if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
+            Schnittstelle_DomToastFeuern(
+                "Rückgemeldung zu " + Liste_ElementBeschriftungZurueck(AJAX.data.termin_id, "termine") + "konnte nicht gespeichert werden."
+            );
         },
     };
 

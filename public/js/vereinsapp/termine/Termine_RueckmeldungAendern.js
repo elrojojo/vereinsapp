@@ -1,11 +1,13 @@
-function Termine_RueckmeldungAendern($btn) {
-    Schnittstelle_BtnWartenStart($btn);
+function Termine_RueckmeldungAendern($btn_ausloesend, status, element_id) {
+    Schnittstelle_BtnWartenStart($btn_ausloesend);
 
     const AJAX_DATA = new Object();
-    AJAX_DATA.id = Number($btn.attr("data-element_id"));
+    AJAX_DATA.id = element_id;
+    AJAX_DATA.status = status;
     AJAX_DATA.bemerkung = "";
-    const data_werte = $btn.attr("data-werte");
-    if (typeof data_werte !== "undefined") AJAX_DATA.status = JSON.parse(data_werte).status;
+
+    const ajax_dom = new Object();
+    ajax_dom.$btn_ausloesend = $btn_ausloesend;
 
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
@@ -13,21 +15,26 @@ function Termine_RueckmeldungAendern($btn) {
         url: "termine/ajax_rueckmeldung_aendern",
         data: AJAX_DATA,
         liste: "rueckmeldungen",
-        $btn: $btn,
+        dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
             $.each(AJAX.data, function (eigenschaft, wert) {
                 if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                     Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, "rueckmeldungen");
             });
-            // Termine_RueckmeldungAktualisieren($btn);
+
             Schnittstelle_EventVariableUpdLocalstorage("rueckmeldungen", [
                 Schnittstelle_EventLocalstorageUpdVariable,
                 Schnittstelle_EventVariableUpdDom,
             ]);
-            Schnittstelle_BtnWartenEnde(AJAX.$btn);
+            if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
         },
         rein_validation_neg_aktion: function (AJAX) {
-            Liste_ElementFormularValidationAktualisieren(AJAX.$btn.closest(".formular"), AJAX.antwort.validation);
+            if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
+            Schnittstelle_DomToastFeuern(
+                "Rückgemeldung zu " + Liste_ElementBeschriftungZurueck(AJAX.data.termin_id, "termine") + "konnte nicht gespeichert werden."
+            );
         },
     };
 
