@@ -134,34 +134,34 @@ function Schnittstelle_DomInit() {
     });
 }
 
-function Schnittstelle_BtnWartenStart($btn) {
-    const beschriftung = $btn.html();
-    $btn.attr("data-beschriftung", beschriftung);
-    $btn.html(STATUS_SPINNER_HTML);
+function Schnittstelle_BtnWartenStart($btn_warten) {
+    const beschriftung = $btn_warten.html();
+    $btn_warten.attr("data-beschriftung", beschriftung);
+    $btn_warten.html(STATUS_SPINNER_HTML);
 
-    $btn.prop("disabled", true);
+    $btn_warten.prop("disabled", true);
 }
 
-function Schnittstelle_BtnWartenEnde($btn) {
-    $btn.prop("disabled", false);
+function Schnittstelle_BtnWartenEnde($btn_warten) {
+    $btn_warten.prop("disabled", false);
 
-    const beschriftung = $btn.attr("data-beschriftung");
-    $btn.prop("data-beschriftung", false);
-    $btn.html(beschriftung);
+    const beschriftung = $btn_warten.attr("data-beschriftung");
+    $btn_warten.prop("data-beschriftung", false);
+    $btn_warten.html(beschriftung);
 }
 
-function Schnittstelle_BtnDanebenWartenStart($btn) {
-    $btn.after(STATUS_SPINNER_HTML);
+function Schnittstelle_BtnDanebenWartenStart($btn_daneben_warten) {
+    $btn_daneben_warten.after(STATUS_SPINNER_HTML);
 
-    $btn.addClass("invisible");
-    $btn.prop("disabled", true);
+    $btn_daneben_warten.addClass("invisible");
+    $btn_daneben_warten.prop("disabled", true);
 }
 
-function Schnittstelle_BtnDanebenWartenEnde($btn) {
-    $btn.prop("disabled", false);
-    $btn.removeClass("invisible");
+function Schnittstelle_BtnDanebenWartenEnde($btn_daneben_warten) {
+    $btn_daneben_warten.prop("disabled", false);
+    $btn_daneben_warten.removeClass("invisible");
 
-    $btn.siblings("." + STATUS_SPINNER_CLASS).remove();
+    $btn_daneben_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
 }
 
 function Schnittstelle_CheckWartenStart($check) {

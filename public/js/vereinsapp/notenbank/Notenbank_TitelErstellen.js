@@ -9,8 +9,8 @@ function Notenbank_TitelErstellen(formular_oeffnen, title, $btn_ausloesend, $for
     else {
         Schnittstelle_BtnWartenStart($btn_ausloesend);
 
-        const AJAX_DATA = new Object();
-        Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, AJAX_DATA);
+        const ajax_data = new Object();
+        Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
 
         const ajax_dom = new Object();
         ajax_dom.$btn_ausloesend = $btn_ausloesend;
@@ -20,7 +20,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, title, $btn_ausloesend, $for
         AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: "notenbank/ajax_titel_speichern",
-            data: AJAX_DATA,
+            data: ajax_data,
             liste: "notenbank",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {

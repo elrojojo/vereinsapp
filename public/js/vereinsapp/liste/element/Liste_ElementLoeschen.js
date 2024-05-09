@@ -10,9 +10,9 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, weiterleiten, title, $bt
     else {
         if (typeof $btn_ausloesend !== "undefined") Schnittstelle_BtnWartenStart($btn_ausloesend);
 
-        const AJAX_DATA = new Object();
-        AJAX_DATA.id = element_id;
-        AJAX_DATA.weiterleiten = weiterleiten;
+        const ajax_data = new Object();
+        ajax_data.id = element_id;
+        ajax_data.weiterleiten = weiterleiten;
 
         const ajax_dom = new Object();
         ajax_dom.$btn_ausloesend = $btn_ausloesend;
@@ -22,7 +22,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, weiterleiten, title, $bt
         AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
-            data: AJAX_DATA,
+            data: ajax_data,
             liste: liste,
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {

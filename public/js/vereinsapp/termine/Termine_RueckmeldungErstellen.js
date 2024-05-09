@@ -6,11 +6,11 @@ function Termine_RueckmeldungErstellen($btn_ausloesend, termin_id, mitglied_id, 
     $(".navbar-text").trigger("focus");
     // ENDE
 
-    const AJAX_DATA = new Object();
-    AJAX_DATA.termin_id = termin_id;
-    AJAX_DATA.mitglied_id = mitglied_id;
-    AJAX_DATA.status = status;
-    AJAX_DATA.bemerkung = "";
+    const ajax_data = new Object();
+    ajax_data.termin_id = termin_id;
+    ajax_data.mitglied_id = mitglied_id;
+    ajax_data.status = status;
+    ajax_data.bemerkung = "";
 
     const ajax_dom = new Object();
     ajax_dom.$btn_ausloesend = $btn_ausloesend;
@@ -19,7 +19,7 @@ function Termine_RueckmeldungErstellen($btn_ausloesend, termin_id, mitglied_id, 
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         url: "termine/ajax_rueckmeldung_speichern",
-        data: AJAX_DATA,
+        data: ajax_data,
         liste: "rueckmeldungen",
         dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {

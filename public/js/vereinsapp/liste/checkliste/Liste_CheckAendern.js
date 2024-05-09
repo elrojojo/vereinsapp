@@ -8,15 +8,15 @@ function Liste_CheckAendern($check) {
     const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
     const aktion = $liste.attr("data-aktion");
 
-    const AJAX_DATA = { checked: $check.is(":checked") };
-    AJAX_DATA[element + "_id"] = $check.val();
-    AJAX_DATA[gegen_element + "_id"] = $liste.attr("data-gegen_element_id");
+    const ajax_data = { checked: $check.is(":checked") };
+    ajax_data[element + "_id"] = $check.val();
+    ajax_data[gegen_element + "_id"] = $liste.attr("data-gegen_element_id");
 
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         url: LISTEN[checkliste].controller + "/ajax_" + LISTEN[checkliste].element + "_" + aktion,
-        data: AJAX_DATA,
+        data: ajax_data,
         liste: liste,
         $check: $check,
         rein_validation_pos_aktion: function (AJAX) {

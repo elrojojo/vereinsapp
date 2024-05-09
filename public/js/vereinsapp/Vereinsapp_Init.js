@@ -62,14 +62,13 @@ Data-Attribute als Object in einem Attribut zusammenfassen
 title ändern in beschriftung?
 anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
 In der .env auch die Arrays von Vereinsapp überschreibar machen
+Argumente sinnvoll ordnen ($ eher nach hinten?)
+Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
+Sortierung nicht mehr case sensitive machen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
-AJAX_DATA klein schreiben
-Sortierung nicht mehr case sensitive machen
-Argumente sinnvoll ordnen ($ eher nach hinten?)
 
 */

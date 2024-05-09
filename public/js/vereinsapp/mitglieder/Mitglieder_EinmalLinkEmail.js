@@ -9,9 +9,9 @@ function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloes
     else {
         Schnittstelle_BtnWartenStart($btn_ausloesend);
 
-        const AJAX_DATA = new Object();
-        AJAX_DATA.id = element_id;
-        AJAX_DATA.email = true;
+        const ajax_data = new Object();
+        ajax_data.id = element_id;
+        ajax_data.email = true;
 
         const ajax_dom = new Object();
         ajax_dom.$btn_ausloesend = $btn_ausloesend;
@@ -21,7 +21,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloes
         AJAXSCHLANGE[neue_ajax_id] = {
             ajax_id: neue_ajax_id,
             url: "mitglieder/ajax_mitglied_einmal_link_erstellen",
-            data: AJAX_DATA,
+            data: ajax_data,
             liste: "mitglieder",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {

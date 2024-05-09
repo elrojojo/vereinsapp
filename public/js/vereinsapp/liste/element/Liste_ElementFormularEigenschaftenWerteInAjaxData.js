@@ -1,4 +1,4 @@
-function Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, AJAX_DATA) {
+function Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data) {
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -11,7 +11,7 @@ function Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, AJAX_DATA)
             wert = wert.toSQL();
         }
 
-        AJAX_DATA[eigenschaft] = wert;
+        ajax_data[eigenschaft] = wert;
 
         $eigenschaft.removeClass("is-valid").removeClass("is-invalid");
         $eigenschaft.find(".valid-tooltip").remove();
