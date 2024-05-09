@@ -13,17 +13,35 @@ LISTEN.notenbank = {
 function Notenbank_Init() {
     // TITEL ERSTELLEN
     $(document).on("click", ".btn_titel_erstellen", function () {
-        Notenbank_TitelErstellen($(this));
+        Notenbank_TitelErstellen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            undefined
+        );
     });
 
     // TITEL ÄNDERN
     $(document).on("click", ".btn_titel_aendern", function () {
-        Notenbank_TitelAendern($(this));
+        Notenbank_TitelAendern(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // TITEL DUPLIZIEREN
     $(document).on("click", ".btn_titel_duplizieren", function () {
-        Notenbank_TitelErstellen($(this));
+        Notenbank_TitelErstellen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id"))
+        );
     });
 
     // TITEL LÖSCHEN
