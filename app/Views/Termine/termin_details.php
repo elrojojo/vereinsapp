@@ -16,12 +16,25 @@
     <?= view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
 </div>
 
-<div id="rueckmeldungen_container" class="container mb-2">
-<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'], 'view' => 'Termine/auswertung_rueckmeldungen' ) ); ?>
+<div class="container mb-2">
+    <ul class="nav nav-tabs">
+        <li class="col-6 nav-item text-center" data-bs-target="#rueckmeldungen_container" role="button">
+            <a class="nav-link active">Rückmeldungen</a>
+        </li>
+        <li class="col-6 nav-item collapsed text-center" data-bs-toggle="collapse" data-bs-target="#anwesenheiten_container" role="button">
+            <a class="nav-link">Anwesenheiten</a>
+        </li>
+    </ul>
 </div>
 
-<div id="rueckmeldungen_container" class="container mb-2">
+<div class="container rueckmeldungen_anwesenheiten_parent mb-2">
+    <div id="rueckmeldungen_container" class="collapse tab_collapse show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'], 'view' => 'Termine/auswertung_rueckmeldungen' ) ); ?>
+    </div>
+
+    <div id="anwesenheiten_container" class="collapse tab_collapse" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
 <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_termin'], 'view' => 'Termine/auswertung_anwesenheiten' ) ); ?>
+    </div>
 </div>
 
 <div class="blanko_modals" data-liste="termine">

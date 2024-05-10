@@ -114,18 +114,43 @@ function Schnittstelle_DomInit() {
     });
 
     // COLLAPSE ÖFFNEN
-    $(document).on("show.bs.collapse", ".collapse", function (event) {
-        $collapse = $(this);
+    $(document).on("show.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
+        const $collapse = $(this);
+
         if ($collapse.is(event.target)) {
             $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
                 Schnittstelle_ToggleSymbol($(this));
             });
         }
     });
+    $(document).on("show.bs.collapse", ".collapse.tab_collapse", function (event) {
+        const $collapse = $(this);
+
+        if ($collapse.is(event.target)) {
+            $('.nav-item[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
+                const $toggle = $(this);
+
+                $toggle.removeAttr("data-bs-toggle");
+                $toggle.find(".nav-link").addClass("active");
+
+                $toggle
+                    .closest(".nav-tabs")
+                    .find(".nav-item")
+                    .each(function () {
+                        const $anderes_toggle = $(this);
+                        if ($anderes_toggle.attr("data-bs-target") != $toggle.attr("data-bs-target")) {
+                            $anderes_toggle.attr("data-bs-toggle", "collapse");
+                            $anderes_toggle.find(".nav-link").removeClass("active");
+                        }
+                    });
+            });
+        }
+    });
 
     // COLLAPSE SCHLIESSEN
-    $(document).on("hide.bs.collapse", ".collapse", function (event) {
-        $collapse = $(this);
+    $(document).on("hide.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
+        const $collapse = $(this);
+
         if ($collapse.is(event.target)) {
             $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
                 Schnittstelle_ToggleSymbol($(this));
