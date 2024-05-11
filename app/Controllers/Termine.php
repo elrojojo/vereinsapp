@@ -92,7 +92,7 @@ class Termine extends BaseController {
             'status_auswahl' => array( 1 => "ZUSAGEN", 2 => "ABSAGEN" ),
             'liste' => array(
                 'liste' => 'mitglieder',
-                'eigenschaft' => 'register',
+                'gruppieren' => 'register',
                 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
             ),
             'gegen_liste' => array(
@@ -101,18 +101,38 @@ class Termine extends BaseController {
             ),
         );
 
+        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
+            'klasse_id' => 'btn_gruppieren_formular_oeffnen',
+            'title' => 'Auswertung gruppieren',
+        );
+
+        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'title' => 'Auswertung filtern',
+        );
+
         $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
             'auswertungen' => 'anwesenheiten',
             'status_auswahl' => array( 1 => "ANWESEND" ),
             'liste' => array(
                 'liste' => 'mitglieder',
-                'eigenschaft' => 'register',
+                'gruppieren' => 'register',
                 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
             ),
             'gegen_liste' => array(
                 'liste' => 'termine',
                 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $element_id ), ),
             ),
+        );
+
+        $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(
+            'klasse_id' => 'btn_gruppieren_formular_oeffnen',
+            'title' => 'Auswertung gruppieren',
+        );
+
+        $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['filtern'] = array(
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'title' => 'Auswertung filtern',
         );
 
         $elemente_disabled = array();

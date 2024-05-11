@@ -1,7 +1,7 @@
 function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     const auswertungen_instanz = $auswertung.attr("data-instanz");
     const $auswertungen = $('.auswertungen[id="' + auswertungen_instanz + '"]');
-    const eigenschaft = $auswertung.attr("data-eigenschaft");
+    const gruppieren = $auswertung.attr("data-gruppieren");
     const wert = $auswertung.attr("data-wert");
 
     // LISTE DEFINIEREN
@@ -18,7 +18,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     if ($auswertung.hasClass("zusammenfassung")) zusammenfassung = true;
 
     // BESCHRIFTUNG AKTUALISIEREN
-    if (!zusammenfassung) $auswertung.find(".beschriftung").text(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
+    if (!zusammenfassung) $auswertung.find(".beschriftung").text(Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
     // ERGEBNIS_ANZAHL AKTUALISIEREN
     $auswertung.find(".ergebnis_anzahl").each(function () {
@@ -27,13 +27,13 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
 
         let ergebnis_anzahl, ergebnis_referenz_anzahl;
         if (zusammenfassung) {
-            ergebnis_anzahl = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].length;
+            ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status].length;
             let liste_filtern = new Array();
             if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
             ergebnis_referenz_anzahl = Liste_TabelleGefiltertZurueck(liste_filtern, liste).length;
         } else {
-            ergebnis_anzahl = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].length;
-            ergebnis_referenz_anzahl = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
+            ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status].length;
+            ergebnis_referenz_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
         }
 
         if ($ergebnis_anzahl.hasClass("progress"))
@@ -47,8 +47,8 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         const status = $ergebnis.attr("data-status");
 
         let ergebnis;
-        if (zusammenfassung) ergebnis = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status];
-        else ergebnis = LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status];
+        if (zusammenfassung) ergebnis = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status];
+        else ergebnis = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status];
 
         filtern = "";
         $.each(ergebnis, function (position, id) {

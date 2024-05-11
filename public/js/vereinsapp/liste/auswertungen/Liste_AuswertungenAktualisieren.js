@@ -15,15 +15,15 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // liste aus liste_data
     let liste = undefined;
     if ("liste" in liste_data) liste = liste_data.liste;
-    // eigenschaft aus liste_data
-    let eigenschaft_data = undefined;
-    if ("eigenschaft" in liste_data) eigenschaft_data = liste_data.eigenschaft;
-    // eigenschaft aus LocalStorage
-    const eigenschaft_LocalStorage = Schnittstelle_LocalstorageRausZurueck(auswertungen + "_" + auswertungen_instanz + "_auswertungen_eigenschaft");
-    // eigenschaft_data und eigenschaft_LocalStorage kombinieren
-    let eigenschaft;
-    if (typeof eigenschaft_LocalStorage === "undefined") eigenschaft = eigenschaft_data;
-    else eigenschaft = eigenschaft_LocalStorage;
+    // gruppieren aus liste_data
+    let gruppieren_data = undefined;
+    if ("gruppieren" in liste_data) gruppieren_data = liste_data.gruppieren;
+    // gruppieren aus LocalStorage
+    const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
+    // gruppieren_data und gruppieren_LocalStorage kombinieren
+    let gruppieren;
+    if (typeof gruppieren_LocalStorage === "undefined") gruppieren = gruppieren_data;
+    else gruppieren = gruppieren_LocalStorage;
     // filtern aus liste_data
     let liste_filtern = new Array();
     if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
@@ -45,12 +45,12 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // AUSWERTUNGEN FILTERN
     // filtern für liste definieren
     const auswertungen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
-    const eigenschaft_werte = new Array();
+    const gruppieren_werte = new Array();
     $.each(tabelle_gefiltert, function () {
         const element = this;
         auswertungen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element.id });
-        // werte zur eigenschaft sammeln
-        if (!eigenschaft_werte.includes(element[eigenschaft])) eigenschaft_werte.push(element[eigenschaft]);
+        // werte zu gruppieren sammeln
+        if (!gruppieren_werte.includes(element[gruppieren])) gruppieren_werte.push(element[gruppieren]);
     });
     // filtern für gegen_liste definieren
     const auswertungen_gegen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
@@ -63,28 +63,28 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // auswertungen filtern
     const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(auswertungen_filtern, auswertungen);
 
-    // WERTE ZUR EIGENSCHAFT SORTIEREN
-    eigenschaft_werte.sort();
+    // WERTE ZU GRUPPIEREN SORTIEREN
+    gruppieren_werte.sort();
 
     // CLUSTERN
-    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster = new Object();
+    LISTEN[auswertungen].instanz[auswertungen_instanz].cluster = new Object();
     // ergebnis vorbereiten
-    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis = new Object();
-    $.each(eigenschaft_werte, function (position, wert) {
-        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert] = new Object();
+    LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis = new Object();
+    $.each(gruppieren_werte, function (position, wert) {
+        LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert] = new Object();
         $.each(status_auswahl, function (status) {
-            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status] = new Array();
+            LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status] = new Array();
         });
     });
     // ergebnis_wert vorbereiten
-    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert = new Object();
-    $.each(eigenschaft_werte, function (position, wert) {
-        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert] = new Array();
+    LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert = new Object();
+    $.each(gruppieren_werte, function (position, wert) {
+        LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert[wert] = new Array();
     });
     // ergebnis_status vorbereiten
-    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status = new Object();
+    LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status = new Object();
     $.each(status_auswahl, function (status) {
-        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status] = new Array();
+        LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status] = new Array();
     });
 
     // ergebnis, ergebnis_wert und ergebnis_status clustern
@@ -92,19 +92,19 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         const auswertung = this;
         const status = auswertung.status;
         const element_id = auswertung[LISTEN[liste].element + "_id"];
-        const wert = LISTEN[liste].tabelle[element_id][eigenschaft];
-        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][status].push(element_id);
-        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[status].push(element_id);
-        LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
+        const wert = LISTEN[liste].tabelle[element_id][gruppieren];
+        LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status].push(element_id);
+        LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status].push(element_id);
+        LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
     });
     // ergebnis[wert][0] clustern und in ergebnis_wert integrieren
     $.each(tabelle_gefiltert, function (position, element) {
         const element_id = element.id;
-        const wert = LISTEN[liste].tabelle[element_id][eigenschaft];
-        if (!LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].includes(element_id)) {
-            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
-            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis_status[0].push(element_id);
-            LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis[wert][0].push(element_id);
+        const wert = LISTEN[liste].tabelle[element_id][gruppieren];
+        if (!LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert[wert].includes(element_id)) {
+            LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert[wert].push(element_id);
+            LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[0].push(element_id);
+            LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][0].push(element_id);
         }
     });
 
@@ -112,19 +112,19 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     $auswertungen.find(".auswertung").each(function () {
         const $auswertung = $(this);
         const wert = $auswertung.attr("data-wert");
-        if (!eigenschaft_werte.includes(wert)) $auswertung.remove();
+        if (!gruppieren_werte.includes(wert)) $auswertung.remove();
     });
 
     // DOM ERGÄNZEN
-    $.each(eigenschaft_werte, function (position, wert) {
-        const $auswertung = $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"][data-wert="' + wert + '"]');
+    $.each(gruppieren_werte, function (position, wert) {
+        const $auswertung = $auswertungen.find('.auswertung[data-gruppieren="' + gruppieren + '"][data-wert="' + wert + '"]');
         if (!$auswertung.exists()) {
-            const $neue_auswertung = LISTEN[auswertungen].auswertungen[auswertungen_instanz].$blanko_auswertung
+            const $neue_auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung
                 .clone()
                 .removeClass("blanko invisible")
                 .attr("data-auswertungen", auswertungen)
                 .attr("data-instanz", auswertungen_instanz)
-                .attr("data-eigenschaft", eigenschaft)
+                .attr("data-gruppieren", gruppieren)
                 .attr("data-wert", wert);
 
             const neue_id = zufaelligeZeichenketteZurueck(8);
@@ -135,7 +135,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             if (position == 0) $neue_auswertung.appendTo($auswertungen);
             else
                 $neue_auswertung.insertAfter(
-                    $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"][data-wert="' + eigenschaft_werte[position - 1] + '"]')
+                    $auswertungen.find('.auswertung[data-gruppieren="' + gruppieren + '"][data-wert="' + gruppieren_werte[position - 1] + '"]')
                 );
         }
     });
@@ -146,7 +146,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         $auswertung.attr("data-auswertungen", auswertungen);
         $auswertung
             .find('[data-bs-toggle="collapse"]')
-            .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_zusammenfassung");
-        $auswertung.find(".collapse").attr("id", "auswertung_" + auswertungen_instanz + "_" + eigenschaft + "_zusammenfassung");
+            .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + gruppieren + "_zusammenfassung");
+        $auswertung.find(".collapse").attr("id", "auswertung_" + auswertungen_instanz + "_" + gruppieren + "_zusammenfassung");
     });
 }

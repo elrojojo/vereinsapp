@@ -40,13 +40,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste, naechste_aktionen) {
             let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
             if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
             LISTEN[liste].instanz[instanz].sortieren = sortieren_LocalStorage;
-        });
 
-        $.each(LISTEN[liste].auswertungen, function (auswertungen_instanz) {
-            // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-            LISTEN[liste].auswertungen[auswertungen_instanz].eigenschaft = Schnittstelle_LocalstorageRausZurueck(
-                liste + "_" + auswertungen_instanz + "_auswertungen_eigenschaft"
-            );
+            // gruppieren wird aus dem Localstorage geholt und in der Variable gespeichert
+            LISTEN[liste].instanz[instanz].gruppieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_gruppieren");
         });
     }
 }

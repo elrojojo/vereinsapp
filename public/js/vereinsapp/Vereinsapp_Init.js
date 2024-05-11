@@ -70,5 +70,6 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
+Helper-Funktionen für Auswertungen basteln (bspw. für liste aus liste_data)
 
 */
