@@ -19,7 +19,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     let eigenschaft_data = undefined;
     if ("eigenschaft" in liste_data) eigenschaft_data = liste_data.eigenschaft;
     // eigenschaft aus LocalStorage
-    const eigenschaft_LocalStorage = LISTEN[auswertungen].auswertungen[auswertungen_instanz].eigenschaft;
+    const eigenschaft_LocalStorage = Schnittstelle_LocalstorageRausZurueck(auswertungen + "_" + auswertungen_instanz + "_auswertungen_eigenschaft");
     // eigenschaft_data und eigenschaft_LocalStorage kombinieren
     let eigenschaft;
     if (typeof eigenschaft_LocalStorage === "undefined") eigenschaft = eigenschaft_data;
@@ -67,6 +67,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     eigenschaft_werte.sort();
 
     // CLUSTERN
+    LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster = new Object();
     // ergebnis vorbereiten
     LISTEN[auswertungen].auswertungen[auswertungen_instanz].cluster.ergebnis = new Object();
     $.each(eigenschaft_werte, function (position, wert) {
@@ -108,9 +109,10 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     });
 
     // DOM LÖSCHEN
-    $auswertungen.find('.auswertung[data-eigenschaft="' + eigenschaft + '"]').each(function () {
+    $auswertungen.find(".auswertung").each(function () {
         const $auswertung = $(this);
-        if (typeof $auswertung.attr("data-wert") === "undefined" || !eigenschaft_werte.includes($auswertung.attr("data-wert"))) $auswertung.remove();
+        const wert = $auswertung.attr("data-wert");
+        if (!eigenschaft_werte.includes(wert)) $auswertung.remove();
     });
 
     // DOM ERGÄNZEN

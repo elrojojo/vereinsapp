@@ -18,7 +18,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     if ($auswertung.hasClass("zusammenfassung")) zusammenfassung = true;
 
     // BESCHRIFTUNG AKTUALISIEREN
-    if (!zusammenfassung) $auswertung.find(".beschriftung").text(VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung);
+    if (!zusammenfassung) $auswertung.find(".beschriftung").text(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
 
     // ERGEBNIS_ANZAHL AKTUALISIEREN
     $auswertung.find(".ergebnis_anzahl").each(function () {
