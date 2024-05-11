@@ -1,1 +1,1 @@
-# Vereinsapp 0.51
+# Vereinsapp 0.52

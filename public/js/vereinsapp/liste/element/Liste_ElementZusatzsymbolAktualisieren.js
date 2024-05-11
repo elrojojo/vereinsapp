@@ -65,6 +65,4 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
             [...$zusatzsymbol.find('[data-bs-toggle="popover"]')].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
         }
     }
-
-    if (typeof $zusatzsymbol.attr("data-element_id") !== "undefined") $zusatzsymbol.attr("data-element_id", element_id); // temp_check_doppelte_rueckmeldungen
 }

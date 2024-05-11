@@ -1,1 +1,0 @@
-<div class="d-grid"><button type="button" class="btn btn_temp_check_doppelte_rueckmeldungen_anzeigen btn-outline-primary" data-liste="temp_check_doppelte_rueckmeldungen" data-aktion="loeschen" data-title="Doppelte Rückmeldungen anzeigen">Doppelte Rückmeldungen anzeigen</button></div>

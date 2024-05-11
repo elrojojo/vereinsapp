@@ -21,15 +21,5 @@
     <div class="text-secondary text-center mb-1">Mein LocalStorage</div>
 <?= view( 'Einstellungen/localstorage_leeren' ); ?>
 </div>
-
-<?php if( auth()->user()->can('global.einstellungen') ) { ?>
-<div class="container mb-2">
-    <div class="text-secondary text-center mb-1">Doppelte Rückmeldungen</div>
-<?= view( 'Einstellungen/temp_check_doppelte_rueckmeldungen' ); ?>
-</div>
-
-<div class="blanko_modals" data-liste="temp_check_doppelte_rueckmeldungen">
-<?= view( 'Einstellungen/temp_check_doppelte_rueckmeldungen_modal', array( 'liste' => $liste ) ); ?>
-</div><?php } ?>
 <?= $this->endSection() ?>
 

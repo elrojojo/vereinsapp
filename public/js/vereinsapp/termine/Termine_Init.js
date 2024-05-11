@@ -5,13 +5,6 @@ LISTEN.rueckmeldungen = {
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
-LISTEN.temp_check_doppelte_rueckmeldungen = {
-    controller: "termine",
-    element: "doppelte_rueckmeldung",
-    beschriftung: [{ eigenschaft: "id", prefix: "die doppelte Rückmeldung " }],
-    verlinkte_listen: ["termine", "mitglieder"],
-};
-
 LISTEN.anwesenheiten = {
     controller: "termine",
     element: "anwesenheit",
@@ -125,15 +118,5 @@ function Termine_Init() {
         $modal.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
         Schnittstelle_DomModalOeffnen($modal);
         Schnittstelle_EventVariableUpdDom(liste);
-    });
-
-    // temp_check_doppelte_rueckmeldungen
-    $(document).on("click", ".btn_temp_check_doppelte_rueckmeldungen_anzeigen", function () {
-        Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("temp_check_doppelte_rueckmeldungen", $(this).attr("data-liste"), $(this).attr("data-aktion"), {
-                title: $(this).attr("data-title"),
-            })
-        );
-        Schnittstelle_EventVariableUpdDom($(this).attr("data-liste"));
     });
 }

@@ -124,15 +124,6 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
-        'temp_check_doppelte_rueckmeldungen' => array(
-            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
-            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
-            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'created_at' => array( 'beschriftung' => 'Erstellt', 'typ' => 'zeitpunkt' ),
-            'updated_at' => array( 'beschriftung' => 'Geändert', 'typ' => 'zeitpunkt' ),
-        ),
-
         'anwesenheiten' => array(
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
@@ -224,9 +215,6 @@ class Vereinsapp extends BaseConfig
         'rueckmeldungen' => array(
         ),
 
-        'temp_check_doppelte_rueckmeldungen' => array(
-        ),
-
         'anwesenheiten' => array(
         ),
 
@@ -277,14 +265,6 @@ class Vereinsapp extends BaseConfig
         'rueckmeldungen' => array(
         ),
 
-        'temp_check_doppelte_rueckmeldungen' => array(
-            'termin_id',
-            'mitglied_id',
-            'status',
-            'created_at',
-            'updated_at',
-        ),
-
         'anwesenheiten' => array(
         ),
 
@@ -333,14 +313,6 @@ class Vereinsapp extends BaseConfig
         ),
 
         'rueckmeldungen' => array(
-        ),
-
-        'temp_check_doppelte_rueckmeldungen' => array(
-            'termin_id',
-            'mitglied_id',
-            'status',
-            'created_at',
-            'updated_at',
         ),
 
         'anwesenheiten' => array(
