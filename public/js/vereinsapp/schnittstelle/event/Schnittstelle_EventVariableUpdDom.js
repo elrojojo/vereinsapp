@@ -27,13 +27,15 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
         });
 
         // AUSWERTUNGEN AKTUALISIEREN
-        $('.auswertungen[data-auswertungen="' + liste + '"]').each(function () {
-            Liste_AuswertungenAktualisieren($(this), liste);
+        $('.auswertungen[data-auswertungen="' + liste + '"], .auswertungen[data-liste*=\'"' + liste + "\"']").each(function () {
+            if ($(this).attr("data-auswertungen") == liste) Liste_AuswertungenAktualisieren($(this), liste);
+            else Liste_AuswertungenAktualisieren($(this), $(this).attr("data-auswertungen"));
         });
 
         // AUSWERTUNG AKTUALISIEREN
-        $('.auswertung[data-auswertungen="' + liste + '"]').each(function () {
-            Liste_AuswertungAktualisieren($(this), liste);
+        $('.auswertung[data-auswertungen="' + liste + '"], .auswertung[data-liste="' + liste + '"]').each(function () {
+            if ($(this).attr("data-auswertungen") == liste) Liste_AuswertungAktualisieren($(this), liste);
+            else Liste_AuswertungAktualisieren($(this), $(this).attr("data-auswertungen"));
         });
 
         // VERZEICHNIS AKTUALISIEREN

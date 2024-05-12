@@ -25,8 +25,15 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     if (typeof gruppieren_LocalStorage === "undefined") gruppieren = gruppieren_data;
     else gruppieren = gruppieren_LocalStorage;
     // filtern aus liste_data
-    let liste_filtern = new Array();
-    if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
+    let liste_filtern_data = new Array();
+    if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
+    // filtern aus LocalStorage
+    const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
+    // liste_filtern_data und liste_filtern_LocalStorage kombinieren
+    let liste_filtern;
+    if (liste_filtern_LocalStorage.length == 0) liste_filtern = liste_filtern_data;
+    else if (liste_filtern_data.length == 0) liste_filtern = liste_filtern_LocalStorage;
+    else liste_filtern = [{ verknuepfung: "&&", filtern: liste_filtern_data.concat(liste_filtern_LocalStorage) }];
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
     // GEGEN_LISTE DEFINIEREN
@@ -124,6 +131,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .removeClass("blanko invisible")
                 .attr("data-auswertungen", auswertungen)
                 .attr("data-instanz", auswertungen_instanz)
+                .attr("data-liste", liste)
                 .attr("data-gruppieren", gruppieren)
                 .attr("data-wert", wert);
 
@@ -143,7 +151,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // ZUSAMMENFASSUNG
     $('.auswertung.zusammenfassung[data-instanz="' + auswertungen_instanz + '"]').each(function () {
         const $auswertung = $(this);
-        $auswertung.attr("data-auswertungen", auswertungen);
+        $auswertung.attr("data-auswertungen", auswertungen).attr("data-liste", liste);
         $auswertung
             .find('[data-bs-toggle="collapse"]')
             .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + gruppieren + "_zusammenfassung");

@@ -28,8 +28,16 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         let ergebnis_anzahl, ergebnis_referenz_anzahl;
         if (zusammenfassung) {
             ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status].length;
-            let liste_filtern = new Array();
-            if ("filtern" in liste_data) liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
+            // filtern aus liste_data
+            let liste_filtern_data = new Array();
+            if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
+            // filtern aus LocalStorage
+            const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
+            // liste_filtern_data und liste_filtern_LocalStorage kombinieren
+            let liste_filtern;
+            if (liste_filtern_LocalStorage.length == 0) liste_filtern = liste_filtern_data;
+            else if (liste_filtern_data.length == 0) liste_filtern = liste_filtern_LocalStorage;
+            else liste_filtern = [{ verknuepfung: "&&", filtern: liste_filtern_data.concat(liste_filtern_LocalStorage) }];
             ergebnis_referenz_anzahl = Liste_TabelleGefiltertZurueck(liste_filtern, liste).length;
         } else {
             ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status].length;
