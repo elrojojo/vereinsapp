@@ -7,6 +7,10 @@ function Liste_FilternFormularOeffnen(data, liste) {
     if (!("title" in data)) data.title = undefined;
     const title = data.title;
 
+    const filtern_value = Schnittstelle_DomLetztesModalZurueck()
+        .find(".btn_filtern_formular_oeffnen[data-liste='" + liste + "']")
+        .val();
+
     const $neues_filtern_formular = FILTERN.$blanko_filtern_modal.clone().removeClass("invisible");
     if (typeof title !== "undefined") $neues_filtern_formular.find(".modal-title").text(title);
 
@@ -23,6 +27,7 @@ function Liste_FilternFormularOeffnen(data, liste) {
             .attr("data-eigenschaft", eigenschaft);
 
         $neue_filtern_definition.find(".beschriftung").text(beschriftung);
+        $neue_filtern_definition.find(".btn_filtern_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
 
         if (typ == "vorgegebene_werte") {
             $neue_filtern_definition.find(".filtern_wert").empty();
@@ -33,19 +38,12 @@ function Liste_FilternFormularOeffnen(data, liste) {
             });
         }
 
-        $neue_filtern_definition.find(".btn_filtern_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
-
         $neue_filtern_definition.appendTo($filtern_definitionen);
     });
 
-    $neues_filtern_formular.find(".btn_filtern_speichern").attr("data-liste", liste);
-    const filtern_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_filtern_formular_oeffnen[data-liste='" + liste + "']")
-        .val();
-    if (typeof instanz !== "undefined") {
+    if (typeof instanz !== "undefined")
         $neues_filtern_formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(LISTEN[liste].instanz[instanz].filtern, instanz, liste));
-        $neues_filtern_formular.find(".btn_filtern_speichern").attr("data-instanz", instanz);
-    } else if (isJson(filtern_value))
+    else if (isJson(filtern_value))
         $neues_filtern_formular
             .find(".filtern")
             .append(Liste_Filtern2$FilternZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_value)), undefined, liste));

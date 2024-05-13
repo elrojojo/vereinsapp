@@ -42,6 +42,12 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
             // sortieren wird im Localstorage gespeichert
             if (LOC_sortieren.length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
             else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");
+
+            // gruppieren wird vorbereitet
+            const LOC_gruppieren = LISTEN[liste].instanz[instanz].gruppieren;
+            // gruppieren wird im Localstorage gespeichert
+            if (typeof LOC_gruppieren !== "undefined") Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_gruppieren", LOC_gruppieren);
+            else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_gruppieren");
         });
     });
 }

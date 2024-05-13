@@ -8,7 +8,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     status_auswahl[0] = undefined;
 
     // LISTE DEFINIEREN
-    // liste aus data
+    // liste_data aus data
     let liste_data = $auswertungen.attr("data-liste");
     if (typeof liste_data !== "undefined") liste_data = JSON.parse(liste_data);
     else liste_data = new Object();

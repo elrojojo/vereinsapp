@@ -250,7 +250,6 @@ class Vereinsapp extends BaseConfig
             'funktion',
             'vorstandschaft',
             'aktiv',
-            'abwesend',
         ),
 
         'vergebene_rechte' => array(
@@ -299,7 +298,6 @@ class Vereinsapp extends BaseConfig
             'funktion',
             'vorstandschaft',
             'aktiv',
-            'abwesend',
         ),
 
         'vergebene_rechte' => array(
@@ -321,6 +319,48 @@ class Vereinsapp extends BaseConfig
         'notenbank' => array(
             'titel',
             'titel_nr',
+            'kategorie',
+            'anzahl_noten',
+            'anzahl_audio',
+            'anzahl_verzeichnis',
+        ),
+
+    );
+    
+    /**
+     * --------------------------------------------------------------------------
+     * Gruppierbare Eigenschaften
+     * --------------------------------------------------------------------------
+     *
+     * Eigenschaften, die gruppierbar sein sollen
+     */
+    public $gruppierbare_eigenschaften = array(
+
+        'mitglieder' => array(
+            'alter',
+            'postleitzahl',
+            'wohnort',
+            'geschlecht',
+            'register',
+            'funktion',
+            'vorstandschaft',
+            'aktiv',
+        ),
+
+        'vergebene_rechte' => array(
+        ),
+
+        'termine' => array(
+            'kategorie',
+        ),
+
+        'rueckmeldungen' => array(
+        ),
+
+        'anwesenheiten' => array(
+        ),
+
+        'notenbank' => array(
             'kategorie',
             'anzahl_noten',
             'anzahl_audio',

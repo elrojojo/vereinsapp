@@ -13,8 +13,9 @@ const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;
 const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
 
-const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->sortierbare_eigenschaften ) ?>;
 const FILTERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->filterbare_eigenschaften ) ?>;
+const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->sortierbare_eigenschaften ) ?>;
+const GRUPPIERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->gruppierbare_eigenschaften ) ?>;
 
 const TERMINE_KATEGORIE_FILTERN_MITGLIEDER = <?= json_encode( config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) ?>;
 

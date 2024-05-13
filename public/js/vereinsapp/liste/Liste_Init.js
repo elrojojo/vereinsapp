@@ -33,6 +33,8 @@ function Liste_Init() {
 
     Liste_SortierenInit();
 
+    Liste_GruppierenInit();
+
     // SORTABLE
     $(".sortable").sortable({
         handle: ".sortable_handle",
