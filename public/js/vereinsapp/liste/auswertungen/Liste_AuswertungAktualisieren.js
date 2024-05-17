@@ -27,7 +27,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
 
         let ergebnis_anzahl, ergebnis_referenz_anzahl;
         if (zusammenfassung) {
-            ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status].length;
+            ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_status[status].length;
             // filtern aus liste_data
             let liste_filtern_data = new Array();
             if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
@@ -40,8 +40,8 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
             else liste_filtern = [{ verknuepfung: "&&", filtern: liste_filtern_data.concat(liste_filtern_LocalStorage) }];
             ergebnis_referenz_anzahl = Liste_TabelleGefiltertZurueck(liste_filtern, liste).length;
         } else {
-            ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status].length;
-            ergebnis_referenz_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_wert[wert].length;
+            ergebnis_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis[wert][status].length;
+            ergebnis_referenz_anzahl = LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_wert[wert].length;
         }
 
         if ($ergebnis_anzahl.hasClass("progress"))
@@ -55,8 +55,8 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         const status = $ergebnis.attr("data-status");
 
         let ergebnis;
-        if (zusammenfassung) ergebnis = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis_status[status];
-        else ergebnis = LISTEN[auswertungen].instanz[auswertungen_instanz].cluster.ergebnis[wert][status];
+        if (zusammenfassung) ergebnis = LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_status[status];
+        else ergebnis = LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis[wert][status];
 
         filtern = "";
         $.each(ergebnis, function (position, id) {

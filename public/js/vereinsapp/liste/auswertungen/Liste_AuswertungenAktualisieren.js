@@ -1,6 +1,5 @@
 function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = $auswertungen.attr("id");
-    const INSTANZ = LISTEN[auswertungen].instanz[auswertungen_instanz];
 
     // STATUS_AUSWAHL DEFINIEREN
     let status_auswahl = $auswertungen.attr("data-status_auswahl");
@@ -35,8 +34,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     if (liste_filtern_LocalStorage.length == 0) liste_filtern = liste_filtern_data;
     else if (liste_filtern_data.length == 0) liste_filtern = liste_filtern_LocalStorage;
     else liste_filtern = [{ verknuepfung: "&&", filtern: liste_filtern_data.concat(liste_filtern_LocalStorage) }];
-    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
-    const tabelle_gefiltert_gruppiert = Liste_ArrayGruppiertZurueck(tabelle_gefiltert, gruppieren);
+    const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
     // GEGEN_LISTE DEFINIEREN
     // gegen_liste_data aus data
@@ -54,7 +52,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // AUSWERTUNGEN FILTERN
     // filtern für liste definieren
     const auswertungen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
-    $.each(tabelle_gefiltert, function () {
+    $.each(liste_tabelle_gefiltert, function () {
         auswertungen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: this.id });
     });
     // filtern für gegen_liste definieren
@@ -62,56 +60,28 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     $.each(gegen_tabelle_gefiltert, function () {
         auswertungen_gegen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: this.id });
     });
-    // filtern für liste und filtern für gegen_liste kombinieren
-    const auswertungen_filtern = [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern, auswertungen_gegen_liste_filtern] }];
-    // auswertungen filtern
-    const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(auswertungen_filtern, auswertungen);
+    // filtern für liste und filtern für gegen_liste kombinieren und damit auswertungen filtern
+    const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
+        [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern, auswertungen_gegen_liste_filtern] }],
+        auswertungen
+    );
 
     // WERTE ZU GRUPPIEREN SORTIEREN
-    const gruppieren_werte = Object.keys(tabelle_gefiltert_gruppiert);
+    const gruppieren_werte = Object.keys(Liste_ArrayGruppiertZurueck(liste_tabelle_gefiltert, gruppieren));
     gruppieren_werte.sort();
 
-    // CLUSTERN
-    INSTANZ.cluster = new Object();
-    // ergebnis vorbereiten
-    INSTANZ.cluster.ergebnis = new Object();
-    $.each(gruppieren_werte, function (position, wert) {
-        INSTANZ.cluster.ergebnis[wert] = new Object();
-        $.each(status_auswahl, function (status) {
-            INSTANZ.cluster.ergebnis[wert][status] = new Array();
-        });
-    });
-    // ergebnis_wert vorbereiten
-    INSTANZ.cluster.ergebnis_wert = new Object();
-    $.each(gruppieren_werte, function (position, wert) {
-        INSTANZ.cluster.ergebnis_wert[wert] = new Array();
-    });
-    // ergebnis_status vorbereiten
-    INSTANZ.cluster.ergebnis_status = new Object();
-    $.each(status_auswahl, function (status) {
-        INSTANZ.cluster.ergebnis_status[status] = new Array();
-    });
-
-    // ergebnis, ergebnis_wert und ergebnis_status clustern
-    $.each(auswertungen_tabelle_gefiltert, function () {
-        const auswertung = this;
-        const status = auswertung.status;
-        const element_id = auswertung[LISTEN[liste].element + "_id"];
-        const wert = LISTEN[liste].tabelle[element_id][gruppieren];
-        INSTANZ.cluster.ergebnis[wert][status].push(element_id);
-        INSTANZ.cluster.ergebnis_status[status].push(element_id);
-        INSTANZ.cluster.ergebnis_wert[wert].push(element_id);
-    });
-    // ergebnis[wert][0] clustern und in ergebnis_wert integrieren
-    $.each(tabelle_gefiltert, function (position, element) {
-        const element_id = element.id;
-        const wert = LISTEN[liste].tabelle[element_id][gruppieren];
-        if (!INSTANZ.cluster.ergebnis_wert[wert].includes(element_id)) {
-            INSTANZ.cluster.ergebnis_wert[wert].push(element_id);
-            INSTANZ.cluster.ergebnis_status[0].push(element_id);
-            INSTANZ.cluster.ergebnis[wert][0].push(element_id);
-        }
-    });
+    // ERGEBNIS DER AUSWERTUNGEN DEFINIEREN
+    const ergebnis = Liste_AuswertungenErgebnisZurueck(
+        auswertungen_tabelle_gefiltert,
+        liste_tabelle_gefiltert,
+        gruppieren,
+        gruppieren_werte,
+        status_auswahl,
+        liste
+    );
+    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis = ergebnis.ergebnis;
+    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_wert = ergebnis.ergebnis_wert;
+    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_status = ergebnis.ergebnis_status;
 
     // DOM LÖSCHEN
     $auswertungen.find(".auswertung").each(function () {
