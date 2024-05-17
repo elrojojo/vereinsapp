@@ -337,7 +337,6 @@ class Vereinsapp extends BaseConfig
     public $gruppierbare_eigenschaften = array(
 
         'mitglieder' => array(
-            'alter',
             'postleitzahl',
             'wohnort',
             'geschlecht',
