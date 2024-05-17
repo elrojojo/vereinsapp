@@ -79,9 +79,23 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         status_auswahl,
         liste
     );
-    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis = ergebnis.ergebnis;
-    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_wert = ergebnis.ergebnis_wert;
-    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_status = ergebnis.ergebnis_status;
+
+    const ergebnis_wert = new Object();
+    const ergebnis_status = new Object();
+    $.each(gruppieren_werte, function (position, wert) {
+        ergebnis_wert[wert] = new Array();
+        $.each(ergebnis[wert], function (status) {
+            if (!(status in ergebnis_status)) ergebnis_status[status] = new Array();
+            $.each(ergebnis[wert][status], function (element_id) {
+                ergebnis_wert[wert].push(element_id);
+                ergebnis_status[status].push(element_id);
+            });
+        });
+    });
+
+    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis = ergebnis;
+    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_wert = ergebnis_wert;
+    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_status = ergebnis_status;
 
     // DOM LÖSCHEN
     $auswertungen.find(".auswertung").each(function () {
