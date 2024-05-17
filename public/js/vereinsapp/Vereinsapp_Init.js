@@ -65,12 +65,12 @@ In der .env auch die Arrays von Vereinsapp überschreibar machen
 Argumente sinnvoll ordnen ($ eher nach hinten?)
 Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
 Sortierung nicht mehr case sensitive machen
+Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-filtern kombiniert aus data und LocalStorage mittels [{ verknuepfung: "&&", filtern: [liste_filtern_data, liste_filtern_LocalStorage] }]
 Ist isJson(wert_bereinigt) in Schnittstelle_VariableWertBereinigtZurueck überhaupt noch notwendig? (alle Vorkommen prüfen!)
 
 */

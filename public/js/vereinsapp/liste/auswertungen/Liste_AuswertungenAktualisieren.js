@@ -33,7 +33,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     let liste_filtern;
     if (liste_filtern_LocalStorage.length == 0) liste_filtern = liste_filtern_data;
     else if (liste_filtern_data.length == 0) liste_filtern = liste_filtern_LocalStorage;
-    else liste_filtern = [{ verknuepfung: "&&", filtern: liste_filtern_data.concat(liste_filtern_LocalStorage) }];
+    else liste_filtern = [{ verknuepfung: "&&", filtern: [liste_filtern_data[0], liste_filtern_LocalStorage[0]] }];
     const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
     // GEGEN_LISTE DEFINIEREN
@@ -51,18 +51,18 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
     // AUSWERTUNGEN FILTERN
     // filtern für liste definieren
-    const auswertungen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
+    const auswertungen_liste_filtern = [{ verknuepfung: "||", filtern: new Array() }];
     $.each(liste_tabelle_gefiltert, function () {
-        auswertungen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: this.id });
+        auswertungen_liste_filtern[0].filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: this.id });
     });
     // filtern für gegen_liste definieren
-    const auswertungen_gegen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
+    const auswertungen_gegen_liste_filtern = [{ verknuepfung: "||", filtern: new Array() }];
     $.each(gegen_liste_tabelle_gefiltert, function () {
-        auswertungen_gegen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: this.id });
+        auswertungen_gegen_liste_filtern[0].filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: this.id });
     });
     // filtern für liste und filtern für gegen_liste kombinieren und damit auswertungen filtern
     const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
-        [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern, auswertungen_gegen_liste_filtern] }],
+        [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern[0], auswertungen_gegen_liste_filtern[0]] }],
         auswertungen
     );
 

@@ -1,5 +1,4 @@
-function Liste_Aktualisieren($liste) {
-    const liste = $liste.attr("data-liste");
+function Liste_Aktualisieren($liste, liste) {
     const instanz = $liste.attr("id");
 
     // TABELLE FILTERN
@@ -18,7 +17,7 @@ function Liste_Aktualisieren($liste) {
             const start_position = Liste_FilternEigenschaftPositionZurueck(filtern_data, "start");
             if (start_position.length > 1) filtern_data = Liste_FilternPositionGeloeschtZurueck(filtern_data, start_position);
         }
-        filtern_kombiniert = [{ verknuepfung: "&&", filtern: filtern_data.concat(filtern_LocalStorage) }];
+        filtern_kombiniert = [{ verknuepfung: "&&", filtern: [filtern_data[0], filtern_LocalStorage[0]] }];
     }
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_kombiniert, liste);
 

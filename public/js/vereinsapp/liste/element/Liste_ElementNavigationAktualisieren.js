@@ -4,10 +4,11 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     const instanz = $element_navigation.attr("data-instanz");
 
     // TABELLE FILTERN
-    let filtern = $element_navigation.attr("data-filtern");
-    if (typeof filtern !== "undefined") filtern = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern));
-    else filtern = new Array();
-    // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
+    // filtern aus data
+    let filtern_data = $element_navigation.attr("data-filtern");
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_data));
+    else filtern_data = new Array();
+    // filtern aus LocalStorage (Problem: LISTEN[liste].instanz[instanz].filtern existiert nicht, weil keine .liste mit dieser instanz existiert)
     let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
     if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Array();
     function LOC_upd_VAR_filtern(filtern, liste) {
@@ -17,27 +18,32 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
         });
     }
     LOC_upd_VAR_filtern(filtern_LocalStorage, liste);
-    if (filtern_LocalStorage.length > 0) {
-        if (liste == "termine") {
-            // && LISTEN.termine.tabelle.length > 1 && "start" in LISTEN.termine.tabelle[1]) { erzeugt Fehler, weil ID 1 evtl. nicht belegt ist
-            const start_position = Liste_FilternEigenschaftPositionZurueck(filtern, "start");
-            if (start_position.length > 1 && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
-                filtern = Liste_FilternPositionGeloeschtZurueck(filtern, start_position);
+    // data und LocalStorage kombinieren
+    let filtern_kombiniert;
+    if (filtern_LocalStorage.length == 0) filtern_kombiniert = filtern_data;
+    else if (filtern_data.length == 0) filtern_kombiniert = filtern_LocalStorage;
+    else {
+        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1) {
+            const start_position = Liste_FilternEigenschaftPositionZurueck(filtern_data, "start");
+            if (start_position.length > 1) filtern_data = Liste_FilternPositionGeloeschtZurueck(filtern_data, start_position);
         }
-        if (filtern.length == 0) filtern = filtern_LocalStorage;
-        else filtern = [{ verknuepfung: "&&", filtern: filtern.concat(filtern_LocalStorage) }];
+        filtern_kombiniert = [{ verknuepfung: "&&", filtern: [filtern_data[0], filtern_LocalStorage[0]] }];
     }
-    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern, liste);
+    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_kombiniert, liste);
 
     // TABELLE SORTIEREN
-    let sortieren = $element_navigation.attr("data-sortieren");
-    if (typeof sortieren !== "undefined") sortieren = JSON.parse(sortieren);
-    else sortieren = new Array();
-    // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
+    // sortieren aus data
+    let sortieren_data = $element_navigation.attr("data-sortieren");
+    if (typeof sortieren_data !== "undefined") sortieren_data = JSON.parse(sortieren_data);
+    else sortieren_data = new Array();
+    // sortieren aus LocalStorage (Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert)
     let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
     if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
-    if (sortieren_LocalStorage.length > 0) sortieren = sortieren_LocalStorage;
-    const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren);
+    // data und LocalStorage kombinieren
+    let sortieren_kombiniert;
+    if (sortieren_LocalStorage.length == 0) sortieren_kombiniert = sortieren_data;
+    else sortieren_kombiniert = sortieren_LocalStorage;
+    const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 
     let vorherige_element_id = undefined;
     let naechste_element_id = undefined;

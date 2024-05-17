@@ -23,7 +23,7 @@ function Schnittstelle_EventElementErgaenzenTermine(termin) {
         if (termin["filtern_mitglieder"].length == 0) filtern_mitglieder_kombiniert = termin_kategorie_filtern_mitglieder;
         else
             filtern_mitglieder_kombiniert = [
-                { verknuepfung: "&&", filtern: termin["filtern_mitglieder"].concat(termin_kategorie_filtern_mitglieder) },
+                { verknuepfung: "&&", filtern: [termin["filtern_mitglieder"][0], termin_kategorie_filtern_mitglieder[0]] },
             ];
     else filtern_mitglieder_kombiniert = termin["filtern_mitglieder"];
     $.each(Liste_TabelleGefiltertZurueck(filtern_mitglieder_kombiniert, "mitglieder"), function () {

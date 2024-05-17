@@ -2,7 +2,7 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
     Schnittstelle_EventDurchfuehren(liste, naechste_aktionen, function (liste) {
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            Liste_Aktualisieren($(this));
+            Liste_Aktualisieren($(this), liste);
         });
 
         // ELEMENT AKTUALISIEREN
