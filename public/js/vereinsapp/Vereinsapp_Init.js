@@ -70,7 +70,6 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
-Helper-Funktionen für Auswertungen basteln (bspw. für liste aus liste_data)
 filtern kombiniert aus data und LocalStorage mittels [{ verknuepfung: "&&", filtern: [liste_filtern_data, liste_filtern_LocalStorage] }]
 Ist isJson(wert_bereinigt) in Schnittstelle_VariableWertBereinigtZurueck überhaupt noch notwendig? (alle Vorkommen prüfen!)
 

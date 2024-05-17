@@ -47,7 +47,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // gegen_liste_filtern aus gegen_liste_data
     let gegen_liste_filtern = new Array();
     if ("filtern" in gegen_liste_data) gegen_liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(gegen_liste_data.filtern);
-    const gegen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(gegen_liste_filtern, gegen_liste);
+    const gegen_liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(gegen_liste_filtern, gegen_liste);
 
     // AUSWERTUNGEN FILTERN
     // filtern für liste definieren
@@ -57,7 +57,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     });
     // filtern für gegen_liste definieren
     const auswertungen_gegen_liste_filtern = { verknuepfung: "||", filtern: new Array() };
-    $.each(gegen_tabelle_gefiltert, function () {
+    $.each(gegen_liste_tabelle_gefiltert, function () {
         auswertungen_gegen_liste_filtern.filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: this.id });
     });
     // filtern für liste und filtern für gegen_liste kombinieren und damit auswertungen filtern
@@ -70,8 +70,8 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const gruppieren_werte = Object.keys(Liste_ArrayGruppiertZurueck(liste_tabelle_gefiltert, gruppieren));
     gruppieren_werte.sort();
 
-    // ERGEBNIS DER AUSWERTUNGEN DEFINIEREN
-    const ergebnis = Liste_AuswertungenErgebnisZurueck(
+    // ERGEBNIS DER AUSWERTUNGEN GLOBAL SPEICHERN
+    LISTEN[auswertungen].instanz[auswertungen_instanz].auswertungen_ergebnis = Liste_AuswertungenErgebnisZurueck(
         auswertungen_tabelle_gefiltert,
         liste_tabelle_gefiltert,
         gruppieren,
@@ -79,23 +79,6 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         status_auswahl,
         liste
     );
-
-    const ergebnis_wert = new Object();
-    const ergebnis_status = new Object();
-    $.each(gruppieren_werte, function (position, wert) {
-        ergebnis_wert[wert] = new Array();
-        $.each(ergebnis[wert], function (status) {
-            if (!(status in ergebnis_status)) ergebnis_status[status] = new Array();
-            $.each(ergebnis[wert][status], function (element_id) {
-                ergebnis_wert[wert].push(element_id);
-                ergebnis_status[status].push(element_id);
-            });
-        });
-    });
-
-    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis = ergebnis;
-    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_wert = ergebnis_wert;
-    LISTEN[auswertungen].instanz[auswertungen_instanz].ergebnis_status = ergebnis_status;
 
     // DOM LÖSCHEN
     $auswertungen.find(".auswertung").each(function () {
@@ -118,9 +101,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .attr("data-wert", wert);
 
             const neue_id = zufaelligeZeichenketteZurueck(8);
-            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#auswertung_" + neue_id);
-            $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#auswertung_" + neue_id);
-            $neue_auswertung.find(".collapse").attr("id", "auswertung_" + neue_id);
+            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#target_" + neue_id);
+            $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#target_" + neue_id);
+            $neue_auswertung.find(".collapse").attr("id", "target_" + neue_id);
 
             if (position == 0) $neue_auswertung.appendTo($auswertungen);
             else
@@ -128,15 +111,5 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                     $auswertungen.find('.auswertung[data-gruppieren="' + gruppieren + '"][data-wert="' + gruppieren_werte[position - 1] + '"]')
                 );
         }
-    });
-
-    // ZUSAMMENFASSUNG
-    $('.auswertung.zusammenfassung[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        const $auswertung = $(this);
-        $auswertung.attr("data-auswertungen", auswertungen).attr("data-liste", liste);
-        $auswertung
-            .find('[data-bs-toggle="collapse"]')
-            .attr("data-bs-target", "#auswertung_" + auswertungen_instanz + "_" + gruppieren + "_zusammenfassung");
-        $auswertung.find(".collapse").attr("id", "auswertung_" + auswertungen_instanz + "_" + gruppieren + "_zusammenfassung");
     });
 }

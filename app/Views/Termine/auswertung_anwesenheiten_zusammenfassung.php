@@ -1,4 +1,4 @@
-<li class="auswertung zusammenfassung" data-instanz="<?= $zusammenfassung['instanz']; ?>" style="list-style: none;">
+<li class="auswertung zusammenfassung" data-instanz="<?= $zusammenfassung['instanz']; ?>" data-auswertungen="<?= $zusammenfassung['auswertungen']; ?>" data-liste="<?= $zusammenfassung['liste']; ?>" style="list-style: none;">
     <div class="row g-0">
         <div class="ergebnis_anzahl col-1 h5 float-start text-start" data-status=1></div>
         <div class="col-10 text-center">

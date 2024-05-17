@@ -23,5 +23,5 @@ if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste='<?
 
 </ul>
 
-<?= view( $view.'_zusammenfassung', array( 'zusammenfassung' => array( 'instanz' => $auswertungen['id'], 'beschriftung' => "Summe", ), ) ); ?>
+<?= view( $view.'_zusammenfassung', array( 'zusammenfassung' => array( 'instanz' => $auswertungen['id'], 'auswertungen' => $auswertungen['auswertungen'], 'liste' => $auswertungen['liste']['liste'], 'beschriftung' => "Summe", ), ) ); ?>
 
