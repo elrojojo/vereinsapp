@@ -72,6 +72,5 @@ Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den ansc
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
-Migrations um Notenbank, Termine, Anwesenheiten und Rückmeldungen erweitern
 
 */
