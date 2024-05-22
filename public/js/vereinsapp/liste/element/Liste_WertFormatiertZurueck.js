@@ -43,6 +43,9 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "kategorie":
             wert_formatiert = VORGEGEBENE_WERTE[liste].kategorie[wert].beschriftung;
             break;
+        case "wert":
+            wert_formatiert = parseFloat(wert).toFixed(2).replace(".", ";").replace(",", ".").replace(";", ",") + "&euro;";
+            break;
         case "anzahl_noten":
             wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE["noten"]["bootstrap"] + '">';
             break;

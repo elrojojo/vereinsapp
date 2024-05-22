@@ -51,7 +51,7 @@ class Vereinsapp extends BaseConfig
     public $controllers = array(
         'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
         'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine']['bootstrap'] ),
-        // 'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog']['bootstrap'] ),
+        'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog']['bootstrap'] ),
         'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank']['bootstrap'] ),
         // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => SYMBOLE['umfragen']['bootstrap'] ),
         'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder']['bootstrap'] ),
@@ -65,6 +65,7 @@ class Vereinsapp extends BaseConfig
      */
     public $menue = array(
         'termine',
+        'strafkatalog',
         'notenbank',
         'mitglieder',
         'einstellungen',
@@ -128,6 +129,13 @@ class Vereinsapp extends BaseConfig
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+        ),
+
+        'strafkatalog' => array(
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
+            'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
+            'kategorie' => array( 'beschriftung' => 'Kapitel', 'typ' => 'vorgegebene_werte' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
@@ -218,6 +226,18 @@ class Vereinsapp extends BaseConfig
         'anwesenheiten' => array(
         ),
 
+        'strafkatalog' => array(
+
+            'kategorie' => array (
+                'ohne' => array( 'beschriftung' => 'Sonstiges', ),
+                'proben' => array( 'beschriftung' => 'Proben', ),
+                'veranstaltungen' => array( 'beschriftung' => 'Veranstaltungen', ),
+                'haessordnung' => array( 'beschriftung' => 'Häßordnung', ),
+                'fahrer' => array( 'beschriftung' => 'Fahrer', ),
+            ),
+
+        ),
+
         'notenbank' => array(
 
             'kategorie' => array (
@@ -265,6 +285,11 @@ class Vereinsapp extends BaseConfig
         ),
 
         'anwesenheiten' => array(
+        ),
+
+        'strafkatalog' => array(
+            'wert',
+            'kategorie',
         ),
 
         'notenbank' => array(
@@ -316,6 +341,12 @@ class Vereinsapp extends BaseConfig
         'anwesenheiten' => array(
         ),
 
+        'strafkatalog' => array(
+            'titel',
+            'wert',
+            'kategorie',
+        ),
+
         'notenbank' => array(
             'titel',
             'titel_nr',
@@ -359,6 +390,10 @@ class Vereinsapp extends BaseConfig
         'anwesenheiten' => array(
         ),
 
+        'strafkatalog' => array(
+            'kategorie',
+        ),
+        
         'notenbank' => array(
             'kategorie',
             'anzahl_noten',

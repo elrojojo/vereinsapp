@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     if (LOGGEDIN) Mitglieder_Init();
     if (LOGGEDIN) Termine_Init();
+    if (LOGGEDIN) Strafkatalog_Init();
     if (LOGGEDIN) Notenbank_Init();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
