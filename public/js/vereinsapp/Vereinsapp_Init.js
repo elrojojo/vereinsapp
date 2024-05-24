@@ -34,20 +34,19 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
+Proberaum-Belegungsplan
 Mitglieder Lebenslauf
-Termin mit Ende erweitern
 Terminserie / Regeltermine
+Termin mit Ende erweitern
 Termin als ics exportieren
-Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
-Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
+Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Verzeichnis filtern und sortieren
-Batch über filtern- und sortieren-Button legen
+Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Link zu Github neben die Version
-Meta-Infos für Unterverzeichnisse und Dateien anzeigen
-Bemerkung zum Termin in der Listenansicht als Pop-up anzeigen
-Proberaum-Belegungsplan
+Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
+Batch über filtern- und sortieren-Button legen
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
@@ -73,5 +72,8 @@ Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den ansc
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
+Dreistellige Nummern in der Notenbank als Standard einführen
+Bemerkung zum Termin zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
+Select JANEIN als check umbauen
 
 */

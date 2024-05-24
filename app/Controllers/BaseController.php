@@ -208,6 +208,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenMitglieder.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenTermine.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenStrafkatalog.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenKassenbuch.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenNotenbank.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_NaechsteAktion.js?v='.VERSION), );
@@ -234,6 +235,9 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_StrafeAendern.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragErstellen.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragAendern.js?v='.VERSION), );
+            // $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragAktivieren.js?v='.VERSION), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_TitelErstellen.js?v='.VERSION), );

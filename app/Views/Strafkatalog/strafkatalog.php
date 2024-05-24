@@ -3,6 +3,10 @@
 <?= $this->section( 'containers' ); ?>
 
 <div class="container mb-2">
+<?= view( 'Strafkatalog/kassenbuch_oeffnen' ); ?>
+</div>
+
+<div class="container mb-2">
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aktueller_strafkatalog'] ) ); ?>
 </div>
 

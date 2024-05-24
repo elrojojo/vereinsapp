@@ -139,6 +139,15 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
+        'kassenbuch' => array(
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
+            'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
+            'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // PHP
+        ),
+
         'notenbank' => array(
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
@@ -238,6 +247,12 @@ class Vereinsapp extends BaseConfig
 
         ),
 
+        'kassenbuch' => array(
+
+            'aktiv' => JANEIN,
+
+        ),
+
         'notenbank' => array(
 
             'kategorie' => array (
@@ -290,6 +305,12 @@ class Vereinsapp extends BaseConfig
         'strafkatalog' => array(
             'wert',
             'kategorie',
+        ),
+
+        'kassenbuch' => array(
+            'wert',
+            'aktiv',
+            'letzte_aktivitaet',
         ),
 
         'notenbank' => array(
@@ -347,6 +368,13 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
+        'kassenbuch' => array(
+            'titel',
+            'wert',
+            'aktiv',
+            'letzte_aktivitaet',
+        ),
+
         'notenbank' => array(
             'titel',
             'titel_nr',
@@ -392,6 +420,10 @@ class Vereinsapp extends BaseConfig
 
         'strafkatalog' => array(
             'kategorie',
+        ),
+
+        'kassenbuch' => array(
+            'aktiv',
         ),
         
         'notenbank' => array(
