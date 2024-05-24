@@ -1,16 +1,16 @@
-function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloesend, $bestaetigung, element_id) {
+function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloesend, $bestaetigung, mitglied_id) {
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du " + Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
+            "Willst du " + Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
             title,
             "btn_mitglied_einmal_link_email",
-            { liste: "mitglieder", element_id: element_id, werte: JSON.stringify({ email: true }) }
+            { liste: "mitglieder", element_id: mitglied_id, werte: JSON.stringify({ email: true }) }
         );
     else {
         Schnittstelle_BtnWartenStart($btn_ausloesend);
 
         const ajax_data = new Object();
-        ajax_data.id = element_id;
+        ajax_data.id = mitglied_id;
         ajax_data.email = true;
 
         const ajax_dom = new Object();

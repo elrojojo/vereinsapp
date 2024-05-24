@@ -1,9 +1,9 @@
-function Mitglieder_MitgliedErstellen(formular_oeffnen, title, $btn_ausloesend, $formular, element_id) {
+function Mitglieder_MitgliedErstellen(formular_oeffnen, title, $btn_ausloesend, $formular, mitglied_id) {
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", "erstellen", {
                 title: title,
-                element_id: element_id,
+                element_id: mitglied_id,
             })
         );
     else {
@@ -24,13 +24,14 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, title, $btn_ausloesend, 
             liste: "mitglieder",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
-                if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
+                if ("mitglied_id" in AJAX.antwort && typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.mitglied_id);
                 else AJAX.data.id = Number(LISTEN["mitglieder"].tabelle.length + 1);
-                const element_id = AJAX.data.id;
+                const mitglied_id = AJAX.data.id;
 
-                LISTEN["mitglieder"].tabelle[element_id] = new Object();
+                LISTEN["mitglieder"].tabelle[mitglied_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "mitglieder");
+                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
+                        Schnittstelle_VariableRein(wert, eigenschaft, mitglied_id, "mitglieder");
                 });
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder", [
                     Schnittstelle_EventLocalstorageUpdVariable,
@@ -40,7 +41,7 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, title, $btn_ausloesend, 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$formular);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "mitglieder") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich erstellt.");
             },
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())

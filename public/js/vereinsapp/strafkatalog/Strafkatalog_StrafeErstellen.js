@@ -1,9 +1,9 @@
-function Strafkatalog_StrafeErstellen(formular_oeffnen, title, $btn_ausloesend, $formular, element_id) {
+function Strafkatalog_StrafeErstellen(formular_oeffnen, title, $btn_ausloesend, $formular, strafe_id) {
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "strafkatalog", "erstellen", {
                 title: title,
-                element_id: element_id,
+                element_id: strafe_id,
             })
         );
     else {
@@ -24,14 +24,14 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, title, $btn_ausloesend, 
             liste: "strafkatalog",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
-                if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
+                if ("strafe_id" in AJAX.antwort && typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.strafe_id);
                 else AJAX.data.id = Number(LISTEN["strafkatalog"].tabelle.length + 1);
-                const element_id = AJAX.data.id;
+                const strafe_id = AJAX.data.id;
 
-                LISTEN["strafkatalog"].tabelle[element_id] = new Object();
+                LISTEN["strafkatalog"].tabelle[strafe_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, element_id, "strafkatalog");
+                        Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");
                 });
                 Schnittstelle_EventVariableUpdLocalstorage("strafkatalog", [
                     Schnittstelle_EventLocalstorageUpdVariable,
@@ -41,7 +41,7 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, title, $btn_ausloesend, 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$formular);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "strafkatalog") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(strafe_id, "strafkatalog") + " wurde erfolgreich erstellt.");
             },
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())

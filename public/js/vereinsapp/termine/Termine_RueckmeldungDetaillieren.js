@@ -1,9 +1,9 @@
-function Termine_RueckmeldungDetaillieren(formular_oeffnen, title, $btn_ausloesend, $formular, element_id) {
+function Termine_RueckmeldungDetaillieren(formular_oeffnen, title, $btn_ausloesend, $formular, rueckmeldung_id) {
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("bemerkung", "rueckmeldungen", "detaillieren", {
                 title: title,
-                element_id: element_id,
+                element_id: rueckmeldung_id,
             })
         );
     else {
@@ -11,7 +11,7 @@ function Termine_RueckmeldungDetaillieren(formular_oeffnen, title, $btn_ausloese
 
         const ajax_data = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
-        ajax_data.id = element_id;
+        ajax_data.id = rueckmeldung_id;
 
         const ajax_dom = new Object();
         ajax_dom.$btn_ausloesend = $btn_ausloesend;
@@ -25,10 +25,9 @@ function Termine_RueckmeldungDetaillieren(formular_oeffnen, title, $btn_ausloese
             liste: "rueckmeldungen",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
-                const element_id = AJAX.data.id;
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, element_id, "rueckmeldungen");
+                        Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, "rueckmeldungen");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("rueckmeldungen", [

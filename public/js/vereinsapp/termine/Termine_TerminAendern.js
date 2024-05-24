@@ -1,9 +1,9 @@
-function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formular, element_id) {
+function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formular, termin_id) {
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "termine", "aendern", {
                 title: title,
-                element_id: element_id,
+                element_id: termin_id,
             })
         );
     else {
@@ -11,7 +11,7 @@ function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formul
 
         const ajax_data = new Object();
         Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
-        ajax_data.id = element_id;
+        ajax_data.id = termin_id;
 
         const ajax_dom = new Object();
         ajax_dom.$btn_ausloesend = $btn_ausloesend;
@@ -25,9 +25,9 @@ function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formul
             liste: "termine",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
-                const element_id = AJAX.data.id;
+                const termin_id = AJAX.data.id;
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "termine");
+                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, termin_id, "termine");
                 });
                 Schnittstelle_EventVariableUpdLocalstorage("termine", [
                     Schnittstelle_EventLocalstorageUpdVariable,
@@ -37,7 +37,7 @@ function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formul
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$formular);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "termine") + " wurde erfolgreich geändert.");
+                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(termin_id, "termine") + " wurde erfolgreich geändert.");
             },
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())

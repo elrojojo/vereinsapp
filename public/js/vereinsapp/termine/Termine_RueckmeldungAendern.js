@@ -1,8 +1,8 @@
-function Termine_RueckmeldungAendern($btn_ausloesend, status, element_id) {
+function Termine_RueckmeldungAendern($btn_ausloesend, status, termin_id) {
     Schnittstelle_BtnWartenStart($btn_ausloesend);
 
     const ajax_data = new Object();
-    ajax_data.id = element_id;
+    ajax_data.id = termin_id;
     ajax_data.status = status;
     ajax_data.bemerkung = "";
 

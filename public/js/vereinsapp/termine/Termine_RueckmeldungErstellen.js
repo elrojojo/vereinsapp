@@ -23,13 +23,13 @@ function Termine_RueckmeldungErstellen($btn_ausloesend, termin_id, mitglied_id, 
         liste: "rueckmeldungen",
         dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
-            if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
+            if ("rueckmeldung_id" in AJAX.antwort && typeof AJAX.antwort.rueckmeldung_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
             else AJAX.data.id = Number(LISTEN["rueckmeldungen"].tabelle.length + 1);
-            const element_id = AJAX.data.id;
+            const rueckmeldung_id = AJAX.data.id;
 
-            LISTEN["rueckmeldungen"].tabelle[element_id] = new Object();
+            LISTEN["rueckmeldungen"].tabelle[rueckmeldung_id] = new Object();
             $.each(AJAX.data, function (eigenschaft, wert) {
-                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "rueckmeldungen");
+                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");
             });
 
             // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""

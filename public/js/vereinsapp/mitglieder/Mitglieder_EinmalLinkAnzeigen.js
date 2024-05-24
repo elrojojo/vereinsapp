@@ -1,16 +1,16 @@
-function Mitglieder_EinmalLinkAnzeigen(formular_oeffnen, title, $btn_ausloesend, $formular, element_id) {
+function Mitglieder_EinmalLinkAnzeigen(formular_oeffnen, title, $btn_ausloesend, $formular, mitglied_id) {
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", "einmal_link_anzeigen", {
                 title: title,
-                element_id: element_id,
+                element_id: mitglied_id,
             })
         );
     else {
         Schnittstelle_BtnWartenStart($btn_ausloesend);
 
         const ajax_data = new Object();
-        ajax_data.id = element_id;
+        ajax_data.id = mitglied_id;
 
         const ajax_dom = new Object();
         ajax_dom.$btn_ausloesend = $btn_ausloesend;

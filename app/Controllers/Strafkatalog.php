@@ -170,7 +170,7 @@ class Strafkatalog extends BaseController {
             if( !empty( $this->request->getPost()['id'] ) ) $strafkatalog_Model->update( $this->request->getpost()['id'], $strafe );
             else {
                 $strafkatalog_Model->save( $strafe );
-                $ajax_antwort['element_id'] = (int)$strafkatalog_Model->getInsertID();
+                $ajax_antwort['strafe_id'] = (int)$strafkatalog_Model->getInsertID();
             }
         }
 
@@ -233,7 +233,7 @@ class Strafkatalog extends BaseController {
             if( !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );
             else {
                 $kassenbuch_Model->save( $kassenbucheintrag );
-                $ajax_antwort['element_id'] = (int)$kassenbuch_Model->getInsertID();
+                $ajax_antwort['kassenbucheintrag_id'] = (int)$kassenbuch_Model->getInsertID();
             }
         }
 

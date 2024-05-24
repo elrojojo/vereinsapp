@@ -13,21 +13,21 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
 
     const termin_id = Number($btn_rueckmelden.closest('.element[data-liste="termine"]').attr("data-element_id"));
 
-    let element_id = $btn_rueckmelden.attr("data-element_id");
-    if (typeof element_id === "undefined")
-        element_id = Liste_ElementIdZurueck(
+    let rueckmeldung_id = $btn_rueckmelden.attr("data-element_id");
+    if (typeof rueckmeldung_id === "undefined")
+        rueckmeldung_id = Liste_ElementIdZurueck(
             [
                 { liste: "termine", element_id: termin_id },
                 { liste: "mitglieder", element_id: mitglied_id },
             ],
             "rueckmeldungen"
         );
-    if (typeof element_id !== "undefined") element_id = Number(element_id);
+    if (typeof rueckmeldung_id !== "undefined") rueckmeldung_id = Number(rueckmeldung_id);
 
     if ($btn_rueckmelden.hasClass("zusagen")) {
         $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }));
 
-        if (typeof element_id !== "undefined" && LISTEN.rueckmeldungen.tabelle[element_id].status == 1) {
+        if (typeof rueckmeldung_id !== "undefined" && LISTEN.rueckmeldungen.tabelle[rueckmeldung_id].status == 1) {
             $btn_rueckmelden
                 .prop("disabled", true)
                 .removeClass("btn_rueckmeldung_aendern")
@@ -41,9 +41,9 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-0")
                 .text("ZUGESAGT");
 
-            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", element_id);
+            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", rueckmeldung_id);
 
-            const bemerkung = LISTEN.rueckmeldungen.tabelle[element_id].bemerkung;
+            const bemerkung = LISTEN.rueckmeldungen.tabelle[rueckmeldung_id].bemerkung;
             if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
                 $btn_rueckmeldung_detaillieren.removeClass("btn-outline-success").addClass("btn-success");
             else $btn_rueckmeldung_detaillieren.addClass("btn-outline-success").removeClass("btn-success");
@@ -60,15 +60,18 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-end")
                 .addClass("rounded-pill")
                 .text("ZUSAGEN");
-            if (typeof element_id !== "undefined")
-                $btn_rueckmelden.removeClass("btn_rueckmeldung_erstellen").addClass("btn_rueckmeldung_aendern").attr("data-element_id", element_id);
+            if (typeof rueckmeldung_id !== "undefined")
+                $btn_rueckmelden
+                    .removeClass("btn_rueckmeldung_erstellen")
+                    .addClass("btn_rueckmeldung_aendern")
+                    .attr("data-element_id", rueckmeldung_id);
 
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-success").addClass("btn-outline-success");
         }
     } else if ($btn_rueckmelden.hasClass("absagen")) {
         $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, status: 2 }));
 
-        if (typeof element_id !== "undefined" && LISTEN.rueckmeldungen.tabelle[element_id].status == 2) {
+        if (typeof rueckmeldung_id !== "undefined" && LISTEN.rueckmeldungen.tabelle[rueckmeldung_id].status == 2) {
             $btn_rueckmelden
                 .prop("disabled", true)
                 .removeClass("btn_rueckmeldung_aendern")
@@ -82,9 +85,9 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-0")
                 .text("ABGESAGT");
 
-            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", element_id);
+            $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", rueckmeldung_id);
 
-            const bemerkung = LISTEN.rueckmeldungen.tabelle[element_id].bemerkung;
+            const bemerkung = LISTEN.rueckmeldungen.tabelle[rueckmeldung_id].bemerkung;
             if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
                 $btn_rueckmeldung_detaillieren.removeClass("btn-outline-danger").addClass("btn-danger");
             else $btn_rueckmeldung_detaillieren.addClass("btn-outline-danger").removeClass("btn-danger");
@@ -101,8 +104,11 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
                 .addClass("rounded-start")
                 .addClass("rounded-pill")
                 .text("ABSAGEN");
-            if (typeof element_id !== "undefined")
-                $btn_rueckmelden.removeClass("btn_rueckmeldung_erstellen").addClass("btn_rueckmeldung_aendern").attr("data-element_id", element_id);
+            if (typeof rueckmeldung_id !== "undefined")
+                $btn_rueckmelden
+                    .removeClass("btn_rueckmeldung_erstellen")
+                    .addClass("btn_rueckmeldung_aendern")
+                    .attr("data-element_id", rueckmeldung_id);
 
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-danger").addClass("btn-outline-danger");
         }

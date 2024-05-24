@@ -82,10 +82,10 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function details( $element_id ) {
-      if( empty( model(Termin_Model::class)->find( $element_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    public function details( $termin_id ) {
+      if( empty( model(Termin_Model::class)->find( $termin_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $this->viewdata['element_id'] = $element_id;
+        $this->viewdata['element_id'] = $termin_id;
 
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
@@ -93,11 +93,11 @@ class Termine extends BaseController {
             'liste' => array(
                 'liste' => 'mitglieder',
                 'gruppieren' => 'register',
-                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
+                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
             ),
             'gegen_liste' => array(
                 'liste' => 'termine',
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $element_id ), ),
+                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin_id ), ),
             ),
         );
 
@@ -117,11 +117,11 @@ class Termine extends BaseController {
             'liste' => array(
                 'liste' => 'mitglieder',
                 'gruppieren' => 'register',
-                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
+                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
             ),
             'gegen_liste' => array(
                 'liste' => 'termine',
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $element_id ), ),
+                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin_id ), ),
             ),
         );
 
@@ -139,7 +139,7 @@ class Termine extends BaseController {
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
-            'filtern' => $this->termin_filtern_mitglieder_kombiniert( $element_id ),
+            'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
             'sortieren' => array(
                 array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
@@ -275,7 +275,7 @@ class Termine extends BaseController {
             if( !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
             else {
                 $termine_Model->save( $termin );
-                $ajax_antwort['element_id'] = (int)$termine_Model->getInsertID();
+                $ajax_antwort['termin_id'] = (int)$termine_Model->getInsertID();
             }
         }
 
@@ -333,7 +333,7 @@ class Termine extends BaseController {
             );
             $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'] ) )->delete();
             $rueckmeldungen_Model->save( $rueckmeldung );
-            $ajax_antwort['element_id'] = (int)$rueckmeldungen_Model->getInsertID();
+            $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -416,7 +416,7 @@ class Termine extends BaseController {
             $anwesenheiten_Model->where( $anwesenheit )->delete();
             if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) {
                 $anwesenheiten_Model->save( $anwesenheit );
-                $ajax_antwort['element_id'] = (int)$anwesenheiten_Model->getInsertID();
+                $ajax_antwort['anwesenheit_id'] = (int)$anwesenheiten_Model->getInsertID();
             }
         }
         
@@ -424,8 +424,8 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    protected function termin_filtern_mitglieder_kombiniert( $element_id ) {
-        $termin = model(Termin_Model::class)->find( $element_id );
+    protected function termin_filtern_mitglieder_kombiniert( $termin_id ) {
+        $termin = model(Termin_Model::class)->find( $termin_id );
         $filtern_mitglieder = json_decode( $termin["filtern_mitglieder"] );
         $kategorie = $termin["kategorie"];
         if ( array_key_exists( $kategorie, config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) && !empty( config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) )

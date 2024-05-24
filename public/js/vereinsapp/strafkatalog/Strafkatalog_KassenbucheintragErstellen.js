@@ -1,9 +1,9 @@
-function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, title, $btn_ausloesend, $formular, element_id) {
+function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, title, $btn_ausloesend, $formular, kassenbucheintrag_id) {
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "kassenbuch", "erstellen", {
                 title: title,
-                element_id: element_id,
+                element_id: kassenbucheintrag_id,
             })
         );
     else {
@@ -24,15 +24,15 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, title, $btn_a
             liste: "kassenbuch",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
-                if ("element_id" in AJAX.antwort && typeof AJAX.antwort.element_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.element_id);
+                if ("kassenbucheintrag_id" in AJAX.antwort && typeof AJAX.antwort.kassenbucheintrag_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.kassenbucheintrag_id);
                 else AJAX.data.id = Number(LISTEN["kassenbuch"].tabelle.length + 1);
-                const element_id = AJAX.data.id;
+                const kassenbucheintrag_id = AJAX.data.id;
 
-                LISTEN["kassenbuch"].tabelle[element_id] = new Object();
+                LISTEN["kassenbuch"].tabelle[kassenbucheintrag_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, element_id, "kassenbuch");
+                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
-                Schnittstelle_VariableRein(DateTime.now(), "letzte_aktivitaet", element_id, "kassenbuch");
+                Schnittstelle_VariableRein(DateTime.now(), "letzte_aktivitaet", kassenbucheintrag_id, "kassenbuch");
                 Schnittstelle_EventVariableUpdLocalstorage("kassenbuch", [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
@@ -41,7 +41,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, title, $btn_a
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$formular);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(element_id, "kassenbuch") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich erstellt.");
             },
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())

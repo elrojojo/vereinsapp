@@ -1,9 +1,9 @@
-function Mitglieder_PasswortFestlegen($btn_ausloesend, $formular, element_id) {
+function Mitglieder_PasswortFestlegen($btn_ausloesend, $formular, mitglied_id) {
     Schnittstelle_BtnWartenStart($btn_ausloesend);
 
     const ajax_data = new Object();
     Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
-    ajax_data.id = element_id;
+    ajax_data.id = mitglied_id;
 
     const ajax_dom = new Object();
     ajax_dom.$btn_ausloesend = $btn_ausloesend;

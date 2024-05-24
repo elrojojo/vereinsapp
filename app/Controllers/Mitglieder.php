@@ -95,10 +95,10 @@ class Mitglieder extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function details( $element_id ) {
-      if( empty( model(Mitglied_Model::class)->find( $element_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    public function details( $mitglied_id ) {
+      if( empty( model(Mitglied_Model::class)->find( $mitglied_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $this->viewdata['element_id'] = $element_id;
+        $this->viewdata['element_id'] = $mitglied_id;
 
         $elemente_disabled = array();
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $elemente_disabled[] = (int)$termin['id'];
@@ -166,7 +166,7 @@ class Mitglieder extends BaseController {
                         'checkliste' => 'vergebene_rechte',
                         'aktion' => 'aendern',
                         'gegen_liste' => 'mitglieder',
-                        'gegen_element_id' => $element_id,
+                        'gegen_element_id' => $mitglied_id,
                         'elemente_disabled' => $elemente_disabled,
                     ),
                 );
@@ -190,7 +190,7 @@ class Mitglieder extends BaseController {
                 'vorschau' => array(
                     'beschriftung' => '<div class="row g-0 my-1">
                         <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                        </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $element_id ) ),
+                        </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
                     'klein' => TRUE,
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
@@ -318,8 +318,8 @@ class Mitglieder extends BaseController {
             } else {
                 helper('text'); $mitglied['password'] = random_string('crypto', 20);
                 $mitglieder_Model->save( new Mitglied( $mitglied ) );
-                $ajax_antwort['element_id'] = (int)$mitglieder_Model->getInsertID();
-                $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $ajax_antwort['element_id'] ) );
+                $ajax_antwort['mitglied_id'] = (int)$mitglieder_Model->getInsertID();
+                $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $ajax_antwort['mitglied_id'] ) );
             }
         }
 

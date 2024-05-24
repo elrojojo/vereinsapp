@@ -71,15 +71,15 @@ class Notenbank extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function details( $element_id ) {
-        if( empty( model(Titel_Model::class)->find( $element_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    public function details( $titel_id ) {
+        if( empty( model(Titel_Model::class)->find( $titel_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
     
-        $this->viewdata['element_id'] = $element_id;
+        $this->viewdata['element_id'] = $titel_id;
 
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array(
             'liste' => 'notenbank',
             'link' => TRUE,
-            'element_id' => $element_id,
+            'element_id' => $titel_id,
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
@@ -166,7 +166,7 @@ class Notenbank extends BaseController {
             if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else {
                 $notenbank_Model->save( $titel );
-                $ajax_antwort['element_id'] = (int)$notenbank_Model->getInsertID();
+                $ajax_antwort['titel_id'] = (int)$notenbank_Model->getInsertID();
             }
         }
 
