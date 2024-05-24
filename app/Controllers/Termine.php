@@ -289,11 +289,9 @@ class Termine extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else {
-            model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
 
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
@@ -378,11 +376,9 @@ class Termine extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'global.einstellungen' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else {
-            model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'] );
-            $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        }
+        else model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'] );
 
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 

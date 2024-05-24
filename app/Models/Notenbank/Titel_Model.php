@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Termine;
+namespace App\Models\Notenbank;
 
 use CodeIgniter\Model;
 
@@ -12,6 +12,7 @@ class Titel_Model extends Model {
         'titel',
         'titel_nr',
         'kategorie',
+        'bemerkung',
     ];
     protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';

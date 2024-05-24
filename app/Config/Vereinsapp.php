@@ -82,7 +82,7 @@ class Vereinsapp extends BaseConfig
     public $eigenschaften = array(
 
         'mitglieder' => array(
-            'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ),
+            'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ),  // PHP
             'vorname' => array(  'beschriftung' => 'Vorname', 'typ' => 'text' ),
             'nachname' => array(  'beschriftung' => 'Nachname', 'typ' => 'text' ),
             'geburt' => array( 'beschriftung' => 'Geboren am', 'typ' => 'zeitpunkt' ),
@@ -97,8 +97,8 @@ class Vereinsapp extends BaseConfig
             'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'abwesend' => array( 'beschriftung' => 'Abwesend', 'typ' => 'vorgegebene_werte' ),  // JAVA
-            'erstellung' => array( 'beschriftung' => 'Erstellt am', 'typ' => 'zeitpunkt' ),  // JAVA
-            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // JAVA
+            'erstellung' => array( 'beschriftung' => 'Erstellt am', 'typ' => 'zeitpunkt' ),  // PHP
+            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
         'vergebene_rechte' => array(
@@ -153,6 +153,7 @@ class Vereinsapp extends BaseConfig
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte' ),
             'verzeichnis' => array( 'beschriftung' => 'Verzeichnis', 'typ' => 'text' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten', 'typ' => 'zahl' ),               // JAVA
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
