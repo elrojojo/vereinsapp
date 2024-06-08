@@ -111,7 +111,6 @@ class Mitglieder extends BaseController {
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
-                'aktion' => 'aendern',
                 'gegen_liste' => 'mitglieder',
                 'bedingte_formatierung' => array(
                     'liste' => 'rueckmeldungen',
@@ -125,13 +124,17 @@ class Mitglieder extends BaseController {
             'listenstatistik' => TRUE,
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-            'title' => 'Alle abwählen',
-        );
+        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
+                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'title' => 'Alle abwählen',
+            );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-            'title' => 'Alle anwählen',
-        );
+        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
+                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'title' => 'Alle anwählen',
+            );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
             'klasse_id' => 'btn_filtern_formular_oeffnen',
@@ -162,7 +165,6 @@ class Mitglieder extends BaseController {
                     ),
                     'checkliste' => array(
                         'checkliste' => 'vergebene_rechte',
-                        'aktion' => 'aendern',
                         'gegen_liste' => 'mitglieder',
                         'gegen_element_id' => $mitglied_id,
                         'elemente_disabled' => $elemente_disabled,
@@ -532,21 +534,20 @@ class Mitglieder extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_vergebenes_recht_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_vergebenes_recht_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if(
-                !auth()->user()->can( 'mitglieder.rechte' ) AND
-                !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )
+        else if( !auth()->user()->can( 'mitglieder.rechte' ) AND
+                 !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )
             ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];
             model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );
-            if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->addPermission( $permission );
+            if( filter_var( $this->request->getpost()['status'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->addPermission( $permission );
         }
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

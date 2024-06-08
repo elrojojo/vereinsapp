@@ -6,7 +6,6 @@ function Liste_CheckAendern($check) {
     const checkliste = $liste.attr("data-checkliste");
     const element = LISTEN[liste].element;
     const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
-    const aktion = $liste.attr("data-aktion");
 
     const ajax_data = new Object();
     ajax_data[element + "_id"] = Number($check.val());
@@ -16,7 +15,7 @@ function Liste_CheckAendern($check) {
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
-        url: LISTEN[checkliste].controller + "/ajax_" + LISTEN[checkliste].element + "_" + aktion,
+        url: LISTEN[checkliste].controller + "/ajax_" + LISTEN[checkliste].element + "_speichern",
         data: ajax_data,
         liste: liste,
         $check: $check,

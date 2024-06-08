@@ -53,7 +53,7 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_rueckmeldung_loeschen',             'Termine::ajax_rueckmeldung_loeschen');
 
     $routes->post('ajax_anwesenheiten',                     'Termine::ajax_anwesenheiten');
-    $routes->post('ajax_anwesenheit_aendern',               'Termine::ajax_anwesenheit_aendern');
+    $routes->post('ajax_anwesenheit_speichern',               'Termine::ajax_anwesenheit_speichern');
 });
 
 $routes->group('strafkatalog', static function ($routes) {
@@ -96,7 +96,7 @@ $routes->group('mitglieder', static function ($routes) {
 
     $routes->post('ajax_verfuegbare_rechte',                'Mitglieder::ajax_verfuegbare_rechte');
     $routes->post('ajax_vergebene_rechte',                  'Mitglieder::ajax_vergebene_rechte');
-    $routes->post('ajax_vergebenes_recht_aendern',          'Mitglieder::ajax_vergebenes_recht_aendern');
+    $routes->post('ajax_vergebenes_recht_speichern',          'Mitglieder::ajax_vergebenes_recht_speichern');
 
     $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
 });

@@ -17,7 +17,6 @@ class Einstellungen extends BaseController {
             ),
             'checkliste' => array(
                 'checkliste' => 'vergebene_rechte',
-                'aktion' => 'aendern',
                 'gegen_liste' => 'mitglieder',
                 'gegen_element_id' => ICH['id'],
                 'elemente_disabled' => $elemente_disabled,

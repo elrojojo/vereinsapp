@@ -151,7 +151,6 @@ class Termine extends BaseController {
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
-                'aktion' => 'aendern',
                 'gegen_liste' => 'termine',
                 'bedingte_formatierung' => array(
                     'liste' => 'rueckmeldungen',
@@ -165,13 +164,17 @@ class Termine extends BaseController {
             'listenstatistik' => TRUE,
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-            'title' => 'Alle abwählen',
-        );
+        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
+                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'title' => 'Alle abwählen',
+            );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-            'title' => 'Alle anwählen',
-        );
+        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
+                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'title' => 'Alle anwählen',
+            );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
             'klasse_id' => 'btn_filtern_formular_oeffnen',
@@ -399,7 +402,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_anwesenheit_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_anwesenheit_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'termin_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
