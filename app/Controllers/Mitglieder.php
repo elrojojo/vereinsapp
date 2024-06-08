@@ -37,6 +37,19 @@ class Mitglieder extends BaseController {
                 // 'zentriert' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            // 'checkliste' => array(
+            //     'checkliste' => 'vergebene_rechte',
+            //     'bedingte_formatierung' => array(
+            //         'liste' => 'rueckmeldungen',
+            //         'klasse' => array(
+            //             'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+            //             'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+            //         ),
+            //     ),
+            // ),
+            // 'gegen_liste' => 'mitglieder',
+            // 'gegen_element_id' => ICH['id'],
+            // 'elemente_disabled' => $elemente_disabled,
             'listenstatistik' => TRUE,
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
@@ -118,10 +131,10 @@ class Mitglieder extends BaseController {
                         'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                     ),
                 ),
-                'elemente_disabled' => $elemente_disabled,
             ),
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => $mitglied_id,
+            'elemente_disabled' => $elemente_disabled,
             'listenstatistik' => TRUE,
         );
 
@@ -166,10 +179,10 @@ class Mitglieder extends BaseController {
                     ),
                     'checkliste' => array(
                         'checkliste' => 'vergebene_rechte',
-                        'elemente_disabled' => $elemente_disabled,
                     ),
                     'gegen_liste' => 'mitglieder',
                     'gegen_element_id' => $mitglied_id,
+                    'elemente_disabled' => $elemente_disabled,
                 );
             }
 

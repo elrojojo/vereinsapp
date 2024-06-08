@@ -17,10 +17,10 @@ class Einstellungen extends BaseController {
             ),
             'checkliste' => array(
                 'checkliste' => 'vergebene_rechte',
-                'elemente_disabled' => $elemente_disabled,
             ),
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => ICH['id'],
+            'elemente_disabled' => $elemente_disabled,
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

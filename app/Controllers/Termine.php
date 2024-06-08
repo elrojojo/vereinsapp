@@ -158,10 +158,10 @@ class Termine extends BaseController {
                         'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                     ),
                 ),
-                'elemente_disabled' => $elemente_disabled,
             ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
+            'elemente_disabled' => $elemente_disabled,
             'listenstatistik' => TRUE,
         );
 
