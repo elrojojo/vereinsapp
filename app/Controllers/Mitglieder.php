@@ -29,10 +29,8 @@ class Mitglieder extends BaseController {
             ),
             // 'sortable' => TRUE,
             'link' => TRUE,
-            // 'symbol' => array(
-            //     'symbol' => SYMBOLE['info']['bootstrap'],
-            //     'farbe' => 'danger',
-            // ),
+            // 'klasse_id' => array('btn_', 'bestaetigung_einfordern'),
+            // 'title' => 'Titel für bspw. ein Modal',
             'vorschau' => array(
                 'beschriftung' => '',
                 // 'klein' => TRUE,

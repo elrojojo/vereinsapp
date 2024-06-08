@@ -34,8 +34,16 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
     <li class="blanko invisible text-body list-group-item<?php
     if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-liste_h5';
     if( array_key_exists( 'checkliste', $liste ) ) echo ' d-grid';
-    if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?> list-group-item-action<?php } ?>"<?php
-    if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?> role="button"<?php } ?>>
+    if( ( array_key_exists( 'link', $liste ) AND $liste['link'] ) OR array_key_exists( 'klasse_id', $liste ) ) echo ' list-group-item-action';
+    if( array_key_exists( 'klasse_id', $liste ) ) {
+        if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
+        else echo ' '.$liste['klasse_id'];
+    }
+    ?>"<?php
+    if( ( array_key_exists( 'link', $liste ) AND $liste['link'] ) OR array_key_exists( 'klasse_id', $liste ) ) echo ' role="button"';
+    if( array_key_exists( 'title', $liste ) ) echo ' data-title="'.$liste['title'].'"';
+    if( array_key_exists( 'werte', $liste ) ) { ?> data-werte='<?= json_encode( $liste['werte'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    ?>>
 
         <div class="text-truncate <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' h5'; ?>">
             
@@ -49,9 +57,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 
             <?php if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam sortable_handle" role="button"></i><?php } ?>
 
-            <?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?><a class="stretched-link"><?php } ?>
-            <?php if( array_key_exists( 'symbol', $liste ) AND array_key_exists( 'symbol', $liste['symbol'] ) ) { ?><i class="bi bi-<?= $liste['symbol']['symbol']; ?> text-<?php if( array_key_exists( 'farbe', $liste['symbol'] ) ) echo $liste['symbol']['farbe']; else echo 'primary' ?> float-end ms-2 symbol"></i><?php } ?>
-            <?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?></a><?php }?>
+            <?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?><a class="stretched-link"></a><?php }?>
 
             <?php if( array_key_exists( 'zusatzsymbole', $liste ) ) { ?><div class="float-end zusatzsymbole"><?= $liste['zusatzsymbole']; ?></div><?php } ?>
 

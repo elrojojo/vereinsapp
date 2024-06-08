@@ -32,6 +32,11 @@ class Strafkatalog extends BaseController {
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
 
+            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+                'klasse_id' => array('btn_strafe_zuweisen', 'formular_oeffnen'),
+                'liste' => 'mitglieder',
+                'title' => 'Strafe einem Mitglied zuweisen',
+            );
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_strafe_aendern', 'formular_oeffnen'),
                 'liste' => 'strafkatalog',
@@ -53,6 +58,32 @@ class Strafkatalog extends BaseController {
                 'klasse_id' => array('btn_strafe_erstellen', 'formular_oeffnen'),
                 'title' => 'Strafe erstellen',
             );
+
+            $this->viewdata['liste']['alle_mitglieder'] = array(
+                'liste' => 'mitglieder',
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+                ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+                ),
+                'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
+                'title' => 'Strafe einem Mitglied zuweisen',
+                'listenstatistik' => TRUE,
+            );
+
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
+                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'title' => 'Mitglieder filtern',
+            ); 
+
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
+                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'title' => 'Mitglieder sortieren',
+            ); 
+    
         }
 
         $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['filtern'] = array(

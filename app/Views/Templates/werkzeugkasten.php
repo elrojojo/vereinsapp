@@ -8,7 +8,8 @@
                         if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
                         else echo ' '.$werkzeug['klasse_id'];
                     }
-                    ?>" data-liste="<?= $werkzeug['liste']; ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>"<?php
+                    ?>" data-liste="<?= $werkzeug['liste']; ?>" data-aktion="<?= $aktion; ?>"<?php
+                    if( array_key_exists( 'title', $werkzeug ) ) { ?> data-title="<?= $werkzeug['title']; ?>"<?php }
                     if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
                     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
                     ?> role="button">

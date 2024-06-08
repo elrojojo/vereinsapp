@@ -18,11 +18,8 @@ class Startseite extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
-            'symbol' => array(
-                'symbol' => SYMBOLE['geburtstag']['bootstrap'],
-            ),
             'vorschau' => array(
-                'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
+                'beschriftung' => '<div class="nowrap"><i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
                 'klein' => TRUE,
             ),
         );

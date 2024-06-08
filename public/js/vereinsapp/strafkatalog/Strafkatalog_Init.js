@@ -63,6 +63,19 @@ function Strafkatalog_Init() {
         );
     });
 
+    // STRAFE ZUWEISEN
+    $(document).on("click", ".btn_strafe_zuweisen", function () {
+        Strafkatalog_StrafeZuweisen(
+            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).attr("data-title"),
+            $(this),
+            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-element_id")),
+            Number($(this).attr("data-element_id"))
+        );
+    });
+
     // KASSENBUCHEINTRAG ERSTELLEN
     $(document).on("click", ".btn_kassenbucheintrag_erstellen", function () {
         Strafkatalog_KassenbucheintragErstellen(

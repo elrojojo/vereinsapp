@@ -179,6 +179,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
+
+    'zuweisen' => array ( 'bootstrap' => 'piggy-bank' ),
 ) );
 
 enum AJAX_ZUSTAND
