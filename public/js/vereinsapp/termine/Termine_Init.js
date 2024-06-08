@@ -111,11 +111,9 @@ function Termine_Init() {
         const checkliste_id = "anwesenheiten_dokumentieren";
         const liste = $(this).attr("data-liste");
         const title = $(this).attr("data-title");
-        const gegen_element_id = $(this).attr("data-gegen_element_id");
         const $modal = LISTEN[liste].modals[checkliste_id + "_modal"].clone().removeClass("blanko invisible").addClass("modal");
 
         if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
-        $modal.find(".checkliste").attr("data-gegen_element_id", gegen_element_id);
         Schnittstelle_DomModalOeffnen($modal);
         Schnittstelle_EventVariableUpdDom(liste);
     });

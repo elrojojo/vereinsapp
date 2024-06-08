@@ -53,13 +53,11 @@ function Schnittstelle_DomInit() {
         const element_id = $btn_oeffnend.attr("data-element_id");
 
         $werkzeugkasten.find(".werkzeug").removeAttr("data-element_id");
-        $werkzeugkasten.find(".werkzeug").removeAttr("data-gegen_element_id");
 
         if (typeof liste !== "undefined" && typeof element_id !== "undefined")
             $werkzeugkasten.find(".werkzeug").each(function () {
                 const $werkzeug = $(this);
                 if ($werkzeug.attr("data-liste") == liste) $werkzeug.attr("data-element_id", element_id);
-                else $werkzeug.attr("data-gegen_element_id", element_id);
             });
     });
 

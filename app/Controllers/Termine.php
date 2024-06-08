@@ -151,7 +151,6 @@ class Termine extends BaseController {
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
-                'gegen_liste' => 'termine',
                 'bedingte_formatierung' => array(
                     'liste' => 'rueckmeldungen',
                     'klasse' => array(
@@ -161,6 +160,8 @@ class Termine extends BaseController {
                 ),
                 'elemente_disabled' => $elemente_disabled,
             ),
+            'gegen_liste' => 'termine',
+            'gegen_element_id' => $termin_id,
             'listenstatistik' => TRUE,
         );
 

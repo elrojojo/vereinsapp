@@ -111,7 +111,6 @@ class Mitglieder extends BaseController {
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
-                'gegen_liste' => 'mitglieder',
                 'bedingte_formatierung' => array(
                     'liste' => 'rueckmeldungen',
                     'klasse' => array(
@@ -121,6 +120,8 @@ class Mitglieder extends BaseController {
                 ),
                 'elemente_disabled' => $elemente_disabled,
             ),
+            'gegen_liste' => 'mitglieder',
+            'gegen_element_id' => $mitglied_id,
             'listenstatistik' => TRUE,
         );
 
@@ -165,10 +166,10 @@ class Mitglieder extends BaseController {
                     ),
                     'checkliste' => array(
                         'checkliste' => 'vergebene_rechte',
-                        'gegen_liste' => 'mitglieder',
-                        'gegen_element_id' => $mitglied_id,
                         'elemente_disabled' => $elemente_disabled,
                     ),
+                    'gegen_liste' => 'mitglieder',
+                    'gegen_element_id' => $mitglied_id,
                 );
             }
 
