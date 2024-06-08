@@ -8,9 +8,10 @@ function Liste_CheckAendern($check) {
     const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
     const aktion = $liste.attr("data-aktion");
 
-    const ajax_data = { checked: $check.is(":checked") };
-    ajax_data[element + "_id"] = $check.val();
-    ajax_data[gegen_element + "_id"] = $liste.attr("data-gegen_element_id");
+    const ajax_data = new Object();
+    ajax_data[element + "_id"] = Number($check.val());
+    ajax_data[gegen_element + "_id"] = Number($liste.attr("data-gegen_element_id"));
+    ajax_data.status = Number($check.is(":checked"));
 
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
@@ -37,12 +38,14 @@ function Liste_CheckAendern($check) {
             });
 
             // Falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
-            if (AJAX.data.checked) {
-                AJAX.data.id = LISTEN[checkliste].tabelle.length;
+            if (AJAX.data.status) {
+                if (LISTEN[checkliste].element + "_id" in AJAX.antwort && typeof AJAX.antwort[LISTEN[checkliste].element + "_id"] !== "undefined")
+                    AJAX.data.id = Number(AJAX.antwort[LISTEN[checkliste].element + "_id"]);
+                else AJAX.data.id = Number(LISTEN[checkliste].tabelle.length + 1);
+
                 LISTEN[checkliste].tabelle[AJAX.data.id] = new Object();
-                delete AJAX.data.checked;
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    Schnittstelle_VariableRein(wert, eigenschaft, Number(AJAX.data.id), checkliste);
+                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, checkliste);
                 });
             }
 

@@ -10,6 +10,8 @@ function Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data)
             if (eigenschaft == "ende") wert = wert.plus({ days: 1 }).minus({ seconds: 1 });
             wert = wert.toSQL();
         }
+        // Wenn aber die Eigenschaft eine Zahl ist
+        else if (isNumber(wert)) wert = Number(wert);
 
         ajax_data[eigenschaft] = wert;
 

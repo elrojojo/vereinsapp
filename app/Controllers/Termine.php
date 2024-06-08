@@ -404,7 +404,7 @@ class Termine extends BaseController {
             'ajax_id' => 'required|is_natural',
             'termin_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'checked' => [ 'label' => 'Checked', 'rules' => [ 'required', 'in_list[ true, false ]' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.anwesenheiten' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
@@ -414,7 +414,8 @@ class Termine extends BaseController {
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
             );
             $anwesenheiten_Model->where( $anwesenheit )->delete();
-            if( filter_var( $this->request->getpost()['checked'], FILTER_VALIDATE_BOOLEAN) ) {
+            if( filter_var( $this->request->getpost()['status'], FILTER_VALIDATE_BOOLEAN) ) {
+                $anwesenheit['status'] = $this->request->getpost()['status'];
                 $anwesenheiten_Model->save( $anwesenheit );
                 $ajax_antwort['anwesenheit_id'] = (int)$anwesenheiten_Model->getInsertID();
             }

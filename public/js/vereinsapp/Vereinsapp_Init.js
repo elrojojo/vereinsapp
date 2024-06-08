@@ -68,6 +68,7 @@ Sortierung nicht mehr case sensitive machen
 Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
 Schnittstelle_VariableObjektBereinigtZurueck und Schnittstelle_VariableArrayBereinigtZurueck in Schnittstelle_VariableWertBereinigtZurueck vereinigen und anschließend entfernen
 Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den anschließenden else-Pfad zu vermeiden
+Zustandsautomat für den Zustand der Vereinsapp einführen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -79,4 +80,5 @@ Select JANEIN als check umbauen
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
 Checkliste überarbeiten und auswahlliste einführen (mitglieder_modal verallgemeinern)
+
 */

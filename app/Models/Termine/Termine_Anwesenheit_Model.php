@@ -11,6 +11,7 @@ class Termine_Anwesenheit_Model extends Model {
     protected $allowedFields  = [
         'termin_id',
         'mitglied_id',
+        'status',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;
