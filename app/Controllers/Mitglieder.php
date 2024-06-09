@@ -47,9 +47,9 @@ class Mitglieder extends BaseController {
             //         ),
             //     ),
             // ),
-            // 'gegen_liste' => 'mitglieder',
-            // 'gegen_element_id' => ICH['id'],
-            // 'elemente_disabled' => $elemente_disabled,
+            // 'gegen_liste' => 'termine',
+            // 'gegen_element_id' => $termin_id,
+            // 'elemente_disabled' => array( 8 ),
             'listenstatistik' => TRUE,
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';

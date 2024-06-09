@@ -1,5 +1,6 @@
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
+    const $liste = $element.closest('.liste[data-liste="' + liste + '"]');
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -12,13 +13,27 @@ function Liste_ElementAktualisieren($element, liste) {
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
-    // LINK AKTUALISIEREN
-    $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
+    // LINK AKTUALISIEREN ODER ELEMENT DEAKTIVIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
+    let elemente_disabled = new Array();
+    if ($liste.exists()) {
+        const elemente_disabled_data = $liste.attr("data-elemente_disabled");
+        if (typeof elemente_disabled_data !== "undefined") elemente_disabled = JSON.parse(elemente_disabled_data);
+    }
+    if (elemente_disabled.length > 0 && elemente_disabled.includes(element_id)) {
+        $element.removeClass("list-group-item-action");
+        $element.removeAttr("role");
+        $element.find(".beschriftung").addClass("text-secondary");
+        $element.find("a.stretched-link").removeAttr("href");
+    } else {
+        $element.addClass("list-group-item-action");
+        $element.attr("role", "button");
+        $element.find(".beschriftung").removeClass("text-secondary");
+        $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
+    }
 
     // CHECK AKTUALISIEREN
-    $element.find("label").attr("for", element_id);
     $element.find(".check").each(function () {
-        Liste_CheckAktualisieren($(this), element_id, liste);
+        Liste_CheckAktualisieren($(this), element_id, elemente_disabled, liste);
     });
 
     // ZUSATZSYMBOLE AKTUALISIEREN

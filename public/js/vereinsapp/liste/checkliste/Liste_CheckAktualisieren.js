@@ -1,30 +1,26 @@
-function Liste_CheckAktualisieren($check, element_id, liste) {
-    const $checkliste = $check.closest(".checkliste");
+function Liste_CheckAktualisieren($check, element_id, elemente_disabled, liste) {
+    const $checkliste = $check.closest('.checkliste[data-liste="' + liste + '"]');
+    const $label = $check.closest("label");
 
     $check.attr("id", element_id).val(element_id);
 
+    let check_element_array = new Array();
     if ($checkliste.exists()) {
-        const checkliste = $check.attr("name");
-        const element = LISTEN[liste].element;
         const gegen_liste = $checkliste.attr("data-gegen_liste");
-        const gegen_element = LISTEN[gegen_liste].element;
         const gegen_element_id = Number($checkliste.attr("data-gegen_element_id"));
 
-        const check_element_array = Liste_TabelleGefiltertZurueck(
+        check_element_array = Liste_TabelleGefiltertZurueck(
             [
                 {
                     verknuepfung: "&&",
                     filtern: [
-                        { operator: "==", eigenschaft: gegen_element + "_id", wert: gegen_element_id },
-                        { operator: "==", eigenschaft: element + "_id", wert: element_id },
+                        { operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id },
+                        { operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element_id },
                     ],
                 },
             ],
-            checkliste
+            $checkliste.attr("data-checkliste")
         );
-
-        // Check setzen
-        $check.attr("checked", check_element_array.length > 0);
 
         // Check bedingt formatieren
         let bedingte_formatierung = $checkliste.attr("data-bedingte_formatierung");
@@ -38,8 +34,8 @@ function Liste_CheckAktualisieren($check, element_id, liste) {
                         {
                             verknuepfung: "&&",
                             filtern: [
-                                { operator: "==", eigenschaft: gegen_element + "_id", wert: gegen_element_id },
-                                { operator: "==", eigenschaft: element + "_id", wert: element_id },
+                                { operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id },
+                                { operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element_id },
                                 { operator: filtern.operator, eigenschaft: filtern.eigenschaft, wert: filtern.wert },
                             ],
                         },
@@ -58,13 +54,20 @@ function Liste_CheckAktualisieren($check, element_id, liste) {
                 else $check.siblings(".beschriftung").first().removeClass(klasse);
             });
         }
+    }
 
-        // Check ausgrauen
-        let elemente_disabled = $checkliste.attr("data-elemente_disabled");
-        if (typeof elemente_disabled !== "undefined") elemente_disabled = JSON.parse(elemente_disabled);
-        else elemente_disabled = new Array();
-        if (elemente_disabled.length > 0 && elemente_disabled.includes(element_id))
-            $check.attr("disabled", true).siblings(".beschriftung").first().addClass("text-secondary");
-        else $check.attr("disabled", false).siblings(".beschriftung").first().removeClass("text-secondary");
+    // Check setzen
+    $check.attr("checked", check_element_array.length > 0);
+
+    // Label mit dem Check verknüpfen
+    $label.attr("for", element_id);
+
+    // Check ggf. ausgrauen
+    if (elemente_disabled.length > 0 && elemente_disabled.includes(element_id)) {
+        $check.attr("disabled", true);
+        $label.removeAttr("role");
+    } else {
+        $check.attr("disabled", false);
+        $label.attr("role", "button");
     }
 }
