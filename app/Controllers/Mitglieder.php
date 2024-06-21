@@ -39,16 +39,16 @@ class Mitglieder extends BaseController {
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             // 'checkliste' => array(
             //     'checkliste' => 'vergebene_rechte',
-            //     'bedingte_formatierung' => array(
-            //         'liste' => 'rueckmeldungen',
-            //         'klasse' => array(
-            //             'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            //             'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
-            //         ),
+            // ),
+            // 'bedingte_formatierung' => array(
+            //     'liste' => 'rueckmeldungen',
+            //     'klasse' => array(
+            //         'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+            //         'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
             //     ),
             // ),
             // 'gegen_liste' => 'termine',
-            // 'gegen_element_id' => $termin_id,
+            // 'gegen_element_id' => 42,
             // 'elemente_disabled' => array( 8 ),
             'listenstatistik' => TRUE,
         );
@@ -124,16 +124,16 @@ class Mitglieder extends BaseController {
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'checkliste' => array(
                 'checkliste' => 'anwesenheiten',
-                'bedingte_formatierung' => array(
-                    'liste' => 'rueckmeldungen',
-                    'klasse' => array(
-                        'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                        'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
-                    ),
-                ),
             ),
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => $mitglied_id,
+            'bedingte_formatierung' => array(
+                'liste' => 'rueckmeldungen',
+                'klasse' => array(
+                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+                ),
+            ),
             'elemente_disabled' => $elemente_disabled,
             'listenstatistik' => TRUE,
         );
