@@ -12,17 +12,17 @@
         ?>><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i>
     </button><?php } ?>
 </div><?php } ?>
+
 <?php if( array_key_exists( 'listenstatistik', $liste ) AND $liste['listenstatistik'] ) { ?><div class="text-secondary text-end small mb-1">
     <span class="listenstatistik" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="gefunden"></span> Element(e) gefunden<?php if( array_key_exists( 'checkliste', $liste ) ) { ?> / <span class="listenstatistik" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }?>
 </div><?php } ?>
+
 <ul id="<?= $liste['id']; ?>" class="liste list-group<?php
 if( array_key_exists( 'checkliste', $liste ) ) echo ' checkliste';
 if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-flush';
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
 ?> mb-1" data-liste="<?= $liste['liste']; ?>"<?php
-if( array_key_exists( 'checkliste', $liste ) ) {
-    ?> data-checkliste="<?= $liste['checkliste']['checkliste']; ?>"<?php
-}
+if( array_key_exists( 'checkliste', $liste ) ) { ?> data-checkliste="<?= $liste['checkliste']; ?>"<?php }
 if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
 if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
 if( array_key_exists( 'bedingte_formatierung', $liste ) ) { ?> data-bedingte_formatierung='<?= json_encode( $liste['bedingte_formatierung'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
@@ -44,10 +44,9 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 
         <div class="text-truncate <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' h5'; ?>">
             
-        <?php if( array_key_exists( 'checkliste', $liste ) ) { ?><div class="form-check form-switch">
-            <label class="form-check-label d-block">
-                <input class="form-check-input float-start me-3 check" type="checkbox" name="<?= $liste['checkliste']['checkliste']; ?>" role="switch" />
-        <?php } ?>
+            <?php if( array_key_exists( 'checkliste', $liste ) ) { ?><div class="form-check form-switch"><label class="form-check-label d-block">
+                <input class="form-check-input float-start me-3 check" type="checkbox" name="<?= $liste['checkliste']; ?>" role="switch" /><?php } ?>
+
             <?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><span class="beschriftung"><?= $liste['beschriftung']['beschriftung']; ?></span><?php } ?>
 
             <?php if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?><i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" data-liste="<?= $liste['liste']; ?>" role="button"></i><?php } ?>
@@ -58,9 +57,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 
             <?php if( array_key_exists( 'zusatzsymbole', $liste ) ) { ?><div class="float-end zusatzsymbole"><?= $liste['zusatzsymbole']; ?></div><?php } ?>
 
-        <?php if( array_key_exists( 'checkliste', $liste ) ) { ?></label>
-        </div>
-        <?php } ?>
+            <?php if( array_key_exists( 'checkliste', $liste ) ) { ?></label></div><?php } ?>
         </div>
 
         <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="vorschau text-truncate text-secondary<?php

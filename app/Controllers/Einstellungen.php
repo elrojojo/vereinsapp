@@ -15,9 +15,7 @@ class Einstellungen extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung"></span>',
             ),
-            'checkliste' => array(
-                'checkliste' => 'vergebene_rechte',
-            ),
+            'checkliste' => 'vergebene_rechte',
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => ICH['id'],
             'elemente_disabled' => $elemente_disabled,

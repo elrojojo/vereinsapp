@@ -149,9 +149,7 @@ class Termine extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
-            'checkliste' => array(
-                'checkliste' => 'anwesenheiten',
-            ),
+            'checkliste' => 'anwesenheiten',
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
             'bedingte_formatierung' => array(

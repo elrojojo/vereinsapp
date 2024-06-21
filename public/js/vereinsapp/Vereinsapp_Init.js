@@ -79,6 +79,6 @@ Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
-Checkliste überarbeiten und auswahlliste einführen (mitglieder_modal verallgemeinern)
+Auswahlliste einführen (mitglieder_modal verallgemeinern)
 
 */

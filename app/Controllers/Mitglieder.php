@@ -37,9 +37,7 @@ class Mitglieder extends BaseController {
                 // 'zentriert' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
-            // 'checkliste' => array(
-            //     'checkliste' => 'vergebene_rechte',
-            // ),
+            // 'checkliste' => 'vergebene_rechte',
             // 'bedingte_formatierung' => array(
             //     'liste' => 'rueckmeldungen',
             //     'klasse' => array(
@@ -122,9 +120,7 @@ class Mitglieder extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
-            'checkliste' => array(
-                'checkliste' => 'anwesenheiten',
-            ),
+            'checkliste' => 'anwesenheiten',
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => $mitglied_id,
             'bedingte_formatierung' => array(
@@ -177,9 +173,7 @@ class Mitglieder extends BaseController {
                     'beschriftung' => array(
                         'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
                     ),
-                    'checkliste' => array(
-                        'checkliste' => 'vergebene_rechte',
-                    ),
+                    'checkliste' => 'vergebene_rechte',
                     'gegen_liste' => 'mitglieder',
                     'gegen_element_id' => $mitglied_id,
                     'elemente_disabled' => $elemente_disabled,
