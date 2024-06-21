@@ -14,11 +14,15 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
     // LINK AKTUALISIEREN ODER ELEMENT DEAKTIVIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
+    let istCheckliste = false;
+    let hatKlasseId = false;
     let gegen_liste = undefined;
     let gegen_element_id = undefined;
     let bedingte_formatierung = new Object();
     let elemente_disabled = new Array();
     if ($liste.exists()) {
+        istCheckliste = $liste.hasClass("checkliste");
+        hatKlasseId = $liste.hasClass("klasse_id");
         const gegen_liste_data = $liste.attr("data-gegen_liste");
         if (typeof gegen_liste_data !== "undefined") gegen_liste = gegen_liste_data;
         const gegen_element_id_data = $liste.attr("data-gegen_element_id");
@@ -28,7 +32,13 @@ function Liste_ElementAktualisieren($element, liste) {
         const elemente_disabled_data = $liste.attr("data-elemente_disabled");
         if (typeof elemente_disabled_data !== "undefined") elemente_disabled = JSON.parse(elemente_disabled_data);
     }
-    if (Array.isArray(elemente_disabled) && elemente_disabled.length > 0 && elemente_disabled.includes(element_id)) {
+
+    if (!$element.find("a.stretched-link").exists() && !istCheckliste && !hatKlasseId) {
+        $element.removeClass("list-group-item-action");
+        $element.removeAttr("role");
+        $element.find(".beschriftung").removeClass("text-secondary");
+        $element.find("a.stretched-link").removeAttr("href");
+    } else if (Array.isArray(elemente_disabled) && elemente_disabled.length > 0 && elemente_disabled.includes(element_id)) {
         $element.removeClass("list-group-item-action");
         $element.removeAttr("role");
         $element.find(".beschriftung").addClass("text-secondary");

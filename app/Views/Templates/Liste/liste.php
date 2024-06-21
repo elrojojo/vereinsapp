@@ -19,6 +19,7 @@
 
 <ul id="<?= $liste['id']; ?>" class="liste list-group<?php
 if( array_key_exists( 'checkliste', $liste ) ) echo ' checkliste';
+if( array_key_exists( 'klasse_id', $liste ) ) echo ' klasse_id';
 if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-flush';
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
 ?> mb-1" data-liste="<?= $liste['liste']; ?>"<?php

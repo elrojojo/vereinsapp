@@ -39,7 +39,7 @@
 <?php } ?>
 
 <div class="blanko_modals" data-liste="termine">
-<?= view( 'Templates/Liste/checkliste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
+<?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>
 
 <div class="blanko_modals" data-liste="mitglieder">
