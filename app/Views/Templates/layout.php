@@ -40,7 +40,7 @@
     <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
     <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
     <?= view( 'Templates/Liste/liste_gruppieren_modal' ); ?>
-    <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo view( 'Mitglieder/mitglied_passwort_festlegen_modal' ); ?>;
+    <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo view( 'Mitglieder/mitglied_passwort_festlegen_modal' ); ?>
     </div>
 
   </body>
