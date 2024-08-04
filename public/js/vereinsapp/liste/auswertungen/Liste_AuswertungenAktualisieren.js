@@ -37,17 +37,14 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
     // GEGEN_LISTE DEFINIEREN
-    // gegen_liste_data aus data
-    let gegen_liste_data = $auswertungen.attr("data-gegen_liste");
-    if (typeof gegen_liste_data !== "undefined") gegen_liste_data = JSON.parse(gegen_liste_data);
-    else gegen_liste_data = new Object();
-    // gegen_liste aus gegen_liste_data
+    // gegen_liste aus data
     let gegen_liste = undefined;
-    if ("liste" in gegen_liste_data) gegen_liste = gegen_liste_data.liste;
-    // gegen_liste_filtern aus gegen_liste_data
-    let gegen_liste_filtern = new Array();
-    if ("filtern" in gegen_liste_data) gegen_liste_filtern = Schnittstelle_VariableArrayBereinigtZurueck(gegen_liste_data.filtern);
-    const gegen_liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(gegen_liste_filtern, gegen_liste);
+    const gegen_liste_data = $auswertungen.attr("data-gegen_liste");
+    if (typeof gegen_liste_data !== "undefined") gegen_liste = gegen_liste_data;
+    // gegen_element_id aus data
+    let gegen_element_id = undefined;
+    const gegen_element_id_data = $auswertungen.attr("data-gegen_element_id");
+    if (typeof gegen_element_id_data !== "undefined") gegen_element_id = gegen_element_id_data;
 
     // AUSWERTUNGEN FILTERN
     // filtern für liste definieren
@@ -56,10 +53,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         auswertungen_liste_filtern[0].filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: this.id });
     });
     // filtern für gegen_liste definieren
-    const auswertungen_gegen_liste_filtern = [{ verknuepfung: "||", filtern: new Array() }];
-    $.each(gegen_liste_tabelle_gefiltert, function () {
-        auswertungen_gegen_liste_filtern[0].filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: this.id });
-    });
+    const auswertungen_gegen_liste_filtern = [
+        { verknuepfung: "||", filtern: [{ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id }] },
+    ];
     // filtern für liste und filtern für gegen_liste kombinieren und damit auswertungen filtern
     const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern[0], auswertungen_gegen_liste_filtern[0]] }],

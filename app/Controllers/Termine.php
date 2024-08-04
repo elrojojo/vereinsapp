@@ -95,10 +95,8 @@ class Termine extends BaseController {
                 'gruppieren' => 'register',
                 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
             ),
-            'gegen_liste' => array(
-                'liste' => 'termine',
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin_id ), ),
-            ),
+            'gegen_liste' => 'termine',
+            'gegen_element_id' => $termin_id,
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
@@ -119,10 +117,8 @@ class Termine extends BaseController {
                 'gruppieren' => 'register',
                 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
             ),
-            'gegen_liste' => array(
-                'liste' => 'termine',
-                'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin_id ), ),
-            ),
+            'gegen_liste' => 'termine',
+            'gegen_element_id' => $termin_id,
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(

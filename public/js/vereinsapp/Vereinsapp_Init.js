@@ -80,5 +80,7 @@ Select JANEIN als check umbauen
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
 Auswahlliste einführen (statt klasse_id in liste) -> klasse_id dann ändern, analog zu checkliste
+    Wenn element disabled ist, dann werden die kinder entsprechend auch disabled (unterscheidung zwischen check, label, beschriftung, etc.)
+    data-gegen_liste und data-gegen_element_id direkt ans check (oder ans element)
 
 */
