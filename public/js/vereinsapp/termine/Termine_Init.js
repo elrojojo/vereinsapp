@@ -108,10 +108,9 @@ function Termine_Init() {
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_anwesenheiten_dokumentieren", function () {
-        const checkliste_id = "anwesenheiten_dokumentieren";
         const liste = $(this).attr("data-liste");
         const title = $(this).attr("data-title");
-        const $modal = LISTEN[liste].modals[checkliste_id + "_modal"].clone().removeClass("blanko invisible").addClass("modal");
+        const $modal = LISTEN[liste].modals["anwesenheiten_dokumentieren_modal"].clone().removeClass("blanko invisible").addClass("modal");
 
         if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
         Schnittstelle_DomModalOeffnen($modal);

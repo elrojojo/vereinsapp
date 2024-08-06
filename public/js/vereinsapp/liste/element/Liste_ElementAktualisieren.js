@@ -17,14 +17,10 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
     // LINK AKTUALISIEREN ODER ELEMENT DEAKTIVIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
-    let istCheckliste = false;
     let hatKlasseId = false;
-    if ($liste.exists()) {
-        istCheckliste = $liste.hasClass("checkliste");
-        hatKlasseId = $liste.hasClass("klasse_id");
-    }
+    if ($liste.exists()) hatKlasseId = $liste.hasClass("klasse_id");
 
-    if (!$element.find("a.stretched-link").exists() && !istCheckliste && !hatKlasseId) {
+    if (!$element.find("a.stretched-link").exists() && !$element.find(".check").exists() && !hatKlasseId) {
         $element.removeClass("list-group-item-action");
         $element.removeAttr("role");
         $element.find(".beschriftung").removeClass("text-secondary");

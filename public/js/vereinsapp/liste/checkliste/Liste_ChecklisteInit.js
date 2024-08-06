@@ -1,5 +1,5 @@
 function Liste_ChecklisteInit() {
-    // CHECKLISTE ÄNDERN
+    // CHECK ÄNDERN
     $(document).on("change", ".check", function () {
         Liste_CheckAendern($(this));
     });
@@ -7,7 +7,7 @@ function Liste_ChecklisteInit() {
     // ALLE CHECKS ANWÄHLEN
     $(document).on("click", ".btn_alle_checks_anwaehlen", function () {
         const instanz = $(this).attr("data-instanz");
-        $(".checkliste[id='" + instanz + "']")
+        $(".liste[id='" + instanz + "']")
             .find(".check:not(:checked)")
             .trigger("click");
     });
@@ -15,7 +15,7 @@ function Liste_ChecklisteInit() {
     // ALLE CHECKS ABWÄHLEN
     $(document).on("click", ".btn_alle_checks_abwaehlen", function () {
         const instanz = $(this).attr("data-instanz");
-        $('.checkliste[id="' + instanz + '"]')
+        $('.liste[id="' + instanz + '"]')
             .find(".check:checked")
             .trigger("click");
     });

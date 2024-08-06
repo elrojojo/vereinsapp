@@ -80,6 +80,6 @@ Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
-Auswahlliste einführen (statt klasse_id in liste) -> klasse_id dann ändern, analog zu checkliste
+.klasse_id entfernen
 
 */
