@@ -1,15 +1,14 @@
 function Liste_CheckAendern($check) {
     Schnittstelle_CheckWartenStart($check);
 
-    const $liste = $check.closest(".liste");
-    const liste = $liste.attr("data-liste");
-    const checkliste = $liste.attr("data-checkliste");
-    const element = LISTEN[liste].element;
-    const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
+    const $element = $check.closest(".element");
+    const liste = $element.attr("data-liste");
+    const gegen_liste = $element.attr("data-gegen_liste");
+    const checkliste = $check.attr("name");
 
     const ajax_data = new Object();
-    ajax_data[element + "_id"] = Number($check.val());
-    ajax_data[gegen_element + "_id"] = Number($liste.attr("data-gegen_element_id"));
+    ajax_data[LISTEN[liste].element + "_id"] = Number($check.val());
+    ajax_data[LISTEN[gegen_liste].element + "_id"] = Number($element.attr("data-gegen_element_id"));
     ajax_data.status = Number($check.is(":checked"));
 
     const neue_ajax_id = AJAXSCHLANGE.length;
@@ -20,11 +19,14 @@ function Liste_CheckAendern($check) {
         liste: liste,
         $check: $check,
         rein_validation_pos_aktion: function (AJAX) {
-            const $liste = AJAX.$check.closest(".liste");
-            const checkliste = $liste.attr("data-checkliste");
-            const element = LISTEN[AJAX.liste].element;
+            const $element = $check.closest(".element");
+            const liste = AJAX.liste;
+            const gegen_liste = $element.attr("data-gegen_liste");
+            const checkliste = AJAX.$check.attr("name");
+            
+            const element = LISTEN[liste].element;
             const element_id = AJAX.data[element + "_id"];
-            const gegen_element = LISTEN[$liste.attr("data-gegen_liste")].element;
+            const gegen_element = LISTEN[gegen_liste].element;
             const gegen_element_id = AJAX.data[gegen_element + "_id"];
 
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht

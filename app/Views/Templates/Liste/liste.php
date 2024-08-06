@@ -24,8 +24,6 @@ if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $list
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
 ?> mb-1" data-liste="<?= $liste['liste']; ?>"<?php
 if( array_key_exists( 'checkliste', $liste ) ) { ?> data-checkliste="<?= $liste['checkliste']; ?>"<?php }
-if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
-if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
 if( array_key_exists( 'bedingte_formatierung', $liste ) ) { ?> data-bedingte_formatierung='<?= json_encode( $liste['bedingte_formatierung'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'elemente_disabled', $liste ) ) { ?> data-elemente_disabled='<?= json_encode( $liste['elemente_disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
@@ -39,8 +37,10 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
         else echo ' '.$liste['klasse_id'];
     }
-    ?>"<?php
-    if( array_key_exists( 'title', $liste ) ) echo ' data-title="'.$liste['title'].'"';
+    ?>" data-liste="<?= $liste['liste']; ?>"<?php
+    if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
+    if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
+    if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
     ?>>
 
         <div class="text-truncate <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' h5'; ?>">

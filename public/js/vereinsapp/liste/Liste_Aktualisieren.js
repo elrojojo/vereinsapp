@@ -35,6 +35,12 @@ function Liste_Aktualisieren($liste, liste) {
     else sortieren_kombiniert = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 
+    // ELEMENTE DISABLED
+    let elemente_disabled;
+    const elemente_disabled_data = $liste.attr("data-elemente_disabled");
+    if (typeof elemente_disabled_data !== "undefined") elemente_disabled = JSON.parse(elemente_disabled_data);
+    else elemente_disabled = new Array();
+
     // ELEMENTE IM DOM LÖSCHEN
     $liste.find(".element").each(function () {
         const $element = $(this);
@@ -57,6 +63,8 @@ function Liste_Aktualisieren($liste, liste) {
                 .addClass("element")
                 .attr("data-liste", liste)
                 .attr("data-element_id", element_id);
+
+            if (elemente_disabled.includes(element_id)) $neues_element.addClass("disabled");
 
             // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
             if (position == 0) $neues_element.appendTo($liste);

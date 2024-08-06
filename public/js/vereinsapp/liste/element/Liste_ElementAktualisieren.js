@@ -1,6 +1,9 @@
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
     const $liste = $element.closest('.liste[data-liste="' + liste + '"]');
+    const gegen_liste = $element.attr("data-gegen_liste");
+    const gegen_element_id = $element.attr("data-gegen_element_id");
+    const disabled = $element.hasClass("disabled");
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -16,21 +19,9 @@ function Liste_ElementAktualisieren($element, liste) {
     // LINK AKTUALISIEREN ODER ELEMENT DEAKTIVIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
     let istCheckliste = false;
     let hatKlasseId = false;
-    let gegen_liste = undefined;
-    let gegen_element_id = undefined;
-    let bedingte_formatierung = new Object();
-    let elemente_disabled = new Array();
     if ($liste.exists()) {
         istCheckliste = $liste.hasClass("checkliste");
         hatKlasseId = $liste.hasClass("klasse_id");
-        const gegen_liste_data = $liste.attr("data-gegen_liste");
-        if (typeof gegen_liste_data !== "undefined") gegen_liste = gegen_liste_data;
-        const gegen_element_id_data = $liste.attr("data-gegen_element_id");
-        if (typeof gegen_element_id_data !== "undefined") gegen_element_id = gegen_element_id_data;
-        const bedingte_formatierung_data = $liste.attr("data-bedingte_formatierung");
-        if (typeof bedingte_formatierung_data !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung_data);
-        const elemente_disabled_data = $liste.attr("data-elemente_disabled");
-        if (typeof elemente_disabled_data !== "undefined") elemente_disabled = JSON.parse(elemente_disabled_data);
     }
 
     if (!$element.find("a.stretched-link").exists() && !istCheckliste && !hatKlasseId) {
@@ -38,7 +29,7 @@ function Liste_ElementAktualisieren($element, liste) {
         $element.removeAttr("role");
         $element.find(".beschriftung").removeClass("text-secondary");
         $element.find("a.stretched-link").removeAttr("href");
-    } else if (Array.isArray(elemente_disabled) && elemente_disabled.length > 0 && elemente_disabled.includes(element_id)) {
+    } else if (disabled) {
         $element.removeClass("list-group-item-action");
         $element.removeAttr("role");
         $element.find(".beschriftung").addClass("text-secondary");
@@ -49,7 +40,13 @@ function Liste_ElementAktualisieren($element, liste) {
         $element.find(".beschriftung").removeClass("text-secondary");
         $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
     }
+
     // BESCHRIFTUNG BEDINGT FORMATIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
+    let bedingte_formatierung = new Object();
+    if ($liste.exists()) {
+        const bedingte_formatierung_data = $liste.attr("data-bedingte_formatierung");
+        if (typeof bedingte_formatierung_data !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung_data);
+    }
     if (
         isObject(bedingte_formatierung) &&
         "liste" in bedingte_formatierung &&
@@ -79,7 +76,7 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // CHECK AKTUALISIEREN
     $element.find(".check").each(function () {
-        Liste_CheckAktualisieren($(this), element_id, elemente_disabled, liste);
+        Liste_CheckAktualisieren($(this), element_id, disabled, liste);
     });
 
     // ZUSATZSYMBOLE AKTUALISIEREN

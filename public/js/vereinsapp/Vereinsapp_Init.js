@@ -69,6 +69,7 @@ Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus al
 Schnittstelle_VariableObjektBereinigtZurueck und Schnittstelle_VariableArrayBereinigtZurueck in Schnittstelle_VariableWertBereinigtZurueck vereinigen und anschließend entfernen
 Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den anschließenden else-Pfad zu vermeiden
 Zustandsautomat für den Zustand der Vereinsapp einführen
+Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -80,7 +81,5 @@ Select JANEIN als check umbauen
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
 Auswahlliste einführen (statt klasse_id in liste) -> klasse_id dann ändern, analog zu checkliste
-    Wenn element disabled ist, dann werden die kinder entsprechend auch disabled (unterscheidung zwischen check, label, beschriftung, etc.)
-    data-gegen_liste und data-gegen_element_id direkt ans check (oder ans element)
 
 */
