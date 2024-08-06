@@ -4,7 +4,7 @@ function Liste_CheckAendern($check) {
     const $element = $check.closest(".element");
     const liste = $element.attr("data-liste");
     const gegen_liste = $element.attr("data-gegen_liste");
-    const checkliste = $check.attr("name");
+    const checkliste = $check.attr("data-checkliste");
 
     const ajax_data = new Object();
     ajax_data[LISTEN[liste].element + "_id"] = Number($check.val());
@@ -22,8 +22,8 @@ function Liste_CheckAendern($check) {
             const $element = $check.closest(".element");
             const liste = AJAX.liste;
             const gegen_liste = $element.attr("data-gegen_liste");
-            const checkliste = AJAX.$check.attr("name");
-            
+            const checkliste = AJAX.$check.attr("data-checkliste");
+
             const element = LISTEN[liste].element;
             const element_id = AJAX.data[element + "_id"];
             const gegen_element = LISTEN[gegen_liste].element;

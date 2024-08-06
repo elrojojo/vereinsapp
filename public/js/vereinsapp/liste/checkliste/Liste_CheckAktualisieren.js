@@ -18,7 +18,7 @@ function Liste_CheckAktualisieren($check, element_id, disabled, liste) {
                     ],
                 },
             ],
-            $check.attr("name")
+            $check.attr("data-checkliste")
         );
 
     // Check setzen
