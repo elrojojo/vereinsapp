@@ -131,8 +131,8 @@ class Termine extends BaseController {
             'title' => 'Auswertung filtern',
         );
 
-        $elemente_disabled = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $elemente_disabled[] = $mitglied->id;
+        $disabled_filtern = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
@@ -148,6 +148,13 @@ class Termine extends BaseController {
             'checkliste' => 'anwesenheiten',
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
+            'disabled' => array(
+                'liste' => 'mitglieder',
+                'filtern' => array( array(
+                    'verknuepfung' => '||',
+                    'filtern' => $disabled_filtern,
+                ), ),
+            ),
             'bedingte_formatierung' => array(
                 'liste' => 'rueckmeldungen',
                 'klasse' => array(
@@ -155,7 +162,6 @@ class Termine extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
-            'elemente_disabled' => $elemente_disabled,
             'listenstatistik' => TRUE,
         );
 

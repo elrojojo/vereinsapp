@@ -38,6 +38,15 @@ class Mitglieder extends BaseController {
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             // 'checkliste' => 'vergebene_rechte',
+            // 'gegen_liste' => 'termine',
+            // 'gegen_element_id' => 42,
+            // 'disabled' => array(
+            //     'liste' => 'termine',
+            //     'filtern' => array( array(
+            //         'verknuepfung' => '||',
+            //         'filtern' => $disabled_filtern,
+            //     ), ),
+            // ),
             // 'bedingte_formatierung' => array(
             //     'liste' => 'rueckmeldungen',
             //     'klasse' => array(
@@ -45,9 +54,6 @@ class Mitglieder extends BaseController {
             //         'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
             //     ),
             // ),
-            // 'gegen_liste' => 'termine',
-            // 'gegen_element_id' => 42,
-            // 'elemente_disabled' => array( 8 ),
             'listenstatistik' => TRUE,
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
@@ -109,8 +115,8 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_id'] = $mitglied_id;
 
-        $elemente_disabled = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $elemente_disabled[] = (int)$termin['id'];
+        $disabled_filtern = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'termine',
             'sortieren' => array(
@@ -123,6 +129,13 @@ class Mitglieder extends BaseController {
             'checkliste' => 'anwesenheiten',
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => $mitglied_id,
+            'disabled' => array(
+                'liste' => 'termine',
+                'filtern' => array( array(
+                    'verknuepfung' => '||',
+                    'filtern' => $disabled_filtern,
+                ), ),
+            ),
             'bedingte_formatierung' => array(
                 'liste' => 'rueckmeldungen',
                 'klasse' => array(
@@ -130,7 +143,6 @@ class Mitglieder extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
-            'elemente_disabled' => $elemente_disabled,
             'listenstatistik' => TRUE,
         );
 
@@ -164,10 +176,10 @@ class Mitglieder extends BaseController {
         
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             if( auth()->user()->can( 'mitglieder.rechte' ) ) {
-                $elemente_disabled = array();
-                $elemente_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
-                if( !auth()->user()->can( 'global.einstellungen' ) ) $elemente_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
-                if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $elemente_disabled[] = $verfuegbares_recht['id'];
+                $disabled_filtern = array();
+                $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+                if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] );
+                if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $verfuegbares_recht['id'] );
                 $this->viewdata['liste']['rechte_vergeben'] = array(
                     'liste' => 'verfuegbare_rechte',
                     'beschriftung' => array(
@@ -176,8 +188,14 @@ class Mitglieder extends BaseController {
                     'checkliste' => 'vergebene_rechte',
                     'gegen_liste' => 'mitglieder',
                     'gegen_element_id' => $mitglied_id,
-                    'elemente_disabled' => $elemente_disabled,
-                );
+                    'disabled' => array(
+                        'liste' => 'verfuegbare_rechte',
+                        'filtern' => array( array(
+                            'verknuepfung' => '||',
+                            'filtern' => $disabled_filtern,
+                        ), ),
+                    ),
+                        );
             }
 
             $this->viewdata['liste']['bevorstehende_termine'] = array(

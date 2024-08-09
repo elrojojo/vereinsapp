@@ -3,18 +3,30 @@ function Liste_ElementAktualisieren($element, liste) {
     const $liste = $element.closest('.liste[data-liste="' + liste + '"]');
     const gegen_liste = $element.attr("data-gegen_liste");
     const gegen_element_id = $element.attr("data-gegen_element_id");
-    const disabled = $element.hasClass("disabled");
 
-    // EIGENSCHAFTEN AKTUALISIEREN
-    $element.find(".eigenschaft").each(function () {
-        const $eigenschaft = $(this);
-        const eigenschaft = $eigenschaft.attr("data-eigenschaft");
-        const wert = Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste);
-        $eigenschaft.html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
-    });
+    // ELEMENTE DISABLED
+    let disabled = $element.attr("data-disabled");
+    if (typeof disabled !== "undefined") {
+        disabled = JSON.parse(disabled);
+        if (
+            Liste_TabelleGefiltertZurueck(
+                [
+                    {
+                        verknuepfung: "&&",
+                        filtern: [{ operator: "==", eigenschaft: "id", wert: element_id }, disabled.filtern[0]],
+                    },
+                ],
+                disabled.liste
+            ).length > 0
+        )
+            disabled = true;
+        else disabled = false;
+    } else disabled = false;
 
-    // WERKZEUGKASTEN AKTUALISIEREN
-    $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
+    // BEDINGTE FORMATIERUNG
+    let bedingte_formatierung = $element.attr("data-bedingte_formatierung");
+    if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung);
+    else bedingte_formatierung = new Object();
 
     // LINK AKTUALISIEREN ODER ELEMENT DEAKTIVIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
     let hatKlasseId = false;
@@ -25,11 +37,6 @@ function Liste_ElementAktualisieren($element, liste) {
         $element.removeAttr("role");
         $element.find(".beschriftung").removeClass("text-secondary");
         $element.find("a.stretched-link").removeAttr("href");
-    } else if (disabled) {
-        $element.removeClass("list-group-item-action");
-        $element.removeAttr("role");
-        $element.find(".beschriftung").addClass("text-secondary");
-        $element.find("a.stretched-link").removeAttr("href");
     } else {
         $element.addClass("list-group-item-action");
         $element.attr("role", "button");
@@ -37,14 +44,16 @@ function Liste_ElementAktualisieren($element, liste) {
         $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
     }
 
-    // BESCHRIFTUNG BEDINGT FORMATIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
-    let bedingte_formatierung = new Object();
-    if ($liste.exists()) {
-        const bedingte_formatierung_data = $liste.attr("data-bedingte_formatierung");
-        if (typeof bedingte_formatierung_data !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung_data);
-    }
+    // ELEMENT DISABLED FORMATIEREN
+    if (disabled) {
+        $element.removeClass("list-group-item-action");
+        $element.removeAttr("role");
+        $element.find(".beschriftung").addClass("text-secondary");
+        $element.find("a.stretched-link").removeAttr("href");
+    } else $element.find(".beschriftung").removeClass("text-secondary");
+
+    // ELEMENT BEDINGT FORMATIEREN
     if (
-        isObject(bedingte_formatierung) &&
         "liste" in bedingte_formatierung &&
         "klasse" in bedingte_formatierung &&
         typeof gegen_liste !== "undefined" &&
@@ -70,10 +79,21 @@ function Liste_ElementAktualisieren($element, liste) {
             else $element.find(".beschriftung").removeClass(klasse);
         });
 
+    // EIGENSCHAFTEN AKTUALISIEREN
+    $element.find(".eigenschaft").each(function () {
+        const $eigenschaft = $(this);
+        const eigenschaft = $eigenschaft.attr("data-eigenschaft");
+        const wert = Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste);
+        $eigenschaft.html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
+    });
+
     // CHECK AKTUALISIEREN
     $element.find(".check").each(function () {
         Liste_CheckAktualisieren($(this), element_id, disabled, liste);
     });
+
+    // WERKZEUGKASTEN AKTUALISIEREN
+    $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
 
     // ZUSATZSYMBOLE AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {
