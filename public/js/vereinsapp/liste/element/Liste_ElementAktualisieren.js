@@ -1,6 +1,5 @@
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
-    const $liste = $element.closest('.liste[data-liste="' + liste + '"]');
     const gegen_liste = $element.attr("data-gegen_liste");
     const gegen_element_id = $element.attr("data-gegen_element_id");
 
@@ -28,23 +27,13 @@ function Liste_ElementAktualisieren($element, liste) {
     if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung);
     else bedingte_formatierung = new Object();
 
-    // LINK AKTUALISIEREN ODER ELEMENT DEAKTIVIEREN (FALLS ES EINE ZUGEHÖRIGE LISTE GIBT)
-    let hatKlasseId = false;
-    if ($liste.exists()) hatKlasseId = $liste.hasClass("klasse_id");
-
-    if (!$element.find("a.stretched-link").exists() && !$element.find(".check").exists() && !hatKlasseId) {
-        $element.removeClass("list-group-item-action");
-        $element.removeAttr("role");
-        $element.find(".beschriftung").removeClass("text-secondary");
-        $element.find("a.stretched-link").removeAttr("href");
-    } else {
+    // ACTION UND ROLE FORMATIEREN (ACHTUNG: REIHENFOLGE!)
+    if ($element.find(".check").exists() || $element.find("a.stretched-link").exists() || $element.is("[class*=btn_]")) {
         $element.addClass("list-group-item-action");
         $element.attr("role", "button");
-        $element.find(".beschriftung").removeClass("text-secondary");
-        $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
     }
 
-    // ELEMENT DISABLED FORMATIEREN
+    // ELEMENT DISABLED FORMATIEREN (ACHTUNG: REIHENFOLGE!)
     if (disabled) {
         $element.removeClass("list-group-item-action");
         $element.removeAttr("role");
@@ -52,7 +41,7 @@ function Liste_ElementAktualisieren($element, liste) {
         $element.find("a.stretched-link").removeAttr("href");
     } else $element.find(".beschriftung").removeClass("text-secondary");
 
-    // ELEMENT BEDINGT FORMATIEREN
+    // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
     if (
         "liste" in bedingte_formatierung &&
         "klasse" in bedingte_formatierung &&
@@ -91,6 +80,9 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find(".check").each(function () {
         Liste_CheckAktualisieren($(this), element_id, disabled, liste);
     });
+
+    // LINK AKTUALISIEREN
+    $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
 
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
