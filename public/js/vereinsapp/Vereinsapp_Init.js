@@ -80,5 +80,6 @@ Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
+Number() aus den Inits entfernen (und ggf. in die Funktionen schieben)
 
 */

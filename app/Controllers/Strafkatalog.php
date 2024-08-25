@@ -33,8 +33,8 @@ class Strafkatalog extends BaseController {
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
+                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+                'liste' => 'strafkatalog',
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -69,7 +69,6 @@ class Strafkatalog extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
-                'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => TRUE,
             );

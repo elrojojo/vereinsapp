@@ -66,13 +66,14 @@ function Strafkatalog_Init() {
     // STRAFE ZUWEISEN
     $(document).on("click", ".btn_strafe_zuweisen", function () {
         Strafkatalog_StrafeZuweisen(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("auswahl_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
             $(this).attr("data-title"),
             $(this),
-            $(this).closest(".modal.formular"),
+            Number($(this).attr("data-gegen_element_id")),
+            $(this).attr("data-gegen_liste"),
             Number($(this).attr("data-element_id")),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-liste")
         );
     });
 

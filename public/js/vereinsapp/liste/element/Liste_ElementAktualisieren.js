@@ -86,6 +86,10 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
+    if (typeof gegen_liste !== "undefined")
+        $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-gegen_liste", gegen_liste);
+    if (typeof gegen_element_id !== "undefined")
+        $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-gegen_element_id", gegen_element_id);
 
     // ZUSATZSYMBOLE AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {
