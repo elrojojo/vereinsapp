@@ -14,7 +14,7 @@
 <?php if( auth()->user()->can('strafkatalog.verwaltung') ) echo view( 'Strafkatalog/strafe_basiseigenschaften_modal' ); ?>
 </div>
 <div class="blanko_modals" data-liste="mitglieder">
-<?php if( auth()->user()->can('strafkatalog.verwaltung') ) echo view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['alle_mitglieder'] ) ); ?>
+<?php if( auth()->user()->can('strafkatalog.verwaltung') ) echo view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['mitglieder_auswahl'] ) ); ?>
 </div>
 <?= $this->endSection() ?>
 

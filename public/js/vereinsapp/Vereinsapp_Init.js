@@ -80,8 +80,7 @@ Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop
 Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
-Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus)
-Kassenbuch-Einträge aktivieren/deaktivieren (als bezahlt/unbezahlt markieren)
+Kassenbuch-Einträge aktivieren/deaktivieren (als bezahlt/unbezahlt markieren; aktiv wird in der Datenbank nicht korrekt gesetzt)
 Kassenbuch-Einträge nach mitglied_id filtern
 
 */

@@ -59,7 +59,7 @@ class Strafkatalog extends BaseController {
                 'title' => 'Strafe erstellen',
             );
 
-            $this->viewdata['liste']['alle_mitglieder'] = array(
+            $this->viewdata['liste']['mitglieder_auswahl'] = array(
                 'liste' => 'mitglieder',
                 'sortieren' => array(
                     array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
@@ -69,20 +69,20 @@ class Strafkatalog extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
-                'title' => 'Strafe einem Mitglied zuweisen',
+                'title' => 'Strafe zuweisen',
                 'listenstatistik' => TRUE,
             );
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
+            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
                 'klasse_id' => 'btn_filtern_formular_oeffnen',
                 'title' => 'Mitglieder filtern',
-            ); 
+            );
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
+            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
                 'klasse_id' => 'btn_sortieren_formular_oeffnen',
                 'title' => 'Mitglieder sortieren',
-            ); 
-    
+            );
+
         }
 
         $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['filtern'] = array(

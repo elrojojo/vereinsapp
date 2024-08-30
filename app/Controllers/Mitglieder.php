@@ -95,6 +95,40 @@ class Mitglieder extends BaseController {
             ); 
         }
 
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
+
+            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+                'liste' => 'mitglieder',
+                'title' => 'Strafe einem Mitglied zuweisen',
+            );
+
+            $this->viewdata['liste']['strafkatalog_auswahl'] = array(
+                'liste' => 'strafkatalog',
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
+                    ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                ),
+                'title' => 'Strafe zuweisen',
+                'listenstatistik' => TRUE,
+            );
+
+            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
+                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'title' => 'Strafkatalog filtern',
+            );
+
+            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
+                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'title' => 'Strafkatalog sortieren',
+            );
+        }
+
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
             'klasse_id' => 'btn_filtern_formular_oeffnen',
             'title' => 'Mitglieder filtern',
@@ -249,6 +283,38 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',
+            );
+        }
+
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+                'liste' => 'mitglieder',
+                'title' => 'Strafe einem Mitglied zuweisen',
+            );
+
+            $this->viewdata['liste']['strafkatalog_auswahl'] = array(
+                'liste' => 'strafkatalog',
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
+                    ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                ),
+                'title' => 'Strafe zuweisen',
+                'listenstatistik' => TRUE,
+            );
+
+            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
+                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'title' => 'Strafkatalog filtern',
+            );
+
+            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
+                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'title' => 'Strafkatalog sortieren',
             );
         }
 

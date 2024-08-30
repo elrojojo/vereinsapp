@@ -15,11 +15,8 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
 
     if (auswahl_oeffnen) {
         const klasse_id = "btn_strafe_zuweisen";
-        let modal_id;
-        if (data.gegen_liste == "mitglieder") modal_id = "alle_mitglieder_modal";
-        else if (data.gegen_liste == "strafkatalog") modal_id = "kompletter_strafkatalog_modal";
 
-        $modal = LISTEN[data.gegen_liste].modals[modal_id].clone().removeClass("blanko invisible").addClass("modal");
+        $modal = LISTEN[data.gegen_liste].modals[data.gegen_liste + "_auswahl_modal"].clone().removeClass("blanko invisible").addClass("modal");
         $modal.find(".modal-title").text(title);
         Schnittstelle_DomModalOeffnen($modal);
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
@@ -44,7 +41,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
         );
     } else {
         const data_kassenbucheintrag = {
-            titel: Liste_ElementBeschriftungZurueck(strafe_id, "strafkatalog"),
+            titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog"),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
             aktiv: 0,
             mitglied_id: mitglied_id,
