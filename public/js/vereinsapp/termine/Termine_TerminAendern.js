@@ -1,4 +1,6 @@
-function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formular, termin_id) {
+function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
+    if (typeof termin_id !== "undefined") termin_id = Number(termin_id);
+
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "termine", "aendern", {
@@ -7,15 +9,11 @@ function Termine_TerminAendern(formular_oeffnen, title, $btn_ausloesend, $formul
             })
         );
     else {
-        Schnittstelle_BtnWartenStart($btn_ausloesend);
+        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
-        const ajax_data = new Object();
-        Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
+        const ajax_dom = dom;
+        const ajax_data = data;
         ajax_data.id = termin_id;
-
-        const ajax_dom = new Object();
-        ajax_dom.$btn_ausloesend = $btn_ausloesend;
-        ajax_dom.$formular = $formular;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

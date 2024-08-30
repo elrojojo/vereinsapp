@@ -1,13 +1,11 @@
-function Termine_RueckmeldungAendern($btn_ausloesend, status, termin_id) {
-    Schnittstelle_BtnWartenStart($btn_ausloesend);
+function Termine_RueckmeldungAendern(dom, data, rueckmeldung_id) {
+    if (typeof rueckmeldung_id !== "undefined") rueckmeldung_id = Number(rueckmeldung_id);
 
-    const ajax_data = new Object();
-    ajax_data.id = termin_id;
-    ajax_data.status = status;
-    ajax_data.bemerkung = "";
+    Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
-    const ajax_dom = new Object();
-    ajax_dom.$btn_ausloesend = $btn_ausloesend;
+    const ajax_dom = dom;
+    const ajax_data = data;
+    ajax_data.id = rueckmeldung_id;
 
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {

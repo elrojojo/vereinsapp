@@ -1,4 +1,6 @@
-function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, title, $btn_ausloesend, $formular, kassenbucheintrag_id) {
+function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, title, kassenbucheintrag_id) {
+    if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
+
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
             Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "kassenbuch", "aendern", {
@@ -7,16 +9,11 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, title, $btn_aus
             })
         );
     else {
-        Schnittstelle_BtnWartenStart($btn_ausloesend);
+        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
-        const ajax_data = new Object();
-        Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
+        const ajax_dom = dom;
+        const ajax_data = data;
         ajax_data.id = kassenbucheintrag_id;
-        ajax_data.id = DateTime.now();
-
-        const ajax_dom = new Object();
-        ajax_dom.$btn_ausloesend = $btn_ausloesend;
-        ajax_dom.$formular = $formular;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

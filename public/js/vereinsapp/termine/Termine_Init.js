@@ -25,9 +25,9 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_erstellen", function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
             undefined
         );
     });
@@ -36,10 +36,10 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_aendern", function () {
         Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -47,10 +47,10 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_duplizieren", function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -58,11 +58,10 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            $(this).attr("data-weiterleiten"),
+            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.bestaetigung"),
-            Number($(this).attr("data-element_id")),
+            $(this).attr("data-element_id"),
             "termine"
         );
     });
@@ -70,26 +69,37 @@ function Termine_Init() {
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(
-            $(this),
-            JSON.parse($(this).attr("data-werte")).termin_id,
-            JSON.parse($(this).attr("data-werte")).mitglied_id,
-            JSON.parse($(this).attr("data-werte")).status
+            { $btn_ausloesend: $(this) },
+            {
+                termin_id: JSON.parse($(this).attr("data-werte")).termin_id,
+                mitglied_id: JSON.parse($(this).attr("data-werte")).mitglied_id,
+                status: JSON.parse($(this).attr("data-werte")).status,
+                bemerkung: "",
+            },
+            undefined
         );
     });
 
     // RÜCKMELDUNG ÄNDERN
     $(document).on("click", ".btn_rueckmeldung_aendern", function () {
-        Termine_RueckmeldungAendern($(this), JSON.parse($(this).attr("data-werte")).status, Number($(this).attr("data-element_id")));
+        Termine_RueckmeldungAendern(
+            { $btn_ausloesend: $(this) },
+            {
+                status: JSON.parse($(this).attr("data-werte")).status,
+                bemerkung: "",
+            },
+            $(this).attr("data-element_id")
+        );
     });
 
     // RÜCKMELDUNG DETAILLIEREN
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
         Termine_RueckmeldungDetaillieren(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -97,11 +107,10 @@ function Termine_Init() {
     $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            $(this).attr("data-weiterleiten"),
+            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.bestaetigung"),
-            Number($(this).attr("data-element_id")),
+            $(this).attr("data-element_id"),
             "rueckmeldungen"
         );
     });

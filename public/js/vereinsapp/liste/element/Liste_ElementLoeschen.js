@@ -1,22 +1,20 @@
-function Liste_ElementLoeschen(bestaetigung_einfordern, weiterleiten, title, $btn_ausloesend, $bestaetigung, element_id, liste) {
+function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, element_id, liste) {
+    if (typeof element_id !== "undefined") element_id = Number(element_id);
+
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du " + Liste_ElementBeschriftungZurueck(element_id, liste) + " wirklich löschen?",
             title,
             "btn_" + LISTEN[liste].element + "_loeschen",
-            { liste: liste, element_id: element_id, weiterleiten: weiterleiten },
+            { liste: liste, element_id: element_id, weiterleiten: data.weiterleiten },
             "danger"
         );
     else {
-        if (typeof $btn_ausloesend !== "undefined") Schnittstelle_BtnWartenStart($btn_ausloesend);
+        if (typeof dom.$btn_ausloesend !== "undefined") Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
-        const ajax_data = new Object();
+        const ajax_dom = dom;
+        const ajax_data = data;
         ajax_data.id = element_id;
-        ajax_data.weiterleiten = weiterleiten;
-
-        const ajax_dom = new Object();
-        ajax_dom.$btn_ausloesend = $btn_ausloesend;
-        ajax_dom.$bestaetigung = $bestaetigung;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

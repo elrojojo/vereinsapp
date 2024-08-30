@@ -70,16 +70,18 @@ Schnittstelle_VariableObjektBereinigtZurueck und Schnittstelle_VariableArrayBere
 Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den anschließenden else-Pfad zu vermeiden
 Zustandsautomat für den Zustand der Vereinsapp einführen
 Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
+ziel/umgebung beim DOM-Update ergänzen (damit nicht immer der komplette DOM aktualisiert wird)
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
 Dreistellige Nummern in der Notenbank als Standard einführen
-Bemerkung zum Termin zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
+Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
-Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus und von Strafkatalog aus)
-Number() aus den Inits entfernen (und ggf. in die Funktionen schieben)
+Strafe einem Mitglied zuweisen und ins Kassenbuch eintragen (von Mitglied aus)
+Kassenbuch-Einträge aktivieren/deaktivieren (als bezahlt/unbezahlt markieren)
+Kassenbuch-Einträge nach mitglied_id filtern
 
 */

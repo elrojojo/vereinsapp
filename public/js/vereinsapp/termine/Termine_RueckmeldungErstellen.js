@@ -1,19 +1,15 @@
-function Termine_RueckmeldungErstellen($btn_ausloesend, termin_id, mitglied_id, status) {
-    Schnittstelle_BtnWartenStart($btn_ausloesend);
+function Termine_RueckmeldungErstellen(dom, data, rueckmeldung_id) {
+    if (typeof rueckmeldung_id !== "undefined") rueckmeldung_id = Number(rueckmeldung_id);
+
+    Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
     // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""
-    $btn_ausloesend.trigger("blur");
+    dom.$btn_ausloesend.trigger("blur");
     $(".navbar-text").trigger("focus");
     // ENDE
 
-    const ajax_data = new Object();
-    ajax_data.termin_id = termin_id;
-    ajax_data.mitglied_id = mitglied_id;
-    ajax_data.status = status;
-    ajax_data.bemerkung = "";
-
-    const ajax_dom = new Object();
-    ajax_dom.$btn_ausloesend = $btn_ausloesend;
+    const ajax_dom = dom;
+    const ajax_data = data;
 
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
@@ -23,13 +19,15 @@ function Termine_RueckmeldungErstellen($btn_ausloesend, termin_id, mitglied_id, 
         liste: "rueckmeldungen",
         dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
-            if ("rueckmeldung_id" in AJAX.antwort && typeof AJAX.antwort.rueckmeldung_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
+            if ("rueckmeldung_id" in AJAX.antwort && typeof AJAX.antwort.rueckmeldung_id !== "undefined")
+                AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
             else AJAX.data.id = Number(LISTEN["rueckmeldungen"].tabelle.length + 1);
             const rueckmeldung_id = AJAX.data.id;
 
             LISTEN["rueckmeldungen"].tabelle[rueckmeldung_id] = new Object();
             $.each(AJAX.data, function (eigenschaft, wert) {
-                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");
+                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
+                    Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");
             });
 
             // Zum Testen bzgl. "Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.""

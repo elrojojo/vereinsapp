@@ -1,14 +1,12 @@
-function Mitglieder_PasswortAendern($btn_ausloesend, $formular, mitglied_id) {
-    Schnittstelle_BtnWartenStart($btn_ausloesend);
+function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
+    if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
 
-    const ajax_data = new Object();
-    Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data);
+    Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
+
+    const ajax_dom = dom;
+    const ajax_data = data;
     ajax_data.id = mitglied_id;
-
-    const ajax_dom = new Object();
-    ajax_dom.$btn_ausloesend = $btn_ausloesend;
-    ajax_dom.$formular = $formular;
-
+    console.log(ajax_data);
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
@@ -20,7 +18,7 @@ function Mitglieder_PasswortAendern($btn_ausloesend, $formular, mitglied_id) {
             if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) AJAX.dom.$formular.find(".eigenschaft").val("");
             if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                 Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-            Schnittstelle_DomToastFeuern("Dein Password wurde erfolgreich geändert.");
+            Schnittstelle_DomToastFeuern("Du hast erfolgreich das Passwort geändert.");
         },
         rein_validation_neg_aktion: function (AJAX) {
             if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())

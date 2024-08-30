@@ -21,9 +21,9 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_strafe_erstellen", function () {
         Strafkatalog_StrafeErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
             undefined
         );
     });
@@ -32,10 +32,10 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_strafe_aendern", function () {
         Strafkatalog_StrafeAendern(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -43,10 +43,10 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_strafe_duplizieren", function () {
         Strafkatalog_StrafeErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -54,11 +54,10 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_strafe_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            $(this).attr("data-weiterleiten"),
+            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.bestaetigung"),
-            Number($(this).attr("data-element_id")),
+            $(this).attr("data-element_id"),
             "strafkatalog"
         );
     });
@@ -68,11 +67,10 @@ function Strafkatalog_Init() {
         Strafkatalog_StrafeZuweisen(
             $(this).hasClass("auswahl_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $bestaetigung: $(this).closest(".bestaetigung") },
+            { gegen_element_id: $(this).attr("data-gegen_element_id"), gegen_liste: $(this).attr("data-gegen_liste") },
             $(this).attr("data-title"),
-            $(this),
-            Number($(this).attr("data-gegen_element_id")),
-            $(this).attr("data-gegen_liste"),
-            Number($(this).attr("data-element_id")),
+            $(this).attr("data-element_id"),
             $(this).attr("data-liste")
         );
     });
@@ -81,9 +79,9 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_kassenbucheintrag_erstellen", function () {
         Strafkatalog_KassenbucheintragErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
             undefined
         );
     });
@@ -92,10 +90,10 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_kassenbucheintrag_aendern", function () {
         Strafkatalog_KassenbucheintragAendern(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -103,10 +101,10 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_kassenbucheintrag_duplizieren", function () {
         Strafkatalog_KassenbucheintragErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -114,11 +112,10 @@ function Strafkatalog_Init() {
     $(document).on("click", ".btn_kassenbucheintrag_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            $(this).attr("data-weiterleiten"),
+            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.bestaetigung"),
-            Number($(this).attr("data-element_id")),
+            $(this).attr("data-element_id"),
             "kassenbuch"
         );
     });

@@ -1,4 +1,6 @@
-function Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data) {
+function Liste_ElementFormularEigenschaftenWerteZurueck($formular) {
+    const eigenschaftenWerte = new Object();
+
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -13,10 +15,12 @@ function Liste_ElementFormularEigenschaftenWerteInAjaxData($formular, ajax_data)
         // Wenn aber die Eigenschaft eine Zahl ist
         else if (isNumber(wert)) wert = Number(wert);
 
-        ajax_data[eigenschaft] = wert;
+        eigenschaftenWerte[eigenschaft] = wert;
 
         $eigenschaft.removeClass("is-valid").removeClass("is-invalid");
         $eigenschaft.find(".valid-tooltip").remove();
         $eigenschaft.find(".invalid-tooltip").remove();
     });
+
+    return eigenschaftenWerte;
 }

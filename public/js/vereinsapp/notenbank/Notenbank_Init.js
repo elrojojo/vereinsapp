@@ -15,9 +15,9 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_erstellen", function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
             undefined
         );
     });
@@ -26,10 +26,10 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_aendern", function () {
         Notenbank_TitelAendern(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -37,10 +37,10 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_duplizieren", function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("formular_oeffnen"),
+            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.formular"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 
@@ -48,11 +48,10 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            $(this).attr("data-weiterleiten"),
+            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".modal.bestaetigung"),
-            Number($(this).attr("data-element_id")),
+            $(this).attr("data-element_id"),
             "notenbank"
         );
     });
