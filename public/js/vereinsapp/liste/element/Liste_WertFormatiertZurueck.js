@@ -55,6 +55,10 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "anzahl_verzeichnis":
             wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + '">';
             break;
+        case "mitglied_id":
+            if (wert == null) wert_formatiert = "Mitglied nicht gefunden";
+            else wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
+            break;
         default:
             wert_formatiert = wert;
     }

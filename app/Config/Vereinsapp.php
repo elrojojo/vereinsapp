@@ -311,6 +311,7 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'wert',
             'aktiv',
+            'mitglied_id',
             'letzte_aktivitaet',
         ),
 
@@ -373,6 +374,7 @@ class Vereinsapp extends BaseConfig
             'titel',
             'wert',
             'aktiv',
+            'mitglied_id',
             'letzte_aktivitaet',
         ),
 

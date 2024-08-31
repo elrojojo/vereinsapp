@@ -57,7 +57,7 @@ Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
-Liste_WertFormatiertZurueck() soll auch ids verarbeiten können, indem sie in anderen Listen sucht + Formatierung eines Werts flexibel (inkl. möglichem Symbol)
+Formatierung eines Werts flexibel machen in Liste_WertFormatiertZurueck() (inkl. möglichem Symbol)
 Data-Attribute als Object in einem Attribut zusammenfassen
 title ändern in beschriftung?
 anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
@@ -82,5 +82,7 @@ Select JANEIN als check umbauen
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Kassenbuch-Einträge aktivieren/deaktivieren (als bezahlt/unbezahlt markieren; aktiv wird in der Datenbank nicht korrekt gesetzt)
 Kassenbuch-Einträge nach mitglied_id filtern
+zeitpunkt in kassenbuch ergänzen
+mitglied aus Liste auswählen
 
 */

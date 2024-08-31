@@ -45,7 +45,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
             aktiv: 0,
             mitglied_id: mitglied_id,
-            bemerkung: "",
+            bemerkung: "Strafe",
         };
 
         dom.$formular = dom.$bestaetigung;
