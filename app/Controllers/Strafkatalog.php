@@ -255,9 +255,9 @@ class Strafkatalog extends BaseController {
             $kassenbucheintrag = array(
                 'titel' => $this->request->getpost()['titel'],
                 'wert' => $this->request->getPost()['wert'],
-                'aktiv' => $this->request->getPost()['aktiv'],
+                'mitglied_id' => $this->request->getPost()['mitglied_id'],
             );
-            if( array_key_exists( 'mitglied_id', $this->request->getpost() ) ) $kassenbucheintrag['mitglied_id'] = $this->request->getpost()['mitglied_id'];
+            if( array_key_exists( 'aktiv', $this->request->getpost() ) ) $kassenbucheintrag['aktiv'] = $this->request->getpost()['aktiv'];
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung'];
 
             if( !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );

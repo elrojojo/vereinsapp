@@ -232,7 +232,7 @@ class Mitglieder extends BaseController {
                         );
             }
 
-            $this->viewdata['liste']['bevorstehende_termine'] = array(
+            $this->viewdata['liste']['bevorstehende_termine_mitglied'] = array(
                 'liste' => 'termine',
                 'filtern' => array( array(
                     'verknuepfung' => '&&',
@@ -287,6 +287,29 @@ class Mitglieder extends BaseController {
         }
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied'] = array(
+                'liste' => 'kassenbuch',
+                'filtern' => array( array(
+                    'verknuepfung' => '&&',
+                    'filtern' => array(
+                        array( 'operator' => '==', 'eigenschaft' => 'mitglied_id', 'wert' => $mitglied_id ),
+                        array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => 0 ),
+                    ),
+                ), ),
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'letzte_aktivitaet', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
+                ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                ),
+                'vorschau' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="letzte_aktivitaet"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
+                    'klein' => TRUE,
+                ),
+            );
+
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
                 'liste' => 'mitglieder',

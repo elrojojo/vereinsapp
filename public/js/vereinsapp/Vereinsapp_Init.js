@@ -55,7 +55,7 @@ Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für anstehende_termine)
+Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite)
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 Formatierung eines Werts flexibel machen in Liste_WertFormatiertZurueck() (inkl. möglichem Symbol)
 Data-Attribute als Object in einem Attribut zusammenfassen
@@ -80,8 +80,7 @@ Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop
 Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
-Kassenbuch-Einträge aktivieren/deaktivieren (als bezahlt/unbezahlt markieren; aktiv wird in der Datenbank nicht korrekt gesetzt)
-Kassenbuch-Einträge nach mitglied_id filtern
+Kassenbuch-Einträge nach wert formatieren (negative Werte rot)
 zeitpunkt in kassenbuch ergänzen
 mitglied aus Liste auswählen
 

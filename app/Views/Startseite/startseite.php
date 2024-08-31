@@ -23,8 +23,8 @@
 </div>
 
 <div class="container mb-2">
-  <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="anstehende_termine">Termine in den nächsten 14 Tagen</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['anstehende_termine'] ) ); ?>
+  <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine_startseite">Termine in den nächsten 14 Tagen</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_startseite'] ) ); ?>
 </div>
 
 <div class="container mb-2">

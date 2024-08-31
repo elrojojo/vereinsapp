@@ -24,7 +24,7 @@ class Startseite extends BaseController {
             ),
         );
 
-        $this->viewdata['liste']['anstehende_termine'] = array(
+        $this->viewdata['liste']['bevorstehende_termine_startseite'] = array(
             'liste' => 'termine',
             'filtern' => array( array(
                 'verknuepfung' => '&&',
