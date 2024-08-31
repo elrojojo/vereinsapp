@@ -11,6 +11,7 @@ class Strafkatalog_Kassenbucheintrag_Model extends Model {
     protected $allowedFields  = [
         'titel',
         'wert',
+        'zeitpunkt',
         'aktiv',
         'mitglied_id',
         'bemerkung',

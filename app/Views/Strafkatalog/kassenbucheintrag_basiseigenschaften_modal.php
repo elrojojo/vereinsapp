@@ -18,6 +18,11 @@
       </div>
 
       <div class="form-floating mb-2">
+        <input type="datetime-local" class="form-control eigenschaft" data-eigenschaft="zeitpunkt" />
+        <label><?= EIGENSCHAFTEN['kassenbuch']['zeitpunkt']['beschriftung']; ?></label>
+      </div>
+
+      <div class="form-floating mb-2">
         <select class="form-select eigenschaft" data-eigenschaft="aktiv">
         <?php foreach ( VORGEGEBENE_WERTE['kassenbuch']['aktiv'] as $aktiv => $eigenschaften ): ?>
           <option value="<?= $aktiv; ?>"><?= $eigenschaften['beschriftung']; ?></option>

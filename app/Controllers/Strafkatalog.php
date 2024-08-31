@@ -105,7 +105,7 @@ class Strafkatalog extends BaseController {
     $this->viewdata['liste']['aktuelles_kassenbuch'] = array(
         'liste' => 'kassenbuch',
         'sortieren' => array(
-            array( 'eigenschaft' => 'letzte_aktivitaet', 'richtung' => SORT_ASC, ),
+            array( 'eigenschaft' => 'zeitpunkt', 'richtung' => SORT_ASC, ),
             array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
         ),
@@ -115,7 +115,7 @@ class Strafkatalog extends BaseController {
         ),
         // 'link' => TRUE,
         'vorschau' => array(
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="letzte_aktivitaet"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="zeitpunkt"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
         ),
         'listenstatistik' => TRUE,
     );
@@ -244,6 +244,7 @@ class Strafkatalog extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal' ] ],
+            'zeitpunkt' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['zeitpunkt']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'aktiv' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['aktiv']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['kassenbuch']['aktiv'] ) ).']', ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
@@ -255,6 +256,7 @@ class Strafkatalog extends BaseController {
             $kassenbucheintrag = array(
                 'titel' => $this->request->getpost()['titel'],
                 'wert' => $this->request->getPost()['wert'],
+                'zeitpunkt' => $this->request->getPost()['zeitpunkt'],
                 'mitglied_id' => $this->request->getPost()['mitglied_id'],
             );
             if( array_key_exists( 'aktiv', $this->request->getpost() ) ) $kassenbucheintrag['aktiv'] = $this->request->getpost()['aktiv'];

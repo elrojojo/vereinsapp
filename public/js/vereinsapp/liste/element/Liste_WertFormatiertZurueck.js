@@ -27,6 +27,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "aktiv":
             wert_formatiert = JANEIN[wert].beschriftung;
             break;
+        case "zeitpunkt":
         case "erstellung":
         case "letzte_aktivitaet":
         case "created_at":

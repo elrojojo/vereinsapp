@@ -14,6 +14,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
         const ajax_dom = dom;
         const ajax_data = data;
         ajax_data.id = kassenbucheintrag_id;
+        if (!("mitglied_id" in data)) data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", kassenbucheintrag_id, "kassenbuch"); // Prototypisch! -> TODO!
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

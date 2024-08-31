@@ -142,6 +142,7 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
+            'zeitpunkt' => array( 'beschriftung' => 'Zeitpunkt', 'typ' => 'zeitpunkt' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
@@ -310,9 +311,9 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'wert',
+            'zeitpunkt',
             'aktiv',
             'mitglied_id',
-            'letzte_aktivitaet',
         ),
 
         'notenbank' => array(
@@ -373,9 +374,9 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'titel',
             'wert',
+            'zeitpunkt',
             'aktiv',
             'mitglied_id',
-            'letzte_aktivitaet',
         ),
 
         'notenbank' => array(

@@ -43,6 +43,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
         const data_kassenbucheintrag = {
             titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog"),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
+            zeitpunkt: DateTime.now().toSQL(),
             aktiv: 0,
             mitglied_id: mitglied_id,
             bemerkung: "Strafe",

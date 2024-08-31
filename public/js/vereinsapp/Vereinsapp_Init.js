@@ -81,7 +81,6 @@ Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 Kassenbuch-Einträge nach wert formatieren (negative Werte rot)
-zeitpunkt in kassenbuch ergänzen
 mitglied aus Liste auswählen
 
 */
