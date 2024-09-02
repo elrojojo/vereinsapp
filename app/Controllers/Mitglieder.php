@@ -382,7 +382,9 @@ class Mitglieder extends BaseController {
                     if( $mitglied['letzte_aktivitaet'] != NULL ) $mitglied['letzte_aktivitaet'] = $mitglied['letzte_aktivitaet']->setTimezone('Europe/Berlin')->toDateTimeString();
                 }
 
-                foreach( $mitglied as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $mitglied[ $eigenschaft ] = (int)$wert;
+                foreach( $mitglied as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    if( (int) $wert == $wert ) $mitglied[ $eigenschaft ] = (int)$wert;
+                    elseif( (float) $wert == $wert ) $mitglied[ $eigenschaft ] = (float)$wert;
                 $ajax_antwort['tabelle'][] = $mitglied;
             }
             // if( hash( 'sha256', json_encode( $ajax_antwort['tabelle'], JSON_UNESCAPED_UNICODE ) ) == $this->request->getPost()['hash'] ) TRUE; //$ajax_antwort['tabelle'] = array();
@@ -619,7 +621,9 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) {
                 $verfuegbares_recht = json_decode( json_encode( $verfuegbares_recht ), TRUE );
-                foreach( $verfuegbares_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $verfuegbares_recht[ $eigenschaft ] = (int)$wert;
+                foreach( $verfuegbares_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    if( (int) $wert == $wert ) $verfuegbares_recht[ $eigenschaft ] = (int)$wert;
+                    elseif( (float) $wert == $wert ) $verfuegbares_recht[ $eigenschaft ] = (float)$wert;
                 $ajax_antwort['tabelle'][] = $verfuegbares_recht;
             }
         
@@ -639,7 +643,9 @@ class Mitglieder extends BaseController {
                     $vergebenes_recht['mitglied_id'] = $mitglied->id;
                     $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];
                     $vergebenes_recht = json_decode( json_encode( $vergebenes_recht ), TRUE );
-                    foreach( $vergebenes_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $vergebenes_recht[ $eigenschaft ] = (int)$wert;
+                    foreach( $vergebenes_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                        if( (int) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (int)$wert;
+                        elseif( (float) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (float)$wert;
                     $ajax_antwort['tabelle'][] = $vergebenes_recht;
                     $id++;
                 }

@@ -240,7 +240,9 @@ class Termine extends BaseController {
             $ajax_antwort['tabelle'] = model(Termin_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $termin ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $termin ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
             }
         }
 
@@ -308,7 +310,9 @@ class Termine extends BaseController {
             $ajax_antwort['tabelle'] = model(Rueckmeldung_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $rueckmeldung ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $rueckmeldung ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
             }
         }
 
@@ -395,7 +399,9 @@ class Termine extends BaseController {
             $ajax_antwort['tabelle'] = model(Anwesenheit_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $anwesenheit ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $anwesenheit ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
+                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
             }
         }
 
