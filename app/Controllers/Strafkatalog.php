@@ -123,6 +123,12 @@ class Strafkatalog extends BaseController {
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten_handle'] = TRUE;
 
+            $this->viewdata['werkzeugkasten']['kassenbuch'] = array(
+                'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
+                'liste' => 'kassenbuch',
+                'title' => 'Kassenbucheintrag (de)aktivieren',
+            );
+
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_kassenbucheintrag_aendern', 'formular_oeffnen'),
                 'liste' => 'kassenbuch',
