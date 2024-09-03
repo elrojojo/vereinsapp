@@ -14,17 +14,9 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
     }
 
     if (auswahl_oeffnen) {
-        const klasse_id = "btn_strafe_zuweisen";
-
         $modal = LISTEN[data.gegen_liste].modals[data.gegen_liste + "_auswahl_modal"].clone().removeClass("blanko invisible").addClass("modal");
         $modal.find(".modal-title").text(title);
         Schnittstelle_DomModalOeffnen($modal);
-        Schnittstelle_EventVariableUpdDom(data.gegen_liste);
-
-        $modal.find(".element").attr("data-gegen_liste", liste);
-        $modal.find(".element").attr("data-gegen_element_id", element_id);
-        $modal.find(".element").addClass(klasse_id);
-        $modal.find(".element").addClass("bestaetigung_einfordern");
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
     } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);

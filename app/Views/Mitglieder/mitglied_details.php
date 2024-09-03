@@ -38,7 +38,7 @@
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?php } ?>
 
-<?php if( auth()->user()->can('mitglieder.verwaltung') ) { ?><div class="container mb-2">
+<?php if( auth()->user()->can('strafkatalog.verwaltung') ) { ?><div class="container mb-2">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
 </div><?php } ?>

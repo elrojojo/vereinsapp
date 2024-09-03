@@ -126,7 +126,7 @@ defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
 defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'startseite' => array ( 'bootstrap' => '' ),
     'termine' => array ( 'bootstrap' => 'calendar-month' ),
-    'strafkatalog' => array ( 'bootstrap' => 'piggy-bank' ),
+    'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
     'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
     'mitglieder' => array ( 'bootstrap' => 'people' ),
@@ -137,6 +137,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'erstellen' => array( 'bootstrap' => 'plus-lg' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
+    'zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
+    'de_aktivieren' => array ( 'bootstrap' => 'check2-circle' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
@@ -156,7 +158,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
-    'kassenbuch' => array( 'bootstrap' => 'journal-check' ),
+    'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
 
     'abwesend' => array( 'bootstrap' => 'airplane', 'html' => '&#9992' ),
     'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
@@ -169,6 +171,9 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
+    'aktiv' => array( 'bootstrap' => 'check-circle' ),
+    'inaktiv' => array( 'bootstrap' => 'circle' ),
+
     'verzeichnis' => array( 'bootstrap' => 'folder' ),
     'verzeichnis_geoeffnet' => array( 'bootstrap' => 'folder2-open' ),
     'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
@@ -180,7 +185,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 
-    'zuweisen' => array ( 'bootstrap' => 'piggy-bank' ),
 ) );
 
 enum AJAX_ZUSTAND

@@ -26,6 +26,10 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 ?>>
 
     <li class="blanko invisible text-body list-group-item<?php
+    if( array_key_exists( 'klasse_id', $liste ) ) {
+        if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
+        else echo ' '.$liste['klasse_id'];
+    }
     if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-liste_h5';
     if( array_key_exists( 'checkliste', $liste ) ) echo ' d-grid';
     ?>" data-liste="<?= $liste['liste']; ?>"<?php

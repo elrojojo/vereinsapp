@@ -58,39 +58,42 @@ class Mitglieder extends BaseController {
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
-        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
+        // if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        //     $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
-                'liste' => 'mitglieder',
-                'title' => 'Strafe einem Mitglied zuweisen',
-            );
+        //     $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+        //         'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+        //         'liste' => 'mitglieder',
+        //         'title' => 'Strafe einem Mitglied zuweisen',
+        //     );
 
-            $this->viewdata['liste']['strafkatalog_auswahl'] = array(
-                'liste' => 'strafkatalog',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-                    ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
-                'title' => 'Strafe zuweisen',
-                'listenstatistik' => TRUE,
-            );
+        //     $this->viewdata['liste']['strafkatalog_auswahl'] = array(
+        //         'liste' => 'strafkatalog',
+        //         'sortieren' => array(
+        //             array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
+        //             array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+        //             array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
+        //             ),
+        //         'beschriftung' => array(
+        //             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+        //         ),
+        //         'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
+        //         'title' => 'Strafe zuweisen',
+        //         'gegen_liste' => 'mitglieder',
+        //         'gegen_element_id' => TRUE,
+        //         'listenstatistik' => TRUE,
+        //     );
 
-            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_formular_oeffnen',
-                'title' => 'Strafkatalog filtern',
-            );
+        //     $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
+        //         'klasse_id' => 'btn_filtern_formular_oeffnen',
+        //         'title' => 'Strafkatalog filtern',
+        //     );
 
-            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_formular_oeffnen',
-                'title' => 'Strafkatalog sortieren',
-            );
-        }
+        //     $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
+        //         'klasse_id' => 'btn_sortieren_formular_oeffnen',
+        //         'title' => 'Strafkatalog sortieren',
+        //     );
+        // }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
@@ -226,10 +229,13 @@ class Mitglieder extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
+                'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
+                'title' => 'Kassenbucheintrag (de)aktivieren',
                 'vorschau' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="letzte_aktivitaet"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
                     'klein' => TRUE,
                 ),
+                'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="de_aktivieren"></span>',
             );
 
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
@@ -248,7 +254,10 @@ class Mitglieder extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
+                'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe zuweisen',
+                'gegen_liste' => 'mitglieder',
+                'gegen_element_id' => $mitglied_id,
                 'listenstatistik' => TRUE,
             );
 
