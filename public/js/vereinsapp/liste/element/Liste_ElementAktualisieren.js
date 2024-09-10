@@ -22,11 +22,6 @@ function Liste_ElementAktualisieren($element, liste) {
         else disabled = false;
     } else disabled = false;
 
-    // BEDINGTE FORMATIERUNG
-    let bedingte_formatierung = $element.attr("data-bedingte_formatierung");
-    if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung);
-    else bedingte_formatierung = new Object();
-
     // ACTION UND ROLE FORMATIEREN (ACHTUNG: REIHENFOLGE!)
     if ($element.find(".check").exists() || $element.find("a.stretched-link").exists() || $element.is("[class*=btn_]")) {
         $element.addClass("list-group-item-action");
@@ -42,30 +37,37 @@ function Liste_ElementAktualisieren($element, liste) {
     } else $element.find(".beschriftung").removeClass("text-secondary");
 
     // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    if (
-        "liste" in bedingte_formatierung &&
-        "klasse" in bedingte_formatierung &&
-        typeof gegen_liste !== "undefined" &&
-        typeof gegen_element_id !== "undefined"
-    )
+    let bedingte_formatierung = $element.attr("data-bedingte_formatierung");
+    if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung);
+    else bedingte_formatierung = new Object();
+
+    if (!("liste" in bedingte_formatierung)) bedingte_formatierung.liste = liste;
+
+    if ("eigenschaft" in bedingte_formatierung)
+        bedingte_formatierung.$ziel = $element.find('.eigenschaft[data-eigenschaft="' + bedingte_formatierung.eigenschaft + '"');
+    else bedingte_formatierung.$ziel = $element.find(".beschriftung");
+
+    if ("klasse" in bedingte_formatierung)
         $.each(bedingte_formatierung.klasse, function (klasse, filtern) {
+            const bedingte_formatierung_filtern = [{ operator: filtern.operator, eigenschaft: filtern.eigenschaft, wert: filtern.wert }];
+            if (typeof gegen_liste !== "undefined" && typeof gegen_element_id !== "undefined") {
+                bedingte_formatierung_filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id });
+                bedingte_formatierung_filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element_id });
+            } else bedingte_formatierung_filtern.push({ operator: "==", eigenschaft: "id", wert: element_id });
+
             if (
                 Liste_TabelleGefiltertZurueck(
                     [
                         {
                             verknuepfung: "&&",
-                            filtern: [
-                                { operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id },
-                                { operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element_id },
-                                { operator: filtern.operator, eigenschaft: filtern.eigenschaft, wert: filtern.wert },
-                            ],
+                            filtern: bedingte_formatierung_filtern,
                         },
                     ],
                     bedingte_formatierung.liste
                 ).length > 0
             )
-                $element.find(".beschriftung").addClass(klasse);
-            else $element.find(".beschriftung").removeClass(klasse);
+                bedingte_formatierung.$ziel.addClass(klasse);
+            else bedingte_formatierung.$ziel.removeClass(klasse);
         });
 
     // EIGENSCHAFTEN AKTUALISIEREN

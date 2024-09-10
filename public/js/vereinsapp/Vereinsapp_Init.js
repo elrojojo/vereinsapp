@@ -84,7 +84,6 @@ Schnittstelle_BtnWartenStart und Schnittstelle_BtnWartenEnde umbauen, sodass ico
 Select JANEIN als check umbauen
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
-Kassenbuch-Einträge nach wert formatieren (negative Werte rot)
 mitglied aus Liste auswählen
 gegen_element_id über den Werkzeugkasten dynamisch in einer Modal-Übersichtsliste einfügen (und damit Strafen auch von der Übersichtssliste aus zuweisen und de_aktivieren, gegen_liste nicht vergessen!)
 

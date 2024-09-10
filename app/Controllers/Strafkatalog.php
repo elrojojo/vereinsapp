@@ -121,7 +121,13 @@ class Strafkatalog extends BaseController {
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="zeitpunkt"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
         ),
         'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="aktiv"></span>',
-        'listenstatistik' => TRUE,
+        'bedingte_formatierung' => array(
+            'klasse' => array(
+                'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ),
+            ),
+            'eigenschaft' => 'wert',
+        ),
+    'listenstatistik' => TRUE,
     );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
