@@ -48,7 +48,7 @@
 </div>
 
 <div class="blanko_modals" data-liste="mitglieder">
-<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
+<?php if( auth()->user()->can('mitglieder.verwaltung') OR ICH['id'] == $element_id ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
 </div>
 

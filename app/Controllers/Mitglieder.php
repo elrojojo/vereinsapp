@@ -348,7 +348,12 @@ class Mitglieder extends BaseController {
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',
             );
-        }
+        } elseif( ICH['id'] == $mitglied_id )
+            $this->viewdata['werkzeugkasten']['aendern'] = array(
+                'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
+                'liste' => 'mitglieder',
+                'title' => 'Meine Daten ändern',
+            );
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'alle_mitglieder',
@@ -389,7 +394,8 @@ class Mitglieder extends BaseController {
                     if( $mitglied['erstellung'] != NULL ) $mitglied['erstellung'] = $mitglied['erstellung']->setTimezone('Europe/Berlin')->toDateTimeString();
                     $mitglied['letzte_aktivitaet'] = $mitglied_->last_active;
                     if( $mitglied['letzte_aktivitaet'] != NULL ) $mitglied['letzte_aktivitaet'] = $mitglied['letzte_aktivitaet']->setTimezone('Europe/Berlin')->toDateTimeString();
-                }
+                } elseif( ICH['id'] == $mitglied['id'] )
+                    $mitglied['email'] = $mitglied_->email;
 
                 foreach( $mitglied as $eigenschaft => $wert ) if( is_numeric( $wert ) )
                     if( (int) $wert == $wert ) $mitglied[ $eigenschaft ] = (int)$wert;
@@ -421,7 +427,7 @@ class Mitglieder extends BaseController {
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) AND !(!empty( $this->request->getPost()['id'] ) AND ICH['id'] == $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglieder_Model = model(Mitglied_Model::class);
             $mitglied = array(

@@ -45,7 +45,6 @@ Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Link zu Github neben die Version
-Das eigene Profil editierbar machen, auch wenn man kein Recht zur Verwaltung der Mitglieder hat
 Batch über filtern- und sortieren-Button legen
 
 SOFTWARE
