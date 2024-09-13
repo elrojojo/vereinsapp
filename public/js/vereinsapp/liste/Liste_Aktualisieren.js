@@ -58,6 +58,13 @@ function Liste_Aktualisieren($liste, liste) {
                 .attr("data-liste", liste)
                 .attr("data-element_id", element_id);
 
+            const gegen_liste = $liste.attr("data-gegen_liste");
+            const gegen_element_id = $liste.attr("data-gegen_element_id");
+            if (typeof $neues_element.attr("data-gegen_liste") === "undefined" && typeof gegen_liste !== "undefined")
+                $neues_element.attr("data-gegen_liste", gegen_liste);
+            if (typeof $neues_element.attr("data-gegen_element_id") === "undefined" && typeof gegen_element_id !== "undefined")
+                $neues_element.attr("data-gegen_element_id", gegen_element_id);
+
             // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
             if (position == 0) $neues_element.appendTo($liste);
             else $neues_element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));

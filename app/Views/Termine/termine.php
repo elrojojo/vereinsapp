@@ -8,6 +8,7 @@
 
 <div class="blanko_modals" data-liste="termine">
 <?php if( auth()->user()->can('termine.verwaltung') ) echo view( 'Termine/termin_basiseigenschaften_modal' ); ?>
+<?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>
 <?= $this->endSection() ?>
 

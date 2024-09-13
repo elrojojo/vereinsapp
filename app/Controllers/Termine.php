@@ -41,6 +41,65 @@ class Termine extends BaseController {
         );
         if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE );
 
+        $disabled_filtern = array();
+        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
+            'liste' => 'mitglieder',
+            // 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
+            'sortieren' => array(
+                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+            ),
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+            ),
+            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'checkliste' => 'anwesenheiten',
+            'disabled' => array(
+                'liste' => 'mitglieder',
+                'filtern' => array( array(
+                    'verknuepfung' => '||',
+                    'filtern' => $disabled_filtern,
+                ), ),
+            ),
+            'bedingte_formatierung' => array(
+                'liste' => 'rueckmeldungen',
+                'klasse' => array(
+                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+                ),
+            ),
+            'listenstatistik' => TRUE,
+        );
+
+        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
+                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'title' => 'Alle abwählen',
+            );
+
+        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
+                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'title' => 'Alle anwählen',
+            );
+
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
+            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'title' => 'Mitglieder filtern',
+        );
+
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
+            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'title' => 'Mitglieder sortieren',
+        );
+
+        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
+            'klasse_id' => 'btn_anwesenheiten_dokumentieren',
+            'title' => 'Anwesenheiten dokumentieren',
+        );
+
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
 
@@ -143,8 +202,6 @@ class Termine extends BaseController {
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'checkliste' => 'anwesenheiten',
-            'gegen_liste' => 'termine', // todo: entfernen und vom werkzeugkasten holen
-            'gegen_element_id' => $termin_id, // todo: entfernen und vom werkzeugkasten holen
             'disabled' => array(
                 'liste' => 'mitglieder',
                 'filtern' => array( array(

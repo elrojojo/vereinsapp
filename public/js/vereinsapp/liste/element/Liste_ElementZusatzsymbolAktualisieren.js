@@ -20,11 +20,18 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     if (zusatzsymbol == "de_aktivieren") $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["de_aktivieren"]["bootstrap"] + ' text-primary me-1"></i>');
 
     // Zusatzsymbol für aktiv
-    if (zusatzsymbol == "aktiv")
-        if (LISTEN[liste].tabelle[element_id].aktiv == 0)
-            $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["inaktiv"]["bootstrap"] + ' text-primary me-1"></i>');
-        else $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["aktiv"]["bootstrap"] + ' text-primary me-1"></i>');
+    if (zusatzsymbol == "aktiv") {
+        let aktiv = "aktiv";
+        if (LISTEN[liste].tabelle[element_id].aktiv == 0) aktiv = "inaktiv";
 
+        $zusatzsymbol.html(
+            '<i class="bi bi-' +
+                SYMBOLE[aktiv]["bootstrap"] +
+                ' btn_kassenbucheintrag_de_aktivieren text-primary me-1" data-element_id=' +
+                element_id +
+                ' data-title="Kassenbucheintrag (de)aktivieren" role="button"></i>'
+        );
+    }
     // Zusatzsymbol für Kategorie
     if (zusatzsymbol == "kategorie") $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][LISTEN[liste].tabelle[element_id].kategorie]["symbol"]);
 

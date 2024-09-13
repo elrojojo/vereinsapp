@@ -118,6 +118,7 @@ function Termine_Init() {
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_anwesenheiten_dokumentieren", function () {
         const liste = $(this).attr("data-liste");
+        const element_id = $(this).attr("data-element_id");
         const title = $(this).attr("data-title");
 
         let gegen_liste = $(this).attr("data-gegen_liste");
@@ -129,6 +130,8 @@ function Termine_Init() {
         if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
 
         Schnittstelle_DomModalOeffnen($modal);
+        $modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
+
         Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 }

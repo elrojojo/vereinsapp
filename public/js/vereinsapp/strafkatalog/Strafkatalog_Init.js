@@ -108,7 +108,7 @@ function Strafkatalog_Init() {
         );
     });
 
-    // KASSENBUCHEINTRAG (DE)AKTIVIEREN)
+    // KASSENBUCHEINTRAG (DE)AKTIVIEREN
     $(document).on("click", ".btn_kassenbucheintrag_de_aktivieren", function () {
         Strafkatalog_KassenbucheintragDeAktivieren(
             $(this).hasClass("bestaetigung_einfordern"),

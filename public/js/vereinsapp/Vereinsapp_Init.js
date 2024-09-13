@@ -96,7 +96,6 @@ Schnittstelle_BtnWartenStart und Schnittstelle_BtnWartenEnde umbauen, sodass ico
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung oder noch besser wie listenstatistik)
 mitglied aus Liste auswählen
-gegen_element_id über den Werkzeugkasten dynamisch in einer Modal-Übersichtsliste einfügen (und damit Strafen auch von der Übersichtssliste aus zuweisen und de_aktivieren, gegen_liste nicht vergessen!)
 Braucht es [data-aktion] noch?
 Braucht es .werkzeugkasten noch?
 
