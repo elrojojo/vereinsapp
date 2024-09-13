@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2">
+<div class="container mb-3">
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['alle_mitglieder'] ) ); ?>
 </div>
 

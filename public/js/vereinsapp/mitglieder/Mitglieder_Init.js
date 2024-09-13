@@ -23,7 +23,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_erstellen", function () {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             undefined
@@ -34,7 +34,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_aendern", function () {
         Mitglieder_MitgliedAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -45,7 +45,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_duplizieren", function () {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -67,7 +67,7 @@ function Mitglieder_Init() {
     // PASSWORT ÄNDERN
     $(document).on("click", ".btn_mitglied_passwort_aendern", function () {
         Mitglieder_PasswortAendern(
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-element_id")
         );
@@ -76,7 +76,7 @@ function Mitglieder_Init() {
     // PASSWORT FESTLEGEN
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
         Mitglieder_PasswortFestlegen(
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-element_id")
         );
@@ -88,6 +88,7 @@ function Mitglieder_Init() {
             $(this).hasClass("formular_oeffnen"),
             {
                 $btn_ausloesend: $(this),
+                $modal: $(this).closest(".modal"),
                 $formular: $(this).closest(".formular"),
                 $einmal_link: $(this).closest(".formular").find(".einmal_link"),
                 $btn_dismiss: $(this).closest(".formular").find(".btn[data-bs-dismiss]"),
@@ -101,10 +102,9 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
         Mitglieder_EinmalLinkEmail(
             $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
             $(this).attr("data-title"),
-            $(this),
-            $(this).closest(".bestaetigung"),
-            Number($(this).attr("data-element_id"))
+            $(this).attr("data-element_id")
         );
     });
 }

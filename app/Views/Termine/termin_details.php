@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2 text-center element" data-liste="termine" data-element_id="<?= $element_id; ?>">
+<div class="container mb-3 text-center element" data-liste="termine" data-element_id="<?= $element_id; ?>">
     <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung"><span class="eigenschaft" data-eigenschaft="titel"></span></div>
     <div class="row g-0 my-1">
@@ -16,7 +16,7 @@
     <?= view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
 </div>
 
-<div class="container mb-2">
+<div class="container mb-3">
     <ul class="nav nav-tabs">
         <li class="col-6 nav-item text-center" data-bs-target="#rueckmeldungen_container" role="button">
             <a class="nav-link active">Rückmeldungen</a>

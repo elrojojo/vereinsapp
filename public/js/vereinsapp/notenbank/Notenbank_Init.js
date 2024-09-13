@@ -15,7 +15,7 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_erstellen", function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             undefined
@@ -26,7 +26,7 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_aendern", function () {
         Notenbank_TitelAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -37,7 +37,7 @@ function Notenbank_Init() {
     $(document).on("click", ".btn_titel_duplizieren", function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")

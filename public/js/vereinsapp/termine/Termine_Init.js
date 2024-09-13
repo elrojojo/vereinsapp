@@ -25,7 +25,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_erstellen", function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             undefined
@@ -36,7 +36,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_aendern", function () {
         Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -47,7 +47,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_duplizieren", function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -96,7 +96,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
         Termine_RueckmeldungDetaillieren(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $formular: $(this).closest(".formular") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")

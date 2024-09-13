@@ -6,6 +6,7 @@ $(document).ready(function () {
     Schnittstelle_LocalstorageInit();
 
     Liste_Init();
+    Liste_ElementFormular_Init();
 
     if (LOGGEDIN) Mitglieder_Init();
     if (LOGGEDIN) Termine_Init();
@@ -85,5 +86,6 @@ Select JANEIN als check umbauen
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
 mitglied aus Liste auswählen
 gegen_element_id über den Werkzeugkasten dynamisch in einer Modal-Übersichtsliste einfügen (und damit Strafen auch von der Übersichtssliste aus zuweisen und de_aktivieren, gegen_liste nicht vergessen!)
+Liste_ElementFormular_Init mit Liste_ElementFormularInitialisiertZurueck kombinieren
 
 */

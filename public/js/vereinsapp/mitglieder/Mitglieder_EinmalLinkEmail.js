@@ -1,4 +1,6 @@
-function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloesend, $bestaetigung, mitglied_id) {
+function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, dom, title, mitglied_id) {
+    if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
+
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du " + Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wirklich einen Einmal-Link per Email zuschicken?",
@@ -7,15 +9,12 @@ function Mitglieder_EinmalLinkEmail(bestaetigung_einfordern, title, $btn_ausloes
             { liste: "mitglieder", element_id: mitglied_id, werte: JSON.stringify({ email: true }) }
         );
     else {
-        Schnittstelle_BtnWartenStart($btn_ausloesend);
+        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
+        const ajax_dom = dom;
         const ajax_data = new Object();
         ajax_data.id = mitglied_id;
         ajax_data.email = true;
-
-        const ajax_dom = new Object();
-        ajax_dom.$btn_ausloesend = $btn_ausloesend;
-        ajax_dom.$bestaetigung = $bestaetigung;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

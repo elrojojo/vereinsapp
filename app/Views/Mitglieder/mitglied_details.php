@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2 element" data-liste="mitglieder" data-element_id="<?= $element_id; ?>">
+<div class="container mb-3 element" data-liste="mitglieder" data-element_id="<?= $element_id; ?>">
     <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung text-center">
         <span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>
@@ -26,19 +26,19 @@
 </div>
 
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) {
-    if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-2">
+    if( auth()->user()->can('mitglieder.rechte') ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte_vergeben">Rechte</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 </div><?php } ?>
 
-<div class="container mb-2">
+<div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine_mitglied">Termine</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_mitglied'] ) ); ?>
 </div>
 <?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
 <?php } ?>
 
-<?php if( auth()->user()->can('strafkatalog.verwaltung') ) { ?><div class="container mb-2">
+<?php if( auth()->user()->can('strafkatalog.verwaltung') ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
 </div><?php } ?>

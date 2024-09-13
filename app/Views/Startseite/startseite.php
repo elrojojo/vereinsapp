@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= $this->include( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ) ?>
 
-<div class="container mb-2 text-center">
+<div class="container mb-3 text-center">
 <?php if (config('vereinsapp')->kasten_weiter_zur_website_von_startseite ) : ?>
     <div class="row row-cols-2 g-0">
         <div class="col-6" style="position: relative;">
@@ -17,17 +17,17 @@
 <?php endif ?>
 </div>
 
-<div class="container mb-2">
+<div class="container mb-3">
   <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="anstehende_geburtstage">Geburtstage in den nächsten 14 Tagen</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['anstehende_geburtstage'] ) ); ?>
 </div>
 
-<div class="container mb-2">
+<div class="container mb-3">
   <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine_startseite">Termine in den nächsten 14 Tagen</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_startseite'] ) ); ?>
 </div>
 
-<div class="container mb-2">
+<div class="container mb-3">
   <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="termine_ausstehende_rueckmeldung">Termine ohne Rückmeldung</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_ausstehende_rueckmeldung'] ) ); ?>
 </div>

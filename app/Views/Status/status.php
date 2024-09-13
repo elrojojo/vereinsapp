@@ -2,7 +2,7 @@
 
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-2 text-center">
+<div class="container mb-3 text-center">
     Der Status ist gut.
 </div>
 

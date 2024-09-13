@@ -17,7 +17,7 @@ function Mitglieder_PasswortFestlegen(dom, data, mitglied_id) {
         rein_validation_pos_aktion: function (AJAX) {
             if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                 Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-            if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$formular);
+            if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
             Schnittstelle_DomToastFeuern("Du hast erfolgreich ein neues Passwort festgelegt.");
         },
         rein_validation_neg_aktion: function (AJAX) {
