@@ -7,7 +7,6 @@ function Liste_Init() {
             const $liste = $(this);
             const instanz = $liste.attr("id");
             LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
-            $liste.empty();
         });
 
         LISTEN[liste].modals = new Object();
@@ -19,9 +18,10 @@ function Liste_Init() {
                 $blanko_modal.removeAttr("id");
                 LISTEN[liste].modals[blanko_modal_id] = $blanko_modal;
             });
-            $blanko_modals.remove();
         });
     });
+    $(".liste").empty();
+    $(".blanko_modals").remove();
 
     Liste_ChecklisteInit();
 

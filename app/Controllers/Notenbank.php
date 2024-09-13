@@ -35,17 +35,14 @@ class Notenbank extends BaseController {
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
-                'liste' => 'notenbank',
                 'title' => 'Titel ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'klasse_id' => array('btn_titel_duplizieren', 'formular_oeffnen'),
-                'liste' => 'notenbank',
                 'title' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'klasse_id' => array('btn_titel_loeschen', 'bestaetigung_einfordern'),
-                'liste' => 'notenbank',
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',
             );
@@ -85,17 +82,14 @@ class Notenbank extends BaseController {
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
-                'liste' => 'notenbank',
                 'title' => 'Titel ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'klasse_id' => array('btn_titel_duplizieren', 'formular_oeffnen'),
-                'liste' => 'notenbank',
                 'title' => 'Titel duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'klasse_id' => array('btn_titel_loeschen', 'bestaetigung_einfordern'),
-                'liste' => 'notenbank',
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'notenbank',

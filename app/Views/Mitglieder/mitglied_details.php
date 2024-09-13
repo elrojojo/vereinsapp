@@ -43,13 +43,10 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
 </div><?php } ?>
 
-<div class="blanko_modals" data-liste="termine">
-<?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
-</div>
-
 <div class="blanko_modals" data-liste="mitglieder">
 <?php if( auth()->user()->can('mitglieder.verwaltung') OR ICH['id'] == $element_id ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
 <?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
+<?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>
 
 <div class="blanko_modals" data-liste="strafkatalog">

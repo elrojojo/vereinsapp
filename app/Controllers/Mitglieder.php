@@ -58,70 +58,28 @@ class Mitglieder extends BaseController {
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
-        // if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-        //     $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
-
-        //     $this->viewdata['werkzeugkasten']['zuweisen'] = array(
-        //         'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
-        //         'liste' => 'mitglieder',
-        //         'title' => 'Strafe einem Mitglied zuweisen',
-        //     );
-
-        //     $this->viewdata['liste']['strafkatalog_auswahl'] = array(
-        //         'liste' => 'strafkatalog',
-        //         'sortieren' => array(
-        //             array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-        //             array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-        //             array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-        //             ),
-        //         'beschriftung' => array(
-        //             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-        //         ),
-        //         'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
-        //         'title' => 'Strafe zuweisen',
-        //         'gegen_liste' => 'mitglieder',
-        //         'gegen_element_id' => TRUE,
-        //         'listenstatistik' => TRUE,
-        //     );
-
-        //     $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-        //         'klasse_id' => 'btn_filtern_formular_oeffnen',
-        //         'title' => 'Strafkatalog filtern',
-        //     );
-
-        //     $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-        //         'klasse_id' => 'btn_sortieren_formular_oeffnen',
-        //         'title' => 'Strafkatalog sortieren',
-        //     );
-        // }
-
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
                 'klasse_id' => array('btn_mitglied_einmal_link_email', 'bestaetigung_einfordern'),
-                'liste' => 'mitglieder',
                 'title' => 'Einmal-Link per Email zuschicken',
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'klasse_id' => array('btn_mitglied_duplizieren', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'klasse_id' => array('btn_mitglied_loeschen', 'bestaetigung_einfordern'),
-                'liste' => 'mitglieder',
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
             );
@@ -164,8 +122,8 @@ class Mitglieder extends BaseController {
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'checkliste' => 'anwesenheiten',
-            'gegen_liste' => 'mitglieder',
-            'gegen_element_id' => $mitglied_id,
+            'gegen_liste' => 'mitglieder', // todo: entfernen und vom werkzeugkasten holen
+            'gegen_element_id' => $mitglied_id, // todo: entfernen und vom werkzeugkasten holen
             'disabled' => array(
                 'liste' => 'termine',
                 'filtern' => array( array(
@@ -207,7 +165,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
-            'liste' => 'termine',
             'title' => 'Anwesenheiten dokumentieren',
         );
         
@@ -240,7 +197,6 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
 
@@ -322,28 +278,23 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Einmal-Link erstellen und anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
                 'klasse_id' => array('btn_mitglied_einmal_link_email', 'bestaetigung_einfordern'),
-                'liste' => 'mitglieder',
                 'title' => 'Einmal-Link per Email zuschicken',
             );
                         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Mitglied ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'klasse_id' => array('btn_mitglied_duplizieren', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'klasse_id' => array('btn_mitglied_loeschen', 'bestaetigung_einfordern'),
-                'liste' => 'mitglieder',
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',
@@ -351,7 +302,6 @@ class Mitglieder extends BaseController {
         } elseif( ICH['id'] == $mitglied_id )
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
-                'liste' => 'mitglieder',
                 'title' => 'Meine Daten ändern',
             );
 

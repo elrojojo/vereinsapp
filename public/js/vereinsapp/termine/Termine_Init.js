@@ -119,10 +119,16 @@ function Termine_Init() {
     $(document).on("click", ".btn_anwesenheiten_dokumentieren", function () {
         const liste = $(this).attr("data-liste");
         const title = $(this).attr("data-title");
+
+        let gegen_liste = $(this).attr("data-gegen_liste");
+        if (typeof gegen_liste === "undefined" && liste == "termine") gegen_liste = "mitglieder";
+        else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "termine";
+
         const $modal = LISTEN[liste].modals["anwesenheiten_dokumentieren_modal"].clone().removeClass("blanko invisible").addClass("modal");
 
         if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
+
         Schnittstelle_DomModalOeffnen($modal);
-        Schnittstelle_EventVariableUpdDom(liste);
+        Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 }

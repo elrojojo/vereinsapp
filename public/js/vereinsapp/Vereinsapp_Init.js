@@ -82,6 +82,7 @@ Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den ansc
 Zustandsautomat für den Zustand der Vereinsapp einführen
 Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
 ziel/umgebung beim DOM-Update ergänzen (damit nicht immer der komplette DOM aktualisiert wird)
+Select JANEIN als check umbauen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -92,10 +93,11 @@ ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analo
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
 Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
 Schnittstelle_BtnWartenStart und Schnittstelle_BtnWartenEnde umbauen, sodass icons durch das Symbole temporär ersetzt werden (fällt dann Schnittstelle_BtnDanebenWartenStart und Schnittstelle_BtnDanebenWartenEnde weg?)
-Select JANEIN als check umbauen
 
-Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung)
+Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung oder noch besser wie listenstatistik)
 mitglied aus Liste auswählen
 gegen_element_id über den Werkzeugkasten dynamisch in einer Modal-Übersichtsliste einfügen (und damit Strafen auch von der Übersichtssliste aus zuweisen und de_aktivieren, gegen_liste nicht vergessen!)
+Braucht es [data-aktion] noch?
+Braucht es .werkzeugkasten noch?
 
 */

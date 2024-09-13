@@ -46,17 +46,14 @@ class Termine extends BaseController {
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
-                'liste' => 'termine',
                 'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'klasse_id' => array('btn_termin_duplizieren', 'formular_oeffnen'),
-                'liste' => 'termine',
                 'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'klasse_id' => array('btn_termin_loeschen', 'bestaetigung_einfordern'),
-                'liste' => 'termine',
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
             );
@@ -146,8 +143,8 @@ class Termine extends BaseController {
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             'checkliste' => 'anwesenheiten',
-            'gegen_liste' => 'termine',
-            'gegen_element_id' => $termin_id,
+            'gegen_liste' => 'termine', // todo: entfernen und vom werkzeugkasten holen
+            'gegen_element_id' => $termin_id, // todo: entfernen und vom werkzeugkasten holen
             'disabled' => array(
                 'liste' => 'mitglieder',
                 'filtern' => array( array(
@@ -189,24 +186,20 @@ class Termine extends BaseController {
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
-            'liste' => 'mitglieder',
             'title' => 'Anwesenheiten dokumentieren',
         );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
-                'liste' => 'termine',
                 'title' => 'Termin ändern',
             );
             $this->viewdata['werkzeugkasten']['duplizieren'] = array(
                 'klasse_id' => array('btn_termin_duplizieren', 'formular_oeffnen'),
-                'liste' => 'termine',
                 'title' => 'Termin duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
                 'klasse_id' => array('btn_termin_loeschen', 'bestaetigung_einfordern'),
-                'liste' => 'termine',
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'termine',

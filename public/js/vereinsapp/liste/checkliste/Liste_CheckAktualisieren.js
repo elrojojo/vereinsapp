@@ -1,5 +1,5 @@
 function Liste_CheckAktualisieren($check, element_id, disabled, liste) {
-    const $element = $check.closest('.element[data-liste="' + liste + '"]');
+    const $element = $check.closest('.element[data-liste="' + liste + '"][data-element_id="' + element_id + '"]');
     const $label = $check.closest("label");
 
     let check_element_array = new Array();

@@ -1,7 +1,5 @@
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
-    const gegen_liste = $element.attr("data-gegen_liste");
-    const gegen_element_id = $element.attr("data-gegen_element_id");
 
     // ELEMENTE DISABLED
     let disabled = $element.attr("data-disabled");
@@ -37,6 +35,9 @@ function Liste_ElementAktualisieren($element, liste) {
     } else $element.find(".beschriftung").removeClass("text-secondary");
 
     // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
+    const gegen_liste = $element.attr("data-gegen_liste");
+    const gegen_element_id = $element.attr("data-gegen_element_id");
+
     let bedingte_formatierung = $element.attr("data-bedingte_formatierung");
     if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung);
     else bedingte_formatierung = new Object();
@@ -87,11 +88,7 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
 
     // WERKZEUGKASTEN AKTUALISIEREN
-    $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-element_id", element_id);
-    if (typeof gegen_liste !== "undefined")
-        $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-gegen_liste", gegen_liste);
-    if (typeof gegen_element_id !== "undefined")
-        $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-gegen_element_id", gegen_element_id);
+    $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-liste", liste).attr("data-element_id", element_id);
 
     // ZUSATZSYMBOLE AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {

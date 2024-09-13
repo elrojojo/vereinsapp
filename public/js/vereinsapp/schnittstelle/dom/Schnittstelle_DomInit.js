@@ -47,11 +47,15 @@ function Schnittstelle_DomInit() {
 
     // WERKZEUGKASTEN (OFFCANVAS) ÖFFNEN
     $(document).on("show.bs.offcanvas", "#werkzeugkasten", function (event) {
-        const $werkzeug = $(this).find(".werkzeugkasten").find(".werkzeug");
-        const element_id = $(event.relatedTarget).attr("data-element_id");
+        const $werkzeuge = $(this).find(".werkzeug");
+        const $werkzeugkasten_handle = $(event.relatedTarget);
+        const liste = $werkzeugkasten_handle.attr("data-liste");
+        const element_id = $werkzeugkasten_handle.attr("data-element_id");
 
-        if (typeof element_id !== "undefined") $werkzeug.attr("data-element_id", element_id);
-        else $werkzeug.removeAttr("data-element_id");
+        if (typeof liste !== "undefined") $werkzeuge.attr("data-liste", liste);
+        else $werkzeuge.removeAttr("data-liste");
+        if (typeof element_id !== "undefined") $werkzeuge.attr("data-element_id", element_id);
+        else $werkzeuge.removeAttr("data-element_id");
     });
 
     $(document).on("hidden.bs.modal", ".modal", function () {
