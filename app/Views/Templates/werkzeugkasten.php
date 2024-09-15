@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" tabindex="-1" id="werkzeugkasten">
     <div class="row offcanvas-body p-0">
         <div class="col">
-            <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $symbol => $werkzeug): ?>
+            <ul class="list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $symbol => $werkzeug): ?>
                 <li class="werkzeug list-group-item list-group-item-action text-<?php
                     if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
                     if( array_key_exists( 'klasse_id', $werkzeug ) ) {

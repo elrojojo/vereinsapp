@@ -1,4 +1,4 @@
-<?php if( array_key_exists( 'werkzeugkasten', $auswertungen ) ) { ?><div class="werkzeugkasten h5 text-end">
+<?php if( array_key_exists( 'werkzeugkasten', $auswertungen ) ) { ?><div class="h5 text-end">
     <?php foreach( $auswertungen['werkzeugkasten'] as $symbol => $werkzeug) { ?><button class="btn werkzeug text-<?php
         if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
         if( array_key_exists( 'klasse_id', $werkzeug ) ) {
