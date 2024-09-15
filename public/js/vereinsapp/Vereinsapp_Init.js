@@ -87,7 +87,6 @@ Select JANEIN als check umbauen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Codeigniter und Shield updaten
-Dreistellige Nummern in der Notenbank als Standard einführen
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)

@@ -478,7 +478,7 @@ class Vereinsapp extends BaseConfig
      * (Ziffern entsprechen der Titel-Nr. und damit orientiert sich die Anzahl
      * der Ziffern an der Größe der Notenbank)
      */
-    public $notenbank_anzahl_ziffern = 2;
+    public $notenbank_anzahl_ziffern = 3;
 
     /**
      * --------------------------------------------------------------------------

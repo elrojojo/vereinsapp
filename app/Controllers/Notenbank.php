@@ -118,7 +118,7 @@ class Notenbank extends BaseController {
             $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
                 $verzeichnis = null; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ )
-                    if( substr( $verzeichnis_, -1 ) == '/' AND
+                    if( is_dir( './storage/notenbank/'.$verzeichnis_ ) AND
                         substr( $verzeichnis_, 0, config('Vereinsapp')->notenbank_anzahl_ziffern ) == str_pad( $titel['titel_nr'], config('Vereinsapp')->notenbank_anzahl_ziffern ,'0', STR_PAD_LEFT ) )
                         $verzeichnis = $verzeichnis_;
 
@@ -188,6 +188,8 @@ class Notenbank extends BaseController {
             'dateien' => array(),
         );
         foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
+            if( substr( $beschriftung, -1 ) == '\\' ) $beschriftung = substr_replace($beschriftung, '/', -1);
+
             if( is_array($unterverzeichnis) ) $verzeichnis_indiziert['unterverzeichnisse'][$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
             else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ),
                                 array_merge(
