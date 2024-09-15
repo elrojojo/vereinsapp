@@ -95,8 +95,6 @@ Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_
 Schnittstelle_BtnWartenStart und Schnittstelle_BtnWartenEnde umbauen, sodass icons durch das Symbole temporär ersetzt werden (fällt dann Schnittstelle_BtnDanebenWartenStart und Schnittstelle_BtnDanebenWartenEnde weg?)
 
 Summe Zusammenfassung (ähnlich wie Zusammenfassung bei der Auswertung oder noch besser wie listenstatistik)
-mitglied aus Liste auswählen
-Braucht es [data-aktion] noch?
 Braucht es .werkzeugkasten noch?
 
 */

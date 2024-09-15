@@ -1,18 +1,18 @@
 <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" tabindex="-1" id="werkzeugkasten">
     <div class="row offcanvas-body p-0">
         <div class="col">
-            <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $aktion => $werkzeug): ?>
+            <ul class="werkzeugkasten list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $symbol => $werkzeug): ?>
                 <li class="werkzeug list-group-item list-group-item-action text-<?php
                     if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
                     if( array_key_exists( 'klasse_id', $werkzeug ) ) {
                         if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
                         else echo ' '.$werkzeug['klasse_id'];
                     }
-                    ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>"<?php
+                    ?>" data-title="<?= $werkzeug['title']; ?>"<?php
                     if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
                     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
                     ?> role="button">
-                    <i class="bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?> float-start me-2"></i>
+                    <i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?> float-start me-2"></i>
                     <?= $werkzeug['title']; ?>
                 </li>
             <?php endforeach; ?></ul>

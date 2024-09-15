@@ -1,14 +1,14 @@
 <?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="werkzeugkasten h5 text-end">
-    <?php foreach( $liste['werkzeugkasten'] as $aktion => $werkzeug) { ?><button class="btn werkzeug text-<?php
+    <?php foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button class="btn werkzeug text-<?php
         if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
         if( array_key_exists( 'klasse_id', $werkzeug ) ) {
             if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
             else echo ' '.$werkzeug['klasse_id'];
         }
-        ?>" data-liste="<?= $liste['liste']; ?>" data-aktion="<?= $aktion; ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
+        ?>" data-liste="<?= $liste['liste']; ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
         if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
         if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
-        ?>><i class=" bi bi-<?= SYMBOLE[ $aktion ]['bootstrap']; ?>"></i>
+        ?>><i class=" bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i>
     </button><?php } ?>
 </div><?php } ?>
 
