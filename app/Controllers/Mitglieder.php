@@ -54,7 +54,7 @@ class Mitglieder extends BaseController {
             //         'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
             //     ),
             // ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
         foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
@@ -84,7 +84,7 @@ class Mitglieder extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) )
@@ -134,7 +134,7 @@ class Mitglieder extends BaseController {
                 ),
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe zuweisen',
-                'listenstatistik' => TRUE,
+                'listenstatistik' => array(),
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
@@ -226,7 +226,7 @@ class Mitglieder extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) )
@@ -300,9 +300,7 @@ class Mitglieder extends BaseController {
                 ),
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe zuweisen',
-                'gegen_liste' => 'mitglieder',
-                'gegen_element_id' => $mitglied_id,
-                'listenstatistik' => TRUE,
+                'listenstatistik' => array(),
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(

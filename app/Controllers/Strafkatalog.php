@@ -26,7 +26,7 @@ class Strafkatalog extends BaseController {
             'vorschau' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
             ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
@@ -49,7 +49,7 @@ class Strafkatalog extends BaseController {
                 ),
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe zuweisen',
-                'listenstatistik' => TRUE,
+                'listenstatistik' => array(),
             );
 
             $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
@@ -102,7 +102,7 @@ class Strafkatalog extends BaseController {
     $this->viewdata['liste']['aktuelles_kassenbuch'] = array(
         'liste' => 'kassenbuch',
         'sortieren' => array(
-            array( 'eigenschaft' => 'zeitpunkt', 'richtung' => SORT_ASC, ),
+            array( 'eigenschaft' => 'zeitpunkt', 'richtung' => SORT_DESC, ),
             array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
         ),
@@ -121,7 +121,9 @@ class Strafkatalog extends BaseController {
             ),
             'eigenschaft' => 'wert',
         ),
-    'listenstatistik' => TRUE,
+        'listenstatistik' => array(
+            'summe' => 'wert',
+        ),
     );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {

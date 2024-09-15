@@ -37,7 +37,7 @@ class Termine extends BaseController {
                 'zentriert' => TRUE,
             ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
         if( !auth()->user()->can( 'termine.verwaltung' ) ) $this->viewdata['liste']['bevorstehende_termine']['filtern'][0]['filtern'][] = array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE );
 
@@ -70,7 +70,7 @@ class Termine extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) )
@@ -216,7 +216,7 @@ class Termine extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) )

@@ -12,8 +12,12 @@
     </button><?php } ?>
 </div><?php } ?>
 
-<?php if( array_key_exists( 'listenstatistik', $liste ) AND $liste['listenstatistik'] ) { ?><div class="text-secondary text-end small mb-1">
-    <span class="listenstatistik" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="gefunden"></span> Element(e) gefunden<?php if( array_key_exists( 'checkliste', $liste ) ) { ?> / <span class="listenstatistik" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }?>
+<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-secondary text-end small mb-1">
+    <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
+    if( array_key_exists( 'checkliste', $liste ) ) { ?><i class="bi bi-dot spacer"></i><span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }
+    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-dot spacer"></i>Summe: <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
+    if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-dot spacer"></i>Durchschnitt: <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
+    ?>
 </div><?php } ?>
 
 <ul id="<?= $liste['id']; ?>" class="liste list-group<?php

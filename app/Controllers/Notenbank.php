@@ -27,7 +27,7 @@ class Notenbank extends BaseController {
                 '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
                 '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
             ),
-            'listenstatistik' => TRUE,
+            'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
