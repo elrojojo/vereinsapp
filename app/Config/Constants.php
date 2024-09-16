@@ -92,3 +92,107 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+/*
+|--------------------------------------------------------------------------
+| VEREINSAPP Projekt-übergreifende Konstanten
+|--------------------------------------------------------------------------*/
+
+defined('JANEIN') OR define( 'JANEIN', array(
+	0 => array( 'beschriftung' => 'Nein' ),
+	1 => array( 'beschriftung' => 'Ja' ),
+) );
+
+defined('WOCHENTAGE_KURZ') OR define( 'WOCHENTAGE_KURZ', array(
+	1 => array( 'beschriftung' => 'Mo.' ),
+	2 => array( 'beschriftung' => 'Di.' ),
+	3 => array( 'beschriftung' => 'Mi.' ),
+	4 => array( 'beschriftung' => 'Do.' ),
+	5 => array( 'beschriftung' => 'Fr.' ),
+	6 => array( 'beschriftung' => 'Sa.' ),
+	7 => array( 'beschriftung' => 'So.' ),
+) );
+
+defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
+	1 => array( 'beschriftung' => 'Montag' ),
+	2 => array( 'beschriftung' => 'Dienstag' ),
+	3 => array( 'beschriftung' => 'Mittwoch' ),
+	4 => array( 'beschriftung' => 'Donnnerstag' ),
+	5 => array( 'beschriftung' => 'Freitag' ),
+	6 => array( 'beschriftung' => 'Samstag' ),
+	7 => array( 'beschriftung' => 'Sonntag' ),
+) );
+
+defined('SYMBOLE') OR define( 'SYMBOLE', array(
+    'startseite' => array ( 'bootstrap' => '' ),
+    'termine' => array ( 'bootstrap' => 'calendar-month' ),
+    'strafkatalog' => array ( 'bootstrap' => 'bank' ),
+    'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
+    'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
+    'mitglieder' => array ( 'bootstrap' => 'people' ),
+    'einstellungen' => array( 'bootstrap' => 'gear' ),
+
+    'werkzeuge' => array( 'bootstrap' => 'tools' ),
+    'aendern' => array( 'bootstrap' => 'pencil' ),
+    'erstellen' => array( 'bootstrap' => 'plus-lg' ),
+    'duplizieren' => array( 'bootstrap' => 'files' ),
+    'loeschen' => array( 'bootstrap' => 'trash' ),
+    'zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
+    'de_aktivieren' => array ( 'bootstrap' => 'check2-circle' ),
+
+    'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
+    'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
+    'collapse_schliessen' => array( 'bootstrap' => 'caret-down' ),
+    'collapse' => array( 'bootstrap' => 'caret-down' ),
+    'filtern' => array( 'bootstrap' => 'funnel' ),
+    'sortieren' => array( 'bootstrap' => 'sort-down' ),
+    'gruppieren' => array( 'bootstrap' => 'hdd-stack' ),
+    'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
+    'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
+    'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),
+    'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
+
+    'mitglied' => array ( 'bootstrap' => 'person' ),
+    'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
+    // 'info' => array( 'bootstrap' => 'info-circle' ),
+
+    'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
+    'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
+
+    'abwesend' => array( 'bootstrap' => 'airplane', 'html' => '&#9992' ),
+    'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
+
+    'datum' => array( 'bootstrap' => 'calendar-event' ),
+    'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
+    'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
+    'zahlenraum' => array( 'bootstrap' => '123' ),
+
+    'sichtbar' => array( 'bootstrap' => 'eye' ),
+    'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
+
+    'aktiv' => array( 'bootstrap' => 'check-circle' ),
+    'inaktiv' => array( 'bootstrap' => 'circle' ),
+
+    'verzeichnis' => array( 'bootstrap' => 'folder' ),
+    'verzeichnis_geoeffnet' => array( 'bootstrap' => 'folder2-open' ),
+    'pdf' => array( 'bootstrap' => 'file-earmark-pdf' ),
+    'mp3' => array( 'bootstrap' => 'file-play' ),
+    'm4a' => array( 'bootstrap' => 'file-play' ),
+    'noten' => array( 'bootstrap' => 'file-earmark-music' ),
+    'audio' => array( 'bootstrap' => 'play-btn' ),
+
+    'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
+    'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
+
+) );
+
+enum AJAX_ZUSTAND
+{
+    case VORBEREITET;
+    case RAUS;
+    case WARTEND;
+    case REIN_FEHLER;
+    case REIN_ERFOLG;
+    case FERTIG;
+}
