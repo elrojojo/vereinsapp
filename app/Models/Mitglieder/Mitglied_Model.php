@@ -23,6 +23,7 @@ class Mitglied_Model extends UserModel {
         'wohnort',
         'geschlecht',
         'register',
+        'auto',
         'funktion',
         'vorstandschaft',
         'aktiv',
