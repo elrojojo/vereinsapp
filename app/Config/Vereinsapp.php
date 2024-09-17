@@ -471,6 +471,16 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
+     * Rückmelde-Frist für Termine
+     * --------------------------------------------------------------------------
+     *
+     * Frist in Sekunden, die man mindestens
+     * vor dem Start des Termins einhalten muss
+     */
+    public $termine_rueckmeldung_frist = 0;
+
+    /**
+     * --------------------------------------------------------------------------
      * Notenbank Verzeichnis Anzahl Ziffern
      * --------------------------------------------------------------------------
      *
