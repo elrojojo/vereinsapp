@@ -415,15 +415,16 @@ class Mitglieder extends BaseController {
                     'vorname' => $mitglied_->vorname,
                     'nachname' => $mitglied_->nachname,
                     'geburt' => $mitglied_->geburt,
-                    'geschlecht' => $mitglied_->geschlecht,
                     'postleitzahl' => $mitglied_->postleitzahl,
                     'wohnort' => $mitglied_->wohnort,
-                    'register' => $mitglied_->register,
-                    'auto' => $mitglied_->auto,
-                    'funktion' => $mitglied_->funktion,
-                    'vorstandschaft' => $mitglied_->vorstandschaft,
-                    'aktiv' => $mitglied_->aktiv,
+                    'geschlecht' => $mitglied_->geschlecht,
                 );
+                if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['register'] = $mitglied_->register;
+                if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['auto'] = $mitglied_->auto;
+                if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['funktion'] = $mitglied_->funktion;
+                if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['vorstandschaft'] = $mitglied_->vorstandschaft;
+                if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['aktiv'] = $mitglied_->aktiv;
+
                 if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
                     // $mitglied = json_decode( json_encode( $mitglied ), TRUE );
                     $mitglied['email'] = $mitglied_->email;
@@ -453,15 +454,17 @@ class Mitglieder extends BaseController {
             'vorname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung'], 'rules' => [ 'required' ] ],
             'nachname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung'], 'rules' => [ 'required' ] ],
             'geburt' => [ 'label' => EIGENSCHAFTEN['mitglieder']['geburt']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'geschlecht' => [ 'label' => EIGENSCHAFTEN['mitglieder']['geschlecht']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['geschlecht'] ) ).']', ] ],
             'postleitzahl' => [ 'label' => EIGENSCHAFTEN['mitglieder']['postleitzahl']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero', 'greater_than_equal_to[10000]', 'less_than_equal_to[99999]', ] ],
             'wohnort' => [ 'label' => EIGENSCHAFTEN['mitglieder']['wohnort']['beschriftung'], 'rules' => [ 'required' ] ],
-            'register' => [ 'label' => EIGENSCHAFTEN['mitglieder']['register']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['register'] ) ).']', ] ],
-            'auto' => [ 'label' => EIGENSCHAFTEN['mitglieder']['auto']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['auto'] ) ).']', ] ],
-            'funktion' => [ 'label' => EIGENSCHAFTEN['mitglieder']['funktion']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['funktion'] ) ).']', ] ],
-            'vorstandschaft' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorstandschaft']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] ) ).']', ] ],
-            'aktiv' => [ 'label' => EIGENSCHAFTEN['mitglieder']['aktiv']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['aktiv'] ) ).']', ] ],
-        ); if( !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret,user_id,{id}]';
+            'geschlecht' => [ 'label' => EIGENSCHAFTEN['mitglieder']['geschlecht']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['geschlecht'] ) ).']', ] ],
+        );
+        if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['register'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['register']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['register'] ) ).']', ] ];
+        if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['auto'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['auto']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['auto'] ) ).']', ] ];
+        if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['funktion'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['funktion']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['funktion'] ) ).']', ] ];
+        if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['vorstandschaft'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['vorstandschaft']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] ) ).']', ] ];
+        if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['aktiv'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['aktiv']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['aktiv'] ) ).']', ] ];
+
+        if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret,user_id,{id}]';
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -474,15 +477,16 @@ class Mitglieder extends BaseController {
                 'vorname' => $this->request->getpost()['vorname'],
                 'nachname' => $this->request->getpost()['nachname'],
                 'geburt' => $this->request->getPost()['geburt'],
-                'geschlecht' => $this->request->getpost()['geschlecht'],
                 'postleitzahl' => $this->request->getpost()['postleitzahl'],
                 'wohnort' => $this->request->getpost()['wohnort'],
-                'register' => $this->request->getpost()['register'],
-                'auto' => $this->request->getpost()['auto'],
-                'funktion' => $this->request->getpost()['funktion'],
-                'vorstandschaft' => $this->request->getPost()['vorstandschaft'],
-                'aktiv' => $this->request->getPost()['aktiv'],
+                'geschlecht' => $this->request->getpost()['geschlecht'],
             );
+            if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['register'] = $this->request->getpost()['register'];
+            if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['auto'] = $this->request->getpost()['auto'];
+            if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['funktion'] = $this->request->getpost()['funktion'];
+            if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['vorstandschaft'] = $this->request->getpost()['vorstandschaft'];
+            if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['aktiv'] = $this->request->getpost()['aktiv'];
+    
             if( !empty( $this->request->getPost()['id'] ) ) {
                 $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
                 $mitglieder_Model->save( $mitglied );
@@ -633,7 +637,7 @@ class Mitglieder extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'permit_empty', 'in_list[ true, false ]' ] ],
+            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
@@ -645,7 +649,7 @@ class Mitglieder extends BaseController {
             else {
                 $token = $this->einmal_link_token_generieren( $mitglied );
                 $ajax_antwort['einmal_link'] = url_to('verify-magic-link').'?token='.$token;
-                if( !empty( $this->request->getPost()['email'] ) && filter_var( $this->request->getpost()['email'], FILTER_VALIDATE_BOOLEAN) )
+                if( array_key_exists( 'email', $this->request->getPost() ) AND !empty( $this->request->getPost()['email'] ) && filter_var( $this->request->getpost()['email'], FILTER_VALIDATE_BOOLEAN) )
                     if( !$this->einmal_link_email_verschicken( $mitglied, $token ) ) $ajax_antwort['validation'] = 'Email konnte nicht versandt werden!';
             }
 
@@ -697,9 +701,12 @@ class Mitglieder extends BaseController {
                     $vergebenes_recht['mitglied_id'] = $mitglied->id;
                     $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];
                     $vergebenes_recht = json_decode( json_encode( $vergebenes_recht ), TRUE );
-                    foreach( $vergebenes_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    foreach( $vergebenes_recht as $eigenschaft => $wert )
+                    if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['vergebene_rechte'] ) ) unset( $vergebenes_recht[$eigenschaft] );
+                    elseif( is_numeric( $wert ) ) {
                         if( (int) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (int)$wert;
                         elseif( (float) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (float)$wert;
+                    }
                     $ajax_antwort['tabelle'][] = $vergebenes_recht;
                     $id++;
                 }

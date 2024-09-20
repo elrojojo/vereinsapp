@@ -11,14 +11,14 @@ class Extend_Mitglieder extends Migration
             'vorname'       => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
             'nachname'      => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
             'geburt'        => ['type' => 'datetime',                                               'null' => false],
-            'postleitzahl'  => ['type' => 'int',        'constraint' => 5,                          'null' => false],
+            'postleitzahl'  => ['type' => 'int',        'constraint' => 5,      'unsigned' => true, 'null' => false],
             'wohnort'       => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
-            'geschlecht'    => ['type' => 'varchar',    'constraint' => 5,                          'null' => false,    'default' => 'd'],
-            'register'      => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
-            'auto'          => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
-            'funktion'      => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
-            'vorstandschaft'=> ['type' => 'int',        'constraint' => 1,                          'null' => false,    'default' => 0],
-            'aktiv'         => ['type' => 'int',        'constraint' => 1,                          'null' => false,    'default' => 1],
+            'geschlecht'    => ['type' => 'varchar',    'constraint' => 5,                          'null' => false],
+            'register'      => ['type' => 'varchar',    'constraint' => 50,                         'null' => false,    'default' => 'ohne'],
+            'auto'          => ['type' => 'varchar',    'constraint' => 50,                         'null' => false,    'default' => 'ohne'],
+            'funktion'      => ['type' => 'varchar',    'constraint' => 50,                         'null' => false,    'default' => 'ohne'],
+            'vorstandschaft'=> ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false,    'default' => 0],
+            'aktiv'         => ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false,    'default' => 1],
         ]);
     }
 

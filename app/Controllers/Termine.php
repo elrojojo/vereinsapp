@@ -290,9 +290,12 @@ class Termine extends BaseController {
             $ajax_antwort['tabelle'] = model(Termin_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $termin ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $termin ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['termine'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 
@@ -307,8 +310,8 @@ class Termine extends BaseController {
             'titel' => [ 'label' => EIGENSCHAFTEN['termine']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'start' => [ 'label' => EIGENSCHAFTEN['termine']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
-            'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
-            'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
+            'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -325,10 +328,9 @@ class Termine extends BaseController {
                 'kategorie' => $this->request->getpost()['kategorie'],
                 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'],
             );
-            if( !array_key_exists( 'filtern_mitglieder', $this->request->getpost() ) ) $termin['filtern_mitglieder'] = json_encode( array(), JSON_UNESCAPED_UNICODE );
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung'];
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = '';
 
-            if( !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
             else {
                 $termine_Model->save( $termin );
                 $ajax_antwort['termin_id'] = (int)$termine_Model->getInsertID();
@@ -360,9 +362,12 @@ class Termine extends BaseController {
             $ajax_antwort['tabelle'] = model(Rueckmeldung_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $rueckmeldung ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $rueckmeldung ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['rueckmeldungen'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 
@@ -449,9 +454,12 @@ class Termine extends BaseController {
             $ajax_antwort['tabelle'] = model(Anwesenheit_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $anwesenheit ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $anwesenheit ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['anwesenheiten'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 

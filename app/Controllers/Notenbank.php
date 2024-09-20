@@ -126,9 +126,12 @@ class Notenbank extends BaseController {
                 if( $verzeichnis !== null ) $titel['verzeichnis'] = $this->verzeichnis_indizieren( directory_map( './storage/notenbank/'.$verzeichnis ) ); 
                 else $titel['verzeichnis'] = $this->verzeichnis_indizieren( array() );
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['notenbank'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 
@@ -142,14 +145,14 @@ class Notenbank extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
+            'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
         );
         $validation_titel_nr = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findAll();
         $validation_titel_nr_id = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findColumn('id');
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( ( empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr ) AND count( $validation_titel_nr ) > 0 )
-             OR ( !empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr_id ) AND !in_array( $this->request->getPost()['id'], $validation_titel_nr_id ) ) )
+        else if( ( !array_key_exists( 'id', $this->request->getPost() ) AND !is_null( $validation_titel_nr ) AND count( $validation_titel_nr ) > 0 )
+             OR ( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr_id ) AND !in_array( $this->request->getPost()['id'], $validation_titel_nr_id ) ) )
                 $ajax_antwort['validation']['titel_nr'] = EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'].' wird bereits verwendet.';
         else {
             $notenbank_Model = model(Titel_Model::class);
@@ -159,7 +162,7 @@ class Notenbank extends BaseController {
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
 
-            if( !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else {
                 $notenbank_Model->save( $titel );
                 $ajax_antwort['titel_id'] = (int)$notenbank_Model->getInsertID();

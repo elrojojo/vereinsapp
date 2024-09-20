@@ -10,9 +10,9 @@ class Notenbank extends Migration
         $this->forge->addField([
             'id'            => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false,    'auto_increment' => true],
             'titel'         => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
-            'titel_nr'      => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => true],
+            'titel_nr'      => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
             'kategorie'     => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
-            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => true],
+            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'created_at'    => ['type' => 'datetime',                                               'null' => true],
             'updated_at'    => ['type' => 'datetime',                                               'null' => true],
             'deleted_at'    => ['type' => 'datetime',                                               'null' => true],

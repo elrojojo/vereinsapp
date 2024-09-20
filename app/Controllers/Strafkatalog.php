@@ -177,9 +177,12 @@ class Strafkatalog extends BaseController {
             $ajax_antwort['tabelle'] = model(Strafe_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $strafe ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $strafe ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['strafkatalog'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 
@@ -193,7 +196,7 @@ class Strafkatalog extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal', 'greater_than_equal_to[0]' ] ],
-            'kategorie' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['kategorie']['beschriftung'], 'rules' => [ 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['strafkatalog']['kategorie'] ) ).']' ] ],
+            'kategorie' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['strafkatalog']['kategorie'] ) ).']' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -205,9 +208,9 @@ class Strafkatalog extends BaseController {
                 'wert' => $this->request->getPost()['wert'],
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $strafe['bemerkung'] = $this->request->getpost()['bemerkung'];
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $strafe['bemerkung'] = '';
 
-            if( !empty( $this->request->getPost()['id'] ) ) $strafkatalog_Model->update( $this->request->getpost()['id'], $strafe );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $strafkatalog_Model->update( $this->request->getpost()['id'], $strafe );
             else {
                 $strafkatalog_Model->save( $strafe );
                 $ajax_antwort['strafe_id'] = (int)$strafkatalog_Model->getInsertID();
@@ -240,9 +243,12 @@ class Strafkatalog extends BaseController {
             foreach( $ajax_antwort['tabelle'] as $id => $kassenbucheintrag ) {
                 $kassenbucheintrag['letzte_aktivitaet'] = (new Time(($kassenbucheintrag['updated_at'])))->setTimezone('Europe/Berlin')->toDateTimeString();
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $kassenbucheintrag ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['kassenbuch'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 
@@ -257,7 +263,7 @@ class Strafkatalog extends BaseController {
             'titel' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal' ] ],
             'zeitpunkt' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['zeitpunkt']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'aktiv' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['aktiv']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['kassenbuch']['aktiv'] ) ).']', ] ],
+            'aktiv' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['aktiv']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['kassenbuch']['aktiv'] ) ).']', ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
@@ -269,12 +275,12 @@ class Strafkatalog extends BaseController {
                 'titel' => $this->request->getpost()['titel'],
                 'wert' => $this->request->getPost()['wert'],
                 'zeitpunkt' => $this->request->getPost()['zeitpunkt'],
+                'aktiv' => $this->request->getPost()['aktiv'],
                 'mitglied_id' => $this->request->getPost()['mitglied_id'],
             );
-            if( array_key_exists( 'aktiv', $this->request->getpost() ) ) $kassenbucheintrag['aktiv'] = $this->request->getpost()['aktiv'];
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung'];
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $kassenbucheintrag['bemerkung'] = '';
 
-            if( !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );
             else {
                 $kassenbuch_Model->save( $kassenbucheintrag );
                 $ajax_antwort['kassenbucheintrag_id'] = (int)$kassenbuch_Model->getInsertID();
