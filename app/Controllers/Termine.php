@@ -380,7 +380,7 @@ class Termine extends BaseController {
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( JETZT ) )
+                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(config('Vereinsapp')->termine_rueckmeldung_frist) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
@@ -410,7 +410,7 @@ class Termine extends BaseController {
                     model(Rueckmeldung_Model::class)->find(
                         $this->request->getPost()['id']
                     )['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( JETZT ) )
+                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(config('Vereinsapp')->termine_rueckmeldung_frist) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);

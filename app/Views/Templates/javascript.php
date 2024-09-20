@@ -18,6 +18,7 @@ const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->sortier
 const GRUPPIERBARE_EIGENSCHAFTEN = <?= json_encode( config('Vereinsapp')->gruppierbare_eigenschaften ) ?>;
 
 const TERMINE_KATEGORIE_FILTERN_MITGLIEDER = <?= json_encode( config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) ?>;
+const TERMINE_RUECKMELDUNG_FRIST = <?= config('Vereinsapp')->termine_rueckmeldung_frist ?>;
 
 const NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_NOTEN = <?= json_encode( config('Vereinsapp')->notenbank_erlaubte_dateitypen_noten ) ?>;
 const NOTENVERZEICHNIS_ERLAUBTE_DATEITYPEN_AUDIO = <?= json_encode( config('Vereinsapp')->notenbank_erlaubte_dateitypen_audio ) ?>;

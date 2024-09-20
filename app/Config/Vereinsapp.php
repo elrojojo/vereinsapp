@@ -93,6 +93,7 @@ class Vereinsapp extends BaseConfig
             'wohnort' => array( 'beschriftung' => 'Wohnort', 'typ' => 'text' ),
             'geschlecht' => array( 'beschriftung' => 'Geschlecht', 'typ' => 'vorgegebene_werte' ),
             'register' => array( 'beschriftung' => 'Instrument', 'typ' => 'vorgegebene_werte' ),
+            'auto' => array( 'beschriftung' => 'Auto', 'typ' => 'vorgegebene_werte' ),
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
             'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
@@ -196,6 +197,16 @@ class Vereinsapp extends BaseConfig
                 'waldhorn' => array( 'beschriftung' => 'Waldhorn', ),
             ),
 
+            'auto' => array (
+                'ohne' => array( 'beschriftung' => 'ohne Auto', ),
+                'bus' => array( 'beschriftung' => 'Bus', ),
+                'auto_1' => array( 'beschriftung' => 'Auto 1', ),
+                'auto_2' => array( 'beschriftung' => 'Auto 2', ),
+                'auto_3' => array( 'beschriftung' => 'Auto 3', ),
+                'auto_4' => array( 'beschriftung' => 'Auto 4', ),
+                'auto_5' => array( 'beschriftung' => 'Auto 5', ),
+            ),
+
             'funktion' => array (
                 'ohne' => array( 'beschriftung' => 'keine Funktion', ),
                 'vorsitz' => array( 'beschriftung' => 'Vorstand', ),
@@ -244,7 +255,6 @@ class Vereinsapp extends BaseConfig
                 'proben' => array( 'beschriftung' => 'Proben', ),
                 'veranstaltungen' => array( 'beschriftung' => 'Veranstaltungen', ),
                 'haessordnung' => array( 'beschriftung' => 'Häßordnung', ),
-                'fahrer' => array( 'beschriftung' => 'Fahrer', ),
             ),
 
         ),
@@ -284,6 +294,7 @@ class Vereinsapp extends BaseConfig
             'alter',
             'geschlecht',
             'register',
+            'auto',
             'funktion',
             'vorstandschaft',
             'aktiv',
@@ -344,6 +355,7 @@ class Vereinsapp extends BaseConfig
             'wohnort',
             'geschlecht',
             'register',
+            'auto',
             'funktion',
             'vorstandschaft',
             'aktiv',
@@ -400,10 +412,10 @@ class Vereinsapp extends BaseConfig
     public $gruppierbare_eigenschaften = array(
 
         'mitglieder' => array(
-            'postleitzahl',
             'wohnort',
             'geschlecht',
             'register',
+            'auto',
             'funktion',
             'vorstandschaft',
             'aktiv',
@@ -452,6 +464,7 @@ class Vereinsapp extends BaseConfig
         'geburtstag',
         'alter',
         'wohnort',
+        'auto',
         'funktion',
     );
 
@@ -468,6 +481,16 @@ class Vereinsapp extends BaseConfig
         'auftritt' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
         'vorstandschaftssitzung' => array( array( 'operator' => '==', 'eigenschaft' => 'vorstandschaft', 'wert' => '1' ), ),
     );
+
+    /**
+     * --------------------------------------------------------------------------
+     * Rückmelde-Frist für Termine
+     * --------------------------------------------------------------------------
+     *
+     * Frist in Sekunden, die man mindestens
+     * vor dem Start des Termins einhalten muss
+     */
+    public $termine_rueckmeldung_frist = 0;
 
     /**
      * --------------------------------------------------------------------------

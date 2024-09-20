@@ -49,6 +49,15 @@
       </div>
 
       <div class="form-floating mb-2">
+        <select class="form-select eigenschaft" data-eigenschaft="auto">
+        <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['auto'] as $auto => $eigenschaften ): ?>
+          <option value="<?= $auto; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+        <?php endforeach; ?>
+        </select>
+        <label><?= EIGENSCHAFTEN['mitglieder']['auto']['beschriftung']; ?></label>
+      </div>
+
+      <div class="form-floating mb-2">
         <select class="form-select eigenschaft" data-eigenschaft="funktion">
         <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['funktion'] as $funktion => $eigenschaften ): ?>
           <option value="<?= $funktion; ?>"><?= $eigenschaften['beschriftung']; ?></option>

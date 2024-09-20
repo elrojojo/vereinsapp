@@ -7,23 +7,17 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             wert_formatiert = wert.toFormat("dd.MM.");
             break;
         case "alter":
-            wert_formatiert = Math.floor(wert) + " Jahre";
-            break;
         case "alter_geburtstag":
             wert_formatiert = Math.floor(wert) + " Jahre";
             break;
         case "geschlecht":
-            wert_formatiert = VORGEGEBENE_WERTE[liste].geschlecht[wert].beschriftung;
-            break;
         case "register":
-            wert_formatiert = VORGEGEBENE_WERTE[liste].register[wert].beschriftung;
-            break;
+        case "auto":
         case "funktion":
-            wert_formatiert = VORGEGEBENE_WERTE[liste].funktion[wert].beschriftung;
+        case "kategorie":
+            wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung;
             break;
         case "vorstandschaft":
-            wert_formatiert = JANEIN[wert].beschriftung;
-            break;
         case "aktiv":
             wert_formatiert = JANEIN[wert].beschriftung;
             break;
@@ -36,13 +30,8 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             else wert_formatiert = wert.toFormat("dd.MM.yyyy HH:mm");
             break;
         case "start":
-            wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
-            break;
         case "ende":
             wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
-            break;
-        case "kategorie":
-            wert_formatiert = VORGEGEBENE_WERTE[liste].kategorie[wert].beschriftung;
             break;
         case "wert":
             wert_formatiert = parseFloat(wert).toFixed(2).replace(".", ";").replace(",", ".").replace(";", ",") + "€";
