@@ -27,13 +27,13 @@ CREATE TABLE `vereinsapp_migrations` (
 --
 
 INSERT INTO `vereinsapp_migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
-(1, '2020-12-28-223112', 'CodeIgniter\\Shield\\Database\\Migrations\\CreateAuthTables', 'default', 'CodeIgniter\\Shield', 1726823003, 1),
-(2, '2021-07-04-041948', 'CodeIgniter\\Settings\\Database\\Migrations\\CreateSettingsTable', 'default', 'CodeIgniter\\Settings', 1726823003, 1),
-(3, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1726823003, 1),
-(4, '2024-01-01-000000', 'App\\Database\\Migrations\\Extend_Mitglieder', 'default', 'App', 1726823003, 1),
-(5, '2024-01-01-000000', 'App\\Database\\Migrations\\Notenbank', 'default', 'App', 1726823003, 1),
-(6, '2024-01-01-000000', 'App\\Database\\Migrations\\Strafkatalog', 'default', 'App', 1726823003, 1),
-(7, '2024-01-01-000000', 'App\\Database\\Migrations\\Termine', 'default', 'App', 1726823004, 1);
+(1, '2020-12-28-223112', 'CodeIgniter\\Shield\\Database\\Migrations\\CreateAuthTables', 'default', 'CodeIgniter\\Shield', 1726846089, 1),
+(2, '2021-07-04-041948', 'CodeIgniter\\Settings\\Database\\Migrations\\CreateSettingsTable', 'default', 'CodeIgniter\\Settings', 1726846089, 1),
+(3, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1726846089, 1),
+(4, '2024-01-01-000000', 'App\\Database\\Migrations\\Extend_Mitglieder', 'default', 'App', 1726846089, 1),
+(5, '2024-01-01-000000', 'App\\Database\\Migrations\\Notenbank', 'default', 'App', 1726846089, 1),
+(6, '2024-01-01-000000', 'App\\Database\\Migrations\\Strafkatalog', 'default', 'App', 1726846089, 1),
+(7, '2024-01-01-000000', 'App\\Database\\Migrations\\Termine', 'default', 'App', 1726846089, 1);
 
 -- --------------------------------------------------------
 
@@ -272,8 +272,7 @@ CREATE TABLE `vereinsapp_termine` (
   `ende` datetime NOT NULL,
   `ort` varchar(100) NOT NULL,
   `kategorie` varchar(50) NOT NULL,
-  `filtern_mitglieder` varchar(9999) NOT NULL DEFAULT '[]',
-  `organisator` varchar(100) NOT NULL DEFAULT '',
+  `filtern_mitglieder` varchar(9999) NOT NULL,
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

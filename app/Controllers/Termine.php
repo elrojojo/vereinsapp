@@ -314,7 +314,6 @@ class Termine extends BaseController {
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
-        if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) $validation_rules['organisator'] = [ 'label' => EIGENSCHAFTEN['termine']['organisator']['beschriftung'], 'rules' => [ 'required' ] ];
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( JETZT ) ) $ajax_antwort['validation'] = array(
             'start' => 'Der Termin darf nicht in der Vergangenheit liegen.',
@@ -330,7 +329,6 @@ class Termine extends BaseController {
                 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'],
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = '';
-            if( array_key_exists( 'organisator', EIGENSCHAFTEN['termine'] ) ) $termin['organisator'] = $this->request->getpost()['organisator'];
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
             else {

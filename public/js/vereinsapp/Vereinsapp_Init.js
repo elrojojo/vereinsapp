@@ -49,7 +49,6 @@ FEATURES
 Proberaum-Belegungsplan
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
-Termin mit Ende erweitern
 Termin als ics exportieren
 Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Verzeichnis filtern und sortieren
@@ -92,5 +91,6 @@ Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSO
 Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
 .env nicht für Vereinsapp-config verwenden solange die Arrays nicht vollständig manipuliert werden können (Vereinsapp_env-config als Kopie erstellen als Kopie und auf .gitignore setzen und prüfen ob Vereinsapp_env-config verfügbar ist und dementsprechend jeden Wert als CONST einlesen)
 Controller Status und Migrate loswerden
+Termin mit Ende erweitern
 
 */
