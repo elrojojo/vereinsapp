@@ -90,6 +90,5 @@ Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop
 ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
 Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
-Schnittstelle_BtnWartenStart und Schnittstelle_BtnWartenEnde umbauen, sodass icons durch das Symbole temporär ersetzt werden (fällt dann Schnittstelle_BtnDanebenWartenStart und Schnittstelle_BtnDanebenWartenEnde weg?)
 
 */

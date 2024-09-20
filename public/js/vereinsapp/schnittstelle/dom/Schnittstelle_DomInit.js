@@ -1,5 +1,6 @@
-const STATUS_SPINNER_CLASS = "spinner-border spinner-border-sm";
-const STATUS_SPINNER_HTML = '<span class="' + STATUS_SPINNER_CLASS + '" role="status"><span class="visually-hidden">Loading...</span></span>';
+const STATUS_SPINNER_CLASS = "spinner-border";
+const STATUS_SPINNER_HTML =
+    '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
 const TOASTS = new Object();
 const BESTAETIGUNGEN = new Object();
@@ -155,33 +156,22 @@ function Schnittstelle_DomInit() {
 }
 
 function Schnittstelle_BtnWartenStart($btn_warten) {
-    const beschriftung = $btn_warten.html();
-    $btn_warten.attr("data-beschriftung", beschriftung);
-    $btn_warten.html(STATUS_SPINNER_HTML);
+    $btn_warten.after(STATUS_SPINNER_HTML);
+    $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
 
+    $btn_warten.addClass("invisible");
+    $btn_warten.siblings(".btn").addClass("invisible");
     $btn_warten.prop("disabled", true);
+    $btn_warten.siblings(".btn").prop("disabled", true);
 }
 
 function Schnittstelle_BtnWartenEnde($btn_warten) {
     $btn_warten.prop("disabled", false);
+    $btn_warten.siblings(".btn").prop("disabled", false);
+    $btn_warten.removeClass("invisible");
+    $btn_warten.siblings(".btn").removeClass("invisible");
 
-    const beschriftung = $btn_warten.attr("data-beschriftung");
-    $btn_warten.prop("data-beschriftung", false);
-    $btn_warten.html(beschriftung);
-}
-
-function Schnittstelle_BtnDanebenWartenStart($btn_daneben_warten) {
-    $btn_daneben_warten.after(STATUS_SPINNER_HTML);
-
-    $btn_daneben_warten.addClass("invisible");
-    $btn_daneben_warten.prop("disabled", true);
-}
-
-function Schnittstelle_BtnDanebenWartenEnde($btn_daneben_warten) {
-    $btn_daneben_warten.prop("disabled", false);
-    $btn_daneben_warten.removeClass("invisible");
-
-    $btn_daneben_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
+    $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
 }
 
 function Schnittstelle_CheckWartenStart($check) {
