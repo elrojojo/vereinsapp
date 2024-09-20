@@ -177,9 +177,12 @@ class Strafkatalog extends BaseController {
             $ajax_antwort['tabelle'] = model(Strafe_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $strafe ) {
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $strafe ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['strafkatalog'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 
@@ -240,9 +243,12 @@ class Strafkatalog extends BaseController {
             foreach( $ajax_antwort['tabelle'] as $id => $kassenbucheintrag ) {
                 $kassenbucheintrag['letzte_aktivitaet'] = (new Time(($kassenbucheintrag['updated_at'])))->setTimezone('Europe/Berlin')->toDateTimeString();
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $kassenbucheintrag ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
+                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['kassenbuch'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
+                elseif( is_numeric( $wert ) ) {
                     if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
                     elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
+                }
             }
         }
 

@@ -82,6 +82,7 @@ class Vereinsapp extends BaseConfig
     public $eigenschaften = array(
 
         'mitglieder' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ),  // PHP
             'vorname' => array(  'beschriftung' => 'Vorname', 'typ' => 'text' ),
             'nachname' => array(  'beschriftung' => 'Nachname', 'typ' => 'text' ),
@@ -103,23 +104,27 @@ class Vereinsapp extends BaseConfig
         ),
 
         'vergebene_rechte' => array(
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
-            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl' ),
-            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),                                      // PHP
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),                     // PHP
+            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl' ), // PHP
         ),
 
         'termine' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt' ),
+            // 'ende' => array( 'beschriftung' => 'Ende', 'typ' => 'zeitpunkt' ),
             'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text' ),
             'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte' ),
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
+            // 'organisator' => array( 'beschriftung' => 'Organisator', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
             'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen.', 'typ' => 'vorgegebene_werte' ),             // JAVA
         ),
 
         'rueckmeldungen' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
@@ -127,6 +132,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'anwesenheiten' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
@@ -134,6 +140,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'strafkatalog' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Kapitel', 'typ' => 'vorgegebene_werte' ),
@@ -141,20 +148,23 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
             'zeitpunkt' => array( 'beschriftung' => 'Zeitpunkt', 'typ' => 'zeitpunkt' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // PHP
+            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ), // PHP
         ),
 
         'notenbank' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte' ),
-            'verzeichnis' => array( 'beschriftung' => 'Verzeichnis', 'typ' => 'text' ),
+            'verzeichnis_basis' => array( 'beschriftung' => 'Basis-Verzeichnis', 'typ' => 'text' ),     //PHP
+            'verzeichnis' => array( 'beschriftung' => 'Verzeichnis', 'typ' => 'text' ),                 //PHP
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten', 'typ' => 'zahl' ),               // JAVA
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA

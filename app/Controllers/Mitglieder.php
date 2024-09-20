@@ -701,9 +701,12 @@ class Mitglieder extends BaseController {
                     $vergebenes_recht['mitglied_id'] = $mitglied->id;
                     $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];
                     $vergebenes_recht = json_decode( json_encode( $vergebenes_recht ), TRUE );
-                    foreach( $vergebenes_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) )
+                    foreach( $vergebenes_recht as $eigenschaft => $wert )
+                    if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['vergebene_rechte'] ) ) unset( $vergebenes_recht[$eigenschaft] );
+                    elseif( is_numeric( $wert ) ) {
                         if( (int) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (int)$wert;
                         elseif( (float) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (float)$wert;
+                    }
                     $ajax_antwort['tabelle'][] = $vergebenes_recht;
                     $id++;
                 }
