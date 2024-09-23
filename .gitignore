@@ -45,6 +45,7 @@ $RECYCLE.BIN/
 .env
 # .vagrant
 # Vagrantfile
+app/Config/Vereinsapp_env.php
 
 #-------------------------
 # Temporary Files
