@@ -129,8 +129,8 @@ php_errors.log
 
 public/favicon.ico
 
-public/storage/notenbank/
+public/storage/notenbank/*
 !public/storage/notenbank/index.html
 
-public/images/
+public/images/*
 !public/images/index.html

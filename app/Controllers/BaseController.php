@@ -76,8 +76,11 @@ abstract class BaseController extends Controller
         }
         defined('VERFUEGBARE_RECHTE') OR define( 'VERFUEGBARE_RECHTE', $verfuegbare_rechte );
 
-        defined('EIGENSCHAFTEN') OR define( 'EIGENSCHAFTEN', config('Vereinsapp')->eigenschaften );
-        defined('VORGEGEBENE_WERTE') OR define( 'VORGEGEBENE_WERTE', config('Vereinsapp')->vorgegebene_werte );
+        foreach( get_object_vars( config('Vereinsapp') ) as $eigenschaft => $wert ) {
+            if( config('Vereinsapp_env') !== NULL AND property_exists( config('Vereinsapp_env'), $eigenschaft ) )
+                defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp_env')->$eigenschaft );
+            else defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp')->$eigenschaft );
+        }
 
         defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
 

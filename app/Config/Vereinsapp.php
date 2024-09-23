@@ -6,12 +6,12 @@ use CodeIgniter\Config\BaseConfig;
 
 class Vereinsapp extends BaseConfig
 {
-        /**
+    /**
      * --------------------------------------------------------------------------
      * Wartungsarbeiten
      * --------------------------------------------------------------------------
      *
-     * Wenn ein  Hinweis auf Wartungsarbeiten eingeblendet werden soll, dann
+     * Wenn ein Hinweis auf Wartungsarbeiten eingeblendet werden soll, dann
      * kann ich auf TRUE gesetzt werden
      */
     public $wartungsarbeiten = FALSE;

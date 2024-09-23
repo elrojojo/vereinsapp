@@ -89,8 +89,8 @@ Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop
 ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
 Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
-.env nicht für Vereinsapp-config verwenden solange die Arrays nicht vollständig manipuliert werden können (Vereinsapp_env-config als Kopie erstellen als Kopie und auf .gitignore setzen und prüfen ob Vereinsapp_env-config verfügbar ist und dementsprechend jeden Wert als CONST einlesen)
 Controller Status und Migrate loswerden
 Termin mit Ende erweitern
+wartungsarbeiten direkt im BaseController handlen
 
 */
