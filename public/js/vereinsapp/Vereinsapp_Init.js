@@ -89,8 +89,7 @@ Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop
 ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
 Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
-Controller Status und Migrate loswerden
 Termin mit Ende erweitern
-wartungsarbeiten direkt im BaseController handlen
+Wartungsarbeiten per Filter handlen
 
 */

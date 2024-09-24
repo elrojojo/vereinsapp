@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 class Status extends BaseController {
 
-    public function status() {
-        echo view( 'Status/status', $this->viewdata );
+    public function wartungsarbeiten() {
+        echo view( 'Status/wartungsarbeiten', $this->viewdata );
     }
-      
+
     public function ajax_datenschutz_richtlinie() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',

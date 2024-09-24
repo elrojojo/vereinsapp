@@ -32,6 +32,8 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
+// $routes->get('(:any)', 'Status::wartungsarbeiten');
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Startseite::startseite');
@@ -107,11 +109,8 @@ $routes->group('einstellungen', static function ($routes) {
 });
 
 $routes->group('status', static function ($routes) {
-    $routes->get('', 'Status::status');
+    $routes->get('wartungsarbeiten', 'Status::wartungsarbeiten');
     $routes->post('ajax_datenschutz_richtlinie', 'Status::ajax_datenschutz_richtlinie');
 });
-
-// $routes->get('migrate', 'Migrate::migrate');
-
 
 service('auth')->routes($routes);
