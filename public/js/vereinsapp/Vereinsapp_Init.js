@@ -71,8 +71,6 @@ Formatierung eines Werts flexibel machen in Liste_WertFormatiertZurueck() (inkl.
 Data-Attribute als Object in einem Attribut zusammenfassen
 title ändern in beschriftung?
 anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
-In der .env auch die Arrays von Vereinsapp überschreibar machen
-Argumente sinnvoll ordnen ($ eher nach hinten?)
 Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
 Sortierung nicht mehr case sensitive machen
 Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)

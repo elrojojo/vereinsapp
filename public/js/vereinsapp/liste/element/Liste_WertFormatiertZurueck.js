@@ -14,12 +14,13 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "register":
         case "auto":
         case "funktion":
-        case "kategorie":
-            wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung;
-            break;
         case "vorstandschaft":
         case "aktiv":
-            wert_formatiert = JANEIN[wert].beschriftung;
+        case "abwesend":
+        case "kategorie":
+        case "ich_rueckgemeldet":
+        case "ich_eingeladen":
+            wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung;
             break;
         case "zeitpunkt":
         case "erstellung":
