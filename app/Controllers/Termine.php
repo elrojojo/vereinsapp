@@ -385,7 +385,7 @@ class Termine extends BaseController {
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(config('Vereinsapp')->termine_rueckmeldung_frist) ) )
+                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
@@ -415,7 +415,7 @@ class Termine extends BaseController {
                     model(Rueckmeldung_Model::class)->find(
                         $this->request->getPost()['id']
                     )['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(config('Vereinsapp')->termine_rueckmeldung_frist) ) )
+                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
@@ -497,8 +497,8 @@ class Termine extends BaseController {
         $termin = model(Termin_Model::class)->find( $termin_id );
         $filtern_mitglieder = json_decode( $termin["filtern_mitglieder"] );
         $kategorie = $termin["kategorie"];
-        if ( array_key_exists( $kategorie, config('Vereinsapp')->termine_kategorie_filtern_mitglieder ) && !empty( config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ] ) )
-            $filtern_mitglieder_kategorie = config('Vereinsapp')->termine_kategorie_filtern_mitglieder[ $kategorie ];
+        if ( array_key_exists( $kategorie, TERMINE_KATEGORIE_FILTERN_MITGLIEDER ) && !empty( TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $kategorie ] ) )
+            $filtern_mitglieder_kategorie = TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $kategorie ];
         else $filtern_mitglieder_kategorie = array();
         if( empty( $filtern_mitglieder ) ) return $filtern_mitglieder_kategorie;
         elseif( empty( $filtern_mitglieder_kategorie ) ) return $filtern_mitglieder;

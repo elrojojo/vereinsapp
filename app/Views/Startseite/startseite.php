@@ -3,17 +3,17 @@
 <?= $this->section( 'containers' ) ?>
 
 <div class="container mb-3 text-center">
-<?php if (config('vereinsapp')->kasten_weiter_zur_website_von_startseite ) : ?>
+<?php if ( KASTEN_WEITER_ZUR_WEBSITE_VON_STARTSEITE ) : ?>
     <div class="row row-cols-2 g-0">
         <div class="col-6" style="position: relative;">
-            <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="<?= config('vereinsapp')->vereinsapp_logo; ?>" /></div>
-        <div class="col-6"><a class="btn" style="position: relative;" href="<?= config('vereinsapp')->verein_domain; ?>">
-            <img class="opacity-25" src="<?= config('vereinsapp')->vereinsapp_logo; ?>" />
+            <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="<?= VEREINSAPP_LOGO ?>" /></div>
+        <div class="col-6"><a class="btn" style="position: relative;" href="<?= VEREIN_DOMAIN ?>">
+            <img class="opacity-25" src="<?= VEREINSAPP_LOGO ?>" />
             <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" class="h5 text-primary">Weiter zur öffentlichen Website</span>
         </a></div>
     </div>
 <?php else : ?>
-  <img src="<?= config('vereinsapp')->vereinsapp_logo; ?>" />
+  <img src="<?= VEREINSAPP_LOGO ?>" />
 <?php endif ?>
 </div>
 

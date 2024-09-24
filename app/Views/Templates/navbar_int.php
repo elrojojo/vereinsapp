@@ -2,18 +2,18 @@
 
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="<?= site_url(); ?>"><img class="title" src="<?= config('vereinsapp')->vereinsapp_logo; ?>" style="width:30px;" /></a>
-        <span class="navbar-text"><?= config('Vereinsapp')->controllers[ AKTIVER_CONTROLLER ]['beschriftung']; ?><i class="bi-<?= config('Vereinsapp')->controllers[ AKTIVER_CONTROLLER ]['symbol']; ?> float-start me-1"></i><span id="status" class="float-end ms-1 text-success"><i class="bi-circle-fill"></i></span></span>
+        <a class="navbar-brand" href="<?= site_url(); ?>"><img class="title" src="<?= VEREINSAPP_LOGO; ?>" style="width:30px;" /></a>
+        <span class="navbar-text"><?= CONTROLLERS[ AKTIVER_CONTROLLER ]['beschriftung']; ?><i class="bi-<?= CONTROLLERS[ AKTIVER_CONTROLLER ]['symbol']; ?> float-start me-1"></i><span id="status" class="float-end ms-1 text-success"><i class="bi-circle-fill"></i></span></span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <?php foreach ( config('Vereinsapp')->menue as $controller ): ?>
+                <?php foreach ( MENUE as $controller ): ?>
                 <li class="nav-item">
                     <a class="nav-link<?php if ( AKTIVER_CONTROLLER == $controller ) echo ' active'; ?>" href="<?= site_url().$controller; ?>">
-                        <i class="bi-<?= config('Vereinsapp')->controllers[ $controller ]['symbol']; ?> float-start me-1"></i>
-                        <?= config('Vereinsapp')->controllers[ $controller ]['beschriftung'] ?>
+                        <i class="bi-<?= CONTROLLERS[ $controller ]['symbol']; ?> float-start me-1"></i>
+                        <?= CONTROLLERS[ $controller ]['beschriftung'] ?>
                     </a>
                 </li>
                 <?php endforeach; ?>

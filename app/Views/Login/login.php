@@ -24,7 +24,7 @@
         <div class="alert alert-success" role="alert"><?= session('message') ?></div>
     <?php endif ?>
 
-        <div class="mb-1">Um die <?= config('Vereinsapp')->vereinsapp_name; ?> nutzen zu können musst du dich mit deiner Email und einem gültigen Passwort einloggen:</div>
+        <div class="mb-1">Um die <?= VEREINSAPP_NAME ?> nutzen zu können musst du dich mit deiner Email und einem gültigen Passwort einloggen:</div>
         <?php helper('form'); ?><?= form_open( 'login' ); ?>
         <div class="form-floating mb-1">
             <input type="email" class="form-control" name="email" inputmode="email" autocomplete="email" value="<?= old('email') ?>" required placeholder="Email" />
@@ -49,11 +49,11 @@
     </div>
 </div></div>
 
-<?php if (config('vereinsapp')->kasten_weiter_zur_website_von_login ) : ?>
+<?php if ( KASTEN_WEITER_ZUR_WEBSITE_VON_LOGIN ) : ?>
 <div class="container mt-5" style="max-width: 36rem;"><div class="card">
     <div class="card-body">
-        <div class="mb-3">Du wolltest eigentlich zur öffentlichen Website von <?= config('vereinsapp')->verein_name; ?>?</div>
-        <div class="d-grid"><a class="btn btn-outline-primary" href="<?= config('vereinsapp')->verein_domain; ?>">Weiter zu <?= config('vereinsapp')->verein_domain; ?></a></div>
+        <div class="mb-3">Du wolltest eigentlich zur öffentlichen Website von <?= VEREIN_NAME ?>?</div>
+        <div class="d-grid"><a class="btn btn-outline-primary" href="<?= VEREIN_DOMAIN ?>">Weiter zu <?= VEREIN_DOMAIN ?></a></div>
     </div>
 </div></div>
 <?php endif ?>

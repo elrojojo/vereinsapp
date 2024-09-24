@@ -28,9 +28,9 @@ function Schnittstelle_LocalstorageInit() {
 }
 
 function localstorage_leeren() {
-    const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM);
+    const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM);
     localStorage.clear();
     Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
     if (typeof datenschutz_richtlinie !== "undefined")
-        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
+        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
 }

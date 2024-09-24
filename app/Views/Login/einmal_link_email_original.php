@@ -1,8 +1,8 @@
 MITGLIED_NAME <?php if( isset( $mitglied_name ) ) echo ' '.$mitglied_name; ?>
-VEREINSAPP_NAME <?= config('Vereinsapp')->vereinsapp_name; ?>
+VEREINSAPP_NAME <?= VEREINSAPP_NAME ?>
 VERIFY_MAGIC_LINK <?= url_to('verify-magic-link') ?>
 TOKEN <?= $token ?>
-VEREIN_NAME <?= config('Vereinsapp')->verein_name; ?>
+VEREIN_NAME <?= VEREIN_NAME ?>
 IP <?= esc($ipAddress) ?>
 USERAGENT <?= esc($userAgent) ?>
 DATE <?= esc($date) ?>
@@ -18,7 +18,7 @@ DATE <?= esc($date) ?>
 
     <div class="container"><div class="card">
       <div class="card-body">
-        <div class="mb-1">HalloMITGLIED_NAME,</div>
+        <div class="mb-1">Hallo MITGLIED_NAME,</div>
 
         <div class="mb-3">
             für deinen Zugang zur VEREINSAPP_NAME hast du einen Einmal-Link bekommen.

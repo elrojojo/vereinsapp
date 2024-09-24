@@ -25,7 +25,7 @@ $(document).ready(function () {
     if (LOGGEDIN) Notenbank_Init();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM) === "undefined") {
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined") {
         // SCHNITTSTELLE AJAX
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {
@@ -34,7 +34,7 @@ $(document).ready(function () {
             rein_validation_pos_aktion: function (AJAX) {
                 Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
                 $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                    Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENACHUTZ_RICHTLINIE_DATUM, DateTime.now());
+                    Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
                     Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
                 });
             },

@@ -48,8 +48,8 @@
                                               </tbody>
                                             </table>
                                             <div class="">
-                                              f&#252;r deinen Zugang zur <?= config('Vereinsapp')->vereinsapp_name; ?> hast du einen Einmal-Link bekommen.
-                                              Du kannst diesen Einmal-Link sofort benutzen um dich in der <?= config('Vereinsapp')->vereinsapp_name; ?> einzuloggen:
+                                              f&#252;r deinen Zugang zur <?= VEREINSAPP_NAME ?> hast du einen Einmal-Link bekommen.
+                                              Du kannst diesen Einmal-Link sofort benutzen um dich in der <?= VEREINSAPP_NAME ?> einzuloggen:
                                             </div>
                                             <table class="s-3 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">
                                               <tbody>
@@ -88,7 +88,7 @@
                                                 </tr>
                                               </tbody>
                                             </table>
-                                            <div class=""><?= config('Vereinsapp')->verein_name; ?></div>
+                                            <div class=""><?= VEREIN_NAME ?></div>
                                             <table class="s-1 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">
                                               <tbody>
                                                 <tr>

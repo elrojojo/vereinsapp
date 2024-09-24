@@ -56,7 +56,7 @@ class Mitglieder extends BaseController {
             // ),
             'listenstatistik' => array(),
         );
-        foreach( config('Vereinsapp')->mitglieder_eigenschaften_vorschau as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
+        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         $disabled_filtern = array();
         if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
@@ -617,9 +617,9 @@ class Mitglieder extends BaseController {
 
         // Send the user an email with the code
         helper('email');
-        $email = emailer()->setFrom(setting('Email.fromEmail'), config('vereinsapp')->verein_name ?? '');
+        $email = emailer()->setFrom(setting('Email.fromEmail'), VEREIN_NAME ?? '');
         $email->setTo($user->email);
-        $email->setSubject(config('vereinsapp')->vereinsapp_name.' - Einmal-Link');
+        $email->setSubject(VEREINSAPP_NAME.' - Einmal-Link');
         $email->setMessage(view(setting('Auth.views')['magic-link-email'], ['mitglied_name' => $mitglied->vorname, 'token' => $token, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date]));
 
         if ($email->send(false) === false) {
