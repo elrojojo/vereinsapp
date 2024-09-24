@@ -82,6 +82,7 @@ Zustandsautomat für den Zustand der Vereinsapp einführen
 Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
 ziel/umgebung beim DOM-Update ergänzen (damit nicht immer der komplette DOM aktualisiert wird)
 Select JANEIN als check umbauen
+Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -90,6 +91,5 @@ ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analo
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
 Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
 Termin mit Ende erweitern
-Wartungsarbeiten per Filter handlen
 
 */

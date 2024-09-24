@@ -8,6 +8,17 @@ class Vereinsapp extends BaseConfig
 {
     /**
      * --------------------------------------------------------------------------
+     * Lies Mich!
+     * --------------------------------------------------------------------------
+     *
+     * Diese Datei kann nach Wünschen angepasst werden.
+     * Alternativ kann eine neue Config-Datei 'Vereinsapp_env.php'
+     * als Kopie erstellt werden, welche dann ausschließlich die
+     * Eigenschaften enthält, die verändert werden sollen.
+     */
+
+    /**
+     * --------------------------------------------------------------------------
      * Wartungsarbeiten
      * --------------------------------------------------------------------------
      *
@@ -118,7 +129,7 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
-            'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen.', 'typ' => 'vorgegebene_werte' ),             // JAVA
+            'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),             // JAVA
         ),
 
         'rueckmeldungen' => array(
@@ -248,6 +259,8 @@ class Vereinsapp extends BaseConfig
             ),
 
             'ich_rueckgemeldet' => JANEIN,
+
+            'ich_eingeladen' => JANEIN,
         ),
 
         'rueckmeldungen' => array(
@@ -315,6 +328,7 @@ class Vereinsapp extends BaseConfig
             'start',
             'kategorie',
             'ich_rueckgemeldet',
+            'ich_eingeladen',
         ),
 
         'rueckmeldungen' => array(
@@ -499,6 +513,18 @@ class Vereinsapp extends BaseConfig
      * vor dem Start des Termins einhalten muss
      */
     public $termine_rueckmeldung_frist = 0;
+
+    /**
+     * --------------------------------------------------------------------------
+     * Notenbank Verzeichnis Anzahl Ziffern
+     * --------------------------------------------------------------------------
+     *
+     * Anzahl der Ziffern zu Beginn des Verzeichnis-Namens im storage
+     * (Ziffern entsprechen der Titel-Nr. und damit orientiert sich die Anzahl
+     * der Ziffern an der Größe der Notenbank)
+     * Bsp.: storage/notenbank/verzeichnis.pdf
+     */
+    public $notenbank_verzeichnis = '';
 
     /**
      * --------------------------------------------------------------------------
