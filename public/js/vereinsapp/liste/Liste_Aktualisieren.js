@@ -13,11 +13,8 @@ function Liste_Aktualisieren($liste, liste) {
     if (filtern_LocalStorage.length == 0) filtern_kombiniert = filtern_data;
     else if (filtern_data.length == 0) filtern_kombiniert = filtern_LocalStorage;
     else {
-        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1) {
-            const start_position = Liste_FilternEigenschaftPositionZurueck(filtern_data, "start");
-            if (start_position.length > 1) filtern_data = Liste_FilternPositionGeloeschtZurueck(filtern_data, start_position);
-        }
-        if (filtern_data.length == 0) filtern_kombiniert = filtern_LocalStorage;
+        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
+            filtern_kombiniert = filtern_LocalStorage;
         else filtern_kombiniert = [{ verknuepfung: "&&", filtern: [filtern_data[0], filtern_LocalStorage[0]] }];
     }
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_kombiniert, liste);

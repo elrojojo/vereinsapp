@@ -14,12 +14,9 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['bevorstehende_termine'] = array(
             'liste' => 'termine',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-                ),
-            ), ),
+            'filtern' => array(
+                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+            ),
             'sortieren' => array(
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),
@@ -264,12 +261,9 @@ class Termine extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'bevorstehende_termine',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-                ),
-            ), ),
+            'filtern' => array(
+                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+            ),
             'sortieren' => array(
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),

@@ -85,9 +85,9 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
-ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
-Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
 Termin mit Ende erweitern
+Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
+ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
+Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
 
 */
