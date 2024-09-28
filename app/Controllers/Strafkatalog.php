@@ -241,7 +241,6 @@ class Strafkatalog extends BaseController {
         else {
             $ajax_antwort['tabelle'] = model(Kassenbucheintrag_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $kassenbucheintrag ) {
-                $kassenbucheintrag['letzte_aktivitaet'] = (new Time(($kassenbucheintrag['updated_at'])))->setTimezone('Europe/Berlin')->toDateTimeString();
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $kassenbucheintrag ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
                 if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['kassenbuch'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );

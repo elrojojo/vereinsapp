@@ -14,6 +14,10 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
         const ajax_dom = dom;
         const ajax_data = data;
         ajax_data.id = titel_id;
+        if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", titel_id, "notenbank");
+        if (!("titel_nr" in data)) data.titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", titel_id, "notenbank");
+        if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", titel_id, "notenbank");
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", titel_id, "notenbank");
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {
@@ -34,14 +38,17 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(titel_id, "notenbank") + " wurde erfolgreich geändert.");
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
+                    Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                    Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(titel_id, "notenbank") + " wurde erfolgreich geändert.");
+                }
             },
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                else Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "notenbank") + " konnte nicht gespeichert werden.");
             },
         };
 

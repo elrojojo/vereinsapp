@@ -33,7 +33,6 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
-                Schnittstelle_VariableRein(DateTime.now(), "letzte_aktivitaet", kassenbucheintrag_id, "kassenbuch");
                 Schnittstelle_EventVariableUpdLocalstorage("kassenbuch", [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,
@@ -41,14 +40,19 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich erstellt.");
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
+                    Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich erstellt."
+                    );
+                }
             },
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                else Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "kassenbuch") + " konnte nicht gespeichert werden.");
             },
         };
 

@@ -1,7 +1,6 @@
 LISTEN.rueckmeldungen = {
     controller: "termine",
     element: "rueckmeldung",
-    beschriftung: [{ eigenschaft: "id", prefix: "die Rückmeldung " }],
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
@@ -69,6 +68,7 @@ function Termine_Init() {
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(
+            false,
             { $btn_ausloesend: $(this) },
             {
                 termin_id: JSON.parse($(this).attr("data-werte")).termin_id,
@@ -76,6 +76,7 @@ function Termine_Init() {
                 status: JSON.parse($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
+            $(this).attr("data-title"),
             undefined
         );
     });
@@ -83,11 +84,13 @@ function Termine_Init() {
     // RÜCKMELDUNG ÄNDERN
     $(document).on("click", ".btn_rueckmeldung_aendern", function () {
         Termine_RueckmeldungAendern(
+            false,
             { $btn_ausloesend: $(this) },
             {
                 status: JSON.parse($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
+            $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );
     });

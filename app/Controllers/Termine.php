@@ -374,6 +374,7 @@ class Termine extends BaseController {
             'termin_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
@@ -387,39 +388,14 @@ class Termine extends BaseController {
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
                 'status' => $this->request->getpost()['status'],
             );
-            $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'] ) )->delete();
-            $rueckmeldungen_Model->save( $rueckmeldung );
-            $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
-        }
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = '';
 
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    public function ajax_rueckmeldung_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( model(Rueckmeldung_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( Time::parse( model(Termin_Model::class)->find(
-                    model(Rueckmeldung_Model::class)->find(
-                        $this->request->getPost()['id']
-                    )['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
-                    $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
-        else {
-            $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
-            $rueckmeldung = array();
-            if( array_key_exists( 'bemerkung', $this->request->getPost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung'];
-            if( array_key_exists( 'status', $this->request->getPost() ) ) $rueckmeldung['status'] = $this->request->getpost()['status'];
-            $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
-
-            $termin_id = $rueckmeldungen_Model->find( $this->request->getpost()['id'] )['termin_id'];
-            $mitglied_id = $rueckmeldungen_Model->find( $this->request->getpost()['id'] )['mitglied_id'];
-            $rueckmeldungen_Model->where( array( 'termin_id' => $termin_id, 'mitglied_id' => $mitglied_id, 'id !=' => $this->request->getpost()['id'] ) )->delete();
+            $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'], 'id !=' => $this->request->getpost()['id'] ) )->delete();
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
+            else {
+                $rueckmeldungen_Model->save( $rueckmeldung );
+                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
+            }
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

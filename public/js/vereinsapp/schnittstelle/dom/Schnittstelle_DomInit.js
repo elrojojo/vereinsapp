@@ -156,22 +156,38 @@ function Schnittstelle_DomInit() {
 }
 
 function Schnittstelle_BtnWartenStart($btn_warten) {
-    $btn_warten.after(STATUS_SPINNER_HTML);
-    $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
+    if ($btn_warten.parents(".formular").exists()) {
+        $btn_warten.after(STATUS_SPINNER_HTML);
+        $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
 
-    $btn_warten.addClass("invisible");
-    $btn_warten.siblings(".btn").addClass("invisible");
-    $btn_warten.prop("disabled", true);
-    $btn_warten.siblings(".btn").prop("disabled", true);
+        $btn_warten.addClass("invisible");
+        $btn_warten.siblings(".btn").addClass("invisible");
+        $btn_warten.prop("disabled", true);
+        $btn_warten.siblings(".btn").prop("disabled", true);
+    } else {
+        const beschriftung = $btn_warten.html();
+        $btn_warten.attr("data-beschriftung", beschriftung);
+        $btn_warten.html(STATUS_SPINNER_HTML);
+
+        $btn_warten.prop("disabled", true);
+    }
 }
 
 function Schnittstelle_BtnWartenEnde($btn_warten) {
-    $btn_warten.prop("disabled", false);
-    $btn_warten.siblings(".btn").prop("disabled", false);
-    $btn_warten.removeClass("invisible");
-    $btn_warten.siblings(".btn").removeClass("invisible");
+    if ($btn_warten.parents(".formular").exists()) {
+        $btn_warten.prop("disabled", false);
+        $btn_warten.siblings(".btn").prop("disabled", false);
+        $btn_warten.removeClass("invisible");
+        $btn_warten.siblings(".btn").removeClass("invisible");
 
-    $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
+        $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
+    } else {
+        $btn_warten.prop("disabled", false);
+
+        const beschriftung = $btn_warten.attr("data-beschriftung");
+        $btn_warten.prop("data-beschriftung", false);
+        $btn_warten.html(beschriftung);
+    }
 }
 
 function Schnittstelle_CheckWartenStart($check) {

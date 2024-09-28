@@ -6,7 +6,7 @@ function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
     const ajax_dom = dom;
     const ajax_data = data;
     ajax_data.id = mitglied_id;
-    console.log(ajax_data);
+
     const neue_ajax_id = AJAXSCHLANGE.length;
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,

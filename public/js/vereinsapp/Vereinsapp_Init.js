@@ -86,8 +86,10 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Termin mit Ende erweitern
+VERFUEGBARE_RECHTE abhängig machen von CONTROLLER
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
-Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
+aktion in Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, data) in data verschieben und damit optional machen
+.formular nicht auf das gesamte .modal beziehen sondern nur auf die tatsächlichen Formular-Elemente (ggf. mit neuem div-wrapper)
+zeitpunkt zu kassenbuch von SQL nach PHP verschieben
 
 */

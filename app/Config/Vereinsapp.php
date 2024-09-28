@@ -164,7 +164,6 @@ class Vereinsapp extends BaseConfig
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ), // PHP
         ),
 
         'notenbank' => array(
