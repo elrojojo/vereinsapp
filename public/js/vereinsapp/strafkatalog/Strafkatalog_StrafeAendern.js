@@ -3,7 +3,8 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "strafkatalog", "aendern", {
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "strafkatalog", {
+                aktion: "aendern",
                 title: title,
                 element_id: strafe_id,
             })

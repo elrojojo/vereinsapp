@@ -1,5 +1,8 @@
-function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, data) {
+function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, data) {
     if (typeof data === "undefined") data = new Object();
+
+    if (!("aktion" in data)) data.aktion = undefined;
+    const aktion = data.aktion;
 
     if (!("title" in data)) data.title = undefined;
     const title = data.title;
@@ -16,11 +19,10 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, d
 
     if (typeof element_id !== "undefined") $neues_formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
-    $neues_formular
-        .find(".btn_" + LISTEN[liste].element + "_aktion")
-        .addClass("btn_" + LISTEN[liste].element + "_" + aktion)
-        .removeClass(".btn_" + LISTEN[liste].element + "_aktion");
-    if (typeof element_id !== "undefined") $neues_formular.find(".btn_" + LISTEN[liste].element + "_" + aktion).attr("data-element_id", element_id);
+    const $btn_aktion = $neues_formular.find("[class^=btn_" + LISTEN[liste].element + "_");
+    if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
+        $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass(".btn_" + LISTEN[liste].element + "_aktion");
+    if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
 
     return $neues_formular;
 }

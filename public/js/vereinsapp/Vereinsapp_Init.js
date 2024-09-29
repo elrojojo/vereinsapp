@@ -88,7 +88,6 @@ Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop
 Termin mit Ende erweitern
 VERFUEGBARE_RECHTE abhängig machen von CONTROLLER
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-aktion in Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, data) in data verschieben und damit optional machen
 .formular nicht auf das gesamte .modal beziehen sondern nur auf die tatsächlichen Formular-Elemente (ggf. mit neuem div-wrapper)
 
 */

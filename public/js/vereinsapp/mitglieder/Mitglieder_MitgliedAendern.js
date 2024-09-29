@@ -3,7 +3,8 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", "aendern", {
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", {
+                aktion: "aendern",
                 title: title,
                 element_id: mitglied_id,
             })

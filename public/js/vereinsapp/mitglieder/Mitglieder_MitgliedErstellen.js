@@ -3,7 +3,8 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", "erstellen", {
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "mitglieder", {
+                aktion: "erstellen",
                 title: title,
                 element_id: mitglied_id,
             })

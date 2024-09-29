@@ -3,7 +3,8 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "notenbank", "aendern", {
+            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "notenbank", {
+                aktion: "aendern",
                 title: title,
                 element_id: titel_id,
             })
