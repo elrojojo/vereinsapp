@@ -46,7 +46,7 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Proberaum-Belegungsplan
+Fahrerplan / Arbeitsplan / Proberaum-Belegungsplan + zeitpunkt (kassenbuch) aus Datenbank löschen
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
@@ -90,6 +90,5 @@ VERFUEGBARE_RECHTE abhängig machen von CONTROLLER
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
 aktion in Liste_ElementFormularInitialisiertZurueck(formular_id, liste, aktion, data) in data verschieben und damit optional machen
 .formular nicht auf das gesamte .modal beziehen sondern nur auf die tatsächlichen Formular-Elemente (ggf. mit neuem div-wrapper)
-zeitpunkt zu kassenbuch von SQL nach PHP verschieben
 
 */

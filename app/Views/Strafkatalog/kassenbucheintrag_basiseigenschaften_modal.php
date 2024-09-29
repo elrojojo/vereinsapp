@@ -18,12 +18,6 @@
           <label><?= EIGENSCHAFTEN['kassenbuch']['wert']['beschriftung']; ?></label>
         </div>
 
-        <div class="col-8 form-floating mb-2">
-          <input type="datetime-local" class="form-control eigenschaft" data-eigenschaft="zeitpunkt" />
-          <label><?= EIGENSCHAFTEN['kassenbuch']['zeitpunkt']['beschriftung']; ?></label>
-        </div>
-      </div>
-
       <div class="form-floating mb-2">
         <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['notenbank']['bemerkung']['beschriftung']; ?>" />
         <label><?= EIGENSCHAFTEN['notenbank']['bemerkung']['beschriftung']; ?></label>

@@ -102,7 +102,7 @@ class Strafkatalog extends BaseController {
     $this->viewdata['liste']['aktuelles_kassenbuch'] = array(
         'liste' => 'kassenbuch',
         'sortieren' => array(
-            array( 'eigenschaft' => 'zeitpunkt', 'richtung' => SORT_DESC, ),
+            array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
             array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
         ),
@@ -112,7 +112,7 @@ class Strafkatalog extends BaseController {
         ),
         // 'link' => TRUE,
         'vorschau' => array(
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="zeitpunkt"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
         ),
         'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="aktiv"></span>',
         'bedingte_formatierung' => array(
@@ -241,6 +241,8 @@ class Strafkatalog extends BaseController {
         else {
             $ajax_antwort['tabelle'] = model(Kassenbucheintrag_Model::class)->findAll();
             foreach( $ajax_antwort['tabelle'] as $id => $kassenbucheintrag ) {
+                $kassenbucheintrag['erstellung'] = $kassenbucheintrag['created_at'];
+                if( $kassenbucheintrag['erstellung'] != NULL ) $kassenbucheintrag['erstellung'] = ( new Time( $kassenbucheintrag['erstellung'] ) )->setTimezone('Europe/Berlin')->toDateTimeString();
                 $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $kassenbucheintrag ), TRUE );
                 foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
                 if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['kassenbuch'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
@@ -261,7 +263,6 @@ class Strafkatalog extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal' ] ],
-            'zeitpunkt' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['zeitpunkt']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'aktiv' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['aktiv']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['kassenbuch']['aktiv'] ) ).']', ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
@@ -273,7 +274,6 @@ class Strafkatalog extends BaseController {
             $kassenbucheintrag = array(
                 'titel' => $this->request->getpost()['titel'],
                 'wert' => $this->request->getPost()['wert'],
-                'zeitpunkt' => $this->request->getPost()['zeitpunkt'],
                 'aktiv' => $this->request->getPost()['aktiv'],
                 'mitglied_id' => $this->request->getPost()['mitglied_id'],
             );

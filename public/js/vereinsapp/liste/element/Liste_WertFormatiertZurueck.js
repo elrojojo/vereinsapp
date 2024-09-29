@@ -22,7 +22,6 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "ich_eingeladen":
             wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung;
             break;
-        case "zeitpunkt":
         case "erstellung":
         case "letzte_aktivitaet":
         case "created_at":

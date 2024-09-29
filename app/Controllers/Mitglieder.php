@@ -267,7 +267,7 @@ class Mitglieder extends BaseController {
                     ),
                 ), ),
                 'sortieren' => array(
-                    array( 'eigenschaft' => 'zeitpunkt', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
                 ),
@@ -277,7 +277,7 @@ class Mitglieder extends BaseController {
                 'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag (de)aktivieren',
                 'vorschau' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="zeitpunkt"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
                     'klein' => TRUE,
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="de_aktivieren"></span>',
