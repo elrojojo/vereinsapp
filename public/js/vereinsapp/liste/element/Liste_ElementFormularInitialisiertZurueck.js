@@ -19,7 +19,7 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, data) {
 
     if (typeof element_id !== "undefined") $neues_formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
-    const $btn_aktion = $neues_formular.find("[class^=btn_" + LISTEN[liste].element + "_");
+    const $btn_aktion = $neues_formular.find("[class*=btn_" + LISTEN[liste].element + "_");
     if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
         $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass(".btn_" + LISTEN[liste].element + "_aktion");
     if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
