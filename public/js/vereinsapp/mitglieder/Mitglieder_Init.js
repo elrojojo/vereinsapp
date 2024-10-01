@@ -92,7 +92,7 @@ function Mitglieder_Init() {
                 $modal: $(this).closest(".modal"),
                 $formular: $(this).closest(".formular"),
                 $einmal_link: $(this).closest(".formular").find(".einmal_link"),
-                $btn_dismiss: $(this).closest(".formular").find(".btn[data-bs-dismiss]"),
+                $btn_dismiss: $(this).closest(".formular").find('.btn.invisible[data-bs-dismiss="modal"]'),
             },
             {},
             $(this).attr("data-title"),

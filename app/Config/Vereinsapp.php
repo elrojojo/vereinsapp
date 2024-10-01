@@ -151,7 +151,7 @@ class Vereinsapp extends BaseConfig
         'strafkatalog' => array(
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
+            'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Kapitel', 'typ' => 'vorgegebene_werte' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
@@ -159,7 +159,7 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
+            'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),

@@ -36,17 +36,19 @@
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine_mitglied">Termine</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_mitglied'] ) ); ?>
 </div>
-<?= view( 'Termine/rueckmeldung_detaillieren_modal' ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung', 'modal_body' => view( 'Termine/rueckmeldung_bemerkung_formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ) ) ) ) ); ?>
 <?php } ?>
 
 <?php if( auth()->user()->can('strafkatalog.verwaltung') ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
+    <div class="text-secondary text-center mb-1" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
 </div><?php } ?>
 
 <div class="blanko_modals" data-liste="mitglieder">
-<?php if( auth()->user()->can('mitglieder.verwaltung') OR ICH['id'] == $element_id ) echo view( 'Mitglieder/mitglied_basiseigenschaften_modal' ); ?>
-<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Mitglieder/mitglied_einmal_link_anzeigen_modal' ); ?>
+<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal_body' => view( 'Mitglieder/mitglied_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'mitglieder' ) ) ) ) );
+                      elseif( $element_id == ICH['id'] ) echo view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal_body' => view( 'Mitglieder/mitglied_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn_beschriftung' => 'Meine Daten ändern' ) ) ) ); ?>
+<?php if( auth()->user()->can('mitglieder.verwaltung') ) echo view( 'Templates/modal', array( 'modal_id' => 'einmal_link_anzeigen', 'modal_body' => view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn_beschriftung' => 'Einmal-Link anzeigen' ) ) ) ); ?>
+
 <?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>
 
@@ -56,4 +58,3 @@
 
 <?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>
-

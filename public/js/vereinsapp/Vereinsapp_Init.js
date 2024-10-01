@@ -9,14 +9,22 @@ $(document).ready(function () {
 
     $(".formular").each(function () {
         const $formular = $(this);
-
         const liste = $formular.attr("data-liste");
+        const aktion = $formular.attr("data-aktion");
 
-        let element_id_data = $formular.attr("data-element_id");
-        if (typeof element_id_data !== "undefined") element_id_data = Number(element_id_data);
-        const element_id = element_id_data;
+        let element_id = $formular.attr("data-element_id");
+        if (typeof element_id !== "undefined") element_id = Number(element_id);
 
-        Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
+        if (typeof liste !== "undefined" && typeof element_id !== "undefined")
+            Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
+
+        let $btn_aktion;
+        if (typeof liste !== "undefined") $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
+        if (typeof $btn_aktion !== "undefined" && $btn_aktion.exists()) {
+            if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
+                $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
+            if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
+        }
     });
 
     if (LOGGEDIN) Mitglieder_Init();
@@ -46,6 +54,7 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
+Termin mit Ende erweitern
 Fahrerplan / Arbeitsplan / Proberaum-Belegungsplan + zeitpunkt (kassenbuch) aus Datenbank löschen
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
@@ -85,9 +94,14 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
-Termin mit Ende erweitern
 VERFUEGBARE_RECHTE abhängig machen von CONTROLLER
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-.formular nicht auf das gesamte .modal beziehen sondern nur auf die tatsächlichen Formular-Elemente (ggf. mit neuem div-wrapper)
+Braucht es <?php if( $aktiv == 1 ) echo ' selected'; ?>?
+Ausschließlich aendern der eigenen Daten erlauben
+.modal und .formular in Liste_ElementFormularInitialisiertZurueck überarbeiten sauber trennen
+    ggf. Schnittstelle_DomModalInitialisiertZurueck einführen?
+    Vereinsapp_Init und Schnittstelle_DomInit prüfen!
+.btn in .formular mit ENTER betätigbar machen
+<hr> in .formular einfügen
 
 */

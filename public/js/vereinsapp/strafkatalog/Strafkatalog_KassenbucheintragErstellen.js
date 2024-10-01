@@ -15,6 +15,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
         const ajax_dom = dom;
         const ajax_data = data;
         if (!("mitglied_id" in ajax_data)) ajax_data.mitglied_id = ICH["id"]; // Prototypisch! -> TODO!
+        if (!("aktiv" in ajax_data)) ajax_data.aktiv = 1;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {
@@ -34,6 +35,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
+                Schnittstelle_VariableRein(DateTime.now(), "erstellung", kassenbucheintrag_id, "kassenbuch");
                 Schnittstelle_EventVariableUpdLocalstorage("kassenbuch", [
                     Schnittstelle_EventLocalstorageUpdVariable,
                     Schnittstelle_EventVariableUpdDom,

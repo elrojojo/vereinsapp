@@ -11,18 +11,19 @@ function Liste_ElementFormularInitialisiertZurueck(formular_id, liste, data) {
     const element_id = data.element_id;
 
     // Formular als Modal generieren
-    const $neues_formular = LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal").addClass("formular");
+    const $neues_modal = LISTEN[liste].modals[formular_id].clone().removeClass("blanko invisible").addClass("modal");
+    if (typeof title !== "undefined") $neues_modal.find(".modal-title").text(title);
+    if (typeof element_id !== "undefined") $neues_modal.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
-    Liste_ElementFormularEigenschaftenWerteAktualisieren($neues_formular, element_id, liste);
+    const $formular = $neues_modal.find(".formular");
 
-    if (typeof title !== "undefined") $neues_formular.find(".modal-title").text(title);
+    Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
 
-    if (typeof element_id !== "undefined") $neues_formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
-
-    const $btn_aktion = $neues_formular.find("[class*=btn_" + LISTEN[liste].element + "_");
-    if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
-        $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass(".btn_" + LISTEN[liste].element + "_aktion");
-    if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
-
-    return $neues_formular;
+    const $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
+    if ($btn_aktion.exists()) {
+        if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
+            $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
+        if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
+    }
+    return $neues_modal;
 }

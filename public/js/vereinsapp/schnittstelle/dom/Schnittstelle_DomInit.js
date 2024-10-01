@@ -15,9 +15,31 @@ function Schnittstelle_DomInit() {
     $("#modals").find(".modal.bestaetigung").remove();
 
     $("#modals")
-        .find(".modal.autoload")
+        .find(".modal_autoload")
         .each(function () {
-            Schnittstelle_DomModalOeffnen($(this));
+            const $modal = $(this);
+            $modal.removeClass("blanko invisible").addClass("modal");
+            $modal.removeClass("modal_autoload");
+
+            const $formular = $modal.find(".formular");
+            const liste = $formular.attr("data-liste");
+            const aktion = $formular.attr("data-aktion");
+
+            let element_id = $formular.attr("data-element_id");
+            if (typeof element_id !== "undefined") element_id = Number(element_id);
+
+            if (typeof liste !== "undefined" && typeof element_id !== "undefined")
+                Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
+
+            let $btn_aktion;
+            if (typeof liste !== "undefined") $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
+            if (typeof $btn_aktion !== "undefined" && $btn_aktion.exists()) {
+                if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
+                    $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
+                if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
+            }
+
+            Schnittstelle_DomModalOeffnen($modal);
         });
 
     $(document).ajaxStart(function () {
@@ -156,37 +178,20 @@ function Schnittstelle_DomInit() {
 }
 
 function Schnittstelle_BtnWartenStart($btn_warten) {
-    if ($btn_warten.parents(".formular").exists()) {
+    if ($btn_warten.parents(".formular").exists())
+        $btn_warten.attr("data-beschriftung", $btn_warten.html()).html(STATUS_SPINNER_HTML).prop("disabled", true);
+    else {
         $btn_warten.after(STATUS_SPINNER_HTML);
         $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
-
-        $btn_warten.addClass("invisible");
-        $btn_warten.siblings(".btn").addClass("invisible");
-        $btn_warten.prop("disabled", true);
-        $btn_warten.siblings(".btn").prop("disabled", true);
-    } else {
-        const beschriftung = $btn_warten.html();
-        $btn_warten.attr("data-beschriftung", beschriftung);
-        $btn_warten.html(STATUS_SPINNER_HTML);
-
-        $btn_warten.prop("disabled", true);
+        $btn_warten.addClass("invisible").prop("disabled", true);
     }
 }
 
 function Schnittstelle_BtnWartenEnde($btn_warten) {
-    if ($btn_warten.parents(".formular").exists()) {
-        $btn_warten.prop("disabled", false);
-        $btn_warten.siblings(".btn").prop("disabled", false);
-        $btn_warten.removeClass("invisible");
-        $btn_warten.siblings(".btn").removeClass("invisible");
-
+    if ($btn_warten.parents(".formular").exists()) $btn_warten.prop("disabled", false).html($btn_warten.attr("data-beschriftung"));
+    else {
+        $btn_warten.prop("disabled", false).removeClass("invisible");
         $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
-    } else {
-        $btn_warten.prop("disabled", false);
-
-        const beschriftung = $btn_warten.attr("data-beschriftung");
-        $btn_warten.prop("data-beschriftung", false);
-        $btn_warten.html(beschriftung);
     }
 }
 

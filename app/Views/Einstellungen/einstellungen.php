@@ -3,13 +3,12 @@
 <?= $this->section( 'containers' ); ?>
 
 <div class="container mb-3">
-    <div class="text-secondary text-center mb-1">Mein Gerät</div>
 <?= view( 'Einstellungen/verknuepfung' ); ?>
 </div>
 
 <div class="container mb-3">
     <div class="text-secondary text-center mb-1">Meine Daten</div>
-<?= view( 'Mitglieder/mitglied_basiseigenschaften' ); ?>
+<?= view( 'Mitglieder/mitglied_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern', 'element_id' => ICH['id'] ), 'btn_beschriftung' => 'Meine Daten speichern' ) ); ?>
 </div>
 
 <div class="container mb-3">
@@ -19,7 +18,7 @@
 
 <div class="container mb-3">
     <div class="text-secondary text-center mb-1">Mein Passwort</div>
-<?= view( 'Mitglieder/mitglied_passwort_aendern' ); ?>
+<?= view( 'Mitglieder/mitglied_passwort_aendern_formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn_beschriftung' => 'Mein Passwort ändern' ) ); ?>
 </div>
 
 <div class="container mb-3">
@@ -27,4 +26,3 @@
 <?= view( 'Einstellungen/localstorage_leeren' ); ?>
 </div>
 <?= $this->endSection() ?>
-

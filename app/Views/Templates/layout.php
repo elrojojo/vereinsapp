@@ -38,7 +38,8 @@
     <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
     <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
     <?= view( 'Templates/Liste/liste_gruppieren_modal' ); ?>
-    <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo view( 'Mitglieder/mitglied_passwort_festlegen_modal' ); ?>
+    <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'modal_autoload' => TRUE,
+            'modal_title' => 'Mein Passwort festlegen', 'modal_body' => view( 'Mitglieder/mitglied_passwort_festlegen_formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn_beschriftung' => 'Neues Passwort festlegen' ) ) ) ); ?>
     </div>
 
   </body>

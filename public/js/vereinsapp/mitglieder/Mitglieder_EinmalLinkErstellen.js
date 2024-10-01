@@ -47,12 +47,16 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 else {
                     if ("dom" in AJAX && "$einmal_link" in AJAX.dom && AJAX.dom.$einmal_link.exists())
                         AJAX.dom.$einmal_link.val(AJAX.antwort.einmal_link);
-                    if ("dom" in AJAX && "$btn_dismiss" in AJAX.dom && AJAX.dom.$btn_dismiss.exists())
-                        AJAX.dom.$btn_dismiss
-                            .attr("data-beschriftung", AJAX.dom.$btn_dismiss.text())
-                            .removeClass("btn-outline-danger")
-                            .addClass("btn-outline-primary")
-                            .text("Schließen");
+                    if (
+                        "dom" in AJAX &&
+                        "$btn_dismiss" in AJAX.dom &&
+                        AJAX.dom.$btn_dismiss.exists() &&
+                        "$btn_ausloesend" in AJAX.dom &&
+                        AJAX.dom.$btn_ausloesend.exists()
+                    ) {
+                        AJAX.dom.$btn_dismiss.removeClass("invisible");
+                        AJAX.dom.$btn_ausloesend.addClass("invisible");
+                    }
                 }
             },
             rein_validation_neg_aktion: function (AJAX) {
