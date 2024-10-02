@@ -38,7 +38,7 @@ class Termine extends BaseController {
         );
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             // 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
@@ -184,7 +184,7 @@ class Termine extends BaseController {
         );
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
@@ -376,7 +376,7 @@ class Termine extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !(array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
                  )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
@@ -397,18 +397,6 @@ class Termine extends BaseController {
                 $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
             }
         }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-    
-    public function ajax_rueckmeldung_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'global.einstellungen' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'] );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

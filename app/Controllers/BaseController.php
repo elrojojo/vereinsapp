@@ -66,8 +66,14 @@ abstract class BaseController extends Controller
 
         if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
+        foreach( get_object_vars( config('Vereinsapp') ) as $eigenschaft => $wert ) {
+            if( config('Vereinsapp_env') !== NULL AND property_exists( config('Vereinsapp_env'), $eigenschaft ) )
+                defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp_env')->$eigenschaft );
+            else defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp')->$eigenschaft );
+        }
+
         $verfuegbare_rechte = array(); $id = 1;
-        foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) {
+        foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) if( strtok( $permission, '.' ) == "global" OR array_key_exists( strtok( $permission, '.' ), CONTROLLERS ) ) {
             $verfuegbares_recht['id'] = $id;
             $verfuegbares_recht['permission'] = $permission;
             $verfuegbares_recht['beschriftung'] = $beschriftung;
@@ -75,12 +81,6 @@ abstract class BaseController extends Controller
             $id++;
         }
         defined('VERFUEGBARE_RECHTE') OR define( 'VERFUEGBARE_RECHTE', $verfuegbare_rechte );
-
-        foreach( get_object_vars( config('Vereinsapp') ) as $eigenschaft => $wert ) {
-            if( config('Vereinsapp_env') !== NULL AND property_exists( config('Vereinsapp_env'), $eigenschaft ) )
-                defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp_env')->$eigenschaft );
-            else defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp')->$eigenschaft );
-        }
 
         defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
 

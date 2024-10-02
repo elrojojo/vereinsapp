@@ -80,7 +80,7 @@
         <?php if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
             <select class="form-select eigenschaft" data-eigenschaft="aktiv">
             <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['aktiv'] as $aktiv => $eigenschaften ): ?>
-                <option value="<?= $aktiv; ?>"<?php if( $aktiv == 1 ) echo ' selected'; ?>><?= $eigenschaften['beschriftung']; ?></option>
+                <option value="<?= $aktiv; ?>"><?= $eigenschaften['beschriftung']; ?></option>
             <?php endforeach; ?>
             </select>
             <label><?= EIGENSCHAFTEN['mitglieder']['aktiv']['beschriftung']; ?></label>

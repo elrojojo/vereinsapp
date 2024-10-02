@@ -59,7 +59,7 @@ class Mitglieder extends BaseController {
         foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'termine',
             'sortieren' => array(
@@ -87,13 +87,13 @@ class Mitglieder extends BaseController {
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_abwaehlen',
                 'title' => 'Alle abwählen',
             );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_anwaehlen',
                 'title' => 'Alle anwählen',
@@ -114,7 +114,7 @@ class Mitglieder extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
         
-        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
@@ -201,7 +201,7 @@ class Mitglieder extends BaseController {
         $this->viewdata['element_id'] = $mitglied_id;
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'termine',
             'sortieren' => array(
@@ -229,13 +229,13 @@ class Mitglieder extends BaseController {
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_abwaehlen',
                 'title' => 'Alle abwählen',
             );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_anwaehlen',
                 'title' => 'Alle anwählen',
@@ -256,7 +256,7 @@ class Mitglieder extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
         
-        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied'] = array(
                 'liste' => 'kassenbuch',
                 'filtern' => array( array(
@@ -699,7 +699,7 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
             if( auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
-                foreach( $mitglied->getPermissions() as $permission ) {
+                foreach( $mitglied->getPermissions() as $permission ) if( array_key_exists( $permission, VERFUEGBARE_RECHTE ) ) {
                     $vergebenes_recht['id'] = $id;
                     $vergebenes_recht['mitglied_id'] = $mitglied->id;
                     $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];

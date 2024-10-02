@@ -11,7 +11,7 @@
 </div>
 
 <div class="blanko_modals" data-liste="notenbank">
-<?php if( auth()->user()->can('notenbank.verwaltung') ) echo view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal_body' => view( 'Notenbank/titel_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'notenbank' ) ) ) ) ); ?>
+<?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal_body' => view( 'Notenbank/titel_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'notenbank' ) ) ) ) ); ?>
 </div>
 <?= $this->endSection() ?>
 

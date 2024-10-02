@@ -90,18 +90,15 @@ Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für
 ziel/umgebung beim DOM-Update ergänzen (damit nicht immer der komplette DOM aktualisiert wird)
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
+.btn in .formular mit ENTER betätigbar machen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
-VERFUEGBARE_RECHTE abhängig machen von CONTROLLER
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-Braucht es <?php if( $aktiv == 1 ) echo ' selected'; ?>?
-Ausschließlich aendern der eigenen Daten erlauben
+Ausschließlich aendern der eigenen Daten erlauben (nicht erstellen)
 .modal und .formular in Liste_ElementFormularInitialisiertZurueck überarbeiten sauber trennen
     ggf. Schnittstelle_DomModalInitialisiertZurueck einführen?
     Vereinsapp_Init und Schnittstelle_DomInit prüfen!
-.btn in .formular mit ENTER betätigbar machen
-<hr> in .formular einfügen
 
 */
