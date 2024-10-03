@@ -11,5 +11,7 @@
 <div class="rueckmeldung_nicht_eingeladen invisible text-secondary text-center small">Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.</div>
 
 <div class="blanko_modals" data-liste="rueckmeldungen">
-<?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung', 'modal_body' => view( 'Termine/rueckmeldung_bemerkung_formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ) ) ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung', 'modal' =>
+    view( 'Templates/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
+    view( 'Termine/rueckmeldung_bemerkung_formular' ) ) ) ) ); ?>
 </div>

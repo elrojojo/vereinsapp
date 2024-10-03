@@ -1,29 +1,23 @@
-<div class="formular"<?php if( isset($data) AND is_array($data) ) foreach( $data as $eigenschaft => $wert) { ?> data-<?= $eigenschaft ?>="<?= $wert ?>"<?php }?>>
+<div class="form-floating mb-2">
+    <input type="text" class="form-control eigenschaft" data-eigenschaft="titel" placeholder="<?= EIGENSCHAFTEN['strafkatalog']['titel']['beschriftung']; ?>" />
+    <label><?= EIGENSCHAFTEN['strafkatalog']['titel']['beschriftung']; ?></label>
+</div>
 
-    <div class="form-floating mb-2">
-        <input type="text" class="form-control eigenschaft" data-eigenschaft="titel" placeholder="<?= EIGENSCHAFTEN['strafkatalog']['titel']['beschriftung']; ?>" />
-        <label><?= EIGENSCHAFTEN['strafkatalog']['titel']['beschriftung']; ?></label>
-    </div>
+<div class="form-floating mb-2">
+    <input type="number" step="0.01" class="form-control eigenschaft" data-eigenschaft="wert" placeholder="<?= EIGENSCHAFTEN['strafkatalog']['wert']['beschriftung']; ?>" min="0.00" />
+    <label><?= EIGENSCHAFTEN['strafkatalog']['wert']['beschriftung']; ?></label>
+</div>
 
-    <div class="form-floating mb-2">
-        <input type="number" step="0.01" class="form-control eigenschaft" data-eigenschaft="wert" placeholder="<?= EIGENSCHAFTEN['strafkatalog']['wert']['beschriftung']; ?>" min="0.00" />
-        <label><?= EIGENSCHAFTEN['strafkatalog']['wert']['beschriftung']; ?></label>
-    </div>
+<div class="form-floating mb-2">
+    <select class="form-select eigenschaft" data-eigenschaft="kategorie">
+    <?php foreach ( VORGEGEBENE_WERTE['strafkatalog']['kategorie'] as $kategorie => $eigenschaften ): ?>
+        <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+    <?php endforeach; ?>
+    </select>
+    <label><?= EIGENSCHAFTEN['strafkatalog']['kategorie']['beschriftung']; ?></label>
+</div>
 
-    <div class="form-floating mb-2">
-        <select class="form-select eigenschaft" data-eigenschaft="kategorie">
-        <?php foreach ( VORGEGEBENE_WERTE['strafkatalog']['kategorie'] as $kategorie => $eigenschaften ): ?>
-            <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>
-        <?php endforeach; ?>
-        </select>
-        <label><?= EIGENSCHAFTEN['strafkatalog']['kategorie']['beschriftung']; ?></label>
-    </div>
-
-    <div class="form-floating mb-2">
-        <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['strafkatalog']['bemerkung']['beschriftung']; ?>" />
-        <label><?= EIGENSCHAFTEN['strafkatalog']['bemerkung']['beschriftung']; ?></label>
-    </div>
-
-    <div class="d-grid"><button type="button" class="btn btn_strafe_aktion btn-outline-success"><?php if( isset($btn_beschriftung) ) echo $btn_beschriftung; else echo 'Speichern'; ?></button></div>
-
+<div class="form-floating mb-2">
+    <input type="text" class="form-control eigenschaft" data-eigenschaft="bemerkung" placeholder="<?= EIGENSCHAFTEN['strafkatalog']['bemerkung']['beschriftung']; ?>" />
+    <label><?= EIGENSCHAFTEN['strafkatalog']['bemerkung']['beschriftung']; ?></label>
 </div>

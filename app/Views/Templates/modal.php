@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
 
-<?= $modal_body ?>
+<?= $modal ?>
 
       </div>
     </div>

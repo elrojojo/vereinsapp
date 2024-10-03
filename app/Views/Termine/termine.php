@@ -7,7 +7,10 @@
 </div>
 
 <div class="blanko_modals" data-liste="termine">
-<?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal_body' => view( 'Termine/termin_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'termine' ) ) ) ) ); ?>
+<?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
+        view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
+        view( 'Templates/formular', array( 'data' => array( 'liste' => 'termine', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
+        view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>
 <?= $this->endSection() ?>

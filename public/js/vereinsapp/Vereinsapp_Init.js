@@ -96,7 +96,6 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-Ausschließlich aendern der eigenen Daten erlauben (nicht erstellen)
 .modal und .formular in Liste_ElementFormularInitialisiertZurueck überarbeiten sauber trennen
     ggf. Schnittstelle_DomModalInitialisiertZurueck einführen?
     Vereinsapp_Init und Schnittstelle_DomInit prüfen!

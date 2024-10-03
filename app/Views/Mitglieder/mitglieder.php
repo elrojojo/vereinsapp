@@ -7,12 +7,19 @@
 </div>
 
 <div class="blanko_modals" data-liste="mitglieder">
-<?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal_body' => view( 'Mitglieder/mitglied_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'mitglieder' ) ) ) ) ); ?>
-<?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo view( 'Templates/modal', array( 'modal_id' => 'einmal_link_anzeigen', 'modal_body' => view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn_beschriftung' => 'Einmal-Link anzeigen' ) ) ) ); ?>
+<?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
+        view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
+        view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
+        view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); ?>
+<?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
+        view( 'Templates/modal', array( 'modal_id' => 'einmal_link_anzeigen', 'modal' =>
+        view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
+        view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>
 
 <div class="blanko_modals" data-liste="strafkatalog">
-<?php if( array_key_exists( 'strafkatalog.verwaltung' , VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['strafkatalog_auswahl'] ) ); ?>
+<?php if( array_key_exists( 'strafkatalog.verwaltung' , VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
+        view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['strafkatalog_auswahl'] ) ); ?>
 </div>
 <?= $this->endSection() ?>

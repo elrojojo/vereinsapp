@@ -8,7 +8,8 @@
 
 <div class="container mb-3">
     <div class="text-secondary text-center mb-1"><hr>Meine Daten</div>
-<?= view( 'Mitglieder/mitglied_basiseigenschaften_formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern', 'element_id' => ICH['id'] ), 'btn_beschriftung' => 'Meine Daten speichern' ) ); ?>
+<?= view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion', 'beschriftung' => 'Meine Daten speichern' ), 'formular' =>
+    view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ); ?>
 </div>
 
 <div class="container mb-3">
@@ -18,7 +19,8 @@
 
 <div class="container mb-3">
     <div class="text-secondary text-center mb-1"><hr>Mein Passwort</div>
-<?= view( 'Mitglieder/mitglied_passwort_aendern_formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn_beschriftung' => 'Mein Passwort ändern' ) ); ?>
+<?= view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_aendern', 'beschriftung' => 'Mein Passwort ändern' ), 'formular' =>
+    view( 'Mitglieder/mitglied_passwort_aendern_formular' ) ) ); ?>
 </div>
 
 <div class="container mb-3">
