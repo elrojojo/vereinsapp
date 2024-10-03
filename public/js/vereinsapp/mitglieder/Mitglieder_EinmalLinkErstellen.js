@@ -9,7 +9,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             { liste: "mitglieder", element_id: mitglied_id }
         );
     else if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "einmal_link_anzeigen", "mitglieder");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglieder_einmal_link_anzeigen");
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), undefined, mitglied_id, "mitglieder");
         Schnittstelle_DomModalOeffnen($neues_modal);
     } else {

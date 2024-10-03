@@ -14,14 +14,13 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
     }
 
     if (auswahl_oeffnen) {
-        $modal = LISTEN[data.gegen_liste].modals[data.gegen_liste + "_auswahl"].clone().removeClass("blanko invisible").addClass("modal");
-        $modal.find(".modal-title").text(title);
-        Schnittstelle_DomModalOeffnen($modal);
-        $modal
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, data.gegen_liste + "_auswahl");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+        $neues_modal
             .find("#" + data.gegen_liste + "_auswahl")
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
-
+        Hier muss das blanko_element der Liste in MODALS eingefügt werden!
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
     } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);

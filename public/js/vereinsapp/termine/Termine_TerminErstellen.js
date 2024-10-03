@@ -2,7 +2,7 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
     if (typeof termin_id !== "undefined") termin_id = Number(termin_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "basiseigenschaften", "termine");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "termine_basiseigenschaften");
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", termin_id, "termine");
         Schnittstelle_DomModalOeffnen($neues_modal);
     } else {

@@ -16,9 +16,9 @@
 <?= view( 'Templates/Liste/verzeichnis', array( 'verzeichnis' => $verzeichnis['aktuelles_verzeichnis'] ) ); ?>
 </div>
 
-<div class="blanko_modals" data-liste="notenbank">
+<div class="blanko_modals">
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
-        view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
+        view( 'Templates/modal', array( 'modal_id' => 'notenbank_basiseigenschaften', 'modal' =>
         view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'notenbank', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_titel_aktion' ), 'formular' =>
         view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 </div>

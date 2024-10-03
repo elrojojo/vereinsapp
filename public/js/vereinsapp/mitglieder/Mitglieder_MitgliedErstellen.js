@@ -2,7 +2,7 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
     if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "basiseigenschaften", "mitglieder");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglieder_basiseigenschaften");
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", mitglied_id, "mitglieder");
         Schnittstelle_DomModalOeffnen($neues_modal);
     } else {

@@ -87,6 +87,5 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 .bestaetigung in MODALS eingliedern
-LISTEN[liste].modals[modal_id].clone().removeClass("blanko invisible").addClass("modal") von liste unabhängig machen
 
 */

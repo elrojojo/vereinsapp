@@ -3,25 +3,14 @@ const LISTEN = new Object();
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
-        $('.liste[data-liste="' + liste + '"]').each(function () {
-            const $liste = $(this);
-            const instanz = $liste.attr("id");
-            LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
-        });
-
-        LISTEN[liste].modals = new Object();
-        $('.blanko_modals[data-liste="' + liste + '"]').each(function () {
-            const $blanko_modals = $(this);
-            $blanko_modals.find(".blanko").each(function () {
-                const $blanko_modal = $(this);
-                const blanko_modal_id = $blanko_modal.attr("id");
-                $blanko_modal.removeAttr("id");
-                LISTEN[liste].modals[blanko_modal_id] = $blanko_modal;
-            });
-        });
+        $('.liste[data-liste="' + liste + '"]')
+            .each(function () {
+                const $liste = $(this);
+                const instanz = $liste.attr("id");
+                LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
+            })
+            .empty();
     });
-    $(".liste").empty();
-    $(".blanko_modals").remove();
 
     Liste_ChecklisteInit();
 

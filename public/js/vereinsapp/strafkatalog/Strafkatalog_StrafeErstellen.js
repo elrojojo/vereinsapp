@@ -2,7 +2,7 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
     if (typeof strafe_id !== "undefined") strafe_id = Number(strafe_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "basiseigenschaften", "strafkatalog");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "strafkatalog_basiseigenschaften");
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", strafe_id, "strafkatalog");
         Schnittstelle_DomModalOeffnen($neues_modal);
     } else {

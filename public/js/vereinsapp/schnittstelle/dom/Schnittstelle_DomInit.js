@@ -3,6 +3,7 @@ const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
 const TOASTS = new Object();
+const MODALS = new Object();
 const BESTAETIGUNGEN = new Object();
 
 function Schnittstelle_DomInit() {
@@ -13,6 +14,18 @@ function Schnittstelle_DomInit() {
 
     BESTAETIGUNGEN.$blanko_bestaetigung = $("#modals").find(".modal.bestaetigung").first();
     $("#modals").find(".modal.bestaetigung").remove();
+
+    $(".blanko_modals")
+        .each(function () {
+            const $blanko_modals = $(this);
+            $blanko_modals.find(".blanko").each(function () {
+                const $blanko_modal = $(this);
+                const blanko_modal_id = $blanko_modal.attr("id");
+                $blanko_modal.removeAttr("id");
+                MODALS[blanko_modal_id] = $blanko_modal;
+            });
+        })
+        .remove();
 
     $("#modals")
         .find(".modal_autoload")

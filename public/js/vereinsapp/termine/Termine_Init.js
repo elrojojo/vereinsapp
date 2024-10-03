@@ -128,13 +128,10 @@ function Termine_Init() {
         if (typeof gegen_liste === "undefined" && liste == "termine") gegen_liste = "mitglieder";
         else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "termine";
 
-        const $modal = LISTEN[liste].modals["anwesenheiten_dokumentieren"].clone().removeClass("blanko invisible").addClass("modal");
-
-        if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
-
-        Schnittstelle_DomModalOeffnen($modal);
-        $modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
-
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+        $neues_modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
+        Hier muss das blanko_element der Liste in MODALS eingefügt werden!
         Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 }
