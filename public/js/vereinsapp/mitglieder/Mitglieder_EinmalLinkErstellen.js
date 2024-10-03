@@ -42,18 +42,10 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                             " wurde erfolgreich per Email zugeschickt."
                     );
                 else {
-                    if ("dom" in AJAX && "$einmal_link" in AJAX.dom && AJAX.dom.$einmal_link.exists())
-                        AJAX.dom.$einmal_link.val(AJAX.antwort.einmal_link);
-                    if (
-                        "dom" in AJAX &&
-                        "$btn_dismiss" in AJAX.dom &&
-                        AJAX.dom.$btn_dismiss.exists() &&
-                        "$btn_ausloesend" in AJAX.dom &&
-                        AJAX.dom.$btn_ausloesend.exists()
-                    ) {
-                        AJAX.dom.$btn_dismiss.removeClass("invisible");
+                    if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.find(".einmal_link").exists())
+                        AJAX.dom.$formular.find(".einmal_link").val(AJAX.antwort.einmal_link);
+                    if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                         AJAX.dom.$btn_ausloesend.addClass("invisible");
-                    }
                 }
             },
             rein_validation_neg_aktion: function (AJAX) {

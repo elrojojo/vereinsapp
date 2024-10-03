@@ -128,7 +128,7 @@ function Termine_Init() {
         if (typeof gegen_liste === "undefined" && liste == "termine") gegen_liste = "mitglieder";
         else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "termine";
 
-        const $modal = LISTEN[liste].modals["anwesenheiten_dokumentieren_modal"].clone().removeClass("blanko invisible").addClass("modal");
+        const $modal = LISTEN[liste].modals["anwesenheiten_dokumentieren"].clone().removeClass("blanko invisible").addClass("modal");
 
         if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
 

@@ -7,5 +7,3 @@
     </div>
     <span class="input-group-text text-primary btn_inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
 </div>
-
-<div class="d-grid"><button type="button" class="btn btn-outline-primary invisible" data-bs-dismiss="modal">Schließen</button></div>

@@ -9,6 +9,7 @@
 
 <?= $modal ?>
 
+        <div class="d-grid"><button type="button" class="btn btn-outline-primary mt-3" data-bs-dismiss="modal">Zurück</button></div>
       </div>
     </div>
   </div>

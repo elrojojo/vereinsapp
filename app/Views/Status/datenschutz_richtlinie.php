@@ -37,9 +37,9 @@
                 Du kannst deinen Internetbrowser verwenden, um Cookies automatisch oder manuell zu löschen. Du kannst auch festlegen, dass bestimmte Cookies möglicherweise nicht platziert werden. Eine weitere Möglichkeit besteht darin, die Einstellungen deines Internetbrowsers so zu ändern, dass du jedes Mal eine Nachricht erhältst, wenn ein Cookie gesetzt wird. Weitere Informationen zu diesen Optionen findest du in den Anweisungen im Hilfebereich deines Browsers.
                 Bitte nimm zur Kenntnis, dass unsere Website möglicherweise nicht richtig funktioniert, wenn alle Cookies deaktiviert sind. Wenn du die Cookies in deinem Browser löschst, werden diese neu platziert, wenn du unsere Website erneut besuchst.
             </div>
-            <div class="modal-footer"><div class="d-grid">
-                <button type="button" class="btn btn-outline-success" id="datenschutz_richtlinie_akzeptieren">Datenschutz-Richtlinie akzeptieren</button>
-            </div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success col-12" id="datenschutz_richtlinie_akzeptieren">Datenschutz-Richtlinie akzeptieren</button>
+            </div>
         </div>
     </div>
 </div>

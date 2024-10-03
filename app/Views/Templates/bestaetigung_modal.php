@@ -8,7 +8,7 @@
       <div class="modal-body nachricht">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Zurück</button>
         <button type="button" class="btn btn_bestaetigen btn-outline-success"></button>
       </div>
     </div>

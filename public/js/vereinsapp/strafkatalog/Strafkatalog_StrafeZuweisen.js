@@ -14,7 +14,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
     }
 
     if (auswahl_oeffnen) {
-        $modal = LISTEN[data.gegen_liste].modals[data.gegen_liste + "_auswahl_modal"].clone().removeClass("blanko invisible").addClass("modal");
+        $modal = LISTEN[data.gegen_liste].modals[data.gegen_liste + "_auswahl"].clone().removeClass("blanko invisible").addClass("modal");
         $modal.find(".modal-title").text(title);
         Schnittstelle_DomModalOeffnen($modal);
         $modal

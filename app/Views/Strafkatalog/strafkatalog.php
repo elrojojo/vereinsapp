@@ -18,6 +18,8 @@
 </div>
 <div class="blanko_modals" data-liste="mitglieder">
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-        view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['mitglieder_auswahl'] ) ); ?>
+        view( 'Templates/modal', array( 'modal_id' => 'mitglieder_auswahl', 'modal' =>
+        view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
+
 </div>
 <?= $this->endSection() ?>

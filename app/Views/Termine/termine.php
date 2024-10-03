@@ -11,6 +11,7 @@
         view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
         view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
         view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
-<?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'anwesenheiten_dokumentieren', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
 </div>
 <?= $this->endSection() ?>
