@@ -3,7 +3,7 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "termine", {
+            Schnittstelle_DomNeuesModalInitialisiertZurueck("basiseigenschaften", "termine", {
                 aktion: "erstellen",
                 title: title,
                 element_id: termin_id,

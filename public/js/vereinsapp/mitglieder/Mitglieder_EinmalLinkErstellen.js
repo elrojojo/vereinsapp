@@ -10,7 +10,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
         );
     else if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", {
+            Schnittstelle_DomNeuesModalInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", {
                 title: title,
                 element_id: mitglied_id,
             })

@@ -28,16 +28,7 @@ function Schnittstelle_DomInit() {
             let element_id = $formular.attr("data-element_id");
             if (typeof element_id !== "undefined") element_id = Number(element_id);
 
-            if (typeof liste !== "undefined" && typeof element_id !== "undefined")
-                Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
-
-            let $btn_aktion;
-            if (typeof liste !== "undefined") $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
-            if (typeof $btn_aktion !== "undefined" && $btn_aktion.exists()) {
-                if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
-                    $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
-                if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
-            }
+            if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
 
             Schnittstelle_DomModalOeffnen($modal);
         });

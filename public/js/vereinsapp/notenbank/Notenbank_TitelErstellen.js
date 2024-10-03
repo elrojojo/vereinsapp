@@ -3,7 +3,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "notenbank", {
+            Schnittstelle_DomNeuesModalInitialisiertZurueck("basiseigenschaften", "notenbank", {
                 aktion: "erstellen",
                 title: title,
                 element_id: titel_id,

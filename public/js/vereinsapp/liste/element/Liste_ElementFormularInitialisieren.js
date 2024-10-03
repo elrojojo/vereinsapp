@@ -1,4 +1,6 @@
-function Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste) {
+function Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste) {
+    if (typeof element_id !== "undefined") $formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
+
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
@@ -39,4 +41,11 @@ function Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element
 
         $eigenschaft.val(wert_formatiert).change();
     });
+
+    const $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
+    if ($btn_aktion.exists()) {
+        if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
+            $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
+        if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
+    }
 }

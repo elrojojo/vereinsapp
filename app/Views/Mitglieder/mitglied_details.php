@@ -38,7 +38,7 @@
 </div>
 <div class="blanko_modals" data-liste="rueckmeldungen">
 <?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung', 'modal' =>
-    view( 'Templates/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
     view( 'Termine/rueckmeldung_bemerkung_formular' ) ) ) ) ); ?>
 </div>
 <?php } ?>
@@ -51,15 +51,15 @@
 <div class="blanko_modals" data-liste="mitglieder">
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
         view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
-        view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
+        view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
         view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); 
       elseif( $element_id == ICH['id'] ) echo
         view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
-        view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aendern', 'beschriftung' => 'Meine Daten ändern' ), 'formular' =>
+        view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aendern', 'beschriftung' => 'Meine Daten ändern' ), 'formular' =>
         view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
         view( 'Templates/modal', array( 'modal_id' => 'einmal_link_anzeigen', 'modal' =>
-        view( 'Templates/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
+        view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
         view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/Liste/liste_modal', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ); ?>
 </div>

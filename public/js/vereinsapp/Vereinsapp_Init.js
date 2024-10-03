@@ -15,16 +15,7 @@ $(document).ready(function () {
         let element_id = $formular.attr("data-element_id");
         if (typeof element_id !== "undefined") element_id = Number(element_id);
 
-        if (typeof liste !== "undefined" && typeof element_id !== "undefined")
-            Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
-
-        let $btn_aktion;
-        if (typeof liste !== "undefined") $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
-        if (typeof $btn_aktion !== "undefined" && $btn_aktion.exists()) {
-            if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
-                $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
-            if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
-        }
+        if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
     });
 
     if (LOGGEDIN) Mitglieder_Init();
@@ -79,7 +70,7 @@ IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, A
 Formatierung eines Werts flexibel machen in Liste_WertFormatiertZurueck() (inkl. möglichem Symbol)
 Data-Attribute als Object in einem Attribut zusammenfassen
 title ändern in beschriftung?
-anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
+anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
 Sortierung nicht mehr case sensitive machen
 Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
@@ -96,8 +87,6 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-.modal und .formular in Liste_ElementFormularInitialisiertZurueck überarbeiten sauber trennen
-    ggf. Schnittstelle_DomModalInitialisiertZurueck einführen?
-    Vereinsapp_Init und Schnittstelle_DomInit prüfen!
+.modal und .formular in Schnittstelle_DomNeuesModalInitialisiertZurueck sauber trennen (Vereinsapp_Init und Schnittstelle_DomInit prüfen!)
 
 */

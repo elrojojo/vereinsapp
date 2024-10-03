@@ -3,7 +3,7 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "strafkatalog", {
+            Schnittstelle_DomNeuesModalInitialisiertZurueck("basiseigenschaften", "strafkatalog", {
                 aktion: "erstellen",
                 title: title,
                 element_id: strafe_id,

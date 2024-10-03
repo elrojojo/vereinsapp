@@ -13,7 +13,7 @@
 <div class="blanko_modals" data-liste="strafkatalog">
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
         view( 'Templates/modal', array( 'modal_id' => 'basiseigenschaften', 'modal' =>
-        view( 'Templates/formular', array( 'data' => array( 'liste' => 'strafkatalog', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_strafe_aktion' ), 'formular' =>
+        view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'strafkatalog', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_strafe_aktion' ), 'formular' =>
         view( 'Strafkatalog/strafe_basiseigenschaften_formular' ) ) ) ) ); ?>
 </div>
 <div class="blanko_modals" data-liste="mitglieder">

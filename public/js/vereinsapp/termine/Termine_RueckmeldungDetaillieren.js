@@ -3,7 +3,7 @@ function Termine_RueckmeldungDetaillieren(formular_oeffnen, dom, data, title, ru
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("bemerkung", "rueckmeldungen", {
+            Schnittstelle_DomNeuesModalInitialisiertZurueck("bemerkung", "rueckmeldungen", {
                 title: title,
                 element_id: rueckmeldung_id,
             })

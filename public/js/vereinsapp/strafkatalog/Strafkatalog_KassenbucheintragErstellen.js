@@ -3,7 +3,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
 
     if (formular_oeffnen)
         Schnittstelle_DomModalOeffnen(
-            Liste_ElementFormularInitialisiertZurueck("basiseigenschaften", "kassenbuch", {
+            Schnittstelle_DomNeuesModalInitialisiertZurueck("basiseigenschaften", "kassenbuch", {
                 aktion: "erstellen",
                 title: title,
                 element_id: kassenbucheintrag_id,

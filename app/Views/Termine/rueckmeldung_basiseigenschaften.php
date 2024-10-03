@@ -12,6 +12,6 @@
 
 <div class="blanko_modals" data-liste="rueckmeldungen">
 <?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung', 'modal' =>
-    view( 'Templates/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
     view( 'Termine/rueckmeldung_bemerkung_formular' ) ) ) ) ); ?>
 </div>
