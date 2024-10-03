@@ -8,14 +8,11 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             "btn_mitglied_einmal_link_email",
             { liste: "mitglieder", element_id: mitglied_id }
         );
-    else if (formular_oeffnen)
-        Schnittstelle_DomModalOeffnen(
-            Schnittstelle_DomNeuesModalInitialisiertZurueck("einmal_link_anzeigen", "mitglieder", {
-                title: title,
-                element_id: mitglied_id,
-            })
-        );
-    else {
+    else if (formular_oeffnen) {
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "einmal_link_anzeigen", "mitglieder");
+        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), undefined, mitglied_id, "mitglieder");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+    } else {
         Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;

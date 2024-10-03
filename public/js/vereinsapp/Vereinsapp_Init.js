@@ -45,8 +45,9 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Termin mit Ende erweitern
 Fahrerplan / Arbeitsplan / Proberaum-Belegungsplan + zeitpunkt (kassenbuch) aus Datenbank löschen
+Termin mit Ende erweitern
+Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
@@ -85,8 +86,7 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-.modal und .formular in Schnittstelle_DomNeuesModalInitialisiertZurueck sauber trennen (Vereinsapp_Init und Schnittstelle_DomInit prüfen!)
+LISTEN[liste].modals[modal_id].clone().removeClass("blanko invisible").addClass("modal") von liste unabhängig machen
 
 */

@@ -1,15 +1,11 @@
 function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) {
     if (typeof titel_id !== "undefined") titel_id = Number(titel_id);
 
-    if (formular_oeffnen)
-        Schnittstelle_DomModalOeffnen(
-            Schnittstelle_DomNeuesModalInitialisiertZurueck("basiseigenschaften", "notenbank", {
-                aktion: "erstellen",
-                title: title,
-                element_id: titel_id,
-            })
-        );
-    else {
+    if (formular_oeffnen) {
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "basiseigenschaften", "notenbank");
+        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", titel_id, "notenbank");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+    } else {
         Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;

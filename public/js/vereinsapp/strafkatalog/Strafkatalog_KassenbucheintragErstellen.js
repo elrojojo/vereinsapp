@@ -1,15 +1,11 @@
 function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, title, kassenbucheintrag_id) {
     if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
 
-    if (formular_oeffnen)
-        Schnittstelle_DomModalOeffnen(
-            Schnittstelle_DomNeuesModalInitialisiertZurueck("basiseigenschaften", "kassenbuch", {
-                aktion: "erstellen",
-                title: title,
-                element_id: kassenbucheintrag_id,
-            })
-        );
-    else {
+    if (formular_oeffnen) {
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "basiseigenschaften", "kassenbuch");
+        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", kassenbucheintrag_id, "kassenbuch");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+    } else {
         Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
