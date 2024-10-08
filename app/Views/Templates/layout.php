@@ -35,9 +35,9 @@
 
     <div id="modals">
     <?= view( 'Templates/bestaetigung_modal' ); ?>
-    <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
-    <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
-    <?= view( 'Templates/Liste/liste_gruppieren_modal' ); ?>
+    <?= view( 'Templates/modal', array( 'modal_id' => 'filtern', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
+    <?= view( 'Templates/modal', array( 'modal_id' => 'sortieren', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
+    <?= view( 'Templates/modal', array( 'modal_id' => 'gruppieren', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
     <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
         view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'modal_autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
         view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_festlegen', 'beschriftung' => 'Neues Passwort festlegen' ), 'formular' =>

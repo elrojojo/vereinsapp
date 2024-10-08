@@ -8,7 +8,7 @@ function Liste_GruppierenFormularOeffnen(data, liste) {
     const title = data.title;
 
     const gruppieren_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_gruppieren_formular_oeffnen[data-liste='" + liste + "']")
+        .find(".btn_gruppieren_oeffnen[data-liste='" + liste + "']")
         .val();
 
     let gruppieren_aktuell = undefined;
@@ -17,8 +17,7 @@ function Liste_GruppierenFormularOeffnen(data, liste) {
         if (typeof gruppieren_aktuell === "undefined") gruppieren_aktuell = LISTEN[liste].instanz[instanz].gruppieren_data;
     } else if (typeof gruppieren_value !== "undefined") gruppieren_aktuell = gruppieren_value;
 
-    const $neues_gruppieren_formular = GRUPPIEREN.$blanko_gruppieren_modal.clone().removeClass("invisible");
-    if (typeof title !== "undefined") $neues_gruppieren_formular.find(".modal-title").text(title);
+    const $neues_gruppieren_formular = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "gruppieren");
 
     const $gruppieren_definitionen = $neues_gruppieren_formular.find(".gruppieren_definitionen");
     $gruppieren_definitionen.attr("data-liste", liste).attr("data-instanz", instanz);

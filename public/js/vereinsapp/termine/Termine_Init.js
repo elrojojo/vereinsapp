@@ -131,7 +131,6 @@ function Termine_Init() {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
         Schnittstelle_DomModalOeffnen($neues_modal);
         $neues_modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
-        Hier muss das blanko_element der Liste in MODALS eingefügt werden!
         Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 }

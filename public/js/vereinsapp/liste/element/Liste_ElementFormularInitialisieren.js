@@ -10,7 +10,7 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         // else $eigenschaft.removeAttr("data-element_id");
 
         let wert = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste);
-        // Wenn aber nichts definiert ist, dann nimm den Blanko-Wert (je nach Typ)
+        // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
         if (typeof wert === "undefined")
             if ($eigenschaft.prop("tagName") == "SELECT") wert = $eigenschaft.find("option:first").val();
             else if ($eigenschaft.attr("type") == "date") wert = DateTime.now().plus({ days: 1 });

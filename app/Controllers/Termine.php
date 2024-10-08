@@ -82,12 +82,12 @@ class Termine extends BaseController {
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -120,12 +120,12 @@ class Termine extends BaseController {
         }
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Termine filtern',
         );
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Termine sortieren',
         );
 
@@ -152,12 +152,12 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
-            'klasse_id' => 'btn_gruppieren_formular_oeffnen',
+            'klasse_id' => 'btn_gruppieren_oeffnen',
             'title' => 'Auswertung gruppieren',
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Auswertung filtern',
         );
 
@@ -174,12 +174,12 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(
-            'klasse_id' => 'btn_gruppieren_formular_oeffnen',
+            'klasse_id' => 'btn_gruppieren_oeffnen',
             'title' => 'Auswertung gruppieren',
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Auswertung filtern',
         );
 
@@ -228,12 +228,12 @@ class Termine extends BaseController {
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 

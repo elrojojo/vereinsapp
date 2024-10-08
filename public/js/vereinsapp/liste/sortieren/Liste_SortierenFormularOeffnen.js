@@ -8,11 +8,10 @@ function Liste_SortierenFormularOeffnen(data, liste) {
     const title = data.title;
 
     const sortieren_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_sortieren_formular_oeffnen[data-liste='" + liste + "']")
+        .find(".btn_sortieren_oeffnen[data-liste='" + liste + "']")
         .val();
 
-    const $neues_sortieren_formular = SORTIEREN.$blanko_sortieren_modal.clone().removeClass("invisible");
-    if (typeof title !== "undefined") $neues_sortieren_formular.find(".modal-title").text(title);
+    const $neues_sortieren_formular = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "sortieren");
 
     const $sortieren_definitionen = $neues_sortieren_formular.find(".sortieren_definitionen");
     $sortieren_definitionen.find(".btn_sortieren_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);

@@ -8,11 +8,10 @@ function Liste_FilternFormularOeffnen(data, liste) {
     const title = data.title;
 
     const filtern_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_filtern_formular_oeffnen[data-liste='" + liste + "']")
+        .find(".btn_filtern_oeffnen[data-liste='" + liste + "']")
         .val();
 
-    const $neues_filtern_formular = FILTERN.$blanko_filtern_modal.clone().removeClass("invisible");
-    if (typeof title !== "undefined") $neues_filtern_formular.find(".modal-title").text(title);
+    const $neues_filtern_formular = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "filtern");
 
     const $filtern_definitionen = $neues_filtern_formular.find(".filtern_definitionen");
     $filtern_definitionen.empty();

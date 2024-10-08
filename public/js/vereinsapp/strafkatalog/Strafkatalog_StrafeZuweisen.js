@@ -20,7 +20,6 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
             .find("#" + data.gegen_liste + "_auswahl")
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
-        Hier muss das blanko_element der Liste in MODALS eingefügt werden!
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
     } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);

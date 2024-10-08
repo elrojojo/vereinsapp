@@ -4,5 +4,5 @@ function Liste_FilternVerknuepfungAendern($verknuepfung, instanz, liste) {
     if (verknuepfung == "&&") $verknuepfung.attr("data-verknuepfung", "||").text("ODER");
     else if (verknuepfung == "||") $verknuepfung.attr("data-verknuepfung", "&&").text("UND");
 
-    Liste_FilternSpeichern($verknuepfung.closest(".modal.filtern").find(".filtern"), instanz, liste);
+    Liste_FilternSpeichern($verknuepfung.closest(".filtern_formular").find(".filtern"), instanz, liste);
 }

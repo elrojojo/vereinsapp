@@ -1,5 +1,5 @@
 function Liste_FilternErstellen($filtern_definition, instanz, liste) {
-    const $filtern = $filtern_definition.closest(".modal.filtern").find(".filtern");
+    const $filtern = $filtern_definition.closest(".filtern_formular").find(".filtern");
 
     const filtern = new Array();
     $filtern_definition.find(".filtern_wert").each(function () {

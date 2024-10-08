@@ -54,12 +54,12 @@ class Notenbank extends BaseController {
         }
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Notenbank filtern',
         ); 
 
         $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Notenbank sortieren',
         ); 
 

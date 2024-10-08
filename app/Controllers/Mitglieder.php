@@ -100,12 +100,12 @@ class Mitglieder extends BaseController {
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -138,12 +138,12 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'klasse_id' => 'btn_filtern_oeffnen',
                 'title' => 'Strafkatalog filtern',
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'klasse_id' => 'btn_sortieren_oeffnen',
                 'title' => 'Strafkatalog sortieren',
             );
         }
@@ -181,12 +181,12 @@ class Mitglieder extends BaseController {
         }
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -242,12 +242,12 @@ class Mitglieder extends BaseController {
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -307,12 +307,12 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'klasse_id' => 'btn_filtern_oeffnen',
                 'title' => 'Strafkatalog filtern',
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'klasse_id' => 'btn_sortieren_oeffnen',
                 'title' => 'Strafkatalog sortieren',
             );
         }

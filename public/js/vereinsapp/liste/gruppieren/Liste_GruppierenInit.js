@@ -1,11 +1,11 @@
 const GRUPPIEREN = new Object();
 
 function Liste_GruppierenInit() {
-    GRUPPIEREN.$blanko_gruppieren_modal = $("#modals").find(".modal.gruppieren").first();
-    $("#modals").find(".modal.gruppieren").remove();
+    MODALS.gruppieren = $("#modals").find(".blanko#gruppieren").first();
+    $("#modals").find(".blanko#gruppieren").remove();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_gruppieren_formular_oeffnen", function () {
+    $(document).on("click", ".btn_gruppieren_oeffnen", function () {
         Liste_GruppierenFormularOeffnen({ instanz: $(this).attr("data-instanz"), title: $(this).attr("data-title") }, $(this).attr("data-liste"));
     });
 

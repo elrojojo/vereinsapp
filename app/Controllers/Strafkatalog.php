@@ -53,12 +53,12 @@ class Strafkatalog extends BaseController {
             );
 
             $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'klasse_id' => 'btn_filtern_oeffnen',
                 'title' => 'Mitglieder filtern',
             );
 
             $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'klasse_id' => 'btn_sortieren_oeffnen',
                 'title' => 'Mitglieder sortieren',
             );
 
@@ -83,12 +83,12 @@ class Strafkatalog extends BaseController {
         }
 
         $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Strafkatalog filtern',
         ); 
 
         $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Strafkatalog sortieren',
         ); 
 
@@ -155,12 +155,12 @@ class Strafkatalog extends BaseController {
         }
 
         $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_oeffnen',
             'title' => 'Kassenbuch filtern',
         ); 
 
         $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_oeffnen',
             'title' => 'Kassenbuch sortieren',
         ); 
 

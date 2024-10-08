@@ -87,5 +87,6 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 .bestaetigung in MODALS eingliedern
+Liste_*FormularOeffnen und Liste_*Init für Filtern, Sortieren und Gruppieren weiter umbauen
 
 */

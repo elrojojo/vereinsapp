@@ -1,5 +1,5 @@
 function Liste_FilternLoeschen($knoten, instanz, liste) {
-    const $filtern = $knoten.closest(".modal.filtern").find(".filtern");
+    const $filtern = $knoten.closest(".filtern_formular").find(".filtern");
     let $knoten_parallel = $knoten.siblings(".filtern_element, .filtern_sammlung");
     let $sammlung_ebene_hoeher = $knoten.parents(".filtern_sammlung").first();
 
