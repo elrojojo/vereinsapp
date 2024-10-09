@@ -5,8 +5,6 @@ function Liste_AuswertungenInit() {
             const instanz = $auswertungen.attr("id");
 
             LISTEN[auswertungen].instanz[instanz] = new Object();
-            LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $auswertungen.find(".blanko.auswertung").first();
-            $auswertungen.empty();
 
             // liste_data aus data
             let liste_data = $auswertungen.attr("data-liste");

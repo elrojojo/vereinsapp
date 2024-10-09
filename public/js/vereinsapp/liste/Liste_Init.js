@@ -3,16 +3,9 @@ const LISTEN = new Object();
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
-        $('.liste[data-liste="' + liste + '"]')
-            .each(function () {
-                const $liste = $(this);
-                LISTEN[liste].instanz[$liste.attr("id")] = {
-                    filtern: new Array(),
-                    sortieren: new Array(),
-                    $blanko_element: $liste.find(".blanko.element").first(),
-                };
-            })
-            .empty();
+        $('.liste[data-liste="' + liste + '"]').each(function () {
+            LISTEN[liste].instanz[$(this).attr("id")] = { filtern: [], sortieren: [] };
+        });
     });
 
     Liste_ChecklisteInit();
@@ -40,12 +33,4 @@ function Liste_Init() {
             $("#sortable_speichern").attr("disabled", false);
         },
     });
-
-    Schnittstelle_EventLocalstorageUpdVariable();
-    Schnittstelle_EventVariableUpdDom();
-    if (Object.keys(LISTEN).length > 0)
-        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
-            Schnittstelle_EventLocalstorageUpdVariable,
-            Schnittstelle_EventVariableUpdDom,
-        ]);
 }

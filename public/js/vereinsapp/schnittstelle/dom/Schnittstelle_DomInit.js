@@ -1,24 +1,71 @@
 const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
+const STATUS_STANDARD_HTML = $("#status").html();
 
 const TOASTS = new Object();
 const MODALS = new Object();
 
 function Schnittstelle_DomInit() {
-    const STATUS_STANDARD_HTML = $("#status").html();
-
-    TOASTS.$blanko_toast = $("#toasts").find(".blanko.toast").first();
-    $("#toasts").empty();
-
-    $(".blanko_modals")
+    $(".blanko")
         .each(function () {
-            $(this)
-                .find(".blanko.modal")
-                .each(function () {
-                    const id = $(this).attr("id");
-                    MODALS[id] = $(this);
-                });
+            const $blanko = $(this);
+            // Wenn .blanko ein .modal ist
+            if ($blanko.hasClass("modal")) {
+                const id = $blanko.attr("id");
+                if (!(id in MODALS)) MODALS[id] = $blanko;
+            }
+            // Wenn .blanko ein .toast ist
+            else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
+            // Wenn .blanko ein .element ist
+            else if ($blanko.hasClass("element")) {
+                const $liste = $blanko.closest(".liste");
+                const liste = $liste.attr("data-liste");
+                const instanz = $liste.attr("id");
+                if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
+                    LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+            }
+            // Wenn .blanko eine .auswertung ist
+            else if ($blanko.hasClass("auswertung")) {
+                const $auswertungen = $blanko.closest(".auswertungen");
+                const auswertungen = $auswertungen.attr("data-auswertungen");
+                const instanz = $auswertungen.attr("id");
+                if (
+                    auswertungen in LISTEN &&
+                    instanz in LISTEN[auswertungen].instanz &&
+                    !("$blanko_auswertung" in LISTEN[auswertungen].instanz[instanz])
+                )
+                    LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $blanko;
+            }
+            // Wenn .blanko ein .unterverzeichnis ist
+            else if ($blanko.hasClass("unterverzeichnis")) {
+                const $verzeichnis = $blanko.closest(".verzeichnis");
+                const liste = $verzeichnis.attr("data-liste");
+                const instanz = $verzeichnis.attr("id");
+                if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_unterverzeichnis" in LISTEN[liste].verzeichnis[instanz]))
+                    LISTEN[liste].verzeichnis[instanz].$blanko_unterverzeichnis = $blanko;
+            }
+            // Wenn .blanko eine .datei ist
+            else if ($blanko.hasClass("datei")) {
+                const $verzeichnis = $blanko.closest(".verzeichnis");
+                const liste = $verzeichnis.attr("data-liste");
+                const instanz = $verzeichnis.attr("id");
+                if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_datei" in LISTEN[liste].verzeichnis[instanz]))
+                    LISTEN[liste].verzeichnis[instanz].$blanko_datei = $blanko;
+            }
+            // Wenn .blanko eine .filtern_sammlung ist
+            else if ($blanko.hasClass("filtern_sammlung") && !("$blanko_filtern_sammlung" in FILTERN)) FILTERN.$blanko_filtern_sammlung = $blanko;
+            // Wenn .blanko ein .filtern_element ist
+            else if ($blanko.hasClass("filtern_element") && !("$blanko_filtern_element" in FILTERN)) FILTERN.$blanko_filtern_element = $blanko;
+            // Wenn .blanko eine .filtern_definition ist
+            else if ($blanko.hasClass("filtern_definition")) {
+                const typ = $blanko.attr("data-typ");
+                if ("$blanko_filtern_definition" in FILTERN && !(typ in FILTERN.$blanko_filtern_definition))
+                    FILTERN.$blanko_filtern_definition[typ] = $blanko;
+            }
+            // Wenn .blanko ein .sortieren_element ist
+            else if ($blanko.hasClass("sortieren_element") && !("$blanko_sortieren_element" in SORTIEREN))
+                SORTIEREN.$blanko_sortieren_element = $blanko;
         })
         .remove();
 

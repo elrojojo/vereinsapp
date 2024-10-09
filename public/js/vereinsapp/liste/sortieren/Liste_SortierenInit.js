@@ -1,9 +1,6 @@
 const SORTIEREN = new Object();
 
 function Liste_SortierenInit() {
-    SORTIEREN.$blanko_sortieren_element = MODALS.SORTIEREN.find(".sortieren").find(".blanko.sortieren_element").first();
-    MODALS.SORTIEREN.find(".sortieren").empty();
-
     // FORMULAR (MODAL) ÖFFNEN
     $(document).on("click", ".btn_sortieren_modal_oeffnen", function () {
         Liste_SortierenModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));

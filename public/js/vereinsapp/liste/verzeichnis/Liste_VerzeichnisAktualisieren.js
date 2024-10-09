@@ -132,7 +132,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     });
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if (basis.length === 0) {
+    if (basis.length == 0) {
         if ($verzeichnis.children().length == 0) $verzeichnis.prev('.ueberschrift[data-instanz="' + instanz + '"]').addClass("invisible");
         else $verzeichnis.prev('.ueberschrift[data-instanz="' + instanz + '"]').removeClass("invisible");
     }

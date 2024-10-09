@@ -13,7 +13,7 @@
                 <div class="col"><ul class="card-body list-group filtern_kind p-1">
 
                     <li class="list-group-item list-group-item-action blanko filtern_element invisible" role="button">
-                    <span class="eigenschaft"></span> <span class="operator"></span> <span class="wert"></span><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?> btn_filtern_loeschen float-end ms-2 text-danger"></i>
+                        <span class="eigenschaft"></span> <span class="operator"></span> <span class="wert"></span><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?> btn_filtern_loeschen float-end ms-2 text-danger"></i>
                     </li>
 
                 </ul></div>
