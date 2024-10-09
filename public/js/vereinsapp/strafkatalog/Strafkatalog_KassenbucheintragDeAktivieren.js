@@ -23,9 +23,6 @@ function Strafkatalog_KassenbucheintragDeAktivieren(bestaetigung_einfordern, dom
     else {
         if (data.aktiv == 0) data.aktiv = 1;
         else data.aktiv = 0;
-
-        dom.$modal = dom.$bestaetigung;
-
         Strafkatalog_KassenbucheintragAendern(false, dom, data, title, kassenbucheintrag_id);
     }
 }

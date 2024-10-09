@@ -34,16 +34,12 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
             "btn_strafe_zuweisen",
             { liste: liste, element_id: element_id, gegen_liste: data.gegen_liste, gegen_element_id: data.gegen_element_id }
         );
-    } else {
-        const data_kassenbucheintrag = {
+    } else
+        Strafkatalog_KassenbucheintragErstellen(false, dom, {
             titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog"),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
             aktiv: 0,
             mitglied_id: mitglied_id,
             bemerkung: "Strafe",
-        };
-
-        dom.$formular = dom.$bestaetigung;
-        Strafkatalog_KassenbucheintragErstellen(false, dom, data_kassenbucheintrag);
-    }
+        });
 }

@@ -56,7 +56,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
@@ -103,7 +103,7 @@ function Mitglieder_Init() {
         Mitglieder_EinmalLinkErstellen(
             $(this).hasClass("formular_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { email: true },
             $(this).attr("data-title"),
             $(this).attr("data-element_id")

@@ -4,16 +4,12 @@ const STATUS_SPINNER_HTML =
 
 const TOASTS = new Object();
 const MODALS = new Object();
-const BESTAETIGUNGEN = new Object();
 
 function Schnittstelle_DomInit() {
     const STATUS_STANDARD_HTML = $("#status").html();
 
     TOASTS.$blanko_toast = $("#toasts").find(".blanko").first();
     $("#toasts").empty();
-
-    BESTAETIGUNGEN.$blanko_bestaetigung = $("#modals").find(".modal.bestaetigung").first();
-    $("#modals").find(".modal.bestaetigung").remove();
 
     $(".blanko_modals")
         .each(function () {
@@ -182,7 +178,7 @@ function Schnittstelle_DomInit() {
 }
 
 function Schnittstelle_BtnWartenStart($btn_warten) {
-    if ($btn_warten.parents(".formular").exists())
+    if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
         $btn_warten.attr("data-beschriftung", $btn_warten.html()).html(STATUS_SPINNER_HTML).prop("disabled", true);
     else {
         $btn_warten.after(STATUS_SPINNER_HTML);
@@ -192,7 +188,8 @@ function Schnittstelle_BtnWartenStart($btn_warten) {
 }
 
 function Schnittstelle_BtnWartenEnde($btn_warten) {
-    if ($btn_warten.parents(".formular").exists()) $btn_warten.prop("disabled", false).html($btn_warten.attr("data-beschriftung"));
+    if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
+        $btn_warten.prop("disabled", false).html($btn_warten.attr("data-beschriftung"));
     else {
         $btn_warten.prop("disabled", false).removeClass("invisible");
         $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();

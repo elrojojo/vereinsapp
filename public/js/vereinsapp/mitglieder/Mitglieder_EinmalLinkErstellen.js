@@ -33,8 +33,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 ]);
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-                if ("dom" in AJAX && "$bestaetigung" in AJAX.dom && AJAX.dom.$bestaetigung.exists())
-                    Schnittstelle_DomModalSchliessen(AJAX.dom.$bestaetigung);
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                 if (AJAX.data.email)
                     Schnittstelle_DomToastFeuern(
                         "Einmal-Link für " +

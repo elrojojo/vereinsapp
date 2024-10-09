@@ -86,6 +86,5 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-.bestaetigung in MODALS eingliedern
 
 */

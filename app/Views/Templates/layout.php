@@ -37,7 +37,7 @@
     </div>
 
     <div class="blanko_modals">
-<?= view( 'Templates/bestaetigung_modal' ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'BESTAETIGUNG', 'modal' => view( 'Templates/bestaetigung' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'FILTERN', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
