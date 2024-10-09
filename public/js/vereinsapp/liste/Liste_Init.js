@@ -6,8 +6,11 @@ function Liste_Init() {
         $('.liste[data-liste="' + liste + '"]')
             .each(function () {
                 const $liste = $(this);
-                const instanz = $liste.attr("id");
-                LISTEN[liste].instanz[instanz] = { filtern: new Array(), sortieren: new Array(), $blanko_element: $liste.find(".blanko").first() };
+                LISTEN[liste].instanz[$liste.attr("id")] = {
+                    filtern: new Array(),
+                    sortieren: new Array(),
+                    $blanko_element: $liste.find(".blanko").first(),
+                };
             })
             .empty();
     });

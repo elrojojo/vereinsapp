@@ -1,20 +1,5 @@
-function Liste_FilternFormularOeffnen(data, liste) {
-    if (typeof data === "undefined") data = new Object();
-
-    if (!("instanz" in data)) data.instanz = undefined;
-    const instanz = data.instanz;
-
-    if (!("title" in data)) data.title = undefined;
-    const title = data.title;
-
-    const filtern_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_filtern_oeffnen[data-liste='" + liste + "']")
-        .val();
-
-    const $neues_filtern_formular = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "filtern");
-
-    const $filtern_definitionen = $neues_filtern_formular.find(".filtern_definitionen");
-    $filtern_definitionen.empty();
+function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
+    const $filtern_definitionen = $formular.find(".filtern_definitionen");
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;
@@ -40,12 +25,12 @@ function Liste_FilternFormularOeffnen(data, liste) {
         $neue_filtern_definition.appendTo($filtern_definitionen);
     });
 
-    if (typeof instanz !== "undefined")
-        $neues_filtern_formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(LISTEN[liste].instanz[instanz].filtern, instanz, liste));
-    else if (isJson(filtern_value))
-        $neues_filtern_formular
+    const filtern_value = Schnittstelle_DomLetztesModalZurueck()
+        .find(".btn_filtern_modal_oeffnen[data-liste='" + liste + "']")
+        .val();
+    if (isJson(filtern_value))
+        $formular
             .find(".filtern")
             .append(Liste_Filtern2$FilternZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_value)), undefined, liste));
-
-    Schnittstelle_DomModalOeffnen($neues_filtern_formular);
+    else $formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(LISTEN[liste].instanz[instanz].filtern, instanz, liste));
 }

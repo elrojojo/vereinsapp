@@ -1,14 +1,12 @@
 const SORTIEREN = new Object();
 
 function Liste_SortierenInit() {
-    MODALS.sortieren = $("#modals").find(".blanko#sortieren").first();
-    $("#modals").find(".blanko#sortieren").remove();
-    SORTIEREN.$blanko_sortieren_element = MODALS.sortieren.find(".sortieren").find(".blanko").first();
-    MODALS.sortieren.find(".sortieren").empty();
+    SORTIEREN.$blanko_sortieren_element = MODALS.SORTIEREN.find(".sortieren").find(".blanko").first();
+    MODALS.SORTIEREN.find(".sortieren").empty();
 
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_sortieren_oeffnen", function () {
-        Liste_SortierenFormularOeffnen({ instanz: $(this).attr("data-instanz"), title: $(this).attr("data-title") }, $(this).attr("data-liste"));
+    $(document).on("click", ".btn_sortieren_modal_oeffnen", function () {
+        Liste_SortierenModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });
 
     // ERSTELLEN

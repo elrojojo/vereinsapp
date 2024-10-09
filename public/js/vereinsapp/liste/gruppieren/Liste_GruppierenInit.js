@@ -1,12 +1,9 @@
 const GRUPPIEREN = new Object();
 
 function Liste_GruppierenInit() {
-    MODALS.gruppieren = $("#modals").find(".blanko#gruppieren").first();
-    $("#modals").find(".blanko#gruppieren").remove();
-
     // FORMULAR (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_gruppieren_oeffnen", function () {
-        Liste_GruppierenFormularOeffnen({ instanz: $(this).attr("data-instanz"), title: $(this).attr("data-title") }, $(this).attr("data-liste"));
+    $(document).on("click", ".btn_gruppieren_modal_oeffnen", function () {
+        Liste_GruppierenModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });
 
     // ERSTELLEN
