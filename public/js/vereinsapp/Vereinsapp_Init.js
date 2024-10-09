@@ -86,5 +86,7 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
+Initialisierung von .modal_autoload-Modals überarbeiten (in die modal-Systematik eingliedern und .modal_autoload-Modals anderweitig öffnen)
+Eine zentrale Funktion bauen, die alle blankos durchgeht und anhand ihrer Klasse in den jeweiligen $blanko-Sammler schiebt
 
 */

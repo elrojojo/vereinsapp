@@ -4,7 +4,7 @@
         <div class="card-header h5">Aktive Sortierungen</div>
         <ul class="card-body list-group sortieren p-2">
 
-            <li class="list-group-item list-group-item-action blanko invisible" role="button">
+            <li class="list-group-item list-group-item-action blanko sortieren_element invisible" role="button">
                 <i class="bi btn_sortieren_aendern richtung float-start me-2 text-primary"></i> <span class="eigenschaft"></span><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?> btn_sortieren_loeschen float-end ms-2 text-danger"></i>
             </li>
 

@@ -4,12 +4,9 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;
 
-        const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ]
-            .clone()
-            .removeClass("blanko invisible")
-            .addClass("filtern_definition")
-            .attr("data-eigenschaft", eigenschaft);
+        const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ].clone().removeClass("blanko invisible");
 
+        $neue_filtern_definition.attr("data-eigenschaft", eigenschaft);
         $neue_filtern_definition.find(".beschriftung").text(beschriftung);
         $neue_filtern_definition.find(".btn_filtern_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
 

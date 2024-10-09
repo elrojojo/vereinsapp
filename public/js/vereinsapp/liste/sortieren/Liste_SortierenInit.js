@@ -1,7 +1,7 @@
 const SORTIEREN = new Object();
 
 function Liste_SortierenInit() {
-    SORTIEREN.$blanko_sortieren_element = MODALS.SORTIEREN.find(".sortieren").find(".blanko").first();
+    SORTIEREN.$blanko_sortieren_element = MODALS.SORTIEREN.find(".sortieren").find(".blanko.sortieren_element").first();
     MODALS.SORTIEREN.find(".sortieren").empty();
 
     // FORMULAR (MODAL) ÖFFNEN

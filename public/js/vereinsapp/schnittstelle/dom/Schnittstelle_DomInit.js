@@ -8,18 +8,17 @@ const MODALS = new Object();
 function Schnittstelle_DomInit() {
     const STATUS_STANDARD_HTML = $("#status").html();
 
-    TOASTS.$blanko_toast = $("#toasts").find(".blanko").first();
+    TOASTS.$blanko_toast = $("#toasts").find(".blanko.toast").first();
     $("#toasts").empty();
 
     $(".blanko_modals")
         .each(function () {
-            const $blanko_modals = $(this);
-            $blanko_modals.find(".blanko").each(function () {
-                const $blanko_modal = $(this);
-                const blanko_modal_id = $blanko_modal.attr("id");
-                $blanko_modal.removeAttr("id");
-                MODALS[blanko_modal_id] = $blanko_modal;
-            });
+            $(this)
+                .find(".blanko.modal")
+                .each(function () {
+                    const id = $(this).attr("id");
+                    MODALS[id] = $(this);
+                });
         })
         .remove();
 
@@ -27,7 +26,7 @@ function Schnittstelle_DomInit() {
         .find(".modal_autoload")
         .each(function () {
             const $modal = $(this);
-            $modal.removeClass("blanko invisible").addClass("modal");
+            $modal.removeClass("blanko invisible");
             $modal.removeClass("modal_autoload");
 
             const $formular = $modal.find(".formular");

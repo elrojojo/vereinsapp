@@ -42,12 +42,9 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
         // Unterverzeichnis wird nur hinzugefügt, falls es noch nicht existiert
         if (!$unterverzeichnis.exists()) {
             // Blanko-Verzeichnis wird geklont
+            const $neues_unterverzeichnis = LISTEN[liste].verzeichnis[instanz].$blanko_unterverzeichnis.clone().removeClass("blanko invisible");
 
-            const $neues_unterverzeichnis = LISTEN[liste].verzeichnis[instanz].$blanko_unterverzeichnis
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass("unterverzeichnis")
-                .attr("data-unterverzeichnis", unterverzeichnis);
+            $neues_unterverzeichnis.attr("data-unterverzeichnis", unterverzeichnis);
 
             const neue_id = zufaelligeZeichenketteZurueck(8);
             $neues_unterverzeichnis
@@ -84,12 +81,9 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
         // Datei wird nur hinzugefügt, falls sie noch nicht existiert
         if (!$datei.exists()) {
             // Blanko-Datei wird geklont
-            const $neue_datei = LISTEN[liste].verzeichnis[instanz].$blanko_datei
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass("datei")
-                .attr("data-liste", liste)
-                .attr("data-datei", datei);
+            const $neue_datei = LISTEN[liste].verzeichnis[instanz].$blanko_datei.clone().removeClass("blanko invisible");
+
+            $neue_datei.attr("data-liste", liste).attr("data-datei", datei);
 
             // Datei wird hinzugefügt (je nachdem, wo sie im Verzeichnis positioniert ist)
             if (position == 0) {

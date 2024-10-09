@@ -5,7 +5,7 @@ function Liste_Sortieren2$SortierenZurueck(sortieren, instanz, liste) {
         const richtung = element.richtung;
         const eigenschaft = element.eigenschaft;
 
-        const $neues_sortieren_element = SORTIEREN.$blanko_sortieren_element.clone().removeClass("blanko invisible").addClass("sortieren_element");
+        const $neues_sortieren_element = SORTIEREN.$blanko_sortieren_element.clone().removeClass("blanko invisible");
         $neues_sortieren_element.find(".eigenschaft").attr("data-eigenschaft", eigenschaft).text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
         $neues_sortieren_element.find(".richtung").attr("data-richtung", richtung);
         if (richtung == SORT_ASC) $neues_sortieren_element.find(".richtung").addClass("bi-" + SYMBOLE.asc.bootstrap);

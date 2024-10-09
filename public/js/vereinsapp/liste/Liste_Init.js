@@ -9,7 +9,7 @@ function Liste_Init() {
                 LISTEN[liste].instanz[$liste.attr("id")] = {
                     filtern: new Array(),
                     sortieren: new Array(),
-                    $blanko_element: $liste.find(".blanko").first(),
+                    $blanko_element: $liste.find(".blanko.element").first(),
                 };
             })
             .empty();

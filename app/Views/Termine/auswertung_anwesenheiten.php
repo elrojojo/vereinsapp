@@ -1,4 +1,4 @@
-<li class="auswertung blanko invisible" style="list-style: none;">
+<li class="blanko auswertung invisible" style="list-style: none;">
     <div class="row g-0" data-bs-toggle="collapse" role="button">
         <div class="ergebnis_anzahl col-1 h5 float-start text-start" data-status=1></div>
         <div class="col-10 text-center">

@@ -1,18 +1,18 @@
 const FILTERN = new Object();
 
 function Liste_FilternInit() {
-    FILTERN.$blanko_filtern_sammlung = MODALS.FILTERN.find(".filtern").find(".blanko").first();
+    FILTERN.$blanko_filtern_sammlung = MODALS.FILTERN.find(".filtern").find(".blanko.filtern_sammlung").first();
     MODALS.FILTERN.find(".filtern").empty();
 
-    FILTERN.$blanko_filtern_element = FILTERN.$blanko_filtern_sammlung.find(".filtern_kind").find(".blanko").first();
+    FILTERN.$blanko_filtern_element = FILTERN.$blanko_filtern_sammlung.find(".filtern_kind").find(".blanko.filtern_element").first();
     FILTERN.$blanko_filtern_sammlung.find(".filtern_kind").empty();
 
     FILTERN.$blanko_filtern_definition = new Object();
     MODALS.FILTERN.find(".filtern_definitionen")
-        .find(".blanko")
+        .find(".blanko.filtern_definition")
         .each(function () {
-            const $blanko = $(this);
-            FILTERN.$blanko_filtern_definition[$blanko.attr("data-typ")] = $blanko;
+            const typ = $(this).attr("data-typ");
+            FILTERN.$blanko_filtern_definition[typ] = $(this);
         });
     MODALS.FILTERN.find(".filtern_definitionen").empty();
 

@@ -47,13 +47,9 @@ function Liste_Aktualisieren($liste, liste) {
 
         // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
-            // Blanko-Element wird geklont
-            const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass("element")
-                .attr("data-liste", liste)
-                .attr("data-element_id", element_id);
+            const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
+
+            $neues_element.attr("data-liste", liste).attr("data-element_id", element_id);
 
             const gegen_liste = $liste.attr("data-gegen_liste");
             const gegen_element_id = $liste.attr("data-gegen_element_id");
