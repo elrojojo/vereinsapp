@@ -1,6 +1,6 @@
 function Liste_ArraySortiertZurueck(array, sortieren) {
     // https://bithacker.dev/javascript-object-multi-property-sort
-    if (array.length == 0 || sortieren.length == 0) return array;
+    if (array.length === 0 || sortieren.length === 0) return array;
     else
         return array.sort(function (a, b) {
             let i = 0,

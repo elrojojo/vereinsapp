@@ -19,7 +19,7 @@ function Schnittstelle_DomInit() {
             else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
             // Wenn .blanko ein .element ist
             else if ($blanko.hasClass("element")) {
-                const $liste = $blanko.closest(".liste");
+                const $liste = $blanko.closest(".liste[data-liste][id]");
                 const liste = $liste.attr("data-liste");
                 const instanz = $liste.attr("id");
                 if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
@@ -27,7 +27,7 @@ function Schnittstelle_DomInit() {
             }
             // Wenn .blanko eine .auswertung ist
             else if ($blanko.hasClass("auswertung")) {
-                const $auswertungen = $blanko.closest(".auswertungen");
+                const $auswertungen = $blanko.closest(".auswertungen[data-auswertungen][id]");
                 const auswertungen = $auswertungen.attr("data-auswertungen");
                 const instanz = $auswertungen.attr("id");
                 if (
@@ -39,7 +39,7 @@ function Schnittstelle_DomInit() {
             }
             // Wenn .blanko ein .unterverzeichnis ist
             else if ($blanko.hasClass("unterverzeichnis")) {
-                const $verzeichnis = $blanko.closest(".verzeichnis");
+                const $verzeichnis = $blanko.closest(".verzeichnis[data-liste][id]");
                 const liste = $verzeichnis.attr("data-liste");
                 const instanz = $verzeichnis.attr("id");
                 if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_unterverzeichnis" in LISTEN[liste].verzeichnis[instanz]))
@@ -47,7 +47,7 @@ function Schnittstelle_DomInit() {
             }
             // Wenn .blanko eine .datei ist
             else if ($blanko.hasClass("datei")) {
-                const $verzeichnis = $blanko.closest(".verzeichnis");
+                const $verzeichnis = $blanko.closest(".verzeichnis[data-liste][id]");
                 const liste = $verzeichnis.attr("data-liste");
                 const instanz = $verzeichnis.attr("id");
                 if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_datei" in LISTEN[liste].verzeichnis[instanz]))

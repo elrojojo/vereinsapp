@@ -6,10 +6,8 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aktuelles_kassenbuch'] ) ); ?>
 </div>
 
-<div class="blanko_modals">
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-        view( 'Templates/modal', array( 'modal_id' => 'kassenbuch_basiseigenschaften', 'modal' =>
-        view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'kassenbuch', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_kassenbucheintrag_aktion' ), 'formular' =>
-        view( 'Strafkatalog/kassenbucheintrag_basiseigenschaften_formular' ) ) ) ) ); ?>
-</div>
+    view( 'Templates/modal', array( 'modal_id' => 'kassenbuch_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'kassenbuch', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_kassenbucheintrag_aktion' ), 'formular' =>
+    view( 'Strafkatalog/kassenbucheintrag_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= $this->endSection() ?>

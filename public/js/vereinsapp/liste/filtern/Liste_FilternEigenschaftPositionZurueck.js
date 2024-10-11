@@ -1,6 +1,6 @@
 function Liste_FilternEigenschaftPositionZurueck(filtern, eigenschaft, position) {
     if (typeof position === "undefined" || !Array.isArray(position)) position = new Array();
-    if (position.length == 0) position.push(0);
+    if (position.length === 0) position.push(0);
 
     $.each(filtern, function (pos, knoten) {
         if ("verknuepfung" in knoten) {

@@ -17,7 +17,7 @@ function Liste_FilternErstellen($filtern_definition, instanz, liste) {
 
     const $filtern_knoten = Liste_Filtern2$FilternZurueck(filtern_knoten, instanz, liste);
 
-    if ($filtern.find(".filtern_sammlung").length == 0 && $filtern.find(".filtern_element").length == 0) $filtern.append($filtern_knoten);
+    if ($filtern.find(".filtern_sammlung").length === 0 && $filtern.find(".filtern_element").length === 0) $filtern.append($filtern_knoten);
     else if ($filtern.find(".filtern_kind").length > 0) $filtern.find(".filtern_kind").first().append($filtern_knoten);
     else {
         const $filtern_zwischenspeicher = $filtern.children().clone();

@@ -20,8 +20,8 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     LOC_upd_VAR_filtern(filtern_LocalStorage, liste);
     // data und LocalStorage kombinieren
     let filtern_kombiniert;
-    if (filtern_LocalStorage.length == 0) filtern_kombiniert = filtern_data;
-    else if (filtern_data.length == 0) filtern_kombiniert = filtern_LocalStorage;
+    if (filtern_LocalStorage.length === 0) filtern_kombiniert = filtern_data;
+    else if (filtern_data.length === 0) filtern_kombiniert = filtern_LocalStorage;
     else {
         if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
             filtern_kombiniert = filtern_LocalStorage;
@@ -39,7 +39,7 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
     // data und LocalStorage kombinieren
     let sortieren_kombiniert;
-    if (sortieren_LocalStorage.length == 0) sortieren_kombiniert = sortieren_data;
+    if (sortieren_LocalStorage.length === 0) sortieren_kombiniert = sortieren_data;
     else sortieren_kombiniert = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 

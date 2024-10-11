@@ -31,8 +31,8 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
     // liste_filtern_data und liste_filtern_LocalStorage kombinieren
     let liste_filtern;
-    if (liste_filtern_LocalStorage.length == 0) liste_filtern = liste_filtern_data;
-    else if (liste_filtern_data.length == 0) liste_filtern = liste_filtern_LocalStorage;
+    if (liste_filtern_LocalStorage.length === 0) liste_filtern = liste_filtern_data;
+    else if (liste_filtern_data.length === 0) liste_filtern = liste_filtern_LocalStorage;
     else liste_filtern = [{ verknuepfung: "&&", filtern: [liste_filtern_data[0], liste_filtern_LocalStorage[0]] }];
     const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
 
