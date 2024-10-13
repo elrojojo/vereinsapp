@@ -18,10 +18,8 @@ $(document).ready(function () {
         const $formular = $(this);
         const liste = $formular.attr("data-liste");
         const aktion = $formular.attr("data-aktion");
-
         let element_id = $formular.attr("data-element_id");
         if (typeof element_id !== "undefined") element_id = Number(element_id);
-
         if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
     });
 
@@ -93,6 +91,5 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Initialisierung von .modal_autoload-Modals überarbeiten (in die modal-Systematik eingliedern und .modal_autoload-Modals anderweitig öffnen)
 
 */

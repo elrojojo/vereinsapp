@@ -7,13 +7,18 @@ const TOASTS = new Object();
 const MODALS = new Object();
 
 function Schnittstelle_DomInit() {
+    const autoload = new Array();
+
     $(".blanko")
         .each(function () {
             const $blanko = $(this);
             // Wenn .blanko ein .modal ist
             if ($blanko.hasClass("modal")) {
                 const id = $blanko.attr("id");
-                if (!(id in MODALS)) MODALS[id] = $blanko;
+                if (!(id in MODALS)) {
+                    MODALS[id] = $blanko;
+                    if (MODALS[id].hasClass("autoload")) autoload.push(id);
+                }
             }
             // Wenn .blanko ein .toast ist
             else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
@@ -69,24 +74,20 @@ function Schnittstelle_DomInit() {
         })
         .remove();
 
-    $("#modals")
-        .find(".modal_autoload")
-        .each(function () {
-            const $modal = $(this);
-            $modal.removeClass("blanko invisible");
-            $modal.removeClass("modal_autoload");
+    $.each(autoload, function () {
+        const $modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, this);
 
-            const $formular = $modal.find(".formular");
+        const $formular = $modal.find(".formular");
+        if (typeof $formular !== "undefined" && $formular.exists()) {
             const liste = $formular.attr("data-liste");
             const aktion = $formular.attr("data-aktion");
-
             let element_id = $formular.attr("data-element_id");
             if (typeof element_id !== "undefined") element_id = Number(element_id);
-
             if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
+        }
 
-            Schnittstelle_DomModalOeffnen($modal);
-        });
+        Schnittstelle_DomModalOeffnen($modal);
+    });
 
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);

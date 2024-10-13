@@ -39,7 +39,7 @@
 <?= view( 'Templates/modal', array( 'modal_id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
 <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'modal_autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
+    view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_festlegen', 'beschriftung' => 'Neues Passwort festlegen' ), 'formular' =>
     view( 'Mitglieder/mitglied_passwort_festlegen_formular' ) ) ) ) ); ?>
     </div>
