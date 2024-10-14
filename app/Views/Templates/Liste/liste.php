@@ -28,7 +28,7 @@ if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( 
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
 
-    <li class="blanko invisible text-body list-group-item<?php
+    <li class="blanko element invisible text-body list-group-item<?php
     if( array_key_exists( 'klasse_id', $liste ) ) {
         if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
         else echo ' '.$liste['klasse_id'];

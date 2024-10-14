@@ -11,5 +11,5 @@ function Liste_SortierenRichtungAendern($richtung, instanz, liste) {
             .removeClass("bi-" + SYMBOLE.desc.bootstrap)
             .addClass("bi-" + SYMBOLE.asc.bootstrap);
 
-    Liste_SortierenSpeichern($richtung.closest(".modal.sortieren").find(".sortieren"), instanz, liste);
+    Liste_SortierenSpeichern($richtung.closest(".sortieren_formular").find(".sortieren"), instanz, liste);
 }

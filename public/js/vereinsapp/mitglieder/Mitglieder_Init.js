@@ -56,7 +56,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
@@ -84,15 +84,15 @@ function Mitglieder_Init() {
 
     // EINMAL-LINK ANZEIGEN
     $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
-        Mitglieder_EinmalLinkAnzeigen(
+        Mitglieder_EinmalLinkErstellen(
             $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("bestaetigung_einfordern"),
             {
                 $btn_ausloesend: $(this),
                 $modal: $(this).closest(".modal"),
                 $formular: $(this).closest(".formular"),
-                $einmal_link: $(this).closest(".formular").find(".einmal_link"),
-                $btn_dismiss: $(this).closest(".formular").find(".btn[data-bs-dismiss]"),
             },
+            {},
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );
@@ -100,9 +100,11 @@ function Mitglieder_Init() {
 
     // EINMAL-LINK PER EMAIL VERSCHICKEN
     $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
-        Mitglieder_EinmalLinkEmail(
+        Mitglieder_EinmalLinkErstellen(
+            $(this).hasClass("formular_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { email: true },
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );

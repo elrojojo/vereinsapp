@@ -110,8 +110,8 @@ class Vereinsapp extends BaseConfig
             'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'abwesend' => array( 'beschriftung' => 'Abwesend', 'typ' => 'vorgegebene_werte' ),  // JAVA
-            'erstellung' => array( 'beschriftung' => 'Erstellt am', 'typ' => 'zeitpunkt' ),  // PHP
-            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ),  // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
+            'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
         'vergebene_rechte' => array(
@@ -151,7 +151,7 @@ class Vereinsapp extends BaseConfig
         'strafkatalog' => array(
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
+            'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Kapitel', 'typ' => 'vorgegebene_werte' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
@@ -159,12 +159,11 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'wert' => array( 'beschriftung' => 'Wert', 'typ' => 'zahl' ),
-            'zeitpunkt' => array( 'beschriftung' => 'Zeitpunkt', 'typ' => 'zeitpunkt' ),
+            'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'letzte_aktivitaet' => array( 'beschriftung' => 'Zuletzt aktiv am', 'typ' => 'zeitpunkt' ), // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
         'notenbank' => array(
@@ -344,9 +343,9 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'wert',
-            'zeitpunkt',
             'aktiv',
             'mitglied_id',
+            'erstellung',
         ),
 
         'notenbank' => array(
@@ -408,9 +407,9 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'titel',
             'wert',
-            'zeitpunkt',
             'aktiv',
             'mitglied_id',
+            'erstellung',
         ),
 
         'notenbank' => array(

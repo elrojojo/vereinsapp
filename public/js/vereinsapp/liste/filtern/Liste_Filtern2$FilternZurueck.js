@@ -4,7 +4,7 @@ function Liste_Filtern2$FilternZurueck(filtern, instanz, liste) {
     $.each(filtern, function (index, knoten) {
         if ("verknuepfung" in knoten) {
             const verknuepfung = knoten.verknuepfung;
-            const $neue_filtern_sammlung = FILTERN.$blanko_filtern_sammlung.clone().removeClass("blanko invisible").addClass("filtern_sammlung");
+            const $neue_filtern_sammlung = FILTERN.$blanko_filtern_sammlung.clone().removeClass("blanko invisible").first();
             const $verknuepfung = $neue_filtern_sammlung.find(".verknuepfung");
 
             $verknuepfung.attr("data-verknuepfung", verknuepfung);
@@ -20,7 +20,7 @@ function Liste_Filtern2$FilternZurueck(filtern, instanz, liste) {
             const eigenschaft = knoten.eigenschaft;
             const wert = knoten.wert;
 
-            const $neues_filtern_element = FILTERN.$blanko_filtern_element.clone().removeClass("blanko invisible").addClass("filtern_element");
+            const $neues_filtern_element = FILTERN.$blanko_filtern_element.clone().removeClass("blanko invisible");
             $neues_filtern_element.find(".eigenschaft").attr("data-eigenschaft", eigenschaft).text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
             $neues_filtern_element.find(".operator").attr("data-operator", operator).text(operator);
             $neues_filtern_element

@@ -30,15 +30,18 @@
     <div class="text-secondary small text-center jetzt"></div>
 
     <div id="toasts" class="toast-container position-fixed end-0 pe-3">
-        <?= view( 'Templates/toast' ); ?>
+<?= view( 'Templates/toast' ); ?>
     </div>
 
     <div id="modals">
-    <?= view( 'Templates/bestaetigung_modal' ); ?>
-    <?= view( 'Templates/Liste/liste_filtern_modal' ); ?>
-    <?= view( 'Templates/Liste/liste_sortieren_modal' ); ?>
-    <?= view( 'Templates/Liste/liste_gruppieren_modal' ); ?>
-    <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo view( 'Mitglieder/mitglied_passwort_festlegen_modal' ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'BESTAETIGUNG', 'modal' => view( 'Templates/bestaetigung' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'FILTERN', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
+<?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
+    view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_festlegen', 'beschriftung' => 'Neues Passwort festlegen' ), 'formular' =>
+    view( 'Mitglieder/mitglied_passwort_festlegen_formular' ) ) ) ) ); ?>
     </div>
 
   </body>

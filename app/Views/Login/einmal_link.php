@@ -24,13 +24,13 @@
     <div class="alert alert-success" role="alert"><?= session('message') ?></div>
   <?php endif ?>
 
-  <div class="mb-1">Wenn du dein Passwort für die <?= VEREINSAPP_NAME ?> vergessen hast, dann kannst du mit deiner Email einen Einmal-Link anfordern:</div>
+  <div class="mb-2">Wenn du dein Passwort für die <?= VEREINSAPP_NAME ?> vergessen hast, dann kannst du mit deiner Email einen Einmal-Link anfordern:</div>
     <?php helper('form'); ?><?= form_open( 'mitglieder/mitglied_einmal_link_email' ); ?>
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-2">
         <input type="email" class="form-control" name="email" inputmode="email" autocomplete="email" value="<?= old('email') ?>" required placeholder="Email" />
         <label for="email">Email</label>
       </div>
-      <div class="d-grid mb-1"><button type="submit" class="btn btn-outline-success">Einmal-Link anfordern</button></div>
+      <div class="d-grid mb-2"><button type="submit" class="btn btn-outline-success">Einmal-Link anfordern</button></div>
     <?= form_close(); ?>
     <hr>
     <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('login') ?>">Zurück zum Login</a></div>

@@ -10,14 +10,11 @@ function Liste_Aktualisieren($liste, liste) {
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     // data und LocalStorage kombinieren
     let filtern_kombiniert;
-    if (filtern_LocalStorage.length == 0) filtern_kombiniert = filtern_data;
-    else if (filtern_data.length == 0) filtern_kombiniert = filtern_LocalStorage;
+    if (filtern_LocalStorage.length === 0) filtern_kombiniert = filtern_data;
+    else if (filtern_data.length === 0) filtern_kombiniert = filtern_LocalStorage;
     else {
-        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1) {
-            const start_position = Liste_FilternEigenschaftPositionZurueck(filtern_data, "start");
-            if (start_position.length > 1) filtern_data = Liste_FilternPositionGeloeschtZurueck(filtern_data, start_position);
-        }
-        if (filtern_data.length == 0) filtern_kombiniert = filtern_LocalStorage;
+        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
+            filtern_kombiniert = filtern_LocalStorage;
         else filtern_kombiniert = [{ verknuepfung: "&&", filtern: [filtern_data[0], filtern_LocalStorage[0]] }];
     }
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_kombiniert, liste);
@@ -31,7 +28,7 @@ function Liste_Aktualisieren($liste, liste) {
     const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
     // data und LocalStorage kombinieren
     let sortieren_kombiniert;
-    if (sortieren_LocalStorage.length == 0) sortieren_kombiniert = sortieren_data;
+    if (sortieren_LocalStorage.length === 0) sortieren_kombiniert = sortieren_data;
     else sortieren_kombiniert = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 
@@ -50,13 +47,9 @@ function Liste_Aktualisieren($liste, liste) {
 
         // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
-            // Blanko-Element wird geklont
-            const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element
-                .clone()
-                .removeClass("blanko invisible")
-                .addClass("element")
-                .attr("data-liste", liste)
-                .attr("data-element_id", element_id);
+            const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
+
+            $neues_element.attr("data-liste", liste).attr("data-element_id", element_id);
 
             const gegen_liste = $liste.attr("data-gegen_liste");
             const gegen_element_id = $liste.attr("data-gegen_element_id");
@@ -86,6 +79,6 @@ function Liste_Aktualisieren($liste, liste) {
     if ($moeglicher_spacer.hasClass("spacer")) $moeglicher_spacer.remove();
 
     // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if ($liste.children().length == 0) $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').addClass("invisible");
+    if ($liste.children().length === 0) $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').addClass("invisible");
     else $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').removeClass("invisible");
 }

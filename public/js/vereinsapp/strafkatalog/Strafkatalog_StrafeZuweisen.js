@@ -14,14 +14,12 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
     }
 
     if (auswahl_oeffnen) {
-        $modal = LISTEN[data.gegen_liste].modals[data.gegen_liste + "_auswahl_modal"].clone().removeClass("blanko invisible").addClass("modal");
-        $modal.find(".modal-title").text(title);
-        Schnittstelle_DomModalOeffnen($modal);
-        $modal
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, data.gegen_liste + "_auswahl");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+        $neues_modal
             .find("#" + data.gegen_liste + "_auswahl")
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
-
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
     } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);
@@ -36,17 +34,12 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
             "btn_strafe_zuweisen",
             { liste: liste, element_id: element_id, gegen_liste: data.gegen_liste, gegen_element_id: data.gegen_element_id }
         );
-    } else {
-        const data_kassenbucheintrag = {
+    } else
+        Strafkatalog_KassenbucheintragErstellen(false, dom, {
             titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog"),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
-            zeitpunkt: DateTime.now().toSQL(),
             aktiv: 0,
             mitglied_id: mitglied_id,
             bemerkung: "Strafe",
-        };
-
-        dom.$formular = dom.$bestaetigung;
-        Strafkatalog_KassenbucheintragErstellen(false, dom, data_kassenbucheintrag);
-    }
+        });
 }

@@ -1,7 +1,6 @@
 LISTEN.rueckmeldungen = {
     controller: "termine",
     element: "rueckmeldung",
-    beschriftung: [{ eigenschaft: "id", prefix: "die Rückmeldung " }],
     verlinkte_listen: ["termine", "mitglieder"],
 };
 
@@ -58,7 +57,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
@@ -69,6 +68,7 @@ function Termine_Init() {
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(
+            false,
             { $btn_ausloesend: $(this) },
             {
                 termin_id: JSON.parse($(this).attr("data-werte")).termin_id,
@@ -76,6 +76,7 @@ function Termine_Init() {
                 status: JSON.parse($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
+            $(this).attr("data-title"),
             undefined
         );
     });
@@ -83,11 +84,13 @@ function Termine_Init() {
     // RÜCKMELDUNG ÄNDERN
     $(document).on("click", ".btn_rueckmeldung_aendern", function () {
         Termine_RueckmeldungAendern(
+            false,
             { $btn_ausloesend: $(this) },
             {
                 status: JSON.parse($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
+            $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );
     });
@@ -107,7 +110,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $bestaetigung: $(this).closest(".bestaetigung") },
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
@@ -125,13 +128,9 @@ function Termine_Init() {
         if (typeof gegen_liste === "undefined" && liste == "termine") gegen_liste = "mitglieder";
         else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "termine";
 
-        const $modal = LISTEN[liste].modals["anwesenheiten_dokumentieren_modal"].clone().removeClass("blanko invisible").addClass("modal");
-
-        if (typeof title !== "undefined") $modal.find(".modal-title").text(title);
-
-        Schnittstelle_DomModalOeffnen($modal);
-        $modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
-
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
+        Schnittstelle_DomModalOeffnen($neues_modal);
+        $neues_modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
         Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 }

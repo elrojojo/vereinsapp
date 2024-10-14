@@ -4,13 +4,13 @@ if( array_key_exists( 'filtern', $verzeichnis ) ) { ?> data-filtern='<?= json_en
 if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= json_encode( $verzeichnis['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?> data-element_id="<?= $verzeichnis['element_id']; ?>">
 
-    <li class="blanko invisible text-body list-group-item p-0">
+    <li class="blanko unterverzeichnis invisible text-body list-group-item p-0">
 
         <div class="card border-0">
             <div class="card-header border-0 bg-transparent text-truncate" data-bs-toggle="collapse" role="button"><i class="bi bi-<?= SYMBOLE["verzeichnis"]["bootstrap"]; ?> toggle_symbol text-primary me-1" data-toggle_symbol="<?= SYMBOLE['verzeichnis_geoeffnet']['bootstrap']; ?>"></i></span><span class="beschriftung"></span></div>
             <ul class="list-group verzeichnis p-1 pt-0 collapse verzeichnis_collapse">
 
-                <li class="blanko invisible text-body list-group-item<?php
+                <li class="blanko datei invisible text-body list-group-item<?php
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> list-group-item-action<?php } ?>"<?php
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> role="button"<?php } ?>>
                             

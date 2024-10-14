@@ -5,7 +5,6 @@ function Liste_AuswertungenInit() {
             const instanz = $auswertungen.attr("id");
 
             LISTEN[auswertungen].instanz[instanz] = new Object();
-            LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $auswertungen.find(".blanko").first();
 
             // liste_data aus data
             let liste_data = $auswertungen.attr("data-liste");
@@ -21,6 +20,5 @@ function Liste_AuswertungenInit() {
             LISTEN[liste].instanz[instanz] = new Object();
             LISTEN[liste].instanz[instanz].gruppieren_data = gruppieren_data;
         });
-        $('.auswertungen[data-auswertungen="' + auswertungen + '"]').empty();
     });
 }

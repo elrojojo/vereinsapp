@@ -20,7 +20,7 @@ function Schnittstelle_EventElementErgaenzenTermine(termin) {
     else termin_kategorie_filtern_mitglieder = new Array();
     let filtern_mitglieder_kombiniert;
     if (termin_kategorie_filtern_mitglieder.length > 0)
-        if (termin["filtern_mitglieder"].length == 0) filtern_mitglieder_kombiniert = termin_kategorie_filtern_mitglieder;
+        if (termin["filtern_mitglieder"].length === 0) filtern_mitglieder_kombiniert = termin_kategorie_filtern_mitglieder;
         else
             filtern_mitglieder_kombiniert = [
                 { verknuepfung: "&&", filtern: [termin["filtern_mitglieder"][0], termin_kategorie_filtern_mitglieder[0]] },

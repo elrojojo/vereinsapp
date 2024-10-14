@@ -59,7 +59,7 @@ class Mitglieder extends BaseController {
         foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'termine',
             'sortieren' => array(
@@ -87,25 +87,25 @@ class Mitglieder extends BaseController {
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_abwaehlen',
                 'title' => 'Alle abwählen',
             );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_anwaehlen',
                 'title' => 'Alle anwählen',
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -114,7 +114,7 @@ class Mitglieder extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
         
-        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
@@ -138,12 +138,12 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'klasse_id' => 'btn_filtern_modal_oeffnen',
                 'title' => 'Strafkatalog filtern',
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'klasse_id' => 'btn_sortieren_modal_oeffnen',
                 'title' => 'Strafkatalog sortieren',
             );
         }
@@ -181,12 +181,12 @@ class Mitglieder extends BaseController {
         }
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -201,7 +201,7 @@ class Mitglieder extends BaseController {
         $this->viewdata['element_id'] = $mitglied_id;
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'termine',
             'sortieren' => array(
@@ -229,25 +229,25 @@ class Mitglieder extends BaseController {
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_abwaehlen',
                 'title' => 'Alle abwählen',
             );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
                 'klasse_id' => 'btn_alle_checks_anwaehlen',
                 'title' => 'Alle anwählen',
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -256,7 +256,7 @@ class Mitglieder extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
         
-        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied'] = array(
                 'liste' => 'kassenbuch',
                 'filtern' => array( array(
@@ -267,7 +267,7 @@ class Mitglieder extends BaseController {
                     ),
                 ), ),
                 'sortieren' => array(
-                    array( 'eigenschaft' => 'letzte_aktivitaet', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
                 ),
@@ -277,10 +277,13 @@ class Mitglieder extends BaseController {
                 'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag (de)aktivieren',
                 'vorschau' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="letzte_aktivitaet"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
                     'klein' => TRUE,
                 ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="de_aktivieren"></span>',
+                'listenstatistik' => array(
+                    'summe' => 'wert',
+                ),
             );
 
             $this->viewdata['werkzeugkasten']['zuweisen'] = array(
@@ -304,12 +307,12 @@ class Mitglieder extends BaseController {
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_formular_oeffnen',
+                'klasse_id' => 'btn_filtern_modal_oeffnen',
                 'title' => 'Strafkatalog filtern',
             );
 
             $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_formular_oeffnen',
+                'klasse_id' => 'btn_sortieren_modal_oeffnen',
                 'title' => 'Strafkatalog sortieren',
             );
         }
@@ -510,7 +513,8 @@ class Mitglieder extends BaseController {
             'passwort_neu' => [ 'label' => 'Neues Passwort', 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => 'Neues Passwort (Wiederholung)', 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( ICH['id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
+        else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
         else {
             $mitglieder_Model = model(Mitglied_Model::class);
             $mitglied = array(
@@ -533,6 +537,7 @@ class Mitglieder extends BaseController {
             'passwort_neu' => [ 'label' => 'Neues Passwort', 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => 'Neues Passwort (Wiederholung)', 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglieder_Model = model(Mitglied_Model::class);
             $mitglied = array(
@@ -696,7 +701,7 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
             if( auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
-                foreach( $mitglied->getPermissions() as $permission ) {
+                foreach( $mitglied->getPermissions() as $permission ) if( array_key_exists( $permission, VERFUEGBARE_RECHTE ) ) {
                     $vergebenes_recht['id'] = $id;
                     $vergebenes_recht['mitglied_id'] = $mitglied->id;
                     $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];

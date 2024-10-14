@@ -9,7 +9,7 @@
 <?php if ( KASTEN_WEITER_ZUR_WEBSITE_VON_LOGIN ) : ?>
 <div class="container mt-5" style="max-width: 36rem;"><div class="card">
     <div class="card-body">
-        <div class="mb-3">Du wolltest eigentlich zur öffentlichen Website von <?= VEREIN_NAME ?>?</div>
+        <div class="mb-2">Du wolltest eigentlich zur öffentlichen Website von <?= VEREIN_NAME ?>?</div>
         <div class="d-grid"><a class="btn btn-outline-primary" href="<?= VEREIN_DOMAIN ?>">Weiter zu <?= VEREIN_DOMAIN ?></a></div>
     </div>
 </div></div>

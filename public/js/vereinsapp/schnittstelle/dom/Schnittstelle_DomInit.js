@@ -1,24 +1,93 @@
 const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
+const STATUS_STANDARD_HTML = $("#status").html();
 
 const TOASTS = new Object();
-const BESTAETIGUNGEN = new Object();
+const MODALS = new Object();
 
 function Schnittstelle_DomInit() {
-    const STATUS_STANDARD_HTML = $("#status").html();
+    const autoload = new Array();
 
-    TOASTS.$blanko_toast = $("#toasts").find(".blanko").first();
-    $("#toasts").empty();
-
-    BESTAETIGUNGEN.$blanko_bestaetigung = $("#modals").find(".modal.bestaetigung").first();
-    $("#modals").find(".modal.bestaetigung").remove();
-
-    $("#modals")
-        .find(".modal.autoload")
+    $(".blanko")
         .each(function () {
-            Schnittstelle_DomModalOeffnen($(this));
-        });
+            const $blanko = $(this);
+            // Wenn .blanko ein .modal ist
+            if ($blanko.hasClass("modal")) {
+                const id = $blanko.attr("id");
+                if (!(id in MODALS)) {
+                    MODALS[id] = $blanko;
+                    if (MODALS[id].hasClass("autoload")) autoload.push(id);
+                }
+            }
+            // Wenn .blanko ein .toast ist
+            else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
+            // Wenn .blanko ein .element ist
+            else if ($blanko.hasClass("element")) {
+                const $liste = $blanko.closest(".liste[data-liste][id]");
+                const liste = $liste.attr("data-liste");
+                const instanz = $liste.attr("id");
+                if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
+                    LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+            }
+            // Wenn .blanko eine .auswertung ist
+            else if ($blanko.hasClass("auswertung")) {
+                const $auswertungen = $blanko.closest(".auswertungen[data-auswertungen][id]");
+                const auswertungen = $auswertungen.attr("data-auswertungen");
+                const instanz = $auswertungen.attr("id");
+                if (
+                    auswertungen in LISTEN &&
+                    instanz in LISTEN[auswertungen].instanz &&
+                    !("$blanko_auswertung" in LISTEN[auswertungen].instanz[instanz])
+                )
+                    LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $blanko;
+            }
+            // Wenn .blanko ein .unterverzeichnis ist
+            else if ($blanko.hasClass("unterverzeichnis")) {
+                const $verzeichnis = $blanko.closest(".verzeichnis[data-liste][id]");
+                const liste = $verzeichnis.attr("data-liste");
+                const instanz = $verzeichnis.attr("id");
+                if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_unterverzeichnis" in LISTEN[liste].verzeichnis[instanz]))
+                    LISTEN[liste].verzeichnis[instanz].$blanko_unterverzeichnis = $blanko;
+            }
+            // Wenn .blanko eine .datei ist
+            else if ($blanko.hasClass("datei")) {
+                const $verzeichnis = $blanko.closest(".verzeichnis[data-liste][id]");
+                const liste = $verzeichnis.attr("data-liste");
+                const instanz = $verzeichnis.attr("id");
+                if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_datei" in LISTEN[liste].verzeichnis[instanz]))
+                    LISTEN[liste].verzeichnis[instanz].$blanko_datei = $blanko;
+            }
+            // Wenn .blanko eine .filtern_sammlung ist
+            else if ($blanko.hasClass("filtern_sammlung") && !("$blanko_filtern_sammlung" in FILTERN)) FILTERN.$blanko_filtern_sammlung = $blanko;
+            // Wenn .blanko ein .filtern_element ist
+            else if ($blanko.hasClass("filtern_element") && !("$blanko_filtern_element" in FILTERN)) FILTERN.$blanko_filtern_element = $blanko;
+            // Wenn .blanko eine .filtern_definition ist
+            else if ($blanko.hasClass("filtern_definition")) {
+                const typ = $blanko.attr("data-typ");
+                if ("$blanko_filtern_definition" in FILTERN && !(typ in FILTERN.$blanko_filtern_definition))
+                    FILTERN.$blanko_filtern_definition[typ] = $blanko;
+            }
+            // Wenn .blanko ein .sortieren_element ist
+            else if ($blanko.hasClass("sortieren_element") && !("$blanko_sortieren_element" in SORTIEREN))
+                SORTIEREN.$blanko_sortieren_element = $blanko;
+        })
+        .remove();
+
+    $.each(autoload, function () {
+        const $modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, this);
+
+        const $formular = $modal.find(".formular");
+        if (typeof $formular !== "undefined" && $formular.exists()) {
+            const liste = $formular.attr("data-liste");
+            const aktion = $formular.attr("data-aktion");
+            let element_id = $formular.attr("data-element_id");
+            if (typeof element_id !== "undefined") element_id = Number(element_id);
+            if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
+        }
+
+        Schnittstelle_DomModalOeffnen($modal);
+    });
 
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);
@@ -156,22 +225,22 @@ function Schnittstelle_DomInit() {
 }
 
 function Schnittstelle_BtnWartenStart($btn_warten) {
-    $btn_warten.after(STATUS_SPINNER_HTML);
-    $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
-
-    $btn_warten.addClass("invisible");
-    $btn_warten.siblings(".btn").addClass("invisible");
-    $btn_warten.prop("disabled", true);
-    $btn_warten.siblings(".btn").prop("disabled", true);
+    if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
+        $btn_warten.attr("data-beschriftung", $btn_warten.html()).html(STATUS_SPINNER_HTML).prop("disabled", true);
+    else {
+        $btn_warten.after(STATUS_SPINNER_HTML);
+        $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
+        $btn_warten.addClass("invisible").prop("disabled", true);
+    }
 }
 
 function Schnittstelle_BtnWartenEnde($btn_warten) {
-    $btn_warten.prop("disabled", false);
-    $btn_warten.siblings(".btn").prop("disabled", false);
-    $btn_warten.removeClass("invisible");
-    $btn_warten.siblings(".btn").removeClass("invisible");
-
-    $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
+    if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
+        $btn_warten.prop("disabled", false).html($btn_warten.attr("data-beschriftung"));
+    else {
+        $btn_warten.prop("disabled", false).removeClass("invisible");
+        $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
+    }
 }
 
 function Schnittstelle_CheckWartenStart($check) {

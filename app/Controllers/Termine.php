@@ -14,12 +14,9 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['bevorstehende_termine'] = array(
             'liste' => 'termine',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-                ),
-            ), ),
+            'filtern' => array(
+                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+            ),
             'sortieren' => array(
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),
@@ -41,7 +38,7 @@ class Termine extends BaseController {
         );
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             // 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
@@ -85,12 +82,12 @@ class Termine extends BaseController {
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -123,12 +120,12 @@ class Termine extends BaseController {
         }
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Termine filtern',
         );
 
         $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
             'title' => 'Termine sortieren',
         );
 
@@ -155,12 +152,12 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
-            'klasse_id' => 'btn_gruppieren_formular_oeffnen',
+            'klasse_id' => 'btn_gruppieren_modal_oeffnen',
             'title' => 'Auswertung gruppieren',
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Auswertung filtern',
         );
 
@@ -177,17 +174,17 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(
-            'klasse_id' => 'btn_gruppieren_formular_oeffnen',
+            'klasse_id' => 'btn_gruppieren_modal_oeffnen',
             'title' => 'Auswertung gruppieren',
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Auswertung filtern',
         );
 
         $disabled_filtern = array();
-        if( !auth()->user()->can( 'termine.anwesenheiten' ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
             'liste' => 'mitglieder',
             'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
@@ -231,12 +228,12 @@ class Termine extends BaseController {
             );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_formular_oeffnen',
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Mitglieder filtern',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_formular_oeffnen',
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
             'title' => 'Mitglieder sortieren',
         );
 
@@ -264,12 +261,9 @@ class Termine extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'bevorstehende_termine',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-                ),
-            ), ),
+            'filtern' => array(
+                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+            ),
             'sortieren' => array(
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),
@@ -380,8 +374,9 @@ class Termine extends BaseController {
             'termin_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !(array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
                  )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
@@ -393,52 +388,15 @@ class Termine extends BaseController {
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
                 'status' => $this->request->getpost()['status'],
             );
-            $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'] ) )->delete();
-            $rueckmeldungen_Model->save( $rueckmeldung );
-            $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = '';
+
+            $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'], 'id !=' => $this->request->getpost()['id'] ) )->delete();
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
+            else {
+                $rueckmeldungen_Model->save( $rueckmeldung );
+                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
+            }
         }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    public function ajax_rueckmeldung_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( model(Rueckmeldung_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] != ICH['id'] AND !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( Time::parse( model(Termin_Model::class)->find(
-                    model(Rueckmeldung_Model::class)->find(
-                        $this->request->getPost()['id']
-                    )['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( JETZT->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
-                    $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
-        else {
-            $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
-            $rueckmeldung = array();
-            if( array_key_exists( 'bemerkung', $this->request->getPost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung'];
-            if( array_key_exists( 'status', $this->request->getPost() ) ) $rueckmeldung['status'] = $this->request->getpost()['status'];
-            $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
-
-            $termin_id = $rueckmeldungen_Model->find( $this->request->getpost()['id'] )['termin_id'];
-            $mitglied_id = $rueckmeldungen_Model->find( $this->request->getpost()['id'] )['mitglied_id'];
-            $rueckmeldungen_Model->where( array( 'termin_id' => $termin_id, 'mitglied_id' => $mitglied_id, 'id !=' => $this->request->getpost()['id'] ) )->delete();
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-    
-    public function ajax_rueckmeldung_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'global.einstellungen' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Rueckmeldung_Model::class)->delete( $this->request->getPost()['id'] );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

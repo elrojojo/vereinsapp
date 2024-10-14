@@ -37,8 +37,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
                     Schnittstelle_EventLocalstorageUpdVariable(AJAX.liste, [Schnittstelle_EventVariableUpdDom]);
                     if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                         Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-                    if ("dom" in AJAX && "$bestaetigung" in AJAX.dom && AJAX.dom.$bestaetigung.exists())
-                        Schnittstelle_DomModalSchliessen(AJAX.dom.$bestaetigung);
+                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(beschriftung + " wurde erfolgreich gelöscht.");
                 }
             },

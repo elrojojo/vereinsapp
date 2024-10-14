@@ -2,21 +2,25 @@ const DateTime = luxon.DateTime;
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit();
-    Schnittstelle_DomInit();
     Schnittstelle_LocalstorageInit();
-
     Liste_Init();
+    Schnittstelle_DomInit();
+
+    Schnittstelle_EventLocalstorageUpdVariable();
+    Schnittstelle_EventVariableUpdDom();
+    if (Object.keys(LISTEN).length > 0)
+        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
+            Schnittstelle_EventLocalstorageUpdVariable,
+            Schnittstelle_EventVariableUpdDom,
+        ]);
 
     $(".formular").each(function () {
         const $formular = $(this);
-
         const liste = $formular.attr("data-liste");
-
-        let element_id_data = $formular.attr("data-element_id");
-        if (typeof element_id_data !== "undefined") element_id_data = Number(element_id_data);
-        const element_id = element_id_data;
-
-        Liste_ElementFormularEigenschaftenWerteAktualisieren($formular, element_id, liste);
+        const aktion = $formular.attr("data-aktion");
+        let element_id = $formular.attr("data-element_id");
+        if (typeof element_id !== "undefined") element_id = Number(element_id);
+        if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
     });
 
     if (LOGGEDIN) Mitglieder_Init();
@@ -46,7 +50,9 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Proberaum-Belegungsplan
+Fahrerplan / Arbeitsplan / Proberaum-Belegungsplan + zeitpunkt (kassenbuch) aus Datenbank löschen
+Termin mit Ende erweitern
+Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
@@ -70,7 +76,7 @@ IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, A
 Formatierung eines Werts flexibel machen in Liste_WertFormatiertZurueck() (inkl. möglichem Symbol)
 Data-Attribute als Object in einem Attribut zusammenfassen
 title ändern in beschriftung?
-anwesenheiten_dokumentieren_modal für checkliste verallgemeinern (analog zu Liste_ElementFormularInitialisiertZurueck)
+anwesenheiten_dokumentieren für checkliste verallgemeinern (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
 Sortierung nicht mehr case sensitive machen
 Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
@@ -81,13 +87,9 @@ Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für
 ziel/umgebung beim DOM-Update ergänzen (damit nicht immer der komplette DOM aktualisiert wird)
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
+.btn in .formular mit ENTER betätigbar machen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
-ajax_rueckmeldung_speichern und ajax_rueckmeldung_aendern zusammenführen (analog zu kassenbucheintrag_speichern)
-Schnittstelle_DomBestaetigungEinfordern erweitern für array und object (mit JSON.stringify)
-Alle Aendern-Funktionen erweitern und PHP-Funktionen anpassen (wie Strafkatalog_KassenbucheintragAendern, d.h. bspw. ajax_rueckmeldung_aendern in ajax_rueckmeldung_speichern integrieren)
-Termin mit Ende erweitern
 
 */

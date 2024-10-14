@@ -1,5 +1,5 @@
 function Liste_SortierenErstellen($sortieren_definitionen, instanz, liste) {
-    const $sortieren = $sortieren_definitionen.closest(".modal.sortieren").find(".sortieren");
+    const $sortieren = $sortieren_definitionen.closest(".sortieren_formular").find(".sortieren");
 
     const sortieren = [
         {
