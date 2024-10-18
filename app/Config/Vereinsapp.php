@@ -60,14 +60,14 @@ class Vereinsapp extends BaseConfig
      * Aktive Module (Controller) inkl. Beschriftung und Symbol
      */
     public $controllers = array(
-        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
+        'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
+        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder']['bootstrap'] ),
+        'aufgaben' => array ( 'beschriftung' => 'Aufgaben', 'symbol' => SYMBOLE['aufgaben']['bootstrap'] ),
+        // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => SYMBOLE['umfragen']['bootstrap'] ),
         'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine']['bootstrap'] ),
         'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog']['bootstrap'] ),
         'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank']['bootstrap'] ),
-        // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => SYMBOLE['umfragen']['bootstrap'] ),
-        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder']['bootstrap'] ),
-        'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
-
+        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
         'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
     );
 
@@ -78,6 +78,7 @@ class Vereinsapp extends BaseConfig
         'termine',
         'strafkatalog',
         'notenbank',
+        'aufgaben',
         'mitglieder',
         'einstellungen',
     );
@@ -118,6 +119,18 @@ class Vereinsapp extends BaseConfig
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),                                      // PHP
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),                     // PHP
             'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl' ), // PHP
+        ),
+
+        'aufgaben' => array(
+            'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
+            'element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
+            'mitglied_id_geplant' => array( 'beschriftung' => 'Mitglied-ID geplant', 'typ' => 'zahl' ),
+            'mitglied_id_erledigt' => array( 'beschriftung' => 'Mitglied-ID erledigt', 'typ' => 'zahl' ),
+            'zeitpunkt_erledigt' => array( 'beschriftung' => 'Zeitpunkt erledigt', 'typ' => 'zeitpunkt' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
         'termine' => array(
@@ -248,6 +261,10 @@ class Vereinsapp extends BaseConfig
         'vergebene_rechte' => array(
         ),
 
+        'aufgaben' => array(
+            'liste' => LISTEN,
+        ),
+
         'termine' => array(
 
             'kategorie' => array (
@@ -323,6 +340,15 @@ class Vereinsapp extends BaseConfig
         'vergebene_rechte' => array(
         ),
 
+        'aufgaben' => array(
+            'liste',
+            'element_id',
+            'mitglied_id_geplant',
+            'mitglied_id_erledigt',
+            'zeitpunkt_erledigt',
+            'erstellung',
+        ),
+
         'termine' => array(
             'start',
             'kategorie',
@@ -385,6 +411,15 @@ class Vereinsapp extends BaseConfig
         'vergebene_rechte' => array(
         ),
 
+        'aufgaben' => array(
+            'liste',
+            'titel',
+            'mitglied_id_geplant',
+            'mitglied_id_erledigt',
+            'zeitpunkt_erledigt',
+            'erstellung',
+        ),
+
         'termine' => array(
             'titel',
             'start',
@@ -443,6 +478,12 @@ class Vereinsapp extends BaseConfig
         ),
 
         'vergebene_rechte' => array(
+        ),
+
+        'aufgaben' => array(
+            'liste',
+            'mitglied_id_geplant',
+            'mitglied_id_erledigt',
         ),
 
         'termine' => array(
@@ -594,7 +635,8 @@ class Vereinsapp extends BaseConfig
      *
      * Wenn der LocalStorage auf allen verwendeten Geräten einmal geleert werden
      * soll, dann muss der jetzige Zeitpunkt definiert werden
+     * Winterzeit: +01:00 / Sommerzeit: +02:00
      */
-    public $force_localstorage_reset_zeitpunkt = '2024-01-31T00:00:00.000+01:00';
+    public $force_localstorage_reset_zeitpunkt = '2024-01-31T00:00:00.000+02:00';
 
 }

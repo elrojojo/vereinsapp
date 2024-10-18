@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Models\Strafkatalog;
+namespace App\Models\Aufgaben;
 
 use CodeIgniter\Model;
 
-class Strafkatalog_Kassenbucheintrag_Model extends Model {
+class Aufgabe_Model extends Model {
    
-    protected $table          = 'strafkatalog_kassenbuch';
+    protected $table          = 'aufgaben';
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
+        'liste',
+        'element_id',
         'titel',
-        'wert',
-        'aktiv',
-        'mitglied_id',
+        'mitglied_id_geplant',
+        'mitglied_id_erledigt',
+        'zeitpunkt_erledigt',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;

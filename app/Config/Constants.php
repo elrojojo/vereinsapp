@@ -98,6 +98,9 @@ define('EVENT_PRIORITY_HIGH', 10);
 | VEREINSAPP Projekt-übergreifende Konstanten
 |--------------------------------------------------------------------------*/
 
+defined('LISTEN') OR define( 'LISTEN', array(
+) );
+
 defined('JANEIN') OR define( 'JANEIN', array(
 	0 => array( 'beschriftung' => 'Nein' ),
 	1 => array( 'beschriftung' => 'Ja' ),
@@ -124,21 +127,23 @@ defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
 ) );
 
 defined('SYMBOLE') OR define( 'SYMBOLE', array(
-    'startseite' => array ( 'bootstrap' => '' ),
+    'einstellungen' => array( 'bootstrap' => 'gear' ),
+    'mitglieder' => array ( 'bootstrap' => 'people' ),
+    'aufgaben' => array ( 'bootstrap' => 'award' ),
+    // 'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
     'termine' => array ( 'bootstrap' => 'calendar-month' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
-    'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
-    'mitglieder' => array ( 'bootstrap' => 'people' ),
-    'einstellungen' => array( 'bootstrap' => 'gear' ),
+    'startseite' => array ( 'bootstrap' => '' ),
 
     'werkzeuge' => array( 'bootstrap' => 'tools' ),
     'aendern' => array( 'bootstrap' => 'pencil' ),
     'erstellen' => array( 'bootstrap' => 'plus-lg' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
-    'zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
     'de_aktivieren' => array ( 'bootstrap' => 'check2-circle' ),
+    'aufgabe_zuweisen' => array ( 'bootstrap' => 'award' ),
+    'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
@@ -161,7 +166,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
 
     'abwesend' => array( 'bootstrap' => 'airplane', 'html' => '&#9992' ),
-    'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
+    'geburtstag' => array( 'bootstrap' => 'cake2', 'html' => '&#127873' ),
 
     'datum' => array( 'bootstrap' => 'calendar-event' ),
     'zeitraum' => array( 'bootstrap' => 'calendar-range' ),

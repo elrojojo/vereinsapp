@@ -24,6 +24,7 @@ $(document).ready(function () {
     });
 
     if (LOGGEDIN) Mitglieder_Init();
+    if (LOGGEDIN) Aufgaben_Init();
     if (LOGGEDIN) Termine_Init();
     if (LOGGEDIN) Strafkatalog_Init();
     if (LOGGEDIN) Notenbank_Init();
@@ -50,9 +51,12 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Fahrerplan / Arbeitsplan / Proberaum-Belegungsplan + zeitpunkt (kassenbuch) aus Datenbank löschen
-Termin mit Ende erweitern
+Filtern auf eine Ebene beschränken und die Oberfläche optimieren
+Sortieren auf einen Wert beschränken (analog zu gruppieren)
+Batch über filtern- und sortieren-Button legen
 Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
+Liste unformatiert in die Zwischenablage kopieren
+Termin mit Ende erweitern
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
@@ -60,9 +64,7 @@ Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Verzeichnis filtern und sortieren
 Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
-Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Link zu Github neben die Version
-Batch über filtern- und sortieren-Button legen
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
@@ -91,5 +93,11 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
+Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen
+Eigene Links im Menü anzeigen lassen (und über .env steuern)
+Konstante LISTEN mit Einträgen befüllen (beschriftung für liste und element) und implementieren
+Braucht es liste im Ajax-Array?
+Muss Schnittstelle_DomToastFeuern nicht besser außerhalb der $Modal-Bedingung stehen?
+In der Aufgaben-Übersicht standardmäßig nur offene Aufgaben anzeigen
 
 */

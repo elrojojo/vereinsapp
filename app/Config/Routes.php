@@ -39,6 +39,40 @@ $routes->set404Override();
 $routes->get('/', 'Startseite::startseite');
 $routes->get('startseite', 'Startseite::startseite');
 
+$routes->group('einstellungen', static function ($routes) {
+    $routes->get('',                                        'Einstellungen::einstellungen');
+    $routes->get('einstellungen',                           'Einstellungen::einstellungen');
+});
+
+$routes->group('mitglieder', static function ($routes) {
+    $routes->get('',                                        'Mitglieder::mitglieder');
+    $routes->get('mitglieder',                              'Mitglieder::mitglieder');
+    $routes->get('(:num)',                                  'Mitglieder::details/$1');
+    $routes->get('details/(:num)',                          'Mitglieder::details/$1');
+
+    $routes->post('ajax_mitglieder',                        'Mitglieder::ajax_mitglieder');
+    $routes->post('ajax_mitglied_speichern',                'Mitglieder::ajax_mitglied_speichern');
+    $routes->post('ajax_mitglied_passwort_aendern',         'Mitglieder::ajax_mitglied_passwort_aendern');
+    $routes->post('ajax_mitglied_passwort_festlegen',       'Mitglieder::ajax_mitglied_passwort_festlegen');
+    $routes->post('ajax_mitglied_einmal_link_erstellen',    'Mitglieder::ajax_mitglied_einmal_link_erstellen');
+    $routes->post('ajax_mitglied_loeschen',                 'Mitglieder::ajax_mitglied_loeschen');
+
+    $routes->post('ajax_verfuegbare_rechte',                'Mitglieder::ajax_verfuegbare_rechte');
+    $routes->post('ajax_vergebene_rechte',                  'Mitglieder::ajax_vergebene_rechte');
+    $routes->post('ajax_vergebenes_recht_speichern',          'Mitglieder::ajax_vergebenes_recht_speichern');
+
+    $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
+});
+
+$routes->group('aufgaben', static function ($routes) {
+    $routes->get('',                                        'Aufgaben::aufgaben');
+    $routes->get('aufgaben',                                'Aufgaben::aufgaben');
+
+    $routes->post('ajax_aufgaben',                          'Aufgaben::ajax_aufgaben');
+    $routes->post('ajax_aufgabe_speichern',                 'Aufgaben::ajax_aufgabe_speichern');
+    $routes->post('ajax_aufgabe_loeschen',                  'Aufgaben::ajax_aufgabe_loeschen');
+});
+
 $routes->group('termine', static function ($routes) {
     $routes->get('',                                        'Termine::termine');
     $routes->get('termine',                                 'Termine::termine');
@@ -79,31 +113,6 @@ $routes->group('notenbank', static function ($routes) {
     $routes->post('ajax_notenbank',                         'Notenbank::ajax_notenbank');
     $routes->post('ajax_titel_speichern',                   'Notenbank::ajax_titel_speichern');
     $routes->post('ajax_titel_loeschen',                    'Notenbank::ajax_titel_loeschen');
-});
-
-$routes->group('mitglieder', static function ($routes) {
-    $routes->get('',                                        'Mitglieder::mitglieder');
-    $routes->get('mitglieder',                              'Mitglieder::mitglieder');
-    $routes->get('(:num)',                                  'Mitglieder::details/$1');
-    $routes->get('details/(:num)',                          'Mitglieder::details/$1');
-
-    $routes->post('ajax_mitglieder',                        'Mitglieder::ajax_mitglieder');
-    $routes->post('ajax_mitglied_speichern',                'Mitglieder::ajax_mitglied_speichern');
-    $routes->post('ajax_mitglied_passwort_aendern',         'Mitglieder::ajax_mitglied_passwort_aendern');
-    $routes->post('ajax_mitglied_passwort_festlegen',       'Mitglieder::ajax_mitglied_passwort_festlegen');
-    $routes->post('ajax_mitglied_einmal_link_erstellen',    'Mitglieder::ajax_mitglied_einmal_link_erstellen');
-    $routes->post('ajax_mitglied_loeschen',                 'Mitglieder::ajax_mitglied_loeschen');
-
-    $routes->post('ajax_verfuegbare_rechte',                'Mitglieder::ajax_verfuegbare_rechte');
-    $routes->post('ajax_vergebene_rechte',                  'Mitglieder::ajax_vergebene_rechte');
-    $routes->post('ajax_vergebenes_recht_speichern',          'Mitglieder::ajax_vergebenes_recht_speichern');
-
-    $routes->post('mitglied_einmal_link_email',             'Mitglieder::mitglied_einmal_link_email');
-});
-
-$routes->group('einstellungen', static function ($routes) {
-    $routes->get('',                                        'Einstellungen::einstellungen');
-    $routes->get('einstellungen',                           'Einstellungen::einstellungen');
 });
 
 $routes->group('status', static function ($routes) {

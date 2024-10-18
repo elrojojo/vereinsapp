@@ -24,7 +24,7 @@ class Strafkatalog extends BaseController {
             ),
             // 'link' => TRUE,
             'vorschau' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
             ),
             'listenstatistik' => array(),
         );
@@ -32,7 +32,7 @@ class Strafkatalog extends BaseController {
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+            $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
@@ -112,7 +112,7 @@ class Strafkatalog extends BaseController {
         ),
         // 'link' => TRUE,
         'vorschau' => array(
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung">',
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
         ),
         'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="aktiv"></span>',
         'bedingte_formatierung' => array(

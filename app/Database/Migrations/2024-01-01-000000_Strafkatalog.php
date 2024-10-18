@@ -24,7 +24,6 @@ class Strafkatalog extends Migration
             'id'            => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false,    'auto_increment' => true],
             'titel'         => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'wert'          => ['type' => 'decimal',    'constraint' => '10,2',                     'null' => false],
-            'zeitpunkt'     => ['type' => 'datetime',                                               'null' => false],
             'aktiv'         => ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false],
             'mitglied_id'   => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
             'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
