@@ -48,37 +48,34 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
         $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + ' text-primary me-1"></i>');
     }
 
-    // Zusatzsymbol für Kommentar bei Rückmeldung
-    if (zusatzsymbol == "kommentar") {
+    // Zusatzsymbol für Bemerkung bei Rückmeldung
+    if (zusatzsymbol == "bemerkung") {
+        let bemerkung;
+
         if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {
+            const gegen_element_id = Number($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id"));
             const filtern = [
                 {
                     verknuepfung: "&&",
                     filtern: [
-                        {
-                            operator: "==",
-                            eigenschaft: "termin_id",
-                            wert: Number($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id")),
-                        },
+                        { operator: "==", eigenschaft: "termin_id", wert: gegen_element_id },
                         { operator: "==", eigenschaft: "mitglied_id", wert: element_id },
-                        { operator: "!=", eigenschaft: "bemerkung", wert: "undefined" },
-                        { operator: "!=", eigenschaft: "bemerkung", wert: null },
-                        { operator: "!=", eigenschaft: "bemerkung", wert: "" },
                     ],
                 },
             ];
             const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(filtern, "rueckmeldungen");
+            if (gefilterte_rueckmeldungen.length > 0) bemerkung = gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"];
+        } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste);
 
-            if (gefilterte_rueckmeldungen.length > 0)
-                $zusatzsymbol.html(
-                    '<i class="bi bi-' +
-                        SYMBOLE["bemerkung"]["bootstrap"] +
-                        ' text-primary ms-1" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
-                        gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"] +
-                        '" role="button"></i>'
-                );
+        if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
+            $zusatzsymbol.html(
+                '<i class="bi bi-' +
+                    SYMBOLE["bemerkung"]["bootstrap"] +
+                    ' stretched-link-unwirksam text-primary ms-1 " data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
+                    bemerkung +
+                    '" role="button"></i>'
+            );
 
-            [...$zusatzsymbol.find('[data-bs-toggle="popover"]')].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
-        }
+        [...$zusatzsymbol.find('[data-bs-toggle="popover"]')].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
     }
 }

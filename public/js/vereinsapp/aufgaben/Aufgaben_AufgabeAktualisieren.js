@@ -5,7 +5,6 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
     const $btn_btn_aufgabe_zuweisen = $aufgabe.find(".btn_aufgabe_zuweisen");
 
     $btn_btn_aufgabe_zuweisen.attr("data-element_id", element_id);
-    console.log(Liste_ElementBeschriftungZurueck(mitglied_id_geplant, "mitglieder"), $btn_btn_aufgabe_zuweisen);
 
     if (mitglied_id_geplant !== null) {
         $btn_btn_aufgabe_zuweisen

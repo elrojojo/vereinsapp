@@ -23,9 +23,7 @@ class Strafkatalog extends BaseController {
                 'h5' => TRUE,
             ),
             // 'link' => TRUE,
-            'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
-                            '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
-                            '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
+            'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie"></span>',
             'listenstatistik' => array(),
         );
 
@@ -113,8 +111,7 @@ class Strafkatalog extends BaseController {
         // 'link' => TRUE,
         'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
                         '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
-                        '<span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
-                        '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
+                        '<span class="eigenschaft" data-eigenschaft="mitglied_id"></span>',
         'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="aktiv"></span>',
         'bedingte_formatierung' => array(
             'klasse' => array(

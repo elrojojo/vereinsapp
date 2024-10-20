@@ -54,7 +54,6 @@ FEATURES
 Filtern auf eine Ebene beschränken und die Oberfläche optimieren
 Sortieren auf einen Wert beschränken (analog zu gruppieren)
 Batch über filtern- und sortieren-Button legen
-Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
 Mitglieder Lebenslauf
