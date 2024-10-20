@@ -53,7 +53,7 @@ class Mitglieder extends BaseController {
             // ),
             'listenstatistik' => array(),
         );
-        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
+        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>';
 
         $disabled_filtern = array();
         if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
@@ -273,7 +273,7 @@ class Mitglieder extends BaseController {
                 ),
                 'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag (de)aktivieren',
-                'vorschau' => '<div class="small"><span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span></div>',
+                'vorschau' => '<div class="small"><span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span></div>',
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="de_aktivieren"></span>',
                 'listenstatistik' => array(
                     'summe' => 'wert',

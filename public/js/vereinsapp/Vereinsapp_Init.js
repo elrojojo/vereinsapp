@@ -99,6 +99,5 @@ Konstante LISTEN mit Einträgen befüllen (beschriftung für liste und element) 
 Braucht es liste im Ajax-Array?
 Muss Schnittstelle_DomToastFeuern nicht besser außerhalb der $Modal-Bedingung stehen?
 In der Aufgaben-Übersicht standardmäßig nur offene Aufgaben anzeigen
-SYMBOL einführen für bi bi-dot
 
 */

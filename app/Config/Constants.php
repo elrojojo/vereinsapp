@@ -158,6 +158,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
 
     'mitglied' => array ( 'bootstrap' => 'person' ),
+    'spacer' => array ( 'bootstrap' => 'dot' ),
     'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
     // 'info' => array( 'bootstrap' => 'info-circle' ),
 
