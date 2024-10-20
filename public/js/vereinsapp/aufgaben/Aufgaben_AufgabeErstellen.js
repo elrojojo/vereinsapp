@@ -27,6 +27,11 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
                 });
+                Schnittstelle_VariableRein(null, "liste", aufgabe_id, "aufgaben");
+                Schnittstelle_VariableRein(null, "element_id", aufgabe_id, "aufgaben");
+                Schnittstelle_VariableRein(null, "mitglied_id_geplant", aufgabe_id, "aufgaben");
+                Schnittstelle_VariableRein(null, "mitglied_id_erledigt", aufgabe_id, "aufgaben");
+                Schnittstelle_VariableRein(null, "zeitpunkt_erledigt", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(DateTime.now(), "erstellung", aufgabe_id, "aufgaben");
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben", [
                     Schnittstelle_EventLocalstorageUpdVariable,

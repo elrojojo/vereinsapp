@@ -11,5 +11,9 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
             .addClass("btn-primary")
             .removeClass("btn-outline-primary")
             .text(Liste_ElementBeschriftungZurueck(mitglied_id_geplant, "mitglieder"));
-    } else $btn_btn_aufgabe_zuweisen.addClass("btn-outline-primary").removeClass("btn-primary").text("Kein Mitglied zugewiesen");
+    } else
+        $btn_btn_aufgabe_zuweisen
+            .addClass("btn-outline-primary")
+            .removeClass("btn-primary")
+            .html('<i class="bi bi-' + SYMBOLE["erstellen"]["bootstrap"] + '"></i>');
 }

@@ -59,7 +59,6 @@ function Aufgaben_Init() {
     $(document).on("click", ".btn_aufgabe_zuweisen", function () {
         Aufgaben_AufgabeZuweisen(
             $(this).hasClass("auswahl_oeffnen"),
-            $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { gegen_element_id: $(this).attr("data-gegen_element_id"), gegen_liste: $(this).attr("data-gegen_liste") },
             $(this).attr("data-title"),

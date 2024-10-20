@@ -1,4 +1,4 @@
-function Aufgaben_AufgabeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, dom, data, title, element_id, liste) {
+function Aufgaben_AufgabeZuweisen(auswahl_oeffnen, dom, data, title, element_id, liste) {
     if (typeof element_id !== "undefined") element_id = Number(element_id);
 
     if (typeof data.gegen_liste === "undefined" && liste == "aufgaben") data.gegen_liste = "mitglieder";
@@ -21,18 +21,5 @@ function Aufgaben_AufgabeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, dom,
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
-    } else if (bestaetigung_einfordern) {
-        if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);
-
-        Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du " +
-                Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") +
-                " wirklich die Aufgabe " +
-                Liste_ElementBeschriftungZurueck(aufgabe_id, "aufgaben") +
-                " zuweisen?",
-            title,
-            "btn_aufgabe_zuweisen",
-            { liste: liste, element_id: element_id, gegen_liste: data.gegen_liste, gegen_element_id: data.gegen_element_id }
-        );
-    } else Aufgaben_AufgabeAendern(false, dom, { mitglied_id_geplant: mitglied_id }, undefined, aufgabe_id);
+    } else Aufgaben_AufgabeAendern(false, { $btn_ausloesend: $(), $modal: dom.$modal }, { mitglied_id_geplant: mitglied_id }, undefined, aufgabe_id);
 }

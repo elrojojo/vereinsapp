@@ -48,6 +48,57 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
         $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + ' text-primary me-1"></i>');
     }
 
+    // Zusatzsymbol für Ändern-Werkzeug
+    if (zusatzsymbol == "aendern") {
+        $zusatzsymbol.html(
+            '<i class="bi bi-' +
+                SYMBOLE["aendern"]["bootstrap"] +
+                " btn_" +
+                LISTEN[liste].element +
+                '_aendern formular_oeffnen text-primary me-1" data-liste="' +
+                liste +
+                '" data-element_id="' +
+                element_id +
+                '" data-title="' +
+                Liste_ElementBeschriftungZurueck(element_id, liste) +
+                ' ändern" role="button"></i>'
+        );
+    }
+
+    // Zusatzsymbol für Duplizieren-Werkzeug
+    if (zusatzsymbol == "duplizieren") {
+        $zusatzsymbol.html(
+            '<i class="bi bi-' +
+                SYMBOLE["duplizieren"]["bootstrap"] +
+                " btn_" +
+                LISTEN[liste].element +
+                '_duplizieren formular_oeffnen text-primary me-1" data-liste="' +
+                liste +
+                '" data-element_id="' +
+                element_id +
+                '" data-title="' +
+                Liste_ElementBeschriftungZurueck(element_id, liste) +
+                ' duplizieren" role="button"></i>'
+        );
+    }
+
+    // Zusatzsymbol für Löschen-Werkzeug
+    if (zusatzsymbol == "loeschen") {
+        $zusatzsymbol.html(
+            '<i class="bi bi-' +
+                SYMBOLE["loeschen"]["bootstrap"] +
+                " btn_" +
+                LISTEN[liste].element +
+                '_loeschen bestaetigung_einfordern text-danger me-1" data-liste="' +
+                liste +
+                '" data-element_id="' +
+                element_id +
+                '" data-title="' +
+                Liste_ElementBeschriftungZurueck(element_id, liste) +
+                ' löschen" role="button"></i>'
+        );
+    }
+
     // Zusatzsymbol für Bemerkung bei Rückmeldung
     if (zusatzsymbol == "bemerkung") {
         let bemerkung;

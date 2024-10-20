@@ -36,6 +36,18 @@
     </div>
 </div>
 
+<div class="container mb-3">
+    <div class="text-secondary text-center mb-1">Aufgaben</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_zum_termin'] ) ); ?>
+<?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'modal_id' => 'aufgaben_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
+    view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
+<?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_auswahl', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
+</div>
+
 <?= view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo

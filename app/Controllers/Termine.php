@@ -239,6 +239,62 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
+        $this->viewdata['liste']['aufgaben_zum_termin'] = array(
+            'liste' => 'aufgaben',
+            'filtern' => array( array(
+                'verknuepfung' => '&&',
+                'filtern' => array(
+                    array( 'eigenschaft' => 'liste', 'operator' => '==', 'wert' => "termine", ),
+                    array( 'eigenschaft' => 'element_id', 'operator' => '==', 'wert' => $termin_id, ),
+                ),
+            ), ),
+            'sortieren' => array(
+                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+            ),
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+            ),
+            'views' => view( 'Aufgaben/aufgabe' ),
+            'listenstatistik' => array(),
+        );
+
+        if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+            $this->viewdata['liste']['aufgaben_zum_termin']['zusatzsymbole'] = 
+                '<span class="zusatzsymbol" data-zusatzsymbol="aendern"></span>'.
+                '<span class="zusatzsymbol" data-zusatzsymbol="duplizieren"></span>'.
+                '<span class="zusatzsymbol" data-zusatzsymbol="loeschen"></span>';
+
+            $this->viewdata['liste']['mitglieder_auswahl'] = array(
+                'liste' => 'mitglieder',
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+                        ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+                ),
+                'klasse_id' => array('btn_aufgabe_zuweisen'),
+                'title' => 'Aufgabe zuweisen',
+                'listenstatistik' => array(),
+            );
+
+            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
+                'klasse_id' => 'btn_filtern_modal_oeffnen',
+                'title' => 'Mitglieder filtern',
+            );
+
+            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
+                'klasse_id' => 'btn_sortieren_modal_oeffnen',
+                'title' => 'Mitglieder sortieren',
+            );
+
+            $this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']['erstellen'] = array(
+                'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                'title' => 'Aufgabe erstellen',
+            );
+        }
+
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),

@@ -12,7 +12,6 @@ class Aufgaben extends BaseController {
         $this->viewdata['liste']['alle_aufgaben'] = array(
             'liste' => 'aufgaben',
             'sortieren' => array(
-                array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             ),
             'beschriftung' => array(
@@ -28,11 +27,6 @@ class Aufgaben extends BaseController {
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
             $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['werkzeugkasten']['aufgabe_zuweisen'] = array(
-                'klasse_id' => array('btn_aufgabe_zuweisen', 'auswahl_oeffnen'),
-                'title' => 'Aufgabe einem Mitglied zuweisen',
-            );
-
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
                 'liste' => 'mitglieder',
                 'sortieren' => array(
@@ -43,7 +37,7 @@ class Aufgaben extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
-                'klasse_id' => array('btn_aufgabe_zuweisen', 'bestaetigung_einfordern'),
+                'klasse_id' => array('btn_aufgabe_zuweisen'),
                 'title' => 'Aufgabe zuweisen',
                 'listenstatistik' => array(),
             );

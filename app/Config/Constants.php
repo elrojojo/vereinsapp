@@ -137,12 +137,11 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'startseite' => array ( 'bootstrap' => '' ),
 
     'werkzeuge' => array( 'bootstrap' => 'tools' ),
-    'aendern' => array( 'bootstrap' => 'pencil' ),
     'erstellen' => array( 'bootstrap' => 'plus-lg' ),
+    'aendern' => array( 'bootstrap' => 'pencil' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
     'de_aktivieren' => array ( 'bootstrap' => 'check2-circle' ),
-    'aufgabe_zuweisen' => array ( 'bootstrap' => 'award' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
