@@ -6,6 +6,12 @@ $(document).ready(function () {
     Liste_Init();
     Schnittstelle_DomInit();
 
+    if (LOGGEDIN) Mitglieder_Init();
+    if (LOGGEDIN) Aufgaben_Init();
+    if (LOGGEDIN) Termine_Init();
+    if (LOGGEDIN) Strafkatalog_Init();
+    if (LOGGEDIN) Notenbank_Init();
+
     Schnittstelle_EventLocalstorageUpdVariable();
     Schnittstelle_EventVariableUpdDom();
     if (Object.keys(LISTEN).length > 0)
@@ -22,12 +28,6 @@ $(document).ready(function () {
         if (typeof element_id !== "undefined") element_id = Number(element_id);
         if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
     });
-
-    if (LOGGEDIN) Mitglieder_Init();
-    if (LOGGEDIN) Aufgaben_Init();
-    if (LOGGEDIN) Termine_Init();
-    if (LOGGEDIN) Strafkatalog_Init();
-    if (LOGGEDIN) Notenbank_Init();
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined") {
@@ -99,5 +99,6 @@ Konstante LISTEN mit Einträgen befüllen (beschriftung für liste und element) 
 Braucht es liste im Ajax-Array?
 Muss Schnittstelle_DomToastFeuern nicht besser außerhalb der $Modal-Bedingung stehen?
 In der Aufgaben-Übersicht standardmäßig nur offene Aufgaben anzeigen
+SYMBOL einführen für bi bi-dot
 
 */

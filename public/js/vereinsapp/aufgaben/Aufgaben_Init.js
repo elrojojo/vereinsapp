@@ -8,6 +8,8 @@ LISTEN.aufgaben = {
 };
 
 function Aufgaben_Init() {
+    EVENT_VARIABLE_UPD_DOM_MODULE.push(Aufgaben_InitEventVariableUpdDom);
+
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(
@@ -64,5 +66,12 @@ function Aufgaben_Init() {
             $(this).attr("data-element_id"),
             $(this).attr("data-liste")
         );
+    });
+}
+
+function Aufgaben_InitEventVariableUpdDom() {
+    // AUFGABE AKTUALISIEREN
+    $('.element[data-liste="aufgaben"]').each(function () {
+        Aufgaben_AufgabeAktualisieren($(this));
     });
 }

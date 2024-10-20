@@ -20,6 +20,8 @@ LISTEN.termine = {
 };
 
 function Termine_Init() {
+    EVENT_VARIABLE_UPD_DOM_MODULE.push(Termine_InitEventVariableUpdDom);
+
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {
         Termine_TerminErstellen(
@@ -132,5 +134,17 @@ function Termine_Init() {
         Schnittstelle_DomModalOeffnen($neues_modal);
         $neues_modal.find("#anwesenheiten_dokumentieren").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
         Schnittstelle_EventVariableUpdDom(gegen_liste);
+    });
+}
+
+function Termine_InitEventVariableUpdDom() {
+    // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
+    $(".rueckmeldung_eingeladen").each(function () {
+        Termine_RueckmeldungEinAusblenden($(this));
+    });
+
+    // RÜCKMELDUNG AKTUALISIEREN
+    $(".zusagen, .absagen").each(function () {
+        Termine_RueckmeldungAktualisieren($(this));
     });
 }

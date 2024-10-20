@@ -25,14 +25,11 @@ class Termine extends BaseController {
                 'h5' => TRUE,
             ),
             'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<div class="row g-0 my-1">
-                    <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                    <div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-                'klein' => TRUE,
-                'zentriert' => TRUE,
-            ),
+            'vorschau' =>   '<div class="row g-0 my-1 small text-center">'.
+                                '<div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
+                                '<div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>'.
+                            '</div>',
+            'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             'listenstatistik' => array(),
         );

@@ -31,11 +31,8 @@ class Mitglieder extends BaseController {
             'link' => TRUE,
             // 'klasse_id' => array('btn_', 'bestaetigung_einfordern'),
             // 'title' => 'Titel für bspw. ein Modal',
-            'vorschau' => array(
-                'beschriftung' => '',
-                // 'klein' => TRUE,
-                // 'zentriert' => TRUE,
-            ),
+            'vorschau' => '',
+            // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
@@ -56,7 +53,7 @@ class Mitglieder extends BaseController {
             // ),
             'listenstatistik' => array(),
         );
-        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau']['beschriftung'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
+        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-dot spacer"></i>';
 
         $disabled_filtern = array();
         if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
@@ -117,7 +114,7 @@ class Mitglieder extends BaseController {
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+            $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
@@ -276,17 +273,14 @@ class Mitglieder extends BaseController {
                 ),
                 'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag (de)aktivieren',
-                'vorschau' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span>',
-                    'klein' => TRUE,
-                ),
+                'vorschau' => '<div class="small"><span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span></div>',
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="de_aktivieren"></span>',
                 'listenstatistik' => array(
                     'summe' => 'wert',
                 ),
             );
 
-            $this->viewdata['werkzeugkasten']['zuweisen'] = array(
+            $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
@@ -356,12 +350,10 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
                 'link' => TRUE,
-                'vorschau' => array(
-                    'beschriftung' => '<div class="row g-0 my-1">
-                        <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                        </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
-                    'klein' => TRUE,
-                ),
+                'vorschau' =>   '<div class="row g-0 my-1 small">'.
+                                    '<div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
+                                '</div>',
+                'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
                 'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
             );
 

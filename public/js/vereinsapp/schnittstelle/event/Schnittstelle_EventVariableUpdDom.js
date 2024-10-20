@@ -1,3 +1,5 @@
+EVENT_VARIABLE_UPD_DOM_MODULE = new Array();
+
 function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
     Schnittstelle_EventDurchfuehren(liste, naechste_aktionen, function (liste) {
         // LISTE AKTUALISIEREN
@@ -76,14 +78,9 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Liste_DateiAktualisieren($(this), liste);
         });
 
-        // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-        $(".rueckmeldung_eingeladen").each(function () {
-            Termine_RueckmeldungEinAusblenden($(this));
-        });
-
-        // RÜCKMELDUNG AKTUALISIEREN
-        $(".zusagen, .absagen").each(function () {
-            Termine_RueckmeldungAktualisieren($(this));
+        // SPEZIAL AKTUALISIEREN
+        $.each(EVENT_VARIABLE_UPD_DOM_MODULE, function () {
+            this();
         });
 
         $(".jetzt").each(function () {

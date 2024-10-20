@@ -61,11 +61,9 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
             <?php if( array_key_exists( 'checkliste', $liste ) ) { ?></label></div><?php } ?>
         </div>
 
-        <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="vorschau text-truncate text-secondary<?php
-        if( array_key_exists( 'klein', $liste['vorschau'] ) AND $liste['vorschau']['klein'] ) echo ' small';
-        if( array_key_exists( 'zentriert', $liste['vorschau'] ) AND $liste['vorschau']['zentriert'] ) echo ' text-center'; ?>">
-            <?php if( array_key_exists( 'beschriftung', $liste['vorschau'] ) ) echo $liste['vorschau']['beschriftung']; ?>
-        </div><?php } ?>
+        <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="vorschau text-truncate text-secondary"><?= $liste['vorschau']; ?></div><?php } ?>
+
+        <?php if( array_key_exists( 'views', $liste ) ) echo $liste['views']; ?>
 
     </li>
 

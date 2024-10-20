@@ -21,12 +21,10 @@ class Notenbank extends BaseController {
                 'h5' => TRUE,
             ),
             'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
-                '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
-                '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
-                '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
-            ),
+            'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
+                            '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
+                            '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
+                            '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
             'listenstatistik' => array(),
         );
 

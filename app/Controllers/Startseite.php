@@ -18,10 +18,7 @@ class Startseite extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
-            'vorschau' => array(
-                'beschriftung' => '<div class="nowrap"><i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
-                'klein' => TRUE,
-            ),
+            'vorschau' => '<div class="nowrap small"><i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
         );
 
         $this->viewdata['liste']['bevorstehende_termine_startseite'] = array(
@@ -41,10 +38,7 @@ class Startseite extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
             'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
-                'klein' => TRUE,
-            ),
+            'vorschau' => '<div class="nowrap small"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
         );
 
@@ -65,12 +59,8 @@ class Startseite extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
             'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<div class="row g-0 my-1">
-                    <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-                'klein' => TRUE,
-            ),
+            'vorschau' => '<div class="row g-0 my-1 small"><div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div></div>',
+            'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
         );
 

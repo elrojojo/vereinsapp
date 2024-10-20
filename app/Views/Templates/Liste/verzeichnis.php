@@ -18,9 +18,9 @@ if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= jso
                     
                     <?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?><a class="btn_verzeichnis_oeffnen stretched-link" target="_blank"></a><?php } ?>
 
-                    <?php if( array_key_exists( 'vorschau', $verzeichnis ) ) { ?><div class="vorschau small text-truncate text-secondary">
-                        <?php if( array_key_exists( 'beschriftung', $verzeichnis['vorschau'] ) ) echo $verzeichnis['vorschau']['beschriftung']; ?>
-                    </div><?php } ?>
+                    <?php if( array_key_exists( 'vorschau', $verzeichnis ) ) { ?><div class="vorschau text-truncate text-secondary"><?= $verzeichnis['vorschau']; ?></div><?php } ?>
+
+                    <?php if( array_key_exists( 'views', $verzeichnis ) ) echo $verzeichnis['views']; ?>
 
                 </li>
 

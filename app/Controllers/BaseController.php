@@ -252,6 +252,7 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_TitelAendern.js?v='.VERSION), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_Init.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeAktualisieren.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeAendern.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeZuweisen.js?v='.VERSION), );

@@ -29,6 +29,6 @@
 
 <div class="d-grid mb-2">
     <button type="button" class="btn btn_filtern_modal_oeffnen btn-outline-primary eigenschaft" data-eigenschaft="filtern_mitglieder" data-liste="mitglieder" data-title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
-        <i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>
+        <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>
     </button>
 </div>

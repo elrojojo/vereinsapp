@@ -23,9 +23,9 @@ class Strafkatalog extends BaseController {
                 'h5' => TRUE,
             ),
             // 'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
-            ),
+            'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i>'.
+                            '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
+                            '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
             'listenstatistik' => array(),
         );
 
@@ -111,9 +111,10 @@ class Strafkatalog extends BaseController {
             'h5' => TRUE,
         ),
         // 'link' => TRUE,
-        'vorschau' => array(
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i><span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
-        ),
+        'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-dot spacer"></i>'.
+                        '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-dot spacer"></i>'.
+                        '<span class="eigenschaft" data-eigenschaft="mitglied_id"></span><i class="bi bi-dot spacer"></i>'.
+                        '<span class="eigenschaft" data-eigenschaft="bemerkung"></span>',
         'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="aktiv"></span>',
         'bedingte_formatierung' => array(
             'klasse' => array(
