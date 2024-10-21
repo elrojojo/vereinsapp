@@ -132,7 +132,7 @@ class Termine extends BaseController {
 
     //------------------------------------------------------------------------------------------------------------------
     public function details( $termin_id ) {
-      if( empty( model(Termin_Model::class)->find( $termin_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        if( empty( model(Termin_Model::class)->find( $termin_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $this->viewdata['element_id'] = $termin_id;
 
@@ -294,6 +294,16 @@ class Termine extends BaseController {
                 'title' => 'Aufgabe erstellen',
             );
         }
+
+        $this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']['filtern'] = array(
+            'klasse_id' => 'btn_filtern_modal_oeffnen',
+            'title' => 'Aufgaben filtern',
+        );
+
+        $this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']['sortieren'] = array(
+            'klasse_id' => 'btn_sortieren_modal_oeffnen',
+            'title' => 'Aufgaben sortieren',
+        );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(

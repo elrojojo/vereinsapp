@@ -123,7 +123,10 @@ class Aufgaben extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'aufgaben.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'aufgaben.verwaltung' )
+             AND !( array_key_exists( 'mitglied_id_geplant', $this->request->getpost() ) AND $this->request->getpost()['mitglied_id_geplant'] == ICH['id']
+                AND array_key_exists( 'id', $this->request->getpost() ) AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id_geplant'] == NULL ) )
+                $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $aufgaben_Model = model(Aufgabe_Model::class);
             $aufgabe = array(
