@@ -96,7 +96,6 @@ Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
 Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
-In der Aufgaben-Übersicht standardmäßig nur offene Aufgaben anzeigen
 Verwaltung-Rechte für Aufgaben berücksichtigen
 
 */

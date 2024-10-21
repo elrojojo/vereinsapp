@@ -6,7 +6,7 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", strafe_id, "strafkatalog");
         Schnittstelle_DomModalOeffnen($neues_modal);
     } else {
-        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
+        if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
         const ajax_data = data;
@@ -34,7 +34,7 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                     Schnittstelle_EventVariableUpdDom,
                 ]);
 
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
@@ -42,7 +42,7 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                 }
             },
             rein_validation_neg_aktion: function (AJAX) {
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);

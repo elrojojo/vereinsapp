@@ -4,18 +4,18 @@ function Strafkatalog_KassenbucheintragDeAktivieren(bestaetigung_einfordern, dom
 
     if (bestaetigung_einfordern && data.aktiv == 0)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du den Kassenbucheintrag " +
+            "Willst du wirklich den Kassenbucheintrag " +
                 Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") +
-                " wirklich aktivieren (Betrag wurde bezahlt)?",
+                " aktivieren (Betrag wurde bezahlt)?",
             title,
             "btn_kassenbucheintrag_de_aktivieren",
             { liste: "strafkatalog", element_id: kassenbucheintrag_id, data: JSON.stringify(data) }
         );
     else if (bestaetigung_einfordern && data.aktiv == 1)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du den Kassenbucheintrag " +
+            "Willst du wirklich den Kassenbucheintrag " +
                 Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") +
-                " wirklich deaktivieren (Betrag wurde nicht bezahlt)?",
+                " deaktivieren (Betrag wurde nicht bezahlt)?",
             title,
             "btn_kassenbucheintrag_de_aktivieren",
             { liste: "strafkatalog", element_id: kassenbucheintrag_id, data: JSON.stringify(data) }

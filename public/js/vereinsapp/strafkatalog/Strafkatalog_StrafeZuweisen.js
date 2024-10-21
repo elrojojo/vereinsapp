@@ -25,9 +25,9 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);
 
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du " +
+            "Willst du wirklich " +
                 Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") +
-                " wirklich die Strafe " +
+                " die Strafe " +
                 Liste_ElementBeschriftungZurueck(strafe_id, "strafkatalog") +
                 " zuweisen?",
             title,
