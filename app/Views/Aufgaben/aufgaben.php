@@ -8,7 +8,7 @@
 
 <?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'aufgaben_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
     view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'mitglieder_auswahl', 'modal' =>

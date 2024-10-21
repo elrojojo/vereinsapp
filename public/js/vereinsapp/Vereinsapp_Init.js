@@ -96,10 +96,7 @@ Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
 Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
-Braucht es liste im Ajax-Array?
-Muss Schnittstelle_DomToastFeuern nicht besser außerhalb der $Modal-Bedingung stehen?
 In der Aufgaben-Übersicht standardmäßig nur offene Aufgaben anzeigen
 Verwaltung-Rechte für Aufgaben berücksichtigen
-Wann braucht es für ein Formular data->aktion und wann braucht es btn->klasse_id?
 
 */

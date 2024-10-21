@@ -19,7 +19,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
         // if (!("mitglied_id_erledigt" in data))
         //     data.mitglied_id_erledigt = Schnittstelle_VariableRausZurueck("mitglied_id_erledigt", aufgabe_id, "aufgaben");
         // if (!("zeitpunkt_erledigt" in data))
-        // data.zeitpunkt_erledigt = Schnittstelle_VariableRausZurueck("zeitpunkt_erledigt", aufgabe_id, "aufgaben").toISO();
+        //     data.zeitpunkt_erledigt = Schnittstelle_VariableRausZurueck("zeitpunkt_erledigt", aufgabe_id, "aufgaben").toISO();
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben");
 
         const neue_ajax_id = AJAXSCHLANGE.length;
