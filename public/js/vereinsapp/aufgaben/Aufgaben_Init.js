@@ -55,16 +55,15 @@ function Aufgaben_Init() {
         );
     });
 
-    // AUFGABE ZUWEISEN
-    $(document).on("click", ".btn_aufgabe_zuweisen", function () {
-        Aufgaben_AufgabeZuweisen(
+    // MITGLIED FÜR AUFGABE EINPLANEN
+    $(document).on("click", ".btn_aufgabe_mitglied_einplanen", function () {
+        Aufgaben_AufgabeMitgliedEinplanen(
             $(this).hasClass("auswahl_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { gegen_element_id: $(this).attr("data-gegen_element_id"), gegen_liste: $(this).attr("data-gegen_liste") },
+            { mitglied_id: $(this).attr("data-element_id"), aufgabe_id: $(this).attr("data-gegen_element_id") },
             $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
+            $(this).attr("data-aufgabe_id")
         );
     });
 }

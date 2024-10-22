@@ -287,7 +287,7 @@ class Mitglieder extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
-                'klasse_id' => array('btn_aufgabe_zuweisen'),
+                'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
                 'title' => 'Aufgabe zuweisen',
                 'listenstatistik' => array(),
             );
