@@ -258,7 +258,7 @@ class Termine extends BaseController {
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
             $this->viewdata['liste']['aufgaben_zum_termin']['zusatzsymbole'] = 
                 '<span class="zusatzsymbol" data-zusatzsymbol="aendern"></span>'.
                 '<span class="zusatzsymbol" data-zusatzsymbol="duplizieren"></span>'.
@@ -288,22 +288,7 @@ class Termine extends BaseController {
                 'klasse_id' => 'btn_sortieren_modal_oeffnen',
                 'title' => 'Mitglieder sortieren',
             );
-
-            $this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']['erstellen'] = array(
-                'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
-                'title' => 'Aufgabe erstellen',
-            );
         }
-
-        $this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Aufgaben filtern',
-        );
-
-        $this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Aufgaben sortieren',
-        );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(

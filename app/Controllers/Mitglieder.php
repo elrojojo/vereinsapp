@@ -252,7 +252,57 @@ class Mitglieder extends BaseController {
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
             'title' => 'Anwesenheiten dokumentieren',
         );
-        
+
+        $this->viewdata['liste']['aufgaben_mitglied_geplant'] = array(
+            'liste' => 'aufgaben',
+            'filtern' => array( array(
+                'verknuepfung' => '&&',
+                'filtern' => array(
+                    array( 'eigenschaft' => 'mitglied_id_geplant', 'operator' => '==', 'wert' => $mitglied_id, ),
+                ),
+            ), ),
+            'sortieren' => array(
+                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+            ),
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+            ),
+            'views' => view( 'Aufgaben/aufgabe' ),
+            'listenstatistik' => array(),
+        );
+
+        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+            $this->viewdata['liste']['aufgaben_mitglied_geplant']['zusatzsymbole'] = 
+                '<span class="zusatzsymbol" data-zusatzsymbol="aendern"></span>'.
+                '<span class="zusatzsymbol" data-zusatzsymbol="duplizieren"></span>'.
+                '<span class="zusatzsymbol" data-zusatzsymbol="loeschen"></span>';
+
+            $this->viewdata['liste']['mitglieder_auswahl'] = array(
+                'liste' => 'mitglieder',
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
+                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
+                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
+                        ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
+                ),
+                'klasse_id' => array('btn_aufgabe_zuweisen'),
+                'title' => 'Aufgabe zuweisen',
+                'listenstatistik' => array(),
+            );
+
+            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
+                'klasse_id' => 'btn_filtern_modal_oeffnen',
+                'title' => 'Mitglieder filtern',
+            );
+
+            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
+                'klasse_id' => 'btn_sortieren_modal_oeffnen',
+                'title' => 'Mitglieder sortieren',
+            );
+        }
+
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied'] = array(
                 'liste' => 'kassenbuch',
