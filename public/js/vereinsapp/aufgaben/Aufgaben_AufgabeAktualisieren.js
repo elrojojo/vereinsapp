@@ -14,9 +14,11 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
             .removeClass("btn-primary")
             .html('<i class="bi bi-' + SYMBOLE["erstellen"]["bootstrap"] + '"></i>');
     } else {
-        if (!Mitglieder_MitgliedBesitztRechtZurueck("aufgaben.verwaltung", ICH["id"]))
-            $btn_aufgabe_mitglied_einplanen.removeClass("auswahl_oeffnen").addClass("bestaetigung_einfordern").addClass("disabled");
-        else $btn_aufgabe_mitglied_einplanen.addClass("auswahl_oeffnen").removeClass("bestaetigung_einfordern").removeClass("disabled");
+        if (!Mitglieder_MitgliedBesitztRechtZurueck("aufgaben.verwaltung", ICH["id"])) {
+            $btn_aufgabe_mitglied_einplanen.removeClass("auswahl_oeffnen").addClass("bestaetigung_einfordern");
+            if (mitglied_id_eingeplant == ICH["id"]) $btn_aufgabe_mitglied_einplanen.removeClass("disabled");
+            else $btn_aufgabe_mitglied_einplanen.addClass("disabled");
+        } else $btn_aufgabe_mitglied_einplanen.addClass("auswahl_oeffnen").removeClass("bestaetigung_einfordern").removeClass("disabled");
         $btn_aufgabe_mitglied_einplanen
             .removeClass("btn-outline-primary")
             .addClass("btn-primary")

@@ -1,1 +1,1 @@
-<button class="btn btn_aufgabe_mitglied_einplanen btn-outline-primary btn-sm" data-liste="aufgaben" data-title="Aufgabe zuweisen"></button>
+<button class="btn btn_aufgabe_mitglied_einplanen btn-outline-primary btn-sm" data-liste="aufgaben" data-title="Mitglied für Aufgabe einplanen"></button>

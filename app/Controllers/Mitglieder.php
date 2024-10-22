@@ -130,7 +130,7 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
-                'title' => 'Strafe zuweisen',
+                'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => array(),
             );
 
@@ -288,7 +288,7 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
                 'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
-                'title' => 'Aufgabe zuweisen',
+                'title' => 'Mitglied für Aufgabe einplanen',
                 'listenstatistik' => array(),
             );
 
@@ -346,7 +346,7 @@ class Mitglieder extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
-                'title' => 'Strafe zuweisen',
+                'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => array(),
             );
 
@@ -712,7 +712,7 @@ class Mitglieder extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['info'] = 'Du kannst dich nicht selbst löschen!';
+        else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
         else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], TRUE );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

@@ -46,7 +46,7 @@ class Strafkatalog extends BaseController {
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 ),
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
-                'title' => 'Strafe zuweisen',
+                'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => array(),
             );
 

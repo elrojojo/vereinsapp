@@ -98,5 +98,7 @@ Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
 Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
 Funktion einführen um Aufgabe wieder freigeben zu können
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
+Form validation für bemerkung mit Regel field_exists durchführen?
+antwort.info immer ausgeben (auch wenn .validation existiert)
 
 */
