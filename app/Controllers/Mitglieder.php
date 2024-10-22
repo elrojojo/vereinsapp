@@ -258,7 +258,7 @@ class Mitglieder extends BaseController {
             'filtern' => array( array(
                 'verknuepfung' => '&&',
                 'filtern' => array(
-                    array( 'eigenschaft' => 'mitglied_id_geplant', 'operator' => '==', 'wert' => $mitglied_id, ),
+                    array( 'eigenschaft' => 'mitglied_id_eingeplant', 'operator' => '==', 'wert' => $mitglied_id, ),
                 ),
             ), ),
             'sortieren' => array(

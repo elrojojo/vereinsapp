@@ -97,5 +97,6 @@ Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
 Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
 Funktion einführen um Aufgabe wieder freigeben zu können
+zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 
 */

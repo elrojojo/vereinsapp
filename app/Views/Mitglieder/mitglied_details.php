@@ -27,12 +27,12 @@
 </div>
 
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) && auth()->user()->can( 'mitglieder.rechte' ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte_vergeben">Rechte</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="verfuegbare_rechte" data-instanz="rechte_vergeben">Rechte</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 </div><?php } ?>
 
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine_mitglied">Termine</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="bevorstehende_termine_mitglied">Termine</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_mitglied'] ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'rueckmeldungen_bemerkung', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
@@ -40,7 +40,7 @@
 </div><?php } ?>
 
 <div class="container mb-3">
-    <div class="text-secondary text-center mb-1">Aufgaben</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_mitglied_geplant">Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_mitglied_geplant'] ) ); ?>
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'aufgaben_basiseigenschaften', 'modal' =>
@@ -52,7 +52,7 @@
 </div>
 
 <?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">
-    <div class="text-secondary text-center mb-1">Offene Kassenbucheinträge</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="kassenbuch" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'strafkatalog_auswahl', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['strafkatalog_auswahl'] ) ) ) ); ?>

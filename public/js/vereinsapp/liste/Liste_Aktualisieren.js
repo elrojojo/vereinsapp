@@ -72,13 +72,4 @@ function Liste_Aktualisieren($liste, liste) {
         if (position == 0) $element.appendTo($liste);
         else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
     });
-
-    // LETZTEN SPACER AUS DER LISTE LÖSCHEN
-    const $letztes_element = $liste.children().last();
-    const $moeglicher_spacer = $letztes_element.children().last();
-    if ($moeglicher_spacer.hasClass("spacer")) $moeglicher_spacer.remove();
-
-    // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if ($liste.children().length === 0) $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').addClass("invisible");
-    else $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').removeClass("invisible");
 }

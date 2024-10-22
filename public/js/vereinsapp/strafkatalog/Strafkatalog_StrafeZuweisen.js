@@ -15,11 +15,11 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
 
     if (auswahl_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, data.gegen_liste + "_auswahl");
-        Schnittstelle_DomModalOeffnen($neues_modal);
         $neues_modal
-            .find("#" + data.gegen_liste + "_auswahl")
+            .find("#" + data.gegen_liste + "_auswahl.liste")
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
+        Schnittstelle_DomModalOeffnen($neues_modal);
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
     } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);

@@ -117,15 +117,15 @@ class Aufgaben extends BaseController {
             'liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['liste']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
             'element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['element_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
-            'mitglied_id_geplant' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id_geplant']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'mitglied_id_eingeplant' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id_eingeplant']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'mitglied_id_erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id_erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'zeitpunkt_erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zeitpunkt_erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'aufgaben.verwaltung' )
-             AND !( array_key_exists( 'mitglied_id_geplant', $this->request->getpost() ) AND $this->request->getpost()['mitglied_id_geplant'] == ICH['id']
-                AND array_key_exists( 'id', $this->request->getpost() ) AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id_geplant'] == NULL ) )
+             AND !( array_key_exists( 'mitglied_id_eingeplant', $this->request->getpost() ) AND $this->request->getpost()['mitglied_id_eingeplant'] == ICH['id']
+                AND array_key_exists( 'id', $this->request->getpost() ) AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id_eingeplant'] == NULL ) )
                 $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $aufgaben_Model = model(Aufgabe_Model::class);
@@ -134,7 +134,7 @@ class Aufgaben extends BaseController {
             );
             if( array_key_exists( 'liste', $this->request->getpost() ) ) $aufgabe['liste'] = $this->request->getpost()['liste'];
             if( array_key_exists( 'element_id', $this->request->getpost() ) ) $aufgabe['element_id'] = $this->request->getpost()['element_id'];
-            if( array_key_exists( 'mitglied_id_geplant', $this->request->getpost() ) ) $aufgabe['mitglied_id_geplant'] = $this->request->getpost()['mitglied_id_geplant'];
+            if( array_key_exists( 'mitglied_id_eingeplant', $this->request->getpost() ) ) $aufgabe['mitglied_id_eingeplant'] = $this->request->getpost()['mitglied_id_eingeplant'];
             if( array_key_exists( 'mitglied_id_erledigt', $this->request->getpost() ) ) $aufgabe['mitglied_id_erledigt'] = $this->request->getpost()['mitglied_id_erledigt'];
             if( array_key_exists( 'zeitpunkt_erledigt', $this->request->getpost() ) ) $aufgabe['zeitpunkt_erledigt'] = $this->request->getpost()['zeitpunkt_erledigt'];
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $aufgabe['bemerkung'] = $this->request->getpost()['bemerkung']; else $aufgabe['bemerkung'] = '';

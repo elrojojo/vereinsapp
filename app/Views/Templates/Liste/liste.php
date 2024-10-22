@@ -12,7 +12,7 @@
     </button><?php } ?>
 </div><?php } ?>
 
-<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-secondary text-end small mb-1">
+<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler invisible text-secondary text-end small mb-1">
     <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
     if( array_key_exists( 'checkliste', $liste ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }
     if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }

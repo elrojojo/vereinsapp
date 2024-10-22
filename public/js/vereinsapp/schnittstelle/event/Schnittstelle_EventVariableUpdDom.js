@@ -12,47 +12,56 @@ function Schnittstelle_EventVariableUpdDom(liste, naechste_aktionen) {
             Liste_ElementAktualisieren($(this), liste);
         });
 
+        // ÜBERSCHRIFT AKTUALISIEREN
+        $('.ueberschrift[data-liste="' + liste + '"]').each(function () {
+            const $ueberschrift = $(this);
+            const instanz = $ueberschrift.attr("data-instanz");
+            if ($("#" + instanz + ".liste").children().length === 0) $ueberschrift.addClass("invisible");
+            else $ueberschrift.removeClass("invisible");
+        });
+
         // LISTENSTATISTIK AKTUALISIEREN
-        $('.listenstatistik[data-liste="' + liste + '"][data-listenstatistik="anzahl"]').each(function () {
-            const $anzahl = $(this);
-            const instanz = $anzahl.attr("data-instanz");
-            if (typeof instanz !== "undefined") {
-                $anzahl.text($('.liste[id="' + instanz + '"]').children().length);
-            }
-        });
-        $('.listenstatistik[data-liste="' + liste + '"][data-listenstatistik="angewaehlt"]').each(function () {
-            const $angewaehlt = $(this);
-            const instanz = $angewaehlt.attr("data-instanz");
-            if (typeof instanz !== "undefined") {
-                $angewaehlt.text($('.liste[id="' + instanz + '"]').find(".check:checked").length);
-            }
-        });
-        $('.listenstatistik[data-liste="' + liste + '"][data-listenstatistik="summe"]').each(function () {
-            const $summe = $(this);
-            const instanz = $summe.attr("data-instanz");
-            const eigenschaft = $summe.attr("data-eigenschaft");
-            if (typeof instanz !== "undefined" && typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
-                let summe = 0;
-                $('.liste[id="' + instanz + '"]')
-                    .children()
-                    .each(function () {
-                        summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste));
-                    });
-                $summe.text(Liste_WertFormatiertZurueck(summe, eigenschaft, liste));
-            }
-        });
-        $('.listenstatistik[data-liste="' + liste + '"][data-listenstatistik="durchschnitt"]').each(function () {
-            const $durchschnitt = $(this);
-            const instanz = $durchschnitt.attr("data-instanz");
-            const eigenschaft = $durchschnitt.attr("data-eigenschaft");
-            if (typeof instanz !== "undefined" && typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
-                let summe = 0;
-                $('.liste[id="' + instanz + '"]')
-                    .children()
-                    .each(function () {
-                        summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste));
-                    });
-                $durchschnitt.text(Liste_WertFormatiertZurueck(summe / $('.liste[id="' + instanz + '"]').children().length, eigenschaft, liste));
+        $('.listenstatistik[data-liste="' + liste + '"]').each(function () {
+            const $listenstatistik = $(this);
+            const $listenstatistik_sammler = $(this).closest(".listenstatistik_sammler");
+            const instanz = $listenstatistik.attr("data-instanz");
+            const $liste = $("#" + instanz + ".liste");
+
+            if ($liste.children().length === 0) $listenstatistik_sammler.addClass("invisible");
+            else {
+                $listenstatistik_sammler.removeClass("invisible");
+
+                switch ($listenstatistik.attr("data-listenstatistik")) {
+                    case "anzahl": {
+                        $listenstatistik.text($liste.children().length);
+                        break;
+                    }
+                    case "angewaehlt": {
+                        $listenstatistik.text($liste.find(".check:checked").length);
+                        break;
+                    }
+                    case "summe": {
+                        const eigenschaft = $listenstatistik.attr("data-eigenschaft");
+                        if (typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
+                            let summe = 0;
+                            $liste.children().each(function () {
+                                summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste));
+                            });
+                            $listenstatistik.text(Liste_WertFormatiertZurueck(summe, eigenschaft, liste));
+                        }
+                        break;
+                    }
+                    case "durchschnitt": {
+                        const eigenschaft = $listenstatistik.attr("data-eigenschaft");
+                        if (typeof instanz !== "undefined" && typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
+                            let summe = 0;
+                            $liste.children().each(function () {
+                                summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste));
+                            });
+                            $listenstatistik.text(Liste_WertFormatiertZurueck(summe / $liste.children().length, eigenschaft, liste));
+                        }
+                    }
+                }
             }
         });
 

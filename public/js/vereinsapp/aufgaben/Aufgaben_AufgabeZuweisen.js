@@ -19,7 +19,7 @@ function Aufgaben_AufgabeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, dom,
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, data.gegen_liste + "_auswahl");
         Schnittstelle_DomModalOeffnen($neues_modal);
         $neues_modal
-            .find("#" + data.gegen_liste + "_auswahl")
+            .find("#" + data.gegen_liste + "_auswahl.liste")
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
         Schnittstelle_EventVariableUpdDom(data.gegen_liste);
@@ -30,5 +30,5 @@ function Aufgaben_AufgabeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, dom,
             "btn_aufgabe_zuweisen",
             { liste: liste, element_id: element_id, gegen_liste: data.gegen_liste, gegen_element_id: data.gegen_element_id }
         );
-    else Aufgaben_AufgabeAendern(false, dom, { mitglied_id_geplant: mitglied_id }, undefined, aufgabe_id);
+    else Aufgaben_AufgabeAendern(false, dom, { mitglied_id_eingeplant: mitglied_id }, undefined, aufgabe_id);
 }
