@@ -22,7 +22,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     // Zusatzsymbol für aktiv
     if (zusatzsymbol == "aktiv") {
         let aktiv = "aktiv";
-        if (LISTEN[liste].tabelle[element_id].aktiv == 0) aktiv = "inaktiv";
+        if (LISTEN[liste].tabelle[element_id].aktiv === 0) aktiv = "inaktiv";
 
         $zusatzsymbol.html(
             '<i class="bi bi-' +

@@ -127,7 +127,8 @@ class Vereinsapp extends BaseConfig
             'element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID geplant', 'typ' => 'zahl' ),
-            'erledigt' => array( 'beschriftung' => 'Zeitpunkt erledigt', 'typ' => 'zeitpunkt' ),
+            'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ), // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
@@ -141,7 +142,7 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
-            'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),             // JAVA
+            'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),              // JAVA
         ),
 
         'rueckmeldungen' => array(
@@ -261,7 +262,11 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
+
             'liste' => LISTEN,
+
+            'erledigt_janein' => JANEIN,
+
         ),
 
         'termine' => array(
@@ -344,6 +349,7 @@ class Vereinsapp extends BaseConfig
             'element_id',
             'mitglied_id',
             'erledigt',
+            'erledigt_janein',
             'erstellung',
         ),
 
@@ -414,6 +420,7 @@ class Vereinsapp extends BaseConfig
             'titel',
             'mitglied_id',
             'erledigt',
+            'erledigt_janein',
             'erstellung',
         ),
 
@@ -480,6 +487,7 @@ class Vereinsapp extends BaseConfig
         'aufgaben' => array(
             'liste',
             'mitglied_id',
+            'erledigt_janein',
         ),
 
         'termine' => array(

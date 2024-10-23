@@ -114,7 +114,7 @@ class Aufgaben extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['liste']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['liste']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['aufgaben']['liste'] ) ).']', 'permit_empty' ] ],
             'element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['element_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
@@ -125,18 +125,18 @@ class Aufgaben extends BaseController {
         else if( !auth()->user()->can( 'aufgaben.verwaltung' )
             AND  !( array_key_exists( 'mitglied_id', $this->request->getpost() ) AND array_key_exists( 'id', $this->request->getpost() )
                 AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id'] AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == NULL )
-                    OR ( $this->request->getpost()['mitglied_id'] == NULL     AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) )
-            ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+                    OR ( $this->request->getpost()['mitglied_id'] == NULL      AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
+            AND  !( array_key_exists( 'erledigt', $this->request->getpost() ) AND array_key_exists( 'id', $this->request->getpost() ) AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )
+            ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $aufgaben_Model = model(Aufgabe_Model::class);
             $aufgabe = array(
                 'titel' => $this->request->getpost()['titel'],
             );
-            if( array_key_exists( 'liste', $this->request->getpost() ) ) $aufgabe['liste'] = $this->request->getpost()['liste'];
-            if( array_key_exists( 'element_id', $this->request->getpost() ) ) $aufgabe['element_id'] = $this->request->getpost()['element_id'];
-            if( array_key_exists( 'mitglied_id', $this->request->getpost() ) AND !empty( $this->request->getpost()['mitglied_id'] ) )
-                $aufgabe['mitglied_id'] = $this->request->getpost()['mitglied_id']; else $aufgabe['mitglied_id'] = NULL;
-            if( array_key_exists( 'erledigt', $this->request->getpost() ) ) $aufgabe['erledigt'] = $this->request->getpost()['erledigt'];
+            if( array_key_exists( 'liste', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['liste'] ) ) $aufgabe['liste'] = $this->request->getpost()['liste']; else $aufgabe['liste'] = NULL; }
+            if( array_key_exists( 'element_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['element_id'] ) ) $aufgabe['element_id'] = $this->request->getpost()['element_id']; else $aufgabe['element_id'] = NULL; }
+            if( array_key_exists( 'mitglied_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['mitglied_id'] ) ) $aufgabe['mitglied_id'] = $this->request->getpost()['mitglied_id']; else $aufgabe['mitglied_id'] = NULL; }
+            if( array_key_exists( 'erledigt', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['erledigt'] ) ) $aufgabe['erledigt'] = $this->request->getpost()['erledigt']; else $aufgabe['erledigt'] = NULL; }
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $aufgabe['bemerkung'] = $this->request->getpost()['bemerkung']; else $aufgabe['bemerkung'] = '';
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $aufgaben_Model->update( $this->request->getpost()['id'], $aufgabe );

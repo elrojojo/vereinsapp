@@ -9,12 +9,10 @@ function Schnittstelle_AjaxInDieSchlange(AJAX) {
         url: BASE_URL + AJAX.url,
         method: "post",
         data: AJAX.data,
+        data_original: new Object(),
         dataType: "json",
         beforeSend: function (ajax, ajaxQueue) {
-            if (isObject(ajaxQueue) && "ajax_id" in ajaxQueue) {
-                const AJAX = AJAXSCHLANGE[Number(ajaxQueue.ajax_id)];
-                Schnittstelle_AjaxRaus(AJAX);
-            }
+            if (isObject(ajaxQueue) && "ajax_id" in ajaxQueue) Schnittstelle_AjaxRaus(AJAXSCHLANGE[Number(ajaxQueue.ajax_id)]);
         },
         success: function (antwort) {
             if (isObject(antwort) && "ajax_id" in antwort) {
@@ -31,10 +29,8 @@ function Schnittstelle_AjaxInDieSchlange(AJAX) {
             }
         },
         complete: function (ajax) {
-            if (isObject(ajax) && "responseJSON" in ajax && isObject(ajax.responseJSON) && "ajax_id" in ajax.responseJSON) {
-                const AJAX = AJAXSCHLANGE[Number(ajax.responseJSON.ajax_id)];
-                Schnittstelle_AjaxRein(AJAX);
-            }
+            if (isObject(ajax) && "responseJSON" in ajax && isObject(ajax.responseJSON) && "ajax_id" in ajax.responseJSON)
+                Schnittstelle_AjaxRein(AJAXSCHLANGE[Number(ajax.responseJSON.ajax_id)]);
         },
     };
 

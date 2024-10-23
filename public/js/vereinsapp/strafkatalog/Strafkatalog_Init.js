@@ -113,7 +113,6 @@ function Strafkatalog_Init() {
         Strafkatalog_KassenbucheintragDeAktivieren(
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { aktiv: Schnittstelle_VariableRausZurueck("aktiv", $(this).attr("data-element_id"), "kassenbuch") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );

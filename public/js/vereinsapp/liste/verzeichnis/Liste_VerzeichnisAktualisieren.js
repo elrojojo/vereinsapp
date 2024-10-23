@@ -66,7 +66,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                 .attr("data-basis", JSON.stringify(neue_basis));
 
             // Unterverzeichnis wird hinzugefügt (je nachdem, wo es im Verzeichnis positioniert ist)
-            if (position == 0) $neues_unterverzeichnis.appendTo($verzeichnis);
+            if (position === 0) $neues_unterverzeichnis.appendTo($verzeichnis);
             else
                 $neues_unterverzeichnis.insertAfter(
                     $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]')
@@ -86,7 +86,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
             $neue_datei.attr("data-liste", liste).attr("data-datei", datei);
 
             // Datei wird hinzugefügt (je nachdem, wo sie im Verzeichnis positioniert ist)
-            if (position == 0) {
+            if (position === 0) {
                 if (unterverzeichnisse_gefiltert_sortiert.length > 0)
                     $neue_datei.insertAfter(
                         $verzeichnis.children(
@@ -103,7 +103,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     // UNTERVERZEICHNISSE IM DOM SORTIEREN
     $.each(unterverzeichnisse_gefiltert_sortiert, function (position, unterverzeichnis) {
         const $unterverzeichnis = $verzeichnis.children(".unterverzeichnis[data-unterverzeichnis='" + unterverzeichnis + "']");
-        if (position == 0) $unterverzeichnis.appendTo($verzeichnis);
+        if (position === 0) $unterverzeichnis.appendTo($verzeichnis);
         else
             $unterverzeichnis.insertAfter(
                 $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]')
@@ -113,7 +113,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     // DATEIEN IM DOM SORTIEREN
     $.each(dateien_gefiltert_sortiert, function (position, datei) {
         const $datei = $verzeichnis.children('.datei[data-datei="' + datei + '"]');
-        if (position == 0) {
+        if (position === 0) {
             if (unterverzeichnisse_gefiltert_sortiert.length > 0)
                 $datei.insertAfter(
                     $verzeichnis.children(

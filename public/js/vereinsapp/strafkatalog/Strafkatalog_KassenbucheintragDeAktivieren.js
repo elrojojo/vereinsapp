@@ -1,28 +1,20 @@
-function Strafkatalog_KassenbucheintragDeAktivieren(bestaetigung_einfordern, dom, data, title, kassenbucheintrag_id) {
+function Strafkatalog_KassenbucheintragDeAktivieren(bestaetigung_einfordern, dom, title, kassenbucheintrag_id) {
     if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
-    if ("aktiv" in data && typeof data.aktiv !== "undefined") data.aktiv = Number(data.aktiv);
+    let aktiv = Schnittstelle_VariableRausZurueck("aktiv", kassenbucheintrag_id, "kassenbuch");
 
-    if (bestaetigung_einfordern && data.aktiv == 0)
+    if (bestaetigung_einfordern) {
+        let nachricht;
+        if (aktiv === 0) nachricht = " aktivieren (Betrag wurde bezahlt)?";
+        else nachricht = " deaktivieren (Betrag wurde nicht bezahlt)?";
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich den Kassenbucheintrag " +
-                Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") +
-                " aktivieren (Betrag wurde bezahlt)?",
+            "Willst du wirklich den Kassenbucheintrag " + Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + nachricht,
             title,
             "btn_kassenbucheintrag_de_aktivieren",
-            { liste: "strafkatalog", element_id: kassenbucheintrag_id, data: JSON.stringify(data) }
+            { element_id: kassenbucheintrag_id }
         );
-    else if (bestaetigung_einfordern && data.aktiv == 1)
-        Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich den Kassenbucheintrag " +
-                Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") +
-                " deaktivieren (Betrag wurde nicht bezahlt)?",
-            title,
-            "btn_kassenbucheintrag_de_aktivieren",
-            { liste: "strafkatalog", element_id: kassenbucheintrag_id, data: JSON.stringify(data) }
-        );
-    else {
-        if (data.aktiv == 0) data.aktiv = 1;
-        else data.aktiv = 0;
-        Strafkatalog_KassenbucheintragAendern(false, dom, data, title, kassenbucheintrag_id);
+    } else {
+        if (aktiv === 0) aktiv = 1;
+        else aktiv = 0;
+        Strafkatalog_KassenbucheintragAendern(false, dom, { aktiv: aktiv }, title, kassenbucheintrag_id);
     }
 }

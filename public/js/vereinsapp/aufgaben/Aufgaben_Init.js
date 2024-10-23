@@ -76,6 +76,16 @@ function Aufgaben_Init() {
             $(this).attr("data-aufgabe_id")
         );
     });
+
+    // AUFGABE ALS OFEN/ERLEDIGT MARKIEREN
+    $(document).on("click", ".btn_aufgabe_offen_erledigt_markieren", function () {
+        Aufgabe_AufgabeOffenErledigtMarkieren(
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            $(this).attr("data-title"),
+            $(this).attr("data-aufgabe_id")
+        );
+    });
 }
 
 function Aufgaben_InitEventVariableUpdDom() {

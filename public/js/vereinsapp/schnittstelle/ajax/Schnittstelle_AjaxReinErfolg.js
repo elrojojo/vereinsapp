@@ -17,6 +17,12 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
     }
 
     function ReinErfolg(AJAX) {
+        // AJAX.data wird entsprechend den Einträgen in AJAX.data_original zurückgesetzt
+        $.each(AJAX.data_original, function (eigenschaft, wert) {
+            AJAX.data[eigenschaft] = wert;
+            delete AJAX.data_original[eigenschaft];
+        });
+
         // WENN DIE VALIDATION FEHLSCHLÄGT
         if ("validation" in AJAX.antwort) {
             if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);

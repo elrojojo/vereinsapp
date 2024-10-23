@@ -11,12 +11,11 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
         const ajax_dom = dom;
         const ajax_data = data;
         ajax_data.id = aufgabe_id;
-        // if (!("liste" in data)) data.liste = Schnittstelle_VariableRausZurueck("liste", aufgabe_id, "aufgaben");
-        // if (!("element_id" in data)) data.element_id = Schnittstelle_VariableRausZurueck("element_id", aufgabe_id, "aufgaben");
+        if ("liste" in data && typeof data.liste === "undefined") data.liste = null;
+        if ("element_id" in data && typeof data.element_id === "undefined") data.element_id = null;
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", aufgabe_id, "aufgaben");
         if ("mitglied_id" in data && typeof data.mitglied_id === "undefined") data.mitglied_id = null;
-        // if (!("erledigt" in data))
-        //     data.erledigt = Schnittstelle_VariableRausZurueck("erledigt", aufgabe_id, "aufgaben").toISO();
+        if ("erledigt" in data && typeof data.erledigt === "undefined") data.erledigt = null;
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben");
 
         const neue_ajax_id = AJAXSCHLANGE.length;
