@@ -18,7 +18,7 @@
             <?php endforeach; ?></ul>
         </div>
         <div class="col-auto opacity-50 bg-white me-2">
-            <button class="btn btn-outline-secondary border-top-0 rounded-0 rounded-bottom h5" type="button" data-bs-dismiss="offcanvas"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></button>
+            <button type="button" class="btn btn-outline-secondary border-top-0 rounded-0 rounded-bottom h5" data-bs-dismiss="offcanvas"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></button>
         </div>
     </div>
 </div>

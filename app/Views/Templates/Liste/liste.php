@@ -1,5 +1,5 @@
 <?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="h5 text-end">
-    <?php foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button class="btn werkzeug text-<?php
+    <?php foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="button" class="btn werkzeug text-<?php
         if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
         if( array_key_exists( 'klasse_id', $werkzeug ) ) {
             if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;

@@ -66,6 +66,16 @@ function Aufgaben_Init() {
             $(this).attr("data-aufgabe_id")
         );
     });
+
+    // MITGLIED FÜR AUFGABE AUSPLANEN
+    $(document).on("click", ".btn_aufgabe_mitglied_ausplanen", function () {
+        Aufgaben_AufgabeMitgliedAusplanen(
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            $(this).attr("data-title"),
+            $(this).attr("data-aufgabe_id")
+        );
+    });
 }
 
 function Aufgaben_InitEventVariableUpdDom() {

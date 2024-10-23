@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= site_url(); ?>"><img class="title" src="<?= base_url().VEREINSAPP_LOGO; ?>" style="width:30px;" /></a>
         <span class="navbar-text"><?= CONTROLLERS[ AKTIVER_CONTROLLER ]['beschriftung']; ?><i class="bi-<?= CONTROLLERS[ AKTIVER_CONTROLLER ]['symbol']; ?> float-start me-1"></i><span id="status" class="float-end ms-1 text-success"><i class="bi-circle-fill"></i></span></span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <button type="button" class="navbar-toggler"data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
