@@ -17,5 +17,5 @@ function Aufgaben_AufgabeMitgliedEinplanen(auswahl_oeffnen, bestaetigung_einford
             "btn_aufgabe_mitglied_einplanen",
             { aufgabe_id: aufgabe_id, element_id: ICH["id"] }
         );
-    else Aufgaben_AufgabeAendern(false, dom, { mitglied_id_eingeplant: mitglied_id }, undefined, aufgabe_id);
+    else Aufgaben_AufgabeAendern(false, dom, { mitglied_id: mitglied_id }, undefined, aufgabe_id);
 }

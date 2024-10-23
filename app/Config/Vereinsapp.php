@@ -126,9 +126,8 @@ class Vereinsapp extends BaseConfig
             'liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
             'element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'mitglied_id_eingeplant' => array( 'beschriftung' => 'Mitglied-ID geplant', 'typ' => 'zahl' ),
-            'mitglied_id_erledigt' => array( 'beschriftung' => 'Mitglied-ID erledigt', 'typ' => 'zahl' ),
-            'zeitpunkt_erledigt' => array( 'beschriftung' => 'Zeitpunkt erledigt', 'typ' => 'zeitpunkt' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID geplant', 'typ' => 'zahl' ),
+            'erledigt' => array( 'beschriftung' => 'Zeitpunkt erledigt', 'typ' => 'zeitpunkt' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
@@ -343,9 +342,8 @@ class Vereinsapp extends BaseConfig
         'aufgaben' => array(
             'liste',
             'element_id',
-            'mitglied_id_eingeplant',
-            'mitglied_id_erledigt',
-            'zeitpunkt_erledigt',
+            'mitglied_id',
+            'erledigt',
             'erstellung',
         ),
 
@@ -414,9 +412,8 @@ class Vereinsapp extends BaseConfig
         'aufgaben' => array(
             'liste',
             'titel',
-            'mitglied_id_eingeplant',
-            'mitglied_id_erledigt',
-            'zeitpunkt_erledigt',
+            'mitglied_id',
+            'erledigt',
             'erstellung',
         ),
 
@@ -482,8 +479,7 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
             'liste',
-            'mitglied_id_eingeplant',
-            'mitglied_id_erledigt',
+            'mitglied_id',
         ),
 
         'termine' => array(

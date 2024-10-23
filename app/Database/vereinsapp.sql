@@ -17,9 +17,8 @@ CREATE TABLE `vereinsapp_aufgaben` (
   `liste` varchar(50) DEFAULT NULL,
   `element_id` int(11) UNSIGNED DEFAULT NULL,
   `titel` varchar(100) NOT NULL,
-  `mitglied_id_eingeplant` int(11) UNSIGNED DEFAULT NULL,
-  `mitglied_id_erledigt` int(11) UNSIGNED DEFAULT NULL,
-  `zeitpunkt_erledigt` datetime DEFAULT NULL,
+  `mitglied_id` int(11) UNSIGNED DEFAULT NULL,
+  `erledigt` datetime DEFAULT NULL,
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -339,8 +338,7 @@ CREATE TABLE `vereinsapp_termine_rueckmeldungen` (
 --
 ALTER TABLE `vereinsapp_aufgaben`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `mitglied_id_eingeplant` (`mitglied_id_eingeplant`),
-  ADD KEY `mitglied_id_erledigt` (`mitglied_id_erledigt`);
+  ADD KEY `mitglied_id` (`mitglied_id`),
 
 --
 -- Indizes für die Tabelle `vereinsapp_migrations`
@@ -555,8 +553,7 @@ ALTER TABLE `vereinsapp_termine_rueckmeldungen`
 -- Constraints der Tabelle `vereinsapp_aufgaben`
 --
 ALTER TABLE `vereinsapp_aufgaben`
-  ADD CONSTRAINT `vereinsapp_aufgaben_mitglied_id_erledigt_foreign` FOREIGN KEY (`mitglied_id_erledigt`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `vereinsapp_aufgaben_mitglied_id_eingeplant_foreign` FOREIGN KEY (`mitglied_id_eingeplant`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `vereinsapp_aufgaben_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints der Tabelle `vereinsapp_mitglieder_login_eingeloggt_bleiben`

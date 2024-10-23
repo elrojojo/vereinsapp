@@ -12,9 +12,8 @@ class Aufgabe_Model extends Model {
         'liste',
         'element_id',
         'titel',
-        'mitglied_id_eingeplant',
-        'mitglied_id_erledigt',
-        'zeitpunkt_erledigt',
+        'mitglied_id',
+        'erledigt',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;
