@@ -284,6 +284,8 @@ class Strafkatalog extends BaseController {
             }
         }
 
+        $ajax_antwort['info'] = "Test";
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

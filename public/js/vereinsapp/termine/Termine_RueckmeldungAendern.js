@@ -50,7 +50,8 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 else
                     Schnittstelle_DomToastFeuern(
-                        Liste_ElementBeschriftungZurueck(AJAX.data.id, "rueckmeldungen") + " konnte nicht gespeichert werden."
+                        Liste_ElementBeschriftungZurueck(AJAX.data.id, "rueckmeldungen") + " konnte nicht gespeichert werden.",
+                        "danger"
                     );
             },
         };

@@ -48,7 +48,8 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 else
                     Schnittstelle_DomToastFeuern(
-                        Liste_ElementBeschriftungZurueck(AJAX.data.id, "strafkatalog") + " konnte nicht gespeichert werden."
+                        Liste_ElementBeschriftungZurueck(AJAX.data.id, "strafkatalog") + " konnte nicht gespeichert werden.",
+                        "danger"
                     );
             },
         };

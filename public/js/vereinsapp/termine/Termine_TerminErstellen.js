@@ -42,7 +42,11 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                else Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(AJAX.data.id, "termine") + " konnte nicht gespeichert werden.");
+                else
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementBeschriftungZurueck(AJAX.data.id, "termine") + " konnte nicht gespeichert werden.",
+                        "danger"
+                    );
             },
         };
 

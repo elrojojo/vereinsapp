@@ -23,6 +23,8 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
             delete AJAX.data_original[eigenschaft];
         });
 
+        if ("info" in AJAX.antwort) console.log("INFO", JSON.stringify(AJAX.antwort.info));
+
         // WENN DIE VALIDATION FEHLSCHLÄGT
         if ("validation" in AJAX.antwort) {
             if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);
@@ -30,8 +32,6 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
 
         // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
         else {
-            if ("info" in AJAX.antwort) console.log("INFO", JSON.stringify(AJAX.antwort.info));
-
             if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
         }
 
