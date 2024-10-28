@@ -100,9 +100,10 @@ Funktion einführen um Aufgabe wieder freigeben zu können
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
 antwort.info immer ausgeben (auch wenn .validation existiert)
-Serverseitig sicherstellen, dass mitglied_id nicht geänert wird, wenn die Aufgabe erledigt ist
-Abstand zwischen Zusatzsymbolen einfügen
-Strafkatalog_KassenbucheintragDeAktivieren umbauen zu Strafkatalog_KassenbucheintragOffenErledigtMarkieren
+Serverseitig sicherstellen, dass mitglied_id nicht geändert wird, wenn die Aufgabe erledigt ist
+Abstand zwischen Zusatzsymbolen einfügen (auch Liste_ElementZusatzsymbolAktualisieren prüfen)
 Aufgaben_AufgabeMitgliedEinplanen und Aufgaben_AufgabeMitgliedAusplanen umbauen analog zu Aufgabe_AufgabeOffenErledigtMarkieren
+) + " konnte nicht gespeichert werden." ändern zu , "danger") + " konnte nicht gespeichert werden."
+LISTEN[liste].tabelle überarbeiten mit Schnittstelle_VariableRausZurueck
 
 */

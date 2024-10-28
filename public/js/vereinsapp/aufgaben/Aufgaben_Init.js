@@ -43,18 +43,6 @@ function Aufgaben_Init() {
         );
     });
 
-    // AUFGABE LÖSCHEN
-    $(document).on("click", ".btn_aufgabe_loeschen", function () {
-        Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "aufgaben"
-        );
-    });
-
     // MITGLIED FÜR AUFGABE EINPLANEN
     $(document).on("click", ".btn_aufgabe_mitglied_einplanen", function () {
         Aufgaben_AufgabeMitgliedEinplanen(
@@ -84,6 +72,18 @@ function Aufgaben_Init() {
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             $(this).attr("data-title"),
             $(this).attr("data-aufgabe_id")
+        );
+    });
+
+    // AUFGABE LÖSCHEN
+    $(document).on("click", ".btn_aufgabe_loeschen", function () {
+        Liste_ElementLoeschen(
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            "aufgaben"
         );
     });
 }

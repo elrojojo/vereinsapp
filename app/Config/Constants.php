@@ -141,7 +141,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'aendern' => array( 'bootstrap' => 'pencil' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
-    'de_aktivieren' => array ( 'bootstrap' => 'check2-circle' ),
+    'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
@@ -176,8 +176,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
-    'aktiv' => array( 'bootstrap' => 'check-circle' ),
-    'inaktiv' => array( 'bootstrap' => 'circle' ),
+    'offen' => array( 'bootstrap' => 'circle' ),
+    'erledigt' => array( 'bootstrap' => 'check-circle' ),
 
     'verzeichnis' => array( 'bootstrap' => 'folder' ),
     'verzeichnis_geoeffnet' => array( 'bootstrap' => 'folder2-open' ),

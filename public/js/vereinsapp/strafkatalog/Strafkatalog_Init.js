@@ -108,13 +108,13 @@ function Strafkatalog_Init() {
         );
     });
 
-    // KASSENBUCHEINTRAG (DE)AKTIVIEREN
-    $(document).on("click", ".btn_kassenbucheintrag_de_aktivieren", function () {
-        Strafkatalog_KassenbucheintragDeAktivieren(
+    // KASSENBUCHEINTRAG ALS OFEN/ERLEDIGT MARKIEREN
+    $(document).on("click", ".btn_kassenbucheintrag_offen_erledigt_markieren", function () {
+        Strafkatalog_KassenbucheintragOffenErledigtMarkieren(
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            $(this).attr("data-kassenbucheintrag_id")
         );
     });
 

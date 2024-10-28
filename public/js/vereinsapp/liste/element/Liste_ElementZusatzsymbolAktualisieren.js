@@ -16,22 +16,27 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     // Zusatzsymbol für abwesend
     if (zusatzsymbol == "abwesend" && LISTEN[liste].tabelle[element_id].abwesend) $zusatzsymbol.html(SYMBOLE["abwesend"]["html"]);
 
-    // Zusatzsymbol für de_aktivieren
-    if (zusatzsymbol == "de_aktivieren") $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["de_aktivieren"]["bootstrap"] + ' text-primary me-1"></i>');
+    // Zusatzsymbol für offen_erledigt_markieren
+    if (zusatzsymbol == "offen_erledigt_markieren")
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + ' text-primary me-1"></i>');
 
-    // Zusatzsymbol für aktiv
-    if (zusatzsymbol == "aktiv") {
-        let aktiv = "aktiv";
-        if (LISTEN[liste].tabelle[element_id].aktiv === 0) aktiv = "inaktiv";
+    // Zusatzsymbol für offen_erledigt
+    if (zusatzsymbol == "offen_erledigt") {
+        let offen_erledigt;
+        if (Schnittstelle_VariableRausZurueck("erledigt", element_id, liste) === null) offen_erledigt = "offen";
+        else offen_erledigt = "erledigt";
 
         $zusatzsymbol.html(
             '<i class="bi bi-' +
-                SYMBOLE[aktiv]["bootstrap"] +
-                ' btn_kassenbucheintrag_de_aktivieren text-primary me-1" data-element_id=' +
+                SYMBOLE[offen_erledigt]["bootstrap"] +
+                ' btn_kassenbucheintrag_offen_erledigt_markieren bestaetigung_einfordern text-primary me-1" data-' +
+                LISTEN[liste].element +
+                "_id=" +
                 element_id +
-                ' data-title="Kassenbucheintrag (de)aktivieren" role="button"></i>'
+                ' data-title="Kassenbucheintrag als offen/erledigt markieren" role="button"></i>'
         );
     }
+
     // Zusatzsymbol für Kategorie
     if (zusatzsymbol == "kategorie") $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][LISTEN[liste].tabelle[element_id].kategorie]["symbol"]);
 

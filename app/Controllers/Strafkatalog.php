@@ -112,7 +112,7 @@ class Strafkatalog extends BaseController {
         'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
                         '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
                         '<span class="eigenschaft" data-eigenschaft="mitglied_id"></span>',
-        'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="aktiv"></span>',
+        'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="offen_erledigt"></span>',
         'bedingte_formatierung' => array(
             'klasse' => array(
                 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ),
@@ -127,9 +127,9 @@ class Strafkatalog extends BaseController {
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['werkzeugkasten']['de_aktivieren'] = array(
-                'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
-                'title' => 'Kassenbucheintrag (de)aktivieren',
+            $this->viewdata['werkzeugkasten']['offen_erledigt_markieren'] = array(
+                'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
+                'title' => 'Kassenbucheintrag als offen/erledigt markieren',
             );
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -261,8 +261,8 @@ class Strafkatalog extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal' ] ],
-            'aktiv' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['aktiv']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['kassenbuch']['aktiv'] ) ).']', ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'erledigt' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date', 'permit_empty' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -272,9 +272,9 @@ class Strafkatalog extends BaseController {
             $kassenbucheintrag = array(
                 'titel' => $this->request->getpost()['titel'],
                 'wert' => $this->request->getPost()['wert'],
-                'aktiv' => $this->request->getPost()['aktiv'],
                 'mitglied_id' => $this->request->getPost()['mitglied_id'],
             );
+            if( array_key_exists( 'erledigt', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['erledigt'] ) ) $kassenbucheintrag['erledigt'] = $this->request->getpost()['erledigt']; else $kassenbucheintrag['erledigt'] = NULL; }
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $kassenbucheintrag['bemerkung'] = '';
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );

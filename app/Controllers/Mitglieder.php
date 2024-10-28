@@ -259,6 +259,7 @@ class Mitglieder extends BaseController {
                 'verknuepfung' => '&&',
                 'filtern' => array(
                     array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
+                    array( 'operator' => '==', 'eigenschaft' => 'erledigt_janein', 'wert' => false ),
                 ),
             ), ),
             'sortieren' => array(
@@ -310,7 +311,7 @@ class Mitglieder extends BaseController {
                     'verknuepfung' => '&&',
                     'filtern' => array(
                         array( 'operator' => '==', 'eigenschaft' => 'mitglied_id', 'wert' => $mitglied_id ),
-                        array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => 0 ),
+                        array( 'operator' => '==', 'eigenschaft' => 'erledigt_janein', 'wert' => false ),
                     ),
                 ), ),
                 'sortieren' => array(
@@ -321,10 +322,10 @@ class Mitglieder extends BaseController {
                 'beschriftung' => array(
                     'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
-                'klasse_id' => array('btn_kassenbucheintrag_de_aktivieren', 'bestaetigung_einfordern'),
-                'title' => 'Kassenbucheintrag (de)aktivieren',
+                'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
+                'title' => 'Kassenbucheintrag als offen/erledigt markieren',
                 'vorschau' => '<div class="small"><span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span></div>',
-                'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="de_aktivieren"></span>',
+                'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="offen_erledigt_markieren"></span>',
                 'listenstatistik' => array(
                     'summe' => 'wert',
                 ),

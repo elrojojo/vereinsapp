@@ -38,7 +38,6 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
         Strafkatalog_KassenbucheintragErstellen(false, dom, {
             titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog"),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
-            aktiv: 0,
             mitglied_id: mitglied_id,
             bemerkung: "Strafe",
         });

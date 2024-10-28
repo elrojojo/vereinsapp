@@ -11,8 +11,8 @@ class Strafkatalog_Kassenbucheintrag_Model extends Model {
     protected $allowedFields  = [
         'titel',
         'wert',
-        'aktiv',
         'mitglied_id',
+        'erledigt',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;

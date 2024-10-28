@@ -16,6 +16,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "funktion":
         case "vorstandschaft":
         case "aktiv":
+        case "erledigt_janein":
         case "abwesend":
         case "kategorie":
         case "ich_rueckgemeldet":
@@ -24,6 +25,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             break;
         case "erstellung":
         case "letzte_aktivitaet":
+        case "erledigt":
         case "created_at":
         case "updated_at":
             if (wert == null) wert_formatiert = "nie";

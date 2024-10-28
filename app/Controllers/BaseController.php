@@ -254,7 +254,7 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_StrafeZuweisen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragAendern.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragDeAktivieren.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragOffenErledigtMarkieren.js?v='.VERSION), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/notenbank/Notenbank_TitelErstellen.js?v='.VERSION), );

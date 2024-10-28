@@ -10,8 +10,8 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
 
         const ajax_dom = dom;
         const ajax_data = data;
+        if (!("erledigt" in ajax_data)) ajax_data.erledigt = DateTime.now().toSQL();
         if (!("mitglied_id" in ajax_data)) ajax_data.mitglied_id = ICH["id"]; // Prototypisch! -> TODO!
-        if (!("aktiv" in ajax_data)) ajax_data.aktiv = 1;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

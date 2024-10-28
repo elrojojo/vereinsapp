@@ -269,8 +269,8 @@ CREATE TABLE `vereinsapp_strafkatalog_kassenbuch` (
   `id` int(11) UNSIGNED NOT NULL,
   `titel` varchar(100) NOT NULL,
   `wert` decimal(10,2) NOT NULL,
-  `aktiv` int(1) UNSIGNED NOT NULL,
   `mitglied_id` int(11) UNSIGNED NOT NULL,
+  `erledigt` datetime DEFAULT NULL,
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -338,7 +338,7 @@ CREATE TABLE `vereinsapp_termine_rueckmeldungen` (
 --
 ALTER TABLE `vereinsapp_aufgaben`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `mitglied_id` (`mitglied_id`),
+  ADD KEY `mitglied_id` (`mitglied_id`);
 
 --
 -- Indizes für die Tabelle `vereinsapp_migrations`

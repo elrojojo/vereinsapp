@@ -173,8 +173,9 @@ class Vereinsapp extends BaseConfig
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
-            'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ), // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
@@ -302,7 +303,7 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
 
-            'aktiv' => JANEIN,
+            'erledigt_janein' => JANEIN,
 
         ),
 
@@ -373,8 +374,9 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'wert',
-            'aktiv',
             'mitglied_id',
+            'erledigt',
+            'erledigt_janein',
             'erstellung',
         ),
 
@@ -446,8 +448,9 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'titel',
             'wert',
-            'aktiv',
             'mitglied_id',
+            'erledigt',
+            'erledigt_janein',
             'erstellung',
         ),
 
@@ -505,7 +508,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
-            'aktiv',
+            'erledigt_janein',
         ),
         
         'notenbank' => array(
