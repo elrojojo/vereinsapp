@@ -112,7 +112,7 @@ class Strafkatalog extends BaseController {
         'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
                         '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
                         '<span class="eigenschaft" data-eigenschaft="mitglied_id"></span>',
-        'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="offen_erledigt"></span>',
+        'zusatzsymbole' => array('offen_erledigt'),
         'bedingte_formatierung' => array(
             'klasse' => array(
                 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ),

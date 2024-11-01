@@ -33,7 +33,7 @@ class Mitglieder extends BaseController {
             // 'title' => 'Titel für bspw. ein Modal',
             'vorschau' => '',
             // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="geburtstag"></span><span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'zusatzsymbole' => array('geburtstag'),
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
@@ -65,7 +65,7 @@ class Mitglieder extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'zusatzsymbole' => array('kategorie'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
                 'liste' => 'termine',
@@ -207,7 +207,7 @@ class Mitglieder extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'zusatzsymbole' => array('kategorie'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
                 'liste' => 'termine',
@@ -273,10 +273,7 @@ class Mitglieder extends BaseController {
         );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-            $this->viewdata['liste']['aufgaben_mitglied_geplant']['zusatzsymbole'] = 
-                '<span class="zusatzsymbol" data-zusatzsymbol="aendern"></span>'.
-                '<span class="zusatzsymbol" data-zusatzsymbol="duplizieren"></span>'.
-                '<span class="zusatzsymbol" data-zusatzsymbol="loeschen"></span>';
+            $this->viewdata['liste']['aufgaben_mitglied_geplant']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
                 'liste' => 'mitglieder',
@@ -325,7 +322,7 @@ class Mitglieder extends BaseController {
                 'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag als offen/erledigt markieren',
                 'vorschau' => '<div class="small"><span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span></div>',
-                'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="offen_erledigt_markieren"></span>',
+                'zusatzsymbole' => array('offen_erledigt_markieren'),
                 'listenstatistik' => array(
                     'summe' => 'wert',
                 ),
@@ -405,7 +402,7 @@ class Mitglieder extends BaseController {
                                     '<div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
                                 '</div>',
                 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
-                'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+                'zusatzsymbole' => array('kategorie'),
             );
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(

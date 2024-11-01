@@ -15,7 +15,7 @@ function Liste_AuswertungenErgebnisZurueck(auswertungen_tabelle, liste_tabelle, 
     $.each(auswertungen_tabelle, function () {
         const auswertung = this;
         const element_id = auswertung[LISTEN[liste].element + "_id"];
-        const wert = LISTEN[liste].tabelle[element_id][gruppieren];
+        const wert = Schnittstelle_VariableRausZurueck(gruppieren, element_id, liste);
 
         ergebnis[wert][auswertung.status].push(element_id);
         ergebnis_element_ids[wert].push(element_id);
@@ -24,7 +24,7 @@ function Liste_AuswertungenErgebnisZurueck(auswertungen_tabelle, liste_tabelle, 
     // ergebnis[wert][0] in ergebnis integrieren
     $.each(liste_tabelle, function (position, element) {
         const element_id = element.id;
-        const wert = LISTEN[liste].tabelle[element_id][gruppieren];
+        const wert = Schnittstelle_VariableRausZurueck(gruppieren, element_id, liste);
 
         if (!ergebnis_element_ids[wert].includes(element_id)) ergebnis[wert][0].push(element_id);
     });

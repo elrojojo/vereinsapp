@@ -30,7 +30,7 @@ class Termine extends BaseController {
                                 '<div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>'.
                             '</div>',
             'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'zusatzsymbole' => array('kategorie'),
             'listenstatistik' => array(),
         );
 
@@ -47,7 +47,7 @@ class Termine extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'zusatzsymbole' => array('geburtstag'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
                 'liste' => 'mitglieder',
@@ -193,7 +193,7 @@ class Termine extends BaseController {
             'beschriftung' => array(
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="abwesend"></span>',
+            'zusatzsymbole' => array('geburtstag'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
                 'liste' => 'mitglieder',
@@ -259,10 +259,7 @@ class Termine extends BaseController {
         );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-            $this->viewdata['liste']['aufgaben_zum_termin']['zusatzsymbole'] = 
-                '<span class="zusatzsymbol" data-zusatzsymbol="aendern"></span>'.
-                '<span class="zusatzsymbol" data-zusatzsymbol="duplizieren"></span>'.
-                '<span class="zusatzsymbol" data-zusatzsymbol="loeschen"></span>';
+            $this->viewdata['liste']['aufgaben_mitglied_geplant']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
                 'liste' => 'mitglieder',

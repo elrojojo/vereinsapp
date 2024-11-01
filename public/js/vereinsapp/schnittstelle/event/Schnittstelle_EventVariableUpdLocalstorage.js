@@ -8,7 +8,6 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste, naechste_aktionen) {
                 if ("alter" in element) delete element["alter"];
                 if ("alter_geburtstag" in element) delete element["alter_geburtstag"];
                 if ("geburtstag" in element) delete element["geburtstag"];
-                if ("abwesend" in element) delete element["abwesend"];
                 if ("ich_rueckmeldung_id" in element) delete element["ich_rueckmeldung_id"];
                 if ("ich_rueckgemeldet" in element) delete element["ich_rueckgemeldet"];
                 if ("ich_eingeladen" in element) delete element["ich_eingeladen"];

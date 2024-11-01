@@ -8,17 +8,14 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     // Zusatzsymbol für Geburtstag
     if (
         zusatzsymbol == "geburtstag" &&
-        LISTEN[liste].tabelle[element_id].geburtstag <= DateTime.now() &&
-        DateTime.now() <= LISTEN[liste].tabelle[element_id].geburtstag.plus({ days: 1 })
+        Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste) <= DateTime.now() &&
+        DateTime.now() <= Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste).plus({ days: 1 })
     )
-        $zusatzsymbol.html(SYMBOLE["geburtstag"]["html"]);
-
-    // Zusatzsymbol für abwesend
-    if (zusatzsymbol == "abwesend" && LISTEN[liste].tabelle[element_id].abwesend) $zusatzsymbol.html(SYMBOLE["abwesend"]["html"]);
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["geburtstag"]["bootstrap"] + ' text-primary"></i>');
 
     // Zusatzsymbol für offen_erledigt_markieren
     if (zusatzsymbol == "offen_erledigt_markieren")
-        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + ' text-primary me-1"></i>');
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + ' text-primary"></i>');
 
     // Zusatzsymbol für offen_erledigt
     if (zusatzsymbol == "offen_erledigt") {
@@ -29,7 +26,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
         $zusatzsymbol.html(
             '<i class="bi bi-' +
                 SYMBOLE[offen_erledigt]["bootstrap"] +
-                ' btn_kassenbucheintrag_offen_erledigt_markieren bestaetigung_einfordern text-primary me-1" data-' +
+                ' btn_kassenbucheintrag_offen_erledigt_markieren bestaetigung_einfordern text-primary" data-' +
                 LISTEN[liste].element +
                 "_id=" +
                 element_id +
@@ -38,19 +35,20 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     }
 
     // Zusatzsymbol für Kategorie
-    if (zusatzsymbol == "kategorie") $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][LISTEN[liste].tabelle[element_id].kategorie]["symbol"]);
+    if (zusatzsymbol == "kategorie")
+        $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][Schnittstelle_VariableRausZurueck("kategorie", element_id, liste)]["symbol"]);
 
     // Zusatzsymbol für Datei
     if (zusatzsymbol == "datei") {
         const datei = $element.attr("data-datei");
         const punkt = datei.lastIndexOf(".");
         const typ = datei.slice(punkt + 1);
-        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary me-1"></i>');
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
     }
 
     // Zusatzsymbol für Verzeichnis
     if (zusatzsymbol == "verzeichnis") {
-        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + ' text-primary me-1"></i>');
+        $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + ' text-primary"></i>');
     }
 
     // Zusatzsymbol für Ändern-Werkzeug
@@ -60,7 +58,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
                 SYMBOLE["aendern"]["bootstrap"] +
                 " btn_" +
                 LISTEN[liste].element +
-                '_aendern formular_oeffnen text-primary me-1" data-liste="' +
+                '_aendern formular_oeffnen text-primary" data-liste="' +
                 liste +
                 '" data-element_id="' +
                 element_id +
@@ -77,7 +75,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
                 SYMBOLE["duplizieren"]["bootstrap"] +
                 " btn_" +
                 LISTEN[liste].element +
-                '_duplizieren formular_oeffnen text-primary me-1" data-liste="' +
+                '_duplizieren formular_oeffnen text-primary" data-liste="' +
                 liste +
                 '" data-element_id="' +
                 element_id +
@@ -94,7 +92,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
                 SYMBOLE["loeschen"]["bootstrap"] +
                 " btn_" +
                 LISTEN[liste].element +
-                '_loeschen bestaetigung_einfordern text-danger me-1" data-liste="' +
+                '_loeschen bestaetigung_einfordern text-danger" data-liste="' +
                 liste +
                 '" data-element_id="' +
                 element_id +
@@ -127,7 +125,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
             $zusatzsymbol.html(
                 '<i class="bi bi-' +
                     SYMBOLE["bemerkung"]["bootstrap"] +
-                    ' stretched-link-unwirksam text-primary ms-1 " data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
+                    ' stretched-link-unwirksam text-primary" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
                     bemerkung +
                     '" role="button"></i>'
             );

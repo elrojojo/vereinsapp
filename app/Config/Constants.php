@@ -165,8 +165,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
 
-    'abwesend' => array( 'bootstrap' => 'airplane', 'html' => '&#9992' ),
-    'geburtstag' => array( 'bootstrap' => 'cake2', 'html' => '&#127873' ),
+    'geburtstag' => array( 'bootstrap' => 'cake2' ),
 
     'datum' => array( 'bootstrap' => 'calendar-event' ),
     'zeitraum' => array( 'bootstrap' => 'calendar-range' ),

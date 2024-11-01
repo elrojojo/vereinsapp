@@ -17,7 +17,6 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "vorstandschaft":
         case "aktiv":
         case "erledigt_janein":
-        case "abwesend":
         case "kategorie":
         case "ich_rueckgemeldet":
         case "ich_eingeladen":

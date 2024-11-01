@@ -39,7 +39,7 @@ class Startseite extends BaseController {
             ),
             'link' => TRUE,
             'vorschau' => '<div class="nowrap small"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'zusatzsymbole' => array('kategorie'),
         );
 
         $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = array(
@@ -61,7 +61,7 @@ class Startseite extends BaseController {
             'link' => TRUE,
             'vorschau' => '<div class="row g-0 my-1 small"><div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div></div>',
             'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
+            'zusatzsymbole' => array('kategorie'),
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

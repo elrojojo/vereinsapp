@@ -110,7 +110,6 @@ class Vereinsapp extends BaseConfig
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
             'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
-            'abwesend' => array( 'beschriftung' => 'Abwesend', 'typ' => 'vorgegebene_werte' ),  // JAVA
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
             'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),  // PHP
         ),
@@ -254,8 +253,6 @@ class Vereinsapp extends BaseConfig
             'vorstandschaft' => JANEIN,
 
             'aktiv' => JANEIN,
-
-            'abwesend' => JANEIN,
 
         ),
 

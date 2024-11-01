@@ -61,7 +61,7 @@ Terminserie / Regeltermine
 Termin als ics exportieren
 Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Verzeichnis filtern und sortieren
-Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
+Abwesenheiten wieder einführen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
 
@@ -96,11 +96,8 @@ Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen
 Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
 Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
-Funktion einführen um Aufgabe wieder freigeben zu können
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
 Serverseitig sicherstellen, dass mitglied_id nicht geändert wird, wenn die Aufgabe erledigt ist
-Abstand zwischen Zusatzsymbolen einfügen (auch Liste_ElementZusatzsymbolAktualisieren prüfen)
-LISTEN[liste].tabelle überarbeiten mit Schnittstelle_VariableRausZurueck
 
 */

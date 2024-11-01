@@ -56,8 +56,8 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 
             <?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?><a class="stretched-link"></a><?php }?>
 
-            <div class="float-end zusatzsymbole"><span class="zusatzsymbol" data-zusatzsymbol="bemerkung"></span><?php
-                if( array_key_exists( 'zusatzsymbole', $liste ) ) echo $liste['zusatzsymbole'];
+            <div class="float-end zusatzsymbole"><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span><?php
+                if( array_key_exists( 'zusatzsymbole', $liste ) ) foreach( $liste['zusatzsymbole'] as $zusatzsymbol ) echo '<span class="zusatzsymbol ms-2" data-zusatzsymbol="'.$zusatzsymbol.'"></span>';
             ?></div>
 
             <?php if( array_key_exists( 'checkliste', $liste ) ) { ?></label></div><?php } ?>
