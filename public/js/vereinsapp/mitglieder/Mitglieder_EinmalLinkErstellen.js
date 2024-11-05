@@ -33,14 +33,16 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 ]);
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
-                if (AJAX.data.email)
-                    Schnittstelle_DomToastFeuern(
-                        "Einmal-Link für " +
-                            Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") +
-                            " wurde erfolgreich per Email zugeschickt."
-                    );
-                else {
+                if (AJAX.data.email) {
+                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
+                        Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                        Schnittstelle_DomToastFeuern(
+                            "Einmal-Link für " +
+                                Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") +
+                                " wurde erfolgreich per Email zugeschickt."
+                        );
+                    }
+                } else {
                     if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.find(".einmal_link").exists())
                         AJAX.dom.$formular.find(".einmal_link").val(AJAX.antwort.einmal_link);
                     if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
