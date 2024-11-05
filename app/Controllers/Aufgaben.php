@@ -19,7 +19,7 @@ class Aufgaben extends BaseController {
                 'h5' => TRUE,
             ),
             // 'link' => TRUE,
-            'vorschau' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span>',
+            'vorschau' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="element"></span>',
             'views' => view( 'Aufgaben/aufgabe' ),
             'listenstatistik' => array(),
         );
@@ -122,12 +122,24 @@ class Aufgaben extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        // Die Aufgabe darf nicht erstellt oder geändert werden, wenn das Recht zur Verwaltung der Aufgaben nicht vergeben ist
         else if( !auth()->user()->can( 'aufgaben.verwaltung' )
-            AND  !( array_key_exists( 'mitglied_id', $this->request->getpost() ) AND array_key_exists( 'id', $this->request->getpost() )
+        // und man die Aufgabe sich nicht zuweisen will bzw. sich nicht mehr zuweisen will
+            AND  !( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
                 AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id'] AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == NULL )
                     OR ( $this->request->getpost()['mitglied_id'] == NULL      AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
-            AND  !( array_key_exists( 'erledigt', $this->request->getpost() ) AND array_key_exists( 'id', $this->request->getpost() ) AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )
+        // und man die Aufgabe nicht als erledigt markieren will
+            AND  !( array_key_exists( 'id', $this->request->getpost() AND array_key_exists( 'erledigt', $this->request->getpost() ) )
+                AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )
             ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        // Das zugeordnete Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist
+        else if( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
+        AND $this->request->getpost()['mitglied_id'] !== model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id']
+        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== NULL ) $ajax_antwort['validation'] = 'Das zugeordnete Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist!';
+        // Die Aufgabe darf nicht als offen markiert werden, wenn der Aufgabe ein Mitglied zugeordnet ist
+        else if( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'erledigt', $this->request->getpost() )
+        AND $this->request->getpost()['erledigt'] !== NULL
+        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== NULL ) $ajax_antwort['validation'] = 'Die Aufgabe darf nicht als offen markiert werden, wenn der Aufgabe ein Mitglied zugeordnet ist!';
         else {
             $aufgaben_Model = model(Aufgabe_Model::class);
             $aufgabe = array(

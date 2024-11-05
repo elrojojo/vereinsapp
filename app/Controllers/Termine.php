@@ -259,7 +259,7 @@ class Termine extends BaseController {
         );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-            $this->viewdata['liste']['aufgaben_mitglied_geplant']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            $this->viewdata['liste']['aufgaben_zum_termin']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
                 'liste' => 'mitglieder',

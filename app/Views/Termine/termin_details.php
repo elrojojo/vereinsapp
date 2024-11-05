@@ -37,7 +37,7 @@
 </div>
 
 <div class="container mb-3">
-    <div class="text-secondary text-center mb-1">Aufgaben</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_zum_termin">Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_zum_termin'] ) ); ?>
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'aufgaben_basiseigenschaften', 'modal' =>

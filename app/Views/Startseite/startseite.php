@@ -28,6 +28,11 @@
 </div>
 
 <div class="container mb-3">
+  <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="aufgaben_offen_startseite">Meine offenen Aufgaben</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_offen_startseite'] ) ); ?>
+</div>
+
+<div class="container mb-3">
   <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="termine_ausstehende_rueckmeldung">Termine ohne Rückmeldung</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_ausstehende_rueckmeldung'] ) ); ?>
 </div>

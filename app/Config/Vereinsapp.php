@@ -95,7 +95,7 @@ class Vereinsapp extends BaseConfig
 
         'mitglieder' => array(
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
-            'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ),  // PHP
+            'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ), // PHP
             'vorname' => array(  'beschriftung' => 'Vorname', 'typ' => 'text' ),
             'nachname' => array(  'beschriftung' => 'Nachname', 'typ' => 'text' ),
             'geburt' => array( 'beschriftung' => 'Geboren am', 'typ' => 'zeitpunkt' ),
@@ -110,8 +110,8 @@ class Vereinsapp extends BaseConfig
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
             'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
             'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
-            'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),  // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),              // PHP
+            'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ), // PHP
         ),
 
         'vergebene_rechte' => array(
@@ -124,12 +124,13 @@ class Vereinsapp extends BaseConfig
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
             'element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
+            'element' => array( 'beschriftung' => 'Zugeordnetes Element (Liste und ID)', 'typ' => 'text' ), // JAVA
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID geplant', 'typ' => 'zahl' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ), // JAVA
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),       // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
         ),
 
         'termine' => array(
@@ -174,9 +175,9 @@ class Vereinsapp extends BaseConfig
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ), // JAVA
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),   // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),              // PHP
         ),
 
         'notenbank' => array(
@@ -343,12 +344,12 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'liste',
-            'element_id',
-            'mitglied_id',
-            'erledigt',
+            // 'liste',
+            // 'element_id',
+            // 'mitglied_id',
+            // 'erledigt',
             'erledigt_janein',
-            'erstellung',
+            // 'erstellung',
         ),
 
         'termine' => array(
@@ -415,7 +416,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'liste',
+            // 'liste',
             'titel',
             'mitglied_id',
             'erledigt',
@@ -485,7 +486,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'liste',
+            // 'liste',
             'mitglied_id',
             'erledigt_janein',
         ),
@@ -641,6 +642,6 @@ class Vereinsapp extends BaseConfig
      * soll, dann muss der jetzige Zeitpunkt definiert werden
      * Winterzeit: +01:00 / Sommerzeit: +02:00
      */
-    public $force_localstorage_reset_zeitpunkt = '2024-01-31T00:00:00.000+02:00';
+    public $force_localstorage_reset_zeitpunkt = '2024-01-31T00:00:00.000+01:00';
 
 }

@@ -253,27 +253,51 @@ class Mitglieder extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
-        $this->viewdata['liste']['aufgaben_mitglied_geplant'] = array(
-            'liste' => 'aufgaben',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
-                    array( 'operator' => '==', 'eigenschaft' => 'erledigt_janein', 'wert' => false ),
+        if( auth()->user()->can( 'mitglieder.rechte' ) ) {
+
+            $disabled_filtern = array();
+            $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+            if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] );
+            if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $verfuegbares_recht['id'] );
+            $this->viewdata['liste']['rechte_vergeben'] = array(
+                'liste' => 'verfuegbare_rechte',
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
                 ),
-            ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
-            'views' => view( 'Aufgaben/aufgabe' ),
-            'listenstatistik' => array(),
-        );
+                'checkliste' => 'vergebene_rechte',
+                'gegen_liste' => 'mitglieder',
+                'gegen_element_id' => $mitglied_id,
+                'disabled' => array(
+                    'liste' => 'verfuegbare_rechte',
+                    'filtern' => array( array(
+                        'verknuepfung' => '||',
+                        'filtern' => $disabled_filtern,
+                    ), ),
+                ),
+            );
+
+        }
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-            $this->viewdata['liste']['aufgaben_mitglied_geplant']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+
+            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = array(
+                'liste' => 'aufgaben',
+                'filtern' => array( array(
+                    'verknuepfung' => '&&',
+                    'filtern' => array(
+                        array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
+                        array( 'operator' => '==', 'eigenschaft' => 'erledigt_janein', 'wert' => false ),
+                    ),
+                ), ),
+                'sortieren' => array(
+                    array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+                ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                ),
+                'vorschau' => '<span class="eigenschaft" data-eigenschaft="element"></span>',
+                'views' => view( 'Aufgaben/aufgabe' ),
+            );
 
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
                 'liste' => 'mitglieder',
@@ -299,6 +323,33 @@ class Mitglieder extends BaseController {
                 'klasse_id' => 'btn_sortieren_modal_oeffnen',
                 'title' => 'Mitglieder sortieren',
             );
+            
+        }
+
+        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+
+            $this->viewdata['liste']['bevorstehende_termine_mitglied'] = array(
+                'liste' => 'termine',
+                'filtern' => array( array(
+                    'verknuepfung' => '&&',
+                    'filtern' => array(
+                        array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+                    ),
+                ), ),
+                'sortieren' => array(
+                    array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
+                ),
+                'beschriftung' => array(
+                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                ),
+                'link' => TRUE,
+                'vorschau' =>   '<div class="row g-0 my-1 small">'.
+                                    '<div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
+                                '</div>',
+                'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
+                'zusatzsymbole' => array('kategorie'),
+            );
+
         }
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
@@ -360,50 +411,6 @@ class Mitglieder extends BaseController {
         }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-            if( auth()->user()->can( 'mitglieder.rechte' ) ) {
-                $disabled_filtern = array();
-                $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
-                if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] );
-                if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $verfuegbares_recht['id'] );
-                $this->viewdata['liste']['rechte_vergeben'] = array(
-                    'liste' => 'verfuegbare_rechte',
-                    'beschriftung' => array(
-                        'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
-                    ),
-                    'checkliste' => 'vergebene_rechte',
-                    'gegen_liste' => 'mitglieder',
-                    'gegen_element_id' => $mitglied_id,
-                    'disabled' => array(
-                        'liste' => 'verfuegbare_rechte',
-                        'filtern' => array( array(
-                            'verknuepfung' => '||',
-                            'filtern' => $disabled_filtern,
-                        ), ),
-                    ),
-                        );
-            }
-
-            $this->viewdata['liste']['bevorstehende_termine_mitglied'] = array(
-                'liste' => 'termine',
-                'filtern' => array( array(
-                    'verknuepfung' => '&&',
-                    'filtern' => array(
-                        array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-                    ),
-                ), ),
-                'sortieren' => array(
-                    array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
-                ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
-                'link' => TRUE,
-                'vorschau' =>   '<div class="row g-0 my-1 small">'.
-                                    '<div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
-                                '</div>',
-                'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
-                'zusatzsymbole' => array('kategorie'),
-            );
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
@@ -413,7 +420,6 @@ class Mitglieder extends BaseController {
                 'klasse_id' => array('btn_mitglied_einmal_link_email', 'bestaetigung_einfordern'),
                 'title' => 'Einmal-Link per Email zuschicken',
             );
-                        
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
                 'title' => 'Mitglied ändern',

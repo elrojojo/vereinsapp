@@ -42,6 +42,25 @@ class Startseite extends BaseController {
             'zusatzsymbole' => array('kategorie'),
         );
 
+        $this->viewdata['liste']['aufgaben_offen_startseite'] = array(
+            'liste' => 'aufgaben',
+            'filtern' => array( array(
+                'verknuepfung' => '&&',
+                'filtern' => array(
+                    array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => ICH['id'], ),
+                    array( 'operator' => '==', 'eigenschaft' => 'erledigt_janein', 'wert' => false ),
+                ),
+            ), ),
+            'sortieren' => array(
+                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
+            ),
+            'beschriftung' => array(
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+            ),
+            'vorschau' => '<span class="eigenschaft" data-eigenschaft="element"></span>',
+            'views' => view( 'Aufgaben/aufgabe' ),
+        );
+
         $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = array(
             'liste' => 'termine',
             'filtern' => array( array( 
