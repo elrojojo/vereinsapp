@@ -11,6 +11,8 @@ const JANEIN = <?= json_encode( JANEIN ) ?>;
 const WOCHENTAGE_KURZ = <?= json_encode( WOCHENTAGE_KURZ ) ?>;
 const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;
 
+const LISTEN = <?= json_encode( LISTEN ) ?>;
+const ELEMENTE = <?= json_encode( ELEMENTE ) ?>;
 const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
 

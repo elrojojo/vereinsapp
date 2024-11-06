@@ -1,14 +1,18 @@
-LISTEN.aufgaben = {
-    controller: "aufgaben",
-    element: "aufgabe",
-    beschriftung: [{ eigenschaft: "titel" }],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenAufgaben,
+LISTEN.aufgaben.element_ergaenzen_aktion = function (aufgabe) {
+    if (aufgabe["erledigt"] === null) aufgabe["erledigt_janein"] = false;
+    else aufgabe["erledigt_janein"] = true;
+
+    if (aufgabe["liste"] !== null && aufgabe["element_id"] !== null) aufgabe["element"] = { liste: aufgabe["liste"], id: aufgabe["element_id"] };
+    else aufgabe["element"] = null;
 };
 
 function Aufgaben_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE.push(Aufgaben_InitEventVariableUpdDom);
+    EVENT_VARIABLE_UPD_DOM_MODULE.push(function () {
+        // AUFGABE AKTUALISIEREN
+        $('.element[data-liste="aufgaben"]').each(function () {
+            Aufgaben_AufgabeAktualisieren($(this));
+        });
+    });
 
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
@@ -85,12 +89,5 @@ function Aufgaben_Init() {
             $(this).attr("data-element_id"),
             "aufgaben"
         );
-    });
-}
-
-function Aufgaben_InitEventVariableUpdDom() {
-    // AUFGABE AKTUALISIEREN
-    $('.element[data-liste="aufgaben"]').each(function () {
-        Aufgaben_AufgabeAktualisieren($(this));
     });
 }

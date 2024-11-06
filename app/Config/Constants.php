@@ -99,6 +99,152 @@ define('EVENT_PRIORITY_HIGH', 10);
 |--------------------------------------------------------------------------*/
 
 defined('LISTEN') OR define( 'LISTEN', array(
+    'mitglieder' => array(
+        'beschriftung' => 'Mitglieder',
+        'controller' => 'mitglieder',
+        'element' => 'mitglied',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array(),
+    ),
+    'verfuegbare_rechte' => array(
+        'beschriftung' => 'Verfügbare Rechte',
+        'controller' => 'mitglieder',
+        'element' => 'verfuegbares_recht',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array(),
+    ),
+    'vergebene_rechte' => array(
+        'beschriftung' => 'Vergebene Rechte',
+        'controller' => 'mitglieder',
+        'element' => 'vergebenes_recht',
+        'verlinkte_listen' => array( 'mitglieder', 'verfuegbare_rechte' ),
+        'abhaengig_von' => array(),
+    ),
+
+    'aufgaben' => array(
+        'beschriftung' => 'Aufgaben',
+        'controller' => 'aufgaben',
+        'element' => 'aufgabe',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array(),
+    ),
+
+    'termine' => array(
+        'beschriftung' => 'Termine',
+        'controller' => 'termine',
+        'element' => 'termin',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array( 'rueckmeldungen' ),
+    ),
+    'rueckmeldungen' => array(
+        'beschriftung' => 'Rückmeldungen',
+        'controller' => 'termine',
+        'element' => 'rueckmeldung',
+        'verlinkte_listen' => array( 'termine', 'mitglieder'),
+        'abhaengig_von' => array(),
+    ),
+    'anwesenheiten' => array(
+        'beschriftung' => 'Anwesenheiten',
+        'controller' => 'termine',
+        'element' => 'anwesenheit',
+        'verlinkte_listen' => array( 'termine', 'mitglieder'),
+        'abhaengig_von' => array(),
+    ),
+
+    'strafkatalog' => array(
+        'beschriftung' => 'Strafkatalog',
+        'controller' => 'strafkatalog',
+        'element' => 'strafe',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array(),
+    ),
+    'kassenbuch' => array(
+        'beschriftung' => 'Kassenbuch',
+        'controller' => 'strafkatalog',
+        'element' => 'kassenbucheintrag',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array(),
+    ),
+
+    'notenbank' => array(
+        'beschriftung' => 'Notenbank',
+        'controller' => 'notenbank',
+        'element' => 'titel',
+        'verlinkte_listen' => array(),
+        'abhaengig_von' => array(),
+    ),
+) );
+
+defined('ELEMENTE') OR define( 'ELEMENTE', array(
+    'mitglied' => array(
+        'beschriftung' => 'Mitglied',
+        'liste' => 'mitglieder',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'vorname' ),
+            array( 'eigenschaft' => 'nachname', 'prefix' => ' ' )
+        ),
+    ),
+    'verfuegbares_recht' => array(
+        'beschriftung' => 'Verfügbares Recht',
+        'liste' => 'verfuegbare_rechte',
+        'element_beschriftung' => array(),
+    ),
+    'vergebenes_recht' => array(
+        'beschriftung' => 'Vergebenes Recht',
+        'liste' => 'vergebene_rechte',
+        'element_beschriftung' => array(),
+    ),
+
+    'aufgabe' => array(
+        'beschriftung' => 'Aufgabe',
+        'liste' => 'aufgaben',
+        'element_beschriftung' => array( array( 'eigenschaft' => 'titel' ) ),
+    ),
+
+    'termin' => array(
+        'beschriftung' => 'Termin',
+        'liste' => 'termine',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+    'rueckmeldung' => array(
+        'beschriftung' => 'Rückmeldung',
+        'liste' => 'rueckmeldungen',
+        'element_beschriftung' => array(),
+    ),
+    'anwesenheit' => array(
+        'beschriftung' => 'Anwesenheit',
+        'liste' => 'anwesenheiten',
+        'element_beschriftung' => array(),
+    ),
+
+    'strafe' => array(
+        'beschriftung' => 'Strafe',
+        'liste' => 'strafkatalog',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+    'kassenbucheintrag' => array(
+        'beschriftung' => 'Kassenbucheintrag',
+        'liste' => 'kassenbuch',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+
+    'titel' => array(
+        'beschriftung' => 'Titel',
+        'liste' => 'notenbank',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel_nr', 'prefix' => '[', 'suffix' => '] ' ),
+            array( 'eigenschaft' => 'titel' )
+        ),
+    ),
 ) );
 
 defined('JANEIN') OR define( 'JANEIN', array(

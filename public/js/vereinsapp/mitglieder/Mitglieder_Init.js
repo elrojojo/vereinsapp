@@ -1,21 +1,15 @@
-LISTEN.verfuegbare_rechte = {
-    controller: "mitglieder",
-    element: "verfuegbares_recht",
-};
+LISTEN.mitglieder.element_ergaenzen_aktion = function (mitglied) {
+    if ("geburt" in mitglied) {
+        mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
 
-LISTEN.vergebene_rechte = {
-    controller: "mitglieder",
-    element: "vergebenes_recht",
-    verlinkte_listen: ["mitglieder", "verfuegbare_rechte"],
-};
+        mitglied["geburtstag"] = DateTime.fromFormat(mitglied["geburt"].toFormat("dd.MM.") + DateTime.now().toFormat("yyyy"), "dd.MM.yyyy");
+        if (mitglied["geburtstag"] < DateTime.now().startOf("day"))
+            mitglied["geburtstag"] = mitglied["geburtstag"].plus({
+                years: 1,
+            });
 
-LISTEN.mitglieder = {
-    controller: "mitglieder",
-    element: "mitglied",
-    beschriftung: [{ eigenschaft: "vorname" }, { eigenschaft: "nachname", prefix: " " }],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenMitglieder,
+        mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
+    }
 };
 
 function Mitglieder_Init() {

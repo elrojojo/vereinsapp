@@ -1,5 +1,3 @@
-const LISTEN = new Object();
-
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();

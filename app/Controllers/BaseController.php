@@ -212,12 +212,6 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdLocalstorage.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenMitglieder.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenAufgaben.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenTermine.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenStrafkatalog.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenKassenbuch.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventElementErgaenzenNotenbank.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_NaechsteAktion.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventDurchfuehren.js?v='.VERSION), );

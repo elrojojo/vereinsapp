@@ -1,19 +1,6 @@
-LISTEN.kassenbuch = {
-    controller: "strafkatalog",
-    element: "kassenbucheintrag",
-    beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "wert", prefix: " (", suffix: ")" }],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenKassenbuch,
-};
-
-LISTEN.strafkatalog = {
-    controller: "strafkatalog",
-    element: "strafe",
-    beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "wert", prefix: " (", suffix: ")" }],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenStrafkatalog,
+LISTEN.kassenbuch.element_ergaenzen_aktion = function (kassenbucheintrag) {
+    if (kassenbucheintrag["erledigt"] === null) kassenbucheintrag["erledigt_janein"] = false;
+    else kassenbucheintrag["erledigt_janein"] = true;
 };
 
 function Strafkatalog_Init() {

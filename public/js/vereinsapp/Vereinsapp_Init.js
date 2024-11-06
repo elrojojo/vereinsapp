@@ -67,7 +67,6 @@ Link zu Github neben die Version
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
-Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
@@ -93,9 +92,9 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen
-Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
-Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
+Liste zu Aufgabe implementieren
+Element zu Aufgabe implementieren
 
 */

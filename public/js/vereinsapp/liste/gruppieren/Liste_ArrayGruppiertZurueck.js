@@ -6,13 +6,15 @@ function Liste_ArrayGruppiertZurueck(array, gruppieren) {
         const gruppieren_werte = new Array();
         $.each(array, function () {
             const element = this;
-            const wert = element[gruppieren];
+            if (gruppieren in element) {
+                const wert = element[gruppieren];
 
-            if (!gruppieren_werte.includes(wert)) {
-                gruppieren_werte.push(wert);
-                array_gruppiert[wert] = new Array();
+                if (!gruppieren_werte.includes(wert)) {
+                    gruppieren_werte.push(wert);
+                    array_gruppiert[wert] = new Array();
+                }
+                array_gruppiert[wert].push(element);
             }
-            array_gruppiert[wert].push(element);
         });
     }
 

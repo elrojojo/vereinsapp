@@ -1,13 +1,15 @@
-LISTEN.notenbank = {
-    controller: "notenbank",
-    element: "titel",
-    beschriftung: [
-        { eigenschaft: "titel_nr", prefix: "[", suffix: "]" },
-        { eigenschaft: "titel", prefix: " " },
-    ],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenNotenbank,
+LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
+    titel["anzahl_noten"] = 0;
+    $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, function (index, typ) {
+        titel["anzahl_noten"] += Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"], typ);
+    });
+
+    titel["anzahl_audio"] = 0;
+    $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO, function (index, typ) {
+        titel["anzahl_audio"] += Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"], typ);
+    });
+
+    titel["anzahl_verzeichnis"] = Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"]);
 };
 
 function Notenbank_Init() {
