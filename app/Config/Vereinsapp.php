@@ -236,7 +236,6 @@ class Vereinsapp extends BaseConfig
                 'auto_2' => array( 'beschriftung' => 'Auto 2', ),
                 'auto_3' => array( 'beschriftung' => 'Auto 3', ),
                 'auto_4' => array( 'beschriftung' => 'Auto 4', ),
-                'auto_5' => array( 'beschriftung' => 'Auto 5', ),
             ),
 
             'funktion' => array (

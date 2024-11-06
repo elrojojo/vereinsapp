@@ -126,8 +126,8 @@ class Aufgaben extends BaseController {
         else if( !auth()->user()->can( 'aufgaben.verwaltung' )
         // und man die Aufgabe sich nicht zuweisen will bzw. sich nicht mehr zuweisen will
             AND  !( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
-                AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id'] AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == NULL )
-                    OR ( $this->request->getpost()['mitglied_id'] == NULL      AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
+                AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id'] AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] === NULL )
+                    OR ( $this->request->getpost()['mitglied_id'] === NULL      AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
         // und man die Aufgabe nicht als erledigt markieren will
             AND  !( array_key_exists( 'id', $this->request->getpost() AND array_key_exists( 'erledigt', $this->request->getpost() ) )
                 AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )

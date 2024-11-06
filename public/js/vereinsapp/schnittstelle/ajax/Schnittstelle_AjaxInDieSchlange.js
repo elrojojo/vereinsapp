@@ -6,7 +6,7 @@ function Schnittstelle_AjaxInDieSchlange(AJAX) {
     // Das Objekt für $.ajaxQueue wird erstellt
     AJAX.ajaxQueue = {
         ajax_id: AJAX.ajax_id,
-        url: BASE_URL + AJAX.url,
+        url: SITE_URL + AJAX.url,
         method: "post",
         data: AJAX.data,
         data_original: new Object(),

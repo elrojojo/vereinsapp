@@ -1,4 +1,5 @@
 const BASE_URL = '<?= base_url() ?>';
+const SITE_URL = '<?= site_url() ?>';
 const AKTIVER_CONTROLLER = '<?= AKTIVER_CONTROLLER ?>';
 const CSRF_NAME = '<?= CSRF_NAME ?>';
 const ERSTER_CSRF_HASH = '<?= csrf_hash() ?>';

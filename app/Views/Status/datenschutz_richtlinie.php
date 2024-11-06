@@ -9,7 +9,7 @@
                 <h4>Cookie-Richtlinie (EU)</h4>
                 This Cookie Policy was last updated on 02. Juni 2021 and applies to citizens and legal permanent residents of the European Economic Area.
                 <h5 class="mt-2">1. Einführung</h5>
-                Diese Website <?php echo base_url(); ?> (im folgenden: “Die Website”) verwendet Cookies und ähnliche Technologien (der Einfachheit halber werden all diese unter “Cookies” zusammengefasst). Cookies werden außerdem von uns beauftragten Drittparteien platziert. In dem unten stehendem Dokument informieren wir dich über die Verwendung von Cookies auf unserer Website.
+                Diese Website <?php echo site_url(); ?> (im folgenden: “Die Website”) verwendet Cookies und ähnliche Technologien (der Einfachheit halber werden all diese unter “Cookies” zusammengefasst). Cookies werden außerdem von uns beauftragten Drittparteien platziert. In dem unten stehendem Dokument informieren wir dich über die Verwendung von Cookies auf unserer Website.
                 <h5 class="mt-2">2. Was sind Cookies?</h5>
                 Ein Cookie ist eine einfache kleine Datei, die gemeinsam mit den Seiten einer Internetadresse versendet und vom Webbrowser auf dem PC oder einem anderen Gerät gespeichert werden kann. Die darin gespeicherten Informationen können während folgender Besuche zu unseren oder den Servern relevanter Drittanbieter gesendet werden.
                 <h5 class="mt-2">3. Was sind Skripte?</h5>

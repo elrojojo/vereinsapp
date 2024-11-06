@@ -98,6 +98,5 @@ Konstante LISTEN mit Einträgen befüllen (beschriftung) und implementieren
 Konstante ELEMENTE mit Einträgen befüllen (beschriftung) und implementieren
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
-== null ändern in === null und == NULL ändern in === NULL und != null ändern in !== null und != NULL ändern in !== NULL und 
 
 */

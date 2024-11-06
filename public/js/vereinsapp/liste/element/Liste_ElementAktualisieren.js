@@ -85,7 +85,7 @@ function Liste_ElementAktualisieren($element, liste) {
     });
 
     // LINK AKTUALISIEREN
-    $element.find("a.stretched-link").attr("href", BASE_URL + LISTEN[liste].controller + "/" + element_id);
+    $element.find("a.stretched-link").attr("href", SITE_URL + LISTEN[liste].controller + "/" + element_id);
 
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-liste", liste).attr("data-element_id", element_id);

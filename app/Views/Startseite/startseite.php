@@ -6,14 +6,14 @@
 <?php if ( KASTEN_WEITER_ZUR_WEBSITE_VON_STARTSEITE ) : ?>
     <div class="row row-cols-2 g-0">
         <div class="col-6" style="position: relative;">
-            <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="<?= base_url().VEREINSAPP_LOGO ?>" /></div>
+            <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="<?= base_url( VEREINSAPP_LOGO ) ?>" /></div>
         <div class="col-6"><a class="btn" style="position: relative;" href="<?= VEREIN_DOMAIN ?>">
-            <img class="opacity-25" src="<?= base_url().VEREINSAPP_LOGO ?>" />
+            <img class="opacity-25" src="<?= base_url( VEREINSAPP_LOGO ) ?>" />
             <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" class="h5 text-primary">Weiter zur öffentlichen Website</span>
         </a></div>
     </div>
 <?php else : ?>
-  <img src="<?= base_url().VEREINSAPP_LOGO ?>" />
+  <img src="<?= base_url( VEREINSAPP_LOGO ) ?>" />
 <?php endif ?>
 </div>
 
