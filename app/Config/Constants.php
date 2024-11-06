@@ -130,7 +130,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einstellungen' => array( 'bootstrap' => 'gear' ),
     'mitglieder' => array ( 'bootstrap' => 'people' ),
     'aufgaben' => array ( 'bootstrap' => 'award' ),
-    // 'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
     'termine' => array ( 'bootstrap' => 'calendar-month' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
@@ -189,6 +188,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 
+    'logout' => array( 'bootstrap' => 'door-open' ),
 ) );
 
 enum AJAX_ZUSTAND

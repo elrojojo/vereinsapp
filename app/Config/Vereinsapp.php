@@ -63,7 +63,6 @@ class Vereinsapp extends BaseConfig
         'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
         'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder']['bootstrap'] ),
         'aufgaben' => array ( 'beschriftung' => 'Aufgaben', 'symbol' => SYMBOLE['aufgaben']['bootstrap'] ),
-        // 'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => SYMBOLE['umfragen']['bootstrap'] ),
         'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine']['bootstrap'] ),
         'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog']['bootstrap'] ),
         'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank']['bootstrap'] ),
@@ -75,12 +74,13 @@ class Vereinsapp extends BaseConfig
      * Einträge im Menü
      */
     public $menue = array(
-        'termine',
-        'strafkatalog',
-        'notenbank',
-        'aufgaben',
-        'mitglieder',
-        'einstellungen',
+        array( 'typ' => 'controller', 'data' => 'termine' ),
+        array( 'typ' => 'controller', 'data' => 'strafkatalog' ),
+        array( 'typ' => 'controller', 'data' => 'notenbank' ),
+        array( 'typ' => 'controller', 'data' => 'aufgaben' ),
+        array( 'typ' => 'controller', 'data' => 'mitglieder' ),
+        array( 'typ' => 'controller', 'data' => 'einstellungen' ),
+        array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => SYMBOLE['logout']['bootstrap'] ) ),
     );
 
     /**
