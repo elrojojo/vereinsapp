@@ -1,1 +1,1 @@
-# Vereinsapp 0.65.1.23
+# Vereinsapp 0.65.1.24

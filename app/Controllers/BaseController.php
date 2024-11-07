@@ -115,6 +115,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/lib/isJson.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isObject.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isNumber.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isString.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js?v='.VERSION), ); // abhaengig von isObject
         $head_script[] = array( 'src' => base_url('js/lib/zufaelligeZeichenketteZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/umlaute2unixZurueck.js?v='.VERSION), );

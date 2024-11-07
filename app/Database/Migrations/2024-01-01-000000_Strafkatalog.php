@@ -32,6 +32,8 @@ class Strafkatalog extends Migration
             'deleted_at'    => ['type' => 'datetime',                                               'null' => true],
         ]);
         $this->forge->addPrimaryKey('id');
+        $this->forge->addKey('mitglied_id');
+        $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
         $this->forge->createTable('strafkatalog_kassenbuch');
     }
 

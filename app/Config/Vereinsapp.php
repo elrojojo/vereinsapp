@@ -261,7 +261,14 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
 
-            'liste' => LISTEN,
+            'liste' => array(
+                null => array( 'beschriftung' => 'Keine Liste zugeordnet' ),
+                'mitglieder' => array( 'beschriftung' => LISTEN['mitglieder']['beschriftung'] ),
+                'termine' => array( 'beschriftung' => LISTEN['termine']['beschriftung'] ),
+                'strafkatalog' => array( 'beschriftung' => LISTEN['strafkatalog']['beschriftung'] ),
+                'kassenbuch' => array( 'beschriftung' => LISTEN['kassenbuch']['beschriftung'] ),
+                'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),
+            ),
 
             'erledigt_janein' => JANEIN,
 
@@ -343,7 +350,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'liste',
+            'liste',
             // 'element_id',
             // 'mitglied_id',
             // 'erledigt',
@@ -415,7 +422,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'liste',
+            'liste',
             'titel',
             'mitglied_id',
             'erledigt',
@@ -485,7 +492,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'liste',
+            'liste',
             'mitglied_id',
             'erledigt_janein',
         ),
@@ -616,7 +623,7 @@ class Vereinsapp extends BaseConfig
      *
      * Zeit in Sekunden bis zum nächsten Schleifendurchgang
      */
-    public $ajax_zykluszeit = 30;
+    public $ajax_zykluszeit = 15;
     
     /**
      * --------------------------------------------------------------------------

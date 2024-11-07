@@ -421,7 +421,8 @@ ALTER TABLE `vereinsapp_strafkatalog`
 -- Indizes für die Tabelle `vereinsapp_strafkatalog_kassenbuch`
 --
 ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mitglied_id` (`mitglied_id`);
 
 --
 -- Indizes für die Tabelle `vereinsapp_termine`
@@ -578,6 +579,12 @@ ALTER TABLE `vereinsapp_mitglieder_vergebene_rechte`
 --
 ALTER TABLE `vereinsapp_mitglieder_zugaenge`
   ADD CONSTRAINT `vereinsapp_mitglieder_zugaenge_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `vereinsapp_strafkatalog_kassenbuch`
+--
+ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
+  ADD CONSTRAINT `vereinsapp_strafkatalog_kassenbuch_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints der Tabelle `vereinsapp_termine_anwesenheiten`

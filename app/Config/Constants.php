@@ -125,7 +125,7 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'beschriftung' => 'Aufgaben',
         'controller' => 'aufgaben',
         'element' => 'aufgabe',
-        'verlinkte_listen' => array(),
+        'verlinkte_listen' => array( 'mitglieder', 'termine', 'strafkatalog', 'kassenbuch', 'notenbank' ),
         'abhaengig_von' => array(),
     ),
 
@@ -162,7 +162,7 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'beschriftung' => 'Kassenbuch',
         'controller' => 'strafkatalog',
         'element' => 'kassenbucheintrag',
-        'verlinkte_listen' => array(),
+        'verlinkte_listen' => array( 'mitglieder' ),
         'abhaengig_von' => array(),
     ),
 

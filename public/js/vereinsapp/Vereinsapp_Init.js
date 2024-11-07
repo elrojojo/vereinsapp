@@ -6,19 +6,21 @@ $(document).ready(function () {
     Liste_Init();
     Schnittstelle_DomInit();
 
-    if (LOGGEDIN) Mitglieder_Init();
-    if (LOGGEDIN) Aufgaben_Init();
-    if (LOGGEDIN) Termine_Init();
-    if (LOGGEDIN) Strafkatalog_Init();
-    if (LOGGEDIN) Notenbank_Init();
+    if (LOGGEDIN) {
+        Mitglieder_Init();
+        Aufgaben_Init();
+        Termine_Init();
+        Strafkatalog_Init();
+        Notenbank_Init();
 
-    Schnittstelle_EventLocalstorageUpdVariable();
-    Schnittstelle_EventVariableUpdDom();
-    if (Object.keys(LISTEN).length > 0)
-        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
-            Schnittstelle_EventLocalstorageUpdVariable,
-            Schnittstelle_EventVariableUpdDom,
-        ]);
+        Schnittstelle_EventLocalstorageUpdVariable();
+        Schnittstelle_EventVariableUpdDom();
+        if (Object.keys(LISTEN).length > 0)
+            Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
+                Schnittstelle_EventLocalstorageUpdVariable,
+                Schnittstelle_EventVariableUpdDom,
+            ]);
+    }
 
     $(".formular").each(function () {
         const $formular = $(this);
@@ -94,7 +96,8 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
-Liste zu Aufgabe implementieren
+Termine-Tabelle existiert nicht, wenn der zu einer Aufgabe verlinkte Termin angezeigt werden soll
+    Was macht abhaengig_von und was macht verlinkte_listen und was ist der Unterschied?
 Element zu Aufgabe implementieren
 
 */

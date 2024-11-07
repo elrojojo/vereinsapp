@@ -51,9 +51,11 @@ function Liste_CheckAendern($check) {
             }
 
             Schnittstelle_EventVariableUpdLocalstorage(checkliste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
-            Schnittstelle_CheckWartenEnde(AJAX.$check);
+            if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_CheckWartenEnde(AJAX.$check);
         },
         rein_validation_neg_aktion: function (AJAX) {
+            if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_CheckWartenEnde(AJAX.$check);
+            if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             Schnittstelle_DomToastFeuern("Beim Speichern ist ein Fehler aufgetreten!", "danger");
         },
     };

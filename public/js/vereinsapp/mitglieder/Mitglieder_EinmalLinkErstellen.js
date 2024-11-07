@@ -57,6 +57,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
+                if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 if (AJAX.data.email)
                     Schnittstelle_DomToastFeuern(
                         "Einmal-Link für " +

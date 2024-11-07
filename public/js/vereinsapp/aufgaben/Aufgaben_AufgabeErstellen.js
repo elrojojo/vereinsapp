@@ -10,6 +10,7 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
 
         const ajax_dom = dom;
         const ajax_data = data;
+        if ("liste" in data && (typeof data.liste === "undefined" || data.liste == "")) data.liste = null;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {
@@ -27,7 +28,6 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
                 });
-                Schnittstelle_VariableRein(null, "liste", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(null, "element_id", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(null, "mitglied_id", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(null, "erledigt", aufgabe_id, "aufgaben");
@@ -45,13 +45,13 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
             rein_validation_neg_aktion: function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
-                if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
+                if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
+                else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                else
-                    Schnittstelle_DomToastFeuern(
-                        Liste_ElementBeschriftungZurueck(AJAX.data.id, "aufgaben") + " konnte nicht gespeichert werden.",
-                        "danger"
-                    );
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "aufgaben") + " konnte nicht gespeichert werden.",
+                    "danger"
+                );
             },
         };
 

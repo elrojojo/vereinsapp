@@ -132,14 +132,14 @@ class Aufgaben extends BaseController {
             AND  !( array_key_exists( 'id', $this->request->getpost() AND array_key_exists( 'erledigt', $this->request->getpost() ) )
                 AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )
             ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        // Das zugeordnete Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist
+        // Das zugewiesene Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist
         else if( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
-        AND $this->request->getpost()['mitglied_id'] !== model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id']
-        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== NULL ) $ajax_antwort['validation'] = 'Das zugeordnete Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist!';
-        // Die Aufgabe darf nicht als offen markiert werden, wenn der Aufgabe ein Mitglied zugeordnet ist
+        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] !== $this->request->getpost()['mitglied_id']
+        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== NULL ) $ajax_antwort['validation'] = 'Das eingeplante Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist';
+        // Die Aufgabe darf nicht als offen oder erledigt markiert werden, wenn der Aufgabe kein Mitglied zugeordnet ist
         else if( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'erledigt', $this->request->getpost() )
-        AND $this->request->getpost()['erledigt'] !== NULL
-        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== NULL ) $ajax_antwort['validation'] = 'Die Aufgabe darf nicht als offen markiert werden, wenn der Aufgabe ein Mitglied zugeordnet ist!';
+        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== $this->request->getpost()['erledigt']
+        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] === NULL ) $ajax_antwort['validation'] = 'Die Aufgabe darf nicht als offen oder erledigt markiert werden, wenn für die Aufgabe kein Mitglied eingeplant ist!';
         else {
             $aufgaben_Model = model(Aufgabe_Model::class);
             $aufgabe = array(
