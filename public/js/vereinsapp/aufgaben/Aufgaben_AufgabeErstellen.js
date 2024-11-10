@@ -10,7 +10,8 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
 
         const ajax_dom = dom;
         const ajax_data = data;
-        if ("liste" in data && (typeof data.liste === "undefined" || data.liste == "")) data.liste = null;
+        if ("zugeordnete_liste" in data && (typeof data.zugeordnete_liste === "undefined" || data.zugeordnete_liste == ""))
+            data.zugeordnete_liste = null;
 
         const neue_ajax_id = AJAXSCHLANGE.length;
         AJAXSCHLANGE[neue_ajax_id] = {

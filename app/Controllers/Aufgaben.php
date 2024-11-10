@@ -114,8 +114,8 @@ class Aufgaben extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['liste']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['aufgaben']['liste'] ) ).']', 'permit_empty' ] ],
-            'element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['element_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
+            'zugeordnete_liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['aufgaben']['zugeordnete_liste'] ) ).']', 'permit_empty' ] ],
+            'zugeordnete_element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_element_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date', 'permit_empty' ] ],
@@ -145,8 +145,8 @@ class Aufgaben extends BaseController {
             $aufgabe = array(
                 'titel' => $this->request->getpost()['titel'],
             );
-            if( array_key_exists( 'liste', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['liste'] ) ) $aufgabe['liste'] = $this->request->getpost()['liste']; else $aufgabe['liste'] = NULL; }
-            if( array_key_exists( 'element_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['element_id'] ) ) $aufgabe['element_id'] = $this->request->getpost()['element_id']; else $aufgabe['element_id'] = NULL; }
+            if( array_key_exists( 'zugeordnete_liste', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['zugeordnete_liste'] ) ) $aufgabe['zugeordnete_liste'] = $this->request->getpost()['zugeordnete_liste']; else $aufgabe['zugeordnete_liste'] = NULL; }
+            if( array_key_exists( 'zugeordnete_element_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['zugeordnete_element_id'] ) ) $aufgabe['zugeordnete_element_id'] = $this->request->getpost()['zugeordnete_element_id']; else $aufgabe['zugeordnete_element_id'] = NULL; }
             if( array_key_exists( 'mitglied_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['mitglied_id'] ) ) $aufgabe['mitglied_id'] = $this->request->getpost()['mitglied_id']; else $aufgabe['mitglied_id'] = NULL; }
             if( array_key_exists( 'erledigt', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['erledigt'] ) ) $aufgabe['erledigt'] = $this->request->getpost()['erledigt']; else $aufgabe['erledigt'] = NULL; }
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $aufgabe['bemerkung'] = $this->request->getpost()['bemerkung']; else $aufgabe['bemerkung'] = '';

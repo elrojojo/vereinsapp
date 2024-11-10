@@ -14,8 +14,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `vereinsapp_aufgaben` (
   `id` int(11) UNSIGNED NOT NULL,
-  `liste` varchar(50) DEFAULT NULL,
-  `element_id` int(11) UNSIGNED DEFAULT NULL,
+  `zugeordnete_liste` varchar(50) DEFAULT NULL,
+  `zugeordnete_element_id` int(11) UNSIGNED DEFAULT NULL,
   `titel` varchar(100) NOT NULL,
   `mitglied_id` int(11) UNSIGNED DEFAULT NULL,
   `erledigt` datetime DEFAULT NULL,

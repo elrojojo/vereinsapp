@@ -9,10 +9,9 @@
 </div>
 
 <div class="form-floating mb-2">
-    <select class="form-select eigenschaft" data-eigenschaft="liste">
-    <?php foreach ( VORGEGEBENE_WERTE['aufgaben']['liste'] as $liste => $eigenschaften ): ?>
-        <option value="<?= $liste; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+    <select class="form-select eigenschaft" data-eigenschaft="zugeordnete_liste">
+    <?php foreach ( VORGEGEBENE_WERTE['aufgaben']['zugeordnete_liste'] as $zugeordnete_liste => $eigenschaften ): ?>
+        <option value="<?= $zugeordnete_liste; ?>"><?= $eigenschaften['beschriftung']; ?></option>
     <?php endforeach; ?>
     </select>
-    <label><?= EIGENSCHAFTEN['aufgaben']['liste']['beschriftung']; ?></label>
-</div>
+    <label><?= EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung']; ?></label>

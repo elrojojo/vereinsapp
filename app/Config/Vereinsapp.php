@@ -122,9 +122,9 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
             'id' => array(  'beschriftung' => 'ID', 'typ' => 'zahl' ),
-            'liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
-            'element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
-            'element' => array( 'beschriftung' => 'Zugeordnetes Element (Liste und ID)', 'typ' => 'text' ), // JAVA
+            'zugeordnete_liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
+            'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
+            'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ), // JAVA
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
@@ -261,7 +261,7 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
 
-            'liste' => array(
+            'zugeordnete_liste' => array(
                 null => array( 'beschriftung' => 'Keine Liste zugeordnet' ),
                 'mitglieder' => array( 'beschriftung' => LISTEN['mitglieder']['beschriftung'] ),
                 'termine' => array( 'beschriftung' => LISTEN['termine']['beschriftung'] ),
@@ -350,7 +350,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'liste',
+            'zugeordnete_liste',
             // 'element_id',
             // 'mitglied_id',
             // 'erledigt',
@@ -422,7 +422,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'liste',
+            'zugeordnete_liste',
             'titel',
             'mitglied_id',
             'erledigt',
@@ -492,7 +492,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'liste',
+            'zugeordnete_liste',
             'mitglied_id',
             'erledigt_janein',
         ),
@@ -530,7 +530,6 @@ class Vereinsapp extends BaseConfig
      * --------------------------------------------------------------------------
      *
      * Angezeigte Mitglieder-Eigenschaften als Vorschau
-     * in jedem Eintrag der Liste
      */
     public $mitglieder_eigenschaften_vorschau = array(
         'register',

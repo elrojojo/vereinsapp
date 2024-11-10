@@ -9,8 +9,8 @@ class Aufgabe_Model extends Model {
     protected $table          = 'aufgaben';
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
-        'liste',
-        'element_id',
+        'zugeordnete_liste',
+        'zugeordnete_element_id',
         'titel',
         'mitglied_id',
         'erledigt',

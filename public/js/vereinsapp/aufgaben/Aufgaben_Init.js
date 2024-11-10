@@ -2,8 +2,9 @@ LISTEN.aufgaben.element_ergaenzen_aktion = function (aufgabe) {
     if (aufgabe["erledigt"] === null) aufgabe["erledigt_janein"] = false;
     else aufgabe["erledigt_janein"] = true;
 
-    if (aufgabe["liste"] !== null && aufgabe["element_id"] !== null) aufgabe["element"] = { liste: aufgabe["liste"], id: aufgabe["element_id"] };
-    else aufgabe["element"] = null;
+    if (aufgabe["zugeordnete_liste"] !== null && aufgabe["zugeordnete_element_id"] !== null)
+        aufgabe["zugeordnetes_element"] = { liste: aufgabe["zugeordnete_liste"], id: aufgabe["zugeordnete_element_id"] };
+    else aufgabe["zugeordnetes_element"] = null;
 };
 
 function Aufgaben_Init() {

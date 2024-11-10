@@ -244,8 +244,8 @@ class Termine extends BaseController {
             'filtern' => array( array(
                 'verknuepfung' => '&&',
                 'filtern' => array(
-                    array( 'eigenschaft' => 'liste', 'operator' => '==', 'wert' => "termine", ),
-                    array( 'eigenschaft' => 'element_id', 'operator' => '==', 'wert' => $termin_id, ),
+                    array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "termine", ),
+                    array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $termin_id, ),
                 ),
             ), ),
             'sortieren' => array(
