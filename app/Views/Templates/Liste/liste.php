@@ -5,25 +5,27 @@
             if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
             else echo ' '.$werkzeug['klasse_id'];
         }
-        ?>" data-liste="<?= $liste['liste']; ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
+        ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
+        if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
         if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
         if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
-        ?>><i class=" bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i>
+        ?>><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i>
     </button><?php } ?>
 </div><?php } ?>
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler invisible text-secondary text-end small mb-1">
-    <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
-    if( array_key_exists( 'checkliste', $liste ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }
-    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
-    if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Durchschnitt: <span class="listenstatistik" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['id']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
+    <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
+    if( array_key_exists( 'checkliste', $liste ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }
+    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
+    if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Durchschnitt: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
     ?>
 </div><?php } ?>
 
 <ul id="<?= $liste['id']; ?>" class="liste list-group<?php
 if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-flush';
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
-?> mb-1" data-liste="<?= $liste['liste']; ?>"<?php
+?> mb-1"<?php
+if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
@@ -35,7 +37,8 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
     }
     if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' list-group-liste_h5';
     if( array_key_exists( 'checkliste', $liste ) ) echo ' d-grid';
-    ?>" data-liste="<?= $liste['liste']; ?>"<?php
+    ?>"<?php
+    if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
     if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
     if( array_key_exists( 'disabled', $liste ) ) { ?> data-disabled='<?= json_encode( $liste['disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
@@ -48,7 +51,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
             <?php if( array_key_exists( 'checkliste', $liste ) ) { ?><div class="form-check form-switch"><label class="form-check-label d-block">
                 <input class="form-check-input float-start me-3 check" type="checkbox" data-checkliste="<?= $liste['checkliste']; ?>" role="switch" /><?php } ?>
 
-            <?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><span class="beschriftung"><?= $liste['beschriftung']['beschriftung']; ?></span><?php } ?>
+            <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']['beschriftung']; ?><?php } ?></span>
 
             <?php if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?><i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i><?php } ?>
 

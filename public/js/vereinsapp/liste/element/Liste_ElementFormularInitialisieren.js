@@ -4,17 +4,10 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
     $formular.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
-        const verlinkte_eigenschaft = $eigenschaft.attr("data-verlinkte_eigenschaft");
 
         // Wenn element_id definiert ist und es gerade um einen Button geht
         if (typeof element_id !== "undefined" && $eigenschaft.attr("type") == "button") $eigenschaft.attr("data-element_id", element_id);
         // else $eigenschaft.removeAttr("data-element_id");
-
-        // Wenn verlinkte_eigenschaft definiert ist
-        if (typeof verlinkte_eigenschaft !== "undefined") {
-            const $verlinkte_eigenschaft = $formular.find('.eigenschaft[data-eigenschaft="' + verlinkte_eigenschaft + '"]');
-            $eigenschaft.attr("data-" + verlinkte_eigenschaft, $verlinkte_eigenschaft.val());
-        }
 
         let wert = Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
@@ -46,7 +39,8 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         // Oder wenn aber die Eigenschaft ein Objekt oder ein Array ist
         else if (isObject(wert) || Array.isArray(wert)) wert_formatiert = JSON.stringify(wert);
 
-        $eigenschaft.val(wert_formatiert).change();
+        $eigenschaft.val(wert_formatiert); //.change();
+        Liste_ElementFormularEigenschaftChange($eigenschaft);
     });
 
     const $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");

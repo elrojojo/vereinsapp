@@ -1,7 +1,7 @@
 const SORTIEREN = new Object();
 
 function Liste_SortierenInit() {
-    // FORMULAR (MODAL) ÖFFNEN
+    // MODAL ÖFFNEN
     $(document).on("click", ".btn_sortieren_modal_oeffnen", function () {
         Liste_SortierenModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });

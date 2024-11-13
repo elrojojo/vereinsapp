@@ -2,7 +2,7 @@ const FILTERN = new Object();
 FILTERN.$blanko_filtern_definition = new Object();
 
 function Liste_FilternInit() {
-    // FORMULAR (MODAL) ÖFFNEN
+    // MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
         Liste_FilternModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });

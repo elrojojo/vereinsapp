@@ -15,3 +15,6 @@
     <?php endforeach; ?>
     </select>
     <label><?= EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung']; ?></label>
+</div>
+
+<div class="d-grid mb-2"><button type="button" class="btn btn_auswahl_modal_oeffnen btn-outline-primary eigenschaft verlinkte_eigenschaft disabled" data-eigenschaft="zugeordnete_element_id" data-verlinkte_eigenschaft="zugeordnete_liste" data-title="Element auswählen">Element auswählen</button></div>

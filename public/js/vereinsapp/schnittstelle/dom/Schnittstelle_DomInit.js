@@ -4,6 +4,7 @@ const STATUS_SPINNER_HTML =
 
 const TOASTS = new Object();
 const MODALS = new Object();
+const AUSWAHLLISTE = new Object();
 
 function Schnittstelle_DomInit() {
     const autoload = new Array();
@@ -23,11 +24,14 @@ function Schnittstelle_DomInit() {
             else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
             // Wenn .blanko ein .element ist
             else if ($blanko.hasClass("element")) {
-                const $liste = $blanko.closest(".liste[data-liste][id]");
-                const liste = $liste.attr("data-liste");
+                const $liste = $blanko.closest(".liste[id]");
                 const instanz = $liste.attr("id");
-                if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
-                    LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+                if (instanz == "AUSWAHLLISTE" && !("$blanko_element" in AUSWAHLLISTE)) AUSWAHLLISTE.$blanko_element = $blanko;
+                else {
+                    const liste = $liste.attr("data-liste");
+                    if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
+                        LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+                }
             }
             // Wenn .blanko eine .auswertung ist
             else if ($blanko.hasClass("auswertung")) {
