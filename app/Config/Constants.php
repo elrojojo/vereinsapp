@@ -286,6 +286,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'aendern' => array( 'bootstrap' => 'pencil' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
+    'auswaehlen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
     'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
 

@@ -40,18 +40,18 @@
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_zum_termin">Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_zum_termin'] ) ); ?>
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'aufgaben_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'aufgaben_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
     view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_auswahl', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'mitglieder_auswahl', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
 </div>
 
-<?= view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
+<?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'termine_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'termine_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
     view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
 

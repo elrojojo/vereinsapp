@@ -97,12 +97,11 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 Form validation für bemerkung mit Regel field_exists durchführen?
 Termine-Tabelle existiert nicht, wenn der zu einer Aufgabe verlinkte Termin angezeigt werden soll
     Was macht abhaengig_von und was macht verlinkte_listen und was ist der Unterschied?
-Element zu Aufgabe implementieren
 Im Controller werkzeugkasten in liste integrieren (analog zu listenstatistik)
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
-modal_id ändern in id
 Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
+Element zu Aufgabe implementieren
 
 */
