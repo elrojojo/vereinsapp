@@ -1,4 +1,10 @@
-function Liste_AuswahlModalOeffnen(title, liste, klasse_id, data) {
+function Liste_AuswahlEinfordern(dom, title, liste, klasse_id, data) {
+    if (typeof data === "undefined") data = new Object();
+
+    const ziel_id = zufaelligeZeichenketteZurueck(8);
+    if ("$ziel" in dom && dom.$ziel.exists()) dom.$ziel.attr("id", ziel_id);
+    data.ziel_id = ziel_id;
+
     const $neues_auswahl_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(
         ELEMENTE[LISTEN[liste].element].beschriftung + " " + title,
         "AUSWAHL"

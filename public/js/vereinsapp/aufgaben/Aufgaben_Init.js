@@ -48,6 +48,15 @@ function Aufgaben_Init() {
         );
     });
 
+    $(document).on("click", ".btn_aufgabe_element_zuordnen", function () {
+        Aufgaben_AufgabeElementZuordnen(
+            $(this).hasClass("auswahl_einfordern"),
+            { $ziel: $(this), $quelle: $(this), $modal: $(this).closest(".modal") }, // { $ziel: $(this).siblings('input[type="text"][readonly]') },
+            $(this).attr("data-title"),
+            $(this).attr("data-liste")
+        );
+    });
+
     // MITGLIED FÜR AUFGABE EINPLANEN
     $(document).on("click", ".btn_aufgabe_mitglied_einplanen", function () {
         Aufgaben_AufgabeMitgliedEinplanen(

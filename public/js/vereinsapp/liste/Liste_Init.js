@@ -18,8 +18,6 @@ function Liste_Init() {
 
     Liste_GruppierenInit();
 
-    Liste_AuswahlInit();
-
     $(document).on("change", ".eigenschaft", function () {
         Liste_ElementFormularEigenschaftChange($(this));
     });

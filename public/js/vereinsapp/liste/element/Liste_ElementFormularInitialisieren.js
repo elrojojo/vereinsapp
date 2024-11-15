@@ -43,10 +43,12 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         Liste_ElementFormularEigenschaftChange($eigenschaft);
     });
 
-    const $btn_aktion = $formular.find("[class*=btn_" + LISTEN[liste].element + "_");
-    if ($btn_aktion.exists()) {
+    $formular.find("[class*=btn_" + LISTEN[liste].element + "_").each(function () {
+        const $btn_aktion = $(this);
+
         if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
             $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
+
         if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
-    }
+    });
 }
