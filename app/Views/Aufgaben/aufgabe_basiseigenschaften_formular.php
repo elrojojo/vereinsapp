@@ -10,14 +10,14 @@
 
 <div class="input-group mb-2">
     <div class="form-floating">
-        <select class="form-select eigenschaft" data-eigenschaft="zugeordnete_liste">
+        <select class="form-select eigenschaft verlinkte_eigenschaft" data-eigenschaft="zugeordnete_liste" data-verlinkte_eigenschaft="zugeordnete_element_id">
         <?php foreach ( VORGEGEBENE_WERTE['aufgaben']['zugeordnete_liste'] as $zugeordnete_liste => $eigenschaften ): ?>
             <option value="<?= $zugeordnete_liste; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
         </select>
         <label><?= EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung']; ?></label>
     </div>
-    <button type="button" class="btn btn_aufgabe_element_zuordnen auswahl_einfordern btn-outline-primary eigenschaft verlinkte_eigenschaft disabled" data-eigenschaft="zugeordnete_element_id" data-verlinkte_eigenschaft="zugeordnete_liste" data-title="auswählen"><i class="bi bi-<?= SYMBOLE['auswaehlen']['bootstrap'] ?>"></i></button>
+    <button type="button" class="btn btn_aufgabe_element_zuordnen auswahl_einfordern btn-outline-primary eigenschaft disabled" data-eigenschaft="zugeordnete_element_id" data-title="auswählen"><i class="bi bi-<?= SYMBOLE['auswaehlen']['bootstrap'] ?>"></i></button>
 </div>
 
 <div class="input-group mb-2">
