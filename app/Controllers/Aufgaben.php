@@ -19,10 +19,15 @@ class Aufgaben extends BaseController {
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'erstellung', 'zugeordnetes_element' ),
             'views' => view( 'Aufgaben/aufgabe' ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Aufgaben filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Aufgaben sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+
             $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
@@ -35,17 +40,11 @@ class Aufgaben extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
                 'title' => 'Mitglied für Aufgabe einplanen',
+                'werkzeugkasten' => array(
+                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+                ),
                 'listenstatistik' => array(),
-            );
-
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_modal_oeffnen',
-                'title' => 'Mitglieder filtern',
-            );
-
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_modal_oeffnen',
-                'title' => 'Mitglieder sortieren',
             );
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -66,17 +65,8 @@ class Aufgaben extends BaseController {
                 'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
                 'title' => 'Aufgabe erstellen',
             );
+
         }
-
-        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Aufgaben filtern',
-        ); 
-
-        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Aufgaben sortieren',
-        ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Aufgaben/aufgaben', $this->viewdata );

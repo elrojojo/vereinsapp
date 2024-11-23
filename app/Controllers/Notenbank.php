@@ -20,10 +20,15 @@ class Notenbank extends BaseController {
             'link' => TRUE,
             'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Notenbank filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Notenbank sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
+
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -44,17 +49,8 @@ class Notenbank extends BaseController {
                 'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
                 'title' => 'Titel erstellen',
             );
+
         }
-
-        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Notenbank filtern',
-        ); 
-
-        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Notenbank sortieren',
-        ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Notenbank/notenbank', $this->viewdata );
@@ -193,5 +189,5 @@ class Notenbank extends BaseController {
         }
         return $verzeichnis_indiziert;
     }
-    
+
 }

@@ -16,17 +16,31 @@ function Liste_ChecklisteInit() {
 
     // ALLE CHECKS ANWÄHLEN
     $(document).on("click", ".btn_alle_checks_anwaehlen", function () {
-        const instanz = $(this).attr("data-instanz");
-        $(".liste[id='" + instanz + "']")
-            .find(".check:not(:checked)")
-            .trigger("click");
+        if ($(this).hasClass("bestaetigung_einfordern"))
+            Schnittstelle_DomBestaetigungEinfordern("Willst du wirklich alle Checks anwählen?", "Alle Checks anwählen", "btn_alle_checks_anwaehlen", {
+                instanz: $(this).attr("data-instanz"),
+            });
+        else {
+            const $modal = $(this).closest(".modal");
+            if ($modal.exists()) Schnittstelle_DomModalSchliessen($modal);
+            $(".liste[id='" + $(this).attr("data-instanz") + "']")
+                .find(".check:not(:checked)")
+                .trigger("click");
+        }
     });
 
     // ALLE CHECKS ABWÄHLEN
     $(document).on("click", ".btn_alle_checks_abwaehlen", function () {
-        const instanz = $(this).attr("data-instanz");
-        $('.liste[id="' + instanz + '"]')
-            .find(".check:checked")
-            .trigger("click");
+        if ($(this).hasClass("bestaetigung_einfordern"))
+            Schnittstelle_DomBestaetigungEinfordern("Willst du wirklich alle Checks abwählen?", "Alle Checks abwählen", "btn_alle_checks_abwaehlen", {
+                instanz: $(this).attr("data-instanz"),
+            });
+        else {
+            const $modal = $(this).closest(".modal");
+            if ($modal.exists()) Schnittstelle_DomModalSchliessen($modal);
+            $('.liste[id="' + $(this).attr("data-instanz") + '"]')
+                .find(".check:checked")
+                .trigger("click");
+        }
     });
 }

@@ -92,12 +92,10 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
-Bestaetigung_einfordern für alle Checks anwählen bzw. abwählen (Liste_ChecklisteInit)
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
 Termine-Tabelle existiert nicht, wenn der zu einer Aufgabe verlinkte Termin angezeigt werden soll
     Was macht abhaengig_von und was macht verlinkte_listen und was ist der Unterschied?
-Im Controller werkzeugkasten in liste integrieren (analog zu listenstatistik)
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt

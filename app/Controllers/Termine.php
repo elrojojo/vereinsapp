@@ -26,6 +26,10 @@ class Termine extends BaseController {
             'vorschau' => array( 'start', 'ort' ),
             'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('kategorie'),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Termine filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Termine sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
@@ -56,30 +60,23 @@ class Termine extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
             );
-
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle anwählen',
             );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Mitglieder sortieren',
-        );
+        }
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
@@ -87,6 +84,7 @@ class Termine extends BaseController {
         );
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -107,17 +105,8 @@ class Termine extends BaseController {
                 'klasse_id' => array('btn_termin_erstellen', 'formular_oeffnen'),
                 'title' => 'Termin erstellen',
             );
+
         }
-
-        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Termine filtern',
-        );
-
-        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Termine sortieren',
-        );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Termine/termine', $this->viewdata );
@@ -200,30 +189,23 @@ class Termine extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
             );
-
-        if( auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle anwählen',
             );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Mitglieder sortieren',
-        );
+        }
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
@@ -248,6 +230,7 @@ class Termine extends BaseController {
         );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+
             $this->viewdata['liste']['aufgaben_zum_termin']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
             $this->viewdata['liste']['mitglieder_auswahl'] = array(
@@ -260,18 +243,13 @@ class Termine extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
                 'title' => 'Mitglied für Aufgabe einplanen',
+                'werkzeugkasten' => array(
+                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+                ),
                 'listenstatistik' => array(),
             );
 
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_modal_oeffnen',
-                'title' => 'Mitglieder filtern',
-            );
-
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_modal_oeffnen',
-                'title' => 'Mitglieder sortieren',
-            );
         }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {

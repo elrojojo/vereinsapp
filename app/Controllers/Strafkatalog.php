@@ -22,10 +22,15 @@ class Strafkatalog extends BaseController {
             // 'link' => TRUE,
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'wert', 'kategorie' ),
-            'listenstatistik' => array(),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Strafkatalog filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Strafkatalog sortieren', ),
+            ),
+        'listenstatistik' => array(),
         );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
@@ -43,17 +48,11 @@ class Strafkatalog extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
+                'werkzeugkasten' => array(
+                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+                ),
                 'listenstatistik' => array(),
-            );
-
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_modal_oeffnen',
-                'title' => 'Mitglieder filtern',
-            );
-
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_modal_oeffnen',
-                'title' => 'Mitglieder sortieren',
             );
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -75,16 +74,6 @@ class Strafkatalog extends BaseController {
                 'title' => 'Strafe erstellen',
             );
         }
-
-        $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Strafkatalog filtern',
-        ); 
-
-        $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Strafkatalog sortieren',
-        ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Strafkatalog/strafkatalog', $this->viewdata );
@@ -111,12 +100,17 @@ class Strafkatalog extends BaseController {
             ),
             'eigenschaft' => 'wert',
         ),
+        'werkzeugkasten' => array(
+            'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Kassenbuch filtern', ),
+            'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Kassenbuch sortieren', ),
+        ),
         'listenstatistik' => array(
             'summe' => 'wert',
         ),
     );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+
             $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['offen_erledigt_markieren'] = array(
@@ -142,17 +136,8 @@ class Strafkatalog extends BaseController {
                 'klasse_id' => array('btn_kassenbucheintrag_erstellen', 'formular_oeffnen'),
                 'title' => 'Kassenbucheintrag erstellen',
             );
+
         }
-
-        $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Kassenbuch filtern',
-        ); 
-
-        $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Kassenbuch sortieren',
-        ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Strafkatalog/kassenbuch', $this->viewdata );

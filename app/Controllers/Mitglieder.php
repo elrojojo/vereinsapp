@@ -49,6 +49,10 @@ class Mitglieder extends BaseController {
             //         'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
             //     ),
             // ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
@@ -76,30 +80,23 @@ class Mitglieder extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
-        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
             );
-
-        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle anwählen',
             );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Mitglieder sortieren',
-        );
+        }
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
@@ -107,6 +104,7 @@ class Mitglieder extends BaseController {
         );
         
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
@@ -124,21 +122,17 @@ class Mitglieder extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
+                'werkzeugkasten' => array(
+                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Strafkatalog filtern', ),
+                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Strafkatalog sortieren', ),
+                ),
                 'listenstatistik' => array(),
             );
 
-            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_modal_oeffnen',
-                'title' => 'Strafkatalog filtern',
-            );
-
-            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_modal_oeffnen',
-                'title' => 'Strafkatalog sortieren',
-            );
         }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
@@ -149,7 +143,7 @@ class Mitglieder extends BaseController {
                 'klasse_id' => array('btn_mitglied_einmal_link_email', 'bestaetigung_einfordern'),
                 'title' => 'Einmal-Link per Email zuschicken',
             );
-                        
+        
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
                 'title' => 'Mitglied ändern',
@@ -167,18 +161,9 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['erstellen'] = array(
                 'klasse_id' => array('btn_mitglied_erstellen', 'formular_oeffnen'),
                 'title' => 'Mitglied erstellen',
-            ); 
+            );
+
         }
-
-        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Mitglieder sortieren',
-        );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Mitglieder/mitglieder', $this->viewdata );
@@ -214,30 +199,23 @@ class Mitglieder extends BaseController {
                     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
                 ),
             ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+            ),
             'listenstatistik' => array(),
         );
 
-        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_abwaehlen',
+                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
             );
-
-        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) )
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => 'btn_alle_checks_anwaehlen',
+                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle anwählen',
             );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Mitglieder filtern',
-        );
-
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Mitglieder sortieren',
-        );
+        }
 
         $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_anwesenheiten_dokumentieren',
@@ -245,7 +223,6 @@ class Mitglieder extends BaseController {
         );
 
         if( auth()->user()->can( 'mitglieder.rechte' ) ) {
-
             $disabled_filtern = array();
             $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
             if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] );
@@ -264,7 +241,6 @@ class Mitglieder extends BaseController {
                     ), ),
                 ),
             );
-
         }
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
@@ -296,23 +272,16 @@ class Mitglieder extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
                 'title' => 'Mitglied für Aufgabe einplanen',
+                'werkzeugkasten' => array(
+                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
+                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+                ),
                 'listenstatistik' => array(),
             );
 
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_modal_oeffnen',
-                'title' => 'Mitglieder filtern',
-            );
-
-            $this->viewdata['liste']['mitglieder_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_modal_oeffnen',
-                'title' => 'Mitglieder sortieren',
-            );
-            
         }
 
         if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
-
             $this->viewdata['liste']['bevorstehende_termine_mitglied'] = array(
                 'liste' => 'termine',
                 'filtern' => array( array(
@@ -330,10 +299,10 @@ class Mitglieder extends BaseController {
                 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
                 'zusatzsymbole' => array('kategorie'),
             );
-
         }
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied'] = array(
                 'liste' => 'kassenbuch',
                 'filtern' => array( array(
@@ -373,17 +342,11 @@ class Mitglieder extends BaseController {
                 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
+                'werkzeugkasten' => array(
+                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Strafkatalog filtern', ),
+                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Strafkatalog sortieren', ),
+                ),
                 'listenstatistik' => array(),
-            );
-
-            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['filtern'] = array(
-                'klasse_id' => 'btn_filtern_modal_oeffnen',
-                'title' => 'Strafkatalog filtern',
-            );
-
-            $this->viewdata['liste']['strafkatalog_auswahl']['werkzeugkasten']['sortieren'] = array(
-                'klasse_id' => 'btn_sortieren_modal_oeffnen',
-                'title' => 'Strafkatalog sortieren',
             );
         }
 
@@ -411,6 +374,7 @@ class Mitglieder extends BaseController {
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',
             );
+
         } elseif( ICH['id'] == $mitglied_id )
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
