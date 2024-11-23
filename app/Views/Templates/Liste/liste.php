@@ -46,7 +46,9 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
     if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
     ?>>
 
-        <div class="text-truncate <?php if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' h5'; ?>">
+        <div class="text-truncate<?php
+        if( array_key_exists( 'beschriftung', $liste ) AND array_key_exists( 'h5', $liste['beschriftung'] ) AND $liste['beschriftung']['h5'] ) echo ' h5';
+        ?>">
             
             <?php if( array_key_exists( 'checkliste', $liste ) ) { ?><div class="form-check form-switch"><label class="form-check-label d-block">
                 <input class="form-check-input float-start me-3 check" type="checkbox" data-checkliste="<?= $liste['checkliste']; ?>" role="switch" /><?php } ?>
@@ -66,7 +68,12 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
             <?php if( array_key_exists( 'checkliste', $liste ) ) { ?></label></div><?php } ?>
         </div>
 
-        <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="vorschau text-truncate text-secondary"><?= $liste['vorschau']; ?></div><?php } ?>
+        <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="vorschau text-truncate text-secondary <?php
+        if( array_key_exists( 'beschriftung', $liste ) AND ( !array_key_exists( 'h5', $liste['beschriftung'] ) OR !$liste['beschriftung']['h5'] ) ) echo ' small';
+        ?>"><?php foreach( $liste['vorschau'] as $position => $vorschau ) {
+            if( $position !== 0 ) echo '<i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>';
+            echo '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span>';
+        } ?></div><?php } ?>
 
         <?php if( array_key_exists( 'views', $liste ) ) echo $liste['views']; ?>
 

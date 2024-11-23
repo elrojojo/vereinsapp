@@ -25,10 +25,7 @@ class Termine extends BaseController {
                 'h5' => TRUE,
             ),
             'link' => TRUE,
-            'vorschau' =>   '<div class="row g-0 my-1 small text-center">'.
-                                '<div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
-                                '<div class="col nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>'.
-                            '</div>',
+            'vorschau' => array( 'start', 'ort' ),
             'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('kategorie'),
             'listenstatistik' => array(),

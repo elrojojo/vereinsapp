@@ -95,13 +95,21 @@ function Liste_ElementAktualisieren($element, liste) {
         Liste_ElementZusatzsymbolAktualisieren($(this), $element, liste);
     });
 
-    // LETZTEN SPACER AUS DER VORSCHAU LÖSCHEN (UND GGF. VORHER NOCH DAS LETZTE LEERE VORSCHAU-ELEMENT LÖSCHEN)
-    let $letztes_vorschau_element = $element.find(".vorschau").children().last();
-    if ($letztes_vorschau_element.text().trim() == "") {
-        $letztes_vorschau_element.remove();
-        $letztes_vorschau_element = $element.find(".vorschau").children().last();
-    }
-    if ($letztes_vorschau_element.hasClass("spacer")) $letztes_vorschau_element.remove();
+    // VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN
+    $element
+        .find(".vorschau")
+        .children(".eigenschaft")
+        .each(function () {
+            const $eigenschaft = $(this);
+            const $vorheriger_spacer = $eigenschaft.prev();
+            if ($eigenschaft.text().trim() == "") {
+                $eigenschaft.addClass("invisible");
+                $vorheriger_spacer.addClass("invisible");
+            } else {
+                $eigenschaft.removeClass("invisible");
+                $vorheriger_spacer.removeClass("invisible");
+            }
+        });
 
     // NAVIGATION AKTUALISIEREN
     $element.find(".element_navigation").each(function () {

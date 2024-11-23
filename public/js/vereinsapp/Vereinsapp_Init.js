@@ -102,6 +102,6 @@ Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
 Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
-zugerdnete_liste/zugerdnete_element_id/zugerdnetes_element nicht leer lassen (sonst verschwindet die .eigenschaft in der .vorschau)
+h5 mit flush verheiraten
 
 */

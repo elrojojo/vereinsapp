@@ -276,7 +276,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einstellungen' => array( 'bootstrap' => 'gear' ),
     'mitglieder' => array ( 'bootstrap' => 'people' ),
     'aufgaben' => array ( 'bootstrap' => 'award' ),
-    'termine' => array ( 'bootstrap' => 'calendar-month' ),
+    'termine' => array ( 'bootstrap' => 'calendar-event' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
     'startseite' => array ( 'bootstrap' => '' ),
@@ -301,6 +301,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
     'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),
     'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
+    'pfeil_links' => array( 'bootstrap' => 'arrow-left' ),
+    'pfeil_rechts' => array( 'bootstrap' => 'arrow-right' ),
 
     'mitglied' => array ( 'bootstrap' => 'person' ),
     'spacer' => array ( 'bootstrap' => 'dot' ),
@@ -313,7 +315,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'geburtstag' => array( 'bootstrap' => 'cake2' ),
 
-    'datum' => array( 'bootstrap' => 'calendar-event' ),
     'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
     'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
     'zahlenraum' => array( 'bootstrap' => '123' ),
@@ -335,6 +336,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 
+    'status' => array( 'bootstrap' => 'circle-fill' ),
     'logout' => array( 'bootstrap' => 'door-open' ),
 ) );
 

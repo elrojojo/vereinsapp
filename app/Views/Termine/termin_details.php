@@ -6,9 +6,9 @@
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung text-center"><span class="eigenschaft" data-eigenschaft="titel"></span></div>
     <div class="row g-0 my-1">
-        <div class="col text-center text-nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
+        <div class="col text-center text-nowrap"><i class="bi bi-<?= SYMBOLE["termine"]["bootstrap"]; ?>"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
         <div class="col text-center text-nowrap"><span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span></div>
-        <div class="col text-center text-nowrap"><i class="bi bi-geo-alt-fill"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
+        <div class="col text-center text-nowrap"><i class="bi bi-<?= SYMBOLE["ort"]["bootstrap"]; ?>"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
     </div>
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>

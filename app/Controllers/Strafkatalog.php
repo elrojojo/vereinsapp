@@ -23,7 +23,7 @@ class Strafkatalog extends BaseController {
                 'h5' => TRUE,
             ),
             // 'link' => TRUE,
-            'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="kategorie"></span>',
+            'vorschau' => array( 'wert', 'kategorie' ),
             'listenstatistik' => array(),
         );
 
@@ -109,9 +109,7 @@ class Strafkatalog extends BaseController {
             'h5' => TRUE,
         ),
         // 'link' => TRUE,
-        'vorschau' =>   '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
-                        '<span class="eigenschaft" data-eigenschaft="wert"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>'.
-                        '<span class="eigenschaft" data-eigenschaft="mitglied_id"></span>',
+        'vorschau' => array( 'erstellung', 'wert', 'mitglied_id' ),
         'zusatzsymbole' => array('offen_erledigt'),
         'bedingte_formatierung' => array(
             'klasse' => array(

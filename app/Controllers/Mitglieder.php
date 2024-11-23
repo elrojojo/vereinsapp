@@ -31,7 +31,7 @@ class Mitglieder extends BaseController {
             'link' => TRUE,
             // 'klasse_id' => array('btn_', 'bestaetigung_einfordern'),
             // 'title' => 'Titel für bspw. ein Modal',
-            'vorschau' => '',
+            'vorschau' => MITGLIEDER_EIGENSCHAFTEN_VORSCHAU,
             // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('geburtstag'),
             // 'checkliste' => 'vergebene_rechte',
@@ -53,7 +53,6 @@ class Mitglieder extends BaseController {
             // ),
             'listenstatistik' => array(),
         );
-        foreach( MITGLIEDER_EIGENSCHAFTEN_VORSCHAU as $vorschau ) $this->viewdata['liste']['alle_mitglieder']['vorschau'] .= '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>';
 
         $disabled_filtern = array();
         if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
@@ -293,9 +292,9 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 ),
                 'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                    'beschriftung' => '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
-                'vorschau' => '<span class="eigenschaft" data-eigenschaft="element"></span>',
+                'vorschau' => array( 'zugeordnetes_element' ),
                 'views' => view( 'Aufgaben/aufgabe' ),
             );
 
@@ -340,12 +339,10 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
                 ),
                 'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                    'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
                 'link' => TRUE,
-                'vorschau' =>   '<div class="row g-0 my-1 small">'.
-                                    '<div class="col nowrap"><i class="bi bi-'.SYMBOLE['datum']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>'.
-                                '</div>',
+                'vorschau' => array( 'start' ),
                 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
                 'zusatzsymbole' => array('kategorie'),
             );
@@ -368,11 +365,11 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
                 ),
                 'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+                    'beschriftung' => '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 ),
                 'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag als offen/erledigt markieren',
-                'vorschau' => '<div class="small"><span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="wert"></span></div>',
+                'vorschau' => array( 'erstellung', 'wert' ),
                 'zusatzsymbole' => array('offen_erledigt_markieren'),
                 'listenstatistik' => array(
                     'summe' => 'wert',

@@ -19,7 +19,7 @@ class Aufgaben extends BaseController {
                 'h5' => TRUE,
             ),
             // 'link' => TRUE,
-            'vorschau' => '<span class="eigenschaft" data-eigenschaft="erstellung"></span><i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i><span class="eigenschaft" data-eigenschaft="zugeordnetes_element"></span>',
+            'vorschau' => array( 'erstellung', 'zugeordnetes_element' ),
             'views' => view( 'Aufgaben/aufgabe' ),
             'listenstatistik' => array(),
         );

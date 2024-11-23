@@ -8,9 +8,9 @@
         <div>
             <i class="bi-<?= CONTROLLERS[ AKTIVER_CONTROLLER ]['symbol']; ?> me-1"></i>
             <span class="navbar-text"><?= CONTROLLERS[ AKTIVER_CONTROLLER ]['beschriftung']; ?></span>
-            <span id="status" class="ms-1 text-success"><i class="bi-circle-fill"></i></span>
+            <span id="status" class="ms-1 text-success"><i class="bi-<?= SYMBOLE["status"]["bootstrap"]; ?>"></i></span>
         </div>
-        <div class="navbar-toggler"data-bs-toggle="collapse" data-bs-target="#navbarCollapse" role="button">
+        <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" role="button">
             <span class="navbar-toggler-icon"></span>
         </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
