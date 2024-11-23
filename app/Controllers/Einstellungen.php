@@ -12,9 +12,7 @@ class Einstellungen extends BaseController {
         if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $verfuegbares_recht['id'] );
         $this->viewdata['liste']['rechte_vergeben'] = array(
             'liste' => 'verfuegbare_rechte',
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung"></span>',
-            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung"></span>',
             'checkliste' => 'vergebene_rechte',
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => ICH['id'],

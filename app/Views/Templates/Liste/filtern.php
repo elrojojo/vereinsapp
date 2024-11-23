@@ -1,7 +1,7 @@
 <div class="filtern_formular">
 
     <div class="card mb-3">
-        <div class="card-header h5">Aktive Filter</div>
+        <div class="h5 card-header">Aktive Filter</div>
         <ul class="card-body list-group filtern p-2">
 
             <li class="list-group-item list-group-item-action blanko filtern_sammlung invisible p-0"><div class="card border-0"><div class="row g-0">

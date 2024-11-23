@@ -15,9 +15,7 @@ class Startseite extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            ),
+            'beschriftung' => '<i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             'vorschau' => array( 'geburtstag', 'alter_geburtstag' ),
         );
 
@@ -34,9 +32,7 @@ class Startseite extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
+            'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'link' => TRUE,
             'vorschau' => array( 'start' ),
             'zusatzsymbole' => array('kategorie'),
@@ -54,9 +50,7 @@ class Startseite extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
+            'beschriftung' => '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'zugeordnetes_element' ),
             'views' => view( 'Aufgaben/aufgabe' ),
         );
@@ -74,10 +68,8 @@ class Startseite extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
             'link' => TRUE,
+            'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'start' ),
             'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('kategorie'),

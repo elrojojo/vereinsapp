@@ -16,11 +16,9 @@ class Notenbank extends BaseController {
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
-                'h5' => TRUE,
-            ),
+            'group-flush' => TRUE,
             'link' => TRUE,
+            'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' ),
             'listenstatistik' => array(),
         );

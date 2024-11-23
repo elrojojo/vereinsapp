@@ -20,11 +20,9 @@ class Termine extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                'h5' => TRUE,
-            ),
+            'group-flush' => TRUE,
             'link' => TRUE,
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'start', 'ort' ),
             'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('kategorie'),
@@ -41,9 +39,7 @@ class Termine extends BaseController {
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             'zusatzsymbole' => array('geburtstag'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
@@ -187,9 +183,7 @@ class Termine extends BaseController {
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             'zusatzsymbole' => array('geburtstag'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
@@ -248,9 +242,7 @@ class Termine extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'views' => view( 'Aufgaben/aufgabe' ),
             'listenstatistik' => array(),
         );
@@ -265,9 +257,7 @@ class Termine extends BaseController {
                     array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                     array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
                         ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                ),
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
                 'title' => 'Mitglied für Aufgabe einplanen',
                 'listenstatistik' => array(),

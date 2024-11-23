@@ -2,7 +2,7 @@
 <?= $this->section('containers') ?>
 
 <div class="container" style="max-width: 36rem;"><div class="card">
-    <h5 class="card-header text-center text-secondary">Hoppla...</h5>
+    <div class="h5 card-header text-center text-secondary">Hoppla...</div>
     <div class="card-body">Aktuell finden Wartungsarbeiten statt. Bitte hab etwas Geduld und versuche es später nochmal!</div>
 </div></div>
 

@@ -23,14 +23,12 @@ class Mitglieder extends BaseController {
                 array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                 array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                'h5' => TRUE,
-            ),
+            'group-flush' => TRUE,
             // 'sortable' => TRUE,
             'link' => TRUE,
             // 'klasse_id' => array('btn_', 'bestaetigung_einfordern'),
             // 'title' => 'Titel für bspw. ein Modal',
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             'vorschau' => MITGLIEDER_EIGENSCHAFTEN_VORSCHAU,
             // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('geburtstag'),
@@ -61,9 +59,7 @@ class Mitglieder extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),             
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbole' => array('kategorie'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
@@ -125,9 +121,7 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
                     ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => array(),
@@ -203,9 +197,7 @@ class Mitglieder extends BaseController {
             'sortieren' => array(
                 array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),             
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbole' => array('kategorie'),
             'checkliste' => 'anwesenheiten',
             'disabled' => array(
@@ -260,9 +252,7 @@ class Mitglieder extends BaseController {
             if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $verfuegbares_recht['id'] );
             $this->viewdata['liste']['rechte_vergeben'] = array(
                 'liste' => 'verfuegbare_rechte',
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
-                ),
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung">',
                 'checkliste' => 'vergebene_rechte',
                 'gegen_liste' => 'mitglieder',
                 'gegen_element_id' => $mitglied_id,
@@ -291,9 +281,7 @@ class Mitglieder extends BaseController {
                 'sortieren' => array(
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 ),
-                'beschriftung' => array(
-                    'beschriftung' => '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
+                'beschriftung' => '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'vorschau' => array( 'zugeordnetes_element' ),
                 'views' => view( 'Aufgaben/aufgabe' ),
             );
@@ -305,9 +293,7 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                     array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
                         ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                ),
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
                 'title' => 'Mitglied für Aufgabe einplanen',
                 'listenstatistik' => array(),
@@ -338,9 +324,7 @@ class Mitglieder extends BaseController {
                 'sortieren' => array(
                     array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
                 ),
-                'beschriftung' => array(
-                    'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
+                'beschriftung' => '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'link' => TRUE,
                 'vorschau' => array( 'start' ),
                 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => $mitglied_id ) ),
@@ -364,9 +348,7 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
                 ),
-                'beschriftung' => array(
-                    'beschriftung' => '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
+                'beschriftung' => '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag als offen/erledigt markieren',
                 'vorschau' => array( 'erstellung', 'wert' ),
@@ -388,9 +370,7 @@ class Mitglieder extends BaseController {
                     array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                     array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
                     ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                ),
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => array(),

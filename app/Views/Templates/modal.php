@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title h5"><?php if( isset( $modal_title ) ) echo $modal_title; ?></div>
+        <div class="h5 modal-title"><?php if( isset( $modal_title ) ) echo $modal_title; ?></div>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">

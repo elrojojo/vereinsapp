@@ -1,7 +1,7 @@
 <div class="sortieren_formular">
 
     <div class="card mb-3">
-        <div class="card-header h5">Aktive Sortierungen</div>
+        <div class="h5 card-header">Aktive Sortierungen</div>
         <ul class="card-body list-group sortieren p-2">
 
             <li class="list-group-item list-group-item-action blanko sortieren_element invisible" role="button">

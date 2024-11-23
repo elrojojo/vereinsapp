@@ -18,11 +18,9 @@ class Strafkatalog extends BaseController {
                 array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
                 array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
             ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-                'h5' => TRUE,
-            ),
+            'group-flush' => TRUE,
             // 'link' => TRUE,
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'vorschau' => array( 'wert', 'kategorie' ),
             'listenstatistik' => array(),
         );
@@ -42,9 +40,7 @@ class Strafkatalog extends BaseController {
                     array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
                     array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
                         ),
-                'beschriftung' => array(
-                    'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                ),
+                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
                 'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
                 'listenstatistik' => array(),
@@ -104,11 +100,9 @@ class Strafkatalog extends BaseController {
             array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
         ),
-        'beschriftung' => array(
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'h5' => TRUE,
-        ),
+        'group-flush' => TRUE,
         // 'link' => TRUE,
+        'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
         'vorschau' => array( 'erstellung', 'wert', 'mitglied_id' ),
         'zusatzsymbole' => array('offen_erledigt'),
         'bedingte_formatierung' => array(
