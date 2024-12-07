@@ -6,7 +6,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
     $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
 
     if (AJAX.warten_auf == AJAX.ajax_id) ReinErfolg(AJAX);
-    else if (Array.isArray(AJAX.warten_auf)) {
+    else if (isArray(AJAX.warten_auf)) {
         $.each(AJAX.warten_auf, function (prio, ajax_id) {
             const AJAX = AJAXSCHLANGE[Number(ajax_id)];
             ReinErfolg(AJAX);
@@ -23,7 +23,7 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
             delete AJAX.data_original[eigenschaft];
         });
 
-        if ("info" in AJAX.antwort) console.log("INFO", JSON.stringify(AJAX.antwort.info));
+        if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JSON.stringify(AJAX.antwort.info));
 
         // WENN DIE VALIDATION FEHLSCHLÄGT
         if ("validation" in AJAX.antwort) {

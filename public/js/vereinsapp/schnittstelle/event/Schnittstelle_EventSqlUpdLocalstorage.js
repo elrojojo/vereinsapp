@@ -1,10 +1,10 @@
 function Schnittstelle_EventSqlUpdLocalstorage(liste, schleife, naechste_aktionen) {
-    if (!Array.isArray(naechste_aktionen)) naechste_aktionen = new Array();
+    if (!isArray(naechste_aktionen)) naechste_aktionen = new Array();
 
-    if (!(liste in LISTEN) || Array.isArray(liste)) {
+    if (!(liste in LISTEN) || isArray(liste)) {
         let listen;
         if (!(liste in LISTEN)) listen = Object.keys(LISTEN);
-        else if (Array.isArray(liste)) listen = liste;
+        else if (isArray(liste)) listen = liste;
 
         let neue_ajax_id = AJAXSCHLANGE.length;
         const wartende_ajax_ids = new Array();

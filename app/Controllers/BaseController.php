@@ -113,10 +113,13 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js?v='.VERSION), ); // https://www.npmjs.com/package/js-sha256
         $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isJson.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isArray.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isObject.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isNumber.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isString.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js?v='.VERSION), ); // abhaengig von isObject
+        $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/objektKopiertZurueck.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/arrayKopiertZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/zufaelligeZeichenketteZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/umlaute2unixZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/unix2umlauteZurueck.js?v='.VERSION), );
@@ -219,6 +222,9 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_NaechsteAktion.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/event/Schnittstelle_EventDurchfuehren.js?v='.VERSION), );
+        
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/log/Schnittstelle_LogInit.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/schnittstelle/log/Schnittstelle_LogInDieKonsole.js?v='.VERSION), );
 
         if( auth()->loggedIn() ) {
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_Init.js?v='.VERSION), );

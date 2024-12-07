@@ -37,7 +37,7 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
                 suppressMilliseconds: true,
             });
         // Oder wenn aber die Eigenschaft ein Objekt oder ein Array ist
-        else if (isObject(wert) || Array.isArray(wert)) wert_formatiert = JSON.stringify(wert);
+        else if (isObject(wert) || isArray(wert)) wert_formatiert = JSON.stringify(wert);
 
         $eigenschaft.val(wert_formatiert); //.change();
         Liste_ElementFormularEigenschaftChange($eigenschaft);

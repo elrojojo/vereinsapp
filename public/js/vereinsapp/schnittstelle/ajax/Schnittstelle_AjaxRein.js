@@ -3,7 +3,7 @@ function Schnittstelle_AjaxRein(AJAX) {
     if (AJAX.zustand == AJAX_ZUSTAND.FERTIG && typeof AJAX.schleife === "function") {
         // dann wird die liste rekonstruiert
         let liste;
-        if (Array.isArray(AJAX.warten_auf)) {
+        if (isArray(AJAX.warten_auf)) {
             liste = new Array();
             $.each(AJAX.warten_auf, function (prio, ajax_id) {
                 AJAX = AJAXSCHLANGE[Number(ajax_id)];
