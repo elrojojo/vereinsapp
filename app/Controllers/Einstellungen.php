@@ -5,10 +5,10 @@ namespace App\Controllers;
 use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Aufgaben\Aufgabe_Model;
 use App\Models\Termine\Termin_Model;
-use App\Models\Termine\Termine_Rueckmeldung_Model as Rueckmeldung_Model;
-use App\Models\Termine\Termine_Anwesenheit_Model as Anwesenheit_Model;
+use App\Models\Termine\Rueckmeldung_Model;
+use App\Models\Termine\Anwesenheit_Model;
 use App\Models\Strafkatalog\Strafe_Model;
-use App\Models\Strafkatalog\Strafkatalog_Kassenbucheintrag_Model as Kassenbucheintrag_Model;
+use App\Models\Strafkatalog\Kassenbucheintrag_Model;
 use App\Models\Notenbank\Titel_Model;
 
 class Einstellungen extends BaseController {

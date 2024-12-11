@@ -1,28 +1,38 @@
 <?php
 
-namespace App\Models\Termine;
+namespace App\Models\Strafkatalog;
 
 use CodeIgniter\Model;
 
-class Termine_Anwesenheit_Model extends Model {
+use CodeIgniter\I18n\Time;
+
+class Kassenbucheintrag_Model extends Model {
    
-    protected $table          = 'termine_anwesenheiten';
+    protected $table          = 'strafkatalog_kassenbuch';
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
-        'termin_id',
+        'titel',
+        'wert',
         'mitglied_id',
-        'status',
+        'erledigt',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
 
-    public function anwesenheiten_tabelle() {
+    protected $useSoftDeletes = TRUE;
+
+    public function kassenbuch_tabelle() {
         $tabelle = array();
 
-        foreach( $this->findAll() as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'anwesenheiten' );
+        foreach( $this->findAll() as $eintrag ) {
+            $eintrag['erstellung'] = $eintrag['created_at'];
+            if( $eintrag['erstellung'] != NULL ) $eintrag['erstellung'] = ( new Time( $eintrag['erstellung'] ) )->setTimezone('Europe/Berlin')->toDateTimeString();
+
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'kassenbuch' );
+        }
 
         return $tabelle;
     }

@@ -61,7 +61,7 @@ class Startseite extends BaseController {
             'filtern' => array( array( 
                 'verknuepfung' => '&&',
                 'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => JETZT->toDateTimeString() ),
+                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::now('Europe/Berlin')->toDateTimeString() ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
                     array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
                 ),

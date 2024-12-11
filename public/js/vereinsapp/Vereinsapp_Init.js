@@ -107,9 +107,6 @@ AJAXSCHLANGE mittels Funktions befüllen, die nur bestimmte Eigenschaften annimm
 Was macht Schnittstelle_LocalstorageWertBereinigtZurueck und wird es wirklich gebraucht?
 Was macht AJAX.data_original und wird es wirklich gebraucht?
 Was macht AJAX.liste und wird es wirklich gebraucht?
-Was macht AJAX_ZUSTAND und wird es wirklich gebraucht?
-Modals umbennen (ohne den Controller im Namen)
-JETZT direkt durch Time::now('Europe/Berlin') ersetzen
 Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
 Schnittstelle_EventVariableUpdLocalstorage aufräumen (tabelle wird vorbereitet)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen

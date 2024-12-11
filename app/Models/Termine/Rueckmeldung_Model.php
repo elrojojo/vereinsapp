@@ -1,38 +1,28 @@
 <?php
 
-namespace App\Models\Strafkatalog;
+namespace App\Models\Termine;
 
 use CodeIgniter\Model;
 
-use CodeIgniter\I18n\Time;
-
-class Strafkatalog_Kassenbucheintrag_Model extends Model {
+class Rueckmeldung_Model extends Model {
    
-    protected $table          = 'strafkatalog_kassenbuch';
+    protected $table          = 'termine_rueckmeldungen';
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
-        'titel',
-        'wert',
+        'termin_id',
         'mitglied_id',
-        'erledigt',
+        'status',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
-    protected $useSoftDeletes = TRUE;
-
-    public function kassenbuch_tabelle() {
+    public function rueckmeldungen_tabelle() {
         $tabelle = array();
 
-        foreach( $this->findAll() as $eintrag ) {
-            $eintrag['erstellung'] = $eintrag['created_at'];
-            if( $eintrag['erstellung'] != NULL ) $eintrag['erstellung'] = ( new Time( $eintrag['erstellung'] ) )->setTimezone('Europe/Berlin')->toDateTimeString();
-
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'kassenbuch' );
-        }
+        foreach( $this->findAll() as $eintrag )
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'rueckmeldungen' );
 
         return $tabelle;
     }

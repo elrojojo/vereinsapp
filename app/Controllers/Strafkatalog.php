@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Strafkatalog\Strafe_Model;
-use App\Models\Strafkatalog\Strafkatalog_Kassenbucheintrag_Model as Kassenbucheintrag_Model;
+use App\Models\Strafkatalog\Kassenbucheintrag_Model;
 
 class Strafkatalog extends BaseController {
 

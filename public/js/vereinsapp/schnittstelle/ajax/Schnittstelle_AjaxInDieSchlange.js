@@ -33,8 +33,6 @@ function Schnittstelle_AjaxInDieSchlange(AJAX) {
         },
     };
 
-    Schnittstelle_AjaxStatusSetzen(AJAX, AJAX_ZUSTAND.VORBEREITET);
-
     // $.ajaxQueue wird ausgeführt
     $.ajaxQueue(AJAX.ajaxQueue);
 }

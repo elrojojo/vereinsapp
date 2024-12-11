@@ -22,6 +22,4 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
     else {
         if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
     }
-
-    Schnittstelle_AjaxStatusSetzen(AJAX, AJAX_ZUSTAND.FERTIG);
 }

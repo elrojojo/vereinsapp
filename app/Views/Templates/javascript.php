@@ -27,7 +27,7 @@ const NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN = <?= json_encode( NOTENBANK_ERLAUBTE_
 const NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO = <?= json_encode( NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO ) ?>;
 
 const AJAX_ZYKLUSZEIT = <?= AJAX_ZYKLUSZEIT ?>;
-const AJAX_ZUSTAND = Object.freeze({<?php foreach (AJAX_ZUSTAND::cases() as $ajax_zustand) { echo $ajax_zustand->name . ': Symbol("'.$ajax_zustand->name.'"), '; } ?>});
+//const ZUSTAND = Object.freeze({<?php //foreach (ZUSTAND::cases() as $zustand) { echo $zustand->name . ': Symbol("'.$zustand->name.'"), '; } ?>});
 
 const DATENSCHUTZ_RICHTLINIE_DATUM = '<?= DATENSCHUTZ_RICHTLINIE_DATUM ?>';
 

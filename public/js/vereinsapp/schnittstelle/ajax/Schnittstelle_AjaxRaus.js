@@ -7,6 +7,4 @@ function Schnittstelle_AjaxRaus(AJAX) {
             AJAX.data[eigenschaft] = "";
         }
     });
-
-    Schnittstelle_AjaxStatusSetzen(AJAX, AJAX_ZUSTAND.RAUS);
 }
