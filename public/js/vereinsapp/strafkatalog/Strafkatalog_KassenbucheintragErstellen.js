@@ -32,10 +32,10 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                         Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
                 Schnittstelle_VariableRein(DateTime.now(), "erstellung", kassenbucheintrag_id, "kassenbuch");
-                Schnittstelle_EventVariableUpdLocalstorage("kassenbuch", [
-                    Schnittstelle_EventLocalstorageUpdVariable,
-                    Schnittstelle_EventVariableUpdDom,
-                ]);
+                Schnittstelle_EventAusfuehren(
+                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+                    { liste: "kassenbuch" }
+                );
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
@@ -48,10 +48,6 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "kassenbuch") + " konnte nicht gespeichert werden.",
-                    "danger"
-                );
             },
         };
 

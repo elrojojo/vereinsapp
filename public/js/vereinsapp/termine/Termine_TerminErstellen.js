@@ -27,10 +27,10 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, termin_id, "termine");
                 });
-                Schnittstelle_EventVariableUpdLocalstorage("termine", [
-                    Schnittstelle_EventLocalstorageUpdVariable,
-                    Schnittstelle_EventVariableUpdDom,
-                ]);
+                Schnittstelle_EventAusfuehren(
+                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+                    { liste: "termine" }
+                );
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
@@ -43,10 +43,6 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "termine") + " konnte nicht gespeichert werden.",
-                    "danger"
-                );
             },
         };
 

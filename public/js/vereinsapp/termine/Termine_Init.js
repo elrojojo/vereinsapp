@@ -32,17 +32,19 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
 };
 
 function Termine_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE.push(function () {
-        // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-        $(".rueckmeldung_eingeladen").each(function () {
-            Termine_RueckmeldungEinAusblenden($(this));
-        });
+    EVENT_VARIABLE_UPD_DOM_MODULE["rueckmeldungen"] = [
+        function () {
+            // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
+            $(".rueckmeldung_eingeladen").each(function () {
+                Termine_RueckmeldungEinAusblenden($(this));
+            });
 
-        // RÜCKMELDUNG AKTUALISIEREN
-        $(".zusagen, .absagen").each(function () {
-            Termine_RueckmeldungAktualisieren($(this));
-        });
-    });
+            // RÜCKMELDUNG AKTUALISIEREN
+            $(".zusagen, .absagen").each(function () {
+                Termine_RueckmeldungAktualisieren($(this));
+            });
+        },
+    ];
 
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {
@@ -155,6 +157,6 @@ function Termine_Init() {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
         $neues_modal.find("#anwesenheiten_dokumentieren.liste").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
         Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom(gegen_liste);
+        Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: gegen_liste });
     });
 }

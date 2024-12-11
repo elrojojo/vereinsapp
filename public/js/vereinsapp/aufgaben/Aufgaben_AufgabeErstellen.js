@@ -33,10 +33,10 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 Schnittstelle_VariableRein(null, "mitglied_id", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(null, "erledigt", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(DateTime.now(), "erstellung", aufgabe_id, "aufgaben");
-                Schnittstelle_EventVariableUpdLocalstorage("aufgaben", [
-                    Schnittstelle_EventLocalstorageUpdVariable,
-                    Schnittstelle_EventVariableUpdDom,
-                ]);
+                Schnittstelle_EventAusfuehren(
+                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+                    { liste: "aufgaben" }
+                );
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
@@ -49,10 +49,6 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "aufgaben") + " konnte nicht gespeichert werden.",
-                    "danger"
-                );
             },
         };
 

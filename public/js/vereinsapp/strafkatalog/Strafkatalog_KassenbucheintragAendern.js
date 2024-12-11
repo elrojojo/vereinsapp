@@ -31,10 +31,10 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
-                Schnittstelle_EventVariableUpdLocalstorage("kassenbuch", [
-                    Schnittstelle_EventLocalstorageUpdVariable,
-                    Schnittstelle_EventVariableUpdDom,
-                ]);
+                Schnittstelle_EventAusfuehren(
+                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+                    { liste: "kassenbuch" }
+                );
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

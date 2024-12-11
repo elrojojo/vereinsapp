@@ -174,20 +174,4 @@ class Notenbank extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    private function verzeichnis_indizieren( $verzeichnis ) {
-        $verzeichnis_indiziert = array(
-            'unterverzeichnisse' => array(),
-            'dateien' => array(),
-        );
-        foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
-            if( substr( $beschriftung, -1 ) == '\\' ) $beschriftung = substr_replace($beschriftung, '/', -1);
-
-            if( is_array($unterverzeichnis) ) $verzeichnis_indiziert['unterverzeichnisse'][$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
-            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ), array_merge( NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO ) ) )
-                $verzeichnis_indiziert['dateien'][] = $unterverzeichnis;
-            else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }
-        }
-        return $verzeichnis_indiziert;
-    }
-
 }

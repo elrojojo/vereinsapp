@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\Strafkatalog\Strafe_Model;
-
 use App\Models\Strafkatalog\Strafkatalog_Kassenbucheintrag_Model as Kassenbucheintrag_Model;
-
-use CodeIgniter\I18n\Time;
 
 class Strafkatalog extends BaseController {
 
@@ -144,27 +142,6 @@ class Strafkatalog extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_strafkatalog() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Strafe_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $strafe ) {
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $strafe ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['strafkatalog'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_strafe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -209,29 +186,6 @@ class Strafkatalog extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_kassenbuch() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Kassenbucheintrag_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $kassenbucheintrag ) {
-                $kassenbucheintrag['erstellung'] = $kassenbucheintrag['created_at'];
-                if( $kassenbucheintrag['erstellung'] != NULL ) $kassenbucheintrag['erstellung'] = ( new Time( $kassenbucheintrag['erstellung'] ) )->setTimezone('Europe/Berlin')->toDateTimeString();
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $kassenbucheintrag ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['kassenbuch'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_kassenbucheintrag_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',

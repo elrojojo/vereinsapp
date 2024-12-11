@@ -2,6 +2,7 @@ const DateTime = luxon.DateTime;
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit();
+    Schnittstelle_EventInit();
     Schnittstelle_LocalstorageInit();
     Liste_Init();
     Schnittstelle_DomInit();
@@ -13,13 +14,17 @@ $(document).ready(function () {
         Strafkatalog_Init();
         Notenbank_Init();
 
-        Schnittstelle_EventLocalstorageUpdVariable();
-        Schnittstelle_EventVariableUpdDom();
-        if (Object.keys(LISTEN).length > 0)
-            Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
-                Schnittstelle_EventLocalstorageUpdVariable,
-                Schnittstelle_EventVariableUpdDom,
-            ]);
+        $.each(LISTEN, function (liste, LISTE) {
+            Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], {
+                liste: liste,
+            });
+        });
+
+        Schnittstelle_EventAusfuehren(
+            [Schnittstelle_EventSqlUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+            undefined,
+            true
+        );
     }
 
     $(".formular").each(function () {
@@ -94,11 +99,20 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Form validation für bemerkung mit Regel field_exists durchführen?
-Termine-Tabelle existiert nicht, wenn der zu einer Aufgabe verlinkte Termin angezeigt werden soll
-    Was macht abhaengig_von und was macht verlinkte_listen und was ist der Unterschied?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
 Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
+AJAXSCHLANGE mittels Funktions befüllen, die nur bestimmte Eigenschaften annimmt
+Was macht Schnittstelle_LocalstorageWertBereinigtZurueck und wird es wirklich gebraucht?
+Was macht AJAX.data_original und wird es wirklich gebraucht?
+Was macht AJAX.liste und wird es wirklich gebraucht?
+Was macht AJAX_ZUSTAND und wird es wirklich gebraucht?
+Modals umbennen (ohne den Controller im Namen)
+JETZT direkt durch Time::now('Europe/Berlin') ersetzen
+Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
+Schnittstelle_EventVariableUpdLocalstorage aufräumen (tabelle wird vorbereitet)
+Rekursion-Problem Rückmeldungen vs. Termine auflösen
+Event bekommt direkt die liste (kein data-Objekt, das liste beinhaltet)
 
 */

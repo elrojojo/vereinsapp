@@ -54,10 +54,10 @@ function Liste_CheckAendern(dom, data) {
                 });
             }
 
-            Schnittstelle_EventVariableUpdLocalstorage(AJAX.data.checkliste, [
-                Schnittstelle_EventLocalstorageUpdVariable,
-                Schnittstelle_EventVariableUpdDom,
-            ]);
+            Schnittstelle_EventAusfuehren(
+                [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+                { liste: AJAX.data.checkliste }
+            );
 
             if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_CheckWartenEnde(AJAX.dom.$check);
         },

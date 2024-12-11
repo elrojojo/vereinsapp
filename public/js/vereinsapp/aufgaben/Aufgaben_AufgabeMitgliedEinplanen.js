@@ -9,7 +9,7 @@ function Aufgaben_AufgabeMitgliedEinplanen(auswahl_oeffnen, bestaetigung_einford
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglieder_auswahl");
         $neues_modal.find("#mitglieder_auswahl.liste").attr("data-gegen_element_id", aufgabe_id);
         Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom("mitglieder");
+        Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: "mitglieder" });
     } else if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du wirklich dich für die Aufgabe " + Liste_ElementBeschriftungZurueck(aufgabe_id, "aufgaben") + " einplanen?",

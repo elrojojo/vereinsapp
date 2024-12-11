@@ -394,48 +394,6 @@ class Mitglieder extends BaseController {
         echo view( 'Mitglieder/mitglied_details', $this->viewdata );
     }
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_mitglieder() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
-        $validation_rules = array(
-            // 'hash' => 'required|alpha_numeric',
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else foreach( model(Mitglied_Model::class)->findAll() as $mitglied_ ) {
-                $mitglied = array(
-                    'id' => $mitglied_->id,
-                    'vorname' => $mitglied_->vorname,
-                    'nachname' => $mitglied_->nachname,
-                    'geburt' => $mitglied_->geburt,
-                    'postleitzahl' => $mitglied_->postleitzahl,
-                    'wohnort' => $mitglied_->wohnort,
-                    'geschlecht' => $mitglied_->geschlecht,
-                );
-                if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['register'] = $mitglied_->register;
-                if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['auto'] = $mitglied_->auto;
-                if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['funktion'] = $mitglied_->funktion;
-                if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['vorstandschaft'] = $mitglied_->vorstandschaft;
-                if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['aktiv'] = $mitglied_->aktiv;
-
-                if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-                    // $mitglied = json_decode( json_encode( $mitglied ), TRUE );
-                    $mitglied['email'] = $mitglied_->email;
-                    $mitglied['erstellung'] = $mitglied_->created_at;
-                    if( $mitglied['erstellung'] != NULL ) $mitglied['erstellung'] = $mitglied['erstellung']->setTimezone('Europe/Berlin')->toDateTimeString();
-                    $mitglied['letzte_aktivitaet'] = $mitglied_->last_active;
-                    if( $mitglied['letzte_aktivitaet'] != NULL ) $mitglied['letzte_aktivitaet'] = $mitglied['letzte_aktivitaet']->setTimezone('Europe/Berlin')->toDateTimeString();
-                } elseif( ICH['id'] == $mitglied['id'] )
-                    $mitglied['email'] = $mitglied_->email;
-
-                foreach( $mitglied as $eigenschaft => $wert ) if( is_numeric( $wert ) )
-                    if( (int) $wert == $wert ) $mitglied[ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $mitglied[ $eigenschaft ] = (float)$wert;
-                $ajax_antwort['tabelle'][] = $mitglied;
-            }
-            // if( hash( 'sha256', json_encode( $ajax_antwort['tabelle'], JSON_UNESCAPED_UNICODE ) ) == $this->request->getPost()['hash'] ) TRUE; //$ajax_antwort['tabelle'] = array();
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_mitglied_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -665,49 +623,6 @@ class Mitglieder extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_verfuegbare_rechte() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) {
-                $verfuegbares_recht = json_decode( json_encode( $verfuegbares_recht ), TRUE );
-                foreach( $verfuegbares_recht as $eigenschaft => $wert ) if( is_numeric( $wert ) )
-                    if( (int) $wert == $wert ) $verfuegbares_recht[ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $verfuegbares_recht[ $eigenschaft ] = (float)$wert;
-                $ajax_antwort['tabelle'][] = $verfuegbares_recht;
-            }
-        
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-    
-    public function ajax_vergebene_rechte() { $ajax_antwort = array( CSRF_NAME => csrf_hash(), 'tabelle' => array() );
-        $id = 1;
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) {
-            if( auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
-                foreach( $mitglied->getPermissions() as $permission ) if( array_key_exists( $permission, VERFUEGBARE_RECHTE ) ) {
-                    $vergebenes_recht['id'] = $id;
-                    $vergebenes_recht['mitglied_id'] = $mitglied->id;
-                    $vergebenes_recht['verfuegbares_recht_id'] = VERFUEGBARE_RECHTE[ $permission ]['id'];
-                    $vergebenes_recht = json_decode( json_encode( $vergebenes_recht ), TRUE );
-                    foreach( $vergebenes_recht as $eigenschaft => $wert )
-                    if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['vergebene_rechte'] ) ) unset( $vergebenes_recht[$eigenschaft] );
-                    elseif( is_numeric( $wert ) ) {
-                        if( (int) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (int)$wert;
-                        elseif( (float) $wert == $wert ) $vergebenes_recht[ $eigenschaft ] = (float)$wert;
-                    }
-                    $ajax_antwort['tabelle'][] = $vergebenes_recht;
-                    $id++;
-                }
-            }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_vergebenes_recht_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',

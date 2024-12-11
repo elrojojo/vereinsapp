@@ -20,7 +20,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_oeffnen, bestaetigung_einfordern, d
             .attr("data-gegen_liste", liste)
             .attr("data-gegen_element_id", element_id);
         Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom(data.gegen_liste);
+        Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: data.gegen_liste });
     } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);
 

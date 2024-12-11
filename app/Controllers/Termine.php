@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 use App\Models\Termine\Termin_Model;
-use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Termine\Termine_Rueckmeldung_Model as Rueckmeldung_Model;
 use App\Models\Termine\Termine_Anwesenheit_Model as Anwesenheit_Model;
 
@@ -285,27 +284,6 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_termine() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Termin_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $termin ) {
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $termin ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['termine'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_termin_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -357,27 +335,6 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_rueckmeldungen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Rueckmeldung_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $rueckmeldung ) {
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $rueckmeldung ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['rueckmeldungen'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -414,27 +371,6 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_anwesenheiten() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Anwesenheit_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $anwesenheit ) {
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $anwesenheit ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['anwesenheiten'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_anwesenheit_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',

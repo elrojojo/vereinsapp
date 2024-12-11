@@ -3,8 +3,6 @@
 namespace App\Controllers;
 use App\Models\Aufgaben\Aufgabe_Model;
 
-use CodeIgniter\I18n\Time;
-
 class Aufgaben extends BaseController {
 
     public function aufgaben() {
@@ -73,29 +71,6 @@ class Aufgaben extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_aufgaben() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Aufgabe_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $aufgabe ) {
-                $aufgabe['erstellung'] = $aufgabe['created_at'];
-                if( $aufgabe['erstellung'] != NULL ) $aufgabe['erstellung'] = ( new Time( $aufgabe['erstellung'] ) )->setTimezone('Europe/Berlin')->toDateTimeString();
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $aufgabe ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['aufgaben'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_aufgabe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',

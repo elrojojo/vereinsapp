@@ -8,12 +8,14 @@ LISTEN.aufgaben.element_ergaenzen_aktion = function (aufgabe) {
 };
 
 function Aufgaben_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE.push(function () {
-        // AUFGABE AKTUALISIEREN
-        $('.element[data-liste="aufgaben"]').each(function () {
-            Aufgaben_AufgabeAktualisieren($(this));
-        });
-    });
+    EVENT_VARIABLE_UPD_DOM_MODULE["aufgaben"] = [
+        function () {
+            // AUFGABE AKTUALISIEREN
+            $('.element[data-liste="aufgaben"]').each(function () {
+                Aufgaben_AufgabeAktualisieren($(this));
+            });
+        },
+    ];
 
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
