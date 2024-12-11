@@ -18,7 +18,6 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
             ajax_id: neue_ajax_id,
             url: "strafkatalog/ajax_kassenbucheintrag_speichern",
             data: ajax_data,
-            liste: "kassenbuch",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("kassenbucheintrag_id" in AJAX.antwort && typeof AJAX.antwort.kassenbucheintrag_id !== "undefined")

@@ -5,12 +5,6 @@ function Schnittstelle_AjaxReinErfolg(AJAX) {
     // Spezialfall login-view
     $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
 
-    // AJAX.data wird entsprechend den Einträgen in AJAX.data_original zurückgesetzt
-    $.each(AJAX.data_original, function (eigenschaft, wert) {
-        AJAX.data[eigenschaft] = wert;
-        delete AJAX.data_original[eigenschaft];
-    });
-
     if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JSON.stringify(AJAX.antwort.info));
 
     // WENN DIE VALIDATION FEHLSCHLÄGT

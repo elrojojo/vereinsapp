@@ -24,7 +24,6 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             ajax_id: neue_ajax_id,
             url: "mitglieder/ajax_mitglied_einmal_link_erstellen",
             data: ajax_data,
-            liste: "mitglieder",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 Schnittstelle_EventAusfuehren(

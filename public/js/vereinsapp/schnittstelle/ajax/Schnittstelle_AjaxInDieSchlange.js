@@ -8,7 +8,6 @@ function Schnittstelle_AjaxInDieSchlange(AJAX) {
         url: SITE_URL + AJAX.url,
         method: "post",
         data: AJAX.data,
-        data_original: new Object(),
         dataType: "json",
         beforeSend: function (ajax, ajaxQueue) {
             if (isObject(ajaxQueue) && "ajax_id" in ajaxQueue) Schnittstelle_AjaxRaus(AJAXSCHLANGE[Number(ajaxQueue.ajax_id)]);

@@ -105,11 +105,10 @@ Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorste
 Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
 AJAXSCHLANGE mittels Funktions befüllen, die nur bestimmte Eigenschaften annimmt
 Was macht Schnittstelle_LocalstorageWertBereinigtZurueck und wird es wirklich gebraucht?
-Was macht AJAX.data_original und wird es wirklich gebraucht?
-Was macht AJAX.liste und wird es wirklich gebraucht?
 Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
 Schnittstelle_EventVariableUpdLocalstorage aufräumen (tabelle wird vorbereitet)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Event bekommt direkt die liste (kein data-Objekt, das liste beinhaltet)
+Ohne Rechte zur Verwaltung der Aufgaben lässt sich eine Aufgabe nicht als erledigt markieren
 
 */

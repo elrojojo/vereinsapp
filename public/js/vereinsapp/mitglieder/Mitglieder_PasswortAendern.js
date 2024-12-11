@@ -12,7 +12,6 @@ function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
         ajax_id: neue_ajax_id,
         url: "mitglieder/ajax_mitglied_passwort_aendern",
         data: ajax_data,
-        liste: "mitglieder",
         dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
             if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) AJAX.dom.$formular.find(".eigenschaft").val("");

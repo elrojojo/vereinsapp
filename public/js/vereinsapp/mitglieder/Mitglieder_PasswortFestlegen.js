@@ -12,7 +12,6 @@ function Mitglieder_PasswortFestlegen(dom, data, mitglied_id) {
         ajax_id: neue_ajax_id,
         url: "mitglieder/ajax_mitglied_passwort_festlegen",
         data: ajax_data,
-        liste: "mitglieder",
         dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
             if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

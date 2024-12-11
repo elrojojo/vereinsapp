@@ -23,7 +23,6 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
             ajax_id: neue_ajax_id,
             url: "termine/ajax_termin_speichern",
             data: ajax_data,
-            liste: "termine",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const termin_id = AJAX.data.id;

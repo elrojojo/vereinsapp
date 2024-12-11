@@ -15,7 +15,6 @@ function Liste_CheckAendern(dom, data) {
         ajax_id: neue_ajax_id,
         url: LISTEN[data.checkliste].controller + "/ajax_" + LISTEN[data.checkliste].element + "_speichern",
         data: ajax_data,
-        liste: data.liste,
         dom: ajax_dom,
         rein_validation_pos_aktion: function (AJAX) {
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht

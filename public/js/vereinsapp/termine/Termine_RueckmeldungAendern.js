@@ -21,7 +21,6 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
             ajax_id: neue_ajax_id,
             url: "termine/ajax_rueckmeldung_speichern",
             data: ajax_data,
-            liste: "rueckmeldungen",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const rueckmeldung_id = AJAX.data.id;

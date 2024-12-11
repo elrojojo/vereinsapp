@@ -23,7 +23,6 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
             ajax_id: neue_ajax_id,
             url: "strafkatalog/ajax_kassenbucheintrag_speichern",
             data: ajax_data,
-            liste: "kassenbuch",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const kassenbucheintrag_id = AJAX.data.id;

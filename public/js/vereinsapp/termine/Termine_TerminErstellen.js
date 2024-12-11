@@ -16,7 +16,6 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
             ajax_id: neue_ajax_id,
             url: "termine/ajax_termin_speichern",
             data: ajax_data,
-            liste: "termine",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("termin_id" in AJAX.antwort && typeof AJAX.antwort.termin_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.termin_id);

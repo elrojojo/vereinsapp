@@ -21,7 +21,6 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
             ajax_id: neue_ajax_id,
             url: "notenbank/ajax_titel_speichern",
             data: ajax_data,
-            liste: "notenbank",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const titel_id = AJAX.data.id;

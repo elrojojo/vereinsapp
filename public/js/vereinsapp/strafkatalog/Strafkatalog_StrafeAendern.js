@@ -21,7 +21,6 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
             ajax_id: neue_ajax_id,
             url: "strafkatalog/ajax_strafe_speichern",
             data: ajax_data,
-            liste: "strafkatalog",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const strafe_id = AJAX.data.id;

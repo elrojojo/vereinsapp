@@ -16,7 +16,6 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
             ajax_id: neue_ajax_id,
             url: "termine/ajax_rueckmeldung_speichern",
             data: ajax_data,
-            liste: "rueckmeldungen",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("rueckmeldung_id" in AJAX.antwort && typeof AJAX.antwort.rueckmeldung_id !== "undefined")

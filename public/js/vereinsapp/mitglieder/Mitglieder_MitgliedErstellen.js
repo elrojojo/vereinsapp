@@ -16,7 +16,6 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
             ajax_id: neue_ajax_id,
             url: "mitglieder/ajax_mitglied_speichern",
             data: ajax_data,
-            liste: "mitglieder",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("mitglied_id" in AJAX.antwort && typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.mitglied_id);

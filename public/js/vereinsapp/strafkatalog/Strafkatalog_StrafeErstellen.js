@@ -16,7 +16,6 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
             ajax_id: neue_ajax_id,
             url: "strafkatalog/ajax_strafe_speichern",
             data: ajax_data,
-            liste: "strafkatalog",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("strafe_id" in AJAX.antwort && typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.strafe_id);

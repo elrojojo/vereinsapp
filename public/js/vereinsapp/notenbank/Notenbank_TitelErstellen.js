@@ -16,7 +16,6 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
             ajax_id: neue_ajax_id,
             url: "notenbank/ajax_titel_speichern",
             data: ajax_data,
-            liste: "notenbank",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("titel_id" in AJAX.antwort && typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.titel_id);

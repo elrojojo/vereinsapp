@@ -24,7 +24,6 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
             ajax_id: neue_ajax_id,
             url: "aufgaben/ajax_aufgabe_speichern",
             data: ajax_data,
-            liste: "aufgaben",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const aufgabe_id = AJAX.data.id;

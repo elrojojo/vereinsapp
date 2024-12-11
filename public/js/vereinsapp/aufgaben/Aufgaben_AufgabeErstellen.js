@@ -18,7 +18,6 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
             ajax_id: neue_ajax_id,
             url: "aufgaben/ajax_aufgabe_speichern",
             data: ajax_data,
-            liste: "aufgaben",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 if ("aufgabe_id" in AJAX.antwort && typeof AJAX.antwort.aufgabe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.aufgabe_id);

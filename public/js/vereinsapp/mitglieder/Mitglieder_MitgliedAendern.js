@@ -29,7 +29,6 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
             ajax_id: neue_ajax_id,
             url: "mitglieder/ajax_mitglied_speichern",
             data: ajax_data,
-            liste: "mitglieder",
             dom: ajax_dom,
             rein_validation_pos_aktion: function (AJAX) {
                 const mitglied_id = AJAX.data.id;
