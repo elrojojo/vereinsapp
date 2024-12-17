@@ -90,17 +90,16 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
+Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
+Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
-Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
-Was macht Schnittstelle_LocalstorageWertBereinigtZurueck und wird es wirklich gebraucht?
 Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
-Schnittstelle_EventVariableUpdLocalstorage aufräumen (tabelle wird vorbereitet)
-Rekursion-Problem Rückmeldungen vs. Termine auflösen
-Event bekommt direkt die liste (kein data-Objekt, das liste beinhaltet)
 Ohne Rechte zur Verwaltung der Aufgaben lässt sich eine Aufgabe nicht als erledigt markieren
 Wenn eine Aufgabe als offen markiert wird, dann erscheinen viele Löschen-Symbole
+Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
+    und falls zugeordnete_liste nicht definiert ist, dann muss auch zugeordnete_element_id nicht definiert sein
 
 */

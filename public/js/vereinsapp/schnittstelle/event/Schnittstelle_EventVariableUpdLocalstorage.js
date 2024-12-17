@@ -7,13 +7,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
     $.each(LISTEN[liste].tabelle, function () {
         const element = this;
         if ("id" in element) {
-            if ("alter" in element) delete element["alter"];
-            if ("alter_geburtstag" in element) delete element["alter_geburtstag"];
-            if ("geburtstag" in element) delete element["geburtstag"];
-            if ("ich_rueckmeldung_id" in element) delete element["ich_rueckmeldung_id"];
-            if ("ich_rueckgemeldet" in element) delete element["ich_rueckgemeldet"];
-            if ("ich_eingeladen" in element) delete element["ich_eingeladen"];
-            if ("filtern_mitglieder" in element) element["filtern_mitglieder"] = JSON.stringify(element["filtern_mitglieder"]);
+            // if ("alter" in element) delete element["alter"];
             $.each(element, function (eigenschaft, wert) {
                 element[eigenschaft] = Schnittstelle_LocalstorageWertBereinigtZurueck(wert);
             });
