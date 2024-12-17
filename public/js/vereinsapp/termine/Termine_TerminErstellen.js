@@ -10,6 +10,8 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
 
         const ajax_dom = dom;
         const ajax_data = data;
+        if (("filtern_mitglieder" in data && typeof data.filtern_mitglieder === "undefined") || data.filtern_mitglieder == "")
+            data.filtern_mitglieder = "[]";
 
         Schnittstelle_AjaxInDieSchlange(
             "termine/ajax_termin_speichern",

@@ -99,7 +99,5 @@ Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorste
 Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
 Ohne Rechte zur Verwaltung der Aufgaben lässt sich eine Aufgabe nicht als erledigt markieren
 Wenn eine Aufgabe als offen markiert wird, dann erscheinen viele Löschen-Symbole
-Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
-    und falls zugeordnete_liste nicht definiert ist, dann muss auch zugeordnete_element_id nicht definiert sein
 
 */

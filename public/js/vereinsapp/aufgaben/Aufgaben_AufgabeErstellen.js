@@ -12,6 +12,8 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
         const ajax_data = data;
         if ("zugeordnete_liste" in data && (typeof data.zugeordnete_liste === "undefined" || data.zugeordnete_liste == ""))
             data.zugeordnete_liste = null;
+        if (("zugeordnete_element_id" in data && typeof data.zugeordnete_element_id === "undefined") || data.zugeordnete_element_id == "")
+            data.zugeordnete_element_id = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "aufgaben/ajax_aufgabe_speichern",

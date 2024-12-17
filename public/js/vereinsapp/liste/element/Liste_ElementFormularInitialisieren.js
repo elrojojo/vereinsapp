@@ -16,7 +16,6 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
             else if ($eigenschaft.attr("type") == "date") wert = DateTime.now().plus({ days: 1 });
             else if ($eigenschaft.attr("type") == "time") wert = DateTime.now().plus({ minutes: 1 });
             else if ($eigenschaft.attr("type") == "datetime-local") wert = DateTime.now().plus({ minutes: 1 });
-            else if ($eigenschaft.attr("type") == "button") wert = new Array();
             else wert = "";
 
         let wert_formatiert = wert;

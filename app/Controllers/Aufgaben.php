@@ -75,8 +75,8 @@ class Aufgaben extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'zugeordnete_liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['aufgaben']['zugeordnete_liste'] ) ).']', 'permit_empty' ] ],
-            'zugeordnete_element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_element_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
+            'zugeordnete_liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung'], 'rules' => [ 'required_with[zugeordnete_element_id]', 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['aufgaben']['zugeordnete_liste'] ) ).']', 'permit_empty' ] ],
+            'zugeordnete_element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_element_id']['beschriftung'], 'rules' => [ 'required_with[zugeordnete_liste]', 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date', 'permit_empty' ] ],

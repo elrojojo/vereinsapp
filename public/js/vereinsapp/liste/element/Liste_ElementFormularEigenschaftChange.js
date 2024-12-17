@@ -8,6 +8,10 @@ function Liste_ElementFormularEigenschaftChange($eigenschaft) {
         const $verlinkte_eigenschaft = $(this);
 
         if ($eigenschaft.val() != "") $verlinkte_eigenschaft.attr("data-" + eigenschaft, $eigenschaft.val()).removeClass("disabled");
-        else $verlinkte_eigenschaft.removeAttr("data-" + eigenschaft).addClass("disabled");
+        else
+            $verlinkte_eigenschaft
+                .removeAttr("data-" + eigenschaft)
+                .addClass("disabled")
+                .val("");
     });
 }
