@@ -11,13 +11,11 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
         const ajax_dom = dom;
         const ajax_data = data;
 
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "mitglieder/ajax_mitglied_speichern",
-            data: ajax_data,
-            dom: ajax_dom,
-            rein_validation_pos_aktion: function (AJAX) {
+        Schnittstelle_AjaxInDieSchlange(
+            "mitglieder/ajax_mitglied_speichern",
+            ajax_data,
+            ajax_dom,
+            function (AJAX) {
                 if ("mitglied_id" in AJAX.antwort && typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.mitglied_id);
                 else AJAX.data.id = Number(LISTEN["mitglieder"].tabelle.length + 1);
                 const mitglied_id = AJAX.data.id;
@@ -37,15 +35,13 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich erstellt.");
             },
-            rein_validation_neg_aktion: function (AJAX) {
+            function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            },
-        };
-
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
+            }
+        );
     }
 }

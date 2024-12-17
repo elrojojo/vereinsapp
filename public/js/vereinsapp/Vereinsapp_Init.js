@@ -37,22 +37,14 @@ $(document).ready(function () {
     });
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined") {
-        // SCHNITTSTELLE AJAX
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "status/ajax_datenschutz_richtlinie",
-            rein_validation_pos_aktion: function (AJAX) {
-                Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
-                $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                    Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
-                });
-            },
-        };
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
-    }
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined")
+        Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", {}, {}, function (AJAX) {
+            Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
+            $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
+                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
+                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
+            });
+        });
 });
 
 /* TODO
@@ -103,12 +95,12 @@ Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
 Validation erweitern, dass zugeordnete_element_id definiert sein muss, falls zugeordnete_liste definiert ist
-AJAXSCHLANGE mittels Funktions befüllen, die nur bestimmte Eigenschaften annimmt
 Was macht Schnittstelle_LocalstorageWertBereinigtZurueck und wird es wirklich gebraucht?
 Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
 Schnittstelle_EventVariableUpdLocalstorage aufräumen (tabelle wird vorbereitet)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Event bekommt direkt die liste (kein data-Objekt, das liste beinhaltet)
 Ohne Rechte zur Verwaltung der Aufgaben lässt sich eine Aufgabe nicht als erledigt markieren
+Wenn eine Aufgabe als offen markiert wird, dann erscheinen viele Löschen-Symbole
 
 */

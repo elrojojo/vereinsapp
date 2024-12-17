@@ -13,13 +13,11 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
         if (!("erledigt" in ajax_data)) ajax_data.erledigt = DateTime.now().toSQL();
         if (!("mitglied_id" in ajax_data)) ajax_data.mitglied_id = ICH["id"]; // Prototypisch! -> TODO!
 
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "strafkatalog/ajax_kassenbucheintrag_speichern",
-            data: ajax_data,
-            dom: ajax_dom,
-            rein_validation_pos_aktion: function (AJAX) {
+        Schnittstelle_AjaxInDieSchlange(
+            "strafkatalog/ajax_kassenbucheintrag_speichern",
+            ajax_data,
+            ajax_dom,
+            function (AJAX) {
                 if ("kassenbucheintrag_id" in AJAX.antwort && typeof AJAX.antwort.kassenbucheintrag_id !== "undefined")
                     AJAX.data.id = Number(AJAX.antwort.kassenbucheintrag_id);
                 else AJAX.data.id = Number(LISTEN["kassenbuch"].tabelle.length + 1);
@@ -41,15 +39,13 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich erstellt.");
             },
-            rein_validation_neg_aktion: function (AJAX) {
+            function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            },
-        };
-
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
+            }
+        );
     }
 }

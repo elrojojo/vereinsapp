@@ -11,13 +11,11 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
         const ajax_dom = dom;
         const ajax_data = data;
 
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "notenbank/ajax_titel_speichern",
-            data: ajax_data,
-            dom: ajax_dom,
-            rein_validation_pos_aktion: function (AJAX) {
+        Schnittstelle_AjaxInDieSchlange(
+            "notenbank/ajax_titel_speichern",
+            ajax_data,
+            ajax_dom,
+            function (AJAX) {
                 if ("titel_id" in AJAX.antwort && typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.titel_id);
                 else AJAX.data.id = Number(LISTEN["notenbank"].tabelle.length + 1);
                 const titel_id = AJAX.data.id;
@@ -36,15 +34,13 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(titel_id, "notenbank") + " wurde erfolgreich erstellt.");
             },
-            rein_validation_neg_aktion: function (AJAX) {
+            function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            },
-        };
-
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
+            }
+        );
     }
 }

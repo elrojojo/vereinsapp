@@ -24,13 +24,11 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
         if (!("vorstandschaft" in data)) data.vorstandschaft = Schnittstelle_VariableRausZurueck("vorstandschaft", mitglied_id, "mitglieder");
         if (!("aktiv" in data)) data.aktiv = Schnittstelle_VariableRausZurueck("aktiv", mitglied_id, "mitglieder");
 
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "mitglieder/ajax_mitglied_speichern",
-            data: ajax_data,
-            dom: ajax_dom,
-            rein_validation_pos_aktion: function (AJAX) {
+        Schnittstelle_AjaxInDieSchlange(
+            "mitglieder/ajax_mitglied_speichern",
+            ajax_data,
+            ajax_dom,
+            function (AJAX) {
                 const mitglied_id = AJAX.data.id;
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
@@ -48,7 +46,7 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
                     Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich geändert.");
                 }
             },
-            rein_validation_neg_aktion: function (AJAX) {
+            function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
@@ -58,9 +56,7 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
                     Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " konnte nicht gespeichert werden.",
                     "danger"
                 );
-            },
-        };
-
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
+            }
+        );
     }
 }

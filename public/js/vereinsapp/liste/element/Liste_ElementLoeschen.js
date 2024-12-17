@@ -17,13 +17,11 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
         ajax_data.id = element_id;
         ajax_data.liste = liste;
 
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
-            data: ajax_data,
-            dom: ajax_dom,
-            rein_validation_pos_aktion: function (AJAX) {
+        Schnittstelle_AjaxInDieSchlange(
+            LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
+            ajax_data,
+            ajax_dom,
+            function (AJAX) {
                 // Beschriftung speichern, bevor Element gelöscht wird
                 const beschriftung = Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.liste);
 
@@ -45,10 +43,10 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
                     )
                         Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(beschriftung + " wurde erfolgreich gelöscht.");
+                    Schnittstelle_DomToastFeuern(beschriftung + " wurde gelöscht.", "danger");
                 }
             },
-            rein_validation_neg_aktion: function (AJAX) {
+            function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
@@ -56,9 +54,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
                     Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.liste) + " konnte nicht gelöscht werden.",
                     "danger"
                 );
-            },
-        };
-
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
+            }
+        );
     }
 }

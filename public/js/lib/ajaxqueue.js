@@ -42,7 +42,6 @@
 
         // run the actual query
         function doRequest(next) {
-            // if (typeof ajaxOpts.data !== "undefined") ajaxOpts.data[CSRF_NAME] = $("#csrf_hash").val(); // von mir hinzugefügt (27.12.2022)
             ajaxOpts.data[CSRF_NAME] = CSRF[CSRF_NAME]; // von mir hinzugefügt (02.11.2023)
             ajaxOpts.data.ajax_id = ajaxOpts.ajax_id; // von mir hinzugefügt (18.11.2023)
             jqXHR = $.ajax(ajaxOpts).done(dfd.resolve).fail(dfd.reject).then(next, next);

@@ -10,13 +10,11 @@ function Liste_CheckAendern(dom, data) {
     ajax_data[LISTEN[data.liste].element + "_id"] = data.element_id;
     ajax_data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
 
-    const neue_ajax_id = AJAXSCHLANGE.length;
-    AJAXSCHLANGE[neue_ajax_id] = {
-        ajax_id: neue_ajax_id,
-        url: LISTEN[data.checkliste].controller + "/ajax_" + LISTEN[data.checkliste].element + "_speichern",
-        data: ajax_data,
-        dom: ajax_dom,
-        rein_validation_pos_aktion: function (AJAX) {
+    Schnittstelle_AjaxInDieSchlange(
+        LISTEN[data.checkliste].controller + "/ajax_" + LISTEN[data.checkliste].element + "_speichern",
+        ajax_data,
+        ajax_dom,
+        function (AJAX) {
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
             $.each(LISTEN[AJAX.data.checkliste].tabelle, function () {
                 const checkliste_element = this;
@@ -60,15 +58,13 @@ function Liste_CheckAendern(dom, data) {
 
             if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_CheckWartenEnde(AJAX.dom.$check);
         },
-        rein_validation_neg_aktion: function (AJAX) {
+        function (AJAX) {
             if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_CheckWartenEnde(AJAX.dom.$check);
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             Schnittstelle_DomToastFeuern(
                 Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.checkliste) + " konnte nicht gespeichert werden.",
                 "danger"
             );
-        },
-    };
-
-    Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
+        }
+    );
 }

@@ -1,37 +1,56 @@
-function Schnittstelle_AjaxInDieSchlange(AJAX) {
-    // Manchmal ist das data-Objekt nicht notwendig, dann wird es als leeres Objekt definiert
-    if (!isObject(AJAX.data)) AJAX.data = new Object();
+function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
+    const neue_ajax_id = AJAXSCHLANGE.length;
+    AJAXSCHLANGE[neue_ajax_id] = {
+        ajax_id: neue_ajax_id,
+        data: data,
+        dom: dom,
+        rein_validation_pos_aktion: rein_validation_pos_aktion,
+        rein_validation_neg_aktion: rein_validation_neg_aktion,
+    };
+
+    const data_ajaxQueue = objektKopiertZurueck(data);
+    if ("folgendes_event" in data_ajaxQueue) data_ajaxQueue.folgendes_event = undefined;
 
     // Das Objekt für $.ajaxQueue wird erstellt
-    AJAX.ajaxQueue = {
-        ajax_id: AJAX.ajax_id,
-        url: SITE_URL + AJAX.url,
+    AJAXSCHLANGE[neue_ajax_id].ajaxQueue = {
+        ajax_id: neue_ajax_id, // ToDo: benötigt für 'ajaxOpts.data.ajax_id = ajaxOpts.ajax_id'?
+        url: SITE_URL + url,
         method: "post",
-        data: AJAX.data,
+        data: data_ajaxQueue, // ToDo: Objekt kopieren?
         dataType: "json",
-        beforeSend: function (ajax, ajaxQueue) {
-            if (isObject(ajaxQueue) && "ajax_id" in ajaxQueue) Schnittstelle_AjaxRaus(AJAXSCHLANGE[Number(ajaxQueue.ajax_id)]);
-        },
+        beforeSend: function () {},
         success: function (antwort) {
             if (isObject(antwort) && "ajax_id" in antwort) {
                 const AJAX = AJAXSCHLANGE[Number(antwort.ajax_id)];
+
+                // antwort wird in der AJAXSCHLANGE gespeichert
                 AJAX.antwort = antwort;
-                Schnittstelle_AjaxReinErfolg(AJAX);
+
+                // CSRF-hash wird gespeichert
+                CSRF[CSRF_NAME] = AJAX.antwort[CSRF_NAME];
+
+                // Spezialfall login-view
+                $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
+
+                if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JSON.stringify(AJAX.antwort.info));
+
+                // WENN DIE VALIDATION FEHLSCHLÄGT
+                if ("validation" in AJAX.antwort) {
+                    if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);
+                }
+
+                // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
+                else {
+                    if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
+                }
             }
         },
         error: function (xhr) {
-            if (isObject(xhr) && "ajax_id" in xhr) {
-                const AJAX = AJAXSCHLANGE[Number(xhr.ajax_id)];
-                AJAX.fehler = xhr;
-                Schnittstelle_AjaxReinFehler(AJAX);
-            }
+            Schnittstelle_LogInDieKonsole("FEHLER", xhr.status, xhr.statusText, xhr);
         },
-        complete: function (ajax) {
-            if (isObject(ajax) && "responseJSON" in ajax && isObject(ajax.responseJSON) && "ajax_id" in ajax.responseJSON)
-                Schnittstelle_AjaxRein(AJAXSCHLANGE[Number(ajax.responseJSON.ajax_id)]);
-        },
+        complete: function () {},
     };
 
-    // $.ajaxQueue wird ausgeführt
-    $.ajaxQueue(AJAX.ajaxQueue);
+    // $.ajaxQueue wird ausgeführt // ToDo: AJAXSCHLANGE[neue_ajax_id].ajaxQueue-Objekt direkt als Argument übergeben
+    $.ajaxQueue(AJAXSCHLANGE[neue_ajax_id].ajaxQueue);
 }
