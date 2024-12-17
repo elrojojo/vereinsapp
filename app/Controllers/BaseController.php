@@ -113,6 +113,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/lib/isObject.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isNumber.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isString.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/lib/isJquery.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isLuxonDateTime.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/objektKopiertZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/arrayKopiertZurueck.js?v='.VERSION), );

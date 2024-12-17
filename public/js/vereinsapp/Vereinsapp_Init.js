@@ -97,7 +97,5 @@ Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
 Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
-Ohne Rechte zur Verwaltung der Aufgaben lässt sich eine Aufgabe nicht als erledigt markieren
-Wenn eine Aufgabe als offen markiert wird, dann erscheinen viele Löschen-Symbole
 
 */

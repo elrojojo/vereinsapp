@@ -6,8 +6,8 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
     const $btn_aufgabe_mitglied_ausplanen = $aufgabe.find(".btn_aufgabe_mitglied_ausplanen");
     const $btn_aufgabe_erledigen = $aufgabe.find(".btn_aufgabe_offen_erledigt_markieren");
 
-    const $sichtbar = $aufgabe.find(".btn-group");
-    const $unsichtbar = $aufgabe.find(".invisible");
+    const $sichtbar = $aufgabe.find(".sichtbar");
+    const $unsichtbar = $aufgabe.find(".unsichtbar");
 
     $btn_aufgabe_mitglied_einplanen.attr("data-aufgabe_id", aufgabe_id);
     $btn_aufgabe_mitglied_ausplanen.attr("data-aufgabe_id", aufgabe_id);
