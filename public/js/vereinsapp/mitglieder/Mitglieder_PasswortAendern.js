@@ -12,7 +12,7 @@ function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
         ajax_data,
         ajax_dom,
         function (AJAX) {
-            if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) AJAX.dom.$formular.find(".eigenschaft").val("");
+            if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) AJAX.dom.$formular.find(".eingabe").val("");
             if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                 Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
             Schnittstelle_DomToastFeuern("Du hast erfolgreich das Passwort geändert.");

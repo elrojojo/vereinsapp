@@ -91,11 +91,11 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
+Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
     wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
-Schnittstelle_VariableLoeschen erweitern und nach liste / element_id suchen (für aufgaben)
+element_ergaenzen_aktion verschieben in ELEMENTE und umbenennen in ergaenzen_aktion
 
 */

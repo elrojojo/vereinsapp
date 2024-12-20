@@ -3,8 +3,8 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
 
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "strafkatalog_basiseigenschaften");
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", strafe_id, "strafkatalog");
         Schnittstelle_DomModalOeffnen($neues_modal);
+        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", strafe_id, "strafkatalog");
     } else {
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 

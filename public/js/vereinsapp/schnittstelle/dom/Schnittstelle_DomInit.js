@@ -80,6 +80,8 @@ function Schnittstelle_DomInit() {
     $.each(autoload, function () {
         const $modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, this);
 
+        Schnittstelle_DomModalOeffnen($modal);
+
         const $formular = $modal.find(".formular");
         if (typeof $formular !== "undefined" && $formular.exists()) {
             const liste = $formular.attr("data-liste");
@@ -88,8 +90,6 @@ function Schnittstelle_DomInit() {
             if (typeof element_id !== "undefined") element_id = Number(element_id);
             if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
         }
-
-        Schnittstelle_DomModalOeffnen($modal);
     });
 
     $(document).ajaxStart(function () {

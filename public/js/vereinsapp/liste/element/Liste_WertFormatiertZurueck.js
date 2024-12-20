@@ -51,7 +51,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             else wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
             break;
         case "zugeordnetes_element":
-            if (wert === null || !("liste" in wert) || wert.liste === null || !("id" in wert) || wert.id === null) wert_formatiert = undefined;
+            if (wert === null || !("liste" in wert) || wert.liste === null || !("id" in wert) || wert.id === null) wert_formatiert = "";
             else wert_formatiert = Liste_ElementBeschriftungZurueck(wert.id, wert.liste);
             break;
         default:

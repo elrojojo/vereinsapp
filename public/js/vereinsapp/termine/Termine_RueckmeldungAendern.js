@@ -3,8 +3,8 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
 
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "rueckmeldungen_basiseigenschaften");
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", rueckmeldung_id, "rueckmeldungen");
         Schnittstelle_DomModalOeffnen($neues_modal);
+        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", rueckmeldung_id, "rueckmeldungen");
     } else {
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 

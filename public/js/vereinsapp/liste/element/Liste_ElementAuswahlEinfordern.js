@@ -12,7 +12,7 @@ function Liste_ElementAuswahlEinfordern(dom, title, liste, klasse_id, data) {
         "AUSWAHL"
     );
 
-    $neues_auswahl_modal.find("#AUSWAHLLISTE.liste").attr("id", instanz).attr("data-liste", liste);
+    $neues_auswahl_modal.find("#AUSWAHLLISTE.liste").attr("id", instanz).attr("data-liste", liste); // ToDo: Hauptinstanzen verwenden
     $neues_auswahl_modal.find('.werkzeug[data-instanz="AUSWAHLLISTE"]').each(function () {
         const $werkzeug = $(this);
         const title = LISTEN[liste].beschriftung + " " + $werkzeug.attr("data-title");
