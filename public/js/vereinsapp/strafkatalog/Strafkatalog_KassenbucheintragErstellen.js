@@ -11,7 +11,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
         const ajax_dom = dom;
         const ajax_data = data;
         if (!("erledigt" in ajax_data)) ajax_data.erledigt = DateTime.now().toSQL();
-        if (!("mitglied_id" in ajax_data)) ajax_data.mitglied_id = ICH["id"]; // Prototypisch! -> TODO!
+        if (!("mitglied_id" in ajax_data)) ajax_data.mitglied_id = ICH["id"];
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_kassenbucheintrag_speichern",

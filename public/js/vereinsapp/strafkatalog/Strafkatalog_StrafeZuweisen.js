@@ -36,6 +36,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern
             titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog"),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog"),
             mitglied_id: mitglied_id,
+            erledigt: null,
             bemerkung: "Strafe",
         });
 }

@@ -96,7 +96,5 @@ Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein
 Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
-ToDos in Schnittstelle_AjaxInDieSchlange erledigen
-Wenn ein Kassenbucheintrag aus einer Strafe generiert wird, dann wird der der Eintrag gleich abgehakt!?
 
 */

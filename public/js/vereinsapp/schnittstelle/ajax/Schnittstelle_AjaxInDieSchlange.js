@@ -9,14 +9,13 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
     };
 
     const data_ajaxQueue = objektKopiertZurueck(data);
+    if (!("ajax_id" in data_ajaxQueue)) data_ajaxQueue.ajax_id = AJAXSCHLANGE[neue_ajax_id].ajax_id;
     if ("folgendes_event" in data_ajaxQueue) data_ajaxQueue.folgendes_event = undefined;
 
-    // Das Objekt für $.ajaxQueue wird erstellt
-    AJAXSCHLANGE[neue_ajax_id].ajaxQueue = {
-        ajax_id: neue_ajax_id, // ToDo: benötigt für 'ajaxOpts.data.ajax_id = ajaxOpts.ajax_id'?
+    $.ajaxQueue({
         url: SITE_URL + url,
         method: "post",
-        data: data_ajaxQueue, // ToDo: Objekt kopieren?
+        data: data_ajaxQueue,
         dataType: "json",
         beforeSend: function () {},
         success: function (antwort) {
@@ -49,8 +48,5 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
             Schnittstelle_LogInDieKonsole("FEHLER", xhr.status, xhr.statusText, xhr);
         },
         complete: function () {},
-    };
-
-    // $.ajaxQueue wird ausgeführt // ToDo: AJAXSCHLANGE[neue_ajax_id].ajaxQueue-Objekt direkt als Argument übergeben
-    $.ajaxQueue(AJAXSCHLANGE[neue_ajax_id].ajaxQueue);
+    });
 }

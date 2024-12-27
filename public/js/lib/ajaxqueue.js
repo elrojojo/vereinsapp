@@ -43,7 +43,6 @@
         // run the actual query
         function doRequest(next) {
             ajaxOpts.data[CSRF_NAME] = CSRF[CSRF_NAME]; // von mir hinzugefügt (02.11.2023)
-            ajaxOpts.data.ajax_id = ajaxOpts.ajax_id; // von mir hinzugefügt (18.11.2023)
             jqXHR = $.ajax(ajaxOpts).done(dfd.resolve).fail(dfd.reject).then(next, next);
         }
 
