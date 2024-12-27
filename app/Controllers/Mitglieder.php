@@ -49,18 +49,11 @@ class Mitglieder extends BaseController {
         );
         
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
-
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
-
-            $this->viewdata['liste']['strafkatalog_auswahl'] = HAUPTINSTANZEN['strafkatalog'];
-            $this->viewdata['liste']['strafkatalog_auswahl']['klasse_id'] = array('btn_strafe_zuweisen', 'bestaetigung_einfordern');
-            $this->viewdata['liste']['strafkatalog_auswahl']['title'] = 'Strafe einem Mitglied zuweisen';
-
         }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
@@ -170,13 +163,9 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['zusatzsymbole'] = array( 'offen_erledigt_markieren' );
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
-
-            $this->viewdata['liste']['strafkatalog_auswahl'] = HAUPTINSTANZEN['strafkatalog'];
-            $this->viewdata['liste']['strafkatalog_auswahl']['klasse_id'] = array('btn_strafe_zuweisen', 'bestaetigung_einfordern');
-            $this->viewdata['liste']['strafkatalog_auswahl']['title'] = 'Strafe einem Mitglied zuweisen';
 
         }
 
@@ -191,8 +180,6 @@ class Mitglieder extends BaseController {
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
             $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
-            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
 
             $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
             unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
@@ -202,9 +189,6 @@ class Mitglieder extends BaseController {
             ), ), );
             $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
             $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
-
-            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
 
         }
 

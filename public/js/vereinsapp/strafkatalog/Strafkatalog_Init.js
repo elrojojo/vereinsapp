@@ -52,10 +52,10 @@ function Strafkatalog_Init() {
     // STRAFE ZUWEISEN
     $(document).on("click", ".btn_strafe_zuweisen", function () {
         Strafkatalog_StrafeZuweisen(
-            $(this).hasClass("auswahl_oeffnen"),
+            $(this).hasClass("auswahl_einfordern"),
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { gegen_element_id: $(this).attr("data-gegen_element_id"), gegen_liste: $(this).attr("data-gegen_liste") },
+            { gegen_liste: $(this).attr("data-gegen_liste"), gegen_element_id: $(this).attr("data-gegen_element_id") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
             $(this).attr("data-liste")

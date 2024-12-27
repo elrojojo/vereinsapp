@@ -13,6 +13,7 @@ const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;
 
 const LISTEN = <?= json_encode( LISTEN ) ?>;
 const ELEMENTE = <?= json_encode( ELEMENTE ) ?>;
+const HAUPTINSTANZEN = <?= json_encode( HAUPTINSTANZEN ) ?>;
 const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
 

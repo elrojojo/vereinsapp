@@ -15,9 +15,6 @@ class Aufgaben extends BaseController {
 
             $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
-
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_aufgabe_aendern', 'formular_oeffnen'),
                 'title' => 'Aufgabe ändern',

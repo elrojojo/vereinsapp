@@ -18,14 +18,9 @@ class Strafkatalog extends BaseController {
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_oeffnen'),
+                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
-
-            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_strafe_zuweisen', 'bestaetigung_einfordern');
-            $this->viewdata['liste']['mitglieder_auswahl']['title'] = 'Strafe einem Mitglied zuweisen';
-
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_strafe_aendern', 'formular_oeffnen'),
                 'title' => 'Strafe ändern',

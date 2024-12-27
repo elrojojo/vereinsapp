@@ -134,7 +134,9 @@ class Vereinsapp extends BaseConfig
             // 'listenstatistik' => array(),
         ),
 
-        'vergebene_rechte' => array(),
+        'vergebene_rechte' => array(
+            'liste' => 'vergebene_rechte',
+        ),
 
         'aufgaben' => array(
             'liste' => 'aufgaben',
@@ -165,9 +167,13 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
-        'rueckmeldungen' => array(),
+        'rueckmeldungen' => array(
+            'liste' => 'rueckmeldungen',
+        ),
 
-        'anwesenheiten' => array(),
+        'anwesenheiten' => array(
+            'liste' => 'anwesenheiten',
+        ),
 
         'strafkatalog' => array(
             'liste' => 'strafkatalog',

@@ -42,15 +42,11 @@
 <?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="kassenbuch" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'strafkatalog_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['strafkatalog_auswahl'] ) ) ) ); ?>
 </div><?php } ?>
 
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_offen_mitglied_geplant">Offene Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_offen_mitglied_geplant'] ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'mitglieder_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
 </div><?php } ?>
 
 <div class="container mb-3">
@@ -60,9 +56,6 @@
     view( 'Templates/modal', array( 'id' => 'aufgaben_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
     view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
-<?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'mitglieder_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
 </div>
 
 <?= view( 'Templates/modal', array( 'id' => 'mitglieder_anwesenheiten_dokumentieren', 'modal' =>

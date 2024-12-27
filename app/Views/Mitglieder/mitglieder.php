@@ -16,7 +16,4 @@
     view( 'Templates/modal', array( 'id' => 'mitglieder_einmal_link_anzeigen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
     view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular' ) ) ) ) ); ?>
-<?php if( array_key_exists( 'strafkatalog.verwaltung' , VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'strafkatalog_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['strafkatalog_auswahl'] ) ) ) ); ?>
 <?= $this->endSection() ?>

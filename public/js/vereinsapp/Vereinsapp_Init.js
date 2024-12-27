@@ -55,6 +55,7 @@ Sortieren auf einen Wert beschränken (analog zu gruppieren)
 Batch über filtern- und sortieren-Button legen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
+Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
@@ -94,8 +95,8 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-Sortierung der Liste bei Zuordnung zur Aufgabe entsprechend der Hauptinstanz einstellen
-_auswahl nicht mehr als Liste im Controller und im View erzeugen
-Mitglied einplanen bereits bei der Erstellung einer Aufgabe
+Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
+ToDos in Schnittstelle_AjaxInDieSchlange erledigen
+Wenn ein Kassenbucheintrag aus einer Strafe generiert wird, dann wird der der Eintrag gleich abgehakt!?
 
 */

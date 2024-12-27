@@ -1,6 +1,6 @@
 <div class="sichtbar btn-group" role="group">
     <button type="button" class="btn btn_aufgabe_mitglied_einplanen<?php
-    if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo " auswahl_oeffnen"; else echo " bestaetigung_einfordern";
+    if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo " auswahl_einfordern"; else echo " bestaetigung_einfordern";
     ?> btn-sm" data-title="<?php
     if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo "Mitglied"; else echo "Mich";
     ?> für die Aufgabe einplanen"></button>

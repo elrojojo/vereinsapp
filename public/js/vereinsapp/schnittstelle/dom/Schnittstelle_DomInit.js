@@ -4,7 +4,6 @@ const STATUS_SPINNER_HTML =
 
 const TOASTS = new Object();
 const MODALS = new Object();
-const AUSWAHLLISTE = new Object();
 
 function Schnittstelle_DomInit() {
     const autoload = new Array();
@@ -26,11 +25,9 @@ function Schnittstelle_DomInit() {
             else if ($blanko.hasClass("element")) {
                 const $liste = $blanko.closest(".liste[id]");
                 const instanz = $liste.attr("id");
-                if (instanz == "AUSWAHLLISTE" && !("$blanko_element" in AUSWAHLLISTE)) AUSWAHLLISTE.$blanko_element = $blanko;
-                else {
-                    const liste = $liste.attr("data-liste");
-                    if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
-                        LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+                const liste = $liste.attr("data-liste");
+                if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz])) {
+                    LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
                 }
             }
             // Wenn .blanko eine .auswertung ist
@@ -76,6 +73,7 @@ function Schnittstelle_DomInit() {
                 SORTIEREN.$blanko_sortieren_element = $blanko;
         })
         .remove();
+    $("#hauptinstanzen").remove();
 
     $.each(autoload, function () {
         const $modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, this);

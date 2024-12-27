@@ -40,9 +40,6 @@ class Startseite extends BaseController {
         $this->viewdata['liste']['aufgaben_offen_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
         $this->viewdata['liste']['aufgaben_offen_startseite']['vorschau'] = array( 'zugeordnetes_element' );
 
-        $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
-        $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
-
         $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = HAUPTINSTANZEN['termine'];
         unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten']);
         unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik']);

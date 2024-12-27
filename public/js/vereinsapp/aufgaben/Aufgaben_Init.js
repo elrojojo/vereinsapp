@@ -58,9 +58,11 @@ EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion = function ($zugeordne
     const zugeordnete_liste = $zugeordnetes_element.attr("data-liste");
 
     if (typeof zugeordnete_liste !== "undefined") {
-        const $blanko_element = AUSWAHLLISTE.$blanko_element.clone(); // ToDo: Hauptinstanzen verwenden
-        $blanko_element.attr("data-liste", zugeordnete_liste).find(".beschriftung").html(Liste_ElementBeschriftungHtmlZurueck(zugeordnete_liste));
-        LISTEN[zugeordnete_liste].instanz["zugeordnetes_element"] = { filtern: [], sortieren: [], $blanko_element: $blanko_element };
+        LISTEN[zugeordnete_liste].instanz["zugeordnetes_element"] = {
+            filtern: [],
+            sortieren: [],
+            $blanko_element: LISTEN[zugeordnete_liste].instanz.HAUPTINSTANZ.$blanko_element.clone(),
+        };
         Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: zugeordnete_liste });
     } else $zugeordnetes_element.empty();
 };
@@ -126,7 +128,7 @@ function Aufgaben_Init() {
     // MITGLIED EINPLANEN
     $(document).on("click", ".btn_aufgabe_mitglied_einplanen", function () {
         Aufgaben_AufgabeMitgliedEinplanen(
-            $(this).hasClass("auswahl_oeffnen"),
+            $(this).hasClass("auswahl_einfordern"),
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { mitglied_id: $(this).attr("data-element_id"), aufgabe_id: $(this).attr("data-gegen_element_id") },

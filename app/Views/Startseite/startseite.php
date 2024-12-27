@@ -37,8 +37,5 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_ausstehende_rueckmeldung'] ) ); ?>
 </div>
 
-<?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'mitglieder_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
 <?= $this->endSection() ?>
 
