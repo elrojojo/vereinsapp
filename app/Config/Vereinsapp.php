@@ -142,7 +142,6 @@ class Vereinsapp extends BaseConfig
             'liste' => 'aufgaben',
             'sortieren' => array( array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ), ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'views' => array( array( 'view' => 'Aufgaben/aufgabe' ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Aufgaben filtern', ),
                 'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Aufgaben sortieren', ),
