@@ -11,60 +11,22 @@ class Termine extends BaseController {
 
     public function termine() {
 
-        $this->viewdata['liste']['bevorstehende_termine'] = array(
-            'liste' => 'termine',
-            'filtern' => array(
-                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-            ),
-            'sortieren' => array(
-                array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
-            ),
-            'group-flush' => TRUE,
-            'link' => TRUE,
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'vorschau' => array( 'start', 'ort' ),
-            'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-            'zusatzsymbole' => array('kategorie'),
-            'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Termine filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Termine sortieren', ),
-            ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['bevorstehende_termine'] = HAUPTINSTANZEN['termine'];
+        $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
+        $this->viewdata['liste']['bevorstehende_termine']['link'] = TRUE;
+        $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
+        $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
 
         $disabled_filtern = array();
         if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
-            'liste' => 'mitglieder',
-            // 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-            ),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            'zusatzsymbole' => array('geburtstag'),
-            'checkliste' => 'anwesenheiten',
-            'disabled' => array(
-                'liste' => 'mitglieder',
-                'filtern' => array( array(
-                    'verknuepfung' => '||',
-                    'filtern' => $disabled_filtern,
-                ), ),
-            ),
-            'bedingte_formatierung' => array(
-                'liste' => 'rueckmeldungen',
-                'klasse' => array(
-                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
-                ),
-            ),
-            'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
-            ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
+        // $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'mitglieder', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+            'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+            'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+        ), );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
@@ -120,11 +82,7 @@ class Termine extends BaseController {
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
             'status_auswahl' => array( 1 => "ZUSAGEN", 2 => "ABSAGEN" ),
-            'liste' => array(
-                'liste' => 'mitglieder',
-                'gruppieren' => 'register',
-                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
-            ),
+            'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
         );
@@ -142,11 +100,7 @@ class Termine extends BaseController {
         $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
             'auswertungen' => 'anwesenheiten',
             'status_auswahl' => array( 1 => "ANWESEND" ),
-            'liste' => array(
-                'liste' => 'mitglieder',
-                'gruppieren' => 'register',
-                'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
-            ),
+            'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
         );
@@ -163,37 +117,14 @@ class Termine extends BaseController {
 
         $disabled_filtern = array();
         if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = array(
-            'liste' => 'mitglieder',
-            'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-            ),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            'zusatzsymbole' => array('geburtstag'),
-            'checkliste' => 'anwesenheiten',
-            'disabled' => array(
-                'liste' => 'mitglieder',
-                'filtern' => array( array(
-                    'verknuepfung' => '||',
-                    'filtern' => $disabled_filtern,
-                ), ),
-            ),
-            'bedingte_formatierung' => array(
-                'liste' => 'rueckmeldungen',
-                'klasse' => array(
-                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
-                ),
-            ),
-            'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
-            ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'mitglieder', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+            'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+            'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+        ), );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
@@ -211,43 +142,21 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
-        $this->viewdata['liste']['aufgaben_zum_termin'] = array(
-            'liste' => 'aufgaben',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "termine", ),
-                    array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $termin_id, ),
-                ),
-            ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-            ),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'views' => view( 'Aufgaben/aufgabe' ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['aufgaben_zum_termin'] = HAUPTINSTANZEN['aufgaben'];
+        unset($this->viewdata['liste']['aufgaben_zum_termin']['werkzeugkasten']);
+        $this->viewdata['liste']['aufgaben_zum_termin']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "termine", ),
+            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $termin_id, ),
+        ), ), );
+        $this->viewdata['liste']['aufgaben_zum_termin']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        $this->viewdata['liste']['aufgaben_zum_termin']['vorschau'] = array( 'zugeordnetes_element' );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
             $this->viewdata['liste']['aufgaben_zum_termin']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
-            $this->viewdata['liste']['mitglieder_auswahl'] = array(
-                'liste' => 'mitglieder',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-                        ),
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
-                'title' => 'Mitglied für Aufgabe einplanen',
-                'werkzeugkasten' => array(
-                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
-                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
-                ),
-                'listenstatistik' => array(),
-            );
+            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
 
         }
 

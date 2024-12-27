@@ -66,7 +66,7 @@ class Mitglied_Model extends UserModel {
     public function verfuegbare_rechte_tabelle() {
         $tabelle = array();
 
-        foreach( VERFUEGBARE_RECHTE as $eintrag ) 
+        foreach( VERFUEGBARE_RECHTE as $eintrag )
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'verfuegbare_rechte' );
 
         return $tabelle;

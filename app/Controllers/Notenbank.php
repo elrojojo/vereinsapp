@@ -9,23 +9,10 @@ class Notenbank extends BaseController {
 
     public function notenbank() {
 
-        $this->viewdata['liste']['aktuelles_verzeichnis'] = array(
-            'liste' => 'notenbank',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            ),
-            'group-flush' => TRUE,
-            'link' => TRUE,
-            'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'vorschau' => array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' ),
-            'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Notenbank filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Notenbank sortieren', ),
-            ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['aktuelles_verzeichnis'] = HAUPTINSTANZEN['notenbank'];
+        $this->viewdata['liste']['aktuelles_verzeichnis']['group-flush'] = TRUE;
+        $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = TRUE;
+        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 

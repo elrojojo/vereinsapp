@@ -7,43 +7,16 @@ class Aufgaben extends BaseController {
 
     public function aufgaben() {
 
-        $this->viewdata['liste']['alle_aufgaben'] = array(
-            'liste' => 'aufgaben',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-            ),
-            'group-flush' => TRUE,
-            // 'link' => TRUE,
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'vorschau' => array( 'erstellung', 'zugeordnetes_element' ),
-            'views' => view( 'Aufgaben/aufgabe' ),
-            'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Aufgaben filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Aufgaben sortieren', ),
-            ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['alle_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        $this->viewdata['liste']['alle_aufgaben']['group-flush'] = TRUE;
+        $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
 
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
             $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten_handle'] = TRUE;
 
-            $this->viewdata['liste']['mitglieder_auswahl'] = array(
-                'liste' => 'mitglieder',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-                        ),
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                'klasse_id' => array('btn_aufgabe_mitglied_einplanen'),
-                'title' => 'Mitglied für Aufgabe einplanen',
-                'werkzeugkasten' => array(
-                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
-                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
-                ),
-                'listenstatistik' => array(),
-            );
+            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_aufgabe_aendern', 'formular_oeffnen'),

@@ -9,23 +9,9 @@ class Strafkatalog extends BaseController {
 
     public function strafkatalog() {
 
-        $this->viewdata['liste']['aktueller_strafkatalog'] = array(
-            'liste' => 'strafkatalog',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-            ),
-            'group-flush' => TRUE,
-            // 'link' => TRUE,
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'vorschau' => array( 'wert', 'kategorie' ),
-            'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Strafkatalog filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Strafkatalog sortieren', ),
-            ),
-        'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['aktueller_strafkatalog'] = HAUPTINSTANZEN['strafkatalog'];
+        $this->viewdata['liste']['aktueller_strafkatalog']['group-flush'] = TRUE;
+        $this->viewdata['liste']['aktueller_strafkatalog']['vorschau'] = array( 'wert', 'kategorie' );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
@@ -36,22 +22,9 @@ class Strafkatalog extends BaseController {
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
 
-            $this->viewdata['liste']['mitglieder_auswahl'] = array(
-                'liste' => 'mitglieder',
-                'sortieren' => array(
-                    array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                    array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                    array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-                        ),
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-                'klasse_id' => array('btn_strafe_zuweisen', 'bestaetigung_einfordern'),
-                'title' => 'Strafe einem Mitglied zuweisen',
-                'werkzeugkasten' => array(
-                    'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
-                    'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
-                ),
-                'listenstatistik' => array(),
-            );
+            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_strafe_zuweisen', 'bestaetigung_einfordern');
+            $this->viewdata['liste']['mitglieder_auswahl']['title'] = 'Strafe einem Mitglied zuweisen';
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_strafe_aendern', 'formular_oeffnen'),
@@ -80,32 +53,9 @@ class Strafkatalog extends BaseController {
     //------------------------------------------------------------------------------------------------------------------
     public function kassenbuch() {
 
-    $this->viewdata['liste']['aktuelles_kassenbuch'] = array(
-        'liste' => 'kassenbuch',
-        'sortieren' => array(
-            array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
-            array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-            array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-        ),
-        'group-flush' => TRUE,
-        // 'link' => TRUE,
-        'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-        'vorschau' => array( 'erstellung', 'wert', 'mitglied_id' ),
-        'zusatzsymbole' => array('offen_erledigt'),
-        'bedingte_formatierung' => array(
-            'klasse' => array(
-                'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ),
-            ),
-            'eigenschaft' => 'wert',
-        ),
-        'werkzeugkasten' => array(
-            'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Kassenbuch filtern', ),
-            'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Kassenbuch sortieren', ),
-        ),
-        'listenstatistik' => array(
-            'summe' => 'wert',
-        ),
-    );
+        $this->viewdata['liste']['aktuelles_kassenbuch'] = HAUPTINSTANZEN['kassenbuch'];
+        $this->viewdata['liste']['aktuelles_kassenbuch']['group-flush'] = TRUE;
+        $this->viewdata['liste']['aktuelles_kassenbuch']['vorschau'] = array( 'erstellung', 'wert', 'mitglied_id' );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
@@ -214,8 +164,6 @@ class Strafkatalog extends BaseController {
                 $ajax_antwort['kassenbucheintrag_id'] = (int)$kassenbuch_Model->getInsertID();
             }
         }
-
-        $ajax_antwort['info'] = "Test";
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

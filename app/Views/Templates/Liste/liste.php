@@ -74,7 +74,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         } ?></div>
 <?php } ?>
 
-<?php if( array_key_exists( 'views', $liste ) ) echo $liste['views']; ?>
+<?php if( array_key_exists( 'views', $liste ) ) foreach( $liste['views'] as $view ) if( array_key_exists( 'data', $view ) ) echo view( $view['view'], $view['data'] ); else echo view( $view['view'] ); ?>
 
     </li>
 

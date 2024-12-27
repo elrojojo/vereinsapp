@@ -94,8 +94,9 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite oder auswahl_termine)
-    wenn kein filter definiert ist, dann wird der filter der Haupt-Instanz angewandt
 element_ergaenzen_aktion verschieben in ELEMENTE und umbenennen in ergaenzen_aktion
+_auswahl nicht mehr als Liste im Controller und im View erzeugen
+Aufgabe kann zwar einem Element zugeordnet werden, aber angezeigt wird sie nur bei Terminen (auch änderbar, duplizierbar und löschbar machen, analog zu Termin-Details)
+beschriftung in titel ändern (bei verfuegbare_rechte)
 
 */
