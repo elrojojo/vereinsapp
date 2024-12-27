@@ -1,4 +1,4 @@
-LISTEN.mitglieder.element_ergaenzen_aktion = function (mitglied) {
+ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
     if ("geburt" in mitglied) {
         mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
 

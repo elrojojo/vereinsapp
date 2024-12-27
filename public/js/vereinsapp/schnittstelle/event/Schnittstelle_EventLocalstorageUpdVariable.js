@@ -19,8 +19,8 @@ function Schnittstelle_EventLocalstorageUpdVariable(folgendes_event, data) {
             tabelle[element_id][eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(wert);
         });
 
-        if ("element_ergaenzen_aktion" in LISTEN[liste] && typeof LISTEN[liste].element_ergaenzen_aktion === "function")
-            LISTEN[liste].element_ergaenzen_aktion(tabelle[element_id]);
+        if ("ergaenzen_aktion" in ELEMENTE[LISTEN[liste].element] && typeof ELEMENTE[LISTEN[liste].element].ergaenzen_aktion === "function")
+            ELEMENTE[LISTEN[liste].element].ergaenzen_aktion(tabelle[element_id]);
     });
     LISTEN[liste].tabelle = tabelle;
 

@@ -1,4 +1,4 @@
-LISTEN.termine.element_ergaenzen_aktion = function (termin) {
+ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     if ("rueckmeldungen" in LISTEN) {
         termin["ich_rueckmeldung_id"] = Liste_ElementIdZurueck(
             [

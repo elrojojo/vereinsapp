@@ -39,7 +39,8 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         else if (isObject(wert) || isArray(wert)) wert_formatiert = JSON.stringify(wert);
 
         $eingabe.val(wert_formatiert);
-        EIGENSCHAFTEN[liste][eingabe].change_aktion($eingabe);
+        if ("change_aktion" in EIGENSCHAFTEN[liste][eingabe] && typeof EIGENSCHAFTEN[liste][eingabe].change_aktion === "function")
+            EIGENSCHAFTEN[liste][eingabe].change_aktion($eingabe);
     });
 
     $formular.find("[class*=btn_" + LISTEN[liste].element + "_").each(function () {

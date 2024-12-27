@@ -1,9 +1,3 @@
-$.each(LISTEN, function (liste) {
-    $.each(EIGENSCHAFTEN[liste], function (eigenschaft) {
-        EIGENSCHAFTEN[liste][eigenschaft].change_aktion = function ($eigenschaft) {};
-    });
-});
-
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
@@ -25,7 +19,11 @@ function Liste_Init() {
     Liste_GruppierenInit();
 
     $(document).on("change", ".eingabe", function () {
-        EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this));
+        if (
+            "change_aktion" in EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")] &&
+            typeof EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion === "function"
+        )
+            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this));
     });
 
     // SORTABLE

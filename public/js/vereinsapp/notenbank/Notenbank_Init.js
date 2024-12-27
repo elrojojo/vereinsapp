@@ -1,4 +1,4 @@
-LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
+ELEMENTE.titel.ergaenzen_aktion = function (titel) {
     titel["anzahl_noten"] = 0;
     $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, function (index, typ) {
         titel["anzahl_noten"] += Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"], typ);

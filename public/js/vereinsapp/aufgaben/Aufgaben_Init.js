@@ -1,4 +1,4 @@
-LISTEN.aufgaben.element_ergaenzen_aktion = function (aufgabe) {
+ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {
     if (aufgabe["erledigt"] === null) aufgabe["erledigt_janein"] = false;
     else aufgabe["erledigt_janein"] = true;
 
@@ -16,7 +16,11 @@ EIGENSCHAFTEN.aufgaben.zugeordnete_liste.change_aktion = function ($zugeordnete_
         if (zugeordnete_liste != "") $zugeordnete_element_id.attr("data-liste", zugeordnete_liste).val(null);
         else $zugeordnete_element_id.removeAttr("data-liste").val(null);
 
-        EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion($zugeordnete_element_id);
+        if (
+            "change_aktion" in EIGENSCHAFTEN.aufgaben.zugeordnete_element_id &&
+            typeof EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion === "function"
+        )
+            EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion($zugeordnete_element_id);
     });
 
     $formular.find(".btn_element_zuordnen, .btn_zugeordnetes_element_loeschen").each(function () {
@@ -42,7 +46,11 @@ EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion = function ($zugeord
                     .attr("data-filtern", JSON.stringify([{ operator: "==", eigenschaft: "id", wert: zugeordnete_element_id }]));
             else $zugeordnetes_element.removeAttr("data-liste").removeAttr("data-filtern");
 
-            EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion($zugeordnetes_element);
+            if (
+                "change_aktion" in EIGENSCHAFTEN.aufgaben.zugeordnetes_element &&
+                typeof EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion === "function"
+            )
+                EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion($zugeordnetes_element);
         });
 };
 

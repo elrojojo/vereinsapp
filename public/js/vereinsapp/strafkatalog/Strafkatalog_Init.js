@@ -1,4 +1,4 @@
-LISTEN.kassenbuch.element_ergaenzen_aktion = function (kassenbucheintrag) {
+ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
     if (kassenbucheintrag["erledigt"] === null) kassenbucheintrag["erledigt_janein"] = false;
     else kassenbucheintrag["erledigt_janein"] = true;
 };

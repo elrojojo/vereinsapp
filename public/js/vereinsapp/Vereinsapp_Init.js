@@ -97,6 +97,5 @@ Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Sortierung der Liste bei Zuordnung zur Aufgabe entsprechend der Hauptinstanz einstellen
 _auswahl nicht mehr als Liste im Controller und im View erzeugen
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
-element_ergaenzen_aktion verschieben in ELEMENTE und umbenennen in ergaenzen_aktion
 
 */
