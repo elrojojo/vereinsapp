@@ -49,11 +49,21 @@ class Notenbank extends BaseController {
     
         $this->viewdata['element_id'] = $titel_id;
 
-        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array(
-            'liste' => 'notenbank',
-            'link' => TRUE,
-            'element_id' => $titel_id,
-        );
+        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
+
+        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
+        $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "notenbank", ),
+            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $titel_id, ),
+        ), ), );
+        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+
+        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
+        }
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -81,6 +91,7 @@ class Notenbank extends BaseController {
             ),
         );
 
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $id => $verzeichnis ) $this->viewdata['verzeichnis'][ $id ]['id'] = $id;
         echo view( 'Notenbank/titel_details', $this->viewdata );
     }

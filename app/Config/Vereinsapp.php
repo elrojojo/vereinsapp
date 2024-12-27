@@ -126,7 +126,7 @@ class Vereinsapp extends BaseConfig
 
         'verfuegbare_rechte' => array(
             'liste' => 'verfuegbare_rechte',
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="beschriftung"></span>',
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             // 'werkzeugkasten' => array(
             //     'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Verfügbare Rechte filtern', ),
             //     'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Verfügbare Rechte sortieren', ),
@@ -255,7 +255,7 @@ class Vereinsapp extends BaseConfig
         'verfuegbare_rechte' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),               // PHP
             'permission' => array( 'beschriftung' => 'Recht', 'typ' => 'text' ),    // PHP
-            'beschriftung' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),  // PHP
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),  // PHP
         ),
 
         'vergebene_rechte' => array(
@@ -410,8 +410,6 @@ class Vereinsapp extends BaseConfig
                 null => array( 'beschriftung' => 'Keine Liste zugeordnet' ),
                 'mitglieder' => array( 'beschriftung' => LISTEN['mitglieder']['beschriftung'] ),
                 'termine' => array( 'beschriftung' => LISTEN['termine']['beschriftung'] ),
-                'strafkatalog' => array( 'beschriftung' => LISTEN['strafkatalog']['beschriftung'] ),
-                'kassenbuch' => array( 'beschriftung' => LISTEN['kassenbuch']['beschriftung'] ),
                 'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),
             ),
 

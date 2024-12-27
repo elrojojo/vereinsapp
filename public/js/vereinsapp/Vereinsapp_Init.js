@@ -94,9 +94,9 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-element_ergaenzen_aktion verschieben in ELEMENTE und umbenennen in ergaenzen_aktion
+Sortierung der Liste bei Zuordnung zur Aufgabe entsprechend der Hauptinstanz einstellen
 _auswahl nicht mehr als Liste im Controller und im View erzeugen
-Aufgabe kann zwar einem Element zugeordnet werden, aber angezeigt wird sie nur bei Terminen (auch änderbar, duplizierbar und löschbar machen, analog zu Termin-Details)
-beschriftung in titel ändern (bei verfuegbare_rechte)
+Mitglied einplanen bereits bei der Erstellung einer Aufgabe
+element_ergaenzen_aktion verschieben in ELEMENTE und umbenennen in ergaenzen_aktion
 
 */

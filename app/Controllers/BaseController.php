@@ -71,10 +71,10 @@ abstract class BaseController extends Controller
         }
 
         $verfuegbare_rechte = array(); $id = 1;
-        foreach( config('AuthGroups')->permissions as $permission => $beschriftung ) if( strtok( $permission, '.' ) == "global" OR array_key_exists( strtok( $permission, '.' ), CONTROLLERS ) ) {
+        foreach( config('AuthGroups')->permissions as $permission => $titel ) if( strtok( $permission, '.' ) == "global" OR array_key_exists( strtok( $permission, '.' ), CONTROLLERS ) ) {
             $verfuegbares_recht['id'] = $id;
             $verfuegbares_recht['permission'] = $permission;
-            $verfuegbares_recht['beschriftung'] = $beschriftung;
+            $verfuegbares_recht['titel'] = $titel;
             $verfuegbare_rechte[$permission] = $verfuegbares_recht;
             $id++;
         }

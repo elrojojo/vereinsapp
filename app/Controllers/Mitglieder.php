@@ -147,22 +147,6 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['rechte_vergeben']['disabled'] = array( 'liste' => 'verfuegbare_rechte', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
         }
 
-        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-                array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
-                array( 'eigenschaft' => 'erledigt_janein', 'operator' => '==', 'wert' => false ),
-            ), ), );
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
-
-            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
-
-        }
-
         if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['liste']['bevorstehende_termine_mitglied'] = HAUPTINSTANZEN['termine'];
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['link'] = TRUE;
@@ -193,6 +177,34 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['strafkatalog_auswahl'] = HAUPTINSTANZEN['strafkatalog'];
             $this->viewdata['liste']['strafkatalog_auswahl']['klasse_id'] = array('btn_strafe_zuweisen', 'bestaetigung_einfordern');
             $this->viewdata['liste']['strafkatalog_auswahl']['title'] = 'Strafe einem Mitglied zuweisen';
+
+        }
+
+        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
+        $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "mitglieder", ),
+            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $mitglied_id, ),
+        ), ), );
+        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+
+        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+
+            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
+
+            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
+            unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
+                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+                array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
+                array( 'eigenschaft' => 'erledigt_janein', 'operator' => '==', 'wert' => false ),
+            ), ), );
+            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
+
+            $this->viewdata['liste']['mitglieder_auswahl'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_auswahl']['klasse_id'] = array('btn_aufgabe_mitglied_einplanen');
 
         }
 
