@@ -9,70 +9,50 @@ class Startseite extends BaseController {
 
     public function startseite() {
 
-        $this->viewdata['liste']['anstehende_geburtstage'] = array(
-            'liste' => 'mitglieder',
-            'filtern' => array( array( 'operator' => '<=', 'eigenschaft' => 'geburtstag', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, ),
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
-            ),
-            'vorschau' => array(
-                'beschriftung' => '<div class="nowrap"><i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="geburtstag"></span> (<span class="eigenschaft" data-eigenschaft="alter_geburtstag"></span>)</div>',
-                'klein' => TRUE,
-            ),
-        );
+        $this->viewdata['liste']['anstehende_geburtstage'] = HAUPTINSTANZEN['mitglieder'];
+        unset($this->viewdata['liste']['anstehende_geburtstage']['werkzeugkasten']);
+        unset($this->viewdata['liste']['anstehende_geburtstage']['listenstatistik']);
+        $this->viewdata['liste']['anstehende_geburtstage']['filtern'] = array( array( 'operator' => '<=', 'eigenschaft' => 'geburtstag', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ), );
+        $this->viewdata['liste']['anstehende_geburtstage']['sortieren'] > array( array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, ), );
+        $this->viewdata['liste']['anstehende_geburtstage']['link'] = TRUE;
+        $this->viewdata['liste']['anstehende_geburtstage']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        $this->viewdata['liste']['anstehende_geburtstage']['vorschau'] = array( 'geburtstag', 'alter_geburtstag' );
 
-        $this->viewdata['liste']['bevorstehende_termine_startseite'] = array(
-            'liste' => 'termine',
-            'filtern' => array( array(
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-                    array( 'operator' => '<=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ),
-                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
-                ),
-            ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
-            'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<div class="nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>',
-                'klein' => TRUE,
-            ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
-        );
+        $this->viewdata['liste']['bevorstehende_termine_startseite'] = HAUPTINSTANZEN['termine'];
+        unset($this->viewdata['liste']['bevorstehende_termine_startseite']['werkzeugkasten']);
+        unset($this->viewdata['liste']['bevorstehende_termine_startseite']['listenstatistik']);
+        $this->viewdata['liste']['bevorstehende_termine_startseite']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
+            array( 'operator' => '<=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ),
+            array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
+        ), ), );
+        $this->viewdata['liste']['bevorstehende_termine_startseite']['link'] = TRUE;
+        $this->viewdata['liste']['bevorstehende_termine_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+        $this->viewdata['liste']['bevorstehende_termine_startseite']['vorschau'] = array( 'start', 'ort' );
 
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = array(
-            'liste' => 'termine',
-            'filtern' => array( array( 
-                'verknuepfung' => '&&',
-                'filtern' => array(
-                    array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => JETZT->toDateTimeString() ),
-                    array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
-                    array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
-                ),
-            ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'start', 'richtung' => SORT_ASC, ),
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            ),
-            'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<div class="row g-0 my-1">
-                    <div class="col nowrap"><i class="bi bi-calendar-event"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-                    </div>'.view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-                'klein' => TRUE,
-            ),
-            'zusatzsymbole' => '<span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span>',
-        );
+        $this->viewdata['liste']['aufgaben_offen_startseite'] = HAUPTINSTANZEN['aufgaben'];
+        unset($this->viewdata['liste']['aufgaben_offen_startseite']['werkzeugkasten']);
+        unset($this->viewdata['liste']['aufgaben_offen_startseite']['listenstatistik']);
+        $this->viewdata['liste']['aufgaben_offen_startseite']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => ICH['id'], ),
+            array( 'eigenschaft' => 'erledigt_janein', 'operator' => '==', 'wert' => false ),
+        ), ), );
+        $this->viewdata['liste']['aufgaben_offen_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        $this->viewdata['liste']['aufgaben_offen_startseite']['vorschau'] = array( 'zugeordnetes_element' );
+        $this->viewdata['liste']['aufgaben_offen_startseite']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+
+        $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = HAUPTINSTANZEN['termine'];
+        unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten']);
+        unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik']);
+        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::now('Europe/Berlin')->toDateTimeString() ),
+            array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
+            array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
+        ), ), );
+        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = TRUE;
+        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
+        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Startseite/startseite', $this->viewdata );

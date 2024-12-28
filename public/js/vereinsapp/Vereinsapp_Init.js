@@ -2,17 +2,30 @@ const DateTime = luxon.DateTime;
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit();
+    Schnittstelle_EventInit();
     Schnittstelle_LocalstorageInit();
     Liste_Init();
     Schnittstelle_DomInit();
 
-    Schnittstelle_EventLocalstorageUpdVariable();
-    Schnittstelle_EventVariableUpdDom();
-    if (Object.keys(LISTEN).length > 0)
-        Schnittstelle_EventSqlUpdLocalstorage(Object.keys(LISTEN), true, [
-            Schnittstelle_EventLocalstorageUpdVariable,
-            Schnittstelle_EventVariableUpdDom,
-        ]);
+    if (LOGGEDIN) {
+        Mitglieder_Init();
+        Aufgaben_Init();
+        Termine_Init();
+        Strafkatalog_Init();
+        Notenbank_Init();
+
+        $.each(LISTEN, function (liste, LISTE) {
+            Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], {
+                liste: liste,
+            });
+        });
+
+        Schnittstelle_EventAusfuehren(
+            [Schnittstelle_EventSqlUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+            undefined,
+            true
+        );
+    }
 
     $(".formular").each(function () {
         const $formular = $(this);
@@ -23,55 +36,41 @@ $(document).ready(function () {
         if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
     });
 
-    if (LOGGEDIN) Mitglieder_Init();
-    if (LOGGEDIN) Termine_Init();
-    if (LOGGEDIN) Strafkatalog_Init();
-    if (LOGGEDIN) Notenbank_Init();
-
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined") {
-        // SCHNITTSTELLE AJAX
-        const neue_ajax_id = AJAXSCHLANGE.length;
-        AJAXSCHLANGE[neue_ajax_id] = {
-            ajax_id: neue_ajax_id,
-            url: "status/ajax_datenschutz_richtlinie",
-            rein_validation_pos_aktion: function (AJAX) {
-                Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
-                $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                    Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                    Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
-                });
-            },
-        };
-        Schnittstelle_AjaxInDieSchlange(AJAXSCHLANGE[neue_ajax_id]);
-    }
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined")
+        Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", {}, {}, function (AJAX) {
+            Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
+            $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
+                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
+                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
+            });
+        });
 });
 
 /* TODO
 
 FEATURES
-Fahrerplan / Arbeitsplan / Proberaum-Belegungsplan + zeitpunkt (kassenbuch) aus Datenbank löschen
+Filtern auf eine Ebene beschränken und die Oberfläche optimieren
+Sortieren auf einen Wert beschränken (analog zu gruppieren)
+Batch über filtern- und sortieren-Button legen
+Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
-Bemerkung zum Termin, zur Strafe und zum Kassenbuch in der Listenansicht als Pop-up anzeigen
+Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
 Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Verzeichnis filtern und sortieren
-Abwesenheiten wieder einführen (inkl. Hinweis anzeigen, wenn aktuell abwesend)
+Abwesenheiten wieder einführen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
-Eigene Links im Menü anzeigen lassen (und über .env steuern)
 Link zu Github neben die Version
-Batch über filtern- und sortieren-Button legen
 
 SOFTWARE
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
-Schnittstelle_EventElementErgaenzen[x] zusammenfassen in Schnittstelle_EventElementErweitern
 Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-Haupt-Instanzen zentral definieren (bspw. filtern, sortieren, etc. für bevorstehende_termine_startseite)
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 Formatierung eines Werts flexibel machen in Liste_WertFormatiertZurueck() (inkl. möglichem Symbol)
 Data-Attribute als Object in einem Attribut zusammenfassen
@@ -91,5 +90,11 @@ Wartungsarbeiten per Filter handlen
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
+zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
+Rekursion-Problem Rückmeldungen vs. Termine auflösen
+Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
+Form validation für bemerkung mit Regel field_exists durchführen?
+Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
+Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
 
 */

@@ -23,7 +23,7 @@ function Schnittstelle_LocalstorageInit() {
         DateTime.fromISO(Schnittstelle_LocalstorageRausZurueck("localstorage_reset")) < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
     ) {
         localstorage_leeren();
-        console.log("LocalStorage wurde erzwungenermaßen geleert.");
+        Schnittstelle_LogInDieKonsole("LocalStorage wurde erzwungenermaßen geleert.");
     }
 }
 

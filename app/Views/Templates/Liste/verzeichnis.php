@@ -13,14 +13,17 @@ if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= jso
                 <li class="blanko datei invisible text-body list-group-item<?php
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> list-group-item-action<?php } ?>"<?php
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> role="button"<?php } ?>>
-                            
-                    <span class="zusatzsymbol" data-zusatzsymbol="datei"></span><span class="beschriftung"></span><span class="audio"></span>
-                    
-                    <?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?><a class="btn_verzeichnis_oeffnen stretched-link" target="_blank"></a><?php } ?>
+                    <span class="zusatzsymbol ms-2" data-zusatzsymbol="datei"></span><span class="beschriftung"></span><span class="audio"></span>
+<?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?>
+                    <a class="btn_verzeichnis_oeffnen stretched-link" target="_blank"></a>
+<?php } ?>
+<?php if( array_key_exists( 'vorschau', $verzeichnis ) ) { ?>
+                    <div class="vorschau text-truncate text-secondary small"><?php foreach( $verzeichnis['vorschau'] as $position => $vorschau ) {
+                        if( $position !== 0 ) echo '<i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>';
+                        echo '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span>';
+                    } ?></div><?php } ?>
 
-                    <?php if( array_key_exists( 'vorschau', $verzeichnis ) ) { ?><div class="vorschau small text-truncate text-secondary">
-                        <?php if( array_key_exists( 'beschriftung', $verzeichnis['vorschau'] ) ) echo $verzeichnis['vorschau']['beschriftung']; ?>
-                    </div><?php } ?>
+<?php if( array_key_exists( 'views', $verzeichnis ) ) foreach( $verzeichnis['views'] as $view ) if( array_key_exists( 'data', $view ) ) echo view( $view['view'], $view['data'] ); else echo view( $view['view'] ); ?>
 
                 </li>
 

@@ -24,13 +24,13 @@ class Termine extends Migration
         $this->forge->createTable('termine');
 
         $this->forge->addField([
-            'id'            => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false,    'auto_increment' => true],
-            'termin_id'     => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'mitglied_id'   => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'status'        => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                    'null' => true],
-            'created_at'    => ['type' => 'datetime',                                           'null' => true],
-            'updated_at'    => ['type' => 'datetime',                                           'null' => true],
+            'id'            => ['type' => 'int',            'constraint' => 11, 'unsigned' => true, 'null' => false,    'auto_increment' => true],
+            'termin_id'     => ['type' => 'int',            'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'mitglied_id'   => ['type' => 'int',            'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'status'        => ['type' => 'int',            'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'bemerkung'     => ['type' => 'varchar',        'constraint' => 100,                    'null' => true],
+            'created_at'    => ['type' => 'datetime',                                               'null' => true],
+            'updated_at'    => ['type' => 'datetime',                                               'null' => true],
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addKey('termin_id');
@@ -40,13 +40,13 @@ class Termine extends Migration
         $this->forge->createTable('termine_rueckmeldungen');
         
         $this->forge->addField([
-            'id'            => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false,    'auto_increment' => true],
-            'termin_id'     => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'mitglied_id'   => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'status'        => ['type' => 'int',        'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                    'null' => true],
-            'created_at'    => ['type' => 'datetime',                                           'null' => true],
-            'updated_at'    => ['type' => 'datetime',                                           'null' => true],
+            'id'            => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false,    'auto_increment' => true],
+            'termin_id'     => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
+            'mitglied_id'   => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
+            'status'        => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
+            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => true],
+            'created_at'    => ['type' => 'datetime',                                               'null' => true],
+            'updated_at'    => ['type' => 'datetime',                                               'null' => true],
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addKey('termin_id');

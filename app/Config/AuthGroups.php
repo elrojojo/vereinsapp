@@ -56,12 +56,13 @@ class AuthGroups extends ShieldAuthGroups
      * If a permission is not listed here it cannot be used.
      */
     public array $permissions = [
+        'mitglieder.verwaltung' => 'Verwaltung der Mitglieder',
+        'mitglieder.rechte' => 'Vergabe von Rechten',
+        'aufgaben.verwaltung' => 'Verwaltung der Aufgaben',
         'termine.verwaltung' => 'Verwaltung der Termine',
         'termine.anwesenheiten' => 'Dokumentation der Anwesenheit',
         'strafkatalog.verwaltung' => 'Verwaltung des Strafkatalogs',
         'notenbank.verwaltung' => 'Verwaltung der Notenbank',
-        'mitglieder.verwaltung' => 'Verwaltung der Mitglieder',
-        'mitglieder.rechte' => 'Vergabe von Rechten',
         'global.einstellungen' => 'Globale Einstellungen',
     ];
 

@@ -39,7 +39,7 @@ return [
     'numeric'               => 'The {field} field must contain only numbers.',
     'regex_match'           => 'The {field} field is not in the correct format.',
     'required'              => 'Eine Eingabe ist zwingend erforderlich.',
-    'required_with'         => 'The {field} field is required when {param} is present.',
+    'required_with'         => '{field} ist zwingend erforderlich, wenn {param} eingegeben wurde.',
     'required_without'      => 'The {field} field is required when {param} is not present.',
     'string'                => 'The {field} field must be a valid string.',
     'timezone'              => 'The {field} field must be a valid timezone.',

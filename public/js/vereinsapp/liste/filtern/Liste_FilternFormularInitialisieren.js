@@ -22,9 +22,11 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
         $neue_filtern_definition.appendTo($filtern_definitionen);
     });
 
-    const filtern_value = Schnittstelle_DomLetztesModalZurueck()
+    let filtern_value = Schnittstelle_DomLetztesModalZurueck()
         .find(".btn_filtern_modal_oeffnen[data-liste='" + liste + "']")
         .val();
+    if (filtern_value == "") filtern_value = "[]";
+
     if (isJson(filtern_value))
         $formular
             .find(".filtern")

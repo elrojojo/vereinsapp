@@ -26,38 +26,50 @@
     </div>
 </div>
 
-<?php if( auth()->user()->can( 'mitglieder.verwaltung' ) && auth()->user()->can( 'mitglieder.rechte' ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="rechte_vergeben">Rechte</div>
+<?php if( auth()->user()->can( 'mitglieder.rechte' ) ) { ?><div class="container mb-3">
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="verfuegbare_rechte" data-instanz="rechte_vergeben">Rechte</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 </div><?php } ?>
 
-<?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-instanz="bevorstehende_termine_mitglied">Termine</div>
+<?php if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) { ?><div class="container mb-3">
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="bevorstehende_termine_mitglied">Termine</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_mitglied'] ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'rueckmeldungen_bemerkung', 'modal' =>
+<?= view( 'Templates/modal', array( 'id' => 'rueckmeldungen_bemerkung', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
     view( 'Termine/rueckmeldung_bemerkung_formular' ) ) ) ) ); ?> 
 </div><?php } ?>
 
 <?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">
-    <div class="text-secondary text-center mb-1">Offene Kassenbucheinträge</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="kassenbuch" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'strafkatalog_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['strafkatalog_auswahl'] ) ) ) ); ?>
 </div><?php } ?>
 
-<?= view( 'Templates/modal', array( 'modal_id' => 'mitglieder_anwesenheiten_dokumentieren', 'modal' =>
+<?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) { ?><div class="container mb-3">
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_offen_mitglied_geplant">Offene Aufgaben</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_offen_mitglied_geplant'] ) ); ?>
+</div><?php } ?>
+
+<div class="container mb-3">
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="zugeordnete_aufgaben">Zugeordnete Aufgaben</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
+<?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'id' => 'aufgaben_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
+    view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
+</div>
+
+<?= view( 'Templates/modal', array( 'id' => 'mitglieder_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
+    view( 'Templates/modal', array( 'id' => 'mitglieder_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
     view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); 
       elseif( $element_id == ICH['id'] ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'mitglieder_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aendern', 'beschriftung' => 'Meine Daten ändern' ), 'formular' =>
     view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_einmal_link_anzeigen', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'mitglieder_einmal_link_anzeigen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
     view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular' ) ) ) ) ); ?>  
 

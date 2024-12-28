@@ -1,19 +1,6 @@
-LISTEN.kassenbuch = {
-    controller: "strafkatalog",
-    element: "kassenbucheintrag",
-    beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "wert", prefix: " (", suffix: ")" }],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenKassenbuch,
-};
-
-LISTEN.strafkatalog = {
-    controller: "strafkatalog",
-    element: "strafe",
-    beschriftung: [{ eigenschaft: "titel" }, { eigenschaft: "wert", prefix: " (", suffix: ")" }],
-    verlinkte_listen: [],
-    abhaengig_von: [],
-    element_ergaenzen_aktion: Schnittstelle_EventElementErgaenzenStrafkatalog,
+ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
+    if (kassenbucheintrag["erledigt"] === null) kassenbucheintrag["erledigt_janein"] = false;
+    else kassenbucheintrag["erledigt_janein"] = true;
 };
 
 function Strafkatalog_Init() {
@@ -65,10 +52,10 @@ function Strafkatalog_Init() {
     // STRAFE ZUWEISEN
     $(document).on("click", ".btn_strafe_zuweisen", function () {
         Strafkatalog_StrafeZuweisen(
-            $(this).hasClass("auswahl_oeffnen"),
+            $(this).hasClass("auswahl_einfordern"),
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { gegen_element_id: $(this).attr("data-gegen_element_id"), gegen_liste: $(this).attr("data-gegen_liste") },
+            { gegen_liste: $(this).attr("data-gegen_liste"), gegen_element_id: $(this).attr("data-gegen_element_id") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
             $(this).attr("data-liste")
@@ -108,14 +95,13 @@ function Strafkatalog_Init() {
         );
     });
 
-    // KASSENBUCHEINTRAG (DE)AKTIVIEREN
-    $(document).on("click", ".btn_kassenbucheintrag_de_aktivieren", function () {
-        Strafkatalog_KassenbucheintragDeAktivieren(
+    // KASSENBUCHEINTRAG ALS OFEN/ERLEDIGT MARKIEREN
+    $(document).on("click", ".btn_kassenbucheintrag_offen_erledigt_markieren", function () {
+        Strafkatalog_KassenbucheintragOffenErledigtMarkieren(
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { aktiv: Schnittstelle_VariableRausZurueck("aktiv", $(this).attr("data-element_id"), "kassenbuch") },
             $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            $(this).attr("data-kassenbucheintrag_id")
         );
     });
 

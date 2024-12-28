@@ -24,15 +24,16 @@ class Strafkatalog extends Migration
             'id'            => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false,    'auto_increment' => true],
             'titel'         => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'wert'          => ['type' => 'decimal',    'constraint' => '10,2',                     'null' => false],
-            'zeitpunkt'     => ['type' => 'datetime',                                               'null' => false],
-            'aktiv'         => ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false],
             'mitglied_id'   => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
+            'erledigt'      => ['type' => 'datetime',                                               'null' => true],
             'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'created_at'    => ['type' => 'datetime',                                               'null' => true],
             'updated_at'    => ['type' => 'datetime',                                               'null' => true],
             'deleted_at'    => ['type' => 'datetime',                                               'null' => true],
         ]);
         $this->forge->addPrimaryKey('id');
+        $this->forge->addKey('mitglied_id');
+        $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
         $this->forge->createTable('strafkatalog_kassenbuch');
     }
 

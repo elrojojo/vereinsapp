@@ -16,7 +16,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "funktion":
         case "vorstandschaft":
         case "aktiv":
-        case "abwesend":
+        case "erledigt_janein":
         case "kategorie":
         case "ich_rueckgemeldet":
         case "ich_eingeladen":
@@ -24,9 +24,10 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             break;
         case "erstellung":
         case "letzte_aktivitaet":
+        case "erledigt":
         case "created_at":
         case "updated_at":
-            if (wert == null) wert_formatiert = "nie";
+            if (wert === null) wert_formatiert = "nie";
             else wert_formatiert = wert.toFormat("dd.MM.yyyy HH:mm");
             break;
         case "start":
@@ -46,8 +47,12 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + '">';
             break;
         case "mitglied_id":
-            if (wert == null) wert_formatiert = "Mitglied nicht gefunden";
+            if (wert === null) wert_formatiert = "Mitglied nicht gefunden";
             else wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
+            break;
+        case "zugeordnetes_element":
+            if (wert === null || !("liste" in wert) || wert.liste === null || !("id" in wert) || wert.id === null) wert_formatiert = "";
+            else wert_formatiert = Liste_ElementBeschriftungZurueck(wert.id, wert.liste);
             break;
         default:
             wert_formatiert = wert;

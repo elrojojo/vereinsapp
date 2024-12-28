@@ -1,7 +1,6 @@
 const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
-const STATUS_STANDARD_HTML = $("#status").html();
 
 const TOASTS = new Object();
 const MODALS = new Object();
@@ -24,11 +23,12 @@ function Schnittstelle_DomInit() {
             else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
             // Wenn .blanko ein .element ist
             else if ($blanko.hasClass("element")) {
-                const $liste = $blanko.closest(".liste[data-liste][id]");
-                const liste = $liste.attr("data-liste");
+                const $liste = $blanko.closest(".liste[id]");
                 const instanz = $liste.attr("id");
-                if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
+                const liste = $liste.attr("data-liste");
+                if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz])) {
                     LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+                }
             }
             // Wenn .blanko eine .auswertung ist
             else if ($blanko.hasClass("auswertung")) {
@@ -73,9 +73,12 @@ function Schnittstelle_DomInit() {
                 SORTIEREN.$blanko_sortieren_element = $blanko;
         })
         .remove();
+    $("#hauptinstanzen").remove();
 
     $.each(autoload, function () {
         const $modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, this);
+
+        Schnittstelle_DomModalOeffnen($modal);
 
         const $formular = $modal.find(".formular");
         if (typeof $formular !== "undefined" && $formular.exists()) {
@@ -85,16 +88,15 @@ function Schnittstelle_DomInit() {
             if (typeof element_id !== "undefined") element_id = Number(element_id);
             if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
         }
-
-        Schnittstelle_DomModalOeffnen($modal);
     });
 
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);
     });
 
+    const status_standard_html = $("#status").html();
     $(document).ajaxStop(function () {
-        $("#status").html(STATUS_STANDARD_HTML);
+        $("#status").html(status_standard_html);
     });
 
     $(document).ajaxSuccess(function () {

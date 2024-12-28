@@ -5,6 +5,9 @@ function Liste_GruppierenSpeichern($gruppieren_eigenschaft, instanz, liste) {
 
     if (typeof instanz !== "undefined") {
         LISTEN[liste].instanz[instanz].gruppieren = $gruppieren_eigenschaft.val();
-        Schnittstelle_EventVariableUpdLocalstorage(liste, [Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom]);
+        Schnittstelle_EventAusfuehren(
+            [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+            { liste: liste }
+        );
     } else if ($btn_gruppieren_modal_oeffnen.exists()) $btn_gruppieren_modal_oeffnen.val($gruppieren_eigenschaft.val());
 }

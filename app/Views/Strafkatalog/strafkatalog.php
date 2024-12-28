@@ -11,10 +11,7 @@
 </div>
 
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'strafkatalog_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'strafkatalog', 'aktion' => 'aendern' ), 'btn' => array( 'klasse_id' => 'btn_strafe_aktion' ), 'formular' =>
+    view( 'Templates/modal', array( 'id' => 'strafkatalog_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'strafkatalog' ), 'btn' => array( 'klasse_id' => 'btn_strafe_aktion' ), 'formular' =>
     view( 'Strafkatalog/strafe_basiseigenschaften_formular' ) ) ) ) ); ?>
-<?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_auswahl', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_auswahl'] ) ) ) ); ?>
 <?= $this->endSection() ?>

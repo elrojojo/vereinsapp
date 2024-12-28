@@ -9,28 +9,13 @@ class Notenbank extends BaseController {
 
     public function notenbank() {
 
-        $this->viewdata['liste']['aktuelles_verzeichnis'] = array(
-            'liste' => 'notenbank',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            ),
-            'beschriftung' => array(
-                'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
-                'h5' => TRUE,
-            ),
-            'link' => TRUE,
-            'vorschau' => array(
-                'beschriftung' => '<span class="eigenschaft" data-eigenschaft="kategorie"></span><i class="bi bi-dot spacer"></i>'.
-                '<span class="eigenschaft" data-eigenschaft="anzahl_noten"></span><i class="bi bi-dot spacer"></i>'.
-                '<span class="eigenschaft" data-eigenschaft="anzahl_audio"></span><i class="bi bi-dot spacer"></i>'.
-                '<span class="eigenschaft" data-eigenschaft="anzahl_verzeichnis"></span><i class="bi bi-dot spacer"></i>',
-            ),
-            'listenstatistik' => array(),
-        );
+        $this->viewdata['liste']['aktuelles_verzeichnis'] = HAUPTINSTANZEN['notenbank'];
+        $this->viewdata['liste']['aktuelles_verzeichnis']['group-flush'] = TRUE;
+        $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = TRUE;
+        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
+
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -51,17 +36,8 @@ class Notenbank extends BaseController {
                 'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
                 'title' => 'Titel erstellen',
             );
+
         }
-
-        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => 'btn_filtern_modal_oeffnen',
-            'title' => 'Notenbank filtern',
-        ); 
-
-        $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['sortieren'] = array(
-            'klasse_id' => 'btn_sortieren_modal_oeffnen',
-            'title' => 'Notenbank sortieren',
-        ); 
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Notenbank/notenbank', $this->viewdata );
@@ -73,11 +49,19 @@ class Notenbank extends BaseController {
     
         $this->viewdata['element_id'] = $titel_id;
 
-        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array(
-            'liste' => 'notenbank',
-            'link' => TRUE,
-            'element_id' => $titel_id,
-        );
+        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
+
+        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
+        $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "notenbank", ),
+            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $titel_id, ),
+        ), ), );
+        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+
+        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
+            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -105,6 +89,7 @@ class Notenbank extends BaseController {
             ),
         );
 
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $id => $verzeichnis ) $this->viewdata['verzeichnis'][ $id ]['id'] = $id;
         echo view( 'Notenbank/titel_details', $this->viewdata );
     }
@@ -185,20 +170,4 @@ class Notenbank extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    private function verzeichnis_indizieren( $verzeichnis ) {
-        $verzeichnis_indiziert = array(
-            'unterverzeichnisse' => array(),
-            'dateien' => array(),
-        );
-        foreach( $verzeichnis as $beschriftung => $unterverzeichnis ) {
-            if( substr( $beschriftung, -1 ) == '\\' ) $beschriftung = substr_replace($beschriftung, '/', -1);
-
-            if( is_array($unterverzeichnis) ) $verzeichnis_indiziert['unterverzeichnisse'][$beschriftung] = $this->verzeichnis_indizieren( $unterverzeichnis );
-            else if( in_array( pathinfo( $unterverzeichnis,  PATHINFO_EXTENSION ), array_merge( NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO ) ) )
-                $verzeichnis_indiziert['dateien'][] = $unterverzeichnis;
-            else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }
-        }
-        return $verzeichnis_indiziert;
-    }
-    
 }

@@ -9,6 +9,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `vereinsapp_aufgaben`
+--
+
+CREATE TABLE `vereinsapp_aufgaben` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `zugeordnete_liste` varchar(50) DEFAULT NULL,
+  `zugeordnete_element_id` int(11) UNSIGNED DEFAULT NULL,
+  `titel` varchar(100) NOT NULL,
+  `mitglied_id` int(11) UNSIGNED DEFAULT NULL,
+  `erledigt` datetime DEFAULT NULL,
+  `bemerkung` varchar(100) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `vereinsapp_migrations`
 --
 
@@ -250,9 +269,8 @@ CREATE TABLE `vereinsapp_strafkatalog_kassenbuch` (
   `id` int(11) UNSIGNED NOT NULL,
   `titel` varchar(100) NOT NULL,
   `wert` decimal(10,2) NOT NULL,
-  `zeitpunkt` datetime NOT NULL,
-  `aktiv` int(1) UNSIGNED NOT NULL,
   `mitglied_id` int(11) UNSIGNED NOT NULL,
+  `erledigt` datetime DEFAULT NULL,
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -314,6 +332,13 @@ CREATE TABLE `vereinsapp_termine_rueckmeldungen` (
 --
 -- Indizes der exportierten Tabellen
 --
+
+--
+-- Indizes für die Tabelle `vereinsapp_aufgaben`
+--
+ALTER TABLE `vereinsapp_aufgaben`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mitglied_id` (`mitglied_id`);
 
 --
 -- Indizes für die Tabelle `vereinsapp_migrations`
@@ -396,7 +421,8 @@ ALTER TABLE `vereinsapp_strafkatalog`
 -- Indizes für die Tabelle `vereinsapp_strafkatalog_kassenbuch`
 --
 ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mitglied_id` (`mitglied_id`);
 
 --
 -- Indizes für die Tabelle `vereinsapp_termine`
@@ -423,6 +449,12 @@ ALTER TABLE `vereinsapp_termine_rueckmeldungen`
 --
 -- AUTO_INCREMENT für exportierte Tabellen
 --
+
+--
+-- AUTO_INCREMENT für Tabelle `vereinsapp_aufgaben`
+--
+ALTER TABLE `vereinsapp_aufgaben`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `vereinsapp_migrations`
@@ -519,6 +551,12 @@ ALTER TABLE `vereinsapp_termine_rueckmeldungen`
 --
 
 --
+-- Constraints der Tabelle `vereinsapp_aufgaben`
+--
+ALTER TABLE `vereinsapp_aufgaben`
+  ADD CONSTRAINT `vereinsapp_aufgaben_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints der Tabelle `vereinsapp_mitglieder_login_eingeloggt_bleiben`
 --
 ALTER TABLE `vereinsapp_mitglieder_login_eingeloggt_bleiben`
@@ -541,6 +579,12 @@ ALTER TABLE `vereinsapp_mitglieder_vergebene_rechte`
 --
 ALTER TABLE `vereinsapp_mitglieder_zugaenge`
   ADD CONSTRAINT `vereinsapp_mitglieder_zugaenge_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `vereinsapp_strafkatalog_kassenbuch`
+--
+ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
+  ADD CONSTRAINT `vereinsapp_strafkatalog_kassenbuch_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints der Tabelle `vereinsapp_termine_anwesenheiten`

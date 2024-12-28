@@ -101,7 +101,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#target_" + neue_id);
             $neue_auswertung.find(".collapse").attr("id", "target_" + neue_id);
 
-            if (position == 0) $neue_auswertung.appendTo($auswertungen);
+            if (position === 0) $neue_auswertung.appendTo($auswertungen);
             else
                 $neue_auswertung.insertAfter(
                     $auswertungen.find('.auswertung[data-gruppieren="' + gruppieren + '"][data-wert="' + gruppieren_werte[position - 1] + '"]')

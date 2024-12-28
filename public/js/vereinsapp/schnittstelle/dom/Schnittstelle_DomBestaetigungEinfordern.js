@@ -5,7 +5,7 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, btn_klasse_id
     $bestaetigung.find(".nachricht").text(nachricht);
 
     const $btn_bestaetigen = $bestaetigung.find(".btn_bestaetigen");
-    $btn_bestaetigen.addClass(btn_klasse_id).removeClass("btn_bestaetigen").text(title);
+    $btn_bestaetigen.addClass(btn_klasse_id).removeClass("btn_bestaetigen");
     if (typeof btn_data !== "undefined" && isObject(btn_data))
         $.each(btn_data, function (eigenschaft, wert) {
             $btn_bestaetigen.attr("data-" + eigenschaft, wert);

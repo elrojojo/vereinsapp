@@ -59,7 +59,7 @@ function Liste_Aktualisieren($liste, liste) {
                 $neues_element.attr("data-gegen_element_id", gegen_element_id);
 
             // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
-            if (position == 0) $neues_element.appendTo($liste);
+            if (position === 0) $neues_element.appendTo($liste);
             else $neues_element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
         }
     });
@@ -69,16 +69,7 @@ function Liste_Aktualisieren($liste, liste) {
         const element_id = element["id"];
         const $element = $liste.find('.element[data-element_id="' + element_id + '"]');
 
-        if (position == 0) $element.appendTo($liste);
+        if (position === 0) $element.appendTo($liste);
         else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
     });
-
-    // LETZTEN SPACER AUS DER LISTE LÖSCHEN
-    const $letztes_element = $liste.children().last();
-    const $moeglicher_spacer = $letztes_element.children().last();
-    if ($moeglicher_spacer.hasClass("spacer")) $moeglicher_spacer.remove();
-
-    // ÜBERSCHRIFTEN EIN-/AUSBLENDEN
-    if ($liste.children().length === 0) $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').addClass("invisible");
-    else $liste.prev('.ueberschrift[data-instanz="' + instanz + '"]').removeClass("invisible");
 }

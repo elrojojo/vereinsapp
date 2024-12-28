@@ -1,5 +1,3 @@
-const LISTEN = new Object();
-
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
@@ -19,6 +17,14 @@ function Liste_Init() {
     Liste_SortierenInit();
 
     Liste_GruppierenInit();
+
+    $(document).on("change", ".eingabe", function () {
+        if (
+            "change_aktion" in EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")] &&
+            typeof EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion === "function"
+        )
+            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this));
+    });
 
     // SORTABLE
     $(".sortable").sortable({

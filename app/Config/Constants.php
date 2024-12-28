@@ -98,6 +98,145 @@ define('EVENT_PRIORITY_HIGH', 10);
 | VEREINSAPP Projekt-übergreifende Konstanten
 |--------------------------------------------------------------------------*/
 
+defined('LISTEN') OR define( 'LISTEN', array(
+    'mitglieder' => array(
+        'beschriftung' => 'Mitglieder',
+        'controller' => 'mitglieder',
+        'element' => 'mitglied',
+        'abhaengig_von' => array(),
+    ),
+    'verfuegbare_rechte' => array(
+        'beschriftung' => 'Verfügbare Rechte',
+        'controller' => 'mitglieder',
+        'element' => 'verfuegbares_recht',
+        'abhaengig_von' => array(),
+    ),
+    'vergebene_rechte' => array(
+        'beschriftung' => 'Vergebene Rechte',
+        'controller' => 'mitglieder',
+        'element' => 'vergebenes_recht',
+        'abhaengig_von' => array( 'mitglieder', 'verfuegbare_rechte' ),
+    ),
+
+    'aufgaben' => array(
+        'beschriftung' => 'Aufgaben',
+        'controller' => 'aufgaben',
+        'element' => 'aufgabe',
+        'abhaengig_von' => array( 'mitglieder', 'termine', 'strafkatalog', 'kassenbuch', 'notenbank'),
+    ),
+
+    'termine' => array(
+        'beschriftung' => 'Termine',
+        'controller' => 'termine',
+        'element' => 'termin',
+        'abhaengig_von' => array( 'rueckmeldungen' ),
+    ),
+    'rueckmeldungen' => array(
+        'beschriftung' => 'Rückmeldungen',
+        'controller' => 'termine',
+        'element' => 'rueckmeldung',
+        'abhaengig_von' => array( /*'termine',*/ 'mitglieder' ),
+    ),
+    'anwesenheiten' => array(
+        'beschriftung' => 'Anwesenheiten',
+        'controller' => 'termine',
+        'element' => 'anwesenheit',
+        'abhaengig_von' => array( 'termine', 'mitglieder' ),
+    ),
+
+    'strafkatalog' => array(
+        'beschriftung' => 'Strafkatalog',
+        'controller' => 'strafkatalog',
+        'element' => 'strafe',
+        'abhaengig_von' => array(),
+    ),
+    'kassenbuch' => array(
+        'beschriftung' => 'Kassenbuch',
+        'controller' => 'strafkatalog',
+        'element' => 'kassenbucheintrag',
+        'abhaengig_von' => array( 'mitglieder' ),
+    ),
+
+    'notenbank' => array(
+        'beschriftung' => 'Notenbank',
+        'controller' => 'notenbank',
+        'element' => 'titel',
+        'abhaengig_von' => array(),
+    ),
+) );
+
+defined('ELEMENTE') OR define( 'ELEMENTE', array(
+    'mitglied' => array(
+        'beschriftung' => 'Mitglied',
+        'liste' => 'mitglieder',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'vorname' ),
+            array( 'eigenschaft' => 'nachname', 'prefix' => ' ' )
+        ),
+    ),
+    'verfuegbares_recht' => array(
+        'beschriftung' => 'Verfügbares Recht',
+        'liste' => 'verfuegbare_rechte',
+        'element_beschriftung' => array(),
+    ),
+    'vergebenes_recht' => array(
+        'beschriftung' => 'Vergebenes Recht',
+        'liste' => 'vergebene_rechte',
+        'element_beschriftung' => array(),
+    ),
+
+    'aufgabe' => array(
+        'beschriftung' => 'Aufgabe',
+        'liste' => 'aufgaben',
+        'element_beschriftung' => array( array( 'eigenschaft' => 'titel' ) ),
+    ),
+
+    'termin' => array(
+        'beschriftung' => 'Termin',
+        'liste' => 'termine',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+    'rueckmeldung' => array(
+        'beschriftung' => 'Rückmeldung',
+        'liste' => 'rueckmeldungen',
+        'element_beschriftung' => array(),
+    ),
+    'anwesenheit' => array(
+        'beschriftung' => 'Anwesenheit',
+        'liste' => 'anwesenheiten',
+        'element_beschriftung' => array(),
+    ),
+
+    'strafe' => array(
+        'beschriftung' => 'Strafe',
+        'liste' => 'strafkatalog',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+    'kassenbucheintrag' => array(
+        'beschriftung' => 'Kassenbucheintrag',
+        'liste' => 'kassenbuch',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+
+    'titel' => array(
+        'beschriftung' => 'Titel',
+        'liste' => 'notenbank',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel_nr', 'prefix' => '[', 'suffix' => '] ' ),
+            array( 'eigenschaft' => 'titel' )
+        ),
+    ),
+) );
+
 defined('JANEIN') OR define( 'JANEIN', array(
 	0 => array( 'beschriftung' => 'Nein' ),
 	1 => array( 'beschriftung' => 'Ja' ),
@@ -124,21 +263,22 @@ defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
 ) );
 
 defined('SYMBOLE') OR define( 'SYMBOLE', array(
-    'startseite' => array ( 'bootstrap' => '' ),
-    'termine' => array ( 'bootstrap' => 'calendar-month' ),
+    'einstellungen' => array( 'bootstrap' => 'gear' ),
+    'mitglieder' => array ( 'bootstrap' => 'people' ),
+    'aufgaben' => array ( 'bootstrap' => 'award' ),
+    'termine' => array ( 'bootstrap' => 'calendar-event' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
-    'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
-    'mitglieder' => array ( 'bootstrap' => 'people' ),
-    'einstellungen' => array( 'bootstrap' => 'gear' ),
+    'startseite' => array ( 'bootstrap' => '' ),
 
     'werkzeuge' => array( 'bootstrap' => 'tools' ),
-    'aendern' => array( 'bootstrap' => 'pencil' ),
     'erstellen' => array( 'bootstrap' => 'plus-lg' ),
+    'aendern' => array( 'bootstrap' => 'pencil' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
-    'zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
-    'de_aktivieren' => array ( 'bootstrap' => 'check2-circle' ),
+    'auswaehlen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
+    'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
+    'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
@@ -151,8 +291,11 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
     'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),
     'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
+    'pfeil_links' => array( 'bootstrap' => 'arrow-left' ),
+    'pfeil_rechts' => array( 'bootstrap' => 'arrow-right' ),
 
     'mitglied' => array ( 'bootstrap' => 'person' ),
+    'spacer' => array ( 'bootstrap' => 'dot' ),
     'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
     // 'info' => array( 'bootstrap' => 'info-circle' ),
 
@@ -160,10 +303,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
 
-    'abwesend' => array( 'bootstrap' => 'airplane', 'html' => '&#9992' ),
-    'geburtstag' => array( 'bootstrap' => 'gift', 'html' => '&#127873' ),
+    'geburtstag' => array( 'bootstrap' => 'cake2' ),
 
-    'datum' => array( 'bootstrap' => 'calendar-event' ),
     'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
     'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
     'zahlenraum' => array( 'bootstrap' => '123' ),
@@ -171,8 +312,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
-    'aktiv' => array( 'bootstrap' => 'check-circle' ),
-    'inaktiv' => array( 'bootstrap' => 'circle' ),
+    'offen' => array( 'bootstrap' => 'circle' ),
+    'erledigt' => array( 'bootstrap' => 'check-circle' ),
 
     'verzeichnis' => array( 'bootstrap' => 'folder' ),
     'verzeichnis_geoeffnet' => array( 'bootstrap' => 'folder2-open' ),
@@ -185,14 +326,11 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 
+    'status' => array( 'bootstrap' => 'circle-fill' ),
+    'logout' => array( 'bootstrap' => 'door-open' ),
 ) );
 
-enum AJAX_ZUSTAND
-{
-    case VORBEREITET;
-    case RAUS;
-    case WARTEND;
-    case REIN_FEHLER;
-    case REIN_ERFOLG;
-    case FERTIG;
-}
+// enum ZUSTAND
+// {
+//     case FERTIG;
+// }

@@ -1,7 +1,7 @@
 const GRUPPIEREN = new Object();
 
 function Liste_GruppierenInit() {
-    // FORMULAR (MODAL) ÖFFNEN
+    // MODAL ÖFFNEN
     $(document).on("click", ".btn_gruppieren_modal_oeffnen", function () {
         Liste_GruppierenModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
     });
