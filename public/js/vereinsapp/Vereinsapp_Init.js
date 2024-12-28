@@ -93,7 +93,6 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
-Form validation für bemerkung mit Regel field_exists durchführen?
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
 
