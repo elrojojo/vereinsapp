@@ -316,10 +316,10 @@ CREATE TABLE `vereinsapp_termine_anwesenheiten` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `vereinsapp_termine_rueckmeldungen`
+-- Tabellenstruktur für Tabelle `vereinsapp_termine_terminrueckmeldungen`
 --
 
-CREATE TABLE `vereinsapp_termine_rueckmeldungen` (
+CREATE TABLE `vereinsapp_termine_terminrueckmeldungen` (
   `id` int(11) UNSIGNED NOT NULL,
   `termin_id` int(11) UNSIGNED NOT NULL,
   `mitglied_id` int(11) UNSIGNED NOT NULL,
@@ -439,9 +439,9 @@ ALTER TABLE `vereinsapp_termine_anwesenheiten`
   ADD KEY `mitglied_id` (`mitglied_id`);
 
 --
--- Indizes für die Tabelle `vereinsapp_termine_rueckmeldungen`
+-- Indizes für die Tabelle `vereinsapp_termine_terminrueckmeldungen`
 --
-ALTER TABLE `vereinsapp_termine_rueckmeldungen`
+ALTER TABLE `vereinsapp_termine_terminrueckmeldungen`
   ADD PRIMARY KEY (`id`),
   ADD KEY `termin_id` (`termin_id`),
   ADD KEY `mitglied_id` (`mitglied_id`);
@@ -541,9 +541,9 @@ ALTER TABLE `vereinsapp_termine_anwesenheiten`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `vereinsapp_termine_rueckmeldungen`
+-- AUTO_INCREMENT für Tabelle `vereinsapp_termine_terminrueckmeldungen`
 --
-ALTER TABLE `vereinsapp_termine_rueckmeldungen`
+ALTER TABLE `vereinsapp_termine_terminrueckmeldungen`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -594,11 +594,11 @@ ALTER TABLE `vereinsapp_termine_anwesenheiten`
   ADD CONSTRAINT `vereinsapp_termine_anwesenheiten_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints der Tabelle `vereinsapp_termine_rueckmeldungen`
+-- Constraints der Tabelle `vereinsapp_termine_terminrueckmeldungen`
 --
-ALTER TABLE `vereinsapp_termine_rueckmeldungen`
-  ADD CONSTRAINT `vereinsapp_termine_rueckmeldungen_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `vereinsapp_termine_rueckmeldungen_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
+ALTER TABLE `vereinsapp_termine_terminrueckmeldungen`
+  ADD CONSTRAINT `vereinsapp_termine_terminrueckmeldungen_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `vereinsapp_termine_terminrueckmeldungen_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

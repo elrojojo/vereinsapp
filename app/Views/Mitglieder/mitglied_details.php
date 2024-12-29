@@ -34,9 +34,9 @@
 <?php if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="bevorstehende_termine_mitglied">Termine</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_mitglied'] ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'rueckmeldungen_bemerkung', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'rueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_rueckmeldung_detaillieren' ), 'formular' =>
-    view( 'Termine/rueckmeldung_bemerkung_formular' ) ) ) ) ); ?> 
+<?= view( 'Templates/modal', array( 'id' => 'terminrueckmeldungen_bemerkung', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'terminrueckmeldungen' ), 'btn' => array( 'klasse_id' => 'btn_terminrueckmeldung_detaillieren' ), 'formular' =>
+    view( 'Termine/terminrueckmeldung_bemerkung_formular' ) ) ) ) ); ?> 
 </div><?php } ?>
 
 <?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">

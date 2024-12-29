@@ -106,8 +106,10 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
     if (zusatzsymbol == "bemerkung") {
         let bemerkung;
 
-        if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {
-            const gegen_element_id = Number($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id"));
+        if ($element.parents('.auswertungen[data-auswertungen="terminrueckmeldungen"]').exists()) {
+            const gegen_element_id = Number(
+                $element.parents('.auswertungen[data-auswertungen="terminrueckmeldungen"]').attr("data-gegen_element_id")
+            );
             const filtern = [
                 {
                     verknuepfung: "&&",
@@ -117,8 +119,9 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element, liste) 
                     ],
                 },
             ];
-            const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(filtern, "rueckmeldungen");
-            if (gefilterte_rueckmeldungen.length > 0) bemerkung = gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"];
+            const gefilterte_terminrueckmeldungen = Liste_TabelleGefiltertZurueck(filtern, "terminrueckmeldungen");
+            if (gefilterte_terminrueckmeldungen.length > 0)
+                bemerkung = gefilterte_terminrueckmeldungen[gefilterte_terminrueckmeldungen.length - 1]["bemerkung"];
         } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste);
 
         if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")

@@ -27,7 +27,7 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'terminrueckmeldungen', 'klasse' => array(
             'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
             'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
         ), );
@@ -107,7 +107,7 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'terminrueckmeldungen', 'klasse' => array(
             'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
             'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
         ), );
@@ -145,7 +145,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['link'] = TRUE;
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['vorschau'] = array( 'start', 'ort' );
-            $this->viewdata['liste']['bevorstehende_termine_mitglied']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => $mitglied_id ) ) );
+            $this->viewdata['liste']['bevorstehende_termine_mitglied']['views'] = array( array( 'view' => 'Termine/terminrueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => $mitglied_id ) ) );
         }
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {

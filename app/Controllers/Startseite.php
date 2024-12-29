@@ -41,18 +41,18 @@ class Startseite extends BaseController {
         $this->viewdata['liste']['aufgaben_offen_startseite']['vorschau'] = array( 'zugeordnetes_element' );
         $this->viewdata['liste']['aufgaben_offen_startseite']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
 
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = HAUPTINSTANZEN['termine'];
-        unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten']);
-        unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik']);
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+        $this->viewdata['liste']['termine_ausstehende_terminrueckmeldung'] = HAUPTINSTANZEN['termine'];
+        unset($this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['werkzeugkasten']);
+        unset($this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['listenstatistik']);
+        $this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
             array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::now('Europe/Berlin')->toDateTimeString() ),
             array( 'operator' => '==', 'eigenschaft' => 'ich_rueckgemeldet', 'wert' => 0 ),
             array( 'operator' => '==', 'eigenschaft' => 'ich_eingeladen', 'wert' => TRUE ),
         ), ), );
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = TRUE;
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
+        $this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['link'] = TRUE;
+        $this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+        $this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['vorschau'] = array( 'start', 'ort' );
+        $this->viewdata['liste']['termine_ausstehende_terminrueckmeldung']['views'] = array( array( 'view' => 'Termine/terminrueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Startseite/startseite', $this->viewdata );

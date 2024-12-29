@@ -129,12 +129,12 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'beschriftung' => 'Termine',
         'controller' => 'termine',
         'element' => 'termin',
-        'abhaengig_von' => array( 'rueckmeldungen' ),
+        'abhaengig_von' => array( 'terminrueckmeldungen' ),
     ),
-    'rueckmeldungen' => array(
-        'beschriftung' => 'Rückmeldungen',
+    'terminrueckmeldungen' => array(
+        'beschriftung' => 'Terminrückmeldungen',
         'controller' => 'termine',
-        'element' => 'rueckmeldung',
+        'element' => 'terminrueckmeldung',
         'abhaengig_von' => array( /*'termine',*/ 'mitglieder' ),
     ),
     'anwesenheiten' => array(
@@ -199,9 +199,9 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
             array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
         ),
     ),
-    'rueckmeldung' => array(
-        'beschriftung' => 'Rückmeldung',
-        'liste' => 'rueckmeldungen',
+    'terminrueckmeldung' => array(
+        'beschriftung' => 'Terminrückmeldung',
+        'liste' => 'terminrueckmeldungen',
         'element_beschriftung' => array(),
     ),
     'anwesenheit' => array(

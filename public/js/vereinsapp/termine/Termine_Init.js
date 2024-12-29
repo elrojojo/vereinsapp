@@ -1,13 +1,13 @@
 ELEMENTE.termin.ergaenzen_aktion = function (termin) {
-    if ("rueckmeldungen" in LISTEN) {
-        termin["ich_rueckmeldung_id"] = Liste_ElementIdZurueck(
+    if ("terminrueckmeldungen" in LISTEN) {
+        termin["ich_terminrueckmeldung_id"] = Liste_ElementIdZurueck(
             [
                 { liste: "termine", element_id: Number(termin["id"]) },
                 { liste: "mitglieder", element_id: Number(ICH["id"]) },
             ],
-            "rueckmeldungen"
+            "terminrueckmeldungen"
         );
-        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet"] = false;
+        if (typeof termin["ich_terminrueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet"] = false;
         else termin["ich_rueckgemeldet"] = true;
     }
 
@@ -32,16 +32,16 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
 };
 
 function Termine_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE["rueckmeldungen"] = [
+    EVENT_VARIABLE_UPD_DOM_MODULE["terminrueckmeldungen"] = [
         function () {
-            // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-            $(".rueckmeldung_eingeladen").each(function () {
-                Termine_RueckmeldungEinAusblenden($(this));
+            // FORMULAR MEINE TERMINRÜCKMELDUNG EIN-/AUSBLENDEN
+            $(".terminrueckmeldung_eingeladen").each(function () {
+                Termine_TerminrueckmeldungEinAusblenden($(this));
             });
 
-            // RÜCKMELDUNG AKTUALISIEREN
+            // TERMINRÜCKMELDUNG AKTUALISIEREN
             $(".zusagen, .absagen").each(function () {
-                Termine_RueckmeldungAktualisieren($(this));
+                Termine_TerminrueckmeldungAktualisieren($(this));
             });
         },
     ];
@@ -91,9 +91,9 @@ function Termine_Init() {
         );
     });
 
-    // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
-        Termine_RueckmeldungErstellen(
+    // TERMINRÜCKMELDUNG ERSTELLEN
+    $(document).on("click", ".btn_terminrueckmeldung_erstellen", function () {
+        Termine_TerminrueckmeldungErstellen(
             false,
             { $btn_ausloesend: $(this) },
             {
@@ -107,9 +107,9 @@ function Termine_Init() {
         );
     });
 
-    // RÜCKMELDUNG ÄNDERN
-    $(document).on("click", ".btn_rueckmeldung_aendern", function () {
-        Termine_RueckmeldungAendern(
+    // TERMINRÜCKMELDUNG ÄNDERN
+    $(document).on("click", ".btn_terminrueckmeldung_aendern", function () {
+        Termine_TerminrueckmeldungAendern(
             false,
             { $btn_ausloesend: $(this) },
             {
@@ -121,9 +121,9 @@ function Termine_Init() {
         );
     });
 
-    // RÜCKMELDUNG DETAILLIEREN
-    $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
-        Termine_RueckmeldungDetaillieren(
+    // TERMINRÜCKMELDUNG DETAILLIEREN
+    $(document).on("click", ".btn_terminrueckmeldung_detaillieren", function () {
+        Termine_TerminrueckmeldungDetaillieren(
             $(this).hasClass("formular_oeffnen"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
@@ -132,15 +132,15 @@ function Termine_Init() {
         );
     });
 
-    // RÜCKMELDUNG LÖSCHEN
-    $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
+    // TERMINRÜCKMELDUNG LÖSCHEN
+    $(document).on("click", ".btn_terminrueckmeldung_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
-            "rueckmeldungen"
+            "terminrueckmeldungen"
         );
     });
 

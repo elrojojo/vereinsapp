@@ -79,9 +79,9 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_termin_speichern',                  'Termine::ajax_termin_speichern');
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
 
-    $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
+    $routes->post('ajax_terminrueckmeldung_speichern',      'Termine::ajax_terminrueckmeldung_speichern');
 
-    $routes->post('ajax_anwesenheit_speichern',               'Termine::ajax_anwesenheit_speichern');
+    $routes->post('ajax_anwesenheit_speichern',             'Termine::ajax_anwesenheit_speichern');
 });
 
 $routes->group('strafkatalog', static function ($routes) {

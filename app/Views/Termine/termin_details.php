@@ -13,12 +13,12 @@
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-<?= view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
+<?= view( 'Termine/terminrueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
 </div>
 
 <div class="container mb-3">
     <ul class="nav nav-tabs">
-        <li class="col-6 nav-item text-center" data-bs-target="#rueckmeldungen_container" role="button">
+        <li class="col-6 nav-item text-center" data-bs-target="#terminrueckmeldungen_container" role="button">
             <a class="nav-link active">Rückmeldungen</a>
         </li>
         <li class="col-6 nav-item collapsed text-center" data-bs-toggle="collapse" data-bs-target="#anwesenheiten_container" role="button">
@@ -27,11 +27,11 @@
     </ul>
 </div>
 
-<div class="container rueckmeldungen_anwesenheiten_parent mb-3">
-    <div id="rueckmeldungen_container" class="collapse tab_collapse show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
-<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'], 'view' => 'Termine/auswertung_rueckmeldungen' ) ); ?>
+<div class="container terminrueckmeldungen_anwesenheiten_parent mb-3">
+    <div id="terminrueckmeldungen_container" class="collapse tab_collapse show" data-bs-parent=".terminrueckmeldungen_anwesenheiten_parent">
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['terminrueckmeldungen_termin'], 'view' => 'Termine/auswertung_terminrueckmeldungen' ) ); ?>
     </div>
-    <div id="anwesenheiten_container" class="collapse tab_collapse" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
+    <div id="anwesenheiten_container" class="collapse tab_collapse" data-bs-parent=".terminrueckmeldungen_anwesenheiten_parent">
 <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_termin'], 'view' => 'Termine/auswertung_anwesenheiten' ) ); ?>
     </div>
 </div>

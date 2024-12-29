@@ -107,7 +107,7 @@ class Vereinsapp extends BaseConfig
             // 'title' => 'Titel für bspw. ein Modal',
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
-            // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
+            // 'views' => view( 'Termine/terminrueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbole' => array('geburtstag'),
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
@@ -166,8 +166,8 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
-        'rueckmeldungen' => array(
-            'liste' => 'rueckmeldungen',
+        'terminrueckmeldungen' => array(
+            'liste' => 'terminrueckmeldungen',
         ),
 
         'anwesenheiten' => array(
@@ -291,11 +291,11 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
-            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'zahl' ),                    // JAVA
+            'ich_terminrueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'zahl' ),                    // JAVA
             'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),              // JAVA
         ),
 
-        'rueckmeldungen' => array(
+        'terminrueckmeldungen' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
@@ -436,7 +436,7 @@ class Vereinsapp extends BaseConfig
             'ich_eingeladen' => JANEIN,
         ),
 
-        'rueckmeldungen' => array(
+        'terminrueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -513,7 +513,7 @@ class Vereinsapp extends BaseConfig
             'ich_eingeladen',
         ),
 
-        'rueckmeldungen' => array(
+        'terminrueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -585,7 +585,7 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
-        'rueckmeldungen' => array(
+        'terminrueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -649,7 +649,7 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
-        'rueckmeldungen' => array(
+        'terminrueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -710,7 +710,7 @@ class Vereinsapp extends BaseConfig
      * Frist in Sekunden, die man mindestens
      * vor dem Start des Termins einhalten muss
      */
-    public $termine_rueckmeldung_frist = 0;
+    public $termine_terminrueckmeldung_frist = 0;
 
     /**
      * --------------------------------------------------------------------------

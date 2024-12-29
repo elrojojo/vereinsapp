@@ -4,9 +4,9 @@ namespace App\Models\Termine;
 
 use CodeIgniter\Model;
 
-class Rueckmeldung_Model extends Model {
+class Terminrueckmeldung_Model extends Model {
    
-    protected $table          = 'termine_rueckmeldungen';
+    protected $table          = 'termine_terminrueckmeldungen';
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
         'termin_id',
@@ -18,11 +18,11 @@ class Rueckmeldung_Model extends Model {
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    public function rueckmeldungen_tabelle() {
+    public function terminrueckmeldungen_tabelle() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'rueckmeldungen' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'terminrueckmeldungen' );
 
         return $tabelle;
     }

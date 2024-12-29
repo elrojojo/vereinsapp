@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Aufgaben\Aufgabe_Model;
 use App\Models\Termine\Termin_Model;
-use App\Models\Termine\Rueckmeldung_Model;
+use App\Models\Termine\Terminrueckmeldung_Model;
 use App\Models\Termine\Anwesenheit_Model;
 use App\Models\Strafkatalog\Strafe_Model;
 use App\Models\Strafkatalog\Kassenbucheintrag_Model;
@@ -40,7 +40,7 @@ class Einstellungen extends BaseController {
                 'vergebene_rechte' => model(Mitglied_Model::class)->vergebene_rechte_tabelle(),
                 'aufgaben' => model(Aufgabe_Model::class)->aufgaben_tabelle(),
                 'termine' => model(Termin_Model::class)->termine_tabelle(),
-                'rueckmeldungen' => model(Rueckmeldung_Model::class)->rueckmeldungen_tabelle(),
+                'terminrueckmeldungen' => model(Terminrueckmeldung_Model::class)->terminrueckmeldungen_tabelle(),
                 'anwesenheiten' => model(Anwesenheit_Model::class)->anwesenheiten_tabelle(),
                 'strafkatalog' => model(Strafe_Model::class)->strafkatalog_tabelle(),
                 'kassenbuch' => model(Kassenbucheintrag_Model::class)->kassenbuch_tabelle(),

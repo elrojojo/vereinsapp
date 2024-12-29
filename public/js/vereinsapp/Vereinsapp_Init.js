@@ -53,6 +53,7 @@ FEATURES
 Filtern auf eine Ebene beschränken und die Oberfläche optimieren
 Sortieren auf einen Wert beschränken (analog zu gruppieren)
 Batch über filtern- und sortieren-Button legen
+Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
@@ -91,7 +92,8 @@ Wartungsarbeiten per Filter handlen
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
-Rekursion-Problem Rückmeldungen vs. Termine auflösen
+Rekursion-Problem Terminrückmeldungen vs. Termine auflösen
+eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
 Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?

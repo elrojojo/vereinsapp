@@ -238,11 +238,11 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminAendern.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungErstellen.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungAendern.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungDetaillieren.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungEinAusblenden.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminrueckmeldungErstellen.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminrueckmeldungAendern.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminrueckmeldungDetaillieren.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminrueckmeldungAktualisieren.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminrueckmeldungEinAusblenden.js?v='.VERSION), );
             
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION), );

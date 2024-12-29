@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Termine\Termin_Model;
-use App\Models\Termine\Rueckmeldung_Model;
+use App\Models\Termine\Terminrueckmeldung_Model;
 use App\Models\Termine\Anwesenheit_Model;
 
 use CodeIgniter\I18n\Time;
@@ -15,7 +15,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['link'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
+        $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/terminrueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
 
         $disabled_filtern = array();
         if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
@@ -23,7 +23,7 @@ class Termine extends BaseController {
         // $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'mitglieder', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'terminrueckmeldungen', 'klasse' => array(
             'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
             'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
         ), );
@@ -79,20 +79,20 @@ class Termine extends BaseController {
 
         $this->viewdata['element_id'] = $termin_id;
 
-        $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
-            'auswertungen' => 'rueckmeldungen',
+        $this->viewdata['auswertungen'][ 'terminrueckmeldungen_termin' ] = array(
+            'auswertungen' => 'terminrueckmeldungen',
             'status_auswahl' => array( 1 => "ZUSAGEN", 2 => "ABSAGEN" ),
             'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
         );
 
-        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
+        $this->viewdata['auswertungen']['terminrueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
             'klasse_id' => 'btn_gruppieren_modal_oeffnen',
             'title' => 'Auswertung gruppieren',
         );
 
-        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['auswertungen']['terminrueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
             'klasse_id' => 'btn_filtern_modal_oeffnen',
             'title' => 'Auswertung filtern',
         );
@@ -121,7 +121,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'mitglieder', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'terminrueckmeldungen', 'klasse' => array(
             'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
             'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
         ), );
@@ -238,34 +238,34 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_terminrueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'termin_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+            'termin_id' => [ 'label' => EIGENSCHAFTEN['terminrueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['terminrueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['terminrueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['terminrueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !(array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
+                 )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds(TERMINE_TERMINRUECKMELDUNG_FRIST) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
-            $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
-            $rueckmeldung = array(
+            $terminrueckmeldungen_Model = model(Terminrueckmeldung_Model::class);
+            $terminrueckmeldung = array(
                 'termin_id' => $this->request->getpost()['termin_id'],
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
                 'status' => $this->request->getpost()['status'],
             );
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $terminrueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $terminrueckmeldung['bemerkung'] = '';
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) {
-                $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'], 'id !=' => $this->request->getpost()['id'] ) )->delete();
-                $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
+                $terminrueckmeldungen_Model->where( array( 'termin_id' => $terminrueckmeldung['termin_id'], 'mitglied_id' => $terminrueckmeldung['termin_id'], 'id !=' => $this->request->getpost()['id'] ) )->delete();
+                $terminrueckmeldungen_Model->update( $this->request->getpost()['id'], $terminrueckmeldung );
             } else {
-                $rueckmeldungen_Model->save( $rueckmeldung );
-                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
+                $terminrueckmeldungen_Model->save( $terminrueckmeldung );
+                $ajax_antwort['terminrueckmeldung_id'] = (int)$terminrueckmeldungen_Model->getInsertID();
             }
         }
 

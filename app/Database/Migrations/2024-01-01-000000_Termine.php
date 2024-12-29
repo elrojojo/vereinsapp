@@ -37,7 +37,7 @@ class Termine extends Migration
         $this->forge->addForeignKey('termin_id', 'termine', 'id', '', 'CASCADE');
         $this->forge->addKey('mitglied_id');
         $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
-        $this->forge->createTable('termine_rueckmeldungen');
+        $this->forge->createTable('termine_terminrueckmeldungen');
         
         $this->forge->addField([
             'id'            => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false,    'auto_increment' => true],
@@ -60,7 +60,7 @@ class Termine extends Migration
     {
         $this->db->disableForeignKeyChecks();
         $this->forge->dropTable('termine', true);
-        $this->forge->dropTable('termine_rueckmeldungen', true);
+        $this->forge->dropTable('termine_terminrueckmeldungen', true);
         $this->forge->dropTable('termine_anwesenheiten', true);
         $this->db->enableForeignKeyChecks();
     }
