@@ -52,7 +52,8 @@ INSERT INTO `vereinsapp_migrations` (`id`, `version`, `class`, `group`, `namespa
 (4, '2024-01-01-000000', 'App\\Database\\Migrations\\Extend_Mitglieder', 'default', 'App', 1726846089, 1),
 (5, '2024-01-01-000000', 'App\\Database\\Migrations\\Notenbank', 'default', 'App', 1726846089, 1),
 (6, '2024-01-01-000000', 'App\\Database\\Migrations\\Strafkatalog', 'default', 'App', 1726846089, 1),
-(7, '2024-01-01-000000', 'App\\Database\\Migrations\\Termine', 'default', 'App', 1726846089, 1);
+(7, '2024-01-01-000000', 'App\\Database\\Migrations\\Termine', 'default', 'App', 1726846089, 1),
+(8, '2024-01-01-000000', 'App\\Database\\Migrations\\Umfragen', 'default', 'App', 1726846089, 1);
 
 -- --------------------------------------------------------
 
@@ -329,6 +330,38 @@ CREATE TABLE `vereinsapp_termine_terminrueckmeldungen` (
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `vereinsapp_umfragen`
+--
+
+CREATE TABLE `vereinsapp_umfragen` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `titel` varchar(100) NOT NULL,
+  `status_auswahl` varchar(50) NOT NULL,
+  `bemerkung` varchar(100) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `vereinsapp_umfragen_rueckmeldungen`
+--
+
+CREATE TABLE `vereinsapp_umfragen_rueckmeldungen` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `umfrage_id` int(11) UNSIGNED NOT NULL,
+  `mitglied_id` int(11) UNSIGNED NOT NULL,
+  `status` int(11) UNSIGNED NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indizes der exportierten Tabellen
 --
@@ -447,6 +480,20 @@ ALTER TABLE `vereinsapp_termine_terminrueckmeldungen`
   ADD KEY `mitglied_id` (`mitglied_id`);
 
 --
+-- Indizes für die Tabelle `vereinsapp_umfragen`
+--
+ALTER TABLE `vereinsapp_umfragen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `vereinsapp_umfragen_rueckmeldungen`
+--
+ALTER TABLE `vereinsapp_umfragen_rueckmeldungen`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `umfrage_id` (`umfrage_id`),
+  ADD KEY `mitglied_id` (`mitglied_id`);
+
+--
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -460,7 +507,7 @@ ALTER TABLE `vereinsapp_aufgaben`
 -- AUTO_INCREMENT für Tabelle `vereinsapp_migrations`
 --
 ALTER TABLE `vereinsapp_migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `vereinsapp_mitglieder`
@@ -547,6 +594,18 @@ ALTER TABLE `vereinsapp_termine_terminrueckmeldungen`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT für Tabelle `vereinsapp_umfragen`
+--
+ALTER TABLE `vereinsapp_umfragen`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `vereinsapp_umfragen_rueckmeldungen`
+--
+ALTER TABLE `vereinsapp_umfragen_rueckmeldungen`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints der exportierten Tabellen
 --
 
@@ -599,6 +658,13 @@ ALTER TABLE `vereinsapp_termine_anwesenheiten`
 ALTER TABLE `vereinsapp_termine_terminrueckmeldungen`
   ADD CONSTRAINT `vereinsapp_termine_terminrueckmeldungen_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `vereinsapp_termine_terminrueckmeldungen_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `vereinsapp_umfragen_rueckmeldungen`
+--
+ALTER TABLE `vereinsapp_umfragen_rueckmeldungen`
+  ADD CONSTRAINT `vereinsapp_umfragen_rueckmeldungen_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `vereinsapp_umfragen_rueckmeldungen_umfrage_id_foreign` FOREIGN KEY (`umfrage_id`) REFERENCES `vereinsapp_umfragen` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,6 +10,8 @@ use App\Models\Termine\Anwesenheit_Model;
 use App\Models\Strafkatalog\Strafe_Model;
 use App\Models\Strafkatalog\Kassenbucheintrag_Model;
 use App\Models\Notenbank\Titel_Model;
+use App\Models\Umfragen\Umfrage_Model;
+use App\Models\Umfragen\Rueckmeldung_Model;
 
 class Einstellungen extends BaseController {
 
@@ -45,6 +47,8 @@ class Einstellungen extends BaseController {
                 'strafkatalog' => model(Strafe_Model::class)->strafkatalog_tabelle(),
                 'kassenbuch' => model(Kassenbucheintrag_Model::class)->kassenbuch_tabelle(),
                 'notenbank' => model(Titel_Model::class)->notenbank_tabelle(),
+                'umfragen' => model(Umfrage_Model::class)->umfragen_tabelle(),
+                'rueckmeldungen' => model(Rueckmeldung_Model::class)->rueckmeldungen_tabelle(),
             );
 
         }

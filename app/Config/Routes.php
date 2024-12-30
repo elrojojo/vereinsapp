@@ -106,6 +106,18 @@ $routes->group('notenbank', static function ($routes) {
     $routes->post('ajax_titel_loeschen',                    'Notenbank::ajax_titel_loeschen');
 });
 
+$routes->group('umfragen', static function ($routes) {
+    $routes->get('',                                        'Umfragen::umfragen');
+    $routes->get('umfragen',                                'Umfragen::umfragen');
+    $routes->get('(:num)',                                  'Umfragen::details/$1');
+    $routes->get('details/(:num)',                          'Umfragen::details/$1');
+
+    $routes->post('ajax_umfrage_speichern',                 'Umfragen::ajax_umfrage_speichern');
+    $routes->post('ajax_umfrage_loeschen',                  'Umfragen::ajax_umfrage_loeschen');
+
+    $routes->post('ajax_rueckmeldung_speichern',            'Umfragen::ajax_rueckmeldung_speichern');
+});
+
 $routes->group('status', static function ($routes) {
     $routes->get('wartungsarbeiten', 'Status::wartungsarbeiten');
     $routes->post('ajax_datenschutz_richtlinie', 'Status::ajax_datenschutz_richtlinie');

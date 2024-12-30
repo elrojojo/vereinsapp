@@ -68,6 +68,7 @@ class Vereinsapp extends BaseConfig
         'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine']['bootstrap'] ),
         'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog']['bootstrap'] ),
         'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank']['bootstrap'] ),
+        'umfragen' => array ( 'beschriftung' => 'Umfragen', 'symbol' => SYMBOLE['umfragen']['bootstrap'] ),
         'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
         'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
     );
@@ -79,6 +80,7 @@ class Vereinsapp extends BaseConfig
         array( 'typ' => 'controller', 'data' => 'termine' ),
         array( 'typ' => 'controller', 'data' => 'strafkatalog' ),
         array( 'typ' => 'controller', 'data' => 'notenbank' ),
+        array( 'typ' => 'controller', 'data' => 'umfragen' ),
         array( 'typ' => 'controller', 'data' => 'aufgaben' ),
         array( 'typ' => 'controller', 'data' => 'mitglieder' ),
         array( 'typ' => 'controller', 'data' => 'einstellungen' ),
@@ -221,6 +223,23 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
+        'umfragen' => array(
+            'liste' => 'umfragen',
+            'sortieren' => array(
+                array( 'eigenschaft'=> 'erstellung', 'richtung'=> SORT_DESC, ),
+            ),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Umfragen filtern', ),
+                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Umfragen sortieren', ),
+            ),
+            'listenstatistik' => array(),
+        ),
+
+        'rueckmeldungen' => array(
+            'liste' => 'rueckmeldungen',
+        ),
+
     );
 
     /**
@@ -343,6 +362,22 @@ class Vereinsapp extends BaseConfig
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
         ),
 
+        'umfragen' => array(
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
+            'status_auswahl' => array( 'beschriftung' => 'Status-Auswahl', 'typ' => 'text' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),              // PHP
+        ),
+
+        'rueckmeldungen' => array(
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'umfrage_id' => array( 'beschriftung' => 'Umfrage-ID', 'typ' => 'zahl' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+        ),
+
     );
 
     /**
@@ -416,6 +451,7 @@ class Vereinsapp extends BaseConfig
                 'mitglieder' => array( 'beschriftung' => LISTEN['mitglieder']['beschriftung'] ),
                 'termine' => array( 'beschriftung' => LISTEN['termine']['beschriftung'] ),
                 'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),
+                'umfragen' => array( 'beschriftung' => LISTEN['umfragen']['beschriftung'] ),
             ),
 
             'erledigt_janein' => JANEIN,
@@ -434,6 +470,7 @@ class Vereinsapp extends BaseConfig
             'ich_rueckgemeldet' => JANEIN,
 
             'ich_eingeladen' => JANEIN,
+
         ),
 
         'terminrueckmeldungen' => array(
@@ -469,6 +506,12 @@ class Vereinsapp extends BaseConfig
                 'volkstuemlich' => array( 'beschriftung' => 'Volkstümlich', ),
             ),
 
+        ),
+
+        'umfragen' => array(
+        ),
+
+        'rueckmeldungen' => array(
         ),
 
     );
@@ -538,6 +581,13 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',
+        ),
+
+        'umfragen' => array(
+            'erstellung',
+        ),
+
+        'rueckmeldungen' => array(
         ),
 
     );
@@ -615,6 +665,13 @@ class Vereinsapp extends BaseConfig
             'anzahl_verzeichnis',
         ),
 
+        'umfragen' => array(
+            'erstellung',
+        ),
+
+        'rueckmeldungen' => array(
+        ),
+
     );
     
     /**
@@ -668,6 +725,12 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',
+        ),
+
+        'umfragen' => array(
+        ),
+
+        'rueckmeldungen' => array(
         ),
 
     );

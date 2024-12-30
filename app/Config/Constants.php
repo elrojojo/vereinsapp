@@ -163,6 +163,19 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'element' => 'titel',
         'abhaengig_von' => array(),
     ),
+
+    'umfragen' => array(
+        'beschriftung' => 'Umfragen',
+        'controller' => 'umfragen',
+        'element' => 'umfrage',
+        'abhaengig_von' => array( 'rueckmeldungen' ),
+    ),
+    'rueckmeldungen' => array(
+        'beschriftung' => 'Rückmeldungen',
+        'controller' => 'umfragen',
+        'element' => 'rueckmeldung',
+        'abhaengig_von' => array( /*'umfragen',*/ 'mitglieder' ),
+    ),
 ) );
 
 defined('ELEMENTE') OR define( 'ELEMENTE', array(
@@ -235,6 +248,20 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
             array( 'eigenschaft' => 'titel' )
         ),
     ),
+
+    'umfrage' => array(
+        'beschriftung' => 'Umfrage',
+        'liste' => 'umfragen',
+        'element_beschriftung' => array(
+            array( 'eigenschaft' => 'titel' ),
+            array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
+        ),
+    ),
+    'rueckmeldung' => array(
+        'beschriftung' => 'Rückmeldung',
+        'liste' => 'rueckmeldungen',
+        'element_beschriftung' => array(),
+    ),
 ) );
 
 defined('JANEIN') OR define( 'JANEIN', array(
@@ -269,6 +296,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'termine' => array ( 'bootstrap' => 'calendar-event' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
+    'umfragen' => array ( 'bootstrap' => 'signpost-split' ),
     'startseite' => array ( 'bootstrap' => '' ),
 
     'werkzeuge' => array( 'bootstrap' => 'tools' ),
