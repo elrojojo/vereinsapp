@@ -63,6 +63,7 @@ class AuthGroups extends ShieldAuthGroups
         'termine.anwesenheiten' => 'Dokumentation der Anwesenheit',
         'strafkatalog.verwaltung' => 'Verwaltung des Strafkatalogs',
         'notenbank.verwaltung' => 'Verwaltung der Notenbank',
+        'umfragen.verwaltung' => 'Verwaltung der Umfragen',
         'global.einstellungen' => 'Globale Einstellungen',
     ];
 

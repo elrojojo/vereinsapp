@@ -13,6 +13,7 @@ $(document).ready(function () {
         Termine_Init();
         Strafkatalog_Init();
         Notenbank_Init();
+        Umfragen_Init();
 
         $.each(LISTEN, function (liste, LISTE) {
             Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], {
@@ -50,8 +51,9 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Filtern auf eine Ebene beschränken und die Oberfläche optimieren
-Sortieren auf einen Wert beschränken (analog zu gruppieren)
+Filtern auf eine Ebene beschränken und sortieren auf einen Wert beschränken (analog zu gruppieren) und die Oberflächen optimieren
+    Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
+    Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
 Batch über filtern- und sortieren-Button legen
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
@@ -95,7 +97,8 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 Rekursion-Problem Terminrückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
-Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
+View Aufgaben/aufgabe umbenennen in Aufgaben/eingeplantes_mitglied
+termine_basiseigenschaften umbenennen in termin_basiseigenschaften (und prüfen ob es noch weitere fehlerhafte _basiseigenschaften gibt)
+status_auswahl implementieren
 
 */

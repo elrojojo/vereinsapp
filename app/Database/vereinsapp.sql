@@ -46,14 +46,15 @@ CREATE TABLE `vereinsapp_migrations` (
 --
 
 INSERT INTO `vereinsapp_migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
-(1, '2020-12-28-223112', 'CodeIgniter\\Shield\\Database\\Migrations\\CreateAuthTables', 'default', 'CodeIgniter\\Shield', 1726846089, 1),
-(2, '2021-07-04-041948', 'CodeIgniter\\Settings\\Database\\Migrations\\CreateSettingsTable', 'default', 'CodeIgniter\\Settings', 1726846089, 1),
-(3, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1726846089, 1),
-(4, '2024-01-01-000000', 'App\\Database\\Migrations\\Extend_Mitglieder', 'default', 'App', 1726846089, 1),
-(5, '2024-01-01-000000', 'App\\Database\\Migrations\\Notenbank', 'default', 'App', 1726846089, 1),
-(6, '2024-01-01-000000', 'App\\Database\\Migrations\\Strafkatalog', 'default', 'App', 1726846089, 1),
-(7, '2024-01-01-000000', 'App\\Database\\Migrations\\Termine', 'default', 'App', 1726846089, 1),
-(8, '2024-01-01-000000', 'App\\Database\\Migrations\\Umfragen', 'default', 'App', 1726846089, 1);
+(1, '2020-12-28-223112', 'CodeIgniter\\Shield\\Database\\Migrations\\CreateAuthTables', 'default', 'CodeIgniter\\Shield', 1735550711, 1),
+(2, '2021-07-04-041948', 'CodeIgniter\\Settings\\Database\\Migrations\\CreateSettingsTable', 'default', 'CodeIgniter\\Settings', 1735550711, 1),
+(3, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1735550711, 1),
+(4, '2024-01-01-000000', 'App\\Database\\Migrations\\Aufgaben', 'default', 'App', 1735550711, 1),
+(5, '2024-01-01-000000', 'App\\Database\\Migrations\\Extend_Mitglieder', 'default', 'App', 1735550711, 1),
+(6, '2024-01-01-000000', 'App\\Database\\Migrations\\Notenbank', 'default', 'App', 1735550711, 1),
+(7, '2024-01-01-000000', 'App\\Database\\Migrations\\Strafkatalog', 'default', 'App', 1735550711, 1),
+(8, '2024-01-01-000000', 'App\\Database\\Migrations\\Termine', 'default', 'App', 1735550711, 1),
+(9, '2024-01-01-000000', 'App\\Database\\Migrations\\Umfragen', 'default', 'App', 1735550711, 1);
 
 -- --------------------------------------------------------
 
@@ -507,7 +508,7 @@ ALTER TABLE `vereinsapp_aufgaben`
 -- AUTO_INCREMENT für Tabelle `vereinsapp_migrations`
 --
 ALTER TABLE `vereinsapp_migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT für Tabelle `vereinsapp_mitglieder`

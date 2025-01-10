@@ -254,7 +254,6 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
         'liste' => 'umfragen',
         'element_beschriftung' => array(
             array( 'eigenschaft' => 'titel' ),
-            array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
         ),
     ),
     'rueckmeldung' => array(
