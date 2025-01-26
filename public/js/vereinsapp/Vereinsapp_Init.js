@@ -50,9 +50,11 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Filtern auf eine Ebene beschränken und die Oberfläche optimieren
-Sortieren auf einen Wert beschränken (analog zu gruppieren)
+Filtern auf eine Ebene beschränken und sortieren auf einen Wert beschränken (analog zu gruppieren) und die Oberflächen optimieren
+    Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
+    Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
 Batch über filtern- und sortieren-Button legen
+Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
@@ -92,9 +94,8 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
+eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
-Form validation für bemerkung mit Regel field_exists durchführen?
-Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
+termine_basiseigenschaften umbenennen in termin_basiseigenschaften (und prüfen ob es noch weitere fehlerhafte _basiseigenschaften gibt)
 
 */

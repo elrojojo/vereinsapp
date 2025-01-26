@@ -10,7 +10,7 @@ class Aufgaben extends BaseController {
         $this->viewdata['liste']['alle_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
         $this->viewdata['liste']['alle_aufgaben']['group-flush'] = TRUE;
         $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
-        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
@@ -51,7 +51,7 @@ class Aufgaben extends BaseController {
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date', 'permit_empty' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         // Die Aufgabe darf nicht erstellt oder geändert werden, wenn das Recht zur Verwaltung der Aufgaben nicht vergeben ist

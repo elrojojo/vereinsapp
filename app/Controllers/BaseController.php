@@ -96,6 +96,8 @@ abstract class BaseController extends Controller
         defined('HEAD_STYLESHEET') OR define( 'HEAD_STYLESHEET', array( 
           array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
           array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css'),
+        //   array( 'href' => 'http://localhost/lib_extern/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
+        //   array( 'href' => 'http://localhost/lib_extern/css/bootstrap-icons.css'),
           array( 'href' => base_url('css/vereinsapp.css?v='.VERSION), ),
         ) );
         $head_script = array();
@@ -106,6 +108,12 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery-3.7.1.js', 'integrity' => 'sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery-ui.js', 'integrity' => 'sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery.ui.touch-punch.min.js', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/luxon.min.js', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/clipboard.min.js', );
         $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js?v='.VERSION), ); // https://www.npmjs.com/package/js-sha256
         $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isJson.js?v='.VERSION), );
