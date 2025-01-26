@@ -10,7 +10,7 @@ class Aufgaben extends BaseController {
         $this->viewdata['liste']['alle_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
         $this->viewdata['liste']['alle_aufgaben']['group-flush'] = TRUE;
         $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
-        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 

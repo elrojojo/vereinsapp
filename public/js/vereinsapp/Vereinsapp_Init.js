@@ -97,7 +97,6 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 Rekursion-Problem Terminrückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
-View Aufgaben/aufgabe umbenennen in Aufgaben/eingeplantes_mitglied
 termine_basiseigenschaften umbenennen in termin_basiseigenschaften (und prüfen ob es noch weitere fehlerhafte _basiseigenschaften gibt)
 status_auswahl implementieren
 

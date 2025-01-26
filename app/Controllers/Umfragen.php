@@ -75,7 +75,7 @@ class Umfragen extends BaseController {
             array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $umfrage_id, ),
         ), ), );
         $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
             $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
