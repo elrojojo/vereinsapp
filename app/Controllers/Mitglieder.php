@@ -176,7 +176,7 @@ class Mitglieder extends BaseController {
             array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $mitglied_id, ),
         ), ), );
         $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
@@ -190,7 +190,7 @@ class Mitglieder extends BaseController {
             ), ), );
             $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
             $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
         }
 
