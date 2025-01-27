@@ -7,7 +7,7 @@
 </div>
 
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
-        view( 'Templates/modal', array( 'id' => 'termine_basiseigenschaften', 'modal' =>
+        view( 'Templates/modal', array( 'id' => 'termin_basiseigenschaften', 'modal' =>
         view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
         view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>

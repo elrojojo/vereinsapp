@@ -96,6 +96,5 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
-termine_basiseigenschaften umbenennen in termin_basiseigenschaften (und prüfen ob es noch weitere fehlerhafte _basiseigenschaften gibt)
 
 */

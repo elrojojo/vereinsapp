@@ -7,7 +7,7 @@
 </div>
 
 <?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'aufgaben_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
     view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= $this->endSection() ?>
